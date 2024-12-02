@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_payroll_analysis_pivot" model="ir.ui.view">
+            <field name="name">payroll.analysis.pivot</field>
+            <field name="model">payroll.analysis</field>
+            <field name="arch" type="xml">
+                <pivot string="payroll Analysis" sample="1">
+                    <field name="department_id" type="measure"/>
+                    <field name="manager_id" type="measure"/>
+                    <field name="category_id" type="measure"/>
+                    <field name="employee_id" type="measure"/>
+                    <field name="date_to" type="row"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_payroll_analysis_tree" model="ir.ui.view">
+            <field name="name">payroll.analysis.tree</field>
+            <field name="model">payroll.analysis</field>
+            <field name="arch" type="xml">
+                <tree string="payroll Analysis">
+                    <field name="payslip_name"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="category_id"/>
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="quantity" optional="hide"/>
+                    <field name="rate" optional="hide"/>
+                    <field name="amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_payroll_analysis_search" model="ir.ui.view">
+            <field name="name">payroll.analysis.search</field>
+            <field name="model">payroll.analysis</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter string="Employee" name="employee_id" context="{'group_by':'employee_id'}"/>
+                    <filter string="Department" name="department_id" context="{'group_by':'department_id'}"/>
+                    <filter string="Category" name="category" context="{'group_by':'category_id'}"/>
+                    <filter string="Salary Rule" name="salary_rule_id" context="{'group_by':'salary_rule_id'}"/>
+                    <filter string="Company" name="company_id" context="{'group_by':'company_id'}"/>
+                    <filter string="Code" name="code" context="{'group_by':'code'}"/>
+                    <filter string="Start Date" name="start_date" context="{'group_by':'date_from'}"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_payroll_analysis" model="ir.actions.act_window">
+            <field name="name">Payroll Analysis</field>
+            <field name="res_model">payroll.analysis</field>
+            <field name="view_mode">tree,pivot</field>
+            <field name="context">{}</field>
+            <field name="help"></field>
+        </record>
+
+        <menuitem action="action_payroll_analysis"
+                  id="menu_payroll_analysis"
+                  name="Payroll Analysis"
+                  parent="hr_payroll.menu_hr_payroll_report"
+        />
+
+    </data>
+</odoo>

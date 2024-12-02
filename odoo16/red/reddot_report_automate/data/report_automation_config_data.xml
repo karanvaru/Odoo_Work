@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="report_automation_config_1_month_crone" model="report.automation.config">
+            <field name="name">Contract End In 1 Month</field>
+            <field name="action_id" ref="reddot_report_automate.actions_send_contract_terminate_1_month"/>
+            <field name="email_template_id" ref="reddot_report_automate.contract_reminder_email_template"/>
+        </record>
+
+        <record id="report_automation_config_15_days_contract_crone" model="report.automation.config">
+            <field name="name">Contract End In 15 Days</field>
+            <field name="action_id" ref="reddot_report_automate.actions_send_contract_terminate_15_days"/>
+            <field name="email_template_id" ref="reddot_report_automate.contract_reminder_email_template"/>
+        </record>
+
+        <record id="report_automation_config_7_days_contract_crone" model="report.automation.config">
+            <field name="name">Contract End In 7 Days</field>
+            <field name="action_id" ref="reddot_report_automate.actions_send_contract_terminate_7_days"/>
+            <field name="email_template_id" ref="reddot_report_automate.contract_reminder_email_template"/>
+        </record>
+
+        <record id="report_automation_config_anniversary_reminder_crone" model="report.automation.config">
+            <field name="name">Anniversary Reminder</field>
+            <field name="action_id" ref="reddot_report_automate.actions_send_reminder_for_anniversary"/>
+            <field name="email_template_id" ref="reddot_report_automate.mail_template_anniversary_reminders"/>
+        </record>
+
+        <record id="report_automation_config_birthday_reminder_crone" model="report.automation.config">
+            <field name="name">Birthday Reminder</field>
+            <field name="action_id" ref="reddot_report_automate.actions_send_reminder_for_birthday"/>
+            <field name="email_template_id" ref="reddot_report_automate.mail_template_birthday_reminders"/>
+        </record>
+
+    </data>
+</odoo>
+

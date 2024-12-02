@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="helpdesk_ticket_inherit_id" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                 
+                   <button name="open_qa_tickets" class="oe_stat_button" type="object" icon="fa-archive">
+                          <field string="Leads" name="lead_count" widget="statinfo" />
+                          <!-- <field name ="button_true" invisible = "1" /> -->
+                        </button>
+                </xpath>
+                
+                 <xpath expr="//header" position="inside">
+                    <button name="%(rdp_helpdeskquality_audit.quality_audit_check)d" type="action" string="Quality Audit" class="btn-primary"/>
+                </xpath>
+             
+            </field>
+        </record>
+	</data>
+</odoo>

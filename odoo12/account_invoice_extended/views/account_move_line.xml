@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_move_line_form" model="ir.ui.view">
+                  <field name="name">account.move.line.inherit.form</field>
+                  <field name="model">account.move.line</field>
+                  <field name="inherit_id" ref="account.view_move_line_form" />
+                  <field name="arch" type="xml">
+                    <xpath expr="//field[@name='account_id']" position="after">
+                        <field name="account_group_id"/>
+                       
+                    </xpath>
+                    <xpath expr="//field[@name='tax_line_id']" position="after">
+                        <field name="tax_group_id"/>
+                       
+                    </xpath>
+                    <xpath expr="//notebook" position="inside">
+                      <page string="GST Returns" name="gst_returns">
+                        <group>
+                            <group>
+                                <field name="gst_returns_year_id"/>
+                                <field name="gst_returns_month_id"/>
+                            </group>
+                            <group>
+                            
+                            </group>
+                        </group>
+                      </page>
+                        <page string="TDS/TCS/PT Returns" name="tds_returns">
+                          <group>
+                              <group>
+                                <field  name="tax_type_id"/>
+                                <field  name="account_tds_paid_year_id"/> 
+                                <field  name="account_tds_paid_month_id"/> 
+                                <!-- <field  name="invoice_id"/>  -->
+                              </group>
+                              <group>
+                                <field  name="bsr_code"/> 
+                                <field name="challan_number"/>
+                                <field name="challan_amount"/>
+                                <field name="tds_certificate_number"/>
+                                  <field name="tds_certificate"/>
+                              </group>
+                          </group>
+                        </page>
+                        
+                      </xpath>
+
+                      <xpath expr="//field[@name='account_id']" position="after">
+                        <field name="account_group_id"/>
+                       
+                    </xpath>
+                  </field>
+        </record>
+        
+         
+    </data>
+</odoo>

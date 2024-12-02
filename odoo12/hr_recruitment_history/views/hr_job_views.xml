@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        
+        <!-- HR Job History -->
+
+        <record id="hr_job_history_tree" model="ir.ui.view">
+            <field name="name">hr.job.history.tree</field>
+            <field name="model">hr.job.history</field>
+            <field name="arch" type="xml">
+                <tree string="Job History" create="0" edit="0" delete="0">
+                    <field name="date_open"/>
+                    <field name="date_closed"/>
+                    <field name="no_of_employee"/>
+                    <field name="no_of_recruitment"/>
+                    <field name="expected_employees"/>
+                    <field name="application_count"/>
+                    <field name="no_of_hired_employee"/>
+                </tree>
+            </field>
+        </record>       
+        
+        <record id="hr_job_history_form" model="ir.ui.view">
+            <field name="name">hr.job.history.form</field>
+            <field name="model">hr.job.history</field>
+            <field name="arch" type="xml">
+                <form string="Job History" create="0" edit="0" delete="0">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="recruit,open"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button"
+                                icon="fa-file-o"
+                                name="%(action_hr_job_history_applications)d"
+                                context="{'default_user_id': user_id}"
+                                type="action">
+                                <field name="application_count" widget="statinfo" string="Applications"/>
+                            </button>
+                            <button class="oe_stat_button"
+                                icon="fa-users"
+                                name="%(action_hr_job_history_no_of_hired_employee)d"
+                                type="action">
+                                <field name="no_of_hired_employee" widget="statinfo" string="Hired Employees"/>
+                            </button>
+                            <button class="oe_stat_button"
+                                icon="fa-book"
+                                name="action_get_attachment_tree_view"
+                                type="object">
+                                <field name="documents_count" widget="statinfo" string="Documents"/>
+                            </button>
+                            <button class="oe_stat_button" type="action"
+                                name="%(action_hr_job_history_sources)d" icon="fa-share"
+                                context="{'default_job_history_id': active_id}">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">Trackers</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" placeholder="e.g. Sales Manager"/></h1>
+                        </div>
+                        <group>
+                            <group string="Recruitment" name="recruitment">
+                                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                                <field name="department_id"/>
+                                <field name="address_id" context="{'show_address': 1}" domain= "[('is_company', '=', True )]" options="{'always_reload': True}"/>
+                                <field name="user_id"/>
+                                <field name="no_of_recruitment"/>
+                            </group>
+                            <group string="Offer" name="offer">
+                                <field name="hr_responsible_id"/>
+                            </group>
+                        </group>
+                        <div attrs="{'invisible': [('state', '!=', 'recruit')]}">
+                            <label for="description"/>
+                            <field name="description"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="action_hr_job_histories">
+            <field name="name">Job Histories</field>
+            <field name="res_model">hr.job.history</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('job_id', '=', active_id)]</field>
+            <field name="context">{'default_job_id': active_id}</field>
+        </record>
+        
+        <!-- HR Job -->
+        
+        <record id="hr_job_form" model="ir.ui.view">
+            <field name="name">hr.job.form</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_hr_job_form"/>
+            <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                    <button class="oe_stat_button" type="action"
+                        name="%(action_hr_job_histories)d" icon="fa-share"
+                        context="{'default_job_id': active_id}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Histories</span>
+                        </div>
+                    </button>
+                </div>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

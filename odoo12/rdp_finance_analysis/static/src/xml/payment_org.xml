@@ -1,0 +1,44 @@
+<templates>
+   <t t-name="finance_payment_report">
+       <div>
+           <div>
+               <h3>RDP Finance Analysis</h3>
+           </div>
+           <div>
+               <div class="filter_view_tb"></div>
+           </div>
+           <br></br>
+           <div>
+               <div class="table_view"></div>
+           </div>
+       </div>
+   </t>
+       <t t-name="finance_payment_table">
+           <div>
+               <div class="table_main_view">
+                   <table cellspacing="0" width="100%">
+                       <thead>
+                               <th><h3>Payment</h3></th>
+                       </thead>
+                           <tbody >                                
+                                   <tr style="border: 1px solid black;">
+                                       <td style="border: 0px solid black;">
+                                            <th>odoo1 <td> <t t-esc="amount"/></td></th>
+                                       </td>                               
+                                   </tr>
+                                   <tr style="border: 1px solid black;">
+                                       <td style="border: 0px solid black;">
+                                            <th>odoo2 <td> <t t-esc="amount"/></td></th>
+                                       </td>                               
+                                   </tr>
+                                   <tr style="border: 1px solid black;">
+                                       <td style="border: 0px solid black;">
+                                            <th>odoo3 <td> <t t-esc="amount"/></td></th>
+                                       </td>                               
+                                   </tr>                                
+                            </tbody>
+               </table>
+           </div>
+       </div>
+   </t>
+</templates>

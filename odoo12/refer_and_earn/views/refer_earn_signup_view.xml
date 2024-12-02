@@ -1,0 +1,33 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+
+<template id="account_sign_up_referral" inherit_id="auth_signup.fields">
+        <xpath expr="//div[@class='form-group field-confirm_password']" position="after">
+          <style>
+            #referral_label{
+            color: #00A09D;
+            }
+
+            #referral_label:hover{
+            color: #036361;
+            }
+          </style>
+          
+            <div class="form-group field-referral">
+                <label for="referral" class="control-label">
+                    <a id="referral_label">Do you have any referral code?</a>
+                </label>
+                <t t-if="referral">
+                	<input type="text" name="referral" t-att-value="referral" id="referral_input"  class="form-control" placeholder="e.g.XXXXXXXXXXX"/>
+                </t>
+                <t t-if="not referral">
+               		 <input type="text" name="referral" t-att-value="referral" id="referral_input"  class="form-control" style="display:none;" placeholder="e.g.XXXXXXXXXXX"/>
+            	</t>
+                	<br/>
+            </div>
+        </xpath>
+</template>
+
+</odoo>

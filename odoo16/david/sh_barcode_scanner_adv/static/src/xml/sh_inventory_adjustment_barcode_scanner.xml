@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="sh_barcode_scanner.stock_adjustment.tree.scan_feature" t-inherit="web.ListRenderer" t-inherit-mode="extension" owl="1">
+
+        <xpath expr="//div[hasclass('o_list_renderer')]" position="before">
+
+            <div
+                t-if="sh_inventory_adjustment_barcode_scanner_js_class == 'inventory_report_list' "
+                class="row js_cls_sh_barcode_scanner_scanning_wrapper" style="align-items: center; padding: 10px 16px;">
+                <div class="col-md-4" t-if="sh_barcode_scanner_user_has_stock_multi_locations and sh_barcode_scanner_locations">
+                    <div class="form-group mb-0">
+                        <select
+                            t-on-change="_on_change_sh_barcode_scanner_location_select"
+                            class="form-control js_cls_sh_barcode_scanner_location_select">
+                            <t t-foreach="sh_barcode_scanner_locations" t-as="dic_location" t-key="dic_location.id">
+                                <option t-att-value="dic_location.id" t-att-selected="dic_location.id == sh_barcode_scanner_location_selected and 'selected' or None">
+                                    <span t-esc="dic_location.display_name" />
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <input type="text"
+                        t-on-change="_on_change_sh_barcode_scanner_stock_quant_tree_input_barcode"
+                        autofocus="autofocus"
+                        class="form-control js_cls_sh_barcode_scanner_stock_quant_tree_input_barcode" placeholder="barcode" />
+                </div>
+                <div class="col-md-4" t-if="sh_barcode_scanner_user_is_stock_manager" style="display: flex; justify-content: flex-start; align-items: center;">
+                    <div style="margin-right: 10px;display: flex;align-items: center;">
+                        <input
+                            t-on-change.stop="on_change_scan_negative_stock_cls"
+                            type="checkbox"
+                            t-att-value="scan_negative_stock_value"
+                            class="scan_negative_stock_cls"
+                            name="scan_negative_stock"
+                            style="height: 15px; width: 15px;"
+                            t-att-checked="sh_scan_negative_stock == 'true' ? true : undefined"
+                        />
+                    </div>
+                    <div style="margin-right: 50px;">
+                        <label for="scan_negative_stock"> Negative Counted Quantity?</label>
+                    </div>
+
+                    <div>
+                        <button
+                            class="btn btn-primary"
+                            t-on-click.stop.prevent="_on_click_js_cls_sh_barcode_scanner_stock_quant_tree_btn_apply">
+                            <i class="fa fa-fw o_button_icon fa-save"></i>
+                            <span>Apply</span>
+
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="js_cls_alert_msg col-12"></div>
+            </div>
+
+
+        </xpath>
+    </t>
+
+</templates>

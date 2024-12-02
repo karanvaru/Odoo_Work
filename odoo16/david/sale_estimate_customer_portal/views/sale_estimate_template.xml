@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_sale_estimate" name="Portal My Sale Estimates: estimate entries" inherit_id="portal.portal_my_home" priority="28">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Your Estimates</t>
+                <t t-set="url" t-value="'/my/estimates'"/>
+                <t t-set="placeholder_count" t-value="'custom_estimate_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_layout_sale_estimates" name="Portal My Sale Estimates: estimate entry" inherit_id="portal.portal_breadcrumbs" priority="40">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'sub_estimates' or sale_estimate" t-attf-class="breadcrumb-item">
+                <a t-if="sale_estimate" t-attf-href="/my/estimates?{{ keep_query() }}">Your Estimates</a>
+                <t t-else="">Your Estimates</t>
+            </li>
+            <li t-if="sale_estimate" class="breadcrumb-item active">
+                <t t-esc="sale_estimate.number"/>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_estimates" name="My Sale Estimates">        
+        <t t-call="portal.portal_layout">
+            <t t-set= "sale_estimate" t-value="estimate"/>
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Sale Estimates</t>
+                </t>
+                <t t-if="not estimates">
+                    <div class="alert alert-warning mt8" role="alert">
+                         There are no estimates.
+                    </div>
+                </t>
+                <t t-if="estimates" class="panel panel-default">
+                    <t t-call="portal.portal_table">
+                        <t t-if="estimates">
+                            <t t-call="portal.portal_table">
+                                <div t-if="estimates" class="panel panel-default">
+                                    <div class="table-responsive">
+                                    <table class="table table-hover o_portal_my_doc_table">
+                                        <t t-if="estimates" t-call="portal.portal_table">
+                                        <thead>
+                                            <tr class="active">
+                                                    <th class="col-md-10">Estimate</th>
+                                                    <th>Your Reference</th>
+                                                    <th>Date</th>
+                                                    <th>Sales Person</th>
+                                                    <th>Sales Team</th>
+                                                    <th>Print</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="estimates" t-as="estimate">
+                                                <tr>
+                                                    <td>
+                                                        <!-- <a t-attf-href="/my/estimate/#{estimate.id}?{{ keep_query() }}"><span t-field="estimate.number"/></a> -->
+                                                        <a t-attf-href="#"><span t-field="estimate.number"/></a>
+                                                    </td>
+                                                    <td>
+                                                        <span class="label label-info" title="Your Reference" t-esc="estimate.reference"/>
+                                                    </td>
+                                                    <td>
+                                                        <!-- <span class="label label-info" title="Estimate Date" t-esc="estimate.estimate_date"/> -->
+                                                        <span t-esc="datetime.datetime.strftime(estimate.estimate_date,'%m/%d/%Y')"/>
+                                                    </td>
+                                                    <td>
+                                                        <span class="label label-info" title="Current stage of the estimate" t-esc="estimate.user_id.name"/>
+                                                    </td>
+                                                    <td>
+                                                        <span class="label label-info" title="Current stage of the estimate" t-esc="estimate.team_id.name"/>
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-group flex-grow-1 mb-1">
+                                                            <a 
+                                                                t-att-href="estimate.get_portal_url()" t-att-title="estimate.id" class="btn btn-primary d-none d-md-inline-block" target="_blank">
+                                                                <i class="fa fa-print"></i> Print
+                                                            </a>
+                                                           <!-- <a target="_blank" t-att-href="'/estimate_report/print/pdf/%s?%s' % (estimate.id, keep_query())" class="btn btn-primary d-none d-md-inline-block" title="Print">
+                                                            <i class="fa fa-print"></i> Print</a> -->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                        </t>
+                                    </table>
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
+                    </t>
+                </t>
+                <div t-if="pager" class="o_portal_pager text-center">
+                    <t t-call="portal.pager"/>
+                </div>
+            </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" inherit_id="web.assets_backend"
+              name="Shipping Dashboard Backend Assets (used in backend interface)">
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/base_shipping_partner/static/src/js/backend/dashboard.js"/>
+            <script type="text/javascript" src="/base_shipping_partner/static/src/js/amcharts.js"/>
+            <script type="text/javascript" src="/base_shipping_partner/static/src/js/export.min.js"/>
+            <script type="text/javascript" src="/base_shipping_partner/static/src/js/light.js"/>
+            <script type="text/javascript" src="/base_shipping_partner/static/src/js/serial.js"/>
+            <script type="text/javascript" src="/base_shipping_partner/static/src/js/pie.js"/>
+            <script type="text/javascript" src="/base_shipping_partner/static/src/js/shipping_dashboard.js"/>
+
+            <link rel="stylesheet" href="/base_shipping_partner/static/src/js/export.css"/>
+            <link rel="stylesheet" href="/base_shipping_partner/static/src/css/style.css"/>
+            <!--<link rel="stylesheet" type="text/less" href="/base_shipping_partner/static/src/less/shipping_dashboard.less"/>-->
+        </xpath>
+    </template>
+</odoo>

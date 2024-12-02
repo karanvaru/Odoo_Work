@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="action_helpdesk_user_tree" model="ir.actions.act_window">
+            <field name="name">Helpdesk Analysis</field>
+            <field name="res_model">helpdesk.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">pivot,graph</field>
+            <field name="search_view_id" ref="website_helpdesk_support_ticket.helpdesk_support_search_view"/>
+            <!--field name="context">{'group_by_no_leaf':1,'group_by':[]}</field-->
+            <field name="help">This report allows you to analyse the performance of your projects and users. You can analyse the quantities of tasks, the hours spent compared to the planned hours, the average number of days to open or close a task, etc.</field>
+        </record>
+        
+        <!-- Reporting menus -->
+
+        <menuitem id="menu_helpdesk_analysis"
+            name="Helpdesk Analysis"
+            action="action_helpdesk_user_tree"
+            parent="menu_helpdesk_report"
+            />
+
+</odoo>

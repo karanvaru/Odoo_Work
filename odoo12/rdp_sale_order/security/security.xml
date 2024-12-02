@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="0">
+
+    <record id="group_nps_voice_manager" model="res.groups">
+        <field name="name">NPS Manager</field>
+    </record>
+
+    <record id="group_nps_voice_user" model="res.groups">
+        <field name="name">NPS User</field>
+    </record>
+
+
+  </data>
+</odoo>

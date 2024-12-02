@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_extension.SetFiscalPositionButton" t-inherit="point_of_sale.SetFiscalPositionButton"
+       t-inherit-mode="extension">
+                 <xpath expr="//div[@class='control-button o_fiscal_position_button btn btn-light rounded-0 fw-bolder']"
+                        position="attributes">
+             <attribute name="style">display: none</attribute>
+        </xpath>
+    </t>
+
+</templates>
+
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+
+<odoo>
+	<data>
+	
+		<!-- Search View Section -->
+		<record id="amazon_return_order_config_search_view" model="ir.ui.view">
+			<field name="name">Amazon Return Order Configuration</field>
+			<field name="model">order.return.config</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Amazon Return Order Config Search">
+					<field name="condition" invisible="1" />
+				</search>
+			</field>
+		</record>
+		
+		<!-- Tree View Section -->
+		<record id="amazon_return_order_config_tree_view" model="ir.ui.view">
+			<field name="name">Amazon Return Order Configuration</field>
+			<field name="model">order.return.config</field>
+			<field name="arch" type="xml">
+				<tree string="Amazon Return Order Config Tree">
+					<field name="condition" />
+					<field name="is_reimbursed" invisible="1" />
+				</tree>
+			</field>
+		</record>
+		
+		<!-- Form View Section -->
+		<record id="amazon_return_order_config_form_view" model="ir.ui.view">
+			<field name="name">Amazon Return Order Configuration</field>
+			<field name="model">order.return.config</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Amazon Return Order Config Form">
+					<sheet>
+						<group>
+							<group>
+								<field name="condition" string="Name"/>
+							</group>
+							<group>
+								<field name="is_reimbursed" string="Is Reimbursed ?" invisible="1"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<!-- Action Section -->
+		<record id="amazon_return_order_config_action" model="ir.actions.act_window">
+			<field name="name">Amazon Return Order Configuration</field>
+			<field name="res_model">order.return.config</field>
+			<field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+		</record>
+		
+		<!-- Menu Section -->
+		<!-- Commented by Dhruvi as these menu is not required -->
+		<!-- <menuitem
+            id="amazon_return_order_config_menu"
+            name="Amazon Return Order Config"
+            parent="amazon_ept.menu_configuration_ept"
+            action="amazon_return_order_config_action" /> -->
+
+	</data>
+</odoo>
+	

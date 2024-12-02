@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="employee_appraisal_view_form" model="ir.ui.view">
+            <field name="name">employee.appraisal.form</field>
+            <field name="model">employee.appraisal</field>
+            <field name="arch" type="xml">
+                <form string="Self Appraisal">
+                    <header>
+                        <button name="action_to_closed" type="object" string="closed"
+                                attrs="{'invisible': [('state', 'in', ['closed','cancel'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_cancel" type="object" string="cancel"
+                                attrs="{'invisible': [('state', 'in', ['cancel'])]}" class="btn-primary"/>
+                        <button name="action_set_draft" type="object" string="set to draft"
+                                attrs="{'invisible': [('state', 'in', ['draft','closed'])]}"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <div>
+                            <group>
+                                <h1>
+                                    <field name="name" readonly="1"/>
+                                </h1>
+                            </group>
+
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="appraisal_date"/>
+                                <field name="employee_name"/>
+                            </group>
+                            <group>
+                                <field name="priority" widget="priority"/>
+                            </group>
+                        </group>
+                        <div style="padding-right:40px">
+                            <group>
+                                <field name="description"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="employee_appraisal_tree_view" model="ir.ui.view">
+            <field name="name">employee.appraisal.tree</field>
+            <field name="model">employee.appraisal</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Appraisal">
+                    <field name="name"/>
+                    <field name="appraisal_date"/>
+                    <field name="employee_name"/>
+                    <field name="description"/>
+                    <field name="priority" widget="priority"/>
+                    <field name="open_day"></field>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--  action -->
+        <record id="employee_appraisal_action_view" model="ir.actions.act_window">
+            <field name="name">Self Appraisal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.appraisal</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!--        <field name="context">{}</field>-->
+        </record>
+
+        <menuitem id="employee_appraisal_main_menu" name="Self Appraisal" parent="hr.menu_hr_root"/>
+        <menuitem id="menu_test_app1" name="Self Appraisal Entry" action="employee_appraisal_action_view"
+                  parent="employee_appraisal_main_menu"/>
+
+    </data>
+</odoo>

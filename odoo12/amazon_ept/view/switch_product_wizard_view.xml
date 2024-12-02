@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="switching_products_ept" model="ir.ui.view">
+            <field name="name">Switch Products</field>
+            <field name="model">amazon.switch.product.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Switching Products">
+
+					<group>
+						<group>
+							<field name="instance_id" required="1"/>							
+						</group>
+					</group>
+					<group>
+						<group>
+							<field name="from_fulfillment_by" required="1"/>
+						</group>
+						<group>
+							<field name="to_fulfillment_by" required="1" />						
+						</group>
+					</group>
+					<group string="Products">
+						<field name="amazon_product_ids" domain="[('instance_id','=',instance_id),('fulfillment_by','=',from_fulfillment_by),('exported_to_amazon','=',True)]" nolabel="1">
+							<tree string="Amazon Product Tree View" >
+							<field name="name"/>	
+							<field name="title"/>									
+							<field name="seller_sku"/>
+							<field name="exported_to_amazon" />
+							<field name="fulfillment_by"/>
+						</tree>
+						</field>
+					</group>
+                    <footer>
+                        <button name="switch_products" string="Switching Products" type="object" class="oe_highlight"/>
+						<button string="Cancel" class="oe_highlight" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+	<!-- <record id="action_amazon_switch_product_ept" model="ir.actions.act_window">
+        <field name="name">Amazon Switch Product</field>
+		<field name="res_model">amazon.switch.product.wizard</field>
+        <field name="view_type">form</field>
+       	<field name="view_mode">form</field>
+       	<field name="target">new</field>        	        	
+   	</record> -->
+
+	<!-- Products: Child Menu Switch Products -->
+    <!-- <menuitem id="menu_item_amazon_products_switch_ept" name="Switch Products"
+      parent="amazon_ept.amazon_products_child_products_menu" sequence="3"
+	  action="action_amazon_switch_product_ept" groups="amazon_ept.group_amazon_manager_ept"/> -->
+
+
+	</data>
+</odoo>

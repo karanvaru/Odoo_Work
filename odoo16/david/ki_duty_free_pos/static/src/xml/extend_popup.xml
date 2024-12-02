@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="SelectionPopupUser" owl="1">
+        <Draggable>
+            <div class="popup popup-selection">
+                <header class="title drag-handle">
+                    <strong>Duty Free Detail</strong>
+                </header>
+
+                <div style="font-size:17px;">
+                    <div style="padding-top:25px;">
+                        <strong>ED No/Passport No</strong>
+                        <input style="width: 60%;" type="text" name="ed_no" id="ed_no" t-att-value="props.ed_no" readonly="readonly" disabled="disabled" />
+                    </div>
+                    <div>
+                        <br></br>
+                        <strong>Ship/Flight</strong>
+                        <input style="width: 60%;margin-left: 60px;" type="text" name="ship_flight" id="ship_flight"/>
+                    </div>
+                    <div>
+                        <br></br>
+                        <strong>Staying at</strong>
+                        <input style="width: 60%;margin-left: 68px;" type="text" name="staying_at" id="staying_at"/>
+                    </div>
+                    <div>
+                        <br></br>
+                        <strong>Departure Date</strong>
+                        <input style="width: 60%;margin-left: 24px;" type="date" name="departure_date"
+                               id="departure_date"/>
+                    </div>
+<!--                    <div>-->
+<!--                        <br></br>-->
+<!--                        <strong>Third Schedule</strong>-->
+<!--                        <input style="width: 60%;margin-left: 30px;" type="date" name="third_schedule"-->
+<!--                               id="third_schedule"/>-->
+<!--                    </div>-->
+                </div>
+
+                <footer class="footer" style="margin-top:30px;">
+                    <div class="button cancel" style="background-color: #d9534f;color: white;"
+                         t-on-click="cancel">Close
+                    </div>
+                    <div class="button confirm" style="background-color: #6EC89B;color: white; margin-top:10px;"
+                         t-on-click="onConfirm">Confirm
+                    </div>
+                </footer>
+            </div>
+        </Draggable>
+    </t>
+</templates>

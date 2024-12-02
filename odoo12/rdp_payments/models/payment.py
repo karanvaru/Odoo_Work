@@ -1,0 +1,225 @@
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError, ValidationError
+
+
+class AccountPayment(models.Model):
+    _inherit = 'account.payment'
+
+    # state = fields.Selection(
+    #     [('draft', 'Draft'), ('security_cheque', 'Security Cheques'), ('register', 'Register'), ('deposit', 'Deposit for Bounce'), ('bounce', 'Bounce'),
+    #      ('posted', 'Posted'), ('sent', 'Sent'), ('reconciled', 'Reconciled'),
+    #      ('return', 'Return'), ('cancelled', 'Cancelled')], readonly=True, default='draft', copy=False, string="Status",
+    #     store=True,
+    #     compute='onchange_state_method')
+
+    state = fields.Selection(
+    [('draft', 'Draft'), ('security_cheque', 'Security Cheques'), ('register', 'Register'), ('deposit', 'Deposit for Bounce'), ('bounce', 'Bounce'),
+        ('posted', 'Posted'), ('sent', 'Sent'), ('reconciled', 'Reconciled'),
+        ('return', 'Return'), ('cancelled', 'Cancelled')], readonly=True, default='draft', string="Status",store=True)
+
+    check_ref = fields.Char(string="Check Reference")
+    due_date = fields.Date(string="Check Date")
+    check_given_date = fields.Date(string="Check Given Date")
+
+    @api.model
+    def _get_move_name_transfer_separator(self):
+        return '§§'
+
+    def check_register(self):
+        self.update({'state': 'register'})
+
+    def action_securty_check(self):
+        self.update({'state': 'security_cheque'})
+
+    def check_return(self):
+        self.update({'state': 'return'})
+
+    def deposit_for_bounce(self):
+        for rec in self:
+            if not rec.name:
+                if rec.payment_type == 'transfer':
+                    sequence_code = 'account.payment.transfer'
+                else:
+                    if rec.partner_type == 'customer':
+                        if rec.payment_type == 'inbound':
+                            sequence_code = 'account.payment.customer.invoice'
+                        if rec.payment_type == 'outbound':
+                            sequence_code = 'account.payment.customer.refund'
+                    if rec.partner_type == 'supplier':
+                        if rec.payment_type == 'inbound':
+                            sequence_code = 'account.payment.supplier.refund'
+                        if rec.payment_type == 'outbound':
+                            sequence_code = 'account.payment.supplier.invoice'
+                rec.name = self.env['ir.sequence'].with_context(ir_sequence_date=rec.payment_date).next_by_code(
+                    sequence_code)
+            if rec.payment_type in ['inbound', 'transfer']:
+                amount = rec.amount * (rec.payment_type in ('inbound') and -1 or 1)
+                move = rec._create_payment_entry(amount)
+                persist_move_name = move.name
+                rec.update({'state': 'deposit'})
+                for line in move.line_ids:
+                    if line.ref:
+                        line.update({'name': line.name + '- Bounce' + '/' + line.ref})
+                    else:
+                        line.update({'name': line.name + '- Bounce'})
+                if rec.payment_type == 'transfer':
+                    transfer_credit_aml = move.line_ids.filtered(
+                        lambda r: r.account_id == rec.company_id.transfer_account_id)
+                    transfer_debit_aml = rec._create_transfer_entry(amount)
+                    transfer_debit_aml.update(
+                        {'name': transfer_debit_aml.name + '- Bounce' + '/' + transfer_debit_aml.ref})
+                    (transfer_credit_aml + transfer_debit_aml).reconcile()
+                    persist_move_name += self._get_move_name_transfer_separator() + transfer_debit_aml.move_id.name
+            else:
+                # if rec.payment_type == 'outbound':
+                amount = rec.amount * (rec.payment_type in ('outbound') and 1 or -1)
+                move = rec._create_payment_entry(amount)
+                persist_move_name = move.name
+                for line in move.line_ids:
+                    if line.ref:
+                        line.update({'name': line.name + '- Bounce' + '/' + line.ref})
+                    else:
+                        line.update({'name': line.name + '- Bounce'})
+                rec.update({'state': 'deposit'})
+
+    def check_bounce(self):
+        for rec in self:
+            if rec.payment_type in ['inbound', 'transfer']:
+                amount = rec.amount * (rec.payment_type in ('inbound') and 1 or -1)
+                move = rec._create_payment_entry(amount)
+                persist_move_name = move.name
+                for line in move.line_ids:
+                    if line.ref:
+                        line.update({'name': line.name + '- Bounce' + '/' + line.ref})
+                    else:
+                        line.update({'name': line.name + '- Bounce'})
+                rec.update({'state': 'bounce'})
+                if rec.payment_type == 'transfer':
+                    transfer_credit_aml = move.line_ids.filtered(
+                        lambda r: r.account_id == rec.company_id.transfer_account_id)
+                    transfer_debit_aml = rec._create_transfer_entry(amount)
+                    transfer_debit_aml.update(
+                        {'name': transfer_debit_aml.name + '- Bounce' + '/' + transfer_debit_aml.ref})
+                    (transfer_credit_aml + transfer_debit_aml).reconcile()
+                    persist_move_name += self._get_move_name_transfer_separator() + transfer_debit_aml.move_id.name
+            else:
+                # if rec.payment_type == 'outbound':
+                amount = rec.amount * (rec.payment_type in ('outbound') and -1 or 1)
+                move = rec._create_payment_entry(amount)
+                persist_move_name = move.name
+                for line in move.line_ids:
+                    if line.ref:
+                        line.update({'name': line.name + '- Bounce' + '/' + line.ref})
+                    else:
+                        line.update({'name': line.name + '- Bounce'})
+                rec.update({'state': 'bounce'})
+
+# ====================Dayan====================================19.10.2022===================================
+    @api.multi
+    def post(self):
+        """ Create the journal items for the payment and update the payment's state to 'posted'.
+            A journal entry is created containing an item in the source liquidity account (selected journal's default_debit or default_credit)
+            and another in the destination reconcilable account (see _compute_destination_account_id).
+            If invoice_ids is not empty, there will be one reconcilable move line per invoice to reconcile with.
+            If the payment is a transfer, a second journal entry is created in the destination journal to receive money from the transfer account.
+        """
+        for rec in self:
+            if rec.state not in ['draft', 'bounce', 'deposit', 'register']:
+                raise UserError(_("Only a draft or Bounce payment can be posted."))
+
+            if any(inv.state != 'open' for inv in rec.invoice_ids):
+                raise ValidationError(_("The payment cannot be processed because the invoice is not open!"))
+
+            # keep the name in case of a payment reset to draft
+            if not rec.name:
+                # Use the right sequence to set the name
+                if rec.payment_type == 'transfer':
+                    sequence_code = 'account.payment.transfer'
+                else:
+                    if rec.partner_type == 'customer':
+                        if rec.payment_type == 'inbound':
+                            sequence_code = 'account.payment.customer.invoice'
+                        if rec.payment_type == 'outbound':
+                            sequence_code = 'account.payment.customer.refund'
+                    if rec.partner_type == 'supplier':
+                        if rec.payment_type == 'inbound':
+                            sequence_code = 'account.payment.supplier.refund'
+                        if rec.payment_type == 'outbound':
+                            sequence_code = 'account.payment.supplier.invoice'
+                rec.name = self.env['ir.sequence'].with_context(ir_sequence_date=rec.payment_date).next_by_code(sequence_code)
+                if not rec.name and rec.payment_type != 'transfer':
+                    raise UserError(_("You have to define a sequence for %s in your company.") % (sequence_code,))
+
+            # Create the journal entry
+            amount = rec.amount * (rec.payment_type in ('outbound', 'transfer') and 1 or -1)
+            move = rec._create_payment_entry(amount)
+            persist_move_name = move.name
+            # In case of a transfer, the first journal entry created debited the source liquidity account and credited
+            # the transfer account. Now we debit the transfer account and credit the destination liquidity account.
+            if rec.payment_type == 'transfer':
+                transfer_credit_aml = move.line_ids.filtered(
+                    lambda r: r.account_id == rec.company_id.transfer_account_id)
+                transfer_debit_aml = rec._create_transfer_entry(amount)
+                (transfer_credit_aml + transfer_debit_aml).reconcile()
+                persist_move_name += self._get_move_name_transfer_separator() + transfer_debit_aml.move_id.name
+            rec.write({'state': 'posted', 'move_name': move.name})
+        
+         # Source Document for Payment =================Dayan================17.Oct.2022=================
+            payment = self.env['journal.audit'].search([('journal_entry_id.name','=',rec.move_name)])
+            print('======================payment==========================',payment)
+            if payment:
+                pay_message = _('This Accounting Transaction Audit has been created from: <a href="#" data-oe-id="%s" data-oe-model="account.payment">%s</a>') % (rec.id, rec.name)
+                payment.message_post(body = pay_message)  
+        return True
+
+# Code Hidden by Dayan ===========Base(Old)===============on 19.10.2022=====some edit================
+
+    # @api.multi
+    # def post(self):
+    #     """ Create the journal items for the payment and update the payment's state to 'posted'.
+    #         A journal entry is created containing an item in the source liquidity account (selected journal's default_debit or default_credit)
+    #         and another in the destination reconcilable account (see _compute_destination_account_id).
+    #         If invoice_ids is not empty, there will be one reconcilable move line per invoice to reconcile with.
+    #         If the payment is a transfer, a second journal entry is created in the destination journal to receive money from the transfer account.
+    #     """
+    #     for rec in self:
+    #         if rec.state not in ['draft', 'bounce', 'deposit', 'register']:
+    #             raise UserError(_("Only a draft or Bounce payment can be posted."))
+
+    #         if any(inv.state != 'open' for inv in rec.invoice_ids):
+    #             raise ValidationError(_("The payment cannot be processed because the invoice is not open!"))
+
+    #         # keep the name in case of a payment reset to draft
+    #         if not rec.name:
+    #             if rec.payment_type == 'transfer':
+    #                 sequence_code = 'account.payment.transfer'
+    #             else:
+    #                 if rec.partner_type == 'customer':
+    #                     if rec.payment_type == 'inbound':
+    #                         sequence_code = 'account.payment.customer.invoice'
+    #                     if rec.payment_type == 'outbound':
+    #                         sequence_code = 'account.payment.customer.refund'
+    #                 if rec.partner_type == 'supplier':
+    #                     if rec.payment_type == 'inbound':
+    #                         sequence_code = 'account.payment.supplier.refund'
+    #                     if rec.payment_type == 'outbound':
+    #                         sequence_code = 'account.payment.supplier.invoice'
+    #             rec.name = self.env['ir.sequence'].with_context(ir_sequence_date=rec.payment_date).next_by_code(
+    #                 sequence_code)
+    #             if not rec.name and rec.payment_type != 'transfer':
+    #                 raise UserError(_("You have to define a sequence for %s in your company.") % (sequence_code,))
+
+    #         # Create the journal entry
+    #         amount = rec.amount * (rec.payment_type in ('outbound', 'transfer') and 1 or -1)
+    #         move = rec._create_payment_entry(amount)
+    #         persist_move_name = move.name
+    #         # In case of a transfer, the first journal entry created debited the source liquidity account and credited
+    #         # the transfer account. Now we debit the transfer account and credit the destination liquidity account.
+    #         if rec.payment_type == 'transfer':
+    #             transfer_credit_aml = move.line_ids.filtered(
+    #                 lambda r: r.account_id == rec.company_id.transfer_account_id)
+    #             transfer_debit_aml = rec._create_transfer_entry(amount)
+    #             (transfer_credit_aml + transfer_debit_aml).reconcile()
+    #             persist_move_name += self._get_move_name_transfer_separator() + transfer_debit_aml.move_id.name
+    #         rec.write({'state': 'posted', 'move_name': persist_move_name})
+    #     return True

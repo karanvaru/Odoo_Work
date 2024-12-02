@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+vanilla_two_user,vanilla.two,model_vanilla_two,,1,1,1,1
+second_vanilla_one_tags_user,second.vanilla.one.tags,model_second_vanilla_one_tags,,1,1,1,1
+second_vanilla_one_to_many_relation_user,second.vanilla.one.to.many.relation,model_second_vanilla_one_to_many_relation,,1,1,1,1
+second_vanilla_many_to_one_relation_user,second.vanilla.many.to.one.relation,model_second_vanilla_many_to_one_relation,,1,1,1,1
+second_vanilla_many_to_many_relation_user,second.vanilla.many.to.many.relation,model_second_vanilla_many_to_many_relation,,1,1,1,1
+

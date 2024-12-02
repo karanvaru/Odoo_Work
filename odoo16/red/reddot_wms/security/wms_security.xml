@@ -1,0 +1,14 @@
+<odoo>
+<data noupdate="0">
+        <record id="group_stock_bill_of_entry_one_shipment" model="res.groups">
+            <field name="name">Bill of Entry Number for Lot &amp; Serial Numbers</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+
+        <record id="group_country_logistics" model="res.groups">
+			<field name="name">In country Logistics</field>
+			<field name="category_id" ref="base.module_category_inventory_purchase"/>
+			<field name="comment">Group for in country logistics users.</field>
+		</record>
+    </data>
+</odoo>

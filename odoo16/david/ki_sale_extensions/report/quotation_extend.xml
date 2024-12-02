@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_saleorder_document_specification" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//td[@name='td_name']" position="replace">
+                <td name="td_name">
+                    <span t-field="line.name"/>
+                    <t t-if="line.product_id.specification_lines">
+                        <br/>
+                        <br/>
+                       <strong><span style="color:black;">Specifications</span></strong>
+                        <br/>
+                        <span t-foreach="line.product_id.specification_lines" t-as="line_spec">
+                            <t t-esc="line_spec.name"/>
+                            <span> - </span>
+                            <t t-esc="line_spec.value"/>
+                            <br/>
+                        </span>
+                    </t>
+                </td>
+            </xpath>
+            <xpath expr="//th[@name='th_description']" position="replace">
+                <th name="th_descriptions" class="text-start">DESCRIPTION</th>
+            </xpath>
+            <xpath expr="//td[@name='td_name']" position="replace">
+                <td name="td_names"><span t-field="line.name"/></td>
+            </xpath>
+            <xpath expr="//th[@name='th_descriptions']" position="before">
+                <th name="th_item" class="text-start">Item code</th>
+            </xpath>
+            <xpath expr="//td[@name='td_names']" position="before">
+                <td name="td_item"><span t-field="line.item_code"/></td>
+            </xpath>
+        </template>
+    </data>
+</odoo>

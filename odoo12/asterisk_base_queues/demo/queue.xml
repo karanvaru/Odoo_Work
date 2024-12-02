@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><data noupdate="1">
+  <record id="sales_queue" model="asterisk_base_queues.queue">
+    <field name="server" ref="asterisk_base.default_server"/>
+    <field name="name">Sales</field>
+    <field name="exten">100</field>
+  </record>
+</data></odoo>

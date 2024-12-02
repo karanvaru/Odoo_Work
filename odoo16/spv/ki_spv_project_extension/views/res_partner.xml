@@ -1,0 +1,23 @@
+<odoo>
+
+    <record model="ir.ui.view" id="view_partner_form_inherit_dealer">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="is_dealer"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_dealers_view" model="ir.actions.act_window">
+        <field name="name">Dealers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="search_view_id" ref="base.view_res_partner_filter"/>
+        <field name="context">{'default_is_company': True, 'default_is_dealer':True}</field>
+        <field name="domain">[('is_dealer','=',True)]</field>
+    </record>
+
+</odoo>

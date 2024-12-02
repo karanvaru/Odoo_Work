@@ -1,0 +1,6 @@
+Module Refer And Earn Faq technical name "refer_and_earn_faq"
+Date : 22/9/2017
+->[ADD]
+	the live test url and pwik in index.html
+->[CHANGE]
+	version name 1.0 to 1.01

@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_sale_policy_confirm_detail_form">
+            <field name="name">view.sale.policy.detail.wizard.form</field>
+            <field name="model">sale.policy.detail.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="policy_number"/>
+                        	<field name="policy_duration"/>
+                        	<field name="attachment" filename="attachment_name" widget="binary" options="{'accepted_file_extensions': '.pdf'}"/>
+                            <field name="attachment_name" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                        	<field name="end_date"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_confirm" class="btn-primary" string="Confirm " type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_sale_policy_detail_wizard">
+            <field name="name">Policy Details</field>
+            <field name="res_model">sale.policy.detail.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

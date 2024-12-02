@@ -1,0 +1,429 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_base_branch
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-03 06:30+0000\n"
+"PO-Revision-Date: 2022-02-03 06:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid ""
+"<span class=\"o_form_label o_td_label\" name=\"address_name\">\n"
+"                                <b>Address</b>\n"
+"                            </span>"
+msgstr ""
+"<span class=\"o_form_label o_td_label\" name=\"address_name\">\n"
+"                                <b>地址</b>\n"
+"                            </span>"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_needaction
+msgid "Action Needed"
+msgstr "需要行動"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_ids
+msgid "Activities"
+msgstr "活動"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "活動異常裝飾"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_state
+msgid "Activity State"
+msgstr "活動狀態"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "活動類型圖標"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__address
+msgid "Address"
+msgstr "地址"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_users__branch_ids
+msgid "Allow Branches"
+msgstr "允許分支"
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_user_form_view_inherit
+msgid "Allowed Branches"
+msgstr "允許的分支機構"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_attachment_count
+msgid "Attachment Count"
+msgstr "附件計數"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_partner__branch_id
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_users__branch_id
+#: model:ir.module.category,name:sh_base_branch.module_category_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_partner_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_user_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_user_search_view_inherit
+msgid "Branch"
+msgstr "分支"
+
+#. module: sh_base_branch
+#: code:addons/sh_base_branch/models/sh_branch.py:0
+#, python-format
+msgid ""
+"Branch %(branch_name)s is not in the allowed branches for user %(user_name)s"
+" (%(branch_allowed)s)."
+msgstr ""
+"分支 %(branch_name)s 不在用戶的允許分支機構中 %(user_name)s"
+" (%(branch_allowed)s)."
+
+#. module: sh_base_branch
+#: model:ir.actions.act_window,name:sh_base_branch.sh_multi_branch_views_action
+#: model:ir.ui.menu,name:sh_base_branch.sh_multi_branch_views_menu
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "Branches"
+msgstr "分支"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__city
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "City"
+msgstr "城市"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__company_id
+msgid "Company"
+msgstr "公司"
+
+#. module: sh_base_branch
+#: model:ir.model,name:sh_base_branch.model_res_partner
+msgid "Contact"
+msgstr "接觸"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__country_id
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "Country"
+msgstr "國家"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__create_uid
+msgid "Created by"
+msgstr "由...製作"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__create_date
+msgid "Created on"
+msgstr "創建於"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__email
+msgid "Email"
+msgstr "電子郵件"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__email
+msgid "Email of Invited Person"
+msgstr "邀請人的電子郵件"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_follower_ids
+msgid "Followers"
+msgstr "追隨者"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "追隨者（合作夥伴）"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "字體令人敬畏的圖標e.g. FA-TASKS."
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_user_search_view_inherit
+msgid "Group By"
+msgstr "通過...分組"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__has_message
+msgid "Has Message"
+msgstr "有消息"
+
+#. module: sh_base_branch
+#: model:ir.module.category,description:sh_base_branch.module_category_branch
+msgid "Helps you manage the Branch"
+msgstr "幫助您管理分支機構"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_exception_icon
+msgid "Icon"
+msgstr "圖標"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "圖標表示異常活動。"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_needaction
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "如果檢查，新消息需要您的注意。"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_has_error
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "如果選中，則某些消息具有交付錯誤。"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_is_follower
+msgid "Is Follower"
+msgstr "是追隨者"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch____last_update
+msgid "Last Modified on"
+msgstr "最後修改了"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__write_uid
+msgid "Last Updated by"
+msgstr "最後更新"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__write_date
+msgid "Last Updated on"
+msgstr "上次更新了"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "主要依戀"
+
+#. module: sh_base_branch
+#: model:res.groups,name:sh_base_branch.group_branch_manager
+msgid "Manager"
+msgstr "經理"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_has_error
+msgid "Message Delivery error"
+msgstr "消息傳遞錯誤"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_ids
+msgid "Messages"
+msgstr "消息"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__mobile
+msgid "Mobile"
+msgstr "移動的"
+
+#. module: sh_base_branch
+#: model:res.groups,name:sh_base_branch.sh_multi_branch_group
+msgid "Multi Branch"
+msgstr "多分支"
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_user_form_view_inherit
+msgid "Multi Branches"
+msgstr "多分支"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "我的活動截止日期"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__name
+msgid "Name"
+msgstr "名稱"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "下一項活動截止日期"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_summary
+msgid "Next Activity Summary"
+msgstr "下一項活動摘要"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_type_id
+msgid "Next Activity Type"
+msgstr "下一個活動類型"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_needaction_counter
+msgid "Number of Actions"
+msgstr "行動數量"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_has_error_counter
+msgid "Number of errors"
+msgstr "錯誤的數量"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "需要動作的消息數"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "交貨錯誤的消息數"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_unread_counter
+msgid "Number of unread messages"
+msgstr "未讀消息的數量"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__phone
+msgid "Phone No."
+msgstr "電話號碼。"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__mobile
+msgid "Phone number of Invited Person"
+msgstr "邀請人的電話號碼"
+
+#. module: sh_base_branch
+#: model:ir.model,name:sh_base_branch.model_res_branch
+msgid "Res Branch"
+msgstr "res branch."
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_user_id
+msgid "Responsible User"
+msgstr "負責任的用戶"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "短信交付錯誤"
+
+#. module: sh_base_branch
+#. openerp-web
+#: code:addons/sh_base_branch/static/src/xml/apps.xml:0
+#, python-format
+msgid "Search ..."
+msgstr "搜索 ..."
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__state_id
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "State"
+msgstr "狀態"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"基於活動的現狀\n"
+"逾期: 截止日期已通過\n"
+"今天: 活動日期是今天\n"
+"計劃: 未來的活動."
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__street
+msgid "Street"
+msgstr "街道"
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "Street 2..."
+msgstr "街2 ......"
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "Street..."
+msgstr "街道..."
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__street2
+msgid "Street2"
+msgstr "街2"
+
+#. module: sh_base_branch
+#: model:res.groups,comment:sh_base_branch.sh_multi_branch_group
+msgid "This user will be able to use Multi Branch Feature"
+msgstr "該用戶將能夠使用多分支功能"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "記錄中的異常活動類型。"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_unread
+msgid "Unread Messages"
+msgstr "未讀消息"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "未讀消息計數器"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__user_id
+msgid "User"
+msgstr "用戶"
+
+#. module: sh_base_branch
+#: model:ir.model,name:sh_base_branch.model_res_users
+msgid "Users"
+msgstr "用戶"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__website_message_ids
+msgid "Website Messages"
+msgstr "網站消息"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__website_message_ids
+msgid "Website communication history"
+msgstr "網站溝通歷史"
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "ZIP"
+msgstr "壓縮"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__zip
+msgid "Zip"
+msgstr "壓縮"

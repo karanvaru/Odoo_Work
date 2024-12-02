@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paper_format_session_report" model="report.paperformat">
+        <field name="name">Session Report Print</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">220</field>
+        <field name="page_width">80</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">1.5</field>
+        <field name="margin_bottom">1</field>
+        <field name="margin_left">1</field>
+        <field name="margin_right">1</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_session" model="ir.actions.report">
+        <field name="name">Session Report Print</field>
+        <field name="model">pos.session</field>
+        <field name="binding_model_id" ref="model_pos_session"/>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mai_pos_session_report_thermal.report_pos_session_pdf</field>
+        <field name="report_file">mai_pos_session_report_thermal.report_pos_session_pdf</field>
+        <field name="binding_view_types">list,form</field>
+        <field name="paperformat_id" ref="mai_pos_session_report_thermal.paper_format_session_report"/>
+    </record>
+
+
+    <template id="mai_pos_session_report_thermal.report_pos_session_pdf">
+        <t t-call="web.html_container">
+            <div class="page">
+                <t t-foreach="docs" t-as="o">
+                    <div width="20%"/>
+                    <div width="65%">
+                        <div align="center" style="margin:10 auto;padding:0 auto;font-size:18px">
+                            <strong>Session Report Details</strong>
+                        </div>
+                        <div align="center"
+                             style="margin:0 auto;padding:0 auto;font-size:12px;margin-top:8px;font-family: Helvetica;">
+                            <span t-if="o.user_id.company_id.logo">
+                                <img t-att-src="image_data_uri(o.user_id.company_id.logo)"
+                                     style="max-height:1cm; max-width:6cm;" alt="Logo"/>
+                            </span>
+                            <div style="font-size:13px;">
+                                <t t-if="o.user_id.company_id.name">
+                                    <t t-esc="o.user_id.company_id.name"/>
+                                    <br/>
+                                </t>
+                                <t t-if="o.user_id.company_id.street">
+                                    <t t-esc="o.user_id.company_id.street"/>
+                                    <br/>
+                                </t>
+                                <t t-if="o.user_id.company_id.street2">
+                                    <t t-esc="o.user_id.company_id.street2"/>
+                                </t>
+                                <t t-if="o.user_id.company_id.city">
+                                    <t t-esc="o.user_id.company_id.city"/>
+                                </t>
+                                <t t-if="o.user_id.company_id.state_id.name">
+                                    <t t-esc="o.user_id.company_id.state_id.name"/>
+                                </t>
+                                <t t-if="o.user_id.company_id.country_id.name">
+                                    <t t-esc="o.user_id.company_id.country_id.name"/>
+                                </t>
+                                <br/>
+                                <t t-if="o.user_id.company_id.phone">
+                                    Tel:
+                                    <t t-esc="o.user_id.company_id.phone"/>
+                                    <br/>
+                                </t>
+                                <t t-if="o.user_id.company_id.email">
+                                    Email:
+                                    <t t-esc="o.user_id.company_id.email"/>
+                                    <br/>
+                                </t>
+                                <t t-if="o.user_id.company_id.website">
+                                    Website:
+                                    <t t-esc="o.user_id.company_id.website"/>
+                                    <br/>
+                                </t>
+                            </div>
+                        </div>
+                        <div align="center" style="margin-top:10px !important;">====================
+                            <br/>
+                        </div>
+                        <table style="width:100%;margin-top:15px; font-family: Helvetica; border-top:1pt black;">
+                            <tr>
+                                <td class="text-left">
+                                    Sales Person:
+                                </td>
+                                <td align="right">
+                                    <span t-esc="o.user_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Session:
+                                </td>
+                                <td align="right">
+                                    <span t-esc="o.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Session Status:
+                                </td>
+                                <td align="right">
+                                    <span t-esc="o.state"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Start Date:
+                                </td>
+                                <td align="right">
+                                    <span t-esc="o.get_session_open_date()"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Start Time:
+                                </td>
+                                <td align="right">
+                                    <span t-esc="o.get_session_open_time()"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <div align="center" style="margin-top:10px !important;">====================
+                            <br/>
+                            <strong>Sales Summary</strong>
+                        </div>
+                        <table style="width:100%; font-family: Helvetica;">
+                            <tr>
+                                <td class="text-left">
+                                    Opening Balance:
+                                </td>
+                                <td align="right">
+                                    <span t-field="o.currency_id.symbol"/>
+                                    <span t-esc="'%.2f'%o.cash_register_balance_start"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Sales:
+                                </td>
+                                <td align="right">
+                                    <span t-field="o.currency_id.symbol"/>
+                                    <span t-esc="'%.2f'%o.get_session_detail_mai().get('total_sale', 0)"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Tax:
+                                </td>
+                                <td align="right">
+                                    <span t-field="o.currency_id.symbol"/>
+                                    <span t-esc="'%.2f'%o.get_session_detail_mai().get('tax', 0)"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Returns:
+                                </td>
+                                <td align="right">
+                                    <span t-field="o.currency_id.symbol"/>
+                                    <span t-esc="'%.2f'%o.get_session_detail_mai().get('total_return', 0)"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Discount Amount:
+                                </td>
+                                <td align="right">
+                                    <span t-field="o.currency_id.symbol"/>
+                                    <span t-esc="'%.2f'%o.get_session_detail_mai().get('discount', 0)"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Total Amount:
+                                </td>
+                                <td align="right">
+                                    <span t-field="o.currency_id.symbol"/>
+                                    <span t-esc="'%.2f'%o.get_session_detail_mai().get('total_gross', 0)"/>
+
+                                </td>
+                            </tr>
+                        </table>
+                        <t t-if="o.get_session_detail_mai().get('products_sold')">
+                            <t t-set="product_total" t-value="0"/>
+                            <div align="center" style="margin-top:10px !important;">====================
+                                <br/>
+                                <strong>Details of Sales Summary</strong>
+                            </div>
+                            <table style="width:100%; font-family: Helvetica;">
+                                <tr>
+                                    <td class="text-left">
+                                        Catagory
+                                    </td>
+                                    <td align="right">
+                                        Qty
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.get_session_detail_mai().get('products_sold')" t-as="l">
+                                    <t t-set="product_total" t-value="product_total + l_value"/>
+                                    <td class="text-left">
+                                        <span t-esc="l"/>
+                                    </td>
+                                    <td align="right">
+                                        <span t-esc="l_value"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="!important" class="text-left">
+                                    </td>
+                                    <td style="!important" align="right">
+                                        =====
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="!important" class="text-left">
+                                        Total Units Sold:
+                                    </td>
+                                    <td style="!important" align="right">
+                                        <span t-esc="product_total"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </t>
+                        <div align="center" style="margin-top:10px !important;">====================
+                            <br/>
+                            <strong>Payment Collection</strong>
+                        </div>
+                        <table style="width:100%;font-family: Helvetica;">
+                            <t t-set="total" t-value="0"/>
+                            <tr t-foreach="o.get_payment_details()" t-as="l">
+                                <td class="text-left">
+                                    <span t-esc="l.get('name')"/>
+                                </td>
+                                <td align="right">
+                                    <span t-field="o.currency_id.symbol"/>
+                                    <span t-esc="l.get('total')"/>
+                                </td>
+                                <t t-set="total" t-value="total + l.get('total')"/>
+                            </tr>
+                        </table>
+                        <table style="width:100%;font-family: Helvetica;">
+                            <tr>
+                                <td style="!important" class="text-left">
+                                </td>
+                                <td style="!important" align="right">
+                                    =====
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="!important" class="text-left">
+                                    <strong>Total Amount:</strong>
+                                </td>
+                                <td style="!important" align="right">
+                                    <strong>
+                                        <span t-field="o.currency_id.symbol"/>
+                                        <span t-esc="total"/>
+                                    </strong>
+                                </td>
+                            </tr>
+                        </table>
+                        <div align="center" style="margin-top:10px !important;">====================
+                            <br/>
+                        </div>
+                        <div align="center" style="margin-top:10px !important;">Thank you !</div>
+                    </div>
+                    <div/>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

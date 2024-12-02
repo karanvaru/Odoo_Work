@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+from odoo import fields, models, api, _
+from odoo.exceptions import UserError
+
+class AdvancePayment(models.Model):
+    _name = "advance.payment"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _description = 'Advance Payment'
+
+    name = fields.Char('Reference',default=lambda self: _('New'),store=True,track_visibility='onchange')
+    x_studio_status = fields.Selection([
+        ('draft', 'Draft'),
+        ('submit', 'Submit'),
+        ('create_payment', 'PAYMENT'),
+        ('closed', 'CLOSED'),
+        ('cancel', 'Cancelled'),
+
+    ], string='Status', default='draft')
+
+    purchase_order = fields.Many2one('purchase.order', 'Purchase Order', store=True)
+    po_currency = fields.Many2one('res.currency', string='Currency', related='purchase_order.currency_id')
+    # currency_id = fields.Many2one('res.currency', string='Currency')
+    # po_amount = fields.Monetary(string='PO Amount', related='purchase_order.amount_total', currency_field='po_currency')
+    date = fields.Date(srting= 'Advance Payment on Date')
+    # advance_amount = fields.Monetary(string='Advance Payment')
+    description = fields.Html(string= 'Description')
+    assigned_to = fields.Many2one('res.users', 'Assigned To', store=True, domain="[('is_int_user','=',True)]",track_visibility='onchange')
+
+    priority = fields.Selection([
+        ('0', 'Normal'),
+        ('1', 'Low'),
+        ('2', 'High'),
+        ('3', 'Very High')], string='Priority')
+
+    @api.model
+    def create(self,vals):
+        vals.update({
+			'name': self.env['ir.sequence'].next_by_code('advance.payment.sequence'),
+		})
+        return super(AdvancePayment, self).create(vals)

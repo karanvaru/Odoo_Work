@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="repair_category_form_view_custom">
+        <field name="name">repair.category.form.view.custom</field>
+        <field name="model">repair.category.custom</field>
+        <field name="arch" type="xml">
+            <form string="Repair Category">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="repair_category_tree_view_custom" model="ir.ui.view">
+        <field name="name">repair.category.tree.view.custom</field>
+        <field name="model">repair.category.custom</field>
+        <field name="priority">2</field>
+        <field name="arch" type="xml">
+            <tree string="Repair Category">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="action_repair_category_custom" model="ir.actions.act_window">
+        <field name="name">Repair Category</field>
+        <field name="res_model">repair.category.custom</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+  
+    <menuitem action="action_repair_category_custom"
+        id="menu_repair_category"
+        parent="job_card.menu_job_card_setting"
+        groups="project.group_project_manager"
+        sequence="2"/>
+</odoo>

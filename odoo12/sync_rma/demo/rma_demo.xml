@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+<!-- Ryan customer  Using Saleorder RMA -->
+
+    <record id="rma_issue_1" model="rma.issue">
+        <field name="subject">Wheels not working in Chair</field>
+        <field name="user_id" ref="sync_rma.helpdesk_user_william"/>
+        <field name="priority">1</field>
+        <field name="partner_id" ref="sync_rma.helpdesk_customer_ryan"/>
+        <field name="associated_so" ref="sync_rma.sale_order_1"/>
+        <field name="partner_invoice_id" ref="base.res_partner_2"/>
+        <field name="partner_shipping_id" ref="base.res_partner_2"/>
+        <field name="rma_note">Wheels are not move properly</field>
+    </record>
+
+    <function model="rma.line.wiz" name="generate_rma_lines" eval="[[ref('sync_rma.sale_order_1')]]"/>
+    <record id="rma_issue1_line_1" model="rma.issue.line">
+        <field name="order_id" ref="rma_issue_1"/>
+        <field name="product_id" ref="sync_rma.chair_product"/>
+        <field name="return_type_id" ref="sync_rma.return_type_credit"/>
+        <field name="reason_id" ref="sync_rma.type_credit"/>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="qty_delivered">1</field>
+        <field name="to_return">1.00</field>
+        <field name="serial_id" ref="sync_rma.lot_product_chair_0"/>
+    </record>
+
+<!-- Elliott Customer Using Saleorder RMA -->
+    <record id="rma_issue_2" model="rma.issue">
+        <field name="subject">Damaged fabric of 2 Seater Sofa</field>
+        <field name="user_id" ref="sync_rma.helpdesk_user_lewis"/>
+        <field name="priority">3</field>
+        <field name="partner_id" ref="sync_rma.helpdesk_customer_elliott"/>
+        <field name="associated_so" ref="sync_rma.sale_order_2"/>
+        <field name="partner_invoice_id" ref="base.res_partner_2"/>
+        <field name="partner_shipping_id" ref="base.res_partner_2"/>
+        <field name="rma_note">Sofa fabrication are damaged, not properly, please repair it.</field>
+        <field name="state">approve</field>
+    </record>
+    <function model="rma.line.wiz" name="generate_rma_lines" eval="[[ref('sync_rma.sale_order_2')]]"/>
+    <record id="rma_issue2_line_1" model="rma.issue.line">
+        <field name="order_id" ref="rma_issue_2"/>
+        <field name="product_id" ref="sync_rma.seater_sofa_product"/>
+        <field name="return_type_id" ref="sync_rma.return_type_replace"/>
+        <field name="reason_id" ref="sync_rma.type_replace"/>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="qty_delivered">1</field>
+        <field name="to_return">1.00</field>
+        <field name="serial_id" ref="sync_rma.lot_product_sofa_1"/>
+    </record>
+
+<!-- Frederick  Without Sale Order RMA-->
+    <record id="rma_issue_3" model="rma.issue">
+        <field name="subject">Broken Corners of 3 door wardrobe Cabinets</field>
+        <field name="partner_id" ref="sync_rma.helpdesk_customer_frederick"/>
+        <field name="user_id" ref="sync_rma.helpdesk_user_jenson"/>
+        <field name="priority">1</field>
+        <field name="partner_invoice_id" ref="base.res_partner_2"/>
+        <field name="partner_shipping_id" ref="base.res_partner_2"/>
+        <field name="rma_note">Broken Corners in 3 door wardrobe Cabinets repairing</field>
+        <field name="state">confirm</field>
+    </record>
+
+    <!-- RMA Issue Line -->
+    <record id="rma_issue_line_1" model="rma.issue.line">
+        <field name="order_id" ref="rma_issue_3"/>
+        <field name="product_id" ref="sync_rma.door3_product"/>
+        <field name="return_type_id" ref="sync_rma.return_type_credit"/>
+        <field name="reason_id" ref="sync_rma.type_credit"/>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="qty_delivered">1</field>
+        <field name="to_return">1.00</field>
+        <field name="serial_id" ref="sync_rma.lot_product_door3_0"/>
+    </record>
+
+    <record id="rma_issue_line_2" model="rma.issue.line">
+        <field name="order_id" ref="rma_issue_3"/>
+        <field name="product_id" ref="sync_rma.door3_product"/>
+        <field name="return_type_id" ref="sync_rma.return_type_repair"/>
+        <field name="reason_id" ref="sync_rma.type_refund"/>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="qty_delivered">1</field>
+        <field name="to_return">1.00</field>
+        <field name="serial_id" ref="sync_rma.lot_product_door3_1"/>
+    </record>
+
+    <record id="rma_issue_line_3" model="rma.issue.line">
+        <field name="order_id" ref="rma_issue_3"/>
+        <field name="product_id" ref="sync_rma.door3_product"/>
+        <field name="return_type_id" ref="sync_rma.return_type_replace"/>
+        <field name="reason_id" ref="sync_rma.type_replace"/>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="qty_delivered">1</field>
+        <field name="serial_id" ref="sync_rma.lot_product_door3_2"/>
+        <field name="to_return">1.00</field>
+    </record>
+
+<!-- Charles  Without Sale Order RMA-->
+    <record id="rma_issue_4" model="rma.issue">
+        <field name="subject">Uneven leg of Dining Tables</field>
+        <field name="partner_id" ref="sync_rma.helpdesk_customer_charles"/>
+        <field name="user_id" ref="sync_rma.helpdesk_user_oliver"/>
+        <field name="priority">1</field>
+        <field name="partner_invoice_id" ref="base.res_partner_2"/>
+        <field name="partner_shipping_id" ref="base.res_partner_2"/>
+        <field name="rma_note">Issue of Dining Tables because of uneven leg</field>
+        <field name="state">approve</field>
+    </record>
+
+    <!-- RMA Issue Line -->
+    <record id="rma_issue_line_4" model="rma.issue.line">
+        <field name="order_id" ref="rma_issue_4"/>
+        <field name="product_id" ref="sync_rma.dining_tables_product"/>
+        <field name="return_type_id" ref="sync_rma.return_type_credit"/>
+        <field name="reason_id" ref="sync_rma.type_credit"/>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="serial_id" ref="sync_rma.lot_product_dining_0"/>
+        <field name="qty_delivered">1</field>
+        <field name="to_return">1.00</field>
+    </record>
+
+    <record id="rma_issue_line_5" model="rma.issue.line">
+        <field name="order_id" ref="rma_issue_4"/>
+        <field name="product_id" ref="sync_rma.dining_tables_product"/>
+        <field name="return_type_id" ref="sync_rma.return_type_repair"/>
+        <field name="reason_id" ref="sync_rma.type_refund"/>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="qty_delivered">2</field>
+        <field name="serial_id" ref="sync_rma.lot_product_dining_1"/>
+        <field name="to_return">1.00</field>
+    </record>
+
+    <record id="rma_issue_line_6" model="rma.issue.line">
+        <field name="order_id" ref="rma_issue_4"/>
+        <field name="product_id" ref="sync_rma.dining_tables_product"/>
+        <field name="return_type_id" ref="sync_rma.return_type_replace"/>
+        <field name="reason_id" ref="sync_rma.type_replace"/>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="qty_delivered">1</field>
+        <field name="serial_id" ref="sync_rma.lot_product_dining_2"/>
+        <field name="to_return">1.00</field>
+    </record>
+
+</odoo>

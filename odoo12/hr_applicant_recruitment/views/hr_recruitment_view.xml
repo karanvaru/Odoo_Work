@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+        <record model="ir.ui.view" id="view_account_payment_form_inherit">
+            <field name="name">hr.applicant.form.inherit</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="inside">
+                    <notebook name="applicant">
+                        <page string="Education Details" name="education">
+                            <group>
+                                <field name="applicant_education_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="degree_id"/>
+                                        <field name="institute_id"/>
+                                        <field name="passing_year"/>
+                                        <field name="grade"/>
+                                        <field name="major_subject"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="degree_id"/>
+                                                <field name="passing_year"/>
+                                                <field name="grade"/>
+                                            </group>
+                                            <group>
+                                                <field name="institute_id"/>
+                                                <field name="major_subject"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Employment Details" name="employeement">
+                            <group>
+                                <field name="applicant_employeement_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="organization_id"/>
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                        <field name="role"/>
+                                        <field name="supervisor"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="organization_id"/>
+                                                <field name="start_date"/>
+                                                <field name="supervisor"/>
+                                            </group>
+                                            <group>
+                                                <field name="role"/>
+                                                <field name="end_date"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Family Details" name="family">
+                            <group>
+                                <field name="applicant_family_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="relation_id"/>
+                                        <field name="name"/>
+                                        <field name="age"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="relation_id"/>
+                                                <field name="age"/>
+                                            </group>
+                                            <group>
+                                                <field name="name"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Medical Checklists" name="medical">
+                            <group>
+                                <field name="applicant_medical_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="checkup_type_id"/>
+                                        <field name="checkup_result"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="checkup_type_id"/>
+                                            </group>
+                                            <group>
+                                                <field name="checkup_result"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

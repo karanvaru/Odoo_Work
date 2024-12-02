@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_sale_policy_confirm_wizard_form">
+            <field name="name">view.sale.policy.confirm.wizard.form</field>
+            <field name="model">sale.policy.confirm.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="policy_sale_order_line_ids" invisible="True"/>
+                            <field name="policy_type" invisible="True"/>
+                            <field name="policy_sale_order_line_id"
+                                   options="{
+                                        'no_open': True,
+                                        'no_create_edit': True,
+                                        'no_create': True
+                                    }"
+                                   domain="[('id', 'in', policy_sale_order_line_ids)]"
+                            />
+                            
+                            <field name="gross_premium" attrs="{'invisible': [('policy_type', '!=', 'health')]}"/>
+                            <field name="od_amount" attrs="{'invisible': [('policy_type', '!=', 'vehicle')]}"/>
+                            <field name="addon_amount" attrs="{'invisible': [('policy_type', '!=', 'vehicle')]}"/>
+                        </group>
+                        <group>
+                            <field name="discount" attrs="{'invisible': [('policy_type', '==', 'health')]}"/>
+                            <field name="health_policy_type"  widget="radio" attrs="{'invisible': [('policy_type', '!=', 'health')]}"/>
+                            <field name="third_party" attrs="{'invisible': [('policy_type', '!=', 'vehicle')]}"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_confirm" class="btn-primary" string="Confirm " type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_sale_policy_confirm_wizard">
+            <field name="name">Policy Confirm</field>
+            <field name="res_model">sale.policy.confirm.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

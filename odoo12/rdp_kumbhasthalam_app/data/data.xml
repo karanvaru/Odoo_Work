@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="0">
+        <record id="seq_maid" model="ir.sequence">
+            <field name="name">KSID Sequence</field>
+            <field name="code">kumbhasthalam.sequence</field>
+            <field name="prefix">KS</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

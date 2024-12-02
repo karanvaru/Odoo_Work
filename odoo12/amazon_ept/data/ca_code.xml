@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data noupdate="1">
+    	
+    	<record id="YVR2" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">YVR2</field>
+    		<field name="country_id" ref="base.ca"></field>
+        </record>
+        <record id="YVR3" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">YVR3</field>
+    		<field name="country_id" ref="base.ca"></field>
+        </record>
+        <record id="YYZ1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">YYZ1</field>
+    		<field name="country_id" ref="base.ca"></field>
+        </record>
+        <record id="YYZ2" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">YYZ2</field>
+    		<field name="country_id" ref="base.ca"></field>
+        </record>
+        <record id="YYZ3" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">YYZ3</field>
+    		<field name="country_id" ref="base.ca"></field>
+        </record>
+        <record id="YYZ4" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">YYZ4</field>
+    		<field name="country_id" ref="base.ca"></field>
+        </record>
+        <record id="YYZ6" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">YYZ6</field>
+    		<field name="country_id" ref="base.ca"></field>
+        </record>
+        <record id="PRTO" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">PRTO</field>
+    		<field name="country_id" ref="base.ca"></field>
+        </record>
+        <record id="YYC1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">YYC1</field>
+    		<field name="country_id" ref="base.ca"></field>
+        </record>
+    </data>
+</odoo>

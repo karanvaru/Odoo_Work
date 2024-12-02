@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_priority_sale_order_form" model="ir.ui.view">
+        <field name="name">view.priority.sale.order.form</field>
+     	<field name="model">sale.order</field>
+	    <field name="inherit_id" ref="sale.view_order_form"/>
+     	<field name="arch" type="xml">
+	        <xpath expr="//field[@name='payment_term_id']" position="after">
+	            <field name="priority" widget="priority"/>
+            </xpath>
+     	</field>
+	 </record>
+	 
+	 <record id="view_priority_sale_quotation_tree" model="ir.ui.view">
+        <field name="name">view.priority.sale.quotation.tree</field>
+     	<field name="model">sale.order</field>
+	    <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+     	<field name="arch" type="xml">
+	        <xpath expr="//field[@name='state']" position="before">
+	            <field name="priority" widget="priority"/>
+            </xpath>
+     	</field>
+	 </record>
+	 
+	 <record id="view_priority_sale_order_tree" model="ir.ui.view">
+        <field name="name">view.priority.sale.order.tree</field>
+     	<field name="model">sale.order</field>
+	    <field name="inherit_id" ref="sale.view_order_tree"/>
+     	<field name="arch" type="xml">
+	        <xpath expr="//field[@name='invoice_status']" position="before">
+	            <field name="priority" widget="priority"/>
+            </xpath>
+     	</field>
+	 </record>
+	 
+	 
+	 <record id="view_priority_sale_order_kanban" model="ir.ui.view">
+        <field name="name">view.priority.sale.kanban.tree</field>
+     	<field name="model">sale.order</field>
+	    <field name="inherit_id" ref="sale.view_sale_order_kanban"/>
+     	<field name="arch" type="xml">
+	        <xpath expr="//field[@name='currency_id']" position="after">
+	            <field name="priority" widget="priority"/>
+            </xpath>
+            <xpath expr="//div[hasclass('o_kanban_record_top')]" position="after">
+                <div class="o_kanban_record_top mb16">
+                    <div class="o_kanban_record_headings mt4">
+                        <strong class="o_kanban_record_title"><field name="priority" widget="priority"/></strong>
+                    </div>
+                </div>
+	            
+            </xpath>
+     	</field>
+	 </record>
+	 
+	 <record id="view_priority_sale_order_filter" model="ir.ui.view">
+        <field name="name">view.priority.sale.filter</field>
+     	<field name="model">sale.order</field>
+	    <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+     	<field name="arch" type="xml">
+	        <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+	            <separator/>
+                <filter string="Low Priority" name="law_priority" domain="[('priority', '=', '0')]"/>
+                <filter string="Medium Priority" name="medium_priority" domain="[('priority', '=', '1')]"/>
+                <filter string="High Priority" name="high_priority" domain="[('priority', '=', '2')]"/>
+                <filter string="Very High Priority" name="very_high_priority" domain="[('priority', '=', '3')]"/>
+            </xpath>
+            <xpath expr="//filter[@name='order_month']" position="after">
+	            <filter string="Sale Priority" name="Priority" domain="[]" context="{'group_by':'priority'}"/>
+            </xpath>
+     	</field>
+	 </record>
+	 
+	 
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_ticket_assign_user_wizard,account.helpdesk.ticket.assign.user.wizard,model_helpdesk_ticket_assign_user_wizard,,1,1,1,1
+access_helpdesk_ticket_close_description_wizard,account.helpdesk.ticket.close.description.wizard,model_helpdesk_ticket_close_description_wizard,,1,1,1,1
+access_helpdesk_ticket_line,account.helpdesk.ticket.line,model_helpdesk_ticket_line,,1,1,1,1
+

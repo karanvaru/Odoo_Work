@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+<!-- 		<record model="ir.ui.view" id="view_ae_quant_package_form_ept">
+			<field name="name">stock.quant.package.form</field>
+			<field name="model">stock.quant.package</field>
+			<field name="inherit_id" ref="stock.view_quant_package_form"/>
+			<field name="groups_id" eval="[(4, ref('amazon_ept.group_amazon_user_ept'))]"/>
+			<field name="arch" type="xml">
+				<field name="location_id" position="after">
+					<field name="tracking_no" />	
+				</field>
+	            <field name="location_id" position="before">
+	            	<field name="ul_id"/>
+	            </field>				
+			</field>
+		</record> -->
+		
+        <record model="ir.ui.view" id="view_quant_package_form">
+            <field name="name">stock.quant.package.form</field>
+            <field name="model">stock.quant.package</field>
+            <field name="inherit_id" ref="stock.view_quant_package_form"/>
+            <field name="groups_id" eval="[(4, ref('amazon_ept.group_amazon_user_ept'))]"/>
+            <field name="arch" type="xml">
+	            <field name="location_id" position="before">
+	            	<field name="ul_id"/>
+	            </field>
+			</field>
+		</record>		
+		
+        <record model="ir.ui.view" id="view_quant_package_tree_ept">
+            <field name="name">stock.quant.package.tree</field>
+            <field name="model">stock.quant.package</field>
+            <field eval="100" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Package" create='false'>
+                    <field name="display_name"/>
+                    <field name="ul_id"/> 
+                    <field name="packaging_id"/>
+                    <field name="location_id"/>
+                    <field name="company_id"/>
+                    <field name="amazon_package_no"/>
+                    <field name="tracking_no"/>
+                    <field name="current_status"/>
+                </tree>
+            </field>
+        </record>
+        
+		<record model="ir.actions.act_window" id="action_package_view_ept">
+            <field name="context">{}</field>
+            <field name="name">Packages</field>
+            <field name="res_model">stock.quant.package</field>
+            <field name="domain">[('amazon_package_no','!=',False)]</field>
+            <field name="help" type="html">
+                <p>Packages are usually created by pack operations made on transfers and can contains several different products. You can then reuse a package to move its whole content somewhere else, or to pack it into another bigger package. A package can also be unpacked, allowing the disposal of its former content as single units again.
+                </p>
+            </field>
+        </record>
+        
+        
+		<record id="action_view_packages_outbound_tree" model="ir.actions.act_window.view">
+			<field eval="1" name="sequence"/>
+        	<field name="view_mode">tree</field>
+  			<field name="view_id" ref="view_quant_package_tree_ept"/>
+        	<field name="act_window_id" ref="action_package_view_ept"/>
+		</record>
+		  	
+		<record id="action_view_packages_outbound_form" model="ir.actions.act_window.view">
+			<field eval="2" name="sequence"/>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_quant_package_form"/>
+			<field name="act_window_id" ref="action_package_view_ept"/>
+		</record>
+		
+	   	<!-- <menuitem id="amazon_outbound_packages_menu" name="Packages"
+	     parent="amazon_outbound_menu_core" sequence="15"
+		 action="action_package_view_ept"  /> -->		
+		        
+	</data>
+</odoo>            

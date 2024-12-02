@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="contract_line_location" model="ir.ui.view">
+        <field name="name">contract.line.location</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_customer_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='price_subtotal']"
+                   position="after">
+                <field name='location'/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

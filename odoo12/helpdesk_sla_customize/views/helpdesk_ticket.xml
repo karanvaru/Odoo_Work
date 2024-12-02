@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- inherit helpdesk sla -->
+    <record model="ir.ui.view" id="helpdesk_custom_sla">
+        <field name="name">helpdesk.sla.inherited</field>
+        <field name="model">helpdesk.sla</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_sla_view_form"></field>
+        <field name="arch" type="xml">
+            <xpath expr='//group/div' position="replace">
+                <div>
+                    <field name="time_days" class="oe_inline"/>
+                    days
+                    <br/>
+                    <field name="time_hours" class="oe_inline"/>
+                    hours
+                    <br/>
+                    <field name="time_minutes" class="oe_inline"/>minutes
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!--  inherit helpdesk module -->
+    <record id="helpdesk_ticket_sla_customization_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.customization.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sla_name']" position="replace">
+                <field name="sla_name" class="badge badge-danger oe_inline" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='sla_name']" position="after">
+                <field name="sla_status_ids" widget="many2many_tags" options="{'color_field': 'color'}" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='team_id']" position="after">
+                <field name="sla_reached_late" invisible="1"/>
+                <field name="sla_fail" invisible="1"/>
+                <field name="sla_deadline" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

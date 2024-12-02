@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="hpi_pspr_response_form" model="ir.ui.view">
+         <field name="name">hpi.product.details.response.wizard</field>
+         <field name="model">hpi.product.details.response</field>
+         <field name="arch" type="xml">
+            <form string="PSPR Process Improvement">
+                <group>
+                    <field name="created_by"/>
+                    <field name="created_date" readonly="1"/>
+                    <field name="subject"/>
+                    <field name="description"/>
+                </group>
+                <footer>
+                    <button name="action_pspr_submit" string="Save" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+         </field>
+     </record>
+
+    <record id="hpi_pspr_response" model="ir.actions.act_window">
+        <field name="name">Helpdesk Process Improvement</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hpi.product.details.response</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="hpi_pspr_response_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

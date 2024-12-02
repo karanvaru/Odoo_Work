@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    
+    <record model="ir.rule" id="pos_category_comp_rule">
+        <field name="name">POS Category multi-company</field>
+        <field name="model_id" ref="point_of_sale.model_pos_category"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+        <field name="domain_force">
+            [ '|',
+            ('branch_id', 'in', user.allowed_branch_ids.ids), ('branch_id', '=', False)]
+        </field>
+       
+    </record>
+    
+    <record model="ir.rule" id="pos_category_manager_rule">
+    	<field name="name">POS Category manager multi-company</field>
+        <field name="model_id" ref="point_of_sale.model_pos_category"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('sh_base_branch.group_branch_manager'))]" />
+    </record>
+    
+    <record model="ir.rule" id="pos_payment_method_comp_rule">
+        <field name="name">POS Payment Method multi-company</field>
+        <field name="model_id" ref="point_of_sale.model_pos_payment_method"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+        <field name="domain_force">
+            [ '|',
+            ('branch_id', 'in', user.allowed_branch_ids.ids), ('branch_id', '=', False)]
+        </field>
+    </record>
+    
+    <record model="ir.rule" id="pos_payment_method_manager_rule">
+    	<field name="name">POS Payment Method manager multi-company</field>
+        <field name="model_id" ref="point_of_sale.model_pos_payment_method"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('sh_base_branch.group_branch_manager'))]" />
+    </record>
+    
+    <record model="ir.rule" id="pos_session_comp_rule">
+        <field name="name">POS Session multi-company</field>
+        <field name="model_id" ref="point_of_sale.model_pos_session"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+        <field name="domain_force">
+            [ '|',
+            ('branch_id', 'in', user.allowed_branch_ids.ids), ('branch_id', '=', False)]
+        </field>
+    </record>
+    
+    <record model="ir.rule" id="pos_session_manager_rule">
+    	<field name="name">POS Session manager multi-company</field>
+        <field name="model_id" ref="point_of_sale.model_pos_session"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('sh_base_branch.group_branch_manager'))]" />
+    </record>
+    
+    <record model="ir.rule" id="pos_payment_comp_rule">
+        <field name="name">POS Payment multi-company</field>
+        <field name="model_id" ref="point_of_sale.model_pos_payment"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+        <field name="domain_force">
+            [ '|',
+            ('branch_id', 'in', user.allowed_branch_ids.ids), ('branch_id', '=', False)]
+        </field>
+    </record>
+    
+    <record model="ir.rule" id="pos_payment_manager_rule">
+    	<field name="name">POS Payment manager multi-company</field>
+        <field name="model_id" ref="point_of_sale.model_pos_payment"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('sh_base_branch.group_branch_manager'))]" />
+    </record>
+    
+    <record model="ir.rule" id="pos_order_comp_rule">
+        <field name="name">POS Order multi-company</field>
+        <field name="model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+        <field name="domain_force">
+            [ '|',
+            ('branch_id', 'in', user.allowed_branch_ids.ids), ('branch_id', '=', False)]
+        </field>
+    </record>
+    
+    <record model="ir.rule" id="pos_order_manager_rule">
+    	<field name="name">POS Order manager multi-company</field>
+        <field name="model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('sh_base_branch.group_branch_manager'))]" />
+    </record>
+    
+    <record model="ir.rule" id="pos_config_comp_rule">
+        <field name="name">POS Config multi-company</field>
+        <field name="model_id" ref="point_of_sale.model_pos_config"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+        <field name="domain_force">
+            [ '|',
+            ('branch_id', 'in', user.allowed_branch_ids.ids), ('branch_id', '=', False)]
+        </field>
+    </record>
+    
+    <record model="ir.rule" id="pos_config_manager_rule">
+    	<field name="name">POS Config manager multi-company</field>
+        <field name="model_id" ref="point_of_sale.model_pos_config"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('sh_base_branch.group_branch_manager'))]" />
+    </record>
+    
+</odoo>

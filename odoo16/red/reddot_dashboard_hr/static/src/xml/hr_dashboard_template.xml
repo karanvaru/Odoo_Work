@@ -1,0 +1,210 @@
+<templates id="template" xml:space="preserve">
+    <t t-name="DashBoardHr">
+        <div class="oh_dashboards">
+            <div class="container-fluid o_hr_dashboard"> </div>
+        </div>
+    </t>
+
+
+<t t-name="HrDashboard">
+    <h2 class="section-header"></h2>
+    <div class="modal fade" id="openpopup" tabindex="-1" role="dialog" aria-labelledby="openpopupLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header text-white" style="background-color: #007BFF;">
+                    <h5 class="modal-title" id="openpopupLabel" style="color:white;">Select Date</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"
+                            style="background: none;border: #118DFF;">
+                            <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    <form>
+                        <div class="form-group mb-3">
+                            <label for="start_date" class="col-form-label"><b>Start Date:</b></label>
+                            <input type="date" class="form-control datetimepicker-input" id="start_date"
+                                   style="border-radius: 0.25rem; border: 1px solid #ced4da;"/>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="end_date" class="col-form-label"><b>End Date:</b></label>
+                            <input type="date" class="form-control" id="end_date"
+                                   style="border-radius: 0.25rem; border: 1px solid #ced4da;"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-top-0 d-flex">
+                    <button type="button" style=" color:  #007BFF;" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="custom_date_onclick" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="o_my_dashboard">
+        <div class="row">
+            <div class="box_class col-12 col-md-6 col-lg-2 mb-3">
+                <div class="row">
+                    <div class="col-3">
+                        <h1>
+                            <i class="fa fa-user mr-1"></i>
+                        </h1>
+                    </div>
+                    <div class="col-9">
+                        <h2 style="color:black;">EMPLOYEES OVERVIEW</h2>
+                    </div>
+                </div>
+                <hr style="height: 2px; background: #118DFF; margin-top: 30px;"/>
+            </div>
+            <div class="col-12 col-md-6 col-lg-2 mb-3">
+                <div class="header o_dashboard_years_data">
+                    <select id='date_filter_values_id' class="date_filter_values o_input me-3" required="true">
+                        <option value="0" disabled="" selected="" data-calc="0">Select period...</option>
+                    </select>
+                </div>
+                <div class="details open_headCount">
+                    <h1><b><div id="all_employee_count"></div></b></h1>
+                    <span>HeadCount</span>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-2 mb-3">
+                <div class="header">
+                    <select id='filter_company_id' class="company_filter_values o_input me-3" required="true">
+                        <option value="0" disabled="" selected="" data-calc="0">Select Company...</option>
+                    </select>
+                </div>
+                <div class="details open_hires">
+                    <h1><b><div id="hired_employee_count"></div></b></h1>
+                    <span>Hires</span>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-2 mb-3">
+                <div class="header">
+                    <select id='department_filter_values_id' class="department_filter_values o_input me-3" required="true">
+                        <option value="0" disabled="" selected="" data-calc="0">Select Department...</option>
+                    </select>
+                </div>
+                <div class="details open_terminations">
+                    <h1><b><div id="terminate_employee_count"></div></b></h1>
+                    <span>Terminations</span>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-2 mb-3">
+                <div class="header">
+                    <select id='job_filter_values_id' class="job_filter_values o_input me-3" required="true">
+                        <option value="0" disabled="" selected="" data-calc="0">Select Job Position...</option>
+                    </select>
+                </div>
+                <div class="details_top_demography">
+                    <div class="row">
+                        <div class="col">
+                            <h1>
+                                <i style="font-size: 50px;" class="fa fa-female"></i>
+                            </h1>
+                        </div>
+                        <div class="col pt16">
+                            <h2>
+                                <div id="female_count"></div>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-2 mb-3">
+                <div class="header">
+                    <select id='gender_filter_values_id' class="gender_filter_values o_input me-3" required="true">
+                        <option value="0" disabled="" selected="" data-calc="0">Select Gender...</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="details_top_demography">
+                    <div class="row">
+                        <div class="col">
+                            <h1>
+                                <i style="font-size: 50px;" class="fa fa-male"></i>
+                            </h1>
+                        </div>
+                        <div class="col pt16">
+                            <h2>
+                                <div id="male_count"></div>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row filter pt16" style="display:none">
+            <div class="col-12 col-md-2 pt-2" style="margin-right: 16px;">
+                <span class="btn btn-primary">Filters</span>
+            </div>
+            <div id="date_filter_data" style="display:none" class="pt-2 col-3 filter_class"></div>
+            <div id="company_filter_data" style="display:none" class="pt-2 col-3 filter_class"></div>
+            <div id="department_filter_data" style="display:none" class="pt-2 col-3 filter_class"></div>
+            <div id="job_position_filter_data" style="display:none" class="pt-2 col-3 filter_class"></div>
+            <div id="gender_filter_data" style="display:none" class="pt-2 col-3 filter_class"></div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-4 mb-3 open_contract" t-att-data-name="open">
+                <div class="details">
+                    <h1><b><div id="open_contact_count"></div></b></h1>
+                    <span>Open</span>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4 mb-3 expired_contract" t-att-data-id="expired">
+                <div class="details">
+                    <h1><b><div id="expired_contact_count"></div></b></h1>
+                    <span>Expired</span>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4 mb-3 upcoming_contract" t-att-data-id="upcoming">
+                <div class="details">
+                    <h1><b><div id="upcoming_contact_count"></div></b></h1>
+                    <span>Upcoming</span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt16">
+            <div class="col-12 col-md-6 col-lg-4 mb-3">
+                <div class="box_class">
+                    <div>
+                        <canvas id="head_count_contract_type" width="200" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-3">
+                <div class="box_class">
+                    <div>
+                        <canvas id="open_possition_chart" width="200" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-3">
+                <div class="box_class">
+                    <canvas id="HeadcountByOfficePieChart" width="200" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-12 col-md-6 mb-3">
+                <div class="box_class">
+                    <canvas id="headcountByEducationChart"></canvas>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <div class="box_class">
+                    <canvas id="HeadCountByDepartmentPieChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-12 mb-3">
+                <div class="box_class">
+                    <div>
+                        <canvas id="handCount_by_range_bar_chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</t>
+</templates>

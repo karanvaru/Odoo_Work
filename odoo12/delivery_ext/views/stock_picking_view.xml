@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form_ext" model="ir.ui.view">
+        <field name="name">stock.picking.form.ext</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/header/button[last()]" position="after">
+                <button name="send_to_shipper" string="Send to Shipper" type="object"
+                        attrs="{'invisible':['|','|','|','|', ('carrier_tracking_ref','!=',False),
+                        ('delivery_type','in', ['fixed', 'base_on_rule']),('delivery_type','=',False),
+                        ('state','in',('done')), ('picking_type_code','!=', 'incoming')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_withcarrier_out_form" model="ir.ui.view">
+        <field name="name">delivery.stock.picking_withcarrier.form.view.ext</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+        <field name="arch" type="xml">
+            <button name="cancel_shipment" position="after">
+                <button type="object" class="fa fa-arrow-right oe_link" name="cancel_shipment" string="Cancel"
+                        attrs="{'invisible':['|','|','|','|', ('carrier_tracking_ref','=',False),
+                        ('delivery_type','in', ['fixed', 'base_on_rule']),('delivery_type','=',False),
+                        ('state','in',('done')), ('picking_type_code','!=', 'incoming')]}"/>
+            </button>
+        </field>
+    </record>
+</odoo>

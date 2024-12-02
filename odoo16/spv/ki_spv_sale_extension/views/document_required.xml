@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_document_types_form" model="ir.ui.view">
+        <field name="name">view.sale.document.types.form</field>
+        <field name="model">sale.document.types</field>
+        <field name="arch" type="xml">
+            <form string="Sale Document Types">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sale_document_types_tree" model="ir.ui.view">
+        <field name="name">view.sale.document.types.tree</field>
+        <field name="model">sale.document.types</field>
+        <field name="priority">4</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Document Types">
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_sale_document_types" model="ir.actions.act_window">
+        <field name="name">Sale Document Types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.document.types</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_document_required"
+              name="Document For Application"
+              action="action_sale_document_types"
+              parent="sale.menu_sale_config"
+              sequence="11"/>
+
+</odoo>

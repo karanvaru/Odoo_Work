@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+account_gst_returns_year_user,account.gst.returns.year,model_account_gst_returns_year,,1,1,1,1
+account_gst_returns.month_user,account.gst.returns.month,model_account_gst_returns_month,,1,1,1,1
+account_parent.type_user,account.parent.type,model_account_parent_type,,1,1,1,1
+account_tds_paid.month_user,account.tds.paid.month,model_account_tds_paid_month,,1,1,1,1
+account_tds_paid.year_user,account.tds.paid.year,model_account_tds_paid_year,,1,1,1,1
+account_tds_tax_type_user,account.tds.tax.type,model_account_tds_tax_type,,1,1,1,1
+access_journal_entry_type,access_journal_entry_type,model_journal_entry_type,,1,1,1,1

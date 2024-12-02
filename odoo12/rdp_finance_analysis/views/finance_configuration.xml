@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--Tree View ================================ Office Location -->
+        <record id="office_location_view_tree" model="ir.ui.view">
+            <field name="name">office.location.view.tree</field>
+            <field name="model">office.location</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+<!--Form View ================================ Office Location -->
+        <record id="office_location_view_form" model="ir.ui.view">
+            <field name="name">office.location.view.form</field>
+            <field name="model">office.location</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="code"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+<!--Action ============================================= Office Location -->
+        <record id="action_office_location" model="ir.actions.act_window">
+            <field name="name">Office Location</field>
+            <field name="res_model">office.location</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+<!--Tree View ============================================= Transaction Category -->
+        <record id="transaction_category_view_tree" model="ir.ui.view">
+            <field name="name">transaction.category.view.tree</field>
+            <field name="model">transaction.category</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+<!--Form View ============================================= Transaction Category -->
+        <record id="transaction_category_view_form" model="ir.ui.view">
+            <field name="name">transaction.category.view.form</field>
+            <field name="model">transaction.category</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+<!--Action ============================================= Transaction Category -->
+        <record id="action_transaction_category" model="ir.actions.act_window">
+            <field name="name">Transaction Category</field>
+            <field name="res_model">transaction.category</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+<!--Tree View ============================================= Transaction Sub Category -->
+        <record id="transaction_sub_category_view_tree" model="ir.ui.view">
+            <field name="name">transaction.sub.category.view.tree</field>
+            <field name="model">transaction.sub.category</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+<!--Form View ============================================= Transaction Sub Category -->
+        <record id="transaction_sub_category_view_form" model="ir.ui.view">
+            <field name="name">transaction.sub.category.view.form</field>
+            <field name="model">transaction.sub.category</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+<!--Action ============================================= Transaction Sub Category -->
+        <record id="action_transaction_sub_category" model="ir.actions.act_window">
+            <field name="name">Transaction Sub Category</field>
+            <field name="res_model">transaction.sub.category</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+<!--Tree View ============================================= Transaction Category Type -->
+        <record id="transaction_category_type_view_tree" model="ir.ui.view">
+            <field name="name">transaction.category.type.view.tree</field>
+            <field name="model">transaction.category.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="transaction_category_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+<!--Form View ============================================= Transaction Category Type-->
+        <record id="transaction_category_type_view_form" model="ir.ui.view">
+            <field name="name">transaction.category.type.view.form</field>
+            <field name="model">transaction.category.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="parent_category_id"/>
+                            </group>
+                            <group>
+                                <field name="transaction_category_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+<!--Action ============================================= Transaction Sub Category -->
+        <record id="action_transaction_category_type" model="ir.actions.act_window">
+            <field name="name">Transaction Category Type</field>
+            <field name="res_model">transaction.category.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+<!--Tree View ============================================= Parent Category -->
+        <record id="parent_category_type_view_tree" model="ir.ui.view">
+            <field name="name">parent.category.type.view.tree</field>
+            <field name="model">parent.category.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+<!--Form View ============================================= Parent Category-->
+        <record id="parent_category_type_view_form" model="ir.ui.view">
+            <field name="name">parent.category.type.view.form</field>
+            <field name="model">parent.category.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+<!--Action ============================================= Parent Category -->
+        <record id="action_parent_category_type" model="ir.actions.act_window">
+            <field name="name">Parent Category</field>
+            <field name="res_model">parent.category.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+<!--Menu ================================================= Finance Configuration -->
+
+        <menuitem id="menu_rdp_office_location" action="action_office_location" name="Office Location"
+                parent="rdp_finance_analysis.menu_configuration_finance_analysis_root" sequence="1"/>
+
+        <menuitem id="menu_rdp_transaction_category" action="action_transaction_category" name="Transaction Category"
+                parent="rdp_finance_analysis.menu_configuration_finance_analysis_root" sequence="2"/>
+
+        <menuitem id="menu_rdp_transaction_sub_category" action="action_transaction_sub_category" name="Transaction Sub Category"
+                parent="rdp_finance_analysis.menu_configuration_finance_analysis_root" sequence="3"/>
+        
+        <menuitem id="menu_rdp_transaction_category_type" action="action_transaction_category_type" name="Transaction Category Type"
+                parent="rdp_finance_analysis.menu_configuration_finance_analysis_root" sequence="4"/>
+
+        <menuitem id="menu_rdp_parent_category_type" action="action_parent_category_type" name="Parent Category"
+                parent="rdp_finance_analysis.menu_configuration_finance_analysis_root" sequence="4"/>
+
+
+    </data>
+</odoo>

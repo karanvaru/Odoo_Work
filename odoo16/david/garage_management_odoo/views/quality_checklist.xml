@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="quality_checklist_form_view_inherit" model="ir.ui.view">
+        <field name="name">quality checklist form view inherit</field>
+        <field name="model">quality.checklist</field>
+        <field name="inherit_id" ref="job_card.quality_checklist_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group//group" position="after">
+                <group>
+                    <field name="checklist_name_ids" widget="many2many_tags"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

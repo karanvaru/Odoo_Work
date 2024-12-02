@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!--
+            Product Sub Code :
+            C – COD i.e. Cash on Delivery
+            P – Prepaid
+            D -  DOD i.e. Demand Draft  on Delivery,
+            A -  FOD i.e. Freight on Delivery,
+            B - DOD FOD
+        -->
+
+        <record id="bluedart_apex_fod" model="bluedart.service">
+            <field name="name">Apex FOD</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">A</field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_apex_dod_fod" model="bluedart.service">
+            <field name="name">Apex DODFOD</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">B</field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_dart_plus_cod" model="bluedart.service">
+            <field name="name">Dart Plus COD</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">C</field>
+            <field name="package_type">L</field>
+        </record>
+
+        <record id="bluedart_ecom_cod_tdd_12" model="bluedart.service">
+            <field name="name">Ecom Cod TDD 12.00</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">C</field>
+            <field name="package_type">N</field>
+        </record>
+
+        <record id="bluedart_ecom_cod_eship" model="bluedart.service">
+            <field name="name">Ecom COD eShip</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">C</field>
+            <field name="package_type">P</field>
+        </record>
+
+        <record id="bluedart_ecom_cod_tdd_10_30" model="bluedart.service">
+            <field name="name">Ecom Cod TDD 10.30</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">C</field>
+            <field name="package_type">T</field>
+        </record>
+
+        <record id="bluedart_apex_cod" model="bluedart.service">
+            <field name="name">Apex COD</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">C</field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_apex_dod" model="bluedart.service">
+            <field name="name">Apex DOD</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">D</field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_apex_lite" model="bluedart.service">
+            <field name="name">Apex LITE</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">E</field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_dart_plus_prepaid" model="bluedart.service">
+            <field name="name">Dart Plus Prepaid</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">P</field>
+            <field name="package_type">L</field>
+        </record>
+
+        <record id="bluedart_dart_ecom_prepaid_tdd_12" model="bluedart.service">
+            <field name="name">Ecom Prepaid TDD 12.00</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">P</field>
+            <field name="package_type">N</field>
+        </record>
+
+        <record id="bluedart_dart_ecom_prepaid_eship" model="bluedart.service">
+            <field name="name">Ecom Prepaid eShip</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">P</field>
+            <field name="package_type">P</field>
+        </record>
+
+        <record id="bluedart_dart_ecom_prepaid_tdd_10_30" model="bluedart.service">
+            <field name="name">Ecom Prepaid TDD 10.30</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">P</field>
+            <field name="package_type">T</field>
+        </record>
+
+        <record id="bluedart_dart_apex_prepaid" model="bluedart.service">
+            <field name="name">Apex Prepaid</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code">P</field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_dart_dart_apex" model="bluedart.service">
+            <field name="name">Dart Apex</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_dart_apex_tdd" model="bluedart.service">
+            <field name="name">Apex TDD</field>
+            <field name="product_code">A</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">T</field>
+        </record>
+
+        <record id="bluedart_dart_domestic_priority" model="bluedart.service">
+            <field name="name">Domestic Priority</field>
+            <field name="product_code">D</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_dart_domestic_tdd_10_30" model="bluedart.service">
+            <field name="name">Domestic TDD 1030</field>
+            <field name="product_code">D</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">T</field>
+        </record>
+
+        <record id="bluedart_dart_domestic_tdd_12" model="bluedart.service">
+            <field name="name">Domestic TDD 1200</field>
+            <field name="product_code">D</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">N</field>
+        </record>
+
+        <record id="bluedart_dart_express_fod" model="bluedart.service">
+            <field name="name">Express FOD</field>
+            <field name="product_code">E</field>
+            <field name="product_sub_code">A</field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_dart_express_dod_fod" model="bluedart.service">
+            <field name="name">Express DODFOD</field>
+            <field name="product_code">E</field>
+            <field name="product_sub_code">B</field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_dart_express_cod" model="bluedart.service">
+            <field name="name">Express COD</field>
+            <field name="product_code">E</field>
+            <field name="product_sub_code">C</field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_dart_dod" model="bluedart.service">
+            <field name="name">Express DOD</field>
+            <field name="product_code">E</field>
+            <field name="product_sub_code">D</field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_dart_express_prepaid" model="bluedart.service">
+            <field name="name">Express Prepaid</field>
+            <field name="product_code">E</field>
+            <field name="product_sub_code">P</field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_dart_dart_sfc_line" model="bluedart.service">
+            <field name="name">Dart SFC Line</field>
+            <field name="product_code">E</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type"></field>
+        </record>
+
+        <record id="bluedart_dart_parcel_intl_direct_plt" model="bluedart.service">
+            <field name="name">Parcel Intl Direct PLT</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code">P</field>
+            <field name="package_type">D</field>
+        </record>
+
+        <record id="bluedart_dart_gm_packet_plus" model="bluedart.service">
+            <field name="name">GM Packet Plus Std PPS</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code">P</field>
+            <field name="package_type">P</field>
+        </record>
+
+        <record id="bluedart_dart_gm_packet_std" model="bluedart.service">
+            <field name="name">GM Packet Std PKD</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code">P</field>
+            <field name="package_type">P</field>
+        </record>
+
+        <record id="bluedart_dart_express_easy_box_6" model="bluedart.service">
+            <field name="name">Express Easy Box 6 (JJ)</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">1</field>
+        </record>
+
+        <record id="bluedart_dart_express_easy_box_8" model="bluedart.service">
+            <field name="name">Express Easy Box 8 (JB)</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">2</field>
+        </record>
+
+        <record id="bluedart_dart_express_easy_box_4" model="bluedart.service">
+            <field name="name">Express Easy Box 4</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">4</field>
+        </record>
+
+        <record id="bluedart_dart_university_exp" model="bluedart.service">
+            <field name="name">University Express</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">7</field>
+        </record>
+
+        <record id="bluedart_dart_express_pallete" model="bluedart.service">
+            <field name="name">Express Pallete</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">C</field>
+        </record>
+
+        <record id="bluedart_dart_intl_others" model="bluedart.service">
+            <field name="name">Intl Others</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">E</field>
+        </record>
+
+        <record id="bluedart_dart_int_tdi" model="bluedart.service">
+            <field name="name">INTL TDI 09:00 DOC -TDK</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">K</field>
+        </record>
+
+        <record id="bluedart_dart_intl_others" model="bluedart.service">
+            <field name="name">Intl. Others</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">O</field>
+        </record>
+
+        <record id="bluedart_dart_intl_others_2" model="bluedart.service">
+            <field name="name">Intl Others</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">P</field>
+        </record>
+
+        <record id="bluedart_dart_temperature_contr" model="bluedart.service">
+            <field name="name">Temperature Controlled</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">Q</field>
+        </record>
+
+        <record id="bluedart_dart_global_mail" model="bluedart.service">
+            <field name="name">Global Mail</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">R</field>
+        </record>
+
+        <record id="bluedart_dart_intl_tdi_12_doc" model="bluedart.service">
+            <field name="name">INTL TDI 12:00 DOC -TDT</field>
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">T</field>
+        </record>
+
+        <record id="bluedart_dart_intl_tdi_12_non_doc" model="bluedart.service">
+            <field name="name">INTL TDI 12:00 NONDOC-TDY</field>  
+            <field name="product_code">I</field>
+            <field name="product_sub_code"></field>
+            <field name="package_type">Y</field>
+        </record>
+
+    </data>
+</odoo>

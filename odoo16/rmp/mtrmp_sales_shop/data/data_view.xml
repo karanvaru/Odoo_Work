@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <record id="record_category_unmapped" model="product.category">
+            <field name="name">UNMAPPED</field>
+        </record>
+        <record id="record_public_category_unmapped" model="product.public.category">
+            <field name="name">UNMAPPED</field>
+        </record>
+    </data>
+</odoo>

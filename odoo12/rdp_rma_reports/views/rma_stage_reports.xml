@@ -1,0 +1,383 @@
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!-- =======Dayan=======================Draft================================================== -->
+<!-- Draft Tree View -->
+    <record id="rma_reports_draft_tree_view" model="ir.ui.view">
+        <field name="name">product.details.draft.tree</field>
+        <field name="model">product.details</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Draft Reports">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="draft_stage_open_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA Draft-->
+        <record id="rma_reports_draft_action" model="ir.actions.act_window">
+            <field name="name">RMA Draft Reports</field>
+            <field name="res_model">product.details</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="rma_reports_draft_tree_view" />
+            <field name="domain">[('state','=','draft')]</field>
+        </record>
+
+<!-- =======Dayan=======================Part Request================================================== -->
+<!-- Part Request Tree View -->
+    <record id="rma_reports_part_request_tree_view" model="ir.ui.view">
+        <field name="name">product.details.part.request.tree</field>
+        <field name="model">product.details</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Part Request Reports">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="part_request_stage_open_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA Part Request-->
+        <record id="rma_reports_part_request_action" model="ir.actions.act_window">
+            <field name="name">RMA Part Request Reports</field>
+            <field name="res_model">product.details</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="rma_reports_part_request_tree_view" />
+            <field name="domain">[('state','=','part_request')]</field>
+        </record>
+<!-- =======Dayan=======================Request Accepted================================================== -->
+<!-- Request Accepted Tree View -->
+    <record id="rma_reports_request_accepted_tree_view" model="ir.ui.view">
+        <field name="name">product.details.request.accepted.tree</field>
+        <field name="model">product.details</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Request Accepted Reports">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="request_accepted_stage_open_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA Request Accepted-->
+        <record id="rma_reports_request_accepted_action" model="ir.actions.act_window">
+            <field name="name">RMA Request Accepted Reports</field>
+            <field name="res_model">product.details</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="rma_reports_request_accepted_tree_view" />
+            <field name="domain">[('state','=','request_accept')]</field>
+        </record>
+
+<!-- =======Dayan=======================Purchase Request================================================== -->
+<!-- Purchase Request Tree View -->
+    <record id="rma_reports_purchase_request_tree_view" model="ir.ui.view">
+        <field name="name">product.details.purchase.request.tree</field>
+        <field name="model">product.details</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Purchase Request Reports">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="purchase_request_stage_open_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA Purchase Request-->
+        <record id="rma_reports_purchase_request_action" model="ir.actions.act_window">
+            <field name="name">RMA Purchase Request Reports</field>
+            <field name="res_model">product.details</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="rma_reports_purchase_request_tree_view" />
+            <field name="domain">[('state','=','purchase_request')]</field>
+        </record>
+
+<!-- =======Dayan=======================Dispatched================================================== -->
+<!-- Dispatched Tree View -->
+    <record id="rma_reports_dispatched_tree_view" model="ir.ui.view">
+        <field name="name">product.details.purchase.request.tree</field>
+        <field name="model">product.details</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Dispatched Reports">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="dispatched_stage_open_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA Dispatched-->
+        <record id="rma_reports_dispatched_action" model="ir.actions.act_window">
+            <field name="name">RMA Dispatched Reports</field>
+            <field name="res_model">product.details</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="rma_reports_dispatched_tree_view" />
+            <field name="domain">[('state','=','part_dispatched')]</field>
+        </record>
+
+<!-- =======Dayan=======================Reached To CX================================================== -->
+<!-- Reached To CX  Tree View -->
+    <record id="rma_reports_part_reached_tree_view" model="ir.ui.view">
+        <field name="name">product.details.part.reached.tree</field>
+        <field name="model">product.details</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Reached To CX Reports">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="part_reached_stage_open_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA Reached To CX-->
+        <record id="rma_reports_part_reached_action" model="ir.actions.act_window">
+            <field name="name">RMA Reached To CX Reports</field>
+            <field name="res_model">product.details</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="rma_reports_part_reached_tree_view" />
+            <field name="domain">[('state','=','part_reached')]</field>
+        </record>
+
+<!-- =======Dayan=======================Repair Started================================================== -->
+<!-- Repair Started  Tree View -->
+    <record id="rma_reports_repair_started_tree_view" model="ir.ui.view">
+        <field name="name">product.details.repair.started.tree</field>
+        <field name="model">product.details</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Repair Started Reports">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="repair_started_stage_open_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA Repair Started-->
+        <record id="rma_reports_repair_started_action" model="ir.actions.act_window">
+            <field name="name">RMA Repair Started Reports</field>
+            <field name="res_model">product.details</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="rma_reports_repair_started_tree_view" />
+            <field name="domain">[('state','=','repair_started')]</field>
+        </record>
+
+<!-- =======Dayan=======================Repaired================================================== -->
+<!-- Repaired Tree View -->
+    <record id="rma_reports_repaired_tree_view" model="ir.ui.view">
+        <field name="name">product.details.repaired.tree</field>
+        <field name="model">product.details</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Repaired Reports">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="repaired_stage_open_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA Repaired-->
+    <record id="rma_reports_repaired_action" model="ir.actions.act_window">
+        <field name="name">RMA Repaired Reports</field>
+        <field name="res_model">product.details</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="rma_reports_repaired_tree_view" />
+        <field name="domain">[('state','=','repaired')]</field>
+    </record>
+
+<!-- =======Dayan=======================Pickup Initiated================================================== -->
+<!-- Pickup Initiated Tree View -->
+    <record id="rma_reports_pickup_initiated_tree_view" model="ir.ui.view">
+        <field name="name">product.details.pickup.initiated.tree</field>
+        <field name="model">product.details</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Pickup Initiated Reports">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="pickup_initiated_stage_open_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA Pickup Initiated-->
+    <record id="rma_reports_pickup_initiated_action" model="ir.actions.act_window">
+        <field name="name">RMA Pickup Initiated Reports</field>
+        <field name="res_model">product.details</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="rma_reports_pickup_initiated_tree_view" />
+        <field name="domain">[('state','=','request_for_part_pickup')]</field>
+    </record>
+
+<!-- =======Dayan=======================Return Picked================================================== -->
+<!-- Return Picked Tree View -->
+    <record id="rma_reports_return_picked_tree_view" model="ir.ui.view">
+        <field name="name">product.details.return.picked.tree</field>
+        <field name="model">product.details</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Return Picked Reports">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="return_picked_stage_open_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA Return Picked-->
+    <record id="rma_reports_return_picked_action" model="ir.actions.act_window">
+        <field name="name">RMA Return Picked Reports</field>
+        <field name="res_model">product.details</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="rma_reports_return_picked_tree_view" />
+        <field name="domain">[('state','=','in_transit')]</field>
+    </record>
+
+<!-- =======Dayan=======================Closed================================================== -->
+<!-- Closed Tree View -->
+    <record id="rma_reports_closed_tree_view" model="ir.ui.view">
+        <field name="name">product.details.closed.tree</field>
+        <field name="model">product.details</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Closed Reports">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="closed_stage_open_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA Closed-->
+    <record id="rma_reports_closed_action" model="ir.actions.act_window">
+        <field name="name">RMA Closed Reports</field>
+        <field name="res_model">product.details</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="rma_reports_closed_tree_view" />
+        <field name="domain">[('state','=','closed')]</field>
+    </record>
+
+<!-- =======Dayan=======================Cancelled================================================== -->
+<!-- Cancelled Tree View -->
+    <record id="rma_reports_cancel_tree_view" model="ir.ui.view">
+        <field name="name">product.details.cancel.tree</field>
+        <field name="model">product.details</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Cancelled Reports">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="cancel_stage_open_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA Cancelled-->
+    <record id="rma_reports_cancel_action" model="ir.actions.act_window">
+        <field name="name">RMA Cancelled Reports</field>
+        <field name="res_model">product.details</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="rma_reports_cancel_tree_view" />
+        <field name="domain">[('state','=','cancel')]</field>
+    </record>
+
+<!-- ===========Dayan=====================Menu==================================  -->
+<!-- Menu-->
+        <menuitem id="menu_rma_reports_root" name="RMA Reports" parent="rdp_part360.menu_part360_Report_base"/>
+        <!-- <menuitem id="menu_rma_reports_root" name="RMA Reports" parent="rdp_part360.menu_part360_Report_base"/> -->
+
+        <menuitem id="menu_rma_reports_draft" name="Draft Reports"
+        parent="rdp_rma_reports.menu_rma_reports_root" action="rma_reports_draft_action" sequence='1'/>
+   
+        <menuitem id="menu_rma_part_request_reports" name="Part Request Reports"
+        parent="rdp_rma_reports.menu_rma_reports_root" action="rma_reports_part_request_action" sequence='2'/>
+
+        <menuitem id="menu_rma_request_accepted_reports" name="Request Accepted Reports"
+        parent="rdp_rma_reports.menu_rma_reports_root" action="rma_reports_request_accepted_action" sequence='3'/>
+
+        <menuitem id="menu_rma_purchase_request" name="Purchase Request Reports"
+        parent="rdp_rma_reports.menu_rma_reports_root" action="rma_reports_purchase_request_action" sequence='4'/>
+        
+        <menuitem id="menu_rma_dispatched" name="Dispatched Reports"
+        parent="rdp_rma_reports.menu_rma_reports_root" action="rma_reports_dispatched_action" sequence='5'/>
+
+        <menuitem id="menu_rma_part_reached" name="Reached To CX Reports"
+        parent="rdp_rma_reports.menu_rma_reports_root" action="rma_reports_part_reached_action" sequence='6'/>
+
+        <menuitem id="menu_rma_repair_started" name="Repair Started Reports"
+        parent="rdp_rma_reports.menu_rma_reports_root" action="rma_reports_repair_started_action" sequence='7'/>
+
+        <menuitem id="menu_rma_repaired" name="Repaired Reports"
+        parent="rdp_rma_reports.menu_rma_reports_root" action="rma_reports_repaired_action" sequence='8'/>
+        
+        <menuitem id="menu_rma_pickup_initiated" name="Pickup Initiated Reports"
+        parent="rdp_rma_reports.menu_rma_reports_root" action="rma_reports_pickup_initiated_action" sequence='9'/>
+
+        <menuitem id="menu_rma_return_picked" name="Return Picked Reports"
+        parent="rdp_rma_reports.menu_rma_reports_root" action="rma_reports_return_picked_action" sequence='10'/>
+
+        <menuitem id="menu_rma_closed" name="Closed Reports"
+        parent="rdp_rma_reports.menu_rma_reports_root" action="rma_reports_closed_action" sequence='11'/>
+
+        <menuitem id="menu_rma_cancel" name="Cancelled Reports"
+        parent="rdp_rma_reports.menu_rma_reports_root" action="rma_reports_cancel_action" sequence='12'/>
+
+
+    </data>
+</odoo> -->

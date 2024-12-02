@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_details_form_inherit" model="ir.ui.view">
+        <field name="name">product.details.form.inherit</field>
+        <field name="model">product.details</field>
+        <field name="inherit_id" ref="product_sar.product_detail_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[2]" position="after">
+                <page string="PSPR Stages Details">
+                    <group>
+                        <field name="detail_ids" widget="one2many_list" nolabel="1">
+                            <tree string="PSPR Records" create='0'>
+                                <field name="from_stage"/>
+                                <field name="to_stage"/>
+                                <field name="in_date"/>
+                                <field name="out_date"/>
+                                <field name="open_days"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_details_tree_inherit" model="ir.ui.view">
+        <field name="name">product.details.tree.inherit</field>
+        <field name="model">product.details</field>
+        <field name="arch" type="xml">
+            <tree string="PSPR Records" create="0" edit='0'>
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+<!--                <field name="model_name"/>-->
+                <field name="state"/>
+                <field name="pspr_open_days"/>
+                <field name="draft_days"/>
+                <field name="part_request_days"/>
+                <field name="request_accept_days"/>
+                <field name="purchase_request_days"/>
+                <field name="part_dispatched_days"/>
+                <field name="part_reached_days"/>
+                <field name="repair_started_days"/>
+                <field name="repaired_days"/>
+                <field name="request_for_part_pickup_days"/>
+                <field name="in_transit_days"/>
+                <field name="closed_days"/>
+                <field name="cancel_days"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_details_report_form_inherit" model="ir.ui.view">
+        <field name="name">product.details.form.inherit</field>
+        <field name="model">product.details</field>
+        <field name="arch" type="xml">
+            <form string="PSPR Records">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+<!--                <field name="model_name"/>-->
+    <!--                <field name="x_studio_open_days"/>-->
+                <field name="state"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_details_report_action" model="ir.actions.act_window">
+        <field name="name">PSPR Records</field>
+        <field name="res_model">product.details</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="product_details_tree_inherit"/>
+    </record>
+
+    <menuitem id="menu_part360_Report_base"
+              name="Parts 360"
+              parent="helpdesk.menu_helpdesk_root"/>
+
+    <menuitem id="menu_pspr_Report"
+              name="PSPR Records"
+              parent="menu_part360_Report_base"
+              action="product_details_report_action"
+              sequence='1'/>
+</odoo>

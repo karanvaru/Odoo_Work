@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--        form view-->
+        <record id="rdp_dx_view_form" model="ir.ui.view">
+            <field name="name">rdp.dx.form</field>
+            <field name="model">rdp.dx</field>
+            <field name="inherit_id" ref="dx_rdp.rdp_dx_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_to_front_desk" type="object" string="FRONT DESK" class="btn-primary"
+                            attrs="{'invisible': [('state', 'in', ['front_desk','wip','documentation','assigned','testing','submit_to_admin','live','closed','cancel'])]}"/>
+                    <button name="action_to_assigned" type="object" string="ASSIGNED" class="btn-primary"
+                            attrs="{'invisible': [('state', 'in', ['draft','hold','assigned','documentation','wip','testing','submit_to_admin','live','closed','cancel'])]}"/>
+                    <button name="action_to_wip" type="object" string="WIP" class="btn-primary"
+                            attrs="{'invisible': [('state', 'in', ['draft','hold','documentation','front_desk','wip','testing','submit_to_admin','live','closed','cancel'])]}"/>
+                    <button name="action_to_testing" type="object" string="TESTING" class="btn-primary"
+                            attrs="{'invisible': [('state', 'in', ['draft','front_desk','documentation','assigned','testing','submit_to_admin','live','closed','cancel','hold'])]}"/>
+                    <button name="action_to_submit_to_admin" type="object" string="SUBMIT TO ADMIN"
+                            class="btn-primary"
+                            attrs="{'invisible': [('state', 'in', ['draft','documentation','front_desk','assigned','wip','submit_to_admin','live','closed','cancel','hold'])]}"/>
+                    <button name="action_to_live" type="object" string="LIVE" class="btn-primary"
+                            attrs="{'invisible': [('state', 'in', ['draft','documentation','front_desk','assigned','wip','testing','live','closed','cancel','hold'])]}"/>
+                    <button name="action_to_documentation" type="object" string="Documentation" class="btn-primary"
+                            attrs="{'invisible': [('state', 'in', ['draft','front_desk','submit_to_admin','documentation','assigned','wip','testing','closed','cancel','hold'])]}"/>
+                    <button name="action_to_close" type="object" string="CLOSE" class="btn-primary"
+                            attrs="{'invisible': [('state', 'in', ['draft','testing','assigned','front_desk','wip','submit_to_admin','closed','cancel','hold'])]}"/>
+                    <button name="action_to_hold" type="object" string="HOLD"
+                            attrs="{'invisible': [('state', 'in', ['hold','closed','cancel','documentation','draft','live'])]}"/>
+                    <button name="action_to_cancel" type="object" string="CANCEL"
+                            attrs="{'invisible': [('state', 'in', ['cancel','closed','hold','documentation'])]}"/>
+                    <button name="action_set_draft" type="object" string="SET TO DRAFT"
+                            attrs="{'invisible': [('state', 'in', ['draft','testing','submit_to_admin','closed','live','documentation','cancel'])]}"/>
+                    <button name="action_set_work_in_progress" type="object" string="SET TO WIP"
+                            attrs="{'invisible': [('state', 'in', ['draft','front_desk','closed','assigned','wip','cancel'])]}"/>
+                    <field name="state" widget="statusbar" readonly="1"/>
+                </xpath>
+                <xpath expr="//sheet" position="inside">
+                    <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px;">
+                        Open Days:
+                        <span style="font-size:16px">
+                            <field name="open_days"/>
+                        </span>
+                    </div>
+                    <div style=" float: left; padding: 5px 12px 2px; background-color:#33c76b; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-left:5px;margin-bottom:10px;">
+                        Effort:
+                        <span style="font-size:16px">
+                            <field name="effort"/>
+                        </span>
+                        Min
+                    </div>
+                    <div style=" float: left; padding: 5px 12px 2px; background-color:#00a09d; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-left:5px;margin-bottom:10px;">
+                        Activities:
+                        <span style="font-size:16px">
+                            <field name="activities"/>
+                        </span>
+                    </div>
+                    <div style="clear:both"/>
+                    <div>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="requirement_name" required="1" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                        <field name="description" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                        <field name="stake_holders" widget="many2many_tags" domain="[('email','ilike','@rdp.in')]" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="requirement_type" attrs="{'invisible': [('state', 'in', ['draft'])],'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])],'required': [('state', 'in', 'front_desk')]}"/>
+                            <field name="department" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                            <field name="development_by" domain="[('category_id','ilike','odoo')]" attrs="{'invisible': [('state', 'in', ['draft'])],'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+<!--                            <field name="assigned_by" domain="[('is_int_user','=',True)]"/>-->
+                            <field name="create_uid" attrs="{'invisible': [('state', 'in', ['draft'])],'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                        </group>
+                        <group>
+                            <field name="responsible_by" attrs="{'invisible': [('state', 'in', ['draft'])],'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                            <field name="assigned_to" widget="selection"
+                                   domain="[('is_int_user','=',True),('groups_id.id','=',304)]" attrs="{'invisible': [('state', 'in', ['draft'])],'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])],'required': [('state', 'in', 'front_desk')]}"/>
+                            <field name="start_date" attrs="{'invisible': [('state', 'in', ['draft'])],'readonly': [('state', 'in', ['wip','testing','submit_to_admin','live','hold','closed','cancel'])],'required': [('state', 'in', 'assigned')]}"/>
+                            <field name="deadline_date"  attrs="{'invisible': [('state', 'in', ['draft'])],'readonly': [('state', 'in', ['wip','testing','submit_to_admin','live','hold','closed','cancel'])],'required': [('state', 'in', 'assigned')]}"/>
+                            <field name="priority" widget="priority" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                            <field name="completed_percentage" widget="progressbar" attrs="{'invisible': [('state', 'in', ['draft'])],'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+
+                            <field name="open_days" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="CWD" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}">
+                            <group>
+                                <field name="concept_description" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                                <field name="workflow_description" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                                <field name="drama_description" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                            </group>
+                        </page>
+                        <page string="Time and Cost" attrs="{'invisible': [('state', 'in', ['draft'])],'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}">
+                            <group>
+                                <group>
+                                    <field name="estimated_time" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                                    <field name="currency_id" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                                    <field name="estimated_cost" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                                    <field name="cost_per_hour" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Check List" attrs="{'invisible': [('state', 'in', ['draft'])],'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}">
+                            <group>
+                                <group>
+                                    <field name="app_check_list" widget="many2many_checkboxes" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                                </group>
+                                <group>
+                                    <field name="dx_description" attrs="{'readonly': [('state', 'in', ['assigned','wip','testing','submit_to_admin','live','hold','closed','cancel'])]}"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+<!--         tree view-->
+        <record id="rdp_dx_tree_view" model="ir.ui.view">
+            <field name="name">rdp.dx.tree</field>
+            <field name="model">rdp.dx</field>
+            <field name="inherit_id" ref="dx_rdp.rdp_dx_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+<!--                <field name="name"/>-->
+                <field name="requirement_name"/>
+                <field name="assigned_to"/>
+                <field name="start_date"/>
+                <field name="deadline_date"/>
+                <field name="closed_date"/>
+                <field name="open_days" readonly="1"/>
+                <field name="delay_days"/>
+                <field name="priority" widget="priority"/>
+                <field name="completed_percentage" widget="progressbar"/>
+                <field name="state"/>
+                </xpath>
+            </field>
+    </record>
+
+        <!-- Calender view -->
+
+<!--        <record id="dx_calendar_inherit" model="ir.ui.view">-->
+<!--            <field name="name">rdp.dx.calendar.inherit</field>-->
+<!--            <field name="model">rdp.dx</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <calendar string="RDP DX" date_stop="closed_date">-->
+<!--                    <field name="name"/>-->
+<!--                </calendar>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        pivot view-->
+
+<!--        <record id="dx_pivot_inherit" model="ir.ui.view">-->
+<!--            <field name="name">rdp.dx.pivot.inherit</field>-->
+<!--            <field name="model">rdp.dx</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <pivot string="RDP DX">-->
+                    <!--                <field name="start_date"/>-->
+                    <!--                <field name="deadline_date"/>-->
+<!--                </pivot>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        gantt view-->
+
+<!--        <record id="dx_view_gantt" model="ir.ui.view">-->
+<!--            <field name="name">rdp.dx.view.gantt</field>-->
+<!--            <field name="model">rdp.dx</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <gantt date_start="create_date" date_stop="deadline_date"-->
+<!--                       string="Default gantt view for rdp.dx"></gantt>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="dx_filter_view" model="ir.ui.view">
+            <field name="name">rdp.dx.filter.view</field>
+            <field name="model">rdp.dx</field>
+            <field name="arch" type="xml">
+                <search string="Search Dx">
+                    <field name="name"/>
+                    <field name="requirement_name"/>
+                    <field name="requirement_type"/>
+                    <field name="create_uid"/>
+                    <field name="assigned_to"/>
+                    <field name="department"/>
+<!--                    filters-->
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                    <filter name="wip" string="WIP" domain="[('state', '=', 'wip')]"/>
+                    <filter name="testing" string="Testing" domain="[('state', '=', 'testing')]"/>
+                    <filter name="live" string="Live" domain="[('state', '=', 'live')]"/>
+                    <filter name="closed" string="Closed" domain="[('state', '=', 'closed')]"/>
+
+<!--                    group by-->
+
+                    <group expand="0" string="Group By">
+                        <filter name="create_uid" string="Created By" domain="[]" context="{'group_by':'create_uid'}"/>
+                        <filter name="assigned_to" string="Assigned To" domain="[]"
+                                context="{'group_by':'assigned_to'}"/>
+                        <filter name="department" string="Hr Department" domain="[('department','ilike','hr')]"
+                                context="{'group_by':'department'}"/>
+                        <filter name="development_by" string="Development By" domain="[]"
+                                context="{'group_by':'development_by'}"/>
+                        <filter name="start_date" string="Start Date" domain="[]" context="{'group_by':'start_date'}"/>
+                        <filter name="deadline_date" string="Deadline Date" domain="[]"
+                                context="{'group_by':'deadline_date'}"/>
+                        <filter name="closed_date" string="Closed Date" domain="[]"
+                                context="{'group_by':'closed_date'}"/>
+                        <filter name="state" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

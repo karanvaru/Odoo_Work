@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="smart_printer_company_roll" model="ir.module.category">
+            <field name="name">Smart Print Office</field>
+        </record>
+
+        <record id="smart_printer_customer_roll" model="ir.module.category">
+            <field name="name">Smart Print Customer</field>
+        </record>
+
+        <!-- <record model="ir.module.category" id="smart_printer_developer_roll">
+             <field name="name">Smart Printer IT</field>
+             <field name="sequence">112</field>
+         </record>-->
+
+        <record id="group_smart_printer_admin" model="res.groups">
+            <field name="name">IT Admin</field>
+            <field name="category_id" ref="ki_contract_menu.smart_printer_company_roll"/>
+        </record>
+
+        <record id="group_smart_printer_administrator" model="res.groups">
+            <field name="name">SPS Office Administrator</field>
+            <field name="category_id" ref="ki_contract_menu.smart_printer_company_roll"/>
+        </record>
+
+        <record id="group_smart_printer_back_office" model="res.groups">
+            <field name="name">Back Office</field>
+            <field name="category_id" ref="ki_contract_menu.smart_printer_company_roll"/>
+        </record>
+
+        <record id="group_smart_printer_service_engineer" model="res.groups">
+            <field name="name">Service Engineer</field>
+            <field name="category_id" ref="ki_contract_menu.smart_printer_company_roll"/>
+        </record>
+
+        <record id="group_smart_printer_customer_user" model="res.groups">
+            <field name="name">Register User</field>
+            <field name="implied_ids" eval="[(4, ref('helpdesk_mgmt.group_helpdesk_user'))]"/>
+            <field name="category_id" ref="ki_contract_menu.smart_printer_customer_roll"/>
+        </record>
+
+        <record id="group_smart_printer_guest_user" model="res.groups">
+            <field name="name">Guest User</field>
+            <field name="category_id" ref="ki_contract_menu.smart_printer_customer_roll"/>
+        </record>
+
+        <record id="group_smart_printer_owner" model="res.groups">
+            <field name="name">Owner</field>
+            <field name="category_id" ref="ki_contract_menu.smart_printer_customer_roll"/>
+        </record>
+
+        <record id="group_smart_printer_product_view" model="res.groups">
+            <field name="name">Show Product Details</field>
+            <field name="category_id" ref="ki_contract_menu.smart_printer_company_roll"/>
+        </record>
+
+        <record id="group_smart_printer_contract_view" model="res.groups">
+            <field name="name">Show Contract Details</field>
+            <field name="category_id" ref="ki_contract_menu.smart_printer_company_roll"/>
+        </record>
+
+        <record id="group_smart_printer_menu_view" model="res.groups">
+            <field name="name">Show Menu Details</field>
+            <field name="category_id" ref="ki_contract_menu.smart_printer_company_roll"/>
+        </record>
+
+        <record id="admin_record_rule" model="ir.rule">
+            <field name="name">See Tickets to Admin</field>
+            <field ref="ki_helpdesk_extention.model_helpdesk_ticket" name="model_id"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('ki_contract_menu.group_smart_printer_admin'))]"/>
+        </record>
+
+        <record id="administrator_record_rule" model="ir.rule">
+            <field name="name">See Tickets to Administrator</field>
+            <field ref="ki_helpdesk_extention.model_helpdesk_ticket" name="model_id"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('ki_contract_menu.group_smart_printer_administrator'))]"/>
+        </record>
+
+        <record id="helpdesk_mgmt.helpdesk_ticket_personal_rule" model="ir.rule">
+            <field name="name">See Tickets to Service Engineer</field>
+            <field name="model_id" ref="helpdesk_mgmt.model_helpdesk_ticket"/>
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('ki_contract_menu.group_smart_printer_service_engineer'))]"/>
+        </record>
+
+        <record id="register_user_ticket_list" model="ir.rule">
+            <field name="name">See Tickets to Register User</field>
+            <field name="model_id" ref="ki_helpdesk_extention.model_helpdesk_ticket"/>
+            <field name="domain_force">[('create_uid','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('ki_contract_menu.group_smart_printer_customer_user'))]"/>
+        </record>
+    </data>
+</odoo>

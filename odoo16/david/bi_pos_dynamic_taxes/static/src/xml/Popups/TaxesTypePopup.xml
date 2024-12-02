@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="TaxesTypePopup" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup popup-confirm">
+                    <header class="title drag-handle">
+                        <t t-esc="props.title"/>
+                    </header>
+                    <main class="body">
+                        <div class="delvry-block">
+                            <t t-esc=" props.body"/>
+                            <t t-if="env.pos.bi_taxes_data">
+                                <t t-foreach="env.pos.bi_taxes_data" t-as="tax_data" t-key="tax_data.id">
+                                    <div style="padding: 4px;">
+                                        <div class='child' t-att-data-id="tax_data.id"
+                                             t-att-data-value="tax_data.id" t-on-click="highlight_tax">
+                                            <t t-esc="tax_data.name"/>
+                                        </div>
+                                    </div>
+                                </t>
+                            </t>
+                        </div>
+                    </main>
+                    <footer class="footer">
+                        <div class="button confirm" t-on-click="set_tax">
+                            <t t-esc="props.confirmText"/>
+                        </div>
+                        <div class="button cancel" t-on-click="cancel">
+                            <t t-esc="props.cancelText"/>
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+</templates>

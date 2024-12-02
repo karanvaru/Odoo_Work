@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="action_website_helpdesk_dashboard" model="ir.actions.client">
+            <field name="name">HelpDesk</field>
+            <field name="tag">helpdesk_dashboard</field>
+        </record>
+        <menuitem id="website_helpdesk_support_ticket.main_helpdesk_support" name="Helpdesk" action="action_website_helpdesk_dashboard"
+                  sequence="5"/>
+        <menuitem name="Dashboard" id="menu_helpdesk_dashboard_new" parent="website_helpdesk_support_ticket.main_helpdesk_support" sequence="0" action="action_website_helpdesk_dashboard"/>
+
+        <record id="view_helpdesk_support_inherits" model="ir.ui.view">
+        <field name="name">helpdesk.support.inherit.form</field>
+        <field name="model">helpdesk.support</field>
+        <field name="inherit_id" ref="website_helpdesk_support_ticket.helpdesk_support_form_view"/>
+        <field name="arch" type="xml">
+         <xpath expr="//field[@name='is_close']" position="after">
+            <field name="is_failed" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+         </xpath>
+            <xpath expr="//button[@name='set_to_close']" position="after">
+                <button name="set_to_failed" string="Set To Failed" attrs="{'invisible':[('is_failed','=',True)]}" groups="website_helpdesk_support_ticket.group_helpdesk_manager" type="object" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+    </data>
+</odoo>
+

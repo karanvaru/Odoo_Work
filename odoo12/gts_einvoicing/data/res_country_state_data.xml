@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="base.state_in_jk" model="res.country.state">
+            <field name="stcd">01</field>
+        </record>
+        <record id="base.state_in_hp" model="res.country.state">
+            <field name="stcd">02</field>
+        </record>
+        <record id="base.state_in_pb" model="res.country.state">
+            <field name="stcd">03</field>
+        </record>
+        <record id="base.state_in_ch" model="res.country.state">
+            <field name="stcd">04</field>
+        </record>
+        <record id="base.state_in_uk" model="res.country.state">
+            <field name="stcd">05</field>
+        </record>
+        <record id="base.state_in_hr" model="res.country.state">
+            <field name="stcd">06</field>
+        </record>
+        <record id="base.state_in_dl" model="res.country.state">
+            <field name="stcd">07</field>
+        </record>
+        <record id="base.state_in_rj" model="res.country.state">
+            <field name="stcd">08</field>
+        </record>
+        <record id="base.state_in_up" model="res.country.state">
+            <field name="stcd">09</field>
+        </record>
+        <record id="base.state_in_br" model="res.country.state">
+            <field name="stcd">10</field>
+        </record>
+        <record id="base.state_in_sk" model="res.country.state">
+            <field name="stcd">11</field>
+        </record>
+        <record id="base.state_in_an" model="res.country.state">
+            <field name="stcd">35</field>
+        </record>
+        <record id="base.state_in_ap" model="res.country.state">
+            <field name="stcd">28</field>
+        </record>
+        <record id="base.state_in_ar" model="res.country.state">
+            <field name="stcd">12</field>
+        </record>
+        <record id="base.state_in_as" model="res.country.state">
+            <field name="stcd">18</field>
+        </record>
+        <record id="base.state_in_cg" model="res.country.state">
+            <field name="stcd">22</field>
+        </record>
+        <record id="base.state_in_dn" model="res.country.state">
+            <field name="stcd">26</field>
+        </record>
+        <record id="base.state_in_dd" model="res.country.state">
+            <field name="stcd">25</field>
+        </record>
+        <record id="base.state_in_ga" model="res.country.state">
+            <field name="stcd">30</field>
+        </record>
+        <record id="base.state_in_gj" model="res.country.state">
+            <field name="stcd">24</field>
+        </record>
+        <record id="base.state_in_jh" model="res.country.state">
+            <field name="stcd">20</field>
+        </record>
+        <record id="base.state_in_ka" model="res.country.state">
+            <field name="stcd">29</field>
+        </record>
+        <record id="base.state_in_kl" model="res.country.state">
+            <field name="stcd">32</field>
+        </record>
+        <record id="base.state_in_ld" model="res.country.state">
+            <field name="stcd">31</field>
+        </record>
+        <record id="base.state_in_mp" model="res.country.state">
+            <field name="stcd">23</field>
+        </record>
+        <record id="base.state_in_mh" model="res.country.state">
+            <field name="stcd">27</field>
+        </record>
+        <record id="base.state_in_mn" model="res.country.state">
+            <field name="stcd">14</field>
+        </record>
+        <record id="base.state_in_ml" model="res.country.state">
+            <field name="stcd">17</field>
+        </record>
+        <record id="base.state_in_mz" model="res.country.state">
+            <field name="stcd">15</field>
+        </record>
+        <record id="base.state_in_nl" model="res.country.state">
+            <field name="stcd">13</field>
+        </record>
+        <record id="base.state_in_or" model="res.country.state">
+            <field name="stcd">21</field>
+        </record>
+        <record id="base.state_in_py" model="res.country.state">
+            <field name="stcd">34</field>
+        </record>
+        <record id="base.state_in_tn" model="res.country.state">
+            <field name="stcd">33</field>
+        </record>
+        <record id="base.state_in_ts" model="res.country.state">
+            <field name="stcd">36</field>
+        </record>
+        <record id="base.state_in_tr" model="res.country.state">
+            <field name="stcd">16</field>
+        </record>
+        <record id="base.state_in_wb" model="res.country.state">
+            <field name="stcd">19</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="sale_challenge_email_template" model="mail.template">
+            <field name="name">Sale Challenge</field>
+            <field name="model_id" ref="rdp_sale_challenges.model_sale_challenge"/>
+            <field name="auto_delete">1</field>
+            <!-- <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field> -->
+            <field name="email_to">${object.submit_to.partner_id.email}</field>
+            <field name="subject">Sale Challenge Request ${object.name}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.submit_to.name or 'Sir/Madam'},
+                        <br /><br />
+                          We just like to let you know that new sales challenge request has been generated , kindly check and Approve/Reject  the same.
+                         <br /><br />
+                         Thank you!!!
+                    </p>
+                </div>
+            </field>
+            <!-- <field name="report_template" ref="report_sale_challenge"/>
+            <field name="report_name">Sale_Challenge_${(object.name)}</field> -->
+        </record>
+    </data>
+</odoo>

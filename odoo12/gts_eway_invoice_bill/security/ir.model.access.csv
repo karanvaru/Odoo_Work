@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+ewaybill_uom_mapping_user, uom_mapping,model_uom_mapping,,1,1,1,0
+ewaybill_consolidate_bill_user,consolidate.bill,model_consolidate_bill,,1,1,1,0
+ewaybill_consolidate_bill_manager, consolidate.bill,model_consolidate_bill,group_ebill_manager,1,1,1,0
+ewaybill_transporter_sale_user, eway_transporter,sale.model_sale_order,,1,1,1,0
+ewaybill_configuration_manager,eway_configuration,model_eway_configuration,group_ebill_manager,1,1,1,0
+sub_supply_type_id,sub_suppy_type,model_sub_supply_type,,1,0,0,0

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gati_goods_code_public,gati_goods_code_public,model_gati_goods_code,,1,0,0,0
+access_generate_docket_packet_number,generate_docket_packet_number,model_generate_docket_packet_number,,1,1,1,0
+access_gati_docket_package_number,gati.docket.package.number,model_gati_docket_package_number,,1,1,1,1
+access_gati_location_code,gati.location.code,model_gati_location_code,,1,1,1,1

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+    	<!-- See LICENSE URL <https://store.webkul.com/license.html/> for full copyright and licensing details. -->
+        <record id="website_product_tags_config_form" model="ir.ui.view">
+            <field name="name">Website Product Tags Setting</field>
+            <field name="model">website.product.tags.setting</field>
+            <field name="arch" type="xml">
+                <form class="oe_form_configuration">
+                    <group>
+                        <label for="product_tags_limit"/>
+                        <div name="product_tags_limit">
+                            <div class="oe_inline">
+                                <field name="product_tags_limit"/>
+                            </div>
+                        </div>
+                    </group>
+                    <footer>
+                        <button class="oe_highlight" name="execute" string="Apply" type="object"/>or
+
+                        <button class="oe_link" name="cancel" string="Cancel" type="button"/></footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_website_product_tags_config" model="ir.actions.act_window">
+            <field name="name">Website Product Tags Setting</field>
+            <field name="res_model">website.product.tags.setting</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <record id="website_product_tags_installer_todo" model="ir.actions.todo">
+            <field name="action_id" ref="website_product_tags.action_website_product_tags_config"/>
+            <field name="sequence">20</field>
+            <field name="type">automatic</field>
+        </record>
+        <record id="action_client_open_tags" model="ir.actions.client">
+            <field name="name">Open Tags Menu</field>
+            <field name="tag">reload</field>
+            <field eval="{'menu_id': ref('website_product_tags.menu_product_tags_root_menu')}" name="params"/>
+        </record>
+        <record id="base.open_menu" model="ir.actions.todo">
+            <field name="action_id" ref="action_client_open_tags"/>
+            <field name="state">open</field>
+            <field name="sequence">26</field>
+            <field name="type">automatic</field>
+            <field name="note">Open Tags Menu</field>
+        </record>
+    </data>
+</odoo>

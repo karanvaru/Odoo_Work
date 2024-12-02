@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+	
+<odoo>
+    <data>
+        <record id="account_payment_view_form_finance_analysis" model="ir.ui.view">
+            <field name="name">account.payment.view.form.finance.analysis</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="rdp_payments_inherit.account_payment_rdp_inherit_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//sheet/div[@name="button_box"]' position='inside'>
+                    <button name="finance_analysis_count" type="object" class="oe_stat_button" icon="fa-book" attrs="{'invisible': [('analysis_count', '=', 0)]}">
+                        <field string="Analysis" name="analysis_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+                <xpath expr='//field[@name="payment_transaction_id"]' position='after'>
+                    <field string="FA Differ Amount" name="remaining_amount"/>
+                    <field string="Finance Analysis" name="finance_analysis"/>
+                </xpath>
+                <xpath expr='//page[@name="internal_notes"]' position="after">
+                <page name="finance_analysis" string="Finance Analysis" attrs="{'invisible': [('finance_analysis', '=', False)]}" >
+                    <field name="finance_analysis_ids" widget="one2many" mode="tree" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}">
+                        <form string="Finance Analysis">
+                            <sheet>
+                               <div class="oe_button_box" name="button_box">
+                                <!-- <button class="oe_stat_button" name="account_payment_count" type="object" icon="fa-pencil">
+                                    <field string="Transaction" name="payment_count" widget="statinfo"/>
+                                </button> -->
+                                </div>
+                                    <h1>
+                                        <field name="name"/>
+                                    </h1>
+                                    <group>
+                                        <group>
+                                            <field name="model_name"/>
+                                            <field name="model"/>
+                                            <field name="source_reference"/>
+                                            <field name="source_date"/>
+                                            <field name="partner_id"/>
+                                            <field name="payment_amount"/>
+                                            <field name="status"/>
+                                        </group>
+                                        <group>
+                                            <field name="finance_analysis"/>
+                                            <field name="office_location_id" options="{'no_create':True,'no_edit':True,'no_quick_create': True}" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                                            <div style="margin-top:3px"> </div>
+                                              <field name="multiple_office_location_ids" style="width:100%" options="{'no_create':True,'no_edit':True,'no_quick_create': True}" widget="many2many_tags" 
+                                                attrs="{'invisible': ['|',('finance_analysis', '=', False),('is_active', '=', False)],'required':[('is_active','=',True)]}"/>
+                                            <field name="transaction_category_id" options="{'no_create':True,'no_edit':True,'no_quick_create': True}" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                                            <div style="margin-top:3px"> </div>
+                                            <field name="transaction_sub_category_id" options="{'no_create':True,'no_edit':True,'no_quick_create': True}" style="width:100%" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                                            <field name="transaction_category_type_id" domain="[]" options="{'no_create':True,'no_edit':True,'no_quick_create': True}" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                                            <field name="amount" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                                            <field name="account_payment_id" invisible ='1'/>
+                                            <field name="is_active" invisible ='1'/> 
+                                        </group>
+                                    </group>
+                                    <notebook>
+                                        <page name="" string="SO Details">
+                                            <group>
+                                                <group>
+                                                    <field name="sale_order_id" />
+                                                    <field name="sales_person_id" />
+                                                </group>
+                                                <group>
+                                                </group>
+                                            </group>
+                                            </page>
+                                            <page name="" string="PO Details">
+                                            <group>
+                                                <group>
+                                                    <field name="purchase_order_id" />
+                                                </group>
+                                                <group>
+                                                </group>
+                                            </group>
+                                        </page>
+                                    </notebook>
+                            </sheet>
+                        </form>
+                        <tree string="Finance Analysis">
+                            <field name="account_payment_id" invisible ='1'/>
+                            <field name="name"/>
+                            <field name="source_reference"/>
+                            <field name="office_location_id" options="{'no_create':True,'no_edit':True,'no_quick_create': True}" required ="1" />
+                            <field name="multiple_office_location_ids"  widget="many2many_tags" options="{'no_create':True,'no_edit':True,'no_quick_create': True}"
+                                     attrs="{'invisible': [('office_location_id', '=', True)]}"/>
+                            <field name="transaction_category_id" options="{'no_create':True,'no_edit':True,'no_quick_create': True}"/>
+                            <field name="transaction_sub_category_id" options="{'no_create':True,'no_edit':True,'no_quick_create': True}"/>
+                            <field name="transaction_category_type_id" options="{'no_create':True,'no_edit':True,'no_quick_create': True}"/>
+                            <field name="amount" sum="Total"/>
+                        </tree>
+                    </field>   
+                </page>     
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

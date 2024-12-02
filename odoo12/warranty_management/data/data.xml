@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+  <data noupdate="1">
+
+    <record id="warranty_management.warranty_prod" model="product.product">
+      <field name="name">Warranty Renew</field>
+        <field name="categ_id" ref="product.product_category_all"/>
+        <field name="standard_price">0.0</field>
+        <field name="list_price">0.0</field>
+        <field name="type">service</field>
+        <field name="sale_ok" eval="True"/>
+        <field name="description_sale">Renew Warranty</field>
+        <field name="default_code">WARRANTY-RENEW</field>
+        <field name="website_published" eval="True"/>
+        <field name="image" type="base64" file="warranty_management/static/description/renew.png"/>
+    </record>
+
+    <record id="cron_warranty_expire_notification" forcecreate='True' model="ir.cron">
+      <field name="name">Warranty Expire Notification</field>
+      <field name="user_id" ref="base.user_root"/>
+      <field eval="True" name="active"/>
+      <field name="interval_number">1</field>
+      <field name="interval_type">days</field>
+      <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 00:00:00')" />
+      <field name="numbercall">-1</field>
+      <field eval="False" name="doall"/>
+      <field name="model_id" ref="model_warranty_notification_cron"/>
+      <field name="state">code</field>
+      <field name="code">model._send_notification()</field>
+    </record>
+
+    <function model="warranty.registration" name="_wk_warranty_renewal_settings" id="_wk_warranty_renewal_settings"/>
+
+  </data>
+</odoo>

@@ -1,0 +1,143 @@
+from odoo import fields, models, api, _
+from odoo.exceptions import UserError
+from datetime import datetime
+import requests
+import json
+import logging
+import re
+
+_logger = logging.getLogger('E-Invoicing')
+
+
+class EInvoicing(models.Model):
+    _name = 'einvoicing.configuration'
+    _rec_name = 'testing'
+
+    testing = fields.Selection([('t', 'Testing'), ('p', 'Production')], string="Url Type")
+    base_url = fields.Char('Url')
+    active = fields.Boolean("Active", default=True)
+    active_production = fields.Boolean("Production?", default=False)
+    asp_id = fields.Char(string='ASP-ID')
+    asp_password = fields.Char(string='ASP Password')
+    eway_url_staging = fields.Char("Eway URL(Staging)", tracking=2,
+                                   default='https://einvapi.charteredinfo.com/aspapi/v1.0')
+    # ewaydetails_url = fields.Char("Eway URL(Staging)", tracking=2,
+                                   # default='https://gstsandbox.charteredinfo.com/ewaybillapi/dec/v1.03/ewayapi')
+    print_url_live = fields.Char("Eway Print URL(Live)", tracking=2,
+                                help="Eway Print URL", default='https://einvapi.charteredinfo.com/eivital/dec/v1.04/auth?&aspid=')
+
+
+    @api.multi
+    def handle_einvoicing_auth_token(self, warehouse=False):
+        # warehouse = True
+        if not warehouse:
+            warehouse = self.env['stock.warehouse'].search([('company_id', '=', self.env.user.company_id.id)], limit=1)
+        print("warehouse==1111==",warehouse)
+
+
+        if not self.testing:
+            raise UserError(_('Please Select Url Type'))
+        if not self.asp_id:
+            raise UserError(_('Please Enter ASP-ID'))
+        if not self.asp_password:
+            raise UserError(_('Please Enter ASP Password'))
+        if not warehouse.gst_no:
+            raise UserError(_('Please Enter Registered GSTIN'))
+        if not warehouse.user_name:
+            raise UserError(_('Please Enter Registered User Name'))
+        if not warehouse.user_password:
+            raise UserError(_('Please Enter User Password'))
+        aspid = self.asp_id
+        asppass = self.asp_password
+        if self.testing == 't':
+            url = 'http://gstsandbox.charteredinfo.com/eivital/dec/v1.04/auth?&aspid=' + aspid + '&password=' + asppass + '&Gstin=' + warehouse.gst_no + '&user_name=' + warehouse.user_name + '&eInvPwd=' + warehouse.user_password
+            url = str(url)
+            print('url', url)
+        if self.testing == 'p':
+            url = 'https://einvapi.charteredinfo.com/eivital/dec/v1.04/auth?&aspid=' + aspid + '&password=' + asppass + '&Gstin=' + warehouse.gst_no + '&user_name=' + warehouse.user_name + '&eInvPwd=' + warehouse.user_password
+            url = str(url)
+            print('url', url)
+        # _logger.info("======auth URL-=====%s ",url)
+        response = requests.get(url)
+        # _logger.info("======auth URL respoise-=====%s,%s ", response,response.content)
+        res = response.content
+        res_dict = json.loads(res.decode('utf-8'))
+        _logger.info("-res_dict----------%s---", res_dict)
+        auth_token = res_dict['Data'].get('AuthToken')
+        token_epiry = res_dict['Data'].get('TokenExpiry')
+        dt = str(token_epiry)
+        # print(type(dt))
+        res1 = dt.replace('T', ' ')
+        time = datetime.strptime(res1, '%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y %H:%M:%S')
+        time1 = datetime.strptime(time, '%d/%m/%Y %H:%M:%S')
+        print('time', time1)
+        print('type time', type(time))
+        print('type expire time', type(warehouse.expire_date))
+        print('auth_token', auth_token)
+
+        warehouse.write({
+            'auth_token': auth_token,
+            'expire_date': time1  # datetime.now()
+        })
+        return True
+
+    @api.multi
+    def handle_einvoicing_auth_token_test(self):
+        print("1149=11=", self.env.user.company_id)
+        # self.env.user.company_id
+
+        warehouse = self.env['stock.warehouse'].search([('company_id', '=', self.env.user.company_id.id)], limit=1)
+        print("warehouse====", warehouse)
+
+        if not self.testing:
+            raise UserError(_('Please Select Url Type'))
+        if not self.asp_id:
+            raise UserError(_('Please Enter ASP-ID'))
+        if not self.asp_password:
+            raise UserError(_('Please Enter ASP Password'))
+        if not warehouse.gst_no:
+            raise UserError(_('Please Enter Registered GSTIN'))
+        if not warehouse.user_name:
+            raise UserError(_('Please Enter Registered User Name'))
+        if not warehouse.user_password:
+            raise UserError(_('Please Enter User Password'))
+        aspid = self.asp_id
+        asppass = self.asp_password
+        if self.testing == 't':
+            url = 'http://gstsandbox.charteredinfo.com/eivital/dec/v1.04/auth?&aspid=' + aspid + '&password=' + asppass + '&Gstin=' + warehouse.gst_no + '&user_name=' + warehouse.user_name + '&eInvPwd=' + warehouse.user_password
+            url = str(url)
+            print('url', url)
+        if self.testing == 'p':
+            url = 'https://einvapi.charteredinfo.com/eivital/dec/v1.04/auth?&aspid=' + aspid + '&password=' + asppass + '&Gstin=' + warehouse.gst_no + '&user_name=' + warehouse.user_name + '&eInvPwd=' + warehouse.user_password
+            url = str(url)
+            print('url', url)
+        # _logger.info("======auth URL-=====%s ",url)
+        response = requests.get(url)
+        if response.status_code == 400:
+            raise UserError(_("Wrong Warehouse GTSIN / User Id / Password!"))
+        # _logger.info("======auth URL respoise-=====%s,%s ", response,response.content)
+        res = response.content
+        res_dict = json.loads(res.decode('utf-8'))
+        _logger.info("-res_dict----------%s---", res_dict)
+        auth_token = res_dict['Data'].get('AuthToken')
+        token_epiry = res_dict['Data'].get('TokenExpiry')
+        dt = str(token_epiry)
+        # print(type(dt))
+        res1 = dt.replace('T', ' ')
+        time = datetime.strptime(res1, '%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y %H:%M:%S')
+        time1 = datetime.strptime(time, '%d/%m/%Y %H:%M:%S')
+        print('time', time1)
+        print('type time', type(time))
+        print('type expire time', type(warehouse.expire_date))
+        print('auth_token', auth_token)
+
+        warehouse.write({
+            'auth_token': auth_token,
+            'expire_date': time1  # datetime.now()
+        })
+        self.env.user.notify_info(message='Token Generated Successfully!')
+        return True
+
+    
+
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- RMA Ticket -->
+    <record id="source_eng_inherit_form_view" model="ir.ui.view">
+        <field name="name">source.eng.inherited.time.track</field>
+        <field name="model">source.eng</field>
+        <field name="inherit_id" ref="source_and_eng.sourcing_engineering_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="active_user_count" attrs="{'invisible': [('active_user_count', '=', 0)]}" nolabel="1" readonly="1" style="position: absolute;padding: 3px 10px;background-color: #dabf29;color: #FFF;display: inline-block;margin-left: 59px;"/>
+                <button string="Start" class="btn btn-primary" type="object" name="action_start"/>
+            </xpath>
+            <xpath expr="//page" position="before">
+                <page name="time_tracking" string="Time Tracking">
+                    <field name="user_time_tracking_ids"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+<!--    <record id="rma_kanban_view_leads_tracking" model="ir.ui.view">-->
+<!--        <field name="name">helpdesk.ticket.kanban.inherited.time.track</field>-->
+<!--        <field name="model">helpdesk.ticket</field>-->
+<!--        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_kanban"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="before">-->
+<!--                <button name="action_start" type="object" class="btn fa fa-play"-->
+<!--                        style="color:green;background-color:white" aria-label="Start Timer" title="Start Timer"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    </odoo>
+

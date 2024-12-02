@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- <record id="inventory_age_report_cron" model="ir.cron"> -->
+		<!-- <field name="name">Inventory Age Report</field> -->
+		<!-- <field eval="False" name="active" /> -->
+		<!-- <field name="user_id" ref="base.user_root" /> -->
+		<!-- <field name="interval_number">1</field> -->
+		<!-- <field name="interval_type">days</field> -->
+		<!-- <field name="numbercall">-1</field> -->
+		<!-- <field name="state">code</field> -->
+		<!-- <field name="doall">False</field> -->
+		<!-- <field eval="ref('model_inventory_age_report_ept')" name="model_id" 
+			/> -->
+		<!-- <field name="code">model.auto_generator_inventory_age_report()</field> -->
+		<!-- </record> -->
+
+		<!-- <record id="inventory_age_breakdown_report_cron" model="ir.cron"> -->
+		<!-- <field name="name">Inventory Age Breakdown Report</field> -->
+		<!-- <field eval="False" name="active" /> -->
+		<!-- <field name="user_id" ref="base.user_root" /> -->
+		<!-- <field name="interval_number">1</field> -->
+		<!-- <field name="interval_type">days</field> -->
+		<!-- <field name="numbercall">-1</field> -->
+		<!-- <field name="state">code</field> -->
+		<!-- <field name="doall">False</field> -->
+		<!-- <field eval="ref('model_inventory_age_breakdown_report_ept')" -->
+		<!-- name="model_id" /> -->
+		<!-- <field name="code">model.auto_generator_inventory_age_breakdown_report() -->
+		<!-- </field> -->
+		<!-- </record> -->
+
+	</data>
+</odoo>
+	

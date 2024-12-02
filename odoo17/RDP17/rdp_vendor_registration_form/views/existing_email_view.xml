@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <!-- Template for E-mail already exists  -->
+
+        <template id="existing_contact_E_mail_message">
+            <t t-call="website.layout">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title" style="color: red;">Contact with the same E-mail already Exists...</h4>
+                                    <center><button onclick="window.location.href='http://localhost:8080/'" class="btn btn-primary">Home</button></center> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Template for Phone already exists  -->
+
+        <template id="existing_contact_Phone_message">
+            <t t-call="website.layout">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title" style="color: red;">Contact with the same Mobile already Exists...</h4>
+                                    <center><button onclick="window.location.href='http://localhost:8080/'" class="btn btn-primary">Home</button></center> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Template for both mail and mobile already exists  -->
+
+        <template id="existing_contact_both_mail_and_phone_message">
+            <t t-call="website.layout">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title" style="color: red;">Contact with this email and mobile already exists...</h4>
+                                    <center><button onclick="window.location.href='http://localhost:8080/'" class="btn btn-primary">Home</button></center> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Template for Registration sucessfull  -->
+
+        <template id="vendor_registration_success">
+            <t t-call="website.layout">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title" style="color:green;">Your Registration Successful!...Thank You</h4>
+                                    <h6 class="card-title" style="color:green;">Your Reference Id : <strong t-esc="id"/></h6>
+                                    <center><button onclick="window.location.href='http://localhost:8080/'" class="btn btn-primary">Home</button></center> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

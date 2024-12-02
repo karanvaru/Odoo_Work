@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="customer_side_pending_stage" model="mail.template">
+            <field name="name">To Customer side pending</field>
+            <field name="model_id" ref="model_helpdesk_ticket"/>
+<!--            <field name="email_from">${object.user_id.email_formatted}</field>-->
+            <field name="email_to">${object.partner_email}</field>
+            <field name="subject">Customer side pending stage</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px">
+                        Dear ${object.partner_id.name}
+                        <br> </br>
+                        <br> </br>
+                        Ticket No : ${object.id}
+                        <br> </br>
+                        I hope this email finds you well. We have been trying to reach you multiple times through 
+                        various contact numbers provided, but unfortunately, we have not received any response.
+                        <br> </br>
+                        <br> </br>
+                        We understand that your time is valuable, and we apologize for any inconvenience caused 
+                        by our attempts to contact you. However, we believe it is essential to address this 
+                        promptly and efficiently. To ensure a smooth resolution, we kindly request your confirmation 
+                        for the field engineer visit.
+                        <br> </br>
+                        <br> </br>
+                        Once we receive your confirmation, we will promptly align a qualified field engineer to visit 
+                        your location at the earliest convenient time for you. Our dedicated team of experts is 
+                        committed to delivering top-notch service and addressing any concerns you may have.
+                        <br> </br>
+                        <br> </br>
+                        Please provide us with your preferred date and time for the field engineer visit, or let us
+                        know if you require any assistance in scheduling the visit. You can reach us directly 
+                        at 1800 419 3399 or reply to this email support@rdp.in
+                        <br> </br>
+                        <br> </br>
+                        We sincerely appreciate your cooperation and look forward to resolving the matter efficiently.
+                        If you have any questions or need further information, please do not hesitate to contact us.
+                        <br></br>
+                        <br></br>
+                        Best regards,
+                        <br> </br>
+                        <br> </br>
+                        RDP Helpdesk Team.
+                        <br> </br>
+                        1800 419 3399
+                        <br> </br>
+<!--                        <br> </br>-->
+<!--                        Customer Service Department timings are Monday-Saturday, 10 AM-6 PM, on all working days-->
+                    </p>
+                </div>
+            </field>
+            <!--            <field name="report_template" ref="report_employee_card"/>-->
+            <!--            <field name="report_name">Employee Card_${(object.name)}</field>-->
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sales_challenge_hpi_inherit_id" model="ir.ui.view">
+            <field name="name">sale.challenge.inherited.form</field>
+            <field name="model">sale.challenge</field>
+            <field name="inherit_id" ref="rdp_sale_challenges.sale_challenge_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                        <button name="open_hpi_sales_challenge_tickets" class="oe_stat_button" type="object" icon="fa-briefcase">
+                            <field string="HDPI" name="hpi_sales_challenge_ticket_count"
+                                   widget="statinfo"/>
+                        </button>
+                </xpath>
+
+                <xpath expr="//header" position="inside">
+                    <button name="%(rdp_helpdesk_process_improvement.hpi_sales_challenge_response)d" type="action" string="HDPI" class="btn-primary"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+        <record id="rdp_sale_challenge_tree_view_inherit" model="ir.ui.view">
+            <field name="name">sale.challenge.inherited.tree</field>
+            <field name="model">sale.challenge</field>
+            <field name="inherit_id" ref="rdp_sale_challenges.sale_challenge_tree_view"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='sales_challenge_five_why_count']" position="after">
+                    <field name="hpi_sales_challenge_ticket_count" string="HDPI"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

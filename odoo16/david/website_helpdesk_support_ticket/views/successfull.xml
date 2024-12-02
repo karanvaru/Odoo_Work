@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--     <template id="successful_ticket_send" name="Success Ticket" page="True"-->
+     <template id="successful_ticket_send" name="Success Ticket"><!-- odoo11 -->
+        <t t-call="website.layout">
+        <div class="row">
+            <div class="col-md-6">
+            <h1>
+                Your Message/Attachments have been sent successfully.<br/><br/>
+                Thank you,<br/><br/>
+            </h1>
+            <p>
+                <a class="btn btn-primary pull-left mb32" onclick="history.go(-2);" ><span class="hidden-xs">Go Back</span><span class="fa fa-long-arrow-left"/></a>
+            </p>
+            </div>
+            <div class="col-md-6">
+                <img width="400" height="400" src="/website_helpdesk_support_ticket/static/description/success.png" alt="show ticket" class="img-square" />
+           </div>
+        </div>
+           
+        </t>
+    </template>
+    
+</odoo>

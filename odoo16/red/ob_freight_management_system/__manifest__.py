@@ -1,0 +1,30 @@
+
+{
+    'name': 'Freight Management',
+    'version': '16.0.1.0.0',
+    'summary': 'Module for Managing All Frieght Operations',
+    'description': 'Module for Managing All Frieght Operations',
+    'author': 'Otibro Techni Pvt Ltd.',
+    'company': 'Otibro Techni Pvt Ltd.',
+    'website': 'https://otibro.com/odoo-erp-software/',
+    'depends': ['base', 'product', 'account'],
+    'images': ['static/description/banner.png',
+                'static/description/icon.png',],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/freight_order_data.xml',
+        'views/freight_order.xml',
+        'views/freight_port.xml',
+        'views/freight_container.xml',
+        'views/custom_clearance.xml',
+        'views/order_track.xml',
+        'report/report_order.xml',
+        'report/report_tracking.xml',
+        'wizard/custom_revision.xml'
+    ],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+    'license': 'AGPL-3',
+     'email': "info@otibro.com", 'email': "info@otibro.com",
+}

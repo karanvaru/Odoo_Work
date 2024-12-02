@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><data>
+
+    <record model="ir.ui.view" id="asterisk_base_sip_peer_registry_list">
+        <field name="name">asterisk sip peer registry list</field>
+        <field name="model">asterisk_base_sip.peer_registry</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false">
+                <field name="server"/>
+                <field name="username"/>
+                <field name="status"/>
+                <field name="host"/>
+                <field name="port"/>
+                <field name="registration_time"/>
+                <field name="refresh"/>
+                <field name="domain_port"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="asterisk_base_sip_peer_registry_action">
+        <field name="name">SIP Registry</field>
+        <field name="res_model">asterisk_base_sip.peer_registry</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem name="Registry" id="asterisk_base_peers_registry_menu"
+              parent="asterisk_base_sip_reports_menu" sequence="100"
+              action="asterisk_base_sip_peer_registry_action"/>
+
+    <record id="sip_peer_registry_search" model="ir.ui.view">
+        <field name="name">asterisk_base_sip.peer_registry.search</field>
+        <field name="model">asterisk_base_sip.peer_registry</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="username"/>
+                <field name="server"/>
+                <field name="host"/>
+                <field name="domain"/>
+                <filter name="registered" string="Registered"
+                    domain="[('status', '=', 'Registered')]"/>
+                <filter name="not_registered" string="Not registered"
+                    domain="[('status', '!=', 'Registered')]"/>
+            </search>
+        </field>
+    </record>
+
+</data>
+
+</odoo>

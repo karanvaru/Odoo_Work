@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree View -->
+
+    <record id="sh_motorcycle_make_tree" model="ir.ui.view">
+        <field name="name">sh.motorcycle.make.tree</field>
+        <field name="model">motorcycle.make</field>
+        <field name="arch" type="xml">
+            <tree editable='bottom'>
+                <field name="name" />
+                <field name="company_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- action -->
+    <record id="sh_motorcycle_make_action" model="ir.actions.act_window">
+        <field name="name">Make</field>
+        <field name="res_model">motorcycle.make</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- make menuitem -->
+    <menuitem id="sh_motorcycle_make_menuitem" action="sh_motorcycle_make_action" parent="sh_motorcycle_menuitem_config" sequence="2" />
+</odoo>

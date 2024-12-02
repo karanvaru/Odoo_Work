@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<odoo>
+   <data>
+        <record model="ir.ui.view" id="weekly_timesheet_report_view">
+           <field name="name">weekly_timesheetreport.form</field>
+           <field name="model">weekly.timesheetreport</field>
+           <field name="arch" type="xml">
+               <form string="Weekly Timesheet Report">
+                <p>This wizard will print timesheet report for selected employee between selected date range.</p>
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="employee_id"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                   </group>
+                   <footer>
+                       <button string="Print" name="weekly_time_sheet_report" type="object" class="oe_highlight"/> or 
+                       <button string="Cancel" name ="cancel" special="cancel"/>
+                   </footer>
+               </form>
+           </field>
+       </record>
+       
+<!--       <act_window id="helpdesk_weekly_timesheet_report_action"-->
+<!--           multi="True"-->
+<!--           key2="client_action_multi" name="Weekly Timesheet Report"-->
+<!--           res_model="weekly.timesheetreport" -->
+<!--           src_model="hr_timesheet_sheet.sheet"-->
+<!--           view_mode="form" target="new" view_type="form" /> odoo13-->
+           
+        <record model="ir.actions.act_window" id="helpdesk_weekly_timesheet_report_action">
+            <field name="name">Weekly Timesheet Report</field>
+            <field name="res_model">weekly.timesheetreport</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="weekly_timesheet_report_view"/>
+            <field name="target">new</field>
+        </record>
+       
+       <menuitem name="Weekly Timesheet" 
+                 id="helpdesk_timesheet_report_wizard" 
+                 parent="hr_timesheet.menu_timesheets_reports"
+                 action="helpdesk_weekly_timesheet_report_action" 
+                 groups="hr_timesheet.group_hr_timesheet_user" 
+       />
+   </data>
+</odoo>

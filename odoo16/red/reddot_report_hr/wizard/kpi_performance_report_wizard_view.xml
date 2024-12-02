@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_kpi_performance_report_wizard_form">
+            <field name="name">kpi.performance.report.wizard.view</field>
+            <field name="model">kpi.performance.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Export Report">
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="company_ids" widget="many2many_tags" options="{'no_create_edit': True,'no_create': True}"/>
+                            <field name="department_ids" widget="many2many_tags" options="{'no_create_edit': True,'no_create': True}"/>
+
+                        </group>
+                        <group>
+                        	<field name="end_date"/>
+                             <field name="employee_ids" widget="many2many_tags" options="{'no_create_edit': True,'no_create': True}"/>
+                             <field name="job_position_ids" widget="many2many_tags" options="{'no_create_edit': True,'no_create': True}"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_print_report" class='btn btn-primary' string="Export Report" type="object"/>
+                        <button name="action_print_monthly_report" class='btn btn-primary' string="Export Monthly Report" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_kpi_performance_report_wizard">
+            <field name="name">Kpi Performance Report</field>
+            <field name="res_model">kpi.performance.report.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_kpi_performance_report_wizard"
+                  parent="hr.hr_menu_hr_reports"
+                  name="Performance Reports Per Employee"
+                  sequence="60"
+                  action="actions_kpi_performance_report_wizard"
+        />
+
+    </data>
+</odoo>

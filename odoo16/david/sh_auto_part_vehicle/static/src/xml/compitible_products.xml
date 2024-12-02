@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="sh_auto_part_vehicle.CompitibleVehiclesModel">
+        <div class="table-responsive cls_vehicle_model">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">Image</th>
+                        <th class="hide_in_desktop text-center">Particulars</th>
+                        <th class="hide_in_mobile text-center">Model</th>
+                        <th class="hide_in_mobile text-center">Manufacturer</th>
+                        <th class="hide_in_mobile text-center">Year</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="vehicles" t-as="vehicle">
+                        <tr>
+                            <td class="text-center">
+                                <img
+                                    t-attf-src="/web/image/motorcycle.motorcycle/#{vehicle['id']}/vehicle_image"
+                                    class="img img-fluid"
+                                    style="text-decoration: none; width: 75px; height: auto; display: inline-block;"
+                                    t-att-alt="vehicle.name"
+                                />
+                            </td>
+
+                            <!-- Mobile View -->
+                            <td class="hide_in_desktop text-center" style="vertical-align: middle;">
+                                <span t-esc='vehicle["make_id"][1]' />
+                                <span t-if='vehicle["mmodel_id"][1]'> - <span t-esc='vehicle["mmodel_id"][1]'></span></span><br />
+                                <span t-esc='vehicle["year_id"][1]' />
+                                <span t-if='vehicle["end_year_id"][1]'> - <span t-esc='vehicle["end_year_id"][1]'></span></span>
+                            </td>
+                            <!-- Mobile View -->
+                            <td class="text-center hide_in_mobile" style="vertical-align: middle;">
+                                <span t-esc='vehicle["mmodel_id"][1]' />
+                            </td>
+                            <td class="text-center hide_in_mobile" style="vertical-align: middle;">
+                                <span t-esc='vehicle["make_id"][1]' />
+                            </td>
+
+                            <td class="text-center hide_in_mobile" style="vertical-align: middle;">
+                                <span t-esc='vehicle["year_id"][1]' />
+                                <span t-if='vehicle["end_year_id"][1]'> - <span t-esc='vehicle["end_year_id"][1]'></span></span>
+                            </td>
+                            <td class="text-center" style="vertical-align: middle;">
+                                <a t-attf-href='/shop?type=#{vehicle["type_id"][0]}&amp;make=#{vehicle["make_id"][0]}&amp;model=#{vehicle["mmodel_id"][0]}&amp;year=#{vehicle["year_id"][1]}' role="button" class="btn btn-primary">Select</a>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </t>
+</templates>

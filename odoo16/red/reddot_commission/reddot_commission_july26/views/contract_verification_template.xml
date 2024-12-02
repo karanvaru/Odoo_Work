@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+
+        <template id="contract_verification" name="Contract Verification" customize_show="True">
+            <t t-call="website.layout">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <div class="row">
+                        <form action="/contract_verification_data" method="post" class="form-horizontal mt32"
+                              enctype="multipart/form-data">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <group class="text-center">
+                                <div class="row">
+                                    <h2>Contract Verification</h2>
+                                </div>
+                                <div t-attf-class="form-group pt16">
+                                    <input type="hidden" name="contract_val" t-att-value="contract"
+                                           value="contract"></input>
+                                    <div class="col">
+
+                                        <div class="col">
+                                            <div>
+                                                <spam>Please Confirm Contract Here
+                                                </spam>
+                                            </div>
+                                            <div style="padding-top:10px;">
+                                                <input type="radio" name="varify" class="click_radio" id="approve"
+                                                       required="required" value="approve"/>
+                                                <label for="approve" style="margin-right:50px;">Accept</label>
+                                                <input type="radio" name="varify" class="click_radio" id="reject"
+                                                       required="required" value="reject"/>
+                                                <label for="reject">Reject</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <div class="col pt16 pb16">
+                                                <button type="submit" class="btn btn-success">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </group>
+                        </form>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

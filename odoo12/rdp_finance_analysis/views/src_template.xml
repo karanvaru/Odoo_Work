@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_backend" name="finance analysis assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/rdp_finance_analysis/static/src/js/fin_payment.js"></script>
+            <!-- <script type="text/javascript" src="/rdp_finance_analysis/static/src/js/fin_invoice.js"></script>
+            <script type="text/javascript" src="/rdp_finance_analysis/static/src/js/fin_expense.js"></script> -->
+            <link rel="stylesheet" type="text/scss" href="/rdp_finance_analysis/static/src/scss/action_report.scss"/>
+        </xpath>
+    </template>
+</odoo>

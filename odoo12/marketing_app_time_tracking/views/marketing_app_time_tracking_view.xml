@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Marketing aApp -->
+    <record id="marketing_inherit_form_view" model="ir.ui.view">
+        <field name="name">marketing.app.time.track</field>
+        <field name="model">marketing.app</field>
+        <field name="inherit_id" ref="rdp_marketing_app.marketing_app_view_form"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//div[@name='action_start']" position="after">-->
+<!--                 <div-->
+<!--                      class="alert alert-info" role="alert" style="margin-bottom:0px; background-color:" attrs="{'invisible': [('active_user_count', '=', 0)]}"> <i class="fa fa-user-circle"></i>                  <field name="active_user_count" nolabel="1" readonly="1" style="position: absolute;padding: 2px 8px;background-color: #dabf29;color: #FFF;display: inline-block;margin-left: 66px;border-radius: 50px;margin-top: 35px;"/>-->
+<!--                 </div>-->
+<!--            </xpath>-->
+            <xpath expr="//header" position="inside">
+                <field name="active_user_count" attrs="{'invisible': [('active_user_count', '=', 0)]}" nolabel="1" readonly="1" style="position: absolute;padding: 2px 8px;background-color: #dabf29;color: #FFF;display: inline-block;margin-left: 66px;border-radius: 50px;margin-top: 35px;"/>
+                <button string="Start" class="btn btn-primary"
+                        type="object" name="action_start"/>
+            </xpath>
+<!--            <xpath expr="//sheet" position="inside">-->
+            <xpath expr="//notebook" position="inside">
+                <page name="time_tracking" string="Time Tracking">
+                    <field name="user_time_tracking_ids"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ir_rule_res_branch_user" model="ir.rule">
+        <field name="name">Branch User Rule</field>
+        <field name="model_id" ref="model_res_branch" />
+        <field name="domain_force">[('user_ids.id', 'in', [user.id])]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]" />
+    </record>
+
+    <record id="ir_rule_res_branch_manager" model="ir.rule">
+        <field name="name">Branch Manager Rule</field>
+        <field name="model_id" ref="model_res_branch" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('sh_base_branch.group_branch_manager'))]" />
+    </record>
+
+</odoo>

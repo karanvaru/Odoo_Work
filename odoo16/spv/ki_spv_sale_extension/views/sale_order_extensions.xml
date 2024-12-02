@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_inherit" model="ir.ui.view">
+        <field name="name">sale.order.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='term_condition_id']" position="after">
+                <field name="document_required_for_application" widget="many2many_tags"/>
+                <field name="pv_note"/>
+            </xpath>
+            <xpath expr="//group[@name='note_group']" position="inside">
+                <group class="oe_subtotal_footer oe_right" colspan="2" name="subsidy">
+                    <field name="subsidy_rate_kw"/>
+                    <field name="subsidy"/>
+                    <field name="net_meter_charges"/>
+                    <field name="extra_charges"/>
+                    <field name="solar_plant_cost"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='sale_order_template_id']" position="after">
+                <field name="tarrif_type"/>
+                <field name="location"/>
+                <field name="distributor_id" domain="[('custom_partner_type', '=', 'distributor')]"/>
+                <field name="chanel_partner" domain="[('custom_partner_type', '=', 'chanel_partner')]"/>
+                <field name="proposal_subject"/>
+                <field name="proposal_subject_2"/>
+            </xpath>
+            <xpath expr="//page[@name='customer_signature']" position="after">
+                <page name="item" string="Items">
+                    <field name="item_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="product_id"/>
+                            <field name="name"/>
+                            <field name="uom_id"/>
+                            <field name="qty"/>
+                            <field name="maker_id"/>
+                        </tree>
+                    </field>
+                </page>
+                <page name="saving_roi" string="Savings &amp; ROI">
+                    <field name="saving_roi_ids" nolabel="1" force_save="1">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="amount"/>
+                        </tree>
+                    </field>
+                </page>
+                <page name="Payback" string="Payback">
+                    <field name="payback_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="year"/>
+                            <field name="amount"/>
+                        </tree>
+                    </field>
+                </page>
+                <page name="payment_schedule" string="Payment Schedule">
+                    <field name="payment_schedule_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="payment_stage"/>
+                            <field name="payment"/>
+                            <field name="amount"/>
+                            <field name="process_time"/>
+                        </tree>
+                    </field>
+                    <group name="total_group" col="6" class="mt-2 mt-md-0">
+                        <group colspan="4">
+                        </group>
+                        <group class="oe_subtotal_footer oe_right" colspan="2" name="payment_schedule_total">
+                            <field name="total_payment"/>
+                            <field name="total_amount"/>
+                            <field name="total_process_time"/>
+                        </group>
+                        <div class="clearfix"/>
+                    </group>
+                </page>
+                <page name="total_saving" string="Total Saving">
+                    <field name="total_saving_ids" nolabel="1">
+                        <tree editable="bottom" create="0" delete="0">
+                            <field name="particular"/>
+                            <field name="first_year"/>
+                            <field name="second_year"/>
+                            <field name="third_year"/>
+                            <field name="four_year"/>
+                        </tree>
+                    </field>
+                    <group>
+                        <group>
+                            <group>
+                                <field name="total_saving_first_year"/>
+                            </group>
+                            <group>
+                                <field name="total_saving_second_year"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="total_saving_third_year"/>
+                            </group>
+                            <group>
+                                <field name="total_saving_four_year"/>
+                            </group>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group>
+                            <group>
+                                <field name="net_cash_first_year"/>
+                            </group>
+                            <group>
+                                <field name="net_cash_second_year"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="net_cash_third_year"/>
+                            </group>
+                            <group>
+                                <field name="net_cash_four_year"/>
+                            </group>
+                        </group>
+                    </group>
+
+                    <!--                    <group name="total_group" col="6" class="mt-2 mt-md-0">-->
+                    <!--                        <group colspan="4">-->
+                    <!--                        </group>-->
+                    <!--                        <group class="oe_subtotal_footer oe_right" colspan="2" name="total_saving">-->
+                    <!--                            <field name="total_saving_first_year"/>-->
+                    <!--                            <field name="total_saving_second_year"/>-->
+                    <!--                            <field name="total_saving_third_year"/>-->
+                    <!--                            <field name="total_saving_four_year"/>-->
+                    <!--                        </group>-->
+                    <!--                        <div class="clearfix"/>-->
+                    <!--                    </group>-->
+                </page>
+                <page name="warranty_details" string="Warranty Detail">
+                    <group>
+                        <field name="warranty_detail" force_save="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_product_inherit" model="ir.ui.view">
+        <field name="name">product.product.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='detailed_type']" position="after">
+                <field name="maker_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_config_settings_inheit_view" model="ir.ui.view">
+        <field name="name">res.config.settings.inherit.view</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id"
+               ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='sale_management']/div" position="after">
+                <h2 class="mt32">Term and Condition</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-xs-12 col-md-12 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <group>
+                                <field name="warranty_detail"/>
+                            </group>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

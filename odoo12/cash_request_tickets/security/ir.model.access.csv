@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+cash_request_tickets_user,cash.request.tickets,model_cash_request_tickets,,1,1,1,1
+cash_request_tickets_many_to_one_relation_user,cash.request.many.to.one.relation,model_cash_request_many_to_one_relation,,1,1,1,1
+

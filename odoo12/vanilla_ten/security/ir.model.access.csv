@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+vanilla_ten_user,vanilla.ten,model_vanilla_ten,,1,1,1,1
+ten_vanilla_one_tags_user,ten.vanilla.one.tags,model_ten_vanilla_one_tags,,1,1,1,1
+ten_one_to_many_relation_user,ten.one.to.many.relation,model_ten_one_to_many_relation,,1,1,1,1
+ten_many_to_one_relation_user,ten.many.to.one.relation,model_ten_many_to_one_relation,,1,1,1,1
+ten_many_to_many_relation_user,ten.many.to.many.relation,model_ten_many_to_many_relation,,1,1,1,1
+

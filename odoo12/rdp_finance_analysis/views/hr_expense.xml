@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+	
+<odoo>
+    <data>
+        <record id="hr_expense_view_form_finance_analysis" model="ir.ui.view">
+            <field name="name">hr.expense.view.form.finance.analysis</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//field[@name="company_id"]' position='after'>
+                    <field string="Partner" name="partner_id" invisible ='1'/>
+                    <field name="finance_analysis"/>
+                    <field name="remaining_amount"/>
+                </xpath>
+                <!-- <xpath expr='//sheet' position="inside"> -->
+                <xpath expr='//field[@name="description"]' position='before'>
+                    <notebook>
+                        <page name="finance_analysis" string="Finance Analysis" attrs="{'invisible': [('finance_analysis', '=', False)]}" >
+                            <field name="finance_analysis_ids" options="{'no_open': 1}" widget="one2many" mode="tree" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}">
+                                <form string="Finance Analysis">
+                                <sheet>
+                                    <h1>
+                                        <field name="name"/>
+                                    </h1>
+                                    <group>
+                                        <group>
+                                            <field name="expense_date"/>
+                                            <field name="description"/>
+                                        </group>
+                                        <group>
+                                            <field name="attachment_ids" widget="many2many_binary"/>
+                                            <field name="amount"/>
+                                        </group>
+                                    </group>
+                                </sheet>
+                                </form>
+                                <tree string="Finance Analysis"  editable ='bottom'>
+                                    <field name="hr_expense_id" invisible ='1'/>
+                                    <field name="name"/>
+                                    <field name="expense_date"/>
+                                    <field name="description"/>
+                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                    <field name="amount" sum="Total"/>
+                                </tree>
+                            </field>   
+                        </page>    
+                    </notebook> 
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

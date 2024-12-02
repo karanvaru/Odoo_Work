@@ -1,0 +1,169 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* send_payslips_by_email
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-31 22:09+0000\n"
+"PO-Revision-Date: 2018-01-31 22:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: send_payslips_by_email
+#: model:mail.template,body_html:send_payslips_by_email.email_template_send_payslip
+msgid "\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Hello ${object.employee_id.name},</p>\n"
+"    \n"
+"    <p>Please find attached, your ${object.state} ${object.name} from ${object.company_id.name}: </p>\n"
+"\n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"        &nbsp;&nbsp;Your HR contact: <a href=\"mailto:${object.write_uid.email or ''}?subject=${object.name}\">${object.write_uid.name or ''}</a>\n"
+"    </p>\n"
+"\n"
+"\n"
+"    <br/>\n"
+"    <p>If you have any question, do not hesitate to contact HR.</p>\n"
+"    <p>Thank you</p>\n"
+"    <br/>\n"
+"    <br/>\n"
+"    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"        % if object.company_id.street:\n"
+"            ${object.company_id.street}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.street2:\n"
+"            ${object.company_id.street2}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.city or object.company_id.zip:\n"
+"            ${object.company_id.zip} ${object.company_id.city}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.country_id:\n"
+"            ${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>\n"
+"        % endif\n"
+"        </span>\n"
+"        % if object.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n"
+"                Phone:&nbsp; ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Web :&nbsp;<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"            "
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:mail.template,report_name:send_payslips_by_email.email_template_send_payslip
+msgid "${(object.name or '').replace('/','_')}_${object.state}"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:mail.template,subject:send_payslips_by_email.email_template_send_payslip
+msgid "${object.company_id.name|safe}: ${object.state} ${object.name or 'n/a' }"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.ui.view,arch_db:send_payslips_by_email.sendbyemail_payslip_batch_inherit1
+msgid "Are you sure you want to send all payslips via email?"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.ui.view,arch_db:send_payslips_by_email.view_send_multi_payslips_by_email
+msgid "Cancel"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: code:addons/send_payslips_by_email/models/hr_payslip.py:61
+#, python-format
+msgid "Compose Email"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.model.fields,field_description:send_payslips_by_email.field_hr_payslip_send_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.model.fields,field_description:send_payslips_by_email.field_hr_payslip_send_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.model.fields,field_description:send_payslips_by_email.field_hr_payslip_send_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.model.fields,field_description:send_payslips_by_email.field_hr_payslip_send_id
+msgid "ID"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.model.fields,field_description:send_payslips_by_email.field_hr_payslip_send___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.model.fields,field_description:send_payslips_by_email.field_hr_payslip_send_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.model.fields,field_description:send_payslips_by_email.field_hr_payslip_send_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.model,name:send_payslips_by_email.model_hr_payslip
+msgid "Pay Slip"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.model,name:send_payslips_by_email.model_hr_payslip_run
+msgid "Payslip Batches"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.ui.view,arch_db:send_payslips_by_email.view_send_multi_payslips_by_email
+msgid "Send"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.actions.act_window,name:send_payslips_by_email.action_send_payslips_by_email
+#: model:ir.ui.view,arch_db:send_payslips_by_email.sendbyemail_payslip_batch_inherit1
+#: model:ir.ui.view,arch_db:send_payslips_by_email.sendbyemail_payslip_inherit1
+msgid "Send By Email"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.ui.view,arch_db:send_payslips_by_email.view_send_multi_payslips_by_email
+msgid "Send Payslips By Email"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.ui.view,arch_db:send_payslips_by_email.view_send_multi_payslips_by_email
+msgid "You are about to send selected payslips by email"
+msgstr ""
+
+#. module: send_payslips_by_email
+#: model:ir.model,name:send_payslips_by_email.model_hr_payslip_send
+msgid "hr.payslip.send"
+msgstr ""
+

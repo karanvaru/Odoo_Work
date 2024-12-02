@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+    	<!-- See LICENSE URL <https://store.webkul.com/license.html/> for full copyright and licensing details. -->
+        <record id="wk_addons_website_prodcut_tags_config" model="ir.ui.view">
+            <field name="name">Addons Setting</field>
+            <field name="model">webkul.website.addons</field>
+            <field name="inherit_id" ref="website_webkul_addons.config_webkul_website_addons_form"/>
+            <field name="arch" type="xml">
+              <xpath expr="//td[@name='module_website_product_tags']" position="replace">
+                  <td><button type="action" name="%(website_product_tags.action_website_product_tags_config)d" string="Configuration" class="oe_link oe_inline"></button></td>
+              </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

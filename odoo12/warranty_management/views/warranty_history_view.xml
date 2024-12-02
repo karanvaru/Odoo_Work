@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <record id="webkul_view_warranty_history" model="ir.ui.view">
+        <field name="name">warranty.history.form</field>
+        <field name="model">warranty.history</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Warranty Registration">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="state" readonly="1"/>
+                            <field name="datas" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="old_start_date" readonly="1"/>
+                            <field name="old_end_date" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

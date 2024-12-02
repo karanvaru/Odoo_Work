@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+
+        <template id="picking_commercial_invoice_report_templates">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <t t-call="reddot_stock_extension.stock_report_header"/>
+                            <div class="row text-center pt48">
+                                <h2>COMMERCIAL INVOICE CUM PACKING LIST</h2>
+                            </div>
+                            <div class="row pt32">
+                                <div class="col-6">
+                                    <span style="margin-right:60px;">Date</span>
+                                    <span t-field="o.scheduled_date" t-options='{"format": "d/MMM/Y"}'/>
+                                    <br></br>
+                                    <span style="margin-right:15px;">Invoice No.</span>
+                                    <span t-field="o.name"/>
+                                    <br></br>
+
+                                    <span style="margin-right:25px;">SHIP TO:</span>
+                                    <span t-esc="o.partner_id.street"></span>
+                                    <p style="margin-left:100px;">
+                                        <span t-esc="o.partner_id.city"></span>
+                                        <span t-esc="o.partner_id.state_id.name"></span>
+                                        <span t-esc="o.partner_id.zip"></span>
+                                        <br></br>
+                                        <span t-esc="o.partner_id.country_id.name"></span>
+                                        <br></br>
+                                        TEL:
+                                        <span t-esc="o.partner_id.phone"></span>
+                                        <br></br>
+                                        ATTN:
+                                        <span>BIJOY THOMAS</span>
+                                    </p>
+                                </div>
+
+                                <div class="col-6" style="text-align:right;padding-right:60px;">
+                                    <span t-esc="o.company_id.name"/>
+                                    <br></br>
+                                    <span t-esc="o.company_id.street"/>
+                                    <br></br>
+                                    <span t-esc="o.company_id.country_id.name"/>
+                                    <br></br>
+                                    Tel:
+                                    <span t-esc="o.company_id.phone"/>
+                                    <br></br>
+                                    Fax :
+                                    <span>+971-4-3931442:</span>
+                                    <br></br>
+                                    <div class='pt16' style="padding-right:50px;">
+                                        CUSTOMER:
+                                        <span t-esc="o.partner_id.name"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-bordered">
+                                <t t-set="sr_no" t-value="0"/>
+                                <t t-set="weight" t-value="0"/>
+                                <t t-set="qty_sum" t-value="0"/>
+                                <t t-set="total_sum" t-value="0"/>
+                                <tr>
+                                    <th>SR</th>
+                                    <th>PRODUCT CODE/ORDER NO</th>
+                                    <th>COMMODITY NAME</th>
+                                    <th>BILL OF ENTRY</th>
+                                    <th>HS CODE</th>
+                                    <th>COO</th>
+                                    <th>WEIGHT KG</th>
+                                    <th>QTY</th>
+                                    <th>UNIT PRICE</th>
+                                    <th>TOTAL USD</th>
+                                </tr>
+                                <t t-foreach="o.move_ids_without_package" t-as="lines">
+                                    <tr>
+                                        <td>
+                                            <span t-esc="sr_no"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="lines.product_id.default_code"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="lines.product_id.name"/>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <span t-esc="lines.weight"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="lines.quantity_done"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="lines.price_unit"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="lines.quantity_done * lines.price_unit"
+                                                  t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </td>
+                                    </tr>
+                                    <t t-set="sr_no" t-value="sr_no+ 1"/>
+                                    <t t-set="weight" t-value="weight+ lines.weight"/>
+                                    <t t-set="qty_sum" t-value="qty_sum+ lines.quantity_done"/>
+                                    <t t-set="total_sum" t-value="total_sum+ lines.quantity_done * lines.price_unit"/>
+                                </t>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total</td>
+                                    <td>
+                                        <span t-esc="weight"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="qty_sum"/>
+                                    </td>
+                                    <td>TOTAL</td>
+                                    <td>
+                                        <span t-esc="total_sum"
+                                              t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                            <div class="row">
+                                <span style="margin-right:10px;">TOTAL WEIGHT(KG):&amp;nbsp;
+                                    <t t-esc="weight"></t>
+                                </span>
+                                <br></br>
+                                <span>STC: 1512PCS OF LENOVO MONITOR</span>
+                            </div>
+                            <div class="row pt32">
+                                <span style="margin-right:10px;">C/ORIGIN:</span>
+                                <span></span>
+                            </div>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_commercial_invoice_report" model="ir.actions.report">
+            <field name="name">Commercial Inv</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">reddot_stock_extension.picking_commercial_invoice_report_templates</field>
+            <field name="report_file">reddot_stock_extension.picking_commercial_invoice_report_templates</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="print_report_name">'Commercial_Invoice'</field>
+            <field name="paperformat_id" ref="reddot_stock_extension.custom_picking_report_paper_format"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

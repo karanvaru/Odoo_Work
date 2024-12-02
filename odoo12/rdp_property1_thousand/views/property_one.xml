@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--        form view-->
+        <record id="property_one_app_view_form" model="ir.ui.view">
+            <field name="name">property.one.form</field>
+            <field name="model">property.one</field>
+            <field name="arch" type="xml">
+                <form string="FM &amp; Admin Vendors">
+                    <sheet>
+                        <div>
+                            <div class="oe_button_box" name="button_box">
+                                <button name="action_button" class="oe_stat_button" type="object" icon="fa-briefcase">
+                                    <field string="Purchase Order Count" name="property_one_purchase_order_count"
+                                           widget="statinfo"/>
+                                </button>
+                            </div>
+                        </div>
+<!--                        <field name="image" widget="image" class="oe_avatar" options="{'size' : [90, 90]}"/>-->
+                        <div>
+                            <field name="image" widget="image" class="oe_avatar" options="{'size' : [90, 90]}"/>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+<!--                        <field name="image" widget="image" class="oe_avatar"/>-->
+                        <group>
+                            <group>
+                                <field name="service_product_id"/>
+                                <field name="fm_product_type_id"/>
+                                 <field name="product_id"/>
+                                <field name="pdc_brand_id"/>
+                                <field name="brand_country_id"/>
+                                <field name="vendor_id"/>
+                                <field name="assigned_to_id" />
+                                <field name="fm_admin_id"/>
+                                <field name="location_id" />
+
+                            </group>
+                            <group>
+                                <field name="category"/>
+                                <field name="sub_category"/>
+                                <field name="fm_department_id"/>
+                                <field name="fm_vendor_quality" widget="priority"/>
+                                <field name="amc_state_id"/>
+                                <field name="tag_ids" widget="many2many_tags"/>
+                                <field name="recurring_activity"/>
+                                <field name="next_maintainance_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Internal Notes">
+                                <group>
+                                    <field name="notes"/>
+                                </group>
+
+                            </page>
+                             <page string="Prices">
+                                <group>
+                                    <field name="quick_reference"/>
+                                </group>
+
+                            </page>
+                             <page string="Gantt">
+                             <group>
+                                <group>
+                                    <field name="start_date"/>
+                                </group>
+                                <group>
+                                    <field name="end_date"/>
+                                </group>
+                             </group>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="property_one_app_tree_view" model="ir.ui.view">
+            <field name="name">property.one.tree</field>
+            <field name="model">property.one</field>
+            <field name="arch" type="xml">
+                <tree string="FM &amp; Admin Vendors">
+                    <field name="name"/>
+                    <!-- <field name="product_name"/> -->
+                    <!-- <field name="model"/>
+                    <field name="brand"/> -->
+                     <field name="service_product_id"/>
+                     <field name="product_id"/>
+                    <field name="pdc_brand_id"/>
+                    <field name="category"/>
+                    <field name="sub_category"/>
+                    <field name="recurring_activity"/>
+                    <field name="next_maintainance_date"/>
+                </tree>
+            </field>
+        </record>
+        <!--        search view-->
+        <record id="property_one_app_search_view" model="ir.ui.view">
+            <field name="name">property.one.search</field>
+            <field name="model">property.one</field>
+            <field name="arch" type="xml">
+                <search string="FM &amp; Admin Vendors">
+                    <field name="service_product_id"/>
+                                <field name="fm_product_type_id"/>
+                                 <field name="product_id"/>
+                                <field name="pdc_brand_id"/>
+                                <field name="vendor_id"/>
+                                <field name="assigned_to_id" />
+                                <field name="location_id" />
+                                <field name="category"/>
+                                <field name="sub_category"/>
+                                <field name="fm_department_id"/>
+                                <field name="fm_vendor_quality"/>
+                                <field name="amc_state_id"/>
+                                <field name="tag_ids"/>
+                                
+                    <!--                    group by-->
+                    <group expand="0" string="Group By">
+                        <filter name="service_product_id" string="Product/Service Name" domain="[]"
+                                context="{'group_by':'service_product_id'}"/>
+                        <filter name="fm_product_type_id" string="Product Type" domain="[]" context="{'group_by':'fm_product_type_id'}"/>
+                        <filter name="product_id" string="Product Model" domain="[]" context="{'group_by':'product_id'}"/>
+                        <filter name="pdc_brand_id" string="Brand" domain="[]" context="{'group_by':'pdc_brand_id'}"/>
+                        <filter name="vendor_id" string="Vendor" domain="[]" context="{'group_by':'vendor_id'}"/>
+                        <filter name="assigned_to_id" string="Assigned To" domain="[]" context="{'group_by':'assigned_to_id'}"/>
+                        <filter name="sub_category" string="Sub Category" domain="[]"
+                                context="{'group_by':'sub_category'}"/>
+                        <filter name="category" string="Category" domain="[]" context="{'group_by':'category'}"/>
+                        <filter name="location_id" string="Location" domain="[]"
+                                context="{'group_by':'location_id'}"/>
+                        <filter name="fm_department_id" string="Department" domain="[]" context="{'group_by':'fm_department_id'}"/>
+                        <filter name="amc_state_id" string="AMC State" domain="[]" context="{'group_by':'amc_state_id'}"/>
+                        <filter name="tag_ids" string="Tags" domain="[]" context="{'group_by':'amc_state_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <!--  action -->
+        <record id="property_one_app_action_view" model="ir.actions.act_window">
+            <field name="name">FM &amp; Admin Vendors</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">property.one</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="fm_admin_main_menu" name="FM and Admin" parent="rdp_forms.menu_rdp_dx"/>
+        <!-- <menuitem id="menu_property_one_app" name="Property1 1000" action="property_one_app_action_view"
+                  parent="fm_admin_main_menu"/> -->
+
+    </data>
+</odoo>

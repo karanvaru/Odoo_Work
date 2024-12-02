@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- ded.commission.allocate form view -->
+	<record id="ded_commission_allocate_view_form" model="ir.ui.view">
+		<field name="name">ded.commission.allocate.view.form</field>
+		<field name="model">deduction.commission.allocate</field>
+		<field name="arch" type="xml">
+			<form string="Allocate Deductions">
+				
+				<group>
+					<field name="commission_structure_id" invisible="1"/>
+					<field name="line_ids">
+						<tree string="Deduction Lines" editable="bottom" decoration-danger="manager_result == 'fail'"
+                                          decoration-success="manager_result == 'pass'">
+							<field name="ded_line_id" readonly="1"/>
+							<field name="manager_result" widget="radio" options="{'horizontal': True}" />
+							<field name="comment"/>
+						</tree>
+					</field>
+				</group>
+
+				 <footer>
+                    <button name="action_submit" string="Submit" type="object"
+                            default_focus="1" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+				
+			</form>
+		</field>
+	</record>
+
+	<record model="ir.actions.act_window" id="ded_commission_allocate_view_action">
+        <field name="name">Allocate Deduction Wizard</field>
+        <field name="res_model">deduction.commission.allocate</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="ded_commission_allocate_view_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

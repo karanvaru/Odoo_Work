@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Helpdesk Ticket -->
+    <record id="helpdesk_inherit_form_view" model="ir.ui.view">
+        <field name="name">helpdesk.inherited.time.track</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//div[@name='action_start']" position="after">-->
+<!--                 <div-->
+<!--                      class="alert alert-info" role="alert" style="margin-bottom:0px; background-color:" attrs="{'invisible': [('active_user_count', '=', 0)]}"> <i class="fa fa-user-circle"></i>                  <field name="active_user_count" nolabel="1" readonly="1" style="position: absolute;padding: 2px 8px;background-color: #dabf29;color: #FFF;display: inline-block;margin-left: 66px;border-radius: 50px;margin-top: 35px;"/>-->
+<!--                 </div>-->
+<!--            </xpath>-->
+            <xpath expr="//header" position="inside">
+                <field name="active_user_count" attrs="{'invisible': [('active_user_count', '=', 0)]}" nolabel="1" readonly="1" style="position: absolute;padding: 2px 8px;background-color: #dabf29;color: #FFF;display: inline-block;margin-left: 66px;border-radius: 50px;margin-top: 35px;"/>
+                <button string="Start" class="btn btn-primary"
+                        type="object" name="action_start"/>
+            </xpath>
+            <xpath expr="//page" position="before">
+                <page name="time_tracking" string="Time Tracking">
+                    <field name="user_time_tracking_ids"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="helpdesk_kanban_view_leads_tracking" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.kanban.inherited.time.track</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="before">
+                <button name="action_start" type="object" class="btn fa fa-play"
+                        style="color:green;background-color:white" aria-label="Start Timer" title="Start Timer"/>
+            </xpath>
+        </field>
+    </record>
+
+    </odoo>
+

@@ -1,0 +1,8 @@
+<odoo>
+    <data>
+        <record model="res.groups" id="group_allow_search">
+            <field name="name">Allow Easy Search</field>
+        </record>
+
+    </data>
+</odoo>

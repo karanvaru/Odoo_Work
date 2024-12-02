@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_payments_inherit_form_record_type" model="ir.ui.view">
+        <field name="name">account.payments.inherit.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_method_code']" position="after">
+                <field name="record_type_id" />
+                <field name="record_category_id" domain="[('record_type_ids', 'in', record_type_id)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

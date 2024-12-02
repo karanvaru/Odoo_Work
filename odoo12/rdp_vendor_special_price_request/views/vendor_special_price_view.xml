@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="vendor_special_price_form_view">
+            <field name="name">vendor.special.price.form</field>
+            <field name="model">vendor.special.price</field>
+            <field name="arch" type="xml">
+
+
+                <form string="Vendor Special Price Request">
+
+                    <header>
+                        <button name="action_to_request_sent" type="object" string="REQUEST SENT" class="btn-primary"
+                                attrs="{'invisible': [('state', 'in', ['c_approved','d_rejected','e_expired','b_request_sent'])]}"/>
+                        <button name="action_to_approved" type="object" string="APPROVED" class="btn-primary"
+                                attrs="{'invisible': [('state', 'in', ['a_draft','c_approved','d_rejected','e_expired'])]}"/>
+                        <button name="action_to_rejected" type="object" string="REJECTED" class="btn-primary"
+                                attrs="{'invisible': [('state', 'in', ['a_draft','c_approved','d_rejected','e_expired'])]}"/>
+                        <button name="action_to_expired" type="object" string="EXPIRED" class="btn-primary"
+                                attrs="{'invisible': [('state', 'in', ['a_draft','d_rejected','e_expired','b_request_sent'])]}"/>
+                        <button name="action_set_draft" type="object" string="SET TO DRAFT"
+                                attrs="{'invisible': [('state', 'in', ['a_draft','c_approved','e_expired','d_rejected','b_request_sent'])]}"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="lead_oppurtunity_id"/>
+                                <field name="bid_tender_closed_date"/>
+                                <field name="sales_person_id" domain="[('is_int_user','=',True)]"/>
+                                <!--                                <field name="sales_person_id"/>-->
+                                <field name="sales_team_id"/>
+                            </group>
+                            <group>
+                                <field name="brand_id"/>
+                                <field name="vspr_program_id"/>
+                                <field name="requested_through_distributor_id" domain="[('supplier','=',True)]"/>
+                                <field name="quantity"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Internal Notes">
+                                <group>
+                                    <field name="description"/>
+                                </group>
+                            </page>
+                            <page string="Requested">
+                                <group>
+                                    <group>
+                                        <field name="requested_date"/>
+                                        <field name="requested_sku_id"/>
+                                        <field name="requested_quantity"/>
+                                        <field name="requested_price_in_inr_incl_tax" widget="monetary"/>
+                                        <field name="requested_price_in_usd"/>
+                                        <field name="market_operating_price" widget="monetary"/>
+                                    </group>
+                                    <group>
+                                        <field name="competitor_brand"/>
+                                        <field name="competitor_model_no"/>
+                                        <field name="competitor_price" widget="monetary"/>
+                                        <field name="currency_id"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Approvals">
+                                <group>
+                                    <group>
+                                        <field name="approved_date"/>
+                                        <field name="approved_sku_id"/>
+                                        <field name="valid_till"/>
+                                    </group>
+                                    <group>
+                                        <field name="approved_price_in_usd"/>
+                                        <field name="approved_price_in_inr_excl_tax" widget="monetary"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Extensions">
+                                <group>
+                                    <group>
+                                        <field name="extension_requested_date"/>
+                                        <field name="extension_valid_till"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+
+            </field>
+        </record>
+        <record id="vendor_special_price_tree_view" model="ir.ui.view">
+            <field name="name">vendor.special.price.tree</field>
+            <field name="model">vendor.special.price</field>
+            <field name="arch" type="xml">
+                <tree string="Vendor Special Price Request">
+                    <field name="name"/>
+                    <field name="requested_sku_id"/>
+                    <field name="requested_quantity"/>
+                    <field name="market_operating_price"/>
+                    <field name="requested_price_in_inr_incl_tax"/>
+                    <field name="approved_price_in_inr_excl_tax"/>
+                    <field name="discount_received"/>
+                    <field name="valid_till"/>
+                    <field name="valid_days_remaining"/>
+                    <field name="sales_team_id"/>
+                    <field name="brand_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--        search view-->
+        <record id="vendor_price_search_view" model="ir.ui.view">
+            <field name="name">vendor.special.price.search</field>
+            <field name="model">vendor.special.price</field>
+            <field name="arch" type="xml">
+                <search string="Vendor Special Price Request">
+                    <field name="name"/>
+                    <field name="lead_oppurtunity_id"/>
+                    <field name="sales_person_id"/>
+                    <field name="sales_team_id"/>
+                    <field name="brand_id"/>
+                    <field name="vspr_program_id"/>
+                    <!--                    filters-->
+                    <filter name="a_draft" string="Draft" domain="[('state','=','a_draft')]"/>
+                    <filter name="b_request_sent" string="Request Sent" domain="[('state','=','b_request_sent')]"/>
+                    <filter name="c_approved" string="Approved" domain="[('state','=','c_approved')]"/>
+                    <filter name="d_rejected" string="Rejected" domain="[('state', '=', 'd_rejected')]"/>
+                    <filter name="e_expired" string="Expired" domain="[('state', '=', 'e_expired')]"/>
+
+
+                    <!--                    group by-->
+                    <group expand="0" string="Group By">
+                        <filter name="sales_person_id" string="Sales Person" domain="[]"
+                                context="{'group_by':'sales_person_id'}"/>
+                        <filter name="brand_id" string="Brand" domain="[]" context="{'group_by':'brand_id'}"/>
+                        <filter name="sales_team_id" string="Sales Team" domain="[]"
+                                context="{'group_by':'sales_team_id'}"/>
+                        <filter name="state" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--        pivot view-->
+        <record id="vendor_price_pivot_view" model="ir.ui.view">
+            <field name="name">vendor.special.price.pivot</field>
+            <field name="model">vendor.special.price</field>
+            <field name="arch" type="xml">
+                <pivot string="Vendor Special Price Request">
+                    <field name="name"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- calender view -->
+        <record id="vendor_price_calendar_view" model="ir.ui.view">
+            <field name="name">vendor.special.price.calendar</field>
+            <field name="model">vendor.special.price</field>
+            <field name="arch" type="xml">
+                <calendar string="Vendor Special Price Request" date_start="create_date" color="name" mode="month"
+                          quick_add="True">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+
+        <!--        kanban view-->
+        <record id="vendor_price_kanban_inherit" model="ir.ui.view">
+            <field name="name">vendor.special.price.kanban</field>
+            <field name="model">vendor.special.price</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="name"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill rdp_template_four_rdp_template_four_kanban">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title"></strong>
+                                    <div class="o_kanban_tags_section"/>
+                                    <ul>
+                                        <li>Reference No:
+                                            <field name="name"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+
+                    </templates>
+                </kanban>
+
+            </field>
+        </record>
+        <!-- Graph view -->
+        <record id="vendor_price_graph" model="ir.ui.view">
+            <field name="name">vendor.special.price.graph</field>
+            <field name="model">vendor.special.price</field>
+            <field name="arch" type="xml">
+                <graph string="Vendor Special Price Request" type="pie">
+                    <field name="name"/>
+                </graph>
+            </field>
+        </record>
+        <!-- gantt view -->
+        <record id="vendor_price_gantt" model="ir.ui.view">
+            <field name="name">vendor.special.price.gantt</field>
+            <field name="model">vendor.special.price</field>
+            <field name="arch" type="xml">
+                <gantt date_start="create_date" date_stop="valid_till" string="Default Grant view"></gantt>
+            </field>
+        </record>
+
+        <record id="vendor_special_price_action_view" model="ir.actions.act_window">
+            <field name="name">Vendor Special Price Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vendor.special.price</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,pivot,calendar,graph,gantt</field>
+        </record>
+        <menuitem id="vendor_special_price_id" name="Vendor Special Price Request"
+                  action="vendor_special_price_action_view"
+                  parent="studio_customization.crm_forms_95cf21c8-5849-4c22-94e6-75e8db205544"/>
+        <!--        <menuitem id="vendor_special_price_id" name="Vendor Special Price Request"-->
+        <!--                  action="vendor_special_price_action_view" parent="crm.crm_menu_root"/>-->
+    </data>
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sh_account_payment_term_inherit_view_form" model="ir.ui.view">
+        <field name="name">account.payment.term.inherit.view.form</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_form"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position = "after">
+                <field name="branch_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_account_payment_term_inherit_view_tree" model="ir.ui.view">
+        <field name="name">account.payment.term.inherit.view.tree</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_tree"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position = "after">
+                <field name="branch_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_account_payment_term_inherit_view_search" model="ir.ui.view">
+        <field name="name">account.payment.term.inherit.view.search</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="branch_id" />
+            </xpath>
+            <xpath expr="//search" position="inside">
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="Branch" name="branch_id" domain="[]" context="{'group_by': 'branch_id'}" groups="sh_base_branch.sh_multi_branch_group" />
+                </group>   
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

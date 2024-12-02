@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="shop_order_ticket_quality_view_tree">
+            <field name="name">shop.order.ticket.quality.tree</field>
+            <field name="model">shop.order.ticket.quality</field>
+            <field name="arch" type="xml">
+                <tree string="Shop Order Ticket Quality">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="shop_order_ticket_quality_view_form">
+            <field name="name">shop.order.ticket.quality.from</field>
+            <field name="model">shop.order.ticket.quality</field>
+            <field name="arch" type="xml">
+                <form string="Shop Order Ticket Quality">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="actions_shop_order_ticket_quality_view" model="ir.actions.act_window">
+            <field name="name">Returns Goods Quality Result</field>
+            <field name="res_model">shop.order.ticket.quality</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="ticket_menu"
+                  name="Ticket"
+                  parent="sale.sale_menu_root"
+        />
+
+        <menuitem id="shop_order_ticket_quality_root_menu"
+                  name="Returns Goods Quality Result"
+                  parent="mtrmp_sales_shop.ticket_menu"
+                  action="actions_shop_order_ticket_quality_view"
+
+        />
+    </data>
+</odoo>

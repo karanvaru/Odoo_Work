@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="feedback_email_template" model="mail.template">
+            <field name="name">Global Feedback</field>
+            <field name="model_id" ref="rdp_global_feedback.model_global.feedback"/>
+            <field name="auto_delete">0</field>
+            <!-- <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field> -->
+            <field name="email_to">${object.email}</field>
+            <field name="subject">Thanks for sharing Feedback ${object.name}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                   
+                        Dear <t t-if="${object.first_name} or ${object.last_name}">
+                         ${object.first_name} ${object.last_name}, 
+                        </t>
+                         
+                        <br /><br />
+                       
+                        I wanted to take a moment to express our gratitude for the feedback you shared with us. Your insights and suggestions are valuable to us and to the team. They help us to understand what we do well and where we can improve.
+                        Your willingness to share your thoughts and ideas is greatly appreciated. We believe that open and honest communication is the key to success and your feedback is an essential part of this process.
+                        Your feedback helps us to be more responsive to the needs of our customers, to improve our products and services, and to make better decisions. It helps us to be more efficient, more effective, and more successful as a team.
+                        
+                        
+                       
+                         <br /><br />
+                        Once again, thank you for your feedback and please know that it is always welcome.
+
+                        Sincerely,
+                         <!-- <t t-set = (base_url="request.env['ir.config_parameter'].sudo().get_param('web.base.url')") -->
+                         <!-- <a href ="https://www.rdp.in/web?debug=true#id=${object.id}&amp;action=725&amp;model=quality.audit&amp;view_type=form&amp;menu_id=93" >Click Here</a> -->
+                         <!-- <a href ="${object.base_url}/web?debug=true#id=${object.id}&amp;action=2724&amp;model=quality.audit&amp;view_type=form&amp;menu_id=560" >Click Here</a> -->
+                         <br /><br />
+                        RDP Global Feedback Team
+                    </p>
+
+                </div>
+            </field>
+            <!-- <field name="report_template" ref="report_sale_challenge"/>
+            <field name="report_name">Sale_Challenge_${(object.name)}</field> -->
+        </record>
+    </data>
+
+</odoo>

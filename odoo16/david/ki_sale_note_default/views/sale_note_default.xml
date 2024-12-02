@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sale_default_note_template_form" model="ir.ui.view">
+        <field name="name">view.sale.default.note.template.form</field>
+        <field name="model">sale.default.note.template</field>
+        <field name="arch" type="xml">
+            <form string="Sale Default Note">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_ids" widget="many2many_tags"/>
+                        <field name="note"/>
+                        <field name="product_id"/>
+                        <field name="product_note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sale_default_note_template_tree" model="ir.ui.view">
+        <field name="name">view.sale.default.note.template.tree</field>
+        <field name="model">sale.default.note.template</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Default Note">
+                <field name="name"/>
+                <field name="partner_ids" widget="many2many_tags"/>
+                <field name="note"/>
+                <field name="product_id"/>
+                <field name="product_note"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_sale_default_note_template" model="ir.actions.act_window">
+        <field name="name">Sale Default Note Template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.default.note.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_sale_note_default"
+              name="Default Note Template"
+              action="action_sale_default_note_template"
+              parent="sale.menu_sale_config"
+    />
+
+</odoo>

@@ -1,0 +1,94 @@
+# Copyright 2021 VentorTech OU
+# See LICENSE file for full copyright and licensing details.
+
+from odoo import fields, models
+
+REPORT_DOMAIN = [
+    ('model', '=', 'product.product'),
+    ('report_type', 'in', ['qweb-pdf', 'qweb-text', 'py3o']),
+    ('report_name', '!=', 'product.report_pricelist'),
+]
+
+
+class Company(models.Model):
+    _inherit = 'res.company'
+
+    printnode_enabled = fields.Boolean(
+        string='Enable Direct Printing',
+        default=False,
+    )
+
+    printnode_printer = fields.Many2one(
+        'printnode.printer',
+        string='Printer',
+    )
+
+    printnode_recheck = fields.Boolean(
+        string='Mandatory check Printing Status',
+        default=False,
+    )
+
+    company_label_printer = fields.Many2one(
+        'printnode.printer',
+        string='Shipping Label Printer',
+    )
+
+    auto_send_slp = fields.Boolean(
+        string='Auto-send to Shipping Label Printer',
+        default=False,
+    )
+
+    print_sl_from_attachment = fields.Boolean(
+        string='Use Attachments Printing for Shipping Label(s)',
+        default=False,
+    )
+
+    im_a_teapot = fields.Boolean(
+        string='Show success notifications',
+        default=True,
+    )
+
+    wizard_report_ids = fields.Many2many(
+        'ir.actions.report',
+        string='Available Reports',
+        domain=REPORT_DOMAIN,
+    )
+
+    def_wizard_report_id = fields.Many2one(
+        'ir.actions.report',
+        string='Default Report',
+    )
+
+    print_package_with_label = fields.Boolean(
+        string='Print Package just after Shipping Label',
+        default=False,
+    )
+
+    printnode_package_report = fields.Many2one(
+        'ir.actions.report',
+        string='Package Report to Print',
+    )
+
+    scales_enabled = fields.Boolean(
+        string='Enable Scales Integration',
+        default=False,
+    )
+
+    printnode_scales = fields.Many2one(
+        'printnode.scales',
+        string='Default Scales',
+    )
+
+    scales_picking_domain = fields.Char(
+        string='Picking criteria for auto-weighing',
+        default='[["picking_type_code","=","outgoing"]]'
+    )
+
+    printnode_notification_email = fields.Char(
+        string="Direct Print Notification Email",
+    )
+
+    printnode_notification_page_limit = fields.Integer(
+        string="Direct Print Notification Page Limit",
+        default=100,
+    )

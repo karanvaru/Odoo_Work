@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="assign_partner_view_form" model="ir.ui.view">
+            <field name="name">crm.assign.partner.form</field>
+            <field name="model">crm.assign.partner</field>
+            <field name="arch" type="xml">
+                <form string="Assign Partner">
+                    <group>
+                        <field nolabel="1" name="partner_ids"/>
+                    </group>
+                    <footer>
+                        <button string="Assign" class="btn-primary" type="object" name="action_assign"/>
+                        <button string="Cancel" class="btn-primary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window"
+                id="action_assign_partner">
+            <field name="name">Assign Partners</field>
+            <field name="res_model">crm.assign.partner</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="assign_partner_view_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <act_window name="Assign Partners"
+                    res_model="crm.assign.partner"
+                    src_model="crm.lead"
+                    view_mode="form"
+                    multi="True"
+                    target="new"
+                    key2="client_action_multi"
+                    id="action_assign_multi_partner"
+        />
+    </data>
+</odoo>

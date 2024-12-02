@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="sh_multi_branch_pos_session_form_view_inherit" model="ir.ui.view">
+        <field name="name">pos.session.inherit.form.view.branch</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stop_at']" position="after">
+                <field name="branch_id" groups="sh_base_branch.sh_multi_branch_group" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_pos_session_search_view_inherit" model="ir.ui.view">
+        <field name="name">pos.session.search.branch</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//search//group//filter[@name='user']" position="after">
+                <filter string="Branch" name="branch_id" domain="[]" context="{'group_by': 'branch_id'}" groups="sh_base_branch.sh_multi_branch_group" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_pos_session_tree_view_inherit" model="ir.ui.view">
+        <field name="name">pos.session.inherit.tree.view.branch</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_tree" />
+        <field name="arch" type="xml">
+            <field name="config_id" position="after">
+                <field name="branch_id" optional="hide" groups="sh_base_branch.sh_multi_branch_group" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+    
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="menu_purchase_invoice" name="Invoicing" parent="purchase.menu_purchase_root" sequence="5"/>
+        <record id="incoming_picking_list_to_invoice_bi" model="ir.actions.act_window">
+            <field name="name">On Incoming Shipments</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[('picking_type_id.code','=','incoming')]</field>
+            <field name="context">{'default_type': 'out', 'contact_display': 'partner_address', 'search_default_to_invoice': 1, 'search_default_done': 1}</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        </record>
+        <menuitem action="incoming_picking_list_to_invoice_bi" id="menu_action_picking_list_to_invoice_incoming_bi" parent="menu_purchase_invoice"/>
+
+
+    </data>
+</openerp>

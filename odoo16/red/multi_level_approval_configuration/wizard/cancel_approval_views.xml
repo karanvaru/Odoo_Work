@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cancel_approval_view_form" model="ir.ui.view">
+            <field name="name">cancel_approval_view_form</field>
+            <field name="model">cancel.approval</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="reason" />
+                    </group>
+                    <footer>
+                        <button name="action_cancel" string="Cancel Request" type="object" class="btn-primary"/>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="cancel_approval_action" model="ir.actions.act_window">
+            <field name="name">Cancel Approval</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cancel.approval</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="cancel_approval_view_form"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

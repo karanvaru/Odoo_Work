@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="report_delivery_report"
+        string="Delivery Report Custom"
+        model="stock.picking"
+        report_type="qweb-pdf"
+        name="rdp_helpdesk_delivery_report.report_delivery"
+        file="rdp_helpdesk_delivery_report.report_delivery"/>
+
+</odoo>

@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+sale_challenge_user,sale.challenge,model_sale_challenge,,1,1,1,0
+sale_challengeline_user,sale.challengeline,model_sale_challengeline,,1,1,1,1
+sale_challengepages_user,sale.challengepages,model_sale_challengepages,,1,1,1,1
+sale_groups_user,sale.groups,model_sale_groups,,1,1,1,1
+sales_challenge_category,sale.challenge.category,model_sale_challenge_category,,1,1,1,1
+sales_challenge_scope,sale.challenge.scope,model_sale_challenge_scope,,1,1,1,1
+sales_challenge_tags,sale.challenge.tags,model_sale_challenge_tags,,1,1,1,1

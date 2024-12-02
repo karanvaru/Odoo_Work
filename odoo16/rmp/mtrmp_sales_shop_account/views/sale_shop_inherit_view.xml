@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="sale_shop_inherit_view_form" model="ir.ui.view">
+        <field name="name">Sale Shop</field>
+        <field name="model">sale.shop</field>
+        <field name="inherit_id" ref="mtrmp_sales_shop.sale_shop_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='shop_customer_id']" position="after">
+            	<field name="short_code"/>
+            </xpath>
+            <xpath expr="//page[last()]" position="after">
+                <page string="Accounting Configuration">
+                    <group>
+                        <field name="payment_journal_id" domain="[('company_id', '=', company_id), ('type', 'in', ('cash', 'bank'))]"/>
+                        <field name="payment_method_line_id" domain="[('journal_id', '=', payment_journal_id), ('payment_method_id', '=', 2)]"/>
+                        <field name="is_create_invoice"/>
+                    </group>
+                    <field name="fees_account_mapping_ids">
+                        <tree editable="bottom">
+                            <field name="field_ids" widget="many2many_tags"/>
+                            <field name="post_type"/>
+                            <field name="refund_post_type"/>
+                            <field name="account_id" domain="[('company_id', '=', parent.company_id)]"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

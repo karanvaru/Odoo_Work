@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_account_move_inherit" name="Invoice Report" inherit_id="account.report_invoice_document">
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr//th[@name='th_description']" position="after">
+            <t t-if="o.is_custom_rental_invoice">
+                <th name="th_start_date" class="text-start">
+                    <span>Rental Start Date</span>
+                </th>
+                <th name="th_end_date" class="text-start">
+                    <span>Rental End Date</span>
+                </th>
+            </t>
+
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']/tbody//tr//td[@name='account_invoice_line_name']"
+               position="after">
+            <t t-if="o.is_custom_rental_invoice">
+                <td name="th_start_date" class="text-start">
+                    <span t-field="line.custom_start_datetime"/>
+                </td>
+                <td name="th_end_date" class="text-start">
+                    <span t-field="line.custom_end_datetime"/>
+                </td>
+            </t>
+        </xpath>
+    </template>
+
+
+    <template id="account_move_custom_report_inherit" name="Invoice Report"
+              inherit_id="ki_invoice_extensions.template_account_invoice">
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr//th[@name='th_quantity']" position="before">
+            <t t-if="o.is_custom_rental_invoice">
+                <th name="th_start_date" class="text-start">
+                    <span>Rental Start Date</span>
+                </th>
+                <th name="th_end_date" class="text-start">
+                    <span>Rental End Date</span>
+                </th>
+            </t>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']/tbody//tr//td[@name='account_invoice_line_name']"
+               position="after">
+            <t t-if="o.is_custom_rental_invoice">
+                <td name="th_start_date" class="text-start">
+                    <span t-field="line.custom_start_datetime"/>
+                </td>
+                <td name="th_end_date" class="text-start">
+                    <span t-field="line.custom_end_datetime"/>
+                </td>
+            </t>
+        </xpath>
+
+    </template>
+
+</odoo>

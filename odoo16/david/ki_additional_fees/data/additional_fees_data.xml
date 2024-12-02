@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="additional_fees_name_01" model="additional.fees.config">
+            <field name="name">Cost From Manufacturer</field>
+        </record>
+        <record id="additional_fees_name_02" model="additional.fees.config">
+            <field name="name">Overseas Freight</field>
+        </record>
+        <record id="additional_fees_name_03" model="additional.fees.config">
+            <field name="name">Duty</field>
+        </record>
+        <record id="additional_fees_name_04" model="additional.fees.config">
+            <field name="name">Levy</field>
+        </record>
+        <record id="additional_fees_name_05" model="additional.fees.config">
+            <field name="name">Agent Fees</field>
+        </record>
+        <record id="additional_fees_name_06" model="additional.fees.config">
+            <field name="name">Brokerage</field>
+        </record>
+        <record id="additional_fees_name_07" model="additional.fees.config">
+            <field name="name">Clearance Fees</field>
+        </record>
+        <record id="additional_fees_name_08" model="additional.fees.config">
+            <field name="name">Local Transport</field>
+        </record>
+        <record id="additional_fees_name_09" model="additional.fees.config">
+            <field name="name">Customs Fee</field>
+        </record>
+        <record id="additional_fees_name_10" model="additional.fees.config">
+            <field name="name">FAS (*Incoterm)(Port Charge)</field>
+        </record>
+        <record id="additional_fees_name_11" model="additional.fees.config">
+            <field name="name">Pre-Delivery Inspection Fees</field>
+        </record>
+        <record id="additional_fees_name_12" model="additional.fees.config">
+            <field name="name">Miscellaneous</field>
+        </record>
+
+    </data>
+</odoo>

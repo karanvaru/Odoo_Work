@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_emp_sequence
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.1alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-24 11:07+0000\n"
+"PO-Revision-Date: 2020-11-24 11:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_emp_sequence
+#: model:ir.model.fields,field_description:sh_emp_sequence.field_res_company__sh_auto_create
+#: model:ir.model.fields,field_description:sh_emp_sequence.field_res_config_settings__sh_auto_create
+msgid "Auto Create Employee No."
+msgstr "Automatische Erstellung der Mitarbeiternummer"
+
+#. module: sh_emp_sequence
+#: model_terms:ir.ui.view,arch_db:sh_emp_sequence.hr_employee_config_setting_view
+msgid "Auto Create Employee Sequence No. Configuration"
+msgstr "Automatische Erstellung der Mitarbeitersequenz Nr. Konfiguration"
+
+#. module: sh_emp_sequence
+#: model:ir.model,name:sh_emp_sequence.model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: sh_emp_sequence
+#: model:ir.model,name:sh_emp_sequence.model_res_config_settings
+msgid "Config Settings"
+msgstr "Konfigurationseinstellungen"
+
+#. module: sh_emp_sequence
+#: model:ir.model.fields,field_description:sh_emp_sequence.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:sh_emp_sequence.field_res_company__display_name
+#: model:ir.model.fields,field_description:sh_emp_sequence.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: sh_emp_sequence
+#: model:ir.model,name:sh_emp_sequence.model_hr_employee
+msgid "Employee"
+msgstr "Mitarbeiterin"
+
+#. module: sh_emp_sequence
+#: model:ir.model.fields,field_description:sh_emp_sequence.field_hr_employee__emp_no
+msgid "Employee No."
+msgstr "Mitarbeiter Nr."
+
+#. module: sh_emp_sequence
+#: model_terms:ir.ui.view,arch_db:sh_emp_sequence.hr_employee_form_view_inherit
+msgid "Generate"
+msgstr "Generieren"
+
+#. module: sh_emp_sequence
+#: model:ir.actions.server,name:sh_emp_sequence.hr_employee_action_seq_tree
+msgid "Generate Employee No."
+msgstr "Mitarbeiter-Nr. Generieren"
+
+#. module: sh_emp_sequence
+#: model:ir.model.fields,field_description:sh_emp_sequence.field_hr_employee__id
+#: model:ir.model.fields,field_description:sh_emp_sequence.field_res_company__id
+#: model:ir.model.fields,field_description:sh_emp_sequence.field_res_config_settings__id
+msgid "ID"
+msgstr "ICH WÜRDE"
+
+#. module: sh_emp_sequence
+#: model:ir.model.fields,field_description:sh_emp_sequence.field_hr_employee____last_update
+#: model:ir.model.fields,field_description:sh_emp_sequence.field_res_company____last_update
+#: model:ir.model.fields,field_description:sh_emp_sequence.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"

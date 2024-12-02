@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="import_product_wizard_records_tree_views">
+            <field name="name">import.product.wizard.tree</field>
+            <field name="model">import.product.wizard</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="user_id"/>
+                    <field name="upload_date"/>
+                    <field name="failed_count"/>
+                    <field name="success_count"/>
+                    <field name="failed_order"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="import_product_wizard_records_forms_views">
+            <field name="name">import.product.wizard.from</field>
+            <field name="model">import.product.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Product Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="file_name" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="user_id" readonly="1"/>
+                                <field name="shop_id" readonly="1"/>
+                                <field name="failed_count" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="upload_date" readonly="1"/>
+                                <field name="success_count" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="failed_order" readonly="1"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="wizard_actions_import_product_records_menus">
+            <field name="name">Import Shop Product Records</field>
+            <field name="res_model">import.product.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+             <field name="context">{'create': 0, 'edit': 0}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_import_wizard_tree_view_wind">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="import_product_wizard_records_tree_views"/>
+            <field name="act_window_id" ref="wizard_actions_import_product_records_menus"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_import_wizard_form_view_wind">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="import_product_wizard_records_forms_views"/>
+            <field name="act_window_id" ref="wizard_actions_import_product_records_menus"/>
+        </record>
+
+
+        <menuitem
+                id="import_product_records_menu"
+                name="Import Shop Product Log"
+                parent="sale.menu_sale_config"
+                action="mtrmp_sales_shop.wizard_actions_import_product_records_menus"
+        />
+    </data>
+</odoo>

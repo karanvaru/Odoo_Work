@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Location View -->
+    <record id="sh_multi_branch_stock_location_form_view_inherit" model="ir.ui.view">
+        <field name="name">stock.location.inherit.form.view.branch</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" groups="sh_base_branch.sh_multi_branch_group" options="{'no_create': True}" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_stock_location_search_view_inherit" model="ir.ui.view">
+        <field name="name">stock.location.search.branch</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//search//filter[@name='inactive']" position="after">
+                <group expand="0" string="Group By">
+                    <filter string="Branch" name="branch_id" domain="[]" context="{'group_by': 'branch_id'}" groups="sh_base_branch.sh_multi_branch_group" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_stock_location_tree_view_inherit" model="ir.ui.view">
+        <field name="name">stock.location.inherit.tree.view.branch</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_tree2" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" optional="show" groups="sh_base_branch.sh_multi_branch_group" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

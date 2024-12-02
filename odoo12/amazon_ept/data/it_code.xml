@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data noupdate="1">
+    	
+    	<record id="MXP5" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">MXP5</field>
+    		<field name="country_id" ref="base.it"></field>
+        </record>
+        <record id="XITC" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">XITC</field>
+    		<field name="country_id" ref="base.it"></field>
+        </record>
+        <record id="MXP3" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">MXP3</field>
+    		<field name="country_id" ref="base.it"></field>
+        </record>
+        <record id="FCO1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">FCO1</field>
+    		<field name="country_id" ref="base.it"></field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+{
+    'name': "Reddot Commission",
+    'summary': """Reddot Rommission""",
+    'author': "Reddot Distribution",
+    'category': 'Uncategorized',
+    'version': '0.8',
+    "website": "https://reddotdistribution.com",
+    'depends': [
+        'hr',
+        'sale',
+        'business_unit_group',
+        'hr_contract',
+    ],
+    'data': [      
+        'security/res_groups.xml',
+        'security/record_rules.xml',
+        'security/ir.model.access.csv',
+        'data/sequence.xml',
+        'data/cron_commission_close.xml',
+        'reports/commission_structure_report.xml',
+        'data/commission_structure_mail_template.xml',
+        'wizard/commission_structure_exception_reason_wizard_view.xml',
+        'wizard/kpi_commission_allocate.xml',
+        'wizard/ded_commission_allocate.xml',
+        'wizard/add_breadth_target.xml',
+        'views/res_company_view.xml',
+        'views/res_country_view.xml',
+        'views/employee_target_view.xml',
+        'views/threshold_configuration_view.xml',
+        'views/hr_contract_view.xml',
+        'views/hr_employee_view.xml',
+        'views/commission_structure_view.xml',
+        'views/account_move_view.xml',
+        'views/menu.xml',
+        'views/kpi_commission.xml'
+    ],
+}

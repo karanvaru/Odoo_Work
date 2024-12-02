@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="product_public_category_form_view_int" model="ir.ui.view">
+            <field name="name">product.public.category.form</field>
+            <field name="model">product.public.category</field>
+            <field name="arch" type="xml">
+                <form string="Website Public Categories">
+                    <sheet>
+                        <div class="oe_left">
+                            <group>
+                                <field name="name"/>
+                                <field name="parent_id"/>
+                                <field name="sequence" groups="base.group_no_one"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="product_public_category_tree_view_int" model="ir.ui.view">
+            <field name="name">product.public.category.tree</field>
+            <field name="model">product.public.category</field>
+            <field name="field_parent" eval="False"/>
+            <field name="arch" type="xml">
+                <tree string="Product Public Categories">
+                    <field name="sequence" widget="handle"/>
+                    <field name="display_name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="product_public_category_action_int" model="ir.actions.act_window">
+            <field name="name">Channel Product Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.public.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="False"/>
+        </record>
+        <menuitem
+                id="channel_product_category_menu"
+                name="Channel Product Category"
+                parent="sale.menu_sale_config"
+                action="mtrmp_sales_shop.product_public_category_action_int"
+        />
+    </data>
+</odoo>

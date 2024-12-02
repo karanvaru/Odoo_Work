@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_commission_structure_exception_reason_wizard_form" model="ir.ui.view">
+        <field name="name">commission.structure.exception.reason.wizard.form.view</field>
+        <field name="model">commission.structure.exception.reason.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="revenue_line" string="Revenue/Target Line">
+                    <field name="revenue_line_ids" nolabel="1" colspan="2">
+                        <tree editable="bottom">
+                            <field name="line_id" readonly="1"/>
+                            <field name="is_exception"/>
+                            <field name="revenue_wizard_target_archived" readonly="1"/>
+                            <field name="commission_to_be" attrs="{'readonly':[('is_exception', '=', False)]}"/>
+                            <field name="exception_reason"
+                                   attrs="{'required':[('is_exception', '=', True)],
+                                        'readonly':[('is_exception', '=', False)]}"/>
+                        </tree>
+                    </field>
+                </group>
+
+                <group name="breadth_line" string="Breadth/Target Line">
+                    <field name="breadth_line_ids" nolabel="1" colspan="2">
+                        <tree editable="bottom">
+                            <field name="line_id" readonly="1"/>
+                            <field name="is_exception"/>
+                            <field name="breadth_wizard_target_archived" readonly="1"/>
+                            <field name="commission_to_be" attrs="{'readonly':[('is_exception', '=', False)]}"/>
+                            <field name="exception_reason"
+                                   attrs="{'required':[('is_exception', '=', True)],
+                                        'readonly':[('is_exception', '=', False)]}"/>
+                        </tree>
+                    </field>
+                </group>
+                <group name="kpi_line" string="KPI/Target Line">
+                    <field name="kpi_line_ids" nolabel="1" colspan="2">
+                        <tree editable="bottom">
+                            <field name="line_id" readonly="1"/>
+                            <field name="is_exception"/>
+                            <field name="manager_result" readonly="1"/>
+                            <field name="manager_result_to_be"  attrs="{'readonly':[('is_exception', '=', False)]}"/>
+                            <field name="exception_reason"
+                                   attrs="{'required':[('is_exception', '=', True)],
+                                        'readonly':[('is_exception', '=', False)]}"/>
+                        </tree>
+                    </field>
+                </group>
+
+                <group name="ded_line" string="Deduction Line">
+                    <field name="ded_line_ids" nolabel="1" colspan="2">
+                        <tree editable="bottom">
+                            <field name="line_id" readonly="1"/>
+                            <field name="is_exception"/>
+                            <field name="manager_result" readonly="1"/>
+                            <field name="manager_result_to_be"  attrs="{'readonly':[('is_exception', '=', False)]}"/>
+                            <field name="exception_reason"
+                                   attrs="{'required':[('is_exception', '=', True)],
+                                        'readonly':[('is_exception', '=', False)]}"/>
+                        </tree>
+                    </field>
+                </group>
+
+
+                <footer>
+                    <button name="action_confirm" string="Submit" type="object"
+                            default_focus="1" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="commission_structure_exception_reason_wizard_action">
+        <field name="name">Exception Reason Wizard</field>
+        <field name="res_model">commission.structure.exception.reason.wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_commission_structure_exception_reason_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

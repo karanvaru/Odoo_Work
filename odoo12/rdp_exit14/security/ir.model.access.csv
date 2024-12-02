@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+exit14_system,rdp.exit14,model_rdp_exit14,base.group_user,1,1,1,0
+fm_tags_user,fm.tags,model_fm_tags,,1,1,1,1
+vendorproduct_category,vendorproduct.category,model_vendorproduct_category,base.group_user,1,1,1,0
+fm_category_user,fm.category,model_fm_category,,1,1,1,1
+fm_subcategory_user,fm.subcategory,model_fm_subcategory,,1,1,1,1
+fm_product_type_user,fm.product.type,model_fm_product_type,,1,1,1,1
+fm_department_user,fm.department,model_fm_department,,1,1,1,1

@@ -1,0 +1,17 @@
+<odoo>
+    <data noupdate="1">
+
+        <record model="helpdesk.stage.config" id="helpdesk_stage_pending_review">
+            <field name="name">Pending Review</field>
+            <field name="stage_type">pending_review</field>
+            <field name="sequence">8</field>
+        </record>
+
+        <record model="helpdesk.stage.config" id="helpdesk_stage_to_invoice">
+            <field name="name">To Invoice</field>
+            <field name="stage_type">to_invoice</field>
+            <field name="sequence">10</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+product_details_user,product.details,model_product_details,,1,1,1,1
+part_details_user,part.details,model_part_details,,1,1,1,1
+pspr_part_name_user,pspr_part.name,model_pspr_part_name,,1,1,1,1
+pspr_tags_user,pspr.tags,model_pspr_tags,,1,1,1,1
+pspr_category_user,pspr.category,model_pspr_category,,1,1,1,1
+pspr_sub_category_user,pspr.sub.category,model_pspr_sub_category,,1,1,1,1
+pspr_part_value_user,pspr.part.value,model_pspr_part_value,,1,1,1,1
+pspr_no_damage_user,pspr.no.damage,model_pspr_no_damage,,1,1,1,1
+pspr_damage_category_user,pspr.damage.category,model_pspr_damage_category,,1,1,1,1
+action_purchase_request,action.purchase.request,model_action_purchase_request,,1,1,1,1

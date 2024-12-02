@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <data>
+        <record id="inherit_wk_account_invoice_form_view" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <page name="other_info" position="inside">
+                    <group string="GST">
+                        <group col="2">
+                            <field name="gst_status" />
+                            <field name="invoice_type" />
+                            <field name="gst_invoice_type" />
+                            <field name="export" attrs="{'invisible':[('invoice_type','!=','export')]}"/>
+                            <field name="bonded_wh" attrs="{'invisible':[('invoice_type','!=','b2cl')]}"/>
+                        </group>
+                        <group col="2">
+                            <field name="itc_eligibility" attrs="{'invisible':[('type','=','out_invoice')]}"/>
+                            <field name="reverse_charge" />
+                            <field name="x_vat" />
+                            <field name="portcode_id" attrs="{'invisible':[('export','not in',['WPAY', 'WOPAY'])]}"/>
+                        </group>
+                        <group col="2" attrs="{'invisible':[('export','!=','WPAY')]}">
+                            <field name="port_code"/>
+                            <field name="shipping_bill_date" />
+                            <field name="shipping_bill_number" attrs="{'required':[('export','=','WPAY')]}"/>
+                        </group>
+                    </group>
+                </page>
+				<xpath expr="//field[@name='tax_line_ids']//tree//field[@name='name']" position="before">
+					<field name="hsn_code" groups="base.group_no_one"/>
+				</xpath>
+            </field>
+        </record>
+
+        <record id="inherit_wk_account_invoice_supplier_form_view" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="reference" position="replace">
+                    <field name="reference" string="Vendor Reference" attrs="{'required':[('type','=','in_invoice')]}"/>
+                </field>
+                <page name="other_info" position="inside">
+                    <separator string="GST"/>
+                    <group string="GST">
+                        <group col="2">
+                            <field name="gst_status" />
+                            <field name="invoice_type" />
+                            <field name="gst_invoice_type" />
+                        </group>
+                        <group col="2">
+                            <field name="itc_eligibility" attrs="{'invisible':[('type','=','out_invoice')]}"/>
+                            <field name="reverse_charge" />
+                            <field name="portcode_id" />
+                            <field name="x_vat" />
+                        </group>
+                    </group>
+                </page>
+				<xpath expr="//field[@name='tax_line_ids']//tree//field[@name='name']" position="before">
+					<field name="hsn_code" groups="base.group_no_one"/>
+				</xpath>
+            </field>
+        </record>
+
+        <record id="inherit_view_gst_account_invoice_filter" model="ir.ui.view">
+            <field name="name">account.invoice.select.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <field name="number" position="after">
+                    <field name="x_vat" string="VAT/GSTIN" filter_domain="[('partner_id.vat','ilike',self)]"/>
+                    <filter name="b2b" string="B2B" domain="[('invoice_type','=','b2b')]"/>
+                    <filter name="b2cs" string="B2CS" domain="[('invoice_type','=','b2cs')]"/>
+                    <filter name="b2cl" string="B2CL" domain="[('invoice_type','=','b2cl')]"/>
+                    <filter name="wpay" string="Export WPay" domain="[('export','=','WPAY')]"/>
+                    <filter name="wopay" string="Export WoPay" domain="[('export','=','WOPAY')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="GST Status" name="filter_by_gst_status" domain="[]" context="{'group_by':'gst_status'}"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+        <record id="gst_invoice_tree" model="ir.ui.view">
+            <field name="name">account.invoice.gst.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <tree string="Invoice">
+                    <field name="number"/>
+                    <field name="partner_id"/>
+                    <field name="currency_id"/>
+                    <field name="amount_total_signed" string="Total" sum="Total"/>
+                    <field name="inr_total" string="INR Total" sum="Total"/>
+                    <field name="date_invoice"/>
+                    <field name="state"/>
+                    <field name="type"/>
+                    <field name="gst_status" />
+                    <field name="invoice_type" />
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

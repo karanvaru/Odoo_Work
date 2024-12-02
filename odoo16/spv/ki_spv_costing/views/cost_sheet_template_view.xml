@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="tree_view_cost_sheet_template" model="ir.ui.view">
+        <field name="name">cost.sheet.template.tree</field>
+        <field name="model">cost.sheet.template</field>
+        <field name="arch" type="xml">
+            <tree string="Coat Sheet Template">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="form_view_cost_sheet_template" model="ir.ui.view">
+        <field name="name">cost.sheet.template.form</field>
+        <field name="model">cost.sheet.template</field>
+        <field name="priority" eval="900"/>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page string="Lines">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="cost_sheet_template_action" model="ir.actions.act_window">
+        <field name="name">Cost Sheet Template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cost.sheet.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Cost Sheet Template.
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Cost Sheet Template"
+              parent="crm.crm_menu_root"
+              id="cost_sheet_template_menu"
+              action="cost_sheet_template_action"/>
+
+</odoo>

@@ -1,0 +1,10 @@
+Version 11.0.1
+==============
+
+Default encoding UTF-8
+Correction in licencing
+partially update in product
+settlement report processing in which system will create refund & validate at the time of reconcile process , for all missing orders which have imported later
+return list view changes if any reports are available then system will open view otherwise system will not open list view of report.
+
+

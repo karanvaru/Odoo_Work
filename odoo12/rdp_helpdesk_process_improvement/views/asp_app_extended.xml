@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="asp_partner_hpi_inherit_id" model="ir.ui.view">
+            <field name="name">asp.partner.inherited.form</field>
+            <field name="model">asp.partner</field>
+            <field name="inherit_id" ref="asp_partner.asp_partner_form_view"/>
+            <field name="arch" type="xml">
+               <xpath expr="//sheet/div" position="before">
+                <div>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="open_hpi_asp_tickets" class="oe_stat_button" type="object" icon="fa-briefcase">
+                            <field string="HDPI" name="hpi_asp_ticket_count"
+                                   widget="statinfo"/>
+                        </button>
+                    </div>
+                </div>
+                </xpath>
+
+                <xpath expr="//header" position="inside">
+                    <button name="%(rdp_helpdesk_process_improvement.hpi_asp_partner_response)d" type="action" string="HDPI" class="btn-primary"/>
+                </xpath>
+
+
+            </field>
+        </record>
+    </data>
+</odoo>

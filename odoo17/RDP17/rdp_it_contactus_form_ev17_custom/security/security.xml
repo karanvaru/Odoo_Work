@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+
+        <!-- Rule for ASC users to see only assigned tickets -->
+        <record id="helpdesk_portal_ticket_rule_portal_user" model="ir.rule">
+            <field name="name">Tickets: Only Assigned or Own for Portal Users</field>
+            <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
+            <field name="domain_force">['|', ('asp_engineer_id', '=', user.id), ('create_uid', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,109 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+
+  <template id="stats" name="myStats">
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: center;
+}
+th{
+  background:#5a5d61;
+  color:white;
+}
+tr{
+  height:35px;
+}
+
+</style>
+      <t t-call="website.layout">
+      	<!-- <div style="background-color: #dee0e2; padding-top: 2%;padding-bottom: 2%;padding-left: 15%;padding-right: 15%;"> -->
+          <div style=" background-color: white;padding:2% 5%">
+            <h2>
+              <u>Reward Stats</u>
+            </h2>
+            <t t-if="txn">
+              <br/>
+              <br/>
+              <div class="table-responsive">
+                <table style="width:100%">
+                    <tr style="height:40px;">
+                      <th style="text-align: center;">Creation Date</th>
+                      <th style="text-align: center;">Credit(<t t-esc="txn[0].currency_id.symbol"/>)</th>
+                      <th style="text-align: center;">Debit(<t t-esc="txn[0].currency_id.symbol"/>)</th>
+                      <th style="text-align: center;">Summary</th>
+                      <th style="text-align: center;">State</th>
+                    </tr>
+                    <t t-foreach="txn" t-as="t">
+                     <tr t-att-style="'color:%s;'%t.style()">
+                          <td>
+                            <t t-esc="t.pretty_date()"/>
+                          </td>
+
+                          <td>
+                            <t t-if="t.point_type == 'c'">
+                              <t t-esc="t.total_amount"/>
+                            </t>
+                            <t t-if="t.point_type != 'c'">
+                             -
+                            </t>
+                          </td>
+
+                          <td>
+                           <t t-if="t.point_type == 'd'">
+                              <t t-esc="t.total_amount"/>
+                            </t>
+                            <t t-if="t.point_type != 'd'">
+                              -
+                            </t>
+                          </td>
+
+                          <td>    <t t-esc="t.reason"/> </td>
+                          <td>    <t t-esc="t._printstate()"/> </td>
+
+                      </tr>
+                    </t>
+                </table>
+              </div>
+                <div class="total_summary" style="padding-top:3%;">
+                    <div class="row" >
+                        <div class="col-md-offset-6 col-md-4" style="text-align: right;">
+                           <b> Remaining Referral Amount :</b>
+                        </div>
+                         <div class=" col-md-2" style="text-align:left;">
+                            <b>
+                              <t t-esc="txn[0].currency_id.symbol"/><t t-esc="total_earning"/>
+                            </b>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-md-offset-6 col-md-4" style="text-align: right;">
+                            <b> Referral member Signed Up :</b>
+                        </div>
+                         <div class=" col-md-2" style="text-align:left;">
+                            <b>
+                              <t t-esc="referralCount[0]"/> friends
+                            </b>
+                        </div>
+                    </div>
+                </div>
+              </t>
+              <t t-if="not txn">
+                <br/>
+                <center>
+                  <h3><content>There are no Transactions</content></h3>
+                </center>
+              </t>
+            <a href="http:/my/refer_earn/">Back</a>
+          </div>
+        <!-- </div> -->
+    </t>
+
+  </template>
+</odoo>

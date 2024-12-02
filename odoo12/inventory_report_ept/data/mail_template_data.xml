@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+ 		<record id="mail_template_inventory_age_report_ept" model="mail.template">
+            <field name="name">Inventory Age Report Send by Email</field>
+            <field name="email_from">${object.env.user.company_id.partner_id.email or ''}</field>
+            <field name="subject">Inventory Age Report For ${(datetime.datetime.now().strftime('%d-%m-%Y'))}</field>
+            <field name="model_id" ref="inventory_report_ept.model_inventory_age_report_ept"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+					<p>Hello,</p>
+                        
+                    <p>Please find attached report.</p>
+                    <p>Thank you.</p>
+					
+			]]></field>
+       </record>
+	
+
+
+		<record id="mail_template_inventory_age_breakdown_report_ept" model="mail.template">
+			<field name="name">Inventory Age Breakdown Report Send by Email</field>
+			<field name="email_from">${object.env.user.company_id.partner_id.email or ''}</field>
+			<field name="subject">Inventory Age Breakdown Report For ${(datetime.datetime.now().strftime('%d-%m-%Y'))}</field>
+			<field name="model_id" ref="inventory_report_ept.model_inventory_age_breakdown_report_ept" />
+			<field name="auto_delete" eval="True" />
+			<field name="body_html"><![CDATA[
+					<p>Hello,</p>
+                        
+                    <p>Please find attached report.</p>
+                    <p>Thank you.</p>
+					
+			]]></field>
+		</record>
+	</data>
+</odoo>

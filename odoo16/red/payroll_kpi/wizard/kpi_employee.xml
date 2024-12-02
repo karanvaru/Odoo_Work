@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- kpi.employee.wizard form view -->
+    <record id="kpi_employee_wizard_view_form" model="ir.ui.view">
+        <field name="name">kpi.employee.wizard.view.form</field>
+        <field name="model">kpi.employee.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Employee KPIs">
+                <sheet>
+                    <separator string="Employee" colspan="2"/>
+                    <field name="employee_id" />                     
+
+                    <field name="payroll_kpi_ids" class="custom_m2m_class" nolabel="1" widget='many2many' options="{'no_create': True, 'no_open': True, 'no_delete': True}">
+                        <tree editable="bottom" create="0" delete="0">
+                            <field name="category_id"/>
+                            <field name="description"/>
+                            <field name="score"/>
+                            <field name="kpi"/>
+                            <field name="manager_remarks"/>
+                        </tree>
+                    </field> 
+                </sheet>
+                 <footer>
+                    <button string="Rate" name="action_rate" type="object" class="oe_highlight" data-hotkey="q"/>
+                    <button string="Cancel" name="action_cancel" type="object" class="btn btn-secondary" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_kpi_employee_wizard" model="ir.actions.act_window">
+        <field name="name">KPI For Employee</field>
+        <field name="res_model">kpi.employee.wizard</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="kpi_employee_wizard_view_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

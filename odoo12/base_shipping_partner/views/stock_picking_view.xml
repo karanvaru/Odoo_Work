@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_withcarrier_out_form" model="ir.ui.view">
+        <field name="name">stock.picking.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"></field>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='carrier_data']/div" position="after">
+                <field name="carrier_price" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

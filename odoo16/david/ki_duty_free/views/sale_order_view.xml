@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_extend_view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.extend.view_order_form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="is_duty_free"/>
+            </xpath>
+
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page string="Duty Free Info" name="duty_free_info" attrs="{'invisible':[('is_duty_free','!=',True)]}">
+                    <group>
+                        <field name="departure_date"/>
+                        <field name="ship_flight"/>
+                        <field name="ed_no"/>
+<!--                        <field name="third_schedule"/>-->
+                        <field name="staying_at"/>
+                        <field name="is_duty_free_confirm"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='product_template_id']" position="before">
+                <field name="item_code"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

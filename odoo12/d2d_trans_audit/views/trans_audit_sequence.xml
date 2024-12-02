@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="trans_audit_sequence" model="ir.sequence">
+            <field name="name">Accounting Transactions Audit</field>
+            <field name="code">trans.audit.sequence</field>
+            <field name="prefix">DDTA</field>
+            <field name="padding">4</field>
+            <field eval="False" name="company_id"/>
+        </record>
+    </data>
+</odoo>

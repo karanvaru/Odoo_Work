@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="sh_multi_branch_pos_category_form_view_inherit" model="ir.ui.view">
+        <field name="name">pos.category.inherit.form.view.branch</field>
+        <field name="model">pos.category</field>
+        <field name="inherit_id" ref="point_of_sale.product_pos_category_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence']" position="after">
+                <field name="branch_id" groups="sh_base_branch.sh_multi_branch_group" widget="many2many_tag" />
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="pos_category_vranch_view_search" model="ir.ui.view">
+        <field name="name">pos.category.search.view</field>
+        <field name="model">pos.category</field>
+        <field name="arch" type="xml">
+            <search string="POS Category">
+                <group expand="1" string="Group By">
+                    <filter string="Branch" name="branch_id" domain="[]" context="{'group_by': 'branch_id'}" groups="sh_base_branch.sh_multi_branch_group" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_pos_payment_method_tree_view_inherit" model="ir.ui.view">
+        <field name="name">pos.category.inherit.tree.view.branch</field>
+        <field name="model">pos.category</field>
+        <field name="inherit_id" ref="point_of_sale.product_pos_category_tree_view" />
+        <field name="arch" type="xml">
+            <field name="display_name" position="after">
+                <field name="branch_id" groups="sh_base_branch.sh_multi_branch_group" />
+            </field>
+        </field>
+    </record>
+    
+</odoo>

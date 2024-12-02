@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="asterisk_calls_crm_settings_form" model="ir.ui.view">
+        <field name="name">Asterisk Calls CRM Configuration</field>
+        <field name="model">asterisk_common.settings</field>
+        <field name="inherit_id" ref="asterisk_calls.calls_settings_form"/>
+        <field name="arch" type="xml">
+            <group name="calls" position="after">
+                <group name="crm" string="CRM">
+                    <group>
+                        <field help="Create leads on incoming calls." name="auto_create_leads_from_calls"/>
+                        <field name="auto_create_leads_missed_calls_only"
+                            attrs="{'invisible':[('auto_create_leads_from_calls','=',False)]}"/>
+                    </group>
+                    <group>
+                        <field help="Assign this user as a sales person for such leads."
+                            name="auto_create_leads_sales_person"
+                            attrs="{'invisible':[('auto_create_leads_from_calls','=',False)]}"/>
+                    </group>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

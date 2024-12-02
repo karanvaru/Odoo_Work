@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="crm_check_list_view_search" model="ir.ui.view">
+        <field name="name">crm.check.list.search</field>
+        <field name="model">crm.check.list</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="crm_stage_st_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="Stage"
+                            name="group_type"
+                            context="{'group_by':'crm_stage_st_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="crm_check_list_view_form" model="ir.ui.view">
+        <field name="name">crm.check.list.form</field>
+        <field name="model">crm.check.list</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"
+                                   placeholder="reference"
+                                   class="oe_inline"
+                            />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="crm_stage_st_id"/>
+                        <field name="group_ids"
+                               widget="many2many_tags"
+                        />
+                        <field name="should_be_reset"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="crm_check_list_view_tree" model="ir.ui.view">
+        <field name="name">crm.check.list.tree</field>
+        <field name="model">crm.check.list</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name='name'/>
+                <field name="crm_stage_st_id"/>
+                <field name="group_ids"
+                       widget="many2many_tags"
+                />
+                <field name="should_be_reset"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="crm_check_list_action" model="ir.actions.act_window">
+         <field name="name">Check Lists</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">crm.check.list</field>
+         <field name="view_mode">tree,form</field>
+         <field name="view_type">form</field>
+         <field name="context">{"search_default_group_type": 1}</field>
+         <field name="search_view_id" eval="crm_check_list_view_search"/>
+         <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click 'Create' to add new check list items
+              </p>
+         </field>
+    </record>
+
+    <menuitem id="menu_task_checklist"
+              action="crm_check_list_action"
+              parent="crm.menu_crm_config_lead"
+              groups="sales_team.group_sale_manager"
+              sequence="10"
+    />
+
+</odoo>

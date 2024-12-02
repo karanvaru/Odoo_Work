@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+information_letter_all,information.letter,model_information_letter,,1,1,1,1
+information_letter,information.letter,model_information_letter,website.group_website_designer,1,1,1,1
+information_letter_post_all,information.letter.post,model_information_letter_post,,1,1,1,1
+information_letter_post,information.letter.post,model_information_letter_post,website.group_website_designer,1,1,1,1
+information_letter_tag,information.letter.tag,model_information_letter_tag,,1,1,1,1
+information_letter_tag_edition,information.letter.tag,model_information_letter_tag,website.group_website_designer,1,1,1,1
+information_letter_tag_category_all,information.letter.tag.category,model_information_letter_tag_category,,1,1,1,1
+information_letter_tag_category,information.letter.tag.category,model_information_letter_tag_category,website.group_website_designer,1,1,1,1

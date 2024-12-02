@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="shop_fail_log_lines_view_tree" model="ir.ui.view">
+            <field name="name">shop.fail.log.lines.tree</field>
+            <field name="model">shop.fail.log.lines</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Shop List" create="0" edit="0">
+                    <field name="operation"/>
+                    <field name="write_date"/>
+                    <field name="create_date"/>
+                    <field name="message"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="shop_fail_log_lines_view_form">
+            <field name="name">shop.fail.log.lines.form</field>
+            <field name="model">shop.fail.log.lines</field>
+            <field name="arch" type="xml">
+                <form string="Log Lines"  create="0" edit="0">
+                    <sheet>
+                        <div>
+                            <field name="operation"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="is_mismatch"/>
+                            </group>
+                            <group>
+                                <field name="create_date"/>
+                                <field name="write_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="message" readonly="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="actions_shop_fail_log_lines" model="ir.actions.act_window">
+            <field name="name">Shop</field>
+            <field name="res_model">shop.fail.log.lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="actions_shop_fail_log_lines_menu"
+                  name="Shop Log Lines"
+                  parent="sale_shop_main_menu"
+                  action="actions_shop_fail_log_lines"
+
+        />
+
+    </data>
+
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+<!-- General Manager -->
+        <record model="res.groups" id="group_genaral_manager_for_exit">
+            <field name="name">General Manager</field>
+            <field name="category_id" ref="base.module_category_human_resources"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/> 
+        </record>
+        
+<!-- Department Manager -->
+        <record model="res.groups" id="group_department_manager_for_exit">
+            <field name="name">Department Manager</field>
+            <field name="category_id" ref="base.module_category_human_resources"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+       
+
+        <record id="exit_employee_access_process_exit" model="ir.rule">
+            <field name="name">Exit Request - Employee</field>
+            <field name="model_id" ref="model_hr_exit"/>
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        </record>
+
+        <record id="exit_genaral_process_access_process_exit" model="ir.rule">
+            <field name="name">Exit Request - General Manager</field>
+            <field name="model_id" ref="model_hr_exit"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_genaral_manager_for_exit'))]"/>
+        </record>
+
+        <record id="exit_department_process_access_process_exit" model="ir.rule">
+            <field name="name">Exit Request - Department Manager</field>
+            <field name="model_id" ref="model_hr_exit"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_department_manager_for_exit'))]"/>
+        </record>
+        
+        <record id="exit_hr_access" model="ir.rule">
+            <field name="name">Exit Request - HR Officer</field>
+            <field name="model_id" ref="model_hr_exit"/>
+            <field name="domain_force">['|',
+                '|', ('employee_id.user_id', '=', user.id), ('employee_id.parent_id.user_id', '=', user.id),
+                '|', ('spoc_id.user_id', '=', user.id), ('manager_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        </record>   
+        
+        <record id="exit_employee_access_process_exit_line" model="ir.rule">
+            <field name="name">Exit Request Line- Employee</field>
+            <field name="model_id" ref="model_hr_exit_line"/>
+            <field name="domain_force">[('responsible_user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        </record>     
+        
+        <record id="exit_checklist_hr_access" model="ir.rule">
+            <field name="name">Checklist Request - HR Officer</field>
+            <field name="model_id" ref="model_hr_exit_line"/>
+            <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+        <record id="exit_checklist_line_department_process_access" model="ir.rule">
+            <field name="name">Checklist Request - Department Manager</field>
+            <field name="model_id" ref="model_hr_exit_line"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_department_manager_for_exit'))]"/>
+        </record>
+        
+        <record id="exit_checklist_line_genaral_process_access" model="ir.rule">
+            <field name="name">Checklist Request - Genaral Manager</field>
+            <field name="model_id" ref="model_hr_exit_line"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_genaral_manager_for_exit'))]"/>
+        </record>
+       
+    </data>
+</openerp>

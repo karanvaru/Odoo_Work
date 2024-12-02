@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="form_view_eway_configuration" model="ir.ui.view">
+        <field name="name">eway.configuration.form</field>
+        <field name="model">eway.configuration</field>
+        <field name="arch" type="xml">
+            <form string="Eway Configuration">
+                <header>
+                    <button name="handle_auth_token" string="Test Connection" type="object"
+                            class="oe_highlight" context="{'test_connection': True}"/>
+                </header>
+                <sheet string="Eway Configuration">
+                    <group colspan="4">
+                        <group  colspan="2">
+                            <div class="oe_button_box" name="button_box">
+                                <button name="toggle_production" type="object" class="oe_stat_button">
+                                    <label for="active_production" string="Production"
+                                           attrs="{'invisible': [('active_production', '!=', True)]}"/>
+                                    <label for="active_production" string="Staging"
+                                           attrs="{'invisible': [('active_production', '=', True)]}"/>
+                                    <field name="active_production" widget="boolean_toggle"/>
+                                </button>
+                                <button name="toggle_active" type="object" class="oe_stat_button">
+                                    <label for="active" string="Active"
+                                           attrs="{'invisible': [('active', '!=', True)]}"/>
+                                    <label for="active" string="Archived"
+                                           attrs="{'invisible': [('active', '=', True)]}"/>
+                                    <field name="active" widget="boolean_toggle"/>
+                                </button>
+                            </div>
+                        </group>
+                        <group  colspan="2">
+                            <field name="name"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="eway_url_staging"
+                               placeholder="http://testapi.taxprogsp.co.in/ewaybillapi/dec/v1.03/"
+                               attrs="{'invisible': [('active_production', '=', True)], 'required': [('active_production', '!=', True)]}"/>
+                        <field name="eway_url_live"
+                               placeholder="https://api.taxprogsp.co.in/v1.03/dec/"
+                               attrs="{'invisible': [('active_production', '!=', True)], 'required': [('active_production', '=', True)]}"/>
+                        <field name="print_url_live" string="Eway Print URL(Live)" required="1"/>
+                    </group>
+                    <group string="Credentials:">
+                        <group>
+                            <field name="asp_id" required="1"/>
+                            <field name="asp_password" required="1" password="True"/>
+                        </group>
+<!--                        <group>-->
+<!--                            <field name="gstin" required="1"/>-->
+<!--                            <field name="user_name" required="1"/>-->
+<!--                            <field name="ewb_password" required="1" password="True"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="gstin_staging"-->
+<!--                                   attrs="{'invisible': [('active_production', '=', True)], 'required': [('active_production', '!=', True)]}"/>-->
+<!--                            <field name="user_name_staging"-->
+<!--                                   attrs="{'invisible': [('active_production', '=', True)], 'required': [('active_production', '!=', True)]}"/>-->
+<!--                            <field name="ewb_password_staging"-->
+<!--                                   attrs="{'invisible': [('active_production', '=', True)], 'required': [('active_production', '!=', True)]}"/>-->
+<!--                            <field name="gstin_live"-->
+<!--                                   attrs="{'invisible': [('active_production', '!=', True)], 'required': [('active_production', '=', True)]}"/>-->
+<!--                            <field name="user_name_live"-->
+<!--                                   attrs="{'invisible': [('active_production', '!=', True)], 'required': [('active_production', '=', True)]}"/>-->
+<!--                            <field name="ewb_password_live"-->
+<!--                                   attrs="{'invisible': [('active_production', '!=', True)], 'required': [('active_production', '=', True)]}"/>-->
+<!--                        </group>-->
+                    </group>
+                    <group string="Distance API Key">
+                        <field name="distance_key" required="1"/>
+                    </group>
+                    <group string="Eway Details">
+                        <field name="access_token_staging" readonly="1"
+                               attrs="{'invisible': [('active_production', '=', True)]}"/>
+                        <field name="access_date_staging" readonly="1"
+                               attrs="{'invisible': [('active_production', '=', True)]}"/>
+                        <field name="access_token_live" readonly="1"
+                               attrs="{'invisible': [('active_production', '!=', True)]}"/>
+                        <field name="access_date_live" readonly="1"
+                               attrs="{'invisible': [('active_production', '!=', True)]}"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="tree_eway_configuration" model="ir.ui.view">
+        <field name="name">eway.configuration.tree</field>
+        <field name="model">eway.configuration</field>
+        <field name="arch" type="xml">
+            <tree string="Eway Configuration">
+                <field name="name"/>
+                <field name="active"/>
+                <field name="active_production"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_eway_configuration">
+        <field name="name">Eway Configuration</field>
+        <field name="res_model">eway.configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="gst_ewaybill" name="EwayBill"/>
+    <menuitem id="gst_configuration" name="Configuration" parent="gst_ewaybill"
+              groups="gts_eway_invoice_bill.group_ebill_manager"/>
+    <menuitem id="menu_eway_configuration" parent="gst_configuration" action="action_eway_configuration"
+              groups="gts_eway_invoice_bill.group_ebill_manager"/>
+</odoo>

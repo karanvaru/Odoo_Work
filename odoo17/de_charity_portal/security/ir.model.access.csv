@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_the_captain,access.the.captain,model_the_captain,,1,1,1,1
+access_the_social_director,access.the.social.director,model_the_social_director,,1,1,1,1
+access_the_steward,access.the.steward,model_the_steward,,1,1,1,1
+access_the_navigator,access.the.navigator,model_the_navigator,,1,1,1,1
+access_partner_children_details,access.partner.children.details,model_partner_children_details,,1,1,1,1
+

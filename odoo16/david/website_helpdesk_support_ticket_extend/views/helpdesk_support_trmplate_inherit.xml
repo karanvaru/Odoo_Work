@@ -1,0 +1,196 @@
+<odoo>
+    <template id="website_helpdesk_support_ticket_inherit"
+              inherit_id="website_helpdesk_support_ticket.website_helpdesk_support_ticket"
+              name="Helpdesk Support Ticket">
+        <xpath expr="." position="replace">
+            <t t-call="website.layout">
+                <form action="/website_helpdesk_support_ticket/ticket_submitted" method="post" class="form-horizontal oe_helpdesk_ticket
+                    mt32" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <group>
+                        <div>
+                            <div class="container mb64">
+                                <div id="maindiv" class="col-md-9">
+                                    <div class="o_hidden form-group">
+                                        <label class="col-md-3 col-sm-4 control-label" for="team_id">Team</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" class="form-control" name="team_id"
+                                                   t-att-value="team and team.id or ''"/>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Customer</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" class="form-control" name="customer_id" required="True"
+                                                   t-attf-value="#{user_id.sudo().partner_id.name}"/>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Email</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" class="form-control" name="email" required="True"
+                                                   t-attf-value="#{user_id.partner_id.email}"/>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Phone</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" class="form-control" name="phone" required="True"
+                                                   t-attf-value="#{user_id.partner_id.phone}"/>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Category</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <select class="form-control" name="category">
+                                                <option value="technical" selected="selected">Technical Support
+                                                    (Hardware and/or Software)
+                                                </option>
+                                                <option value="functional">After-Sales Support (Inquiries and/or
+                                                    Support)
+                                                </option>
+                                                <!--                                                <option value="support">Support</option>-->
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Briefly Describe Your
+                                            Issue Or Request
+                                        </label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" class="form-control" name="subject" required="True"
+                                                   placeholder='e.g., "POS Not Working" ,"Request For Software Installation".'
+                                                   t-attf-value="#{subject
+                                                or ''}"/>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Description</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <textarea class="form-control" cols="60" name="description" required="True"
+                                                      placeholder="Please Describe Your Issue/Question In As Much Detail As Possible. This Will Help Us To Resolve Your Issue Quickly."
+                                                      rows="6"></textarea>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Priority</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <select class="form-control" name="priority">
+                                                <option value="0" selected="selected">Low</option>
+                                                <option value="1">Medium</option>
+                                                <option value="2">High</option>
+                                                <option value="3">Critical</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group form-field o_website_form_custom_attchments">
+                                        <!--                                        <div class="col-md-3 col-sm-4 text-right"> odoo13-->
+                                        <div class="col-md-3 col-sm-4">
+                                            <label class="control-label" for="Attachments">Attach Files</label>
+                                        </div>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="file" class="form-control o_website_form_input"
+                                                   name="attachment" multiple='multiple'/>
+                                            <label style="color:grey; font-size:12px;">Multiple files can be attached
+                                            </label>
+
+                                        </div>
+                                        <!--                                        <div> odoo13-->
+                                        <!--                                            <label style="color:grey; font-size:12px;" >Multiple files can be attach</label>-->
+                                        <!--                                        </div>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                                            <button class="btn btn-success">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </group>
+                </form>
+            </t>
+
+        </xpath>
+    </template>
+
+
+    <template id="website_verification_ticket" name="Verification Ticket" customize_show="True">
+        <t t-call="website.layout">
+            <div class="oe_structure"/>
+            <div class="container">
+                <div class="row">
+                    <form action="/email_verification_data" method="post" class="form-horizontal mt32"
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <group class="text-center">
+                            <div class="row">
+                                <h2>Ticket Verification</h2>
+
+                            </div>
+
+                            <div t-attf-class="form-group pt16">
+                                <input type="hidden" name="ticke_val" t-att-value="ticket.id" value="ticket.id"></input>
+                                <div class="col">
+                                    <div>
+                                        <spam>Please Confirm <spam t-esc="ticket.name"></spam> <spam t-esc="ticket.subject"></spam> Has Been Resolved (All Resolved ?)
+
+                                        </spam>
+                                    </div>
+                                    <div style="padding-top:10px;">
+                                        <input type="radio" name="varify" class="click_radio" id="yes"
+                                               required="required" value="yes"/>
+                                        <label for="yes" style="margin-right:50px;">Yes</label>
+                                        <input type="radio" name="varify" class="click_radio" id="no"
+                                               required="required" value="no"/>
+                                        <label for="no">No</label>
+                                    </div>
+                                </div>
+
+                                <div class="col varify_reason" style="display:None;">
+                                    <div class="pt16">
+                                        <textarea name="reason" id="reason" placeholder="Describe Your Reason Here..."
+                                                  style="width:30%;"/>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <div class="col pt16 pb16">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+
+                        </group>
+
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="display_ticket_inherit_view"
+              inherit_id="website_helpdesk_support_ticket.display_ticket"
+              name="Helpdesk Support Detail">
+        <xpath expr="//t//div[@name='msg_comm_hstry']" position="replace">
+            <div class="mt32" name="msg_comm_hstry">
+                <p>
+                    Kindly Use Our Messaging Feature Below For Any Further communication On This Topic. Opening A New Ticket Isn't Necessary
+                </p>
+                <h4>
+                    <strong>Messaging and communication history</strong>
+                </h4>
+                <t t-call="portal.message_thread">
+                    <t t-set="object" t-value="ticket"/>
+                    <t t-set="token" t-value="ticket.access_token"/>
+                    <t t-set="pid" t-value="pid"/>
+                    <t t-set="hash" t-value="hash"/>
+                </t>
+            </div>
+
+        </xpath>
+    </template>
+
+</odoo>

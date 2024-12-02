@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="commission_close_period_1" model="commission.close.period">
+            <field name="number_of_days">10</field>
+        </record>
+
+    </data>
+</odoo>

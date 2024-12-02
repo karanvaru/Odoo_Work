@@ -1,0 +1,8 @@
+<odoo>
+    <data>
+        <record model="ir.config_parameter" id="not_sync_mime_types">
+            <field name="key">not_sync_mime_types</field>
+            <field name="value">{"html": "text/html", "css": "text/css", "js": "text/javascript", "xml": "text/xml"}</field>
+        </record>
+    </data>
+</odoo>

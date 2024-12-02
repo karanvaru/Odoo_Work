@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_gate_pass">
+        <!-- <t t-name="studio_report"> -->
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet"/>
+                        <div class="page">
+                            <h1 style="font-weight:100;text-align:center;margin-bottom:50px"><b>Gate Pass</b></h1>
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border:1px solid #333;">
+                                <tr>
+                                    <td>
+                                        <table width="100%" border="0" cellpadding="20" cellspacing="0"
+                                            style="border:1px solid #333;">
+                                            <tr>
+                                                <td style="padding:20px;">
+                                                    <b>
+                                                        From Address:
+                                                    </b>
+                                                    <br/>
+                                                    <span t-field="o.company_id.name"/>
+                                                    <br/>
+                                                    <span t-field="o.company_id.street"/>
+                                                    <br/>
+                                                    <span t-field="o.company_id.street2"/>
+                                                    <br/>
+                                                    <span t-field="o.company_id.city"/>
+                                                    <br/>
+                                                    <span t-field="o.company_id.state_id.name"/>
+                                                    <span t-field="o.company_id.zip"/>
+                                                    <br/>
+                                                    <span t-field="o.company_id.country_id.name"/>
+                                                </td>
+                                                <td style="border-left:1px solid #333; padding:20px;">
+                                                    <b>
+                                                        Delivery Address:
+                                                    </b>
+                                                    <br/>
+                                                    <br/>
+                                                    <span t-field="o.partner_id.name"/>
+                                                    <br/>
+                                                    <span t-field="o.partner_id.street"/>
+                                                    <br/>
+                                                    <span t-field="o.partner_id.street2"/>
+                                                    <br/>
+                                                    <span t-field="o.partner_id.city"/>
+                                                    <br/>
+                                                    <span t-field="o.partner_id.state_id.name"/>
+                                                    <span t-field="o.partner_id.zip"/>
+                                                    <br/>
+                                                    <span t-field="o.partner_id.country_id.name"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="100%" border="0" cellpadding="20" cellspacing="0" height="10"
+                                            style="border-left:1px solid #333;">
+                                            <tr>
+
+                                                <td style="text-align:center">
+                                                    <b>Product Deatils</b>
+                                                </td>
+
+
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="100%" border="0" cellpadding="10" cellspacing="0"
+                                            style="border:1px solid #333;">
+                                            <tr style="">
+                                                <td style="border-right:1px solid #333;border-bottom:1px solid #333; padding:20px;">
+                                                    S.No
+                                                </td>
+                                                <td style="border-right:1px solid #333;border-bottom:1px solid #333; padding:20px;">
+                                                    Description
+                                                </td>
+                                                <td style="border-right:1px solid #333;border-bottom:1px solid #333; padding:20px;">
+                                                    QTY
+                                                </td>
+                                                <td style="border-right:1px solid #333;border-bottom:1px solid #333; padding:20px;">
+                                                    Material Value
+                                                </td>
+                                                <td style="border-bottom:1px solid #333;padding:20px;">Remark</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="border-right:1px solid #333;padding:20px;">
+                                                    <span/>
+                                                </td>
+                                                <td style="border-right:1px solid #333;padding:20px;">
+                                                    <span/>
+                                                    <br/>
+                                                </td>
+                                                <td style="border-right:1px solid #333;padding:20px;">
+                                                    <span/>
+                                                    <span/>
+                                                    <span/>
+                                                </td>
+                                                <td style="border-right:1px solid #333;padding:20px;">2000</td>
+                                                <!--<t t-foreach="o.issue_line_ids.sorted(key=lambda s: s.product_id.id)" t-as="isl">-->
+                                                <td style="padding:20px;">Repair Purpose</td>
+                                                <!--</t>-->
+                                            </tr>
+
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br></br>
+                                        <tr>
+                                            <br></br>
+                                            <td style="text-align:center">
+                                                <b>Vehicle Details</b>
+                                            </td>
+                                        </tr>
+                                        <br></br>
+                                        <br></br>
+                                        <table width="100%" border="0" cellpadding="10" cellspacing="0"
+                                            style="border:1px solid #333;">
+                                            <tr style="">
+                                                <td style="border-right:1px solid #333;border-bottom:1px solid #333; padding:20px;">
+                                                    S.No
+                                                </td>
+                                                <td style="border-right:1px solid #333;border-bottom:1px solid #333; padding:20px;">
+                                                    Description
+                                                </td>
+                                                <td style="border-right:1px solid #333;border-bottom:1px solid #333; padding:20px;">
+                                                    QTY
+                                                </td>
+                                                <td style="border-right:1px solid #333;border-bottom:1px solid #333; padding:20px;">
+                                                    Material Value
+                                                </td>
+                                                <td style="border-bottom:1px solid #333;padding:20px;">Remark</td>
+                                            </tr>
+                                            <t>
+                                                <t>
+                                                    <tr>
+                                                        <td style="border-right:1px solid #333;padding:20px;">
+                                                            <span/>
+                                                        </td>
+                                                        <td style="border-right:1px solid #333;padding:20px;">
+                                                            <span/>
+                                                            <br/>
+                                                        </td>
+                                                        <td style="border-right:1px solid #333;padding:20px;">
+                                                            <span/>
+                                                            <span/>
+                                                            <span/>
+                                                        </td>
+                                                        <td style="border-right:1px solid #333;padding:20px;">2000</td>
+                                                        <!--<t t-foreach="o.issue_line_ids.sorted(key=lambda s: s.product_id.id)" t-as="isl">-->
+                                                        <td style="padding:20px;">Repair Purpose</td>
+                                                        <!--</t>-->
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+    </template>
+</odoo>

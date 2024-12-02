@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+
+
+        <record id="view_warranty_registration_tree" model="ir.ui.view">
+            <field name="name">warranty.registration.tree</field>
+            <field name="model">warranty.registration</field>
+            <field name="priority">4</field>
+            <field name="arch" type="xml">
+                <tree string="Warranty Registration"
+                    decoration-muted="state=='cancel'" decoration-success="state=='done'" 
+                    decoration-info="state=='confirm'">
+                    <field name="name" string="Warranty Reference"/>
+                    <field name="partner_id"/>
+                    <field name="order_id"/>
+                    <field name="product_id"/>
+                    <field name="warranty_start_date"/>
+                    <field name="warranty_end_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_warranty_registration" model="ir.ui.view">
+            <field name="name">warranty.registration.view</field>
+            <field name="model">warranty.registration</field>
+            <field name="arch" type="xml">
+                <form string="Warranty Registration">
+                    <header>
+                        <button name="confirm_send_mail" string="Confirm" 
+                            type="object" states="draft" class="btn-primary"/>
+                        <button name="action_done" string="Done" 
+                            type="object" states="confirm" class="btn-primary"/>
+                        <button name="confirm_send_mail" string="Send Email" 
+                            type="object" states="confirm" class="btn-secondary"/>
+                        <button name="action_cancel" string="Cancel" 
+                            type="object" states="draft" class="btn-primary"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="order_id"/>
+                                <field name="partner_id" readonly="1"
+                                       attrs="{'invisible' : [('order_id', '=', False)]}"/>
+                                <field name="order_line"
+                                       attrs="{'invisible' : [('order_id', '=', False)]}"
+                                       options="{'no_create' : True}"/>
+                                <field name="product_id" options="{'no_create' : True}"/>
+                                <field name="lot_id"
+                                       options="{'no_create' : True}"
+                                       domain="[('product_id', '=', product_id)]"/>
+                            </group>
+                            <group>
+                                <!-- <field name="create_date" readonly="1"
+                                       attrs="{'invisible' : [('create_date', '=', False)]}"/> -->
+                                <field name="warranty_start_date"/>
+                                <field name="warranty_end_date"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <!-- <page string="Order Line">
+                                <field name="order_line"  readonly="1">
+                                    <tree string="Order Line">
+                                        <field name="product_id"/>
+                                        <field name="name"/>
+                                        <field name="product_uom_qty"  string="Ordered Qty"/>
+                                        <field name="price_unit"/>
+                                        <field name="tax_id"/>
+                                        <field name="discount" groups="sale.group_discount_per_so_line"/>
+                                        <field name="price_total" widget="monetary"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </tree>
+                                </field>
+                                <group name="notes">
+                                    <group string="Additional Note">
+                                        <field name="notes" nolabel="1"/>
+                                    </group>
+                                </group>
+                            </page> -->
+                            <page string="History">
+                                <field name="warranty_history_ids" readonly="1">
+                                    <tree string="History">
+                                        <field name="name"/>
+                                        <field name="old_start_date"/>
+                                        <field name="old_end_date"/>
+                                        <field name="invoice_id"/>
+                                        <field name="state" readonly="1"/>
+                                        <!-- <field name="datas" nolabel="1"/> -->
+                                        <button name="donwload_pdf" type="object" class="fa fa-download" nolabel="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_warranty_registration_filter" model="ir.ui.view">
+            <field name="name">warranty.registration.search</field>
+            <field name="model">warranty.registration</field>
+            <field name="arch" type="xml">
+                <search string="Search Warranty Registration">
+                    <field name="name" string="Ref" filter_domain="[('name','ilike',self)]"/>
+                    <field name="product_id" string="Product" filter_domain="[('product_id','ilike',self)]"/>
+                    <field name="order_id" string="Order" filter_domain="[('order_id','ilike',self)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Product" name="product" domain="[]" context="{'group_by':'product_id'}"/>
+                        <filter string="Order" name="order" domain="[]" context="{'group_by':'product_id'}"/>
+                        <filter string="Month" name="month" domain="[]" context="{'group_by':'create_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_warranty_registration" model="ir.actions.act_window">
+            <field name="name">Warranty Registration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">warranty.registration</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_warranty_registration_tree"/>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_warranty_registration_filter"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Register warranty.
+                </p>
+            </field>
+        </record>
+    </data>
+
+    <menuitem name="Warranty"
+        id="wk_warranty_id"
+        parent="website.menu_website_configuration"
+        sequence="5"/>
+        <menuitem name="Warranty Registration"
+            id="wk_warranty_reg"
+            parent="warranty_management.wk_warranty_id"
+            action="warranty_management.action_warranty_registration" sequence="1"/>
+
+
+
+</odoo>

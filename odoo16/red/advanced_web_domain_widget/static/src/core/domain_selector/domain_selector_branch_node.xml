@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="advanced_web_domain_widget.DomainSelectorBranchNodeBits" owl="1">
+        <div class="o_domain_node o_domain_tree" t-ref="root">
+            <div class="o_domain_tree_header o_domain_selector_row">
+                <t t-if="!props.readonly">
+                    <DomainSelectorControlPanelBits
+                        node="props.node"
+                        onHoverDeleteNodeBtn.bind="onHoverDeleteNodeBtn"
+                        onHoverInsertLeafNodeBtn.bind="onHoverInsertLeafNodeBtn"
+                        onHoverInsertBranchNodeBtn.bind="onHoverInsertBranchNodeBtn"
+                    />
+                </t>
+                <DomainSelectorBranchOperatorBits node="props.node" readonly="props.readonly" />
+                <span class="ml4">of:</span>
+            </div>
+            <div class="o_domain_node_children_container">
+                <t t-foreach="props.node.operands" t-as="subNode" t-key="subNode.id">
+                    <t t-if="subNode.type === 'branch'">
+                        <DomainSelectorBranchNodeBits t-props="{ ...props, node: subNode }" />
+                    </t>
+                    <t t-elif="subNode.type === 'leaf'">
+                        <DomainSelectorLeafNodeBits t-props="{ ...props, node: subNode }" />
+                    </t>
+                </t>
+            </div>
+        </div>
+    </t>
+
+</templates>

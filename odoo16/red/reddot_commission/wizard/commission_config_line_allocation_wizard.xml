@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_commission_config_allocation_wizard_form" model="ir.ui.view">
+        <field name="name">commission.config.allocation.wizard.form</field>
+        <field name="model">commission.config.allocation.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="division_type" widget="radio" options="{'horizontal': True}" invisible="True"/>
+                        <field name="division_level_id" invisible="True"/>
+                        <field name="division_level" invisible="True"/>
+                    </group>
+                    <group>
+                        <field name="commission_division_type" widget="radio" options="{'horizontal': True}" invisible="True"/>
+                        <field name="calculation_types" widget="radio" options="{'horizontal': True}" invisible="True"/>
+                    </group>
+                </group>
+
+                <field name="line_ids">
+			          <tree editable="bottom">
+                          <field name="company_id" attrs="{'column_invisible': [('parent.division_level', '!=', 'company_wise')]}"/>
+                          <field name="business_unit_id" attrs="{'column_invisible': [('parent.division_level', '!=', 'bu_wise')]}"/>
+                          <field name="country_id" attrs="{'column_invisible': [('parent.division_level', '!=', 'country_wise')]}"/>
+			              <field name="commission_percentage" sum="commission_percentage" attrs="{'column_invisible': [('parent.commission_division_type', '!=', 'manually')]}"/>
+			              <field name="target_amount" sum="target_amount" attrs="{'column_invisible': [('parent.division_type', '!=', 'manually')]}"/>
+			          </tree>
+                </field>
+                <footer>
+                    <button name="action_confirm" string="Add Lines" type="object"
+                            default_focus="1" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_commission_config_allocation_wizard">
+        <field name="name">Company Level Target Allocation Wizard</field>
+        <field name="res_model">commission.config.allocation.wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_commission_config_allocation_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

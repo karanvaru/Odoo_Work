@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="amazon_fba_removal_wizard_form_view" model="ir.ui.view">
+			<field name="name">Amazon FBA Removal Orders (FBA)</field>
+			<field name="model">create.removal.order</field>
+			<field name="arch" type="xml">
+				<form string="Create Removal Order">
+					<group col="4">
+						<field name="instance_id" required="1" domain="[('seller_id','=',context.get('default_seller_id'))]"/>
+						<field name="warehouse_id" required="1" domain="[('is_fba_warehouse','=',False),('company_id','=',company_id)]"/>
+						<field name="company_id" invisible="1"/>
+					</group>
+					<group>
+						<group>
+							<field name="sellable_365plus_days" />
+							<field name="sellable_271_365_days" attrs="{'invisible': [('sellable_365plus_days', '=',False)]}"/>
+							<field name="sellable_181_270_days" attrs="{'invisible': [('sellable_271_365_days', '=', False)]}"/>
+							<field name="sellable_121_180_days" attrs="{'invisible': [('sellable_181_270_days', '=', False)]}"/>
+						</group>
+						<group>
+							<field name="unsellable_61_90_days"/>
+							<field name="unsellable_8_60_days" attrs="{'invisible': [('unsellable_61_90_days', '=', False)]}"/>
+							<field name="unsellable_0_7_days" attrs="{'invisible': ['|',('unsellable_8_60_days', '=', False)]}"/>
+						</group>
+					</group>
+					<footer>
+						<button name="create_removal_order" string="Create Removal Order"
+							type="object" class="oe_highlight" />
+						<button string="Cancel" class="oe_highlight" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		<record id="action_fba_removal_order_wizard_ept" model="ir.actions.act_window">
+			<field name="name">Create Removal Order</field>
+			<field name="res_model">create.removal.order</field>
+			<field name="view_type">form</field>
+       		<field name="view_mode">form</field>
+       		<field name="target">new</field>
+       		<field name="view_id" ref="amazon_fba_removal_wizard_form_view" />
+       		
+		</record>
+	</data>
+</odoo>

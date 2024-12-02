@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="form_view_stock_warehouse_inherit1" model="ir.ui.view">
+        <field name="name">stock.warehouse.form.inhert</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="E-Invoicing Bill Credentials">
+                    <group>
+                        <group string="Locations">
+                            <field name="user_name" />
+                            <field name="gst_no"/>
+                            <field name="user_password"/>
+                        </group>
+                        <group>
+                            <field name="auth_token"/>
+                            <field name="expire_date"/>
+                            <field name="expire_date1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,957 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="add_job" name="Add Job">
+        <t t-call="website.layout">
+            <div id="wrap" class="add_empl_jobs">
+                <div class="oe_structure" />
+                <div class="clearfix" />
+                <div class="oe_structure ">
+                    <section class="s_text_image add_job_block_01 pt32 pb32" style="background-color: rgb(165, 74, 123);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 text-center text-white">
+                                    <h2>We are Hiring</h2>
+                                    <div class="offset-md-4 col-md-4 text-center">
+                                        <p>Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu, facete detracto patrioque an per, lucilius pertinacia eu vel.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="oe_structure" />
+                <div class="clearfix" />
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 mb32 mt32 add_job_hr_form">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row" style="border-bottom: 2px solid lightgray;margin-bottom: 32px;">
+                                        <div class="offset-md-3 col-md-6 text-center">
+                                            <h4 class="title">New Job Details</h4>
+                                        </div>
+                                    </div>
+                                    <form action="/add/jobs" method="post" class="add_job_form_cl">
+                                        <div class="alert alert-danger" role="alert" t-if="error">
+                                            <t t-esc="error" />
+                                        </div>
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                                        <input type="hidden" name="submitted" value="1" />
+                                        <div class="row">
+                                            <div class="offset-md-3 col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="name" class="form-control" placeholder="Job Title *" required="required" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="offset-md-3 col-md-6">
+                                                <div class="form-group">
+                                                    <textarea type="text" name="description" class="form-control" placeholder="Description *" required="required" />
+                                                    </div>
+											</div>
+										</div>
+										<div class="row">
+								  	 		<div class="offset-md-3 col-md-6">
+												<div class="form-group">
+												    <select class="form-control" name="department_id" required="required">
+												      <option value="">Select Job Categories</option>
+													      <t t-foreach="categories_ids" t-as="depart_id">
+													          <option t-att-value="depart_id.id"><t t-esc="depart_id.name"/></option>
+													  	  </t>
+												    </select>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+								  	 		<div class="offset-md-3 col-md-6 mb16">
+												<div class="form-group">
+												    <select name="functional_area" id="job_functional_area" class="js-states form-control" multiple="multiple" required="required">
+													     <t t-foreach="areas_ids" t-as="areas_id">
+													     	<option t-att-value="areas_id.id"><t t-esc="areas_id.name"/></option>
+													     </t>
+												    </select>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+								  	 		<div class="offset-md-3 col-md-6">
+												<div class="form-group">
+													<input type="text" name="no_of_recruitment" class="form-control" placeholder="No of Recruitment" pattern="^[0-9]*$"/>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+								  	 		<div class="offset-md-3 col-md-6">
+												<div class="form-group">
+													<div class="input-group date" data-provide="datepicker">
+													    <input type="text" name="close_date" class="form-control datepicker" placeholder="Closing Date *"/>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+								  	 		<div class="offset-md-3 col-md-6">
+												<div class="form-group">
+													<input type="submit" class="btn btn-primary pull-right"/>
+												</div>
+											</div>
+										</div>
+									</form>
+							  </div>
+							</div>
+				 		</div>
+				 	</div>
+				 </div>
+					 
+			</div>
+		</t>
+	</template>
+
+	<template id="apply" inherit_id="website_hr_recruitment.apply" name="Apply Job">
+		<xpath expr="//div[@id='wrap']" position="replace">
+			<div id="wrap"  class="container">
+            <h1 class="text-center mt-2">
+                Job Application Form
+            </h1>
+            <h2 t-if="job" class="text-center text-muted">
+                <span t-field="job.name"/>
+            </h2>
+            <div class="alert alert-danger" role="alert" t-if="error">
+			    <t t-esc="error"/>
+			</div>
+            <div class="row mt-3">
+                <section id="forms" class="col main_form_job_cl_ap">
+                    <!-- new form -->
+                    <div class="wizard">
+			            <div class="wizard-inner">
+			                <div class="connecting-line"></div>
+			                <ul class="nav nav-tabs" role="tablist">
+
+			                    <li role="presentation" class="active">
+			                        <a data-bs-target="#applicate_info" href="#applicate_info" data-bs-toggle="tab" aria-controls="applicate_info" role="tab" title="Applicate Information">
+			                            <span class="round-tab">
+			                                <i class="fa fa-user"></i>
+			                            </span>
+			                        </a>
+			                    </li>
+			                    <li role="presentation" class="disabled">
+			                        <a data-bs-target="#applicant_address" href="#applicant_address" data-bs-toggle="tab" aria-controls="applicant_address" role="tab" title="Applicant Address">
+			                            <span class="round-tab">
+			                                <i class="fa fa-address-card"></i>
+			                            </span>
+			                        </a>
+			                    </li>
+			                    <li role="presentation" class="disabled">
+			                        <a data-bs-target="#academic_details" href="#academic_details" data-bs-toggle="tab" aria-controls="academic_details" role="tab" title="Academic Details">
+			                            <span class="round-tab">
+			                                <i class="fa fa-building"></i>
+			                            </span>
+			                        </a>
+			                    </li>
+
+			                    <li role="presentation" class="disabled">
+			                        <a data-bs-target="#certificate_details" href="#certificate_details" data-bs-toggle="tab" aria-controls="certificate_details" role="tab" title="Certificate Details">
+			                            <span class="round-tab">
+			                                <i class="fa fa-graduation-cap"></i>
+			                            </span>
+			                        </a>
+			                    </li>
+			                    <li role="presentation" class="disabled">
+			                        <a data-bs-target="#professional_details" href="#professional_details" data-bs-toggle="tab" aria-controls="professional_details" role="tab" title="Professional Details">
+			                            <span class="round-tab">
+			                                <i class="fa fa-briefcase"></i>
+			                            </span>
+			                        </a>
+			                    </li>
+			                    <li role="presentation" class="disabled">
+			                        <a data-bs-target="#application_summary" href="#application_summary" data-bs-toggle="tab" aria-controls="application_summary" role="tab" title="Application Summary">
+			                            <span class="round-tab">
+			                                <i class="fa fa-book"></i>
+			                            </span>
+			                        </a>
+			                    </li>
+			                    <li role="presentation" class="disabled">
+			                        <a data-bs-target="#applicant_resume" href="#applicant_resume" data-bs-toggle="tab" aria-controls="applicant_resume" role="tab" title="Upload Resume">
+			                            <span class="round-tab">
+			                                <i class="fa fa-file"></i>
+			                            </span>
+			                        </a>
+			                    </li>
+			                    
+			                </ul>
+			            </div>
+			        </div>
+			        <div class="clearfix"/>
+                    <!-- end new form -->
+                    <form id="hr_recruitment_form" t-attf-action="/jobs/apply/#{slug(job)}" method="post" class="s_website_form_required job_apply_form_cl" enctype="multipart/form-data" data-bs-model_name="hr.applicant" data-bs-success_page="/job-thank-you" hide-change-model="true" t-ignore="True">
+                    	<div class="tab-content">
+	                    	<div class="tab-pane active" role="tabpanel" id="applicate_info">
+	                    	<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+	                    	<input type="hidden" name="submitted" value="1" />
+
+		                    	<div class="card comman_form_controll">
+								  <div class="card-header">
+								    Applicant Information
+								  </div>
+								  <div class="card-body">
+								  	<div class="container">
+								  		<div class="row">
+								  			<div class="col-md-4">
+								  				<div class="form-group">
+									  				<input type="text" required="" class="form-control o_website_form_input" name="partner_name" placeholder="First Name"/>
+									  			</div>
+								  			</div>
+								  			<div class="col-md-4">
+								  				<div class="form-group">
+									  				<input type="text" class="form-control o_website_form_input" name="last_name" placeholder="Last Name"/>
+									  			</div>
+								  			</div>
+								  			<div class="col-md-4">
+								  				<div class="form-group">
+									  				<input type="email" class="form-control o_website_form_input" name="email_from" required="" placeholder="Email"/>
+									  			</div>
+								  			</div>
+								  		</div>
+								  		<div class="row">
+								  			<div class="col-md-3">
+						  						<div class="form-group">
+												    <select class="form-control" name="gender" required="required">
+												      <option value="">Select Gender</option>
+												      <option value="male">Male</option>
+												      <option value="female">Female</option>
+												      <option value="other">Other</option>
+												    </select>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<div class="input-group date" data-bs-provide="datepicker">
+													    <input type="text" id="datepicker" class="form-control datepicker" name="birthday" required="required" placeholder="Birthday *"/>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-3">
+						  						<div class="form-group">
+												    <select class="form-control" name="country_of_birth" required="required">
+												      <option value="">Select Country of Birth</option>
+												      <t t-foreach="country_ids" t-as="cid">
+												      	<option t-att-value="cid.id"><t t-esc="cid.name"/></option>
+												  	  </t>
+												    </select>
+												</div>
+											</div>
+											<div class="col-md-3">
+						  						<div class="form-group">
+												    <select class="form-control" name="marital" required="required">
+												      <option value="">Select Marital Status</option>
+												      <option value="single">Single</option>
+												      <option value="married">Married</option>
+												      <option value="cohabitant">Legal Cohabitant</option>
+												      <option value="widower">Widower</option>
+												      <option value="divorced">Divorced</option>
+												    </select>
+						  						</div>
+						  					</div>
+						  					<div class="col-md-3">
+						  						<div class="form-group">
+						  							<input type="text" class="form-control o_website_form_input" name="partner_phone" required="" placeholder="Phone"/>
+						  						</div>
+						  					</div>
+						  					<div class="col-md-12 text-right">
+						  						<button type="button" class="btn btn-primary next-step">Next</button>
+						  					</div>
+										</div>
+								  	</div>
+								  </div>
+								</div>
+							</div>
+							<div class="tab-pane" role="tabpanel" id="applicant_address">
+								<div class="card comman_form_controll applicate_address_cl">
+								  <div class="card-header">
+								    Applicant Address
+								  </div>
+									<div class="card-body">
+									  	<div class="container">
+									  		<div class="row">
+									  			<div class="col-md-4">
+									  				<div class="form-group">
+										  				<input type="text" class="form-control o_website_form_input" name="address1" required="" placeholder="House No"/>
+										  			</div>
+									  			</div>
+									  			<div class="col-md-4">
+									  				<div class="form-group">
+										  				<input type="text" class="form-control o_website_form_input" name="address2" required="" placeholder="Street"/>
+										  			</div>
+									  			</div>
+									  			<div class="col-md-4">
+									  				<div class="form-group">
+										  				<input type="text" class="form-control o_website_form_input" name="city" required="" placeholder="City"/>
+										  			</div>
+									  			</div>
+									  		</div>
+									  		<div class="row">
+									  			<div class="col-md-4">
+									  				<div class="form-group">
+									  					<input type="text" class="form-control o_website_form_input" name="zipcode" placeholder="Zip"/>
+									  				</div>
+									  			</div>
+									  			<div class="col-md-4">
+									  				<div class="form-group applicant_country_cl">
+													    <select class="form-control" name="country_id" id="select_country" required="">
+														      <option value="">Select Country</option>
+														      <t t-foreach="country_ids" t-as="cid">
+														      	<option t-att-value="cid.id"><t t-esc="cid.name"/></option>
+														  	  </t>
+													    </select>
+									  				</div>
+									  			</div>
+									  			<div class="col-md-4">
+									  				<div class="form-group">
+													    <select class="form-control" name="state_id" id="select_state">
+														      <option value="">Select state</option>
+													    </select>
+									  				</div>
+									  			</div>
+									  			<div class="col-md-12 text-right">
+							  						<button type="button" class="btn btn-secondary prev-step">Previous</button>
+							  						<button type="button" class="btn btn-primary next-step">Next</button>
+							  					</div>
+									  		</div>
+									  	</div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" role="tabpanel" id="academic_details">
+								<div class="card comman_form_controll">
+								  <div class="card-header">
+								    Academic Details
+								  </div>
+									  <div class="card-body">
+									  	<div class="container">
+									  		<div class="row">
+									  			<div class="col-md-12">
+									  				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley </p>
+									  				<div class="col-md-12">
+									  					<button type="button" class="btn btn-primary pull-right mb8 add_new_row_for_job" data-type="personal">Add</button>
+									  				</div>
+									  				<table class="table table-bordered">
+													    <thead>
+													      <tr>
+													        <th>Course</th>
+													        <th>Branch</th>
+													        <th>Organization</th>
+													        <th>start Date</th>
+													        <th>End Date</th>
+													        <th>Marks</th>
+													        <th style="width: 61px;">#</th>
+													      </tr>
+													    </thead>
+													    <tbody class="academic_details_info_cl">
+													    </tbody>
+													</table>
+									  			</div>
+									  			<div class="col-md-12 text-right">
+							  						<button type="button" class="btn btn-secondary prev-step">Previous</button>
+							  						<button type="button" class="btn btn-primary next-step">Next</button>
+							  					</div>
+									  		</div>
+									  	</div>
+									 </div>
+								</div>
+							</div>
+							<div class="tab-pane" role="tabpanel" id="certificate_details">
+								<div class="card comman_form_controll">
+								  <div class="card-header">
+								    Certificate details
+								  </div>
+									  <div class="card-body">
+									  	<div class="container">
+									  		<div class="row">
+									  			<div class="col-md-12">
+									  				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley </p>
+									  				<div class="col-md-12">
+									  					<button type="button" class="btn btn-primary pull-right mb8 add_new_row_for_job" data-type="certificate">Add</button>
+									  				</div>
+									  				<table class="table table-bordered">
+													    <thead>
+													      <tr>
+													        <th>Course</th>
+													        <th>Branch</th>
+													        <th>Organization</th>
+													        <th>Description</th>
+													        <th>Upload Certificate</th>
+													        <th>start Date</th>
+													        <th>End Date</th>
+													        <th style="width: 61px;">#</th>
+													      </tr>
+													    </thead>
+													    <tbody class="certificate_details_info_cl">
+													    </tbody>
+													</table>
+									  			</div>
+									  			<div class="col-md-12 text-right">
+							  						<button type="button" class="btn btn-secondary prev-step">Previous</button>
+							  						<button type="button" class="btn btn-primary next-step">Next</button>
+							  					</div>
+									  		</div>
+									  	</div>
+									 </div>
+								</div>
+							</div>
+							<div class="tab-pane" role="tabpanel" id="professional_details">
+								<div class="card comman_form_controll">
+								  <div class="card-header">
+								    Professional details
+								  </div>
+									  <div class="card-body">
+									  	<div class="container">
+									  		<div class="row">
+									  			<div class="col-md-12">
+									  				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley </p>
+									  				<div class="col-md-12">
+									  					<button type="button" class="btn btn-primary pull-right mb8 add_new_row_for_job" data-type="professional">Add</button>
+									  				</div>
+									  				<table class="table table-bordered">
+													    <thead>
+													      <tr>
+													      	<th>Name</th>
+													        <th>Organization</th>
+													        <th>Department</th>
+													        <th>work Description</th>
+													        <th>Experience</th>
+													        <th>Start Date</th>
+													        <th>End Date</th>
+													        <th>Project</th>
+													        <th style="width: 61px;">#</th>
+													      </tr>
+													    </thead>
+													    <tbody class="professional_details_info_cl">
+													    </tbody>
+													</table>
+									  			</div>
+									  			<div class="col-md-12 text-right">
+							  						<button type="button" class="btn btn-secondary prev-step">Previous</button>
+							  						<button type="button" class="btn btn-primary next-step">Next</button>
+							  					</div>
+									  		</div>
+									  	</div>
+									 </div>
+								</div>
+							</div>
+							<div class="tab-pane" role="tabpanel" id="application_summary">
+								<div class="card comman_form_controll">
+								  <div class="card-header">
+								    Application Summary
+								  </div>
+								  <div class="card-body">
+								  	<div class="container">
+								  		<div class="row">
+								  			<div class="col-md-12">
+								  				<div class="form-group">
+								  					<textarea type="text" name="description" class="form-control" placeholder="Description"/>
+								  				</div>
+								  			</div>
+								  			<div class="col-md-12 text-right">
+						  						<button type="button" class="btn btn-secondary prev-step">Previous</button>
+						  						<button type="button" class="btn btn-primary next-step">Next</button>
+						  					</div>
+								  		</div>
+								  	</div>
+								  </div>
+								</div>
+							</div>
+							<div class="tab-pane" role="tabpanel" id="applicant_resume">
+								<div class="card comman_form_controll">
+									  <div class="card-header">
+									    Upload Your Resume
+									  </div>
+									  <div class="card-body">
+									  	<div class="container resume_upload_file">
+									  		<div class="row">
+									  			<div class="col-md-12">
+									  				<div class="form-group">
+									  					<label>Upload Resume<br/><small>(Files accepted: .pdf, .doc/docx</small></label>
+									  					<div class="fileupload">
+						                                    <input type="file" name="Resume" accept=".pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="required"/>
+						                                </div>
+									  				</div>
+									  				
+						  							<button type="button" class="btn btn-secondary prev-step">Previous</button>
+									  				<input type="submit" name="submit" class="btn btn-primary mt16 mb16 pull-right"/>
+									  			</div>
+									  		</div>
+									  	</div>
+									  </div>
+								</div>
+							</div>
+						</div>
+                    </form>
+                </section>
+            </div>
+        </div>
+		</xpath>
+	</template>
+
+	<template id="add_acadamic_info">
+		<tr>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="personal_course_name" required=""/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="personal_branch" required=""/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="personal_organization" required=""/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<div class="input-group datepicker_start" data-provide="datepicker">
+		  				<input type="text" class="form-control datepicker" name="personal_start_date" required=""/>
+		  			</div>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<div class="input-group datepicker_end" data-provide="datepicker">
+	  					<input type="text" class="form-control datepicker" name="personal_end_date" required=""/>
+	  				</div>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="personal_marks" required=""/>
+	  			</div>
+			</td>
+			<td>
+				<button type="button" class="btn btn-primary remove_btn_row"><i class="fa fa-trash"></i></button>
+			</td>
+		</tr>
+	</template>
+	<template id="add_certificate_info">
+		<tr>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="certificate_course_name" required=""/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="certificate_branch" required=""/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="certificate_organization" required=""/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="certificate_certificate_des"/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+	  				<input type="file" class="form-control o_website_form_input" name="attachemnt_ids" data_type_64="" data_file_name="" data_file_type=""/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<div class="input-group datepicker_start" data-provide="datepicker">
+	  					<input type="text" class="form-control datepicker" name="certificate_start_date" required=""/>
+	  				</div>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<div class="input-group datepicker_end" data-provide="datepicker">
+	  					<input type="text" class="form-control datepicker" name="certificate_end_date" required=""/>
+	  				</div>
+	  			</div>
+			</td>
+			<td>
+				<button type="button" class="btn btn-primary remove_btn_row"><i class="fa fa-trash"></i></button>
+			</td>
+		</tr>
+	</template>
+	<template id="add_professional_info">
+		<tr>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="professional_name" required=""/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="professional_organization" required=""/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="professional_department" required=""/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="professional_work_des"/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="professional_work_exp"/>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<div class="input-group datepicker_start" data-provide="datepicker">
+	  					<input type="text" class="form-control datepicker" name="professional_start_date" required=""/>
+	  				</div>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<div class="input-group datepicker_end" data-provide="datepicker">
+	  					<input type="text" class="form-control datepicker" name="professional_end_date" required=""/>
+	  				</div>
+	  			</div>
+			</td>
+			<td>
+				<div class="form-group">
+	  				<input type="text" class="form-control o_website_form_input" name="professional_projects"/>
+	  			</div>
+			</td>
+			<td>
+				<button type="button" class="btn btn-primary remove_btn_row"><i class="fa fa-trash"></i></button>
+			</td>
+		</tr>
+	</template>
+
+	<template id="thanks_for_posting_job" name="Thanks for post new Job">
+		<t t-call="website.layout">
+			<div id="wrap" class="oe_structure">
+				<div class="container">
+					<div class="jumbotron text-center">
+					  <h1 class="display-3">Thank You for posting new job!</h1>
+					  <hr/>
+					  <p>
+					    Having trouble? <a href="/contactus">Contact us</a>
+					  </p>
+					  <p class="lead">
+					    <a class="btn btn-primary btn-sm" href="/jobs" role="button">GO to Jobs</a>
+					  </p>
+					</div>
+				</div>
+			</div>
+		</t>
+	</template>
+
+	<template id="portal_my_home_menu_appliactions" name="Portal layout : Application menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+        	<li t-if="page_name == 'applications' or applications" t-attf-class="breadcrumb-item #{'active ' if not applications else ''}">
+                <a t-if="applications" t-attf-href="/my/applications?{{ keep_query() }}">Applications</a>
+                <t t-else="">Applications</t>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_application" name="Portal My Home : Job Application entries" inherit_id="portal.portal_my_home" priority="20">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+        	<t t-if="applicant_count" t-call="portal.portal_docs_entry">
+                <t t-set="title">My Job Applications</t>
+                <t t-set="url" t-value="'/my/applications'"/>
+                <t t-set="count" t-value="applicant_count"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_applications" name="My Applications">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Applications</t>
+            </t>
+            <t t-if="not applications">
+                <p>There are currently no applications for your account.</p>
+            </t>
+            <t t-if="applications" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Number #</th>
+                        <th class="text-center">Application Name</th>
+                        <th class="text-center">Job</th>
+                        <th class="text-center">Category</th>
+                        <th class="text-center">Area</th>
+                        <th class="text-center">Create Date</th>
+                        <th class="text-right">Stage</th>
+                    </tr>
+                </thead>
+                <t t-foreach="applications" t-as="appl_id">
+                    <tr>
+                        <td><a t-attf-href="/my/applications/#{appl_id.id}?access_token=#{appl_id.access_token}"><t t-esc="appl_id.applicant_number"/></a></td>
+                        <td class="text-center"><span t-field="appl_id.name"/></td>
+                        <td t-if="appl_id.job_id" class="text-center"><span t-field="appl_id.job_id"/></td>
+                        <td class="text-center"><span t-field="appl_id.department_id"/></td>
+                        <td t-if="appl_id.job_id" class="text-center"><span t-field="appl_id.job_id.functional_area" /></td>
+                        <td class="text-center"><span t-field="appl_id.create_date"/></td>
+                        <td class="text-right"><span t-field="appl_id.stage_id"/></td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="job_application_portal_template" name="My Application">
+    	<t t-call="website.layout">
+    		<div id="wrap">
+    			<div class="container">
+    				<div class="jop_application_details_nav_cl mb16 mt16">
+    					<ol class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1">
+				            <li class="breadcrumb-item"><a href="/my/home" aria-label="Home" title="Home"><i class="fa fa-home"/></a></li>
+				            <li class="breadcrumb-item"><a href="/my/applications">My Applications</a></li>
+				            <li class="breadcrumb-item"><t t-esc="application.name"/></li>
+				        </ol>
+    				</div>
+    			</div>
+    			<div class="container">
+    				<div class="card">
+					  <div class="card-header">
+					      <strong><t t-esc="application.name"/></strong>
+					  </div>
+					  <div class="card-body">
+					  		<div class="row">
+					  			<div class="col-md-6">
+					  				<div class="card">
+									  <div class="card-header">
+									      Applicant Information
+									  </div>
+									  <div class="card-body">
+									      <strong>Name :</strong> <span><t t-esc="application.partner_name"/></span><br/>
+									      <strong>Last Name :</strong> <span><t t-esc="application.last_name"/></span><br/>
+									      <strong>Email :</strong> <span><t t-esc="application.email_from"/></span><br/>
+									      <strong>Phone :</strong> <span><t t-esc="application.partner_phone"/></span><br/>
+									      <strong>Gender :</strong> <span><t t-esc="application.gender"/></span><br/>
+									      <strong>Date of Birth :</strong> <span t-field="application.birthday"/><br/>
+									      <strong>Date of Country :</strong> <span t-field="application.country_of_birth"/><br/>
+									      <strong>Marital Status :</strong> <span><t t-esc="application.marital"/></span><br/>
+									      <strong>Gender :</strong> <span><t t-esc="application.gender"/></span><br/>
+									  </div>
+									</div>
+					  			</div>
+					  			<div class="col-md-6">
+					  				<div class="card">
+									  <div class="card-header">
+									      Applicant Address
+									  </div>
+									  <div class="card-body">
+									      <strong>Flat/House No :</strong> <span><t t-esc="application.address1"/></span><br/>
+									      <strong>Street :</strong> <span><t t-esc="application.address2"/></span><br/>
+									      <strong>City :</strong> <span><t t-esc="application.city"/></span><br/>
+									      <strong>Zip :</strong> <span><t t-esc="application.zipcode"/></span><br/>
+									      <strong>State :</strong> <span t-field="application.state_id"/><br/>
+									      <strong>Country :</strong> <span t-field="application.country_id"/><br/>
+									  </div>
+									</div>
+					  			</div>
+					  		</div>
+					    	
+					  </div>
+					</div>
+					<div class="card" t-if="application.job_id">
+					  <div class="card-header">
+					      <strong>Jobs</strong>
+					  </div>
+					  <div class="card-body">
+					  	  <strong>Applied Job :</strong> <span><t t-esc="application.job_id.name"/></span><br/>
+					      <strong>Department :</strong> <span t-field="application.job_id.department_id"/><br/>
+					      <strong>Address :</strong> <span t-field="application.job_id.address_id"/><br/>
+					      <strong>Availability :</strong> <span><t t-esc="application.job_id.no_of_recruitment"/></span><br/>
+					      <strong>Functional Area :</strong> <span t-field="application.job_id.functional_area"/><br/>
+					      <strong>Close Date:</strong> <span t-field="application.job_id.close_date"/><br/>
+					      <strong>Description</strong><br/>
+					      <p t-field="application.job_id.description"/>
+					  </div>
+					</div>
+					<div class="card" t-if="application.personal_detail_ids">
+					  <div class="card-header">
+					      <strong>Academic Details</strong>
+					  </div>
+					  <div class="card-body">
+					  	<table class="table table table-responsive">
+					  		<thead>
+					  			<th>Course</th>
+					  			<th>Branch</th>
+					  			<th>Organization</th>
+					  			<th>Start Date</th>
+					  			<th>End Date</th>
+					  			<th>Marks</th>
+					  		</thead>
+					  		<tbody>
+					  			<tr t-foreach="application.personal_detail_ids" t-as="academic_id">
+					  				<td><span t-field="academic_id.course_name"/></td>
+					  				<td><span t-field="academic_id.branch"/></td>
+					  				<td><span t-field="academic_id.organization"/></td>
+					  				<td><span t-field="academic_id.start_date"/></td>
+					  				<td><span t-field="academic_id.end_date"/></td>
+					  				<td><span t-field="academic_id.marks"/></td>
+					  			</tr>
+					  		</tbody>
+					  	</table>
+					  </div>
+					</div>
+					<div class="card" t-if="application.certificate_detail_ids">
+					  <div class="card-header">
+					      <strong>Certificate Details</strong>
+					  </div>
+					  <div class="card-body">
+					  	<table class="table table table-responsive">
+					  		<thead>
+					  			<th>Course</th>
+					  			<th>Branch</th>
+					  			<th>Organization</th>
+					  			<th>Description</th>
+					  			<th>Start Date</th>
+					  			<th>End Date</th>
+					  		</thead>
+					  		<tbody>
+					  			<tr t-foreach="application.certificate_detail_ids" t-as="certi_id">
+					  				<td><span t-field="certi_id.course_name"/></td>
+					  				<td><span t-field="certi_id.branch"/></td>
+					  				<td><span t-field="certi_id.organization"/></td>
+					  				<td><span t-field="certi_id.certificate_des"/></td>
+					  				<td><span t-field="certi_id.start_date"/></td>
+					  				<td><span t-field="certi_id.end_date"/></td>
+					  			</tr>
+					  		</tbody>
+					  	</table>
+					  </div>
+					</div>
+					<div class="card" t-if="application.professional_detail_ids">
+					  <div class="card-header">
+					      <strong>Professional Details</strong>
+					  </div>
+					  <div class="card-body">
+					  	<table class="table table table-responsive">
+					  		<thead>
+					  			<th>Name</th>
+					  			<th>Organization</th>
+					  			<th>Department</th>
+					  			<th>Work Experience</th>
+					  			<th>Work Description</th>
+					  			<th>projects</th>
+					  			<th>Start Date</th>
+					  			<th>End Date</th>
+					  		</thead>
+					  		<tbody>
+					  			<tr t-foreach="application.professional_detail_ids" t-as="prof_id">
+					  				<td><span t-field="prof_id.name"/></td>
+					  				<td><span t-field="prof_id.organization"/></td>
+					  				<td><span t-field="prof_id.department"/></td>
+					  				<td><span t-field="prof_id.work_exp"/></td>
+					  				<td><span t-field="prof_id.work_des"/></td>
+					  				<td><span t-field="prof_id.projects"/></td>
+					  				<td><span t-field="prof_id.start_date"/></td>
+					  				<td><span t-field="prof_id.end_date"/></td>
+					  			</tr>
+					  		</tbody>
+					  	</table>
+					  </div>
+					</div>
+					<div class="card" t-if="application">
+					  <div class="card-header">
+					      <strong>Application Summary</strong>
+					  </div>
+					  <div class="card-body">
+					  	 <p t-field="application.description"/>
+					  </div>
+					</div>
+					<div class="card" t-if="application">
+					  <div class="card-header">
+					      <strong>Communication History</strong>
+					  </div>
+					  <div class="card-body">
+					  	 <t t-call="portal.message_thread">
+                            <t t-set="object" t-value="application"/>
+                         </t>
+					  </div>
+					</div>
+    			</div>
+    		</div>
+    	</t>
+    </template>
+    
+
+    <record id="website_hr_recruitment.thankyou" model="website.page">
+    <field name="url">/job-thank-you</field>
+    <field name="is_published">True</field>
+    <field name="website_indexed" eval="False"/>
+    <field name="name">Thank you (Recruitment)</field>
+    <field name="type">qweb</field>
+    <field name="key">website_hr_recruitment.thankyou</field>
+    <field name="arch" type="xml">
+        <t name="Thank you (Recruitment)" t-name="website_hr_recruitment.thankyou">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="text-center">Congratulations!</h1>
+                                    <p class="text-center">
+                                        Your application has been posted successfully.
+                                    </p>
+                                </div>
+                                 <div class="col-lg-12 text-center" t-if="request.params.get('access_url', '')">
+					    			<h4>Go to your Application</h4>
+					                <a t-att-href="request.params.get('access_url', '')" traget="_blank"><t t-esc="request.params.get('access_url', '')"/></a>
+					            </div>
+                                <t t-if="request.session.get('form_builder_model_model', '') == 'hr.applicant'">
+                                    <t t-if="request.website._website_form_last_record().sudo().job_id" t-set="job" t-value="request.website._website_form_last_record().sudo().job_id"/>
+                                    <t t-set="responsible" t-value="job and job.user_id.website_published and job.user_id "/>
+                                </t>
+                                <t t-if="responsible">
+                                    <div class="col-lg-12">
+                                        <h3 class="mb32 text-center">Your application has been sent to:</h3>
+                                    </div>
+                                    <div class="col-lg-1 offset-lg-4">
+                                        <p t-field="responsible.image_128" t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'rounded-circle d-block mx-auto o_image_64_cover'}"/>
+                                    </div>
+                                    <div class="col-lg-5 o_responsible_data">
+                                        <h4 class="mt0" t-field="responsible.name"/>
+                                        <p t-field="responsible.function"/>
+                                        <t t-if='responsible.email'>
+                                            <i class="fa fa-envelope" role="img" aria-label="Email" title="Email"></i> <a t-attf-href="mailto:#{responsible.email}" t-esc="responsible.email"/>
+                                        </t>
+                                        <t t-if='responsible.phone'>
+                                            <br/><i class="fa fa-phone" role="img" aria-label="Phone" title="Phone"></i> <span t-field="responsible.phone"/>
+                                        </t>
+                                    </div>
+                                    <div class="col-lg-12 mt32 text-center">
+                                        <span>
+                                            We usually reply between one and three days.<br/>
+                                            Feel free to contact him/her if you have further questions.
+                                        </span>
+                                    </div>
+                                </t>
+                            </div>
+                            <div class="row" id="o_recruitment_thank_cta">
+                                <div class="col-lg-12 text-center mt32 mb32">
+                                    In the meantime,
+                                    <h3 class="mt8 mb32">Look around on our website:</h3>
+                                    <a role="button" href="/" class="btn btn-primary btn-lg">Continue To Our Website</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </field>
+</record>
+</odoo>

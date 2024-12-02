@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+                                <!-- Groups -->
+     <record id="procurement_group_category_main" model="ir.module.category">
+            <field name="name">Procurement</field>
+            <field name="sequence" eval="1"/>
+     </record>
+
+        <!--groups-->
+<!-- Manager -->
+    <record id="group_procurement_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="procurement_group_category_main"/>
+    </record>
+<!-- User -->
+    <record id="group_procurement_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="procurement_group_category_main"/>
+    </record>
+
+
+   <record model="ir.rule" id="product_details_company_rule">
+    <field name="name">Product Details Multi-Company</field>
+    <field name="model_id" ref="model_product_details"/>
+    <field name="global" eval="True"/>
+    <field name="domain_force">[('company_id', 'in',user.company_ids.ids)]</field>
+</record>
+
+    <!-- <record model="ir.rule" id="pspr_company_rule">
+    <field name="name">PSPR Company Rule</field>
+    <field name="model_id" ref="model_product_details"/>
+    <field name="domain_force">[('company_id', '=', user.company_id.id)]</field>
+    <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+</record> -->
+<!-- <record model="ir.rule" id="pspr_comp_rule">
+    <field name="name">PSPR multi-company</field>
+    <field name="model_id" ref="model_product_details"/>
+    <field name="global" eval="True"/>
+    <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+</record> -->
+</odoo>

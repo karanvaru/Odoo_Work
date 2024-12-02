@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Contract Types -->
+        <record id="hr_contract_types.hr_contract_type_emp" model="hr.contract.type">
+            <field name="name">Permanent Employment Contract</field>
+            <field name="rem_type">monthly</field>
+        </record>
+
+        <record id="hr_contract_types.hr_contract_type_wrkr" model="hr.contract.type">
+            <field name="name">Fixed-Term Employment Contract</field>
+            <field name="rem_type">monthly</field>
+        </record>
+
+        <record id="hr_contract_types.hr_contract_type_sub" model="hr.contract.type">
+            <field name="name">Monthly Casual Work Contract</field>
+            <field name="rem_type">monthly</field>
+        </record>
+
+        <record id="hr_contract_type_sub1" model="hr.contract.type">
+            <field name="name">Hourly Casual Work Contract</field>
+            <field name="rem_type">hourly</field>
+        </record>
+
+        <record id="hr_contract_type_sub2" model="hr.contract.type">
+            <field name="name">Daily Casual Work Contract</field>
+            <field name="rem_type">daily</field>
+        </record>
+
+        <record id="hr_contract_type_dir" model="hr.contract.type">
+            <field name="name">Director’s Service Agreement</field>
+            <field name="rem_type">monthly</field>
+        </record>
+
+        <record id="hr_contract_type_con1" model="hr.contract.type">
+            <field name="name">Monthly Consultancy Agreement</field>
+            <field name="rem_type">monthly</field>
+        </record>
+
+        <record id="hr_contract_type_con2" model="hr.contract.type">
+            <field name="name">Daily Consultancy Agreement</field>
+            <field name="rem_type">daily</field>
+        </record>
+
+        <record id="hr_contract_type_con3" model="hr.contract.type">
+            <field name="name">Hourly Consultancy Agreement</field>
+            <field name="rem_type">hourly</field>
+        </record>
+    </data>
+</openerp>

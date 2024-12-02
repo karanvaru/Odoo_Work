@@ -1,0 +1,80 @@
+.payment-screen {
+	.screen-content {
+		border-left: dashed 1px rgb(215, 215, 215);
+	    border-right: dashed 1px rgb(215, 215, 215);
+	    max-width: 1024px;
+	    .top-content {
+	    	.next {
+	    		line-height: 32px;
+    		    padding: 3px 13px;
+    		    font-size: 14px;
+    		    margin-top: 12px;
+    		    margin-bottom: 12px;
+    		    margin-left: 6px;
+    		    margin-right: 6px;
+    		    border: solid 1px #E0E2E6;
+    		    background: transparent;
+    		    opacity: 1;
+    		    display: inline-flex;
+    		    flex-direction: row;
+	    	}
+	    }
+	    .main-content {
+	    	&.__desktop_layout {
+		    	flex-direction: column;
+		    	.left-content {
+		    		padding: 16px;
+		    		width: auto;
+		    		max-width: 34%;
+		    		border-right: dashed 1px rgb(215, 215, 215);
+		    		.paymentmethods-container {
+		    			overflow: auto;
+		    		}
+		    	}
+		    	.__right_box {
+		    		flex: 1 1 100%;
+		    		display: flex;
+		    		.center-content {
+		    			border: 0;
+		    			.paymentlines-container {
+		    				border-bottom: dashed 1px gainsboro;
+		    			}
+		    			.payment-buttons-container {
+		    				flex-wrap: nowrap;
+		    				.right-content {
+		    					margin: 16px;
+		    					border: 0;
+		    				}
+		    				.payment-numpad {
+	    					    margin: 16px;
+	    					    .numpad {
+	    					    	width: fit-content;
+	    					    	height: auto;
+	    					    	margin: 0;
+	    					    	button {
+	    					    		font-size: 24px;
+		    					    	width: 74px;
+		    					    	height: 74px;
+		    					    }
+	    					    }
+		    				}
+		    				.right-content {
+		    					flex-grow: 5;
+		    				}
+		    			}
+		    		}
+		    	}
+		    }
+		    &.oe_mobile {
+		    	.__right_box {
+		    		width: 100%;
+		    		display: flex;
+		    		flex-direction: row;
+		    		.payment-numpad {
+		    			flex: 1 1 100%;
+		    		}
+		    	}
+		    }
+	    }
+	}
+}

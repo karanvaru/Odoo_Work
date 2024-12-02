@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PaymentScreenStatus" t-inherit="point_of_sale.PaymentScreenStatus" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('message')]" position="after">
+	        <div class="usd-total">
+	            <t t-esc="USDText" /> USD
+	        </div>
+        </xpath>
+    </t>
+
+</templates>

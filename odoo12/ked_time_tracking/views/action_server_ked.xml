@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_start_timing_ked" model="ir.actions.server">
+            <field name="name">Start Timer</field>
+            <field name="model_id" ref="rdp_ked_escalation.model_ked_escalation"/>
+            <field name="binding_model_id" ref="rdp_ked_escalation.model_ked_escalation"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_start()
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="template_pos_invoice">
+            <div class="row">
+                <div class="col-6" style="margin-left:383px;width:650px;">
+                    <div class="row">
+                        <div style="width:71px; height:47px;">
+                        </div>
+
+                        <div class="col-4" style="width:195px;height:47px;">
+                            <t t-if="o.invoice_date">
+                                <span t-esc="o.invoice_date.strftime('%d/%m/%Y')"/>
+                            </t>
+                        </div>
+                        <div class="col-2" style="width:135px; height:47px;">
+                        </div>
+                        <div style="width:247px; height:47px; ">
+                        </div>
+                    </div>
+                    <div class="row mt16">
+                        <div style="width:71px; height:47px;">
+                        </div>
+
+                        <div class="col-4" style="width:195px;height:47px;">
+                            <span t-esc="o.ed_no"/>
+                        </div>
+                        <div class="col-4" style="width:200px; height:47px;">
+                        </div>
+                           <div class="col-4" style="width:182px;height:47px;text-align:right;">
+                            <t t-if="o.departure_date">
+                                <span t-esc="o.departure_date.strftime('%d/%m/%Y')"/>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="row mt16">
+                        <div style="width:71px; height:47px;">
+                        </div>
+                        <div style="width:577px;height:47px;">
+                            <span t-esc="o.partner_id.name"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="width:71px; height:67px;">
+                        </div>
+                        <div style="width:577px;height:67px;">
+                            <span t-esc="o.staying_at"/>
+                        </div>
+                    </div>
+                    <div class="row mt16">
+                        <div style="width:71px; height:47px;">
+                        </div>
+
+                         <div style="width:300px; height:47px;">
+                            <span t-esc="o.ship_flight"/>
+                        </div>
+                        <div style="width:130px;height:47px;">
+                        </div>
+                        <div style="height:47px;width:146px; ">
+                        </div>
+                    </div>
+                    <div class="row mt4">
+                        <div style="width:71px; height:47px;">
+                        </div>
+
+                        <div style="width:577px;height:47px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:180px;height:450px;">
+                <table class="table table-borderless"
+                       style="width: 100%; border-collapse: collapse;margin-left:360px;width:670px">
+                    <tbody class="order_line_tbody">
+                        <t t-set="unit_price_sum" t-value="0"/>
+                        <t t-foreach="o.invoice_line_ids" t-as="line">
+                            <tr style="height:47px;">
+                                <td style="width:150px;">
+                                    <span t-field="line.item_code"/>
+                                </td>
+                                <td style="width:30px;">
+                                    <span t-field="line.quantity"/>
+                                </td>
+                                <td style="width:260px;">
+                                    <span t-field="line.name"/>
+                                </td>
+                                <td style="width:35px;">
+                                    <span t-field="line.price_unit"/>
+                                </td>
+                                <td style="width:35px;">
+                                    <span t-field="line.price_subtotal"/>
+                                </td>
+                                <t t-set="unit_price_sum" t-value="unit_price_sum + line.price_unit"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <!--	               <tr style="height:40px;">-->
+                    <!--	                   <td width="16%;"></td>-->
+                    <!--	                   <td width="5%;"></td>-->
+                    <!--	                   <td width="29%;">-->
+                    <!--	                       <span>Total</span>-->
+                    <!--	                   </td>-->
+                    <!--	                   <td width="5%;">-->
+                    <!--	                       <span t-esc="'{:.2f}'.format(unit_price_sum)"/>-->
+                    <!--	                   </td>-->
+                    <!--	                   <td width="5%;">-->
+                    <!--	                       <span t-field="o.amount_untaxed"/>-->
+                    <!--	                   </td>-->
+                    <!--	               </tr>-->
+
+                </table>
+            </div>
+            <div class="row">
+                <div class="col" style="margin-left:630px">Total</div>
+                <div class="col" style="margin-left:180px">
+                    <span t-esc="'{:.2f}'.format(unit_price_sum)"/>
+                </div>
+                <div class="col" style="margin-left:30px">
+                    <span t-field="o.amount_untaxed"/>
+                </div>
+
+            </div>
+
+        </template>
+
+
+        <template id="template_pos_order">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="code_dict" t-value="doc.action_pos_order_invoice()"/>
+                    <t t-set="invoice"
+                       t-value="request.env['account.move'].sudo().browse(code_dict['res_id'])"/>
+                    <t t-foreach="invoice" t-as="i">
+                        <t t-call="ki_duty_free_pos.template_pos_invoice">
+                            <t t-set="o" t-value="i"/>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <record id="paperformat_pdf_statement" model="report.paperformat">
+            <field name="name">Duty Free Invoice Paperformate</field>
+            <field name="default" eval="True"/>
+            <field name="format">Letter</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">80</field>
+        </record>
+
+
+        <record id="pos_duty_free_pdf_report" model="ir.actions.report">
+            <field name="name">Pos Order Report</field>
+            <field name="model">pos.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ki_duty_free_pos.template_pos_order</field>
+            <field name="report_file">ki_duty_free_pos.template_pos_order</field>
+            <field name="paperformat_id" ref="ki_duty_free_pos.paperformat_pdf_statement"/>
+            <field name="binding_model_id" ref="model_pos_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+    </data>
+</odoo>

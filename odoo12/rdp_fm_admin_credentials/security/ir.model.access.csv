@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+admin_credentials_user,admin.credentials,model_admin_credentials,,1,1,1,1
+user_credentials,user.credentials,model_user_credentials,,1,1,1,1

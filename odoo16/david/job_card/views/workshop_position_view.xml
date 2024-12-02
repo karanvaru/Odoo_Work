@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<odoo>
+
+        <record model="ir.ui.view" id="workshop_position_form_view">
+            <field name="name">workshop.position.form.view</field>
+            <field name="model">workshop.position</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Team Members" name="team_member">
+                                <field name="team_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_workshop_position_tree" model="ir.ui.view">
+            <field name="name">workshop.position.tree</field>
+            <field name="model">workshop.position</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Workshop Position">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_view_workshop_position" model="ir.actions.act_window">
+            <field name="name">Workshop Teams</field>
+            <field name="res_model">workshop.position</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p>
+                    Job Card management allows you to manage the workshop teams.
+                  <!--   Odoo's project management allows you to manage the pipeline of your tasks efficiently. You can track progress, discuss on tasks, attach documents, etc. -->
+                </p>
+            </field>
+        </record>
+        
+        
+</odoo>

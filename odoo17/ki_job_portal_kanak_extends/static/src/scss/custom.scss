@@ -1,0 +1,288 @@
+.add_job_block_01 {
+    font-family: "Work Sans", Arial, sans-serif;
+
+    h2 {
+        color: #fff;
+        font-size: 32px;
+        font-size: 2rem;
+        margin: 0px 0 15px 0;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 15px;
+        font-size: 0.9375rem;
+        font-weight: 600;
+    }
+}
+
+.comman_form_controll,
+.add_job_hr_form {
+    h4.title {
+        font-size: 1.200rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+    }
+
+    input[type='text'],
+    textarea[type='text'],
+    select,
+    input[type='email'] {
+        padding: 8px 16px;
+        width: 100%;
+        outline: 0;
+        font-size: 14px;
+        line-height: 1.4;
+        border-radius: 3px;
+        border: 1px solid none;
+        background-color: #fff;
+        box-sizing: border-box;
+        transition: all 0.3s ease-in-out;
+        margin-bottom: 15px;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+
+    input[type='text'],
+    select,
+    input[type='email'] {
+        height: calc(2.65rem + 2px);
+    }
+
+    textarea[type='text'] {
+        height: calc(4.65rem + 2px);
+    }
+
+    .select2-container-multi {
+        border-radius: 0px;
+
+        .select2-choices {
+            background-color: none;
+        }
+
+        .select2-choices .select2-search-choice {
+            margin: 13px 0px 3px 8px;
+        }
+    }
+}
+
+.job_apply_form_cl {}
+
+.resume_upload_file {
+    label {
+        font-weight: 500;
+        margin-bottom: 5px;
+        color: #222;
+    }
+
+    small {
+        font-size: 80%;
+        font-weight: 400;
+    }
+
+    .fileupload {
+        position: relative;
+        width: 100%;
+        margin-top: 5px;
+        font-size: 14px;
+        font-size: 0.875rem;
+        margin-bottom: 35px;
+    }
+
+    input[type=file] {
+        border: 1px solid #ddd;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+        background-color: #fff;
+        padding: 5px;
+        height: auto;
+        width: 100%;
+        color: #999;
+    }
+}
+
+.main_form_job_cl_ap {
+    padding-bottom: 40px;
+
+    .card {
+        border-radius: 0px;
+    }
+
+    .wizard {
+        margin: 20px auto;
+        background: #fff;
+        border: 1px solid lightgray;
+        border-bottom: 0px;
+        margin-bottom: 0px;
+    }
+
+    .nav-tabs {
+        border-bottom: 0px;
+    }
+
+    .wizard .nav-tabs {
+        position: relative;
+        margin: 40px auto;
+        margin-bottom: 0;
+        border-bottom-color: #e0e0e0;
+    }
+
+    .wizard>div.wizard-inner {
+        position: relative;
+    }
+
+    .connecting-line {
+        height: 2px;
+        background: #e0e0e0;
+        position: absolute;
+        width: 83%;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: 42%;
+        z-index: 1;
+    }
+
+    .wizard .nav-tabs>li.active>a,
+    .wizard .nav-tabs>li.active>a:hover,
+    .wizard .nav-tabs>li.active>a:focus {
+        color: #555555;
+        cursor: default;
+        border: 0;
+        border-bottom-color: transparent;
+    }
+
+    span.round-tab {
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        display: inline-block;
+        border-radius: 100px;
+        background: #fff;
+        border: 2px solid #e0e0e0;
+        z-index: 2;
+        position: relative;
+        left: 0;
+        text-align: center;
+        font-size: 25px;
+    }
+
+    span.round-tab i {
+        color: #555555;
+    }
+
+    .wizard li.active span.round-tab {
+        background: #fff;
+        border: 2px solid #5bc0de;
+
+    }
+
+    .wizard li.active span.round-tab i {
+        color: #5bc0de;
+    }
+
+    span.round-tab:hover {
+        color: #333;
+        border: 2px solid #333;
+    }
+
+    .wizard .nav-tabs>li {
+        width: 12%;
+        z-index: 1;
+    }
+
+    .wizard li:after {
+        content: " ";
+        position: relative;
+        left: 43%;
+        top: -7px;
+        opacity: 0;
+        margin: 0 auto;
+        bottom: 0px;
+        border: 5px solid transparent;
+        border-bottom-color: #5bc0de;
+        transition: 0.1s ease-in-out;
+    }
+
+    .wizard li.active:after {
+        content: " ";
+        position: relative;
+        left: 43%;
+        opacity: 1;
+        margin: 0 auto;
+        bottom: 0px;
+        top: -7px;
+        border: 10px solid transparent;
+        border-bottom-color: #5bc0de;
+    }
+
+    .wizard .nav-tabs>li a {
+        width: 70px;
+        height: 70px;
+        margin: 20px auto;
+        border-radius: 100%;
+        padding: 0;
+        display: block;
+    }
+
+    .wizard .nav-tabs>li a:hover {
+        background: transparent;
+    }
+
+    .wizard .tab-pane {
+        position: relative;
+        padding-top: 50px;
+    }
+
+    .wizard h3 {
+        margin-top: 0;
+    }
+
+    @media(max-width : 585px) {
+
+        .wizard {
+            width: 90%;
+            height: auto !important;
+        }
+
+        span.round-tab {
+            font-size: 16px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .wizard .nav-tabs>li a {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .wizard li.active:after {
+            content: " ";
+            position: absolute;
+            left: 35%;
+        }
+	    .wizard .nav-tabs>li {
+	        width: 20%;
+	    }
+
+    }
+
+}
+
+.error_msg_cl {
+    border-color: red;
+}
+
+#hr_recruitment_form {
+    table .form-group {
+        margin-bottom: 0px;
+    }
+}

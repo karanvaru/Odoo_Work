@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_jobcard_form_inherit_garage" inherit_id="job_card_portal_odoo.portal_my_jobcard_form" name="Portal: Garage Management">
+        <xpath expr="//li[@id='nav-header']" position="after">
+            <li class="nav-item" id="nav-link">
+                <a class="nav-link ps-3" href="#vehicle_details" style="max-width: 200px;">
+                    Vehicle Details
+                </a>
+            </li>
+        </xpath>
+        <xpath expr="//div[@t-if='jobcard_id.job_cost_sheet_ids']" position="before">
+            <div class="container">
+                <h5 id="vehicle_details" class="mt-2 mb-2" data-anchor="true">Vehicle Details</h5>
+                <hr class="mt-2 mb-1"/>
+                <div class="row mb-4 container">
+                    <u style="margin-top:5px;">
+                    <h6 id="basic_info" class="mt-2 mb-2" data-anchor="true">Basic Info</h6></u>
+                    <div class="col-12 col-md-6">
+                        <div><strong>Vehicle Brand:</strong> <t t-esc="jobcard_id.brand"/></div>
+                        <div><strong>Model Name:</strong> <span t-field="jobcard_id.model_name"/></div>
+                        <div><strong>Vehicle Type:</strong> <span t-field="jobcard_id.type_id.name"/></div>
+                        <div><strong>Fuel Type:</strong> <span t-field="jobcard_id.fuel_type"/></div>
+                        <div><strong>Vehicle Color:</strong> <span t-field="jobcard_id.vehicle_color"/></div>
+                    </div>
+                    <div class="col-12 col-md-6" name="portal_my_task_second_column">
+                        <div><strong>Registration Number :</strong> <t t-esc="jobcard_id.register_no"/></div>
+                        <div><strong>Vehicle Identification Number :</strong> <span t-esc="jobcard_id.vin"/></div>
+                        <div><strong>Engine :</strong> <span t-field="jobcard_id.engine"/></div>
+                        <div><strong>No. of Gears :</strong> <span t-field="jobcard_id.gear_nos"/></div>
+                        <div><strong>Vehicle Manufacturing year :</strong> <span t-field="jobcard_id.year"/></div>
+                    </div>
+                </div>
+                <div class="row mb-4 container">
+                    <u><h6 id="extra_info" class="mt-2 mb-2" data-anchor="true">Extra Info</h6></u>
+                    <div class="col-12 col-md-6">
+                        <div><strong>Odometer Reading:</strong> <t t-esc="jobcard_id.odometer"/></div>
+                        
+                        <div><strong>Fuel Level:</strong> <span t-field="jobcard_id.fuel_level"/></div>
+                        <div><strong>Average KM/Day:</strong> <span t-field="jobcard_id.average_km"/></div>
+                    </div>
+                    <div class="col-12 col-md-6" name="portal_my_task_second_column">
+                        <div><strong>Repair Category :</strong> <t t-esc="jobcard_id.repair_category.name"/></div>
+                        <div><strong>Payment Type :</strong> <span t-field="jobcard_id.pay_type"/></div>
+                        <div><strong>Is Insurance Claim :</strong>
+                        <t t-if="jobcard_id.is_insurance">
+                            <input type="checkbox" id="checkbox104_anything_you_give" checked="checked"/>
+                        </t>
+                        <t t-if="not jobcard_id.is_insurance">
+                            <input type="checkbox" id="checkbox104_anything_you_give"/>
+                        </t></div>
+                        <div t-if="jobcard_id.is_insurance"><strong>Insurance Company :</strong> <span t-field="jobcard_id.insurance_company"/></div>
+                    </div>
+                </div>
+                <u><h6 id="service_details" class="mt-2 mb-2" data-anchor="true">Vehicle Servicing Details</h6></u>
+                <div class="row" t-if="jobcard_id.detail">
+                    <div t-if="not is_html_empty(jobcard_id.detail)" t-attf-class="col-12 col-lg-12 mb-4 mb-md-0 ">
+                        <div>
+                            <strong>Service Details : </strong>
+                        </div>
+                        <div t-field="jobcard_id.detail"/>
+                    </div>
+                </div>
+                <div class="row mb-4 container" t-if="jobcard_id.image1 or jobcard_id.image3 or jobcard_id.image2 or jobcard_id.image4">
+                    <strong> Vehicle Images : </strong>
+                    <div class="col-12 col-md-6">
+                        <div t-if="jobcard_id.image1 or jobcard_id.image3">
+                            <t t-if="jobcard_id.image1">
+                                <img t-att-src="image_data_uri(jobcard_id.image1)" style="margin: 10px; max-height: 6cm; max-width: 6cm;"/>
+                            </t>
+                            <t t-if="jobcard_id.image3">
+                                <img t-att-src="image_data_uri(jobcard_id.image3)" style="margin: 10px; max-height: 6cm; max-width: 6cm;"/>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div t-if="jobcard_id.image2 or jobcard_id.image4">
+                            <span t-if="jobcard_id.image2">
+                                <img t-att-src="image_data_uri(jobcard_id.image2)" style="margin: 10px; max-height: 6cm; max-width: 6cm;"/>
+                            </span>
+                            <span t-if="jobcard_id.image4">
+                                <img t-att-src="image_data_uri(jobcard_id.image4)" style="margin: 10px; max-height: 6cm; max-width: 6cm;"/> 
+                            </span>
+                            <span t-if="jobcard_id.image5">
+                                <img t-att-src="image_data_uri(jobcard_id.image5)" style="margin: 10px; max-height: 6cm; max-width: 6cm;"/> 
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

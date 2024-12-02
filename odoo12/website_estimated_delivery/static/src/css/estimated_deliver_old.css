@@ -1,0 +1,99 @@
+/* Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) */
+/* See LICENSE file for full copyright and licensing details. */
+.check_availability_button {
+	width:18% ;
+	height:25px  ;
+	margin-right:8%;
+	padding-top:2px;
+	text-align:center;
+	border-radius:0px 5px 5px 0px;
+	background-color: #212121;
+	cursor: pointer;
+	float:right;
+}
+.pincode_ckeck{
+	width:45%;
+}
+.pincode_ckeck_div{
+	display:inline-block; 
+	height:25px ;
+	width:72% ;
+	float:left;
+}
+
+.check_pincode_span{
+	color:white;
+}
+
+.availability_message{
+	float:left;
+	margin-top:5px;
+	border-radius:3px;
+	text-align:center;
+	width:80%;
+	font-size: 14px;
+}
+.default_message{
+	background-color:#B9F6CA;
+	color:green;
+	padding:1px;
+	border-radius:3px;
+	text-align:center;
+	font-size: 14px;
+	width:80%;
+	
+
+}
+.check_availability_cart{
+	cursor: pointer;
+	font-size: 12px;
+}
+.change_pincode{
+	float:right;
+	width:15%;
+	text-align: center;
+	margin-top: 8px;
+	margin-right: 10px;
+	cursor: pointer;
+	display:none;
+}
+.advanced_estimated_delivery_cart{
+	display:inline-block;
+	margin-left:10%;
+	top:-15px;
+	position: relative;
+}
+.cart_check_pincode_button{
+	display:inline-block;
+	
+}
+.cart_pincode_input{
+	height:33px !important;
+}
+.cart_pincode{
+	display:inline-block;
+}
+
+.change_pincode_cart{
+	display:none;
+	display:inline-block;
+	cursor: pointer;
+}
+.popover-content {
+    color: #337ab7;
+    font-style: italic;
+}
+.popover-title {
+    color: white;
+    font-size: 20px;
+    text-align: center !important;
+    background-color: #337ab7;
+}
+.product_available{
+	font-size: 12px;
+	color:green;
+}
+.product_unavailable{
+	font-size: 12px;
+	color:red;
+}

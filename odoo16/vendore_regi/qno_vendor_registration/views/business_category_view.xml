@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_business_category_tree" model="ir.ui.view">
+            <field name="name">business.category.tree</field>
+            <field name="model">business.category</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name" string="Name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_business_category" model="ir.actions.act_window">
+            <field name="name">Business Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">business.category</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new business category
+                </p>
+            </field>
+
+        </record>
+
+    </data>
+</odoo>

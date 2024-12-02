@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_employee_form_inherit" model="ir.ui.view">
+            <field name="name">employee.inherited.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='country_id']" position="after">
+                    <field name="pan_number"/>
+                </xpath>
+                <xpath expr="//field[@name='bank_account_id']" position="after">
+                    <field name="bank_name"/>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="before">
+                    <field name="parent_department_id"/>
+                </xpath>
+                <xpath expr="//field[@name='km_home_work']" position="after">
+                    <field name="personal_email"/>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="recruiter_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--                <__________________added fields in this model_________pavi____27-03-2023_______________>-->
+
+        <record id="employee_inherit_notice_period_page_form_view" model="ir.ui.view">
+            <field name="name">employee_inherit_notice_period_page_form_view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="oh_employee_check_list.hr_employee_inherit_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook//page[@name='post_exit_checklist']" position="after">
+                    <page name="notice_period" string="Exit">
+                        <group>
+                            <group>
+                                <field name="separation_type"/>
+                                <field name="notice_period"/>
+                            </group>
+                            <group>
+                                <field name="ff_status"/>
+                                <field name="employment_bond"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!--        search view-->
+        <record id="employee_search_view_inherited" model="ir.ui.view">
+            <field name="name">employee.search.view.inherited</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='group_manager']" position="before">
+                    <filter name="separation_type" string="Separation Type" domain="[]"
+                            context="{'group_by':'separation_type'}"/>
+                    <filter name="ff_status" string="F&amp;F Status" domain="[]"
+                            context="{'group_by':'ff_status'}"/>
+                    <!--                        <filter name="state" string="Status" domain="[]"-->
+                    <!--                                context="{'group_by':'state'}"/>-->
+                </xpath>
+            </field>
+        </record>
+        <!--                <__________________________________tree view___________________________________-->
+
+        <record id="employee_tree_view_inherited_notice_period" model="ir.ui.view">
+        <field name="name">employee.tree.view.inherited.notice.period</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="oh_employee_check_list.hr_employee_inherit_tree_view"/>
+        <field name="arch" type="xml">
+        <xpath expr="//field[@name='entry_progress']" position="after">
+            <field name="notice_period"/>
+        </xpath>
+        </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="asterisk_common.support">
+        <div class="o_form_view">
+            <div class="o_form_sheet_bg">
+                <div class="o_form_sheet">
+                    <hr/>
+		    <h2> Documentation </h2>
+		    <p> For information please visit our <a 
+                class="btn btn-info btn-small" target="new"
+                href="https://bit.ly/2VfQpZt">documentation portal</a></p>
+		    <hr/>
+		    <h2>Bugs, feature requests</h2>
+                    <p> Please send bugs and feature requests to 
+			    <a class="btn btn-info btn-small" target="new" 
+                    href="mailto:mailbox@odoopbx.com">mailbox@odoopbx.com</a>
+                    </p>
+                    <hr/>
+                    <h2>Tips &amp; tricks</h2>
+                    <p> To talk about Asterisk &amp; Odoo integration join our
+                        <a class="btn btn-info btn-small" target="new"
+                            href="https://odoopbx.com/forum/support-1">Community forum</a>
+			        </p>
+                    <hr/>
+                    <h2>E-mail Subscription</h2>
+                        <p> Subscribe to OdooPBX mailing list to get updates:</p>
+                        <a class="btn btn-small btn-info" href="/asterisk_calls/signup" target="new">
+                            Signup for updates</a>
+                </div>
+            </div>
+        </div>
+    </t>
+
+
+    <t t-name="asterisk_common.addons">
+        <div class="o_form_view">
+            <div class="o_form_sheet_bg">
+                <div class="o_form_sheet">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h1>Available addons </h1>
+                            <a href="https://www.odoo.com/apps/modules/browse?search=asterisk_calls"
+                                target="new"
+                                class="btn btn-small btn-info">See Asterisk calls addons on Odoo App Market</a>
+                            <hr/>
+
+                            <h2>Website click2call contact form</h2>
+                            <p>Let your website visitors be called from your Asterisk!</p>
+                            <ul>
+                                <li>Click2call contact form</li>
+                                <li>Call status!</li>
+                                <li>Postiion in the call queue!</li>
+                            </ul>
+                            <strong><a href="https://www.odoo.com/apps/modules/11.0/asterisk_calls_website/"
+                                target="new">Visit app page</a></strong>
+                            <hr/>
+
+                            <p><i>More addons coming soon...</i></p>
+                        </div>
+                        <div class="col-md-4">
+                            <img width="200px" src="/asterisk_calls/static/description/icon.png"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

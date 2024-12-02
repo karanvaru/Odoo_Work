@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+
+        <!-- Applicant Institute -->
+        <record model="ir.ui.view" id="applicant_institute_form_view">
+            <field name="name">applicant.institute</field>
+            <field name="model">applicant.institute</field>
+            <field name="arch" type="xml">
+                <form string="Applicant Institutes">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="applicant_institute_list_view" model="ir.ui.view">
+            <field name="name">applicant.institute</field>
+            <field name="model">applicant.institute</field>
+                <field name="arch" type="xml">
+                    <tree string="Applicant Institutes">
+                        <field name="name" />
+                      </tree>
+                </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_institute_degree">
+            <field name="name">Applicant Institutes</field>
+            <field name="res_model">applicant.institute</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_applicant_institute_id" 
+                  name="Institutes"
+                  parent="hr_recruitment.menu_hr_recruitment_configuration"
+                  sequence="216"
+                  action="action_institute_degree"/>
+        
+        <!-- Applicant Organization -->
+        <record model="ir.ui.view" id="applicant_organization_form_view">
+            <field name="name">applicant.organization</field>
+            <field name="model">applicant.organization</field>
+            <field name="arch" type="xml">
+                <form string="Applicant Organizations">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="applicant_organization_list_view" model="ir.ui.view">
+            <field name="name">applicant.organization</field>
+            <field name="model">applicant.organization</field>
+                <field name="arch" type="xml">
+                    <tree string="Applicant Organizations">
+                        <field name="name" />
+                      </tree>
+                </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_applicant_organization">
+            <field name="name">Applicant Organizations</field>
+            <field name="res_model">applicant.organization</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_applicant_organization_id" 
+                  name="Organizations"
+                  parent="hr_recruitment.menu_hr_recruitment_configuration"
+                  sequence="217" 
+                  action="action_applicant_organization"/>
+        
+        <!-- Applicant Relation -->
+        <record model="ir.ui.view" id="applicant_relation_form_view">
+            <field name="name">applicant.relation</field>
+            <field name="model">applicant.relation</field>
+            <field name="arch" type="xml">
+                <form string="Applicant Relations">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="applicant_relation_list_view" model="ir.ui.view">
+            <field name="name">applicant.relation</field>
+            <field name="model">applicant.relation</field>
+                <field name="arch" type="xml">
+                    <tree string="Applicant Relations">
+                        <field name="name" />
+                      </tree>
+                </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_applicant_relation">
+            <field name="name">Applicant Relations</field>
+            <field name="res_model">applicant.relation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_applicant_relation_id"
+                  name="Relations" 
+                  parent="hr_recruitment.menu_hr_recruitment_configuration"
+                  sequence="218"
+                  action="action_applicant_relation"/>
+        
+        <!-- Applicant Medical -->
+        <record model="ir.ui.view" id="applicant_medical_form_view">
+            <field name="name">applicant.medical.checkup</field>
+            <field name="model">applicant.medical.checkup</field>
+            <field name="arch" type="xml">
+                <form string="Applicant Medical Tests">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="applicant_medical_list_view" model="ir.ui.view">
+            <field name="name">applicant.medical.checkup</field>
+            <field name="model">applicant.medical.checkup</field>
+                <field name="arch" type="xml">
+                    <tree string="Applicant Medical Tests">
+                        <field name="name" />
+                      </tree>
+                </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_applicant_medical">
+            <field name="name">Applicant Medical Tests</field>
+            <field name="res_model">applicant.medical.checkup</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_applicant_medical_id"
+                  name="Medical Tests" 
+                  parent="hr_recruitment.menu_hr_recruitment_configuration"
+                  sequence="219" 
+                  action="action_applicant_medical"/>
+    </data>
+</openerp>

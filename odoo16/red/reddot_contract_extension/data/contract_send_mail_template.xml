@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="contract_reminder_before_60_daya_email_template" model="mail.template">
+            <field name="name">Reminders For Terminate Contract</field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="email_from">{{object.company_id.email}}</field>
+            <field name="email_to">{{object.employee_id.parent_id.work_email}}</field>
+            <field name="subject">Reminder For Contract</field>
+            <field name="body_html" type="html">
+                <div style="font-size: 13px; margin: 0px; padding: 0px;">
+                    <h2>Hello
+                        <t t-out="object.employee_id.parent_id.name"/>
+                    </h2>
+                     <p style="font-size: 14px;">
+
+                        Contract for <t t-out="object.employee_id.name"/> Will Terminate In 60 Days Days
+                    <br></br> Contract End Date Is
+                    <t t-out="object.date_end"/>
+                     </p>
+                    <br/>
+                    <br/>
+                    Thank You,
+                    <br/>
+                    <t t-out="object.company_id.name"/>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

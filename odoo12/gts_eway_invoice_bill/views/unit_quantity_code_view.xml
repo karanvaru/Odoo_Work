@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <record id="tree_unit_quanity_code" model="ir.ui.view">
+        <field name="name">unit.quantity.code.tree</field>
+        <field name="model">unit.quantity.code</field>
+        <field name="arch" type="xml">
+            <tree string="Unit Quantity Code" editable="bottom">
+                <field name="name" required="1"/>
+                <field name="code" required="1"/>
+                <field name="uom" can_create="true" can_write="true" modifiers="{}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_unit_quanity">
+        <field name="name">Unit Quantity Code</field>
+        <field name="res_model">unit.quantity.code</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_action_quantity_code" parent="gst_configuration" action="action_unit_quanity"/>
+</odoo>

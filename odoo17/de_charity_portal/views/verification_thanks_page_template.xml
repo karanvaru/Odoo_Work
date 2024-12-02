@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+<!--        <template id="website_verification_thanks_page" name="Verification Thanks Page">-->
+<!--            <t t-call="website.layout">-->
+<!--                <div style="background: #f6f6f6;">-->
+<!--                    <style>-->
+<!--                        .vendor-form-block { max-width:850px; margin:0 auto 60px; background-color:#FFF;-->
+<!--                        box-shadow:#b1b0b0 0 0px 10px 0px; padding:30px;}-->
+<!--                        .vendor-form-block input, .vendor-form-block select {border-radius:unset;}-->
+<!--                        .vendor-form-block h4 {font-size:18px; font-weight:500!important; margin-bottom:15px;}-->
+<!--                        .vendor-form-block h4 span{font-weight:300!important;}-->
+<!--                        .vendor-form-block button {border-radius:unset; font-size:14px; font-weight:500;-->
+<!--                        letter-spacing:1px; color:#FFF; padding:8px 30px; background-color:#333;-->
+<!--                        text-transform:uppercase;margin-top:30px;}-->
+<!--                    </style>-->
+<!--                    <div class="oe_structure"/>-->
+<!--                    <div class="container" style="text-align: -webkit-center;">-->
+<!--                        <div class="row">-->
+<!--                            <div class="row o_membership_details pt64">-->
+<!--                                <div class="col-lg-12 pt64 pb64 vendor-form-block">-->
+<!--                                    <p>-->
+<!--                                        Welcome to-->
+<!--                                        <b>-->
+<!--                                            <span t-esc="env.company.name"/>-->
+<!--                                        </b>-->
+<!--                                        Client Portal,-->
+<!--                                        <b>-->
+<!--                                            <spna t-esc="partner.name"></spna>-->
+<!--                                        </b>-->
+<!--                                        🎉-->
+<!--                                        <br></br>-->
+<!--                                        Your documents have been sent successfully.-->
+<!--                                        <b>Thank you!</b>-->
+<!--                                    </p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </t>-->
+<!--        </template>-->
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_check_list,access_crm_check_list,model_crm_check_list,sales_team.group_sale_salesman,1,1,1,1
+access_crm_check_history,access_crm_check_history,model_crm_check_history,sales_team.group_sale_salesman,1,1,1,1

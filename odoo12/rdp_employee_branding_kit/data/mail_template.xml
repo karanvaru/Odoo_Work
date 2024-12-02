@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="0">
+        <record id="employee_branding_kit_mail_template_to_employee" model="mail.template">
+            <field name="name">Confirmation from the employee whether items received or not  </field>
+            <field name="subject">Confirmation from the ${object.employee_name_id} whether items received or not </field>
+            <field name="email_to">${object.employee_name_id.work_email}</field>
+            <field name="model_id" ref="rdp_employee_branding_kit.model_employee_branding_kit"/>
+            <field name="auto_delete" eval="True"/>
+           <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>Dear ${object.employee_name_id.name}</p>
+                    <br/><br />
+                    “ Please give your confirmation whether the item has been received or not. If you received the item please click on the below link, it's open a form view in that click on the Confirm by Employee Button. "
+                    <br/><br />
+                    Please click on the link to view
+                    <br></br>
+                    Thank you!!!
+                    <br></br>
+                    <a href ="${object.base_url}/web?debug=1#id=${object.id}&amp;action=596&amp;model=employee.branding.kit&amp;view_type=form&amp;menu_id=86"> Click Here</a>
+<!--                    <a href ="${object.base_url}/web?debug=1#id=${object.id}&amp;action=2585'&amp;model=hr.exit&amp;view_type=form&amp;menu_id=1296" > Click Here</a>-->
+                </div>
+            </field>
+        </record>
+
+        <record id="employee_branding_kit_mail_template_to_hr" model="mail.template">
+            <field name="name">Confirmation Received From the Employee</field>
+            <field name="subject">Confirmation Received From the ${object.employee_name_id.name}</field>
+            <field name="email_to">${object.spoc_id.work_email}</field>
+            <field name="model_id" ref="rdp_employee_branding_kit.model_employee_branding_kit"/>
+            <field name="auto_delete" eval="True"/>
+           <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>Dear ${object.employee_name_id.name}</p>
+                    <br/><br />
+                    “ Confirmation received from the employee the items is received "
+                    <br/><br />
+                    Please click on the link to view
+                    <br></br>
+                    Thank you!!!
+                    <br></br>
+                    <a href ="${object.base_url}/web?debug=1#id=${object.id}&amp;action=596&amp;model=employee.branding.kit&amp;view_type=form&amp;menu_id=86"> Click Here</a>
+<!--                    <a href ="${object.base_url}/web?debug=1#id=${object.id}&amp;action=2585'&amp;model=hr.exit&amp;view_type=form&amp;menu_id=1296" > Click Here</a>-->
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

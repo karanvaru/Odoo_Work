@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data noupdate="1">
+    	
+    	<record id="EDI4" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">EDI4</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="LTN1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">LTN1</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="BHX1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">BHX1</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="LBA1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">LBA1</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="CWL1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">CWL1</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="EUK5" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">EUK5</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="LTN2" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">LTN2</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="GLA1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">GLA1</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="LTN4" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">LTN4</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="XUKD" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">XUKD</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="BHX2" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">BHX2</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="MAN1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">MAN1</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="BHX3" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">BHX3</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="LCY2" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">LCY2</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="LBA2" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">LBA2</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+        <record id="MAN2" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">MAN2</field>
+    		<field name="country_id" ref="base.uk"></field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,2338 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* asterisk_calls
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-28 12:13+0000\n"
+"PO-Revision-Date: 2019-10-28 12:13+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_thanks
+msgid "&amp;times;"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__amaflags
+msgid "AMA flags"
+msgstr ""
+
+#. module: asterisk_calls
+#: selection:res.config.settings,set_caller_name_type:0
+msgid "AMI (Wait)"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_about_menu
+msgid "About"
+msgstr "Over"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__accountcode
+msgid "Account code"
+msgstr "Rekeningcode"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__accountcode
+msgid "Accountcode"
+msgstr "Rekeningcode"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_needaction
+msgid "Action Needed"
+msgstr "Vereist actie"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_channel_menu
+msgid "Active"
+msgstr "Actief"
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_channel
+msgid "Active Call"
+msgstr "Actieve oproep"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/channel.py:430
+#: model:ir.actions.act_window,name:asterisk_calls.asterisk_channel_action
+#, python-format
+msgid "Active Calls"
+msgstr "Actieve oproepen"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Adjust your settings in start_agent.sh and run it."
+msgstr "Pas uw instellingen in start_agent. sh en voer het uit."
+
+#. module: asterisk_calls
+#: model:res.groups,name:asterisk_calls.group_asterisk_calls_admin
+msgid "Administrator"
+msgstr "Beheerder"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Agent"
+msgstr "Gebruiker"
+
+#. module: asterisk_calls
+#: selection:asterisk_calls.call_wizard,call_disposition:0
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__answered
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+msgid "Answered"
+msgstr "Beantwoord"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__app
+msgid "Application"
+msgstr "Sollicitatie"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__app_data
+msgid "Application Data"
+msgstr "Applicatie Data"
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_agent
+msgid "Asterisk Agent"
+msgstr "Asterisk agent"
+
+#. module: asterisk_calls
+#: model:ir.module.category,name:asterisk_calls.module_asterisk_calls_category
+msgid "Asterisk Calls"
+msgstr "Asterisk oproepen"
+
+#. module: asterisk_calls
+#: model:ir.module.category,description:asterisk_calls.module_asterisk_calls_category
+msgid "Asterisk Calls Access Rights"
+msgstr "Asterisk oproepen toegangsrechten"
+
+#. module: asterisk_calls
+#: model:ir.actions.client,name:asterisk_calls.asterisk_calls_addons_action
+msgid "Asterisk Calls Addons"
+msgstr "Asterisk oproepen addons"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_partner__asterisk_calls_count
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_users__asterisk_calls_count
+msgid "Asterisk Calls Count"
+msgstr "Asterisk oproepen tellen"
+
+#. module: asterisk_calls
+#: model:ir.actions.client,name:asterisk_calls.asterisk_calls_support_action
+msgid "Asterisk Calls Support"
+msgstr "Asterisk oproepen ondersteuning"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Asterisk IP address"
+msgstr "Asterisk IP-adres"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:66
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__asterisk_ip_addresses
+#, python-format
+msgid "Asterisk IP address(es)"
+msgstr "Asterisk IP-adres (sen)"
+
+#. module: asterisk_calls
+#: model:res.groups,name:asterisk_calls.group_asterisk_calls_service
+msgid "Asterisk Service"
+msgstr "Asterisk service"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/user.py:49
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_user
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_partner__asterisk_user
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_users__asterisk_user
+#, python-format
+msgid "Asterisk User"
+msgstr "Asterisk gebruiker"
+
+#. module: asterisk_calls
+#: model:ir.actions.server,name:asterisk_calls.callback_ir_actions_server
+#: model:ir.cron,cron_name:asterisk_calls.callback
+#: model:ir.cron,name:asterisk_calls.callback
+msgid "Asterisk callback"
+msgstr "Asterisk terugbellen"
+
+#. module: asterisk_calls
+#: model:ir.actions.server,name:asterisk_calls.cleanup_channels_ir_actions_server
+#: model:ir.cron,cron_name:asterisk_calls.cleanup_channels
+#: model:ir.cron,name:asterisk_calls.cleanup_channels
+msgid "Asterisk cleanup channels"
+msgstr ""
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:53
+#: model:ir.model.fields,help:asterisk_calls.field_res_config_settings__callback_context
+#, python-format
+msgid "Asterisk context for callback calls"
+msgstr "Asterisk context voor bel terug oproepen"
+
+#. module: asterisk_calls
+#: model:ir.actions.server,name:asterisk_calls.delete_calls_ir_actions_server
+#: model:ir.cron,cron_name:asterisk_calls.delete_calls
+#: model:ir.cron,name:asterisk_calls.delete_calls
+msgid "Asterisk delete expired calls"
+msgstr "Asterisk verwijderen verlopen oproepen"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:51
+#: model:ir.model.fields,help:asterisk_calls.field_res_config_settings__queue_exten
+#, python-format
+msgid "Asterisk exten for callback calls"
+msgstr "Asterisk Exten voor bel terug oproepen"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/user.py:184
+#, python-format
+msgid "Asterisk extension is not configured!"
+msgstr "Asterisk extensie is niet geconfigureerd!"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:45
+#: model:ir.model.fields,help:asterisk_calls.field_res_config_settings__callback_queue
+#, python-format
+msgid "Asterisk queue name for callback calls"
+msgstr "Asterisk wachtrij naam voor bel terug oproepen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_attachment_count
+msgid "Attachment Count"
+msgstr "Aantal bijlagen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__auto_reload_channels
+msgid "Auto Reload Channels"
+msgstr "Auto reLoad kanalen"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Auto refresh active calls"
+msgstr "Automatisch vernieuwen actieve oproepen"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:39
+#: model:ir.model.fields,help:asterisk_calls.field_res_config_settings__auto_reload_channels
+#, python-format
+msgid "Automatically refresh active channels view"
+msgstr "De weergave actieve kanalen automatisch vernieuwen"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:36
+#, python-format
+msgid "Available addons"
+msgstr "Beschikbare add-ons"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_partner__average_duration
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_user__average_duration
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_partner__average_duration
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_user__average_duration
+msgid "Average Duration"
+msgstr "Gemiddelde duur"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:423
+#, python-format
+msgid "Bad QoS"
+msgstr "Slechte QoS"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_list
+msgid "Barge"
+msgstr ""
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:9
+#, python-format
+msgid "Bugs, feature requests"
+msgstr ""
+
+#. module: asterisk_calls
+#: selection:asterisk_calls.call_wizard,call_disposition:0
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+msgid "Busy"
+msgstr "Bezet"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_wizard_form
+msgid "Call Destination"
+msgstr "Bestemming bellen"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:68
+#: code:addons/asterisk_calls/wizard/call.py:32
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__duration
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__duration_human
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__duration
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+#, python-format
+msgid "Call Duration"
+msgstr "Gespreksduur"
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_call_wizard
+msgid "Call History Wizard"
+msgstr "Wizard geschiedenis oproepen"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:207
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_call
+#, python-format
+msgid "Call Log"
+msgstr "Oproeplogboek"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_wizard_form
+msgid "Call Options"
+msgstr "Oproepopties"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/user.py:66
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__call_popup_is_enabled
+#, python-format
+msgid "Call Popup"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:mail.channel,name:asterisk_calls.qos_channel
+msgid "Call QoS"
+msgstr "Bel QoS"
+
+#. module: asterisk_calls
+#: model:ir.actions.report,name:asterisk_calls.calls_report_action
+#: model:ir.model,name:asterisk_calls.model_report_asterisk_calls_calls_report
+msgid "Call Report"
+msgstr "Oproep rapport"
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_tag
+msgid "Call Tag"
+msgstr "Oproep tag"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__call_time
+msgid "Call Time"
+msgstr "Gesprekstijd"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.missed_calls_board_view
+msgid "Call Traffic"
+msgstr "Oproep verkeer"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_graph
+msgid "Call by day"
+msgstr "Oproep per dag"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:41
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__callback_interval_minutes
+#, python-format
+msgid "Call interval (minutes)"
+msgstr "Oproep interval (minuten)"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:37
+#: model:ir.model.fields,help:asterisk_calls.field_res_config_settings__calls_keep_days
+#, python-format
+msgid "Call older then set value will be removed"
+msgstr "Oproep ouder dan stel waarde in zal worden verwijderd"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:46
+#, python-format
+msgid "Call status!"
+msgstr "Oproepstatus!"
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.callback_action
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__callback
+#: model:ir.ui.menu,name:asterisk_calls.callback_menu
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_graph
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_search
+msgid "Callback"
+msgstr "Bel terug"
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.callback_calls_action
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_form
+msgid "Callback Calls"
+msgstr "Terugbel oproepen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__callback_days
+msgid "Callback Days"
+msgstr "Terugbel dagen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__callback_number_placeholder
+msgid "Callback Number Placeholder"
+msgstr "Tijdelijke aanduiding voor terugbelnummer"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__callback_order
+msgid "Callback Order"
+msgstr "Terugbel volgorde"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__callback_queue
+msgid "Callback Queue"
+msgstr "Terugbel wachtrij"
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_callback
+msgid "Callback Request"
+msgstr "Terugbelverzoek"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Callback context"
+msgstr "Terugbel context"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Callback daily attempts"
+msgstr "Terugbel dagelijkse pogingen"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Callback days"
+msgstr "Terugbel dagen"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Callback interval minutes"
+msgstr "Terugbel interval minuten"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Callback order"
+msgstr "Terugbel volgorde"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Callback queue"
+msgstr "Terugbel wachtrij"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/channel.py:19
+#: code:addons/asterisk_calls/wizard/call.py:29
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__clid
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__clid
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__callerid
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+#, python-format
+msgid "Caller ID"
+msgstr "Beller ID"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "CallerID name"
+msgstr "Beller ID naam"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__callerid_name
+msgid "Callerid Name"
+msgstr "Beller ID naam"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__callerid_num
+msgid "Callerid Num"
+msgstr "CallerID nr."
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/tag.py:12
+#: model:ir.actions.act_window,name:asterisk_calls.asterisk_calls_lib_calls_action
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_tag__call_count
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_tag__calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_calls_menu
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_lib_calls_menu
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_top_menu
+#: model:ir.ui.menu,name:asterisk_calls.call_wizard_menu
+#: model:ir.ui.menu,name:asterisk_calls.calls_board
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_pivot
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_pivot
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.view_partner_form_1
+#, python-format
+msgid "Calls"
+msgstr "Oproepen"
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.asterisk_calls_action
+msgid "Calls History"
+msgstr "Oproep geschiedenis"
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.call_wizard_action
+msgid "Calls Report"
+msgstr "Oproepenrapport"
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.asterisk_calls_config_settings_action
+msgid "Calls Settings"
+msgstr "Instellingen voor oproepen"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/wizard/call.py:58
+#, python-format
+msgid "Calls from {} to {}"
+msgstr "Oproepen van {} naar {}"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Calls older then specified value are deleted (on daily cron job)."
+msgstr "Oproepen ouder dan gespecificeerde waarde worden geschrapt (op dagelijkse cron job)."
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_wizard_form
+msgid "Cancel"
+msgstr "Annuleren"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:44
+#: code:addons/asterisk_calls/models/channel.py:25
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__channel
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__channel_short
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__channel
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__channel_short
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__channel
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_users__asterisk_channel
+#, python-format
+msgid "Channel"
+msgstr "Kanaal"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Check your asterisk context for users and set it here."
+msgstr "Controleer uw asterisk context voor gebruikers en zet het hier."
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:45
+#, python-format
+msgid "Click2call contact form"
+msgstr "Click2call contactformulier"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.email_not_set
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.email_sent
+msgid "Close"
+msgstr "Sluiten"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Comma separated list of IP address of your Asterisk servers that use\n"
+"                      CURL func to get callerid name."
+msgstr "Komma gescheiden lijst van IP-adres van uw Asterisk servers die gebruik maken van CURL func om CallerID naam te krijgen."
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:67
+#: model:ir.model.fields,help:asterisk_calls.field_res_config_settings__asterisk_ip_addresses
+#, python-format
+msgid "Comma separated list of allowed IP address, leave empty to allow all addresses."
+msgstr "Komma gescheiden lijst van toegestane IP-adres, laat leeg om alle adressen toe te staan."
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configuratie Instellingen"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_conf_menu
+msgid "Configuration"
+msgstr "Configuratie"
+
+#. module: asterisk_calls
+#: selection:asterisk_calls.call_wizard,call_disposition:0
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+msgid "Congestion"
+msgstr "Congestie"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_list
+msgid "Connected"
+msgstr "Verbonden"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__connected_line
+msgid "Connected Line"
+msgstr "Verbonden lijn"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__connected_line_name
+msgid "Connected Line Name"
+msgstr "Verbonden lijn naam"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__connected_line_num
+msgid "Connected Line Num"
+msgstr "Verbonden lijn nr."
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/callback.py:22
+#: model:ir.model,name:asterisk_calls.model_res_partner
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__contact_name
+#, python-format
+msgid "Contact"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__context
+msgid "Context"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_form
+msgid "Convert to Lead"
+msgstr "Converteren naar lead"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_search
+msgid "Converted"
+msgstr "Geconverteerd"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Copy this archive to your Asterisk server and run"
+msgstr "Kopieer dit archief naar uw Asterisk-server en uitvoeren"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_partner__count
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_user__count
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_partner__count
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_user__count
+msgid "Count"
+msgstr "Aantal"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user_notification__created
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_list
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_search
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.lib_tag_form_view
+msgid "Created"
+msgstr "Aangemaakt"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.lib_tag_form_view
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.lib_tag_tree_view
+msgid "Created By"
+msgstr "Aangemaakt door"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__create_uid
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__create_uid
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__create_uid
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__create_uid
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_tag__create_uid
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__create_uid
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__create_date
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__create_date
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__create_date
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__create_date
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_tag__create_date
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__create_date
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_statistics_custom
+msgid "Custom"
+msgstr "Aangepast"
+
+#. module: asterisk_calls
+#: selection:res.config.settings,callback_order:0
+msgid "Customer first"
+msgstr "Klant eerst"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.daily_calls_board_menu
+msgid "Daily"
+msgstr "Dagelijks"
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.daily_calls_board_action
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.daily_calls_board_view
+msgid "Daily Calls"
+msgstr "Dagelijkse gesprekken"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:42
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__callback_daily_attempts
+#, python-format
+msgid "Daily attempts"
+msgstr "Dagelijkse pogingen"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:70
+#: selection:res.config.settings,recording_storage:0
+#, python-format
+msgid "Database"
+msgstr ""
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:45
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__dstchannel_short
+#, python-format
+msgid "Dest channel"
+msgstr ""
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/wizard/call.py:25
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__dst
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__dst
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+#, python-format
+msgid "Destination"
+msgstr "Bestemming"
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_stats_dst_partner
+msgid "Destination Partner Stats"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_stats_dst_user
+msgid "Destination User Stats"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__dstchannel
+msgid "Destination channel"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__dcontext
+msgid "Destination context"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_user_list
+msgid "Dial"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Dial timeout on originated calls (seconds)."
+msgstr ""
+
+#. module: asterisk_calls
+#: selection:res.config.settings,set_caller_name_type:0
+msgid "Dialplan (CURL)"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__display_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__display_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__display_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__display_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_partner__display_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_user__display_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_partner__display_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_user__display_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_tag__display_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__display_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user_notification__display_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_util__display_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_report_asterisk_calls_calls_report__display_name
+msgid "Display Name"
+msgstr "Schermnaam"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/wizard/call.py:22
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__disposition
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__call_disposition
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__disposition
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+#, python-format
+msgid "Disposition"
+msgstr ""
+
+#. module: asterisk_calls
+#: selection:asterisk_calls.callback,status:0
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_search
+msgid "Done"
+msgstr "Gereed"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:48
+#: code:addons/asterisk_calls/models/call.py:49
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__recording_attachment
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__recording_data
+#, python-format
+msgid "Download"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Download Asterisk Agent"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__duration
+msgid "Duration"
+msgstr "Tijdsduur"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:20
+#, python-format
+msgid "E-mail Subscription"
+msgstr "E-mail abonnement"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__email
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_form
+msgid "Email"
+msgstr "E-mail"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Enable Google ReCaptacha for website callback form."
+msgstr "Activeer Google ReCaptacha voor website Terugbel formulier."
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:61
+#: model:ir.model.fields,help:asterisk_calls.field_res_config_settings__recaptcha_enabled
+#, python-format
+msgid "Enable Google ReCaptcha service"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__end_date
+msgid "End Date"
+msgstr "Einddatum"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__ended
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__ended
+msgid "Ended"
+msgstr "Beëindigd"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.lib_calls_form_view
+msgid "Enter your notes here..."
+msgstr "Vul hier uw notities in..."
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__event
+msgid "Event"
+msgstr ""
+
+#. module: asterisk_calls
+#: selection:asterisk_calls.callback,status:0
+msgid "Expired"
+msgstr "Vervallen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__exten
+msgid "Exten"
+msgstr ""
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/res_partner.py:25
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__extension
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_partner__asterisk_extension
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_users__asterisk_extension
+#, python-format
+msgid "Extension"
+msgstr "Extensie"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/channel.py:330
+#: code:addons/asterisk_calls/models/channel.py:346
+#: code:addons/asterisk_calls/models/channel.py:363
+#: code:addons/asterisk_calls/models/channel.py:379
+#, python-format
+msgid "Extension not configured!"
+msgstr "Extensie niet geconfigureerd!"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Extension of this queue to be dialed from originate context."
+msgstr "De extensie van deze wachtrij die moet worden gekozen uit de context van Origin."
+
+#. module: asterisk_calls
+#: selection:asterisk_calls.call_wizard,call_disposition:0
+#: selection:asterisk_calls.callback,status:0
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_search
+msgid "Failed"
+msgstr "Mislukt"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_wizard_form
+msgid "Fields"
+msgstr "Velden"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:71
+#: selection:res.config.settings,recording_storage:0
+#, python-format
+msgid "Files"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_follower_ids
+msgid "Followers"
+msgstr "Volgers"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Volgers (Kanalen)"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Volgers (Relaties)"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:10
+#, python-format
+msgid "For bugs and feature requests please send email to"
+msgstr "Voor bugs en Feature Requests stuur dan een email naar"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/channel.py:16
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__src_user
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_list
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#, python-format
+msgid "From"
+msgstr "Van"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__from_partner
+msgid "From Partner"
+msgstr "Van partner"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:34
+#: code:addons/asterisk_calls/wizard/call.py:26
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__src_user
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__from_user
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__src_user
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+#, python-format
+msgid "From User"
+msgstr "Van Gebruiker"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:57
+#: model:ir.model.fields,help:asterisk_calls.field_res_config_settings__recaptcha_key
+#, python-format
+msgid "Get your key here: https://www.google.com/recaptcha/admin"
+msgstr "Haal je sleutel hier: https://www.google.com/recaptcha/admin"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:59
+#: model:ir.model.fields,help:asterisk_calls.field_res_config_settings__recaptcha_secret
+#, python-format
+msgid "Get your secret here: https://www.google.com/recaptcha/admin"
+msgstr "Haal je geheim hier: https://www.google.com/recaptcha/admin"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_list
+msgid "Hangup"
+msgstr "Ophangen"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_history_menu
+msgid "History"
+msgstr "Geschiedenis"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "How long is the interval between dial out attempts."
+msgstr "Hoe lang is het interval tussen inbelpogingen."
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "How many days try to complete a website callback request."
+msgstr "Hoeveel dagen proberen om een website terugbelverzoek te voltooien."
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "How many times per day try to dial out for callback requests."
+msgstr "Hoeveel keer per dag proberen uit te bellen voor terugbelverzoeken."
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__id
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__id
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__id
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__id
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_partner__id
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_user__id
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_partner__id
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_user__id
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_tag__id
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__id
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user_notification__id
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_util__id
+#: model:ir.model.fields,field_description:asterisk_calls.field_report_asterisk_calls_calls_report__id
+msgid "ID"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,help:asterisk_calls.field_asterisk_calls_call__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Indien aangevinkt vragen nieuwe berichten uw aandacht."
+
+#. module: asterisk_calls
+#: model:ir.model.fields,help:asterisk_calls.field_asterisk_calls_call__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Indien aangevinkt vragen nieuwe berichten uw aandacht."
+
+#. module: asterisk_calls
+#: model:ir.model.fields,help:asterisk_calls.field_asterisk_calls_call__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "indien aangevinkt hebben sommige leveringen een fout."
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_error
+msgid "If you have an emergency, do not hesitate to contact us by phone:"
+msgstr "Als u een noodsituatie, aarzel dan niet om ons te contacteren via de telefoon:"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__in_library
+msgid "In Library"
+msgstr "In bibliotheek"
+
+#. module: asterisk_calls
+#: selection:asterisk_calls.callback,status:0
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_search
+msgid "In Progress"
+msgstr "In behandeling"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_statistics_incoming_menu
+#: model:ir.ui.menu,name:asterisk_calls.incoming_calls_board
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_search
+msgid "Incoming"
+msgstr "Inkomend"
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.incoming_calls_board_action
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.incoming_call_board_view
+msgid "Incoming Calls"
+msgstr "Inkomende oproepen"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/channel.py:297
+#, python-format
+msgid "Incoming call"
+msgstr "Inkomende oproep"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/user.py:170
+#, python-format
+msgid "Incorrect alert info header format!"
+msgstr "Onjuiste alert info header formaat!"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__is_asterisk_admin
+msgid "Is Asterisk Admin"
+msgstr "Is asterisk admin"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_is_follower
+msgid "Is Follower"
+msgstr "Is een volger"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__is_own_record
+msgid "Is Own Record"
+msgstr "Is eigen record"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:36
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__calls_keep_days
+#, python-format
+msgid "Keep days"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user_notification__key
+msgid "Key"
+msgstr "Sleutel"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__language
+msgid "Language"
+msgstr "Taal"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call____last_update
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard____last_update
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback____last_update
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel____last_update
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_partner____last_update
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_user____last_update
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_partner____last_update
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_user____last_update
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_tag____last_update
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user____last_update
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user_notification____last_update
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_util____last_update
+#: model:ir.model.fields,field_description:asterisk_calls.field_report_asterisk_calls_calls_report____last_update
+msgid "Last Modified on"
+msgstr "Laatst gewijzigd op"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__last_retry
+msgid "Last Retry"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__write_uid
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__write_uid
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__write_uid
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__write_uid
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_tag__write_uid
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__write_uid
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__write_date
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__write_date
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__write_date
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__write_date
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_tag__write_date
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__write_date
+msgid "Last Updated on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__lastapp
+msgid "Last app"
+msgstr "Laatste app"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__lastdata
+msgid "Last data"
+msgstr "Laatste gegevens"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/callback.py:40
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__lead_id
+#, python-format
+msgid "Lead"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_form
+msgid "Let us call you by phone"
+msgstr "Laat ons telefonisch bellen"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:43
+#, python-format
+msgid "Let your website visitors be called from your Asterisk!"
+msgstr "Laat uw websitebezoekers worden opgeroepen van uw asterisk!"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_lib_menu
+msgid "Library"
+msgstr "Bibliotheek"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__linkedid
+msgid "Linked ID"
+msgstr "Gekoppelde ID"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__linkedid
+msgid "Linkedid"
+msgstr "Gekoppelde ID"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_list
+msgid "Listen"
+msgstr "Luister"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:87
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__lp
+#, python-format
+msgid "Local Lost Packets"
+msgstr "Lokale verloren pakketten"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.lib_calls_form_view
+msgid "Log"
+msgstr "Versturen"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_form
+msgid "Main"
+msgstr "Hoofd"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Hoofd bijlage"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_has_error
+msgid "Message Delivery error"
+msgstr "Bericht afleverfout"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_ids
+msgid "Messages"
+msgstr "Berichten"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.missed_calls_board_menu
+msgid "Missed"
+msgstr "Gemist"
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.missed_calls_board_action
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.missed_calls_board_view
+msgid "Missed Calls"
+msgstr "Gemiste oproepen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__missed_calls_notify
+msgid "Missed Calls Notify"
+msgstr "Gemiste oproepen melden"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:314
+#, python-format
+msgid "Missed call notification"
+msgstr "Gemiste oproep melding"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_partner__mobile
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_users__mobile
+msgid "Mobile"
+msgstr "Mobiel"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:53
+#, python-format
+msgid "More addons coming soon..."
+msgstr "Meer addons binnenkort..."
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_list
+msgid "Mute"
+msgstr "Dempen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__is_muted
+msgid "Muted"
+msgstr "Gedempt"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+msgid "My Answered"
+msgstr "Mijn antwoord"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+msgid "My Calls"
+msgstr "Mijn oproepen"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+msgid "My Incoming"
+msgstr "Mijn inkomende"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+msgid "My Missed"
+msgstr "Mijn gemiste"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+msgid "My Outgoing"
+msgstr "Mijn uitgaande"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_tag__name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__name
+msgid "Name"
+msgstr "Naam"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+msgid "No Partner"
+msgstr "Geen partner"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/controllers/main.py:122
+#: code:addons/asterisk_calls/controllers/main.py:125
+#, python-format
+msgid "No ReCaptcha response"
+msgstr "Geen reCAPTCHA reactie"
+
+#. module: asterisk_calls
+#: selection:asterisk_calls.call_wizard,call_disposition:0
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+msgid "No answer"
+msgstr "Geen antwoord"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:38
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__notes
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__notes_short
+#, python-format
+msgid "Notes"
+msgstr "Notities"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/user.py:63
+#: model:ir.model.fields,help:asterisk_calls.field_asterisk_calls_user__missed_calls_notify
+#, python-format
+msgid "Notify user on missed calls."
+msgstr "Informeer gebruiker over gemiste oproepen."
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Aantal acties"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_has_error_counter
+msgid "Number of error"
+msgstr "Aantal foutmeldingen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,help:asterisk_calls.field_asterisk_calls_call__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Aantal berichten die actie vereisen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,help:asterisk_calls.field_asterisk_calls_call__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Aantal berichten met leveringsfout"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,help:asterisk_calls.field_asterisk_calls_call__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Aantal ongelezen berichten"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:41
+#: model:ir.model.fields,help:asterisk_calls.field_asterisk_calls_call__is_private
+#, python-format
+msgid "Only call party will have access."
+msgstr "Alleen Call Party zal toegang hebben."
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_list
+msgid "Open"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__open_partner_form
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_users__asterisk_open_partner_form
+msgid "Open Partner Form"
+msgstr "Open partner formulier"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/user.py:65
+#: model:ir.model.fields,help:asterisk_calls.field_asterisk_calls_user__open_partner_form
+#: model:ir.model.fields,help:asterisk_calls.field_res_users__asterisk_open_partner_form
+#, python-format
+msgid "Open partner form on incoming calls from partner"
+msgstr "Open partner formulier voor inkomende oproepen van partner"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__originate_context
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Originate Context"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__originate_strip_plus
+msgid "Originate Strip Plus"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__originate_timeout
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Originate Timeout"
+msgstr ""
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:52
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__callback_context
+#, python-format
+msgid "Originate context"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Originate context for website callback calls where customer numbers\n"
+"                      can be dialed out."
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Originate settings"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__rxjitter
+msgid "Our Jitter"
+msgstr "Onze jitter"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_form
+msgid "Our Receiver"
+msgstr "Onze ontvanger"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:82
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__ssrc
+#, python-format
+msgid "Our Synchronization source"
+msgstr "Onze synchronisatie bron"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_statistics_outgoing_menu
+#: model:ir.ui.menu,name:asterisk_calls.outgoing_calls_board
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_search
+msgid "Outgoing"
+msgstr "Uitgaand"
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.outgoing_calls_board_action
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.outgoing_call_board_view
+msgid "Outgoing Calls"
+msgstr "Uitgaande gesprekken"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:221
+#: code:addons/asterisk_calls/models/callback.py:23
+#: code:addons/asterisk_calls/wizard/call.py:28
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__partner
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__partner
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__partner_name
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__partner
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_partner__partner
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_partner__partner
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+#, python-format
+msgid "Partner"
+msgstr "Relatie"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/res_partner.py:262
+#, python-format
+msgid "Partner ID not defined!"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.asterisk_calls_partner_action
+msgid "Partner calls"
+msgstr "Partner oproepen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,help:asterisk_calls.field_asterisk_calls_user__partner
+msgid "Partner-related data of the user"
+msgstr "Relatie gerelateerde gegevens van de gebruiker"
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.stats_dst_partner_action
+#: model:ir.actions.act_window,name:asterisk_calls.stats_src_partner_action
+#: model:ir.ui.menu,name:asterisk_calls.stats_dst_partner_menu
+#: model:ir.ui.menu,name:asterisk_calls.stats_src_partner_menu
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_search
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.incoming_call_board_view
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.outgoing_call_board_view
+msgid "Partners"
+msgstr "Relaties"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__peeraccount
+msgid "Peer account"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__phone
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_partner__phone
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_users__phone
+msgid "Phone"
+msgstr "Telefoon"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_partner__phone_extension
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_users__phone_extension
+msgid "Phone Extension"
+msgstr "Telefoon uitbreiding"
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_phone_validation_mixin
+msgid "Phone Validation Mixin"
+msgstr ""
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/res_partner.py:260
+#: code:addons/asterisk_calls/models/user.py:182
+#, python-format
+msgid "Phone number not set!"
+msgstr "Telefoonnummer niet ingesteld!"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_list
+msgid "Pickup"
+msgstr "Opnemen"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:47
+#: model:ir.model.fields,help:asterisk_calls.field_res_config_settings__callback_order
+#, python-format
+msgid "Place the call to queue and then try to connect to customer or place the call to customer and then put it in the queue."
+msgstr "Plaats de oproep in de wachtrij en probeer verbinding te maken met de klant of plaats de oproep aan de klant en zet deze vervolgens in de wachtrij."
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_form
+msgid "Please enter your phone number and wait for a call."
+msgstr "Geef uw telefoonnummer op en wacht op een gesprek."
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.email_not_set
+msgid "Please set your email address in user's preferences."
+msgstr "Stuur uw e-mail adres in de voorkeuren van de gebruiker."
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:47
+#, python-format
+msgid "Postiion in the call queue!"
+msgstr "Postiion in de oproep wachtrij!"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/res_partner.py:27
+#: model:ir.model.fields,help:asterisk_calls.field_res_partner__phone_extension
+#: model:ir.model.fields,help:asterisk_calls.field_res_users__phone_extension
+#, python-format
+msgid "Prefix with # to add 1 second pause before entering. Every # adds 1 second pause. Example: ###1001"
+msgstr "Prefix met # toe te voegen 1 seconde pauze voor het invoeren. Elke # voegt 1 seconde pauze. Voorbeeld: # # #1001"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_search
+msgid "Previous month"
+msgstr "Vorige maand"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_form
+msgid "Primary"
+msgstr "Primair"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__priority
+msgid "Priority"
+msgstr "Prioriteit"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:40
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__is_private
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#, python-format
+msgid "Private"
+msgstr "Privé"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__is_qos_bad
+msgid "QoS"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_form
+msgid "Quality"
+msgstr "Kwaliteit"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__queue
+msgid "Queue"
+msgstr "Wachtrij"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__queue_exten
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__queue_exten
+msgid "Queue Exten"
+msgstr "Wachtrij Exten"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Queue extension"
+msgstr "Wachtrij-extensie"
+
+#. module: asterisk_calls
+#: selection:res.config.settings,callback_order:0
+msgid "Queue first"
+msgstr "Eerste wachtrij"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Queue name from your Asterisk for website callback."
+msgstr "Wachtrijnaam van uw asterisk voor de website terugbellen."
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "ReCaptcha enabled"
+msgstr "ReCAPTCHA ingeschakeld"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "ReCaptcha settings"
+msgstr "ReCAPTCHA-instellingen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__rxcount
+msgid "Received Packets"
+msgstr "Ontvangen pakketten"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.lib_calls_form_view
+msgid "Recording"
+msgstr "Opname"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__recording_filename
+msgid "Recording Filename"
+msgstr "Opname bestandsnaam"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__recording_icon
+msgid "Recording Icon"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__recording_storage
+msgid "Recording Storage"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__recording_widget
+msgid "Recording Widget"
+msgstr "Opname widget"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+msgid "Recordings"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Recordings storage"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__partner
+msgid "Related Partner"
+msgstr "Gekoppelde relatie"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:88
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__rlp
+#, python-format
+msgid "Remote Lost Packets"
+msgstr "Verloren pakketten op afstand"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_form
+msgid "Request a call"
+msgstr "Vraag een oproep"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Restart Asterisk Agent"
+msgstr "Herstart asterisk agent"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_form
+msgid "Retry"
+msgstr "Opnieuw proberen"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:91
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__rtt
+#, python-format
+msgid "Round Trip Time"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__sip_alert_info
+msgid "SIP Alert-info"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "See"
+msgstr "Bekijken"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:39
+#, python-format
+msgid "See Asterisk calls addons on Odoo App Market"
+msgstr "See Asterisk calls addons on System App Market"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+msgid "Selected calls"
+msgstr "Geselecteerde oproepen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__sequence
+msgid "Sequence"
+msgstr "Reeks"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__set_caller_name_type
+msgid "Set Caller Name Type"
+msgstr "Naam type van beller instellen"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Set CallerID type"
+msgstr "Type beller ID instellen"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_config_settings_menu
+msgid "Settings"
+msgstr "Instellingen"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:22
+#, python-format
+msgid "Signup for updates"
+msgstr "Aanmelden voor updates"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/wizard/call.py:24
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__src
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__src
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+#, python-format
+msgid "Source"
+msgstr "Bron"
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_stats_src_partner
+msgid "Source Partner Stats"
+msgstr "Bron partner stats"
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_stats_src_user
+msgid "Source User Stats"
+msgstr "Brongebruiker stats"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__start_date
+msgid "Start Date"
+msgstr "Startdatum"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__start_time
+msgid "Start Time"
+msgstr "Starttijd"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__started
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__started
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+msgid "Started"
+msgstr "Gestart"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/channel.py:32
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__state
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__state_desc
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_list
+#, python-format
+msgid "State"
+msgstr "Status"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_statistics_menu
+msgid "Statistics"
+msgstr "Statistieken"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__status
+msgid "Status"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__status_description
+msgid "Status Description"
+msgstr "Status beschrijving"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/user.py:68
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__call_popup_is_sticky
+#, python-format
+msgid "Sticky Messages"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Store calls (days)"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Store calls in database or as attachments in Odoo's filestore folder."
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Strip + before sending to Asterisk, e.g. +1234567890 -&gt; 1234567890"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Strip plus"
+msgstr ""
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/callback.py:20
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__subject
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__subject_short
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_form
+#, python-format
+msgid "Subject"
+msgstr "Onderwerp"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_wizard_form
+msgid "Submit"
+msgstr "Verstuur"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:21
+#, python-format
+msgid "Subscribe to Asterisk calls's mailing list to get updates:"
+msgstr "Abonneren op asterisk calls mailinglijst om updates te krijgen:"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.email_not_set
+msgid "Subscription error"
+msgstr "Fout bij abonnement"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.email_sent
+msgid "Subscription successful"
+msgstr "Abonnement succesvol"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_support_menu
+msgid "Support"
+msgstr "Ondersteuning"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Sync"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__system_name
+msgid "System Name"
+msgstr "Systeemnaam"
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.tag_calls_action
+msgid "Tag Calls"
+msgstr "Label oproepen"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.lib_tag_form_view
+msgid "Tag name..."
+msgstr ""
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:30
+#: model:ir.actions.act_window,name:asterisk_calls.asterisk_calls_lib_tags_action
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__tags
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__tags_list
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_lib_tags_menu
+#, python-format
+msgid "Tags"
+msgstr "Labels"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/wizard/call.py:33
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__billsec
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+#, python-format
+msgid "Talk Duration"
+msgstr "Gespreksduur"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:71
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__billsec
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__billsec_human
+#, python-format
+msgid "Talk Time"
+msgstr "Gesprekstijd"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_form
+msgid "Technical"
+msgstr "Technisch"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:17
+#, python-format
+msgid "Telegram chat"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_thanks
+msgid "Thanks!"
+msgstr "Bedankt!"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/user.py:74
+#: sql_constraint:asterisk_calls.user:0
+#, python-format
+msgid "The extension must be unique !"
+msgstr "De uitbreiding moet uniek zijn!"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/util.py:48
+#: sql_constraint:asterisk_calls.user_notification:0
+#, python-format
+msgid "The key must be unique !"
+msgstr "De sleutel moet uniek zijn!"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/tag.py:15
+#: sql_constraint:asterisk_calls.tag:0
+#, python-format
+msgid "The name must be unique!"
+msgstr "De naam moet uniek zijn!"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/user.py:75
+#: sql_constraint:asterisk_calls.user:0
+#, python-format
+msgid "The user already has an extension!"
+msgstr "De gebruiker heeft al een extensie!"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__txjitter
+msgid "Their Jitter"
+msgstr "Hun jitter"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_form
+msgid "Their Sender"
+msgstr "Hun afzender"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:86
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__themssrc
+#, python-format
+msgid "Their Synchronization source"
+msgstr "Hun synchronisatie bron"
+
+#. module: asterisk_calls
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_calls_statistics_this_month_menu
+msgid "This Month"
+msgstr "Deze maand"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_search
+msgid "This Week"
+msgstr "Deze week"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_search
+msgid "This month"
+msgstr "Deze maand"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+msgid "This year"
+msgstr "Dit jaar"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__timestamp
+msgid "Timestamp"
+msgstr "Tijdstempel"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:14
+#, python-format
+msgid "Tips & tricks"
+msgstr ""
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/channel.py:17
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__dst_user
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_list
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#, python-format
+msgid "To"
+msgstr "Aan"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__to_partner
+msgid "To Partner"
+msgstr "Aan partner"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:36
+#: code:addons/asterisk_calls/wizard/call.py:27
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__dst_user
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__dst_user
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call_wizard__to_user
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+#, python-format
+msgid "To User"
+msgstr "Naar gebruiker"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:15
+#, python-format
+msgid "To talk about Asterisk calls join our"
+msgstr "Om te praten over asterisk calls join our"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_search
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_search
+msgid "Today"
+msgstr "Vandaag"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_partner__total_duration
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_user__total_duration
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_partner__total_duration
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_user__total_duration
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_list
+msgid "Total Duration"
+msgstr "Totale duur"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+msgid "Total call duration:"
+msgstr "Totale gespreksduur:"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+msgid "Total calls:"
+msgstr "Totaal aantal oproepen:"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.calls_report
+msgid "Total talk duration:"
+msgstr "Totale gespreksduur:"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__txcount
+msgid "Transmitted Packets"
+msgstr "Verzonden pakketten"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_callback__uid
+msgid "Uid"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__uniqueid
+msgid "Unique ID"
+msgstr "Unieke id"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_channel__uniqueid
+msgid "Uniqueid"
+msgstr ""
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/res_partner.py:171
+#, python-format
+msgid "Unknown"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_list
+msgid "Unmute"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_unread
+msgid "Unread Messages"
+msgstr "Ongelezen berichten"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Aantal ongelezen berichten"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/reports/incoming.py:37
+#: code:addons/asterisk_calls/reports/outgoing.py:37
+#: model:ir.actions.act_window,name:asterisk_calls.asterisk_user_action
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_dst_user__dst_user
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_stats_src_user__src_user
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_user__user
+#: model:res.groups,name:asterisk_calls.group_asterisk_calls_user
+#, python-format
+msgid "User"
+msgstr "Gebruiker"
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_user_notification
+msgid "User Notifications"
+msgstr "Gebruikers meldingen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__userfield
+msgid "Userfield"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.actions.act_window,name:asterisk_calls.stats_dst_user_action
+#: model:ir.actions.act_window,name:asterisk_calls.stats_src_user_action
+#: model:ir.model,name:asterisk_calls.model_res_users
+#: model:ir.ui.menu,name:asterisk_calls.asterisk_user_admin_menu
+#: model:ir.ui.menu,name:asterisk_calls.stats_dst_user_menu
+#: model:ir.ui.menu,name:asterisk_calls.stats_src_user_menu
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.incoming_call_board_view
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.outgoing_call_board_view
+msgid "Users"
+msgstr "Gebruikers"
+
+#. module: asterisk_calls
+#: model:ir.model,name:asterisk_calls.model_asterisk_calls_util
+msgid "Util AbstractModel"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.callback_form
+msgid "Visit Lead"
+msgstr "Bezoek lead"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:50
+#, python-format
+msgid "Visit app page"
+msgstr "Bezoek app pagina"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_form
+msgid "We can contact you regarding anything related to our company or services."
+msgstr "Wij kunnen contact met u opnemen over alles wat verband houdt met ons bedrijf of diensten."
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_thanks
+msgid "We will call back to you shortly."
+msgstr "Wij zullen u binnenkort terug bellen."
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:55
+#: model:ir.model.fields,help:asterisk_calls.field_res_config_settings__callback_number_placeholder
+#, python-format
+msgid "Web form placeholder for the phone field"
+msgstr "Plaatsaanduiding voor webformulieren voor het veld telefoon"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Website Callback"
+msgstr "Website terug bellen"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_asterisk_calls_call__website_message_ids
+msgid "Website Messages"
+msgstr "Website berichten"
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:42
+#, python-format
+msgid "Website click2call contact form"
+msgstr "Website Click2Call contactformulier"
+
+#. module: asterisk_calls
+#: model:ir.model.fields,help:asterisk_calls.field_asterisk_calls_call__website_message_ids
+msgid "Website communication history"
+msgstr "Website communicatie geschiedenis"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_form
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_channel_list
+msgid "Whisper"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "Who is dialed first - customer or queue."
+msgstr "Wie wordt gekozen als eerste klant of wachtrij."
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:147
+#, python-format
+msgid "You cannot add priviate call to the Library!"
+msgstr "U kan privé bellen niet toevoegen aan de bibliotheek!"
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:315
+#, python-format
+msgid "You have a missed call from {}"
+msgstr "U hebt een gemiste oproep van {}"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "You may need to disable automatic refresh on high calls load."
+msgstr "Mogelijk moet u automatisch vernieuwen uitschakelen bij laden hoge oproepen."
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/settings.py:114
+#, python-format
+msgid "You must be Calls administrator to do it!"
+msgstr ""
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/call.py:139
+#, python-format
+msgid "You must be admin or one part of the call to change it!"
+msgstr "Je moet admin of een deel van de oproep om het te veranderen!"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "You should get a notification from Agent that it was started again."
+msgstr "U zou een bericht van agent moeten krijgen dat het opnieuw werd begonnen."
+
+#. module: asterisk_calls
+#: code:addons/asterisk_calls/models/callback.py:190
+#: code:addons/asterisk_calls/models/callback.py:218
+#, python-format
+msgid "You should install CRM app first!"
+msgstr "Installeer eerst CRM app!"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_form
+msgid "Your Company"
+msgstr "Uw bedrijf"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_form
+msgid "Your Name"
+msgstr "Uw naam"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_form
+msgid "Your Phone Number"
+msgstr "Uw Telefoonnummer"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_thanks
+msgid "Your call request has been sent successfully."
+msgstr "Uw gespreksaanvraag is verzonden."
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.email_sent
+msgid "Your request to sign up address"
+msgstr "Uw verzoek tot inschrijvingsadres"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "documentation"
+msgstr "documentatie"
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "for\n"
+"                      dialplan configuration options."
+msgstr "voor dialplan configuratieopties."
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.email_sent
+msgid "is sent to Asterisk Calls's updates mailing list."
+msgstr "wordt verzonden naar updates asterisk oproepen mailinglijst."
+
+#. module: asterisk_calls
+#. openerp-web
+#: code:addons/asterisk_calls/static/src/xml/support.xml:11
+#, python-format
+msgid "odooist@gmail.com"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_call_list
+msgid "open"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.asterisk_calls_settings_form
+msgid "pip install -r requirements.txt"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__recaptcha_enabled
+msgid "reCAPTCHA enabled"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__recaptcha_key
+msgid "reCAPTCHA key"
+msgstr ""
+
+#. module: asterisk_calls
+#: model:ir.model.fields,field_description:asterisk_calls.field_res_config_settings__recaptcha_secret
+msgid "reCAPTCHA secret"
+msgstr ""
+
+#. module: asterisk_calls
+#: model_terms:ir.ui.view,arch_db:asterisk_calls.call_us_form
+msgid "your@email.address.com"
+msgstr ""
+

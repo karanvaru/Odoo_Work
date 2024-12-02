@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="al_pos_pending_sales.SearchBar" t-inherit="point_of_sale.SearchBar" t-inherit-mode="extension">
+        <xpath expr="//div[contains(@class, 'search position-relative h-100 d-flex flex-grow-1')]"
+               position="attributes">
+            <attribute name="t-if">0</attribute>
+        </xpath>
+    </t>
+</templates>

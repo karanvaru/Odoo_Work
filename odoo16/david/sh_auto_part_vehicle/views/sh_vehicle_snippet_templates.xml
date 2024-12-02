@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<!-- =============================
+    	Selection Search style 1
+    ============================== -->
+	<template id="sh_motorcycle_selection_snippet_tmpl_1" name="Selecion Search 1">
+		<section id="sh_motorcycle_snippet_section_1">
+			<div class="container">
+				<section id="id_sh_motorcycle_search_div" class="justify-content-center" style='    background-image: url(/sh_auto_part_vehicle/static/src/img/ezgif.com-gif-maker.png);
+    background-size: cover;
+    background-position: 50% 62%;
+    background-repeat: no-repeat;'>
+					<div class='head_sec'>
+						<h4 class="head d-inline" style="display: block;">i'm looking for</h4>
+						<div style='display: inline-block;'>
+							<div class="cls_sh_motorcycle_snippet_login">
+								<a href="/web/login" class="btn btn-secondary id_sh_motorcycle_snippet_login_to_acc_garage_link" role="button">My Garage</a>
+							</div>
+
+							<div class="dropdown id_sh_motorcycle_snippet_select_saved_bike_dropdown">
+
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="id_sh_motorcycle_select_saved_bike_btn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                            My Garage
+		                        </button>
+								<div class="dropdown-menu id_sh_motorcycle_snippet_select_saved_bike_div" aria-labelledby="id_sh_motorcycle_select_saved_bike_btn">
+									<a class="dropdown-item" href="#">Action</a>
+									<a class="dropdown-item" href="#">Another action</a>
+									<a class="dropdown-item" href="#">Something else here</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<form id="id_sh_motorcycle_search_form" class="" action="/shop" method="get">
+						<div class='row'>
+							<div class="col-lg-3 col-md-6">
+								<div>
+									<label for="id_sh_motorcycle_type_select">Type</label>
+									<select name="type" class="form-control id_sh_motorcycle_type_select">
+										<option value="" class='blank'>Select Here...</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-lg-3 col-md-6">
+								<div>
+									<label for="id_sh_motorcycle_make_select">Make</label>
+									<select name="make" class="form-control id_sh_motorcycle_make_select">
+										<option value="" class='blank'>Select Here...</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-lg-3 col-md-6">
+								<div>
+									<label for="id_sh_motorcycle_model_select">Model</label>
+									<select name="model" class="form-control id_sh_motorcycle_model_select">
+										<option value="" class='blank'>Select Here...</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-lg-3 col-md-6">
+								<div>
+									<label for="id_sh_motorcycle_year_select">Year</label>
+									<select name="year" class="form-control id_sh_motorcycle_year_select">
+										<option value="" class='blank'>Select Here...</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div>
+							<input type="hidden" class='id_input_sh_moto_categ_id' name="category" value="" />
+
+							<button id="id_sh_motorcycle_go_submit_button" type="submit" class="btn btn-primary">
+								<span>Search</span>
+							</button>
+						</div>
+					</form>
+				</section>
+			</div>
+		</section>
+	</template>
+
+	<!-- =============================
+    	Selection Search style 1
+    ============================== -->
+
+	<!-- =============================
+    	Selection Search style 2
+    ============================== -->
+	<template id="sh_motorcycle_selection_snippet_tmpl_2" name="Selecion Search 2">
+		<section id="sh_motorcycle_snippet_section_2">
+
+
+			<div class="container">
+				<div>
+					<form id="id_sh_motorcycle_search_form" class="" action="/shop" method="get">
+						<div class='row'>
+							<div class='col-lg-3 col-md-6'>
+								<div class="sh_op_1">
+									<div class="sh_sub_icon">
+										<span class="fa fa-cogs"></span>
+									</div>
+									<div class="sh_sub_icon_2">
+										<span class="fa fa-chevron-down"></span>
+									</div>
+									<select name="type" class="form-control id_sh_motorcycle_type_select">
+										<option value="" class='blank'>Select Here...</option>
+									</select>
+								</div>
+							</div>
+							<div class='col-lg-3 col-md-6'>
+								<div class="sh_op_1">
+									<div class="sh_sub_icon">
+										<span class="fa fa-globe"></span>
+									</div>
+									<div class="sh_sub_icon_2">
+										<span class="fa fa-chevron-down"></span>
+									</div>
+									<select name="make" class="form-control id_sh_motorcycle_make_select">
+										<option value="" class='blank'>Select Here...</option>
+									</select>
+								</div>
+							</div>
+							<div class='col-lg-3 col-md-6'>
+								<div class="sh_op_1">
+									<div class="sh_sub_icon">
+										<span class="fa fa-car"></span>
+									</div>
+									<div class="sh_sub_icon_2">
+										<span class="fa fa-chevron-down"></span>
+									</div>
+									<select name="model" class="form-control id_sh_motorcycle_model_select">
+										<option value="" class='blank'>Select Here...</option>
+									</select>
+								</div>
+							</div>
+							<div class='col-lg-3 col-md-6'>
+								<div class="sh_op_1">
+									<div class="sh_sub_icon">
+										<span class="fa fa-calendar"></span>
+									</div>
+									<div class="sh_sub_icon_2">
+										<span class="fa fa-chevron-down"></span>
+									</div>
+									<select name="year" class="form-control id_sh_motorcycle_year_select">
+										<option value="" class='blank'>Select Here...</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						<section id="sh_motorcycle_snippet_section_3">
+			<div class="container">
+				<div class="sh_main_box">
+
+				<div class="sh_street">
+					<div class="sh_car">
+						
+						<div class="sh_car-body">
+							<div class="sh_car-top-back">
+								<div class="sh_back-curve"></div>
+							</div>
+							<div class="sh_car-gate"></div>
+							<div class="sh_car-top-front">
+								<div class="sh_wind-sheild"></div>
+							</div>
+							<div class="sh_bonet-front"></div>
+							<div class="sh_stepney"></div>
+						</div>
+						<div class="sh_boundary-tyre-cover">
+							<div class="sh_boundary-tyre-cover-back-bottom"></div>
+							<div class="sh_boundary-tyre-cover-inner"></div>
+						</div>
+						<div class="sh_tyre-cover-front">
+							<div class="sh_boundary-tyre-cover-inner-front"></div>
+						</div>
+						<div class="sh_base-axcel"></div>
+						<div class="sh_front-bumper"></div>
+						<div class="sh_tyre">
+							<div class="sh_gap"></div>
+						</div>
+						<div class="sh_tyre front">
+							<div class="sh_gap"></div>
+						</div>
+						<div class="sh_car-shadow"></div>
+					</div>
+				</div>
+				<div class="sh_street-stripe"></div>
+
+				</div>
+			</div>
+		</section>
+		<section id="sh_motorcycle_snippet_section_4" >
+			<div class="container">
+				<div class="sh_main_box">
+					<div>
+						<div class="cls_sh_motorcycle_snippet_login">
+							<a href="/web/login" class="btn btn-secondary id_sh_motorcycle_snippet_login_to_acc_garage_link" role="button">My Garage</a>
+						</div>
+					</div>
+						<div class="dropdown id_sh_motorcycle_snippet_select_saved_bike_dropdown">
+
+							<button class="btn btn-secondary dropdown-toggle" type="button" id="id_sh_motorcycle_select_saved_bike_btn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								My Garage
+							</button>
+							<div class="dropdown-menu id_sh_motorcycle_snippet_select_saved_bike_div" aria-labelledby="id_sh_motorcycle_select_saved_bike_btn">
+								<a class="dropdown-item" href="#">Action</a>
+								<a class="dropdown-item" href="#">Another action</a>
+								<a class="dropdown-item" href="#">Something else here</a>
+							</div>
+						</div>
+					
+					<div><button id="id_sh_motorcycle_go_submit_button" type="submit" class="btn btn-primary">
+						<span>Search</span>
+					</button></div>
+				</div>
+			</div>
+		</section>
+						
+						
+						
+						
+					</form>
+				</div>
+			</div>
+		</section>
+	</template>
+
+	<!-- =============================
+    	Selection Search style 2
+    ============================== -->
+
+
+	<!-- =============================
+    	Simple Search style 1
+    ============================== -->
+	<template id='sh_motorcycle_simple_snippet_tmpl_1' name='Simple Search 1'>
+		<section class="sh_motorcycle_simple_snippet_sec_1 bg-200 pt48 pb48" data-vxml="001">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<h2>Lorem ipsum</h2>
+						<p>Lorem ipsum dolor sit amet,consectetur adipisicingelit sed to</p>
+						<!-- <form method="get" data-snippet="s_products_searchbar_input" class="o_wsale_products_searchbar_form s_wsale_products_searchbar_input" action="/shop">
+							<div role="search" class="input-group">
+								<input type="search" name="search" class="search-query form-control oe_search_box" data-limit="5" data-display-description="true" data-display-price="true" data-display-image="true" placeholder="Search..." autocomplete="off" />
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-primary oe_search_button" aria-label="Search" title="Search">
+										<i class="fa fa-search"></i>
+									</button>
+								</div>
+							</div>
+							<input name="order" type="hidden" class="o_wsale_search_order_by" value="" />
+						</form> -->
+						<t t-call="website.website_search_box_input">
+							<t t-set="search_type" t-valuef="all"/>
+							<t t-set="action" t-valuef="/website/search"/>
+							<t t-set="limit" t-valuef="5"/>
+							<t t-set="display_image" t-valuef="true"/>
+							<t t-set="display_description" t-valuef="true"/>
+							<t t-set="display_extra_link" t-valuef="true"/>
+							<t t-set="display_detail" t-valuef="true"/>
+						</t>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+	<!-- =============================
+    	Simple Search style 1
+    ============================== -->
+
+
+	<!-- =============================
+    	Simple Search style 2
+    ============================== -->
+	<template id='sh_motorcycle_simple_snippet_tmpl_2' name='Simple Search 2'>
+		<section class="sh_motorcycle_simple_snippet_sec_2 bg-200 pt48 pb48" data-vxml="001">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<!-- <form method="get" data-snippet="s_products_searchbar_input" class="o_wsale_products_searchbar_form s_wsale_products_searchbar_input" action="/shop">
+							<div role="search" class="input-group">
+								<input type="search" name="search" class="search-query form-control oe_search_box" data-limit="5" data-display-description="true" data-display-price="true" data-display-image="true" placeholder="Search..." autocomplete="off" />
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-primary oe_search_button" aria-label="Search" title="Search">
+										<i class="fa fa-search"></i>
+									</button>
+								</div>
+							</div>
+							<input name="order" type="hidden" class="o_wsale_search_order_by" value="" />
+						</form> -->
+						<t t-call="website.website_search_box_input">
+							<t t-set="search_type" t-valuef="all"/>
+							<t t-set="action" t-valuef="/website/search"/>
+							<t t-set="limit" t-valuef="5"/>
+							<t t-set="display_image" t-valuef="true"/>
+							<t t-set="display_description" t-valuef="true"/>
+							<t t-set="display_extra_link" t-valuef="true"/>
+							<t t-set="display_detail" t-valuef="true"/>
+						</t>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+	<!-- =============================
+    	Simple Search style 2
+    ============================== -->
+
+	<!-- Snippets left panel -->
+	<template id="sh_motorcycle_snippet_website_snippets" inherit_id="website.snippets" name="Motorcycle Website Snippets">
+		<xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="inside">
+
+			<!-- Selection Search design 1 -->
+			<t t-snippet="sh_auto_part_vehicle.sh_motorcycle_selection_snippet_tmpl_1"
+				t-thumbnail="/sh_auto_part_vehicle/static/src/img/block/thumb1.png" />
+
+			<t t-snippet="sh_auto_part_vehicle.sh_motorcycle_selection_snippet_tmpl_2" t-thumbnail="/sh_auto_part_vehicle/static/src/img/block/thumb2.png" />
+
+			<!-- Simple Search design 1 -->
+			<t t-snippet="sh_auto_part_vehicle.sh_motorcycle_simple_snippet_tmpl_1" t-thumbnail="/sh_auto_part_vehicle/static/src/img/block/11.svg" />
+
+			<t t-snippet="sh_auto_part_vehicle.sh_motorcycle_simple_snippet_tmpl_2" t-thumbnail="/sh_auto_part_vehicle/static/src/img/block/8.svg" />
+		</xpath>
+	</template>
+
+	<!-- snippet options -->
+	<template id="sh_motorcycle_snippet_snippet_options" inherit_id="website.snippet_options">
+		<xpath expr="//div" position="after">
+			<!-- eCommerce Categories -->
+			<div data-js="js_editor_sh_motorcycle_snippet_tmpl_1" data-selector="#sh_motorcycle_snippet_section_1">
+				<we-select string="eCommerce Categories">
+					<we-button data-select-class="">All Products</we-button>
+					<t t-set="sh_moto_categories" t-value="request.env['product.public.category'].search([])" />
+					<t t-if="len(sh_moto_categories)">
+						<t t-foreach="sh_moto_categories" t-as="sh_moto_categ">
+							<t t-set="sh_moto_data_select_cls" t-value="'sh_moto_categ_' + str(sh_moto_categ.id)" />
+							<we-button t-att-data-select-class="sh_moto_data_select_cls">
+								<t t-esc="sh_moto_categ.name" />
+							</we-button>
+						</t>
+					</t>
+				</we-select>
+			</div>
+
+			<div data-selector="#sh_motorcycle_snippet_section_1">
+				<we-select string="Button Size">
+					<we-button data-select-class="">None</we-button>
+					<we-button data-select-class="cls_sh_motorcycle_snippet_small">Small</we-button>
+					<we-button data-select-class="cls_sh_motorcycle_snippet_large">Large</we-button>
+				</we-select>
+			</div>
+		</xpath>
+	</template>
+</odoo>

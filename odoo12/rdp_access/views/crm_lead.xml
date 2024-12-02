@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="crm_lead_form_view_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.form.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="leg_one" readonly='1'/>
+                    <field name="potca" readonly='1'/>
+                    <field name="op_potca_sent" readonly='1'/>
+                    <field name="potca_status" readonly='1'/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="crm_lead_tree_view_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.tree.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="leg_one"/>
+                    <field name="potca"/>
+                    <field name="op_potca_sent"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

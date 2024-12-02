@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="1">
+       <record id="preorder_config_setting_1" model="website.preorder.config.settings">
+            <field name="name">Demo Setting</field>
+            <field name="is_active">True</field>
+            <field name="max_order_qty">1.0</field>
+            <field name="min_order_qty" >1.0</field>
+            <field name="add_pre_order_msg">Partial pre-order product can't be added with regular items,you will have to order it separately.</field>
+            <field name="warning_message">Please be aware this is a pre-order. The product(s) will be shipped to you once they become available.</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="user_settings_action" model="ir.actions.server">
+    <field name="type">ir.actions.server</field>
+    <field name="name">User Settings</field>
+    <field name="state">code</field>
+    <field name="model_id" ref="model_asterisk_common_user"/>
+    <field name="code">action = model.open_user_settings()</field>
+  </record>
+
+  <!--
+  <menuitem action="user_settings_action" groups="asterisk_common.group_asterisk_user" id="user_settings_menu" name="User" parent="asterisk_settings_menu" sequence="200"/>
+  -->
+  <record id="user_settings_list" model="ir.ui.view">
+    <field name="name">asterisk_common.user.settings.list</field>
+    <field name="model">asterisk_common.user</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree create="false" delete="false">
+        <field name="exten"/>
+        <field name="system_name"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="user_settings_form" model="ir.ui.view">
+    <field name="name">asterisk_common.user.settings.form</field>
+    <field name="model">asterisk_common.user</field>
+    <field name="inherit_id" ref="asterisk_common.asterisk_user_form"/>
+    <field name="mode">primary</field>
+    <field name="priority">100</field>
+    <field name="arch" type="xml">
+      <div name="title" position="replace">
+        <div class="title oe_read_only" name="title">
+          <h1>
+            <label for="user"/>
+            <field name="user" readonly="1"/>
+          </h1>
+          <h2 class="o_row row no-gutters d-flex">
+            <div class="col">
+              <div class="o_row">
+                <label for="exten"/>
+                <field class="oe_inline" name="exten" readonly="1"/>
+                <span class="oe_grey p-2">at</span>
+              </div>
+            </div>
+            <div class="col">
+              <div name="agent" class="o_row d-flex">
+                <label for="agent"/>
+                <field name="agent" readonly="1"/>
+              </div>
+            </div>
+          </h2>
+        </div>
+      </div>
+    </field>
+  </record>
+
+</odoo>

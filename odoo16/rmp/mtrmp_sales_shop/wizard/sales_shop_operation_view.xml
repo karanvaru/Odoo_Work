@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="import_sales_shop_operation_form_view">
+            <field name="name">sales.shop.operation.form.view</field>
+            <field name="model">sales.shop.operation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <h1>
+                            <field name="shop_id" readonly="1"/>
+                    </h1>
+                    <group>
+                        <group string="Operation">
+                            <field name="operation" required="1"/>
+                            <field name="header_position"/>
+                        </group>
+                        <group
+                                attrs="{'invisible' : [('operation','not in',('import_products', 'import_sales_order', 'import_AWB','import_return', ('import_payment_settlement')))]}" string="Import Operation">
+                            <field name="filename" invisible="1"/>
+                            <field name="file_name" filename="filename"/>
+                        </group>
+                        <group attrs="{'invisible' : [('operation','not in',('export_products'))]}" string="Export Operation">
+                            <field name="need_stock_qty"/>
+                            <field name="qty_type" attrs="{'invisible':[('need_stock_qty','=',False)]}"/>
+                            <field name="warehouse_type" attrs="{'invisible':[('need_stock_qty','=',False)]}"/>
+                            <field name="product_public_category_id" attrs="{'required' : [('operation','in',('export_products'))]}"/>
+                        </group>
+                        <group invisible="1">
+                            <field name="failed_count"/>
+                            <field name="success_count"/>
+                            <field name="failed_order"/>
+                        </group>
+                    </group>
+                    <div attrs="{'invisible' : [('operation','not in',('import_products', 'import_sales_order', 'import_AWB', 'import_payment_settlement'))]}"   >
+                        <br/>
+                        <button name="download_sample" type="object" class="oe_stat_button" icon="fa-download">Download
+                            Sample File
+                        </button>
+                    </div>
+                    <footer>
+                        <button name="process_operation" string="Execute" type="object" class="btn-primary"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_import_sales_shop_operation">
+            <field name="name">Import Sales Shop Operation</field>
+            <field name="res_model">sales.shop.operation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="import_sales_shop_operation_form_view"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

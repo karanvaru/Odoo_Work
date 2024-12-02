@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="mail_template_demographics_summary" model="mail.template">
+            <field name="name">Demographic Summary</field>
+            <field name="model_id" ref="reddot_report_hr.model_employee_demographic_summary_wizard"/>
+            <field name="email_to">kajal@reddotdistribution.com</field>
+            <field name="subject">Demographic Summary</field>
+<!--            <field name="reddot_specific" eval="True"/>-->
+            <field name="body_html" type="html">
+                <div style="font-size: 13px; margin: 0px; padding: 0px;">
+                    <h2>Hello
+                    </h2>
+                    <p>Please Find The Attached Employee Demographic Summary report.</p>
+                    <br/>
+
+                    Thank You,
+                    <br/>
+                    <t t-out="env.company.name"/>
+
+                </div>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

@@ -1,0 +1,150 @@
+<odoo>
+    <template id="Inherit_account_move_report" name="Invoice Report" inherit_id="account.report_invoice_document"
+              priority="30">
+        <!--        <xpath expr="//span[@t-field='line.product_uom_id']" position="replace"/>-->
+        <xpath expr="//div" position="replace"/>
+        <xpath expr="//div[@id='informations']" position="replace"/>
+        <xpath expr="//div[hasclass('page')]//h2" position="replace"/>
+
+
+        <xpath expr="//div[hasclass('mt-5')]" position="before">
+            <t t-if="'category_type' in o._fields">
+                <div class="row" t-if="o.category_type">
+                    <div class="col-8">
+                    </div>
+                    <div class="col-4 text-end">
+                        <h2 t-if="o.category_type == 'rental'">
+                            <strong>Rental Invoice</strong>
+                        </h2>
+                        <h2 t-if="o.category_type == 'service'">
+                            <strong>Service Invoice</strong>
+                        </h2>
+                        <h2 t-if="o.category_type == 'parts'">
+                            <strong>Parts Invoice</strong>
+                        </h2>
+                        <h2 t-if="o.category_type == 'sale'">
+                            <strong>Sales Invoice</strong>
+                        </h2>
+                    </div>
+                </div>
+            </t>
+            <t t-if="'category_type' in o._fields">
+                <div class="row mb32 mt16 pt16 pb16 border border-dark"
+                     style="background-color:#D3D3D3;padding-top:15px;padding-bottom:15px;margin-top:15px;margin-bottom:18px;">
+                    <div class="col-3">
+                        <h5 class="text-center">
+                            <strong>Sales</strong>
+                        </h5>
+                    </div>
+                    <div class="col-3">
+                        <h5 class="text-center">
+                            <strong>Parts</strong>
+                        </h5>
+                    </div>
+                    <div class="col-3">
+                        <h5 class="text-center">
+                            <strong>Service</strong>
+                        </h5>
+                    </div>
+                    <div class="col-3">
+                        <h5 class="text-center">
+                            <strong>Rental</strong>
+                        </h5>
+                    </div>
+                </div>
+            </t>
+
+            <div class="row">
+                <div class="col-5" name="invoice_date">
+                    <t t-if="'customer_vendor_number_custom' in o._fields">
+                        <strong>Account # :</strong>
+                        <t t-if="o.partner_id.parent_id and o.partner_id.parent_id.customer_vendor_number_custom">
+                            <span t-esc="o.partner_id.parent_id.customer_vendor_number_custom"/>
+                        </t>
+                        <t t-if="not o.partner_id.parent_id and o.partner_id.customer_vendor_number_custom">
+                            <span t-esc="o.partner_id.customer_vendor_number_custom"/>
+                        </t>
+                        <br/>
+                        <strong>
+                            <span t-esc="o.partner_id.name"/>
+                            <t t-if="o.partner_id.parent_id and o.partner_id.customer_vendor_number_custom">[<span
+                                    t-esc="o.partner_id.customer_vendor_number_custom"/>]
+                            </t>
+                        </strong>
+                        <br/>
+                    </t>
+                    <t t-if="o.partner_id.street">
+                        <span t-field="o.partner_id.street"/>
+                    </t>
+                    <t t-if="o.partner_id.street2">
+                        <span t-field="o.partner_id.street2"/>
+                    </t>
+                    <br/>
+                    <span t-field="o.partner_id.city"/>
+                    <span t-field="o.partner_id.state_id.name"/>
+                    <span t-field="o.partner_id.zip"/>
+                    <t t-if="o.partner_id.country_id">
+                        <span t-field="o.partner_id.country_id.name"/>
+                    </t>
+                </div>
+                <div class="col-4" style="padding-left:20px;">
+                    <span>
+                        <t t-if="o.model_name">
+                            <strong>Model :</strong>
+                            <span t-field="o.model_name"/>
+                            <br/>
+                        </t>
+                        <t t-if="o.hours">
+                            <strong>Hours:</strong>
+
+                            <span t-field="o.hours"/>
+                            <br/>
+                        </t>
+                        <t t-if="o.serial_number">
+                            <strong>Serial Number :</strong>
+                            <span t-field="o.serial_number"/>
+                            <br/>
+                        </t>
+
+                    </span>
+                </div>
+
+                <div class="col-3">
+                    <span>
+                        <strong>Invoice No. :</strong>
+                        <h5>
+                            <span t-field="o.name"/>
+                        </h5>
+                        <strong>Date :</strong>
+                        <span t-field="o.invoice_date"/>
+                        <br/>
+                        <strong>Due Date :</strong>
+                        <span t-field="o.invoice_date_due"/>
+                        <br/>
+                        <strong>Source:</strong>
+                        <span t-field="o.invoice_origin"/>
+                        <br/>
+                        <strong>Reference:</strong>
+                        <span t-field="o.ref"/>
+                    </span>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr//th[@name='th_description']" position="before">
+            <th name="th_itemcode" class="text-start">
+                <span>ITEM CODE</span>
+            </th>
+        </xpath>
+
+        <xpath expr="//table[@name='invoice_line_table']/tbody//tr//td[@name='account_invoice_line_name']"
+               position="before">
+            <td name="th_itemcode" class="text-start">
+                <t t-if="line.display_type == 'product'">
+                    <span t-field="line.item_code" t-options="{'widget': 'text'}"/>
+                </t>
+            </td>
+        </xpath>
+
+
+    </template>
+</odoo>

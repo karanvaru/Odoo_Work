@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <report
+                id="report_einvoice_slip"
+                model="account.invoice"
+                string="E-Invoicing"
+                report_type="qweb-pdf"
+                name="gts_einvoicing.report_einvoice_slip_pdf"
+                file="gts_einvoicing.report_einvoice_slip_pdf"
+                />
+    </data>
+</odoo>

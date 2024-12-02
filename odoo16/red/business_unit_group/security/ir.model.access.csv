@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_business_unit_group_user,business_unit_group.business.unit.group,model_business_unit_group,base.group_user,1,1,1,1
+access_business_unit_user,business_unit_group.business.unit,model_business_unit,base.group_user,1,1,1,1
+access_business_unit_managers_user,business_unit_group.business.unit.managers,model_business_unit_managers,base.group_user,1,1,1,1
+access_business_unit_group_managers_user,business_unit_group.business.unit.group.managers,model_business_unit_group_managers,base.group_user,1,1,1,1

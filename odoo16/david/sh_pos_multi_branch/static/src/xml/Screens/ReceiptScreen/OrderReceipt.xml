@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('cashier')]" position="after">
+            <t t-if="env.pos.user.groups_id.indexOf(env.pos.config.sh_allow_branch_user[0]) != -1">
+            	<t t-if="env.pos.user.branch_id and env.pos.user.branch_id[1]">
+		            <div class="sh_branch" style="margin-top:28px;font-weight:bold;font-size:15px;">
+		            	<label>Branch : </label>
+		            	<span>
+		            		<t t-esc="env.pos.user.branch_id[1]"/>
+		            	</span>
+		            </div>
+            	</t>
+            </t>
+        </xpath>
+    </t>
+    
+</templates>

@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rma_supplier,access_rma_supplier,bi_customer_supplier_rma.model_rma_supplier,,1,1,1,1
+access_reject_supplier_reason,access_reject_supplier_reason,bi_customer_supplier_rma.model_reject_supplier_reason,,1,1,1,1
+access_rma_supplier_claim,access_rma_supplier_claim,bi_customer_supplier_rma.model_rma_supplier_claim,,1,1,1,1
+access_rma_supplier_lines,access_rma_supplier_lines,bi_customer_supplier_rma.model_rma_supplier_lines,,1,1,1,1
+access_rma_supplier_reason,access_rma_supplier_reason,bi_customer_supplier_rma.model_rma_supplier_reason,,1,1,1,1
+access_rma_repair_product,access_rma_repair_product,model_rma_repair_product,,1,1,1,1
+access_rma_supplier_wizard,access_rma_supplier_wizard,model_rma_supplier_wizard,,1,1,1,1
+access_rma_replace_product,access_rma_replace_product,model_rma_replace_product,base.group_user,1,1,1,1
+access_rma_refund_product,access_rma_refund_product,model_rma_refund_product,base.group_user,1,1,1,1
+access_rma_supplier_sending_type,access_rma_supplier_sending_type,model_rma_supplier_sending_type,,1,1,1,1
+access_rma_supplier_type,access_rma_supplier_type,model_rma_supplier_type,,1,1,1,1

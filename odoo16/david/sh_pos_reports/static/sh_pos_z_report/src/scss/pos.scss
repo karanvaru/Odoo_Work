@@ -1,0 +1,33 @@
+.pos .receipt-screen.screen .top-content .top-content-center.hide-top-content-center{
+    display: none;
+}
+
+.pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn,.pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_print_statement_option,
+.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn,.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option{display: flex;align-items: center;justify-content: center;}
+.pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_print_statement_option,.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option{padding: 10px 0px;}
+.pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_print_statement_option .sh_receipt_div.sh_custom_radio_btn,
+.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option .sh_receipt_div.sh_custom_radio_btn{margin-left: 15px;}
+
+.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_selection_lbl{font-size: 15px;margin-right: 5px;font-weight: bold;}
+.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .main_div_sh_statement .sh_session_selection{border: 1px solid #d7d7d7;background: #fff;border-radius: 2px;padding: 6px;transition: all .5s;cursor: pointer;width: 50%;}
+.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .main_div_sh_statement .sh_session_selection:hover,.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .main_div_sh_statement .sh_session_selection:focus{border: 1px solid #017e84;outline: none;}
+.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option{padding-top: 20px;}
+
+// custom radio button //
+.pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn [type="radio"]:checked, .pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_custom_radio_btn [type="radio"]:not(:checked),
+.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn [type="radio"]:checked, .pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_custom_radio_btn [type="radio"]:not(:checked) {position: absolute;left: -9999px;}
+.pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn [type="radio"]:checked + label.sh_print_lbl, .pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_custom_radio_btn [type="radio"]:not(:checked) + label.sh_print_lbl,
+.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn [type="radio"]:checked + label.sh_print_lbl, .pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_custom_radio_btn [type="radio"]:not(:checked) + label.sh_print_lbl {position: relative;padding-left: 28px;cursor: pointer;display: inline-block;color: #4A4F59;font-size: 16px;}
+.pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn [type="radio"]:checked + label.sh_print_lbl:before, .pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_custom_radio_btn [type="radio"]:not(:checked) + label.sh_print_lbl:before,
+.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn [type="radio"]:checked + label.sh_print_lbl:before, .pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_custom_radio_btn [type="radio"]:not(:checked) + label.sh_print_lbl:before {content: '';position: absolute;left: 0;top: 0;width: 18px;height: 18px;border: 1px solid #b7b7b7;border-radius: 100%;background: #fff;}
+.pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn [type="radio"] + label.sh_print_lbl:after, .pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_custom_radio_btn [type="radio"]:not(:checked) + label.sh_print_lbl:after,
+.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn [type="radio"] + label.sh_print_lbl:after, .pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_custom_radio_btn [type="radio"]:not(:checked) + label.sh_print_lbl:after {content: '';width: 12px;height: 12px;background: #017e84;position: absolute;top: 4px;left: 4px;border-radius: 100%;-webkit-transition: all 0.2s ease;transition: all 0.2s ease;transform: scale(0);opacity: 0;}
+.pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn [type="radio"]:checked + label.sh_print_lbl:after,
+.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn [type="radio"]:checked + label.sh_print_lbl:after {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}
+
+@media only screen and (max-width: 767.98px){
+    .pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup,.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup{width: 310px !important;max-width: 310px !important;}
+    .pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_print_statement_option,.pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option{display: block;}
+    .pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn, .pos .sh_z_report_modal_dialog .sh_z_report_modal_dialog_popup .sh_print_statement_option,
+    .pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option .sh_custom_radio_btn, .pos .sh_z_report_posted_session_modal_dialog .sh_z_report_posted_session_modal_dialog_popup .sh_print_statement_option{margin: 10px 0px;padding: 0px;}
+}

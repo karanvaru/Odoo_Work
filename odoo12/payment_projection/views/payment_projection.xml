@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record id="payment_projection_view_tree" model="ir.ui.view">
+            <field name="name">payment projection.view.tree </field>
+            <field name="model">payment.projection</field> 
+            <field name="arch" type="xml">
+              <tree string="Payment Projection">
+                <field name='create_uid'/>
+                <field name='name'/>
+                <field name="projection_date" required="1"/>
+                <field name='assigned_to'/>
+                <!-- <field name='available_bank_balance'/> -->
+                <!-- <field name='rafc'/> -->
+                <!-- <field name='projection_amount'/> -->
+                <field name="state"/>
+                <field name='balance_amount'/>
+              </tree>
+            </field> 
+        </record>
+
+        <record id="payment_projection_view_form" model="ir.ui.view">
+            <field name="name">payment.projection.view.form</field>
+            <field name="model">payment.projection</field>
+            <field name="arch" type="xml">
+            <form string="Payment Projection">
+            <header>
+                <button name="action_submit" string="To Submit" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['submit','approve','closed','cancel'])]}"/>
+                <!-- <button name="action_approve" string="To Approve" type="object"  class="btn-primary" groups = "studio_customization.payment_projection_a_4692c615-a0bd-46d8-98fb-aca60eba49b4, base.group_system" attrs="{'invisible': [('state', 'in', ['draft','approve','closed','cancel'])]}"/> -->
+                <button name="action_approve" string="To Approve" type="object"  class="btn-primary" groups="payment_projection.group_projection_manager" attrs="{'invisible': [('state', 'in', ['draft','approve','closed','cancel'])]}"/>
+                <!-- <button name="action_close" string="Close" type="object"  class="btn-primary" groups="payment_projection.group_projection_manager"  attrs="{'invisible': ['|',('user_id','=',user.id),('state', 'in', ['draft','closed','submit','cancel'])]}"/> -->
+                <button name="action_close" string="Close" type="object"  class="btn-primary"  attrs="{'invisible': [('state', 'in', ['draft','closed','submit','cancel'])]}"/>
+                <button name="action_cancel" string="Cancel" type="object" attrs="{'invisible': [('state', 'in', ['closed','cancel'])]}"/>      
+                <button name="action_set_to_draft" string="Set to Draft" type="object" attrs="{'invisible': [('state', 'in', ['closed','draft','approve'])]}"/>
+                <field name="state" readonly="1" widget="statusbar"/>
+            </header>
+            <sheet>
+              <div>
+                  <h1> <field name='name' readonly="1"/> </h1>
+              </div>
+ 
+              <group>
+                <group>
+                  <field name="projection_date" required="1" attrs="{'readonly': [['state','!=','draft']]}"/>
+                  <!-- <field name="assigned_to" domain="[('is_int_user','=',True),('groups_id.id', '=', ref('payment_projection.group_projection_manager'))]" options="{'no_create': True}" attrs="{'readonly': [['state','!=','draft']]}"/> -->
+                                            <!-- eval="str([('groups_id.id', '=', ref('payment_projection.group_projection_manager'))])"        -->
+                  <div style="margin-top:10px"> </div> 
+                  <field name="inventory_total" />
+
+                  <div style="margin-top:10px"> </div> 
+                  <field name="vendor_bills_total"/>
+                  <field name="advance_payment_total"/>
+                  <field name="expense_amount"/>
+                </group>
+                <group>
+                  <field name="assigned_to" required="1" options="{'no_create': True}" attrs="{'readonly': [['state','!=','draft']]}"/>
+                  
+                  <div style="margin-top:10px"> </div>
+                  <field name="available_bank_balance" style="width:50%%"/>
+                  <field name="rafc" style="width:50%%"/>
+                  <field name="projection_amount"/>
+
+                  <div style="margin-top:10px"> </div> 
+                  <field name="balance_amount"/>
+                </group>
+              </group>
+            <notebook>
+                       
+            <page string="Vendor Bills">
+              <group>
+                <field name="vendor_bills_projection_ids" widget="one2many_list" nolabel="1" create = "0" readonly= "1">
+                  <tree string="Vendor Bills Lines" editable="bottom">
+                    <field name="create_date" />
+                    <field name="date_invoice"/>
+                    <field name="effective_date"/>
+                    <!-- <field name="account_move_id"/> -->
+                    <field name="number"/>
+                    <field name="partner_id"/>
+                    <field name="date_due"/>
+                    <field name="amount_untaxed" sum="Total"/>
+                    <field name="amount_tax_signed" sum="Total"/>
+                    <field name="amount_total_signed" sum="Total"/>
+                    <field name="residual_signed" sum="Total"/>
+                    <field name="state"/>
+                  </tree>
+                  <form string="Vendor Bills">
+                    <group>
+                        <group>
+                            <!-- <field name="account_move_id" readonly='1'/> -->
+                            <field name="number" readonly='1'/>
+                            <field name="create_date" readonly='1'/>
+                            <field name="date_invoice" readonly='1'/>
+                            <field name="effective_date" readonly='1'/>
+                            <field name="partner_id" readonly='1'/>
+                        </group>
+                        <group>
+                          <field name="date_due" readonly='1'/>
+                          <field name="amount_untaxed" readonly='1'/>
+                          <field name="amount_tax_signed" readonly='1'/>
+                          <field name="amount_total_signed" readonly='1'/>
+                          <field name="residual_signed" readonly='1'/>
+                          <field name="state" readonly='1'/>
+                        </group>
+                    </group>
+                  </form>
+                </field>
+              </group>
+            </page>
+
+            <page string="Advance Payments">
+              <group>
+                <field name="advance_payments_projection_ids" widget="one2many_list" nolabel="1" create = "0" readonly= "1">
+                  <tree string="Advance Payment Lines" editable="bottom" delete='false'>
+                    <field name="create_date"/>
+                    <field name="date"/>
+                    <field name="effective_date"/>
+                    <!-- <field name="purchase_id" attrs="{'invisible': [('purchase_id', '=', False)]}"/> -->
+                    <!-- <field name="budget_id" attrs="{'invisible': [('budget_id', '=', False)]}"/> -->
+                    <field name="origin"/>
+                    <field name="partner_id"/>
+                    <!-- <field name="partner_id" attrs="{'invisible': [('partner_id', '=', False)]}"/> -->
+                    <!-- <field name="contact_id" attrs="{'invisible': [('contact_id', '=', False)]}"/> -->
+                    <field name="advance_payment" sum="Total"/>
+                    <field name="state"/>
+                  </tree>
+                  <form string="Advance Payments">
+                    <group>
+                        <group>
+                            <field name="create_date" readonly='1'/>
+                            <field name="date" readonly='1'/>
+                            <field name="effective_date" readonly='1'/>
+                            <field name="origin" readonly='1'/>
+                            <!-- <field name="purchase_id" readonly='1' attrs="{'invisible': [('purchase_id', '=', False)]}"/> -->
+                            <!-- <field name="budget_id" readonly='1' attrs="{'invisible': [('budget_id', '=', False)]}"/> -->
+                        </group>
+                        <group>
+                          <!-- <field name="partner_id" readonly='1' attrs="{'invisible': [('partner_id', '=', False)]}"/> -->
+                          <!-- <field name="contact_id" readonly='1' attrs="{'invisible': [('contact_id', '=', False)]}"/> -->
+                          <field name="partner_id" readonly='1'/>
+                          <field name="advance_payment" readonly='1'/>
+                          <field name="state" readonly='1'/>
+                        </group>
+                    </group>
+                  </form>
+                </field>
+              </group>
+            </page>
+
+            <page string="Reimbursement">
+              <group>
+                <field name="expenses_projection_ids" widget="one2many_list" nolabel="1" create = "0" readonly= "1">
+                  <tree string="Expenses Lines" editable="bottom" delete='false'>
+                    <field name="create_date"/>
+                    <field name="accounting_date"/>
+                    <field name="effective_date"/>
+                    <field name="employee_id"/>
+                    <field name="name"/>
+                    <field name="total_amount" sum="Total"/>
+                    <field name="state"/>
+                  </tree>
+                  <form string="Reimbursement">
+                    <group>
+                        <group>
+                            <field name="create_date" readonly='1'/>
+                            <field name="accounting_date" readonly='1'/>
+                            <field name="effective_date" readonly='1'/>
+                            <field name="employee_id" readonly='1'/>
+                        </group>
+                        <group>
+                          <field name="name" readonly='1'/>
+                          <field name="total_amount" readonly='1'/>
+                          <field name="state" readonly='1'/> 
+                          <field name="journal_id" readonly='1'/> 
+                        </group>
+                    </group>
+                  </form>
+                </field>
+              </group>
+            </page>
+
+            <page string="Bank Accounts">
+              <group>
+                <field name="bank_accounts_projection_ids" widget="one2many_list" nolabel="1" create = "0" readonly= "1">
+                  <tree default_order = "account_balance desc" string="Bank Account Lines" editable="bottom" delete='false'>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="user_type_id"/>
+                    <field name="currency_id" options="{'no_create': True}" groups="base.group_multi_currency"/>
+                    <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                    <field name="account_balance" sum="Total"/>
+                  </tree>
+                  <form string="Bank Accounts">
+                    <group>
+                        <group>
+                            <field name="code" readonly='1'/>
+                            <field name="name" readonly='1'/>
+                            <field name="user_type_id" readonly='1'/>
+                        </group>
+                        <group>
+                          <field name="currency_id" readonly='1'/>
+                          <field name="company_id" readonly='1'/>
+                          <field name="account_balance" readonly='1'/>
+                        </group>
+                    </group>
+                  </form>
+                </field>
+              </group>
+            </page>
+<!-- ================Check upto Done================================Dayan============================================ -->
+
+      <page string="Cheques">
+        <group>
+          <field name="cheques_projection_ids" widget="one2many_list" nolabel="1" create = "0" readonly= "1">
+            <tree decoration-info="state == 'draft'" decoration-muted="state in ['reconciled', 'cancelled']" edit="false" string="Cheques Payment" editable="bottom" delete='false'>
+                <!-- <field name="id" string="ID"/> -->
+                <field name="payment_date"/>
+                <field name="journal_id"/>
+                <field name="payment_method_id"/>
+                <field name="cheque_ref" string="Check Reference"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="amount" sum="Amount"/>
+                <field name="state"/>
+
+                <!-- <field name="currency_id" invisible="1"/>
+                <field name="partner_type" invisible="1"/> -->    
+
+            </tree>
+            <form string="Cheques">
+              <group>
+                  <group>
+                      <field name="payment_date" readonly='1'/>
+                      <field name="journal_id" readonly='1'/>
+                      <field name="payment_method_id" readonly='1'/>
+                      <field name="cheque_ref" readonly='1'/>
+                  </group>
+                  <group>
+                    <field name="partner_id" readonly='1'/>
+                    <field name="amount" readonly='1'/>
+                    <field name="state" readonly='1'/>
+                  </group>
+              </group>
+            </form>
+          </field>
+        </group>
+      </page>
+
+      </notebook>
+      </sheet>
+        <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" />
+            <field name="activity_ids" widget="mail_activity" />
+            <field name="message_ids" widget="mail_thread" />
+        </div>
+      </form>
+      </field>
+      </record>
+
+       <record id="action_payment_projection" model="ir.actions.act_window">
+           <field name="name">Payment Projection</field>
+           <field name="type">ir.actions.act_window</field>
+           <field name="res_model">payment.projection</field>
+           <field name="view_type">form</field>
+           <field name="view_mode">tree,form</field>
+           <field name="view_id" ref="payment_projection_view_tree"/>
+      </record>
+
+      <!-- <menuitem id="menu_payment_projection_root" name='Payment Projection' action="action_payment_projection" parent="account.menu_finance_entries"/> -->
+      <menuitem id="menu_payment_projection_root" name='Payment Projection' action="action_payment_projection" parent="studio_customization.rdp_finance_ea0121fa-f8f1-449a-bc70-1aa0fc07a21d"/>
+   </data>
+</odoo>

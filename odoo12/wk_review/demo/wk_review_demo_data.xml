@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="1">
+
+        <record id="like_dislike1" model="review.like.dislike">
+            <field name="customer_id" ref="base.user_demo"/>
+            <field name="like">True</field>
+            <field name="dislike">False</field>
+        </record>
+
+        <record id="like_dislike2" model="review.like.dislike">
+            <field name="customer_id" ref="base.demo_user0"/>
+            <field name="like">False</field>
+            <field name="dislike">True</field>
+        </record>
+
+        <record id="user_review1_for_product_product_12" model="user.review">
+            <field name="title">Excellent quality product</field>
+            <field name="template_id" ref="product.product_product_12_product_template" />
+            <field name="rating">5</field>
+            <field name="website_published">True</field>
+            <field name="customer_image" type="base64" file="base/static/img/user_demo-image.jpg"/>
+            <field name="msg">If you're looking to have a comfortable lounge chair that wows you and others then this is it!</field>
+            <field name="like_dislike_ids" eval="[(6,0,[ref('wk_review.like_dislike1')])]"/>
+        </record>
+
+        <record id="user_review1_for_product_product_11" model="user.review">
+            <field name="title">Love it!</field>
+            <field name="template_id" ref="product.product_product_11_product_template" />
+            <field name="rating">3</field>
+            <field name="website_published">True</field>
+            <field name="msg">Love this chair.</field>
+            <field name="like_dislike_ids" eval="[(6,0,[ref('wk_review.like_dislike2')])]"/>
+        </record>
+
+    </data>
+</odoo>

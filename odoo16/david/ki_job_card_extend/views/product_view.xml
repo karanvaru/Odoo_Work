@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ki_product_only_form_inherits" model="ir.ui.view">
+        <field name="name">sh.product.only.form.inherits</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='brand']" position="after">
+                <field name="model_name"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

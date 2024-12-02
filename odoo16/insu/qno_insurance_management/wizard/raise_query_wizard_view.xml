@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_raise_query_wizard_form">
+            <field name="name">raise.query.wizard.form</field>
+            <field name="model">raise.query.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="description"/>
+
+                    </group>
+                    <footer>
+                        <button name="action_apply" class="btn-primary" string="Apply" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_raise_query_wizard">
+            <field name="name">Raise Query Wizard</field>
+            <field name="res_model">raise.query.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

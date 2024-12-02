@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record id="action_cancel_sale_order" model="ir.actions.server">
+            <field name="name">Canceled records</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">action = records.cancelled_action()</field>
+        </record>
+        <!--<record id="action_cancel_stock_picking" model="ir.actions.server">
+            <field name="name">Canceled records</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_cancel_request()</field>
+        </record>-->
+        <record id="action_mass_picklist_stock_picking" model="ir.actions.server">
+            <field name="name">Print PickList</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_mass_pick_list()</field>
+        </record>
+        <record id="action_mass_pack_list" model="ir.actions.server">
+            <field name="name">Print PackList</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_mass_pack_list()</field>
+        </record>
+
+    </data>
+</odoo>

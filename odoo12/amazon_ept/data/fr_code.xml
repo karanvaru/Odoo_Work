@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data noupdate="1">
+    	
+    	<record id="ORY1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">ORY1</field>
+    		<field name="country_id" ref="base.fr"></field>
+        </record>
+        <record id="MRS1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">MRS1</field>
+    		<field name="country_id" ref="base.fr"></field>
+        </record>
+        <record id="LYS1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">LYS1</field>
+    		<field name="country_id" ref="base.fr"></field>
+        </record>
+        <record id="LTN1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">LTN1</field>
+    		<field name="country_id" ref="base.fr"></field>
+        </record>
+        <record id="LIL1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">LIL1</field>
+    		<field name="country_id" ref="base.fr"></field>
+        </record>
+        <record id="XFRG" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">XFRG</field>
+    		<field name="country_id" ref="base.fr"></field>
+        </record>
+        <record id="BVA1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">BVA1</field>
+    		<field name="country_id" ref="base.fr"></field>
+        </record>
+        <record id="XFRE" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">XFRE</field>
+    		<field name="country_id" ref="base.fr"></field>
+        </record>
+    </data>
+</odoo>

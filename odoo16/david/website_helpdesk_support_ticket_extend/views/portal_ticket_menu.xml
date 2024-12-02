@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <template id="helpdesk_support_menu_portal" name="Helpdesk Support frontend portal"
+                  inherit_id="portal.user_dropdown">
+            <xpath expr="//*[@id='o_logout_divider']" position="before">
+                <a href="/my/tickets" role="menuitem" class="dropdown-item">
+                    <i class="fa fa-fw fa-list me-1 small text-muted"></i>
+                    Ticket
+                </a>
+            </xpath>
+        </template>
+
+        <template id="my_account_link_inherit" name="Create Bid frontend portal" inherit_id="portal.my_account_link">
+            <xpath expr="//a[@href='/my/home']" position="replace">
+                <a t-if="request.env.user.has_group('website_helpdesk_support_ticket_extend.group_show_portal_account')"
+                   href="/my/home" role="menuitem" class="dropdown-item ps-3">
+                    <i class="fa fa-fw fa-id-card-o me-1 small text-muted"/>
+                    My Account
+                </a>
+            </xpath>
+        </template>
+
+        <delete model="website.menu"
+                search="[('id','=',ref('website_helpdesk_support_ticket.support_page_show_tickets'))]"/>
+
+    </data>
+</odoo>

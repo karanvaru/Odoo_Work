@@ -1,0 +1,14 @@
+<odoo>
+    <record id='asterisk_base_sip_extension_form' model='ir.ui.view'>
+        <field name='name'>asterisk_base_sip.extension.form</field>
+        <field name='model'>asterisk_base.extension</field>
+        <field name="inherit_id" ref="asterisk_base.asterisk_base_extension_form"/>
+        <field name='type'>form</field>
+        <field name='arch' type='xml'>
+            <field name="record_calls" position="after">
+                <field name="sip_user_dial_timeout"
+                    attrs="{'invisible': [('app_model', '!=', 'asterisk_base_sip.peer')]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

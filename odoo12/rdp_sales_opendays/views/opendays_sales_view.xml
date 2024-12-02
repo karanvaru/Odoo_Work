@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sales_open_days_inherited_tree_view" model="ir.ui.view">
+            <field name="name">rma.issue.inherit.tree</field>
+            <field name="model">rma.issue</field>
+            <field name="inherit_id" ref="sync_rma.view_rma_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="open_days"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

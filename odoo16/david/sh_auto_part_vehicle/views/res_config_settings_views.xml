@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_motorcycle_frontend_res_settings" model="ir.ui.view">
+        <field name="name">sh.motorcycle.frontend.res.settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='website_settings']" position="after">
+                <h2>Auto Parts Frontend</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-lg-12 col-md-12 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_is_show_garage" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_is_show_garage" />
+                            <div class="text-muted">'Garage Feature' will visible in shop page, user drop-down menu.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt16 o_settings_container">
+                    <div class="col-lg-6 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_do_not_consider_vehicle_over_category" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_do_not_consider_vehicle_over_category" />
+                            <div class="text-muted">For website shop page only.</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_do_not_consider_vehicle_over_attribute" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_do_not_consider_vehicle_over_attribute" />
+                            <div class="text-muted">For website shop page only.</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_do_not_consider_vehicle_over_price" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_do_not_consider_vehicle_over_price" />
+                            <div class="text-muted">For website shop page only.</div>
+                        </div>
+                    </div>
+                </div>
+                
+            </xpath>
+        </field>
+    </record>
+    
+    
+</odoo>

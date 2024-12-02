@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="type_of_subject_form_view">
+            <field name="name">type.of.subject.form</field>
+            <field name="model">type.of.subject</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                     <group>
+                         <group>
+                                <field name="name"/>
+                         </group>
+                         <group>
+                         </group>
+                     </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="type_of_subject_tree_view">
+            <field name="name">type.of.subject.tree</field>
+            <field name="model">type.of.subject</field>
+            <field name="arch" type="xml">
+                <tree>
+                     <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="type_of_subject_search_view">
+            <field name="name">type.of.subject.search</field>
+            <field name="model">type.of.subject</field>
+            <field name="arch" type="xml">
+                <search>
+                     <field name="name"/>
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_type_of_subject" model="ir.actions.act_window">
+            <field name="name">Type Of Subject</field>
+            <field name="res_model">type.of.subject</field>
+<!--            <field name="view_type">form</field> odoo13-->
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem name="Type Of Subject"
+            id="menu_type_of_subject"
+            parent="website_helpdesk_support_ticket.menu_helpdesk_configuration"
+            action="action_type_of_subject"/>
+        
+    </data>
+</odoo>

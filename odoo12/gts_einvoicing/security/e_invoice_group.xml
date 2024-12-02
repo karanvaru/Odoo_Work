@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_ebill_manager" model="res.groups">
+            <field name="name">E-Bill-Manager</field>
+        </record>
+
+    </data>
+</odoo>

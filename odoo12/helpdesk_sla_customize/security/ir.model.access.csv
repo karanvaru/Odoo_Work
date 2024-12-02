@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_sla_status,helpdesk.sla.status,model_helpdesk_sla_status,helpdesk.group_helpdesk_user,1,1,1,0

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="assets" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/rdp_website_snippet/static/src/js/slider_page.js"/>
+        </xpath>
+    </template>
+
+    <template id="slider_snippet" inherit_id="website.snippets" priority="8">
+        <xpath expr="//div[@id='snippet_content']" position="after">
+            <div id="o_scroll">
+                <div class="o_panel" id="snippet_banner">
+                    <div class="o_panel_header">
+                        RDP Snippets
+                    </div>
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="rdp_website_snippet.rdp_home_slider"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/s_cover.png">
+                        <keywords>
+                            Home Banner
+                        </keywords>
+                    </t>
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="rdp_website_snippet.rdp_home_trusted_banner"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/s_cover.png">
+                        <keywords>
+                            Trusted World Banner
+                        </keywords>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

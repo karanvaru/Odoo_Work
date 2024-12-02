@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_helpdesk_quality_audit" model="ir.actions.server">
+            <field name="name">Quality Audit To Close Ticket</field>
+            <field name="model_id" ref="rdp_helpdeskquality_audit.model_quality_audit"/>
+            <field name="binding_model_id" ref="rdp_helpdeskquality_audit.model_quality_audit"/>
+            <field name="state">code</field>
+            <field name="code">action = records.server_action_close_tickets()</field>
+        </record>
+    </data>
+</odoo>        

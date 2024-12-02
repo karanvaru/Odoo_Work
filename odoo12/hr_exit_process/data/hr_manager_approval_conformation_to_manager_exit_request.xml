@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="hr_manager_approval_conformation_to_manager_email_template" model="mail.template">
+            <field name="name">HR Manager Approval Conformation To Manager</field>
+            <field name="model_id" ref="hr_exit_process.model_hr_exit"/>
+            <field name="auto_delete">1</field>
+<!--             <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field>-->
+            <field name="email_to">${object.manager_id.work_email}</field>
+            <field name="subject">Resignation from the post of  ${object.job_id.name}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>Dear ${object.user_id.name}</p>
+                    <br/><br />
+                    Greetings of the Day!!
+                    <br></br>
+                    As discussed with you and your reporting manager, we would like to inform you that we accept your resignation from the post of ${object.job_id.name}. This resignation is effective from the date of your resignation i.e., ${object.request_date.name}.
+                    <br/><br />
+                    You will be relieved from your duties with effect from “Last Day of Work”. Please note that you have to submit the “No dues form” on your last working Day i.e., on “Last Day of Work”. You can download the form from the exit App
+                    <br></br>
+                    Please Let us know if we can be of any further assistance. Once we receive the filled in NO Dues Form, then we will be moving to the Full &amp; Final settlement.
+                    <br></br>
+                    Your Full &amp; Final Settlement will be completed within 30 Days from your last working day. You will receive your Relieving Letter within Seven Days of your F&amp;F.
+                    <br></br>
+                    We wish you all the success for your future endeavors.
+                     <br></br>
+                    Please click on the link to view
+                    <br></br>
+                    <a href ="${object.base_url}/web?debug=1#id=${object.id}&amp;action=522&amp;model=hr.exit&amp;view_type=form&amp;menu_id=86"> Click Here</a>
+<!--                    <a href ="${object.base_url}/web?debug#id=${object.id}&amp;action=2585&amp;model=hr.exit&amp;view_type=form&amp;menu_id=1296" > Click Here</a>-->
+                    <br></br>
+                    Thanks &amp; Regards
+                    <br></br>
+                    RDP People Team
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
+

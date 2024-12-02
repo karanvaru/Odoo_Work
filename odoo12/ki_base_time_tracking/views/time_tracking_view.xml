@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_time_tracking_form" model="ir.ui.view">
+        <field name="name">time.tracking.form</field>
+        <field name="model">time.tracking.users</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <gorup>
+                        <field name="user_id" />
+                        <field name="start_datetime" />
+                        <!-- field name="pause_datetime" /> <field name="resume_datetime" / -->
+                        <field name="stop_datetime" />
+                        <field name="description" />
+                        <field name="duration" />
+                    </gorup>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_time_tracking_tree" model="ir.ui.view">
+        <field name="name">time.tracking.tree</field>
+        <field name="model">time.tracking.users</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="user_id" />
+                <field name="start_datetime" />
+                <field name="stop_datetime" />
+                <!-- field name="pause_datetime" /> <field name="resume_datetime" / -->
+                <field name="description" />
+                <field name="duration" widget="time_tracking_counter" />
+                <field name="state" invisible="1" />
+                <button name="action_stop" string="Stop" type="object"
+                    class="btn btn-danger"
+                    attrs="{'invisible': [('state', '=', 'stop')]}" />
+                <!-- button name="action_pause" string="Pause" type="object" class="btn 
+                    btn-warning" attrs="{'invisible': [('state', 'in', ['stop', 'pause'])]}" 
+                    /> <button name="action_resume" string="Resume" type="object" class="btn 
+                    btn-info" attrs="{'invisible': [('state', '!=', 'pause')]}" / -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_time_tracking_grid" model="ir.ui.view">
+        <field name="name">time.tracking.users.grid</field>
+        <field name="model">time.tracking.users</field>
+        <field name="arch" type="xml">
+            <grid string="Time Tracking" edit="false">
+                <field name="user_id" type="row" section="1"/>
+                <field name="start_date" type="col">
+                    <range name="year" string="Year" span="year" step="month"/>
+                    <range name="month" string="Month" span="month" step="day"/>
+                </field>
+                <field name="duration" type="measure"/>
+            </grid>
+        </field>
+    </record>
+
+    <record id="view_time_tracking_search" model="ir.ui.view">
+        <field name="name">time.tracking.search</field>
+        <field name="model">time.tracking.users</field>
+        <field name="arch" type="xml">
+            <search string="Search Time Tracking">
+                <field name="name" />
+                <field name="user_id" />
+                <field name="start_datetime" />
+                <separator name="filter_section"/>
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter string="Salesperson" name="salesperson"
+                        context="{'group_by':'user_id'}" />
+                    <filter string="Start Datetime" name="start_datetime"
+                        context="{'group_by':'start_datetime'}" />
+                    <filter name="name" string="Name"
+                        context="{'group_by': 'name'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="time_tracking_action" model="ir.actions.act_window">
+        <field name="name">RDP Time Sheets</field>
+        <field name="res_model">time.tracking.users</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,pivot,search,grid</field>
+    </record>
+
+    <menuitem id="menu_root_time_tracking" name="RDP Time Sheets"
+        web_icon="ki_base_time_tracking,static/description/icon.png"
+        sequence="6" />
+
+    <menuitem id="menu_main_time_tracking" name="RDP Time Sheets"
+        parent="menu_root_time_tracking" sequence="2" />
+
+    <menuitem id="menu_time_tracking" name="RDP Time Sheets"
+        parent="menu_main_time_tracking" action="time_tracking_action"
+        sequence="4" />
+
+</odoo>

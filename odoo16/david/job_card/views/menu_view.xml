@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Top menu item -->
+        <menuitem
+            id="menu_job_card"
+            name="Job Card"
+            sequence="15" />
+        
+        <menuitem
+            action="job_card.action_view_job_card"
+            id="menu_action_view_job_card"
+            parent="menu_job_card"
+            sequence="2"/>
+        
+        <menuitem
+            id="menu_job_card_setting"
+            name="Configuration"
+            parent="menu_job_card"
+            groups="project.group_project_manager"
+            sequence="15" />
+        <menuitem
+            action="job_card.action_view_quality_checklist"
+            id="menu_action_view_quality_checklist" 
+            parent="menu_job_card_setting"
+            groups="project.group_project_manager" 
+            sequence="3" />
+        
+        <menuitem 
+            action="action_view_workshop_position"
+            id="menu_workshop_position"
+            parent="menu_job_card_setting"
+            groups="project.group_project_manager"
+            sequence="4" />
+    </data>
+</odoo>

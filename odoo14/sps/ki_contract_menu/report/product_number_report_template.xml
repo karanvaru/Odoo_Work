@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="printer_number_pdf_format" model="report.paperformat">
+        <field name="name">Product Number PDF Report Details</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">25</field>
+        <field name="page_width">100</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">2</field>
+        <field name="margin_bottom">2</field>
+        <field name="margin_left">2</field>
+        <field name="margin_right">2</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">3</field>
+        <field name="dpi">90</field>
+        <!--        <field name="report_ids" eval="[(6,0,[ref('ki_contract_menu.contract_barcode_report')])]"/>-->
+    </record>
+
+    <template id="product_number_report_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <div class="oe_structure">
+                            <table>
+                                <tr>
+                                    <td class="text-left" style="padding-top:7px; " width="200px">
+                                        <span style="font-size:13px;">
+                                            <strong>SPS PR NO:</strong>
+                                        </span>
+                                        <h3>
+                                            <strong class="m-0" t-field="o.default_code"/>
+                                        </h3>
+                                    </td>
+                                    <!--                                    <td class="text-left" rowspan="2"  style="padding-right:50px;">-->
+                                    <!--                                        <span t-field="o.qr_code"-->
+                                    <!--                                              t-options='{"widget": "image", "style":"width: 90px; height: 90px"}'/>-->
+                                    <!--                                    </td>-->
+                                    <td class="text-right" style="padding-top:7px" width="180px">
+                                        <span style="font-size:13px;">
+                                            <strong>SPS PR NO:</strong>
+                                        </span>
+                                        <h3>
+                                            <strong class="m-0" t-field="o.default_code"/>
+                                        </h3>
+                                    </td>
+                                    <!--                                    <td class="text-right" rowspan="2">-->
+                                    <!--                                        <span t-field="o.qr_code"-->
+                                    <!--                                              t-options='{"widget": "image", "style":"width: 90px; height: 90px"}'/>-->
+                                    <!--                                    </td>-->
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

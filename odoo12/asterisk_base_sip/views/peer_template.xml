@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="asterisk_base_sip_peer_template_list">
+        <field name="name">asterisk sip peer template list</field>
+        <field name="model">asterisk_base_sip.peer_template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="peer_type"/>
+                <field name="channel_type"/>
+                <field name="note"/>
+                <field name="write_protected"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="asterisk_base_sip_peer_template_form">
+        <field name="name">asterisk sip peer template list</field>
+        <field name="model">asterisk_base_sip.peer_template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div name="title" class="oe_title">
+                        <h1>
+                          <label for="name" class="oe_edit_only"/>
+                          <field name="name" placeholder="Template name..."/>
+                        </h1>
+                    </div>
+                        <group>
+                            <group>
+                                <field name="peer_type"/>
+                                <field name="channel_type"/>
+                            </group>
+                            <group>
+                                <field name="write_protected"/>
+                                <field name="note"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="options">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="param"/>
+                                    <field name="value"/>
+                                    <field name="param_type"/>
+                                    <field name="comment"/>
+                                </tree>                                
+                            </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="asterisk_base_sip_peer_template_action">
+        <field name="name">SIP Peer Templates</field>
+        <field name="res_model">asterisk_base_sip.peer_template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Templates" id="asterisk_base_peer_template_menu"
+              parent="asterisk_base_sip_settings_menu" sequence="100"
+              action="asterisk_base_sip_peer_template_action"/>
+
+    <record id="sip_peer_template_search" model="ir.ui.view">
+        <field name="name">asterisk_base_sip.peer_template.search</field>
+        <field name="model">asterisk_base_sip.peer_template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter name="by_type" string="Type" context="{'group_by': 'peer_type'}"/>
+                <filter name="protected" string="Write Protected"
+                    domain="[('write_protected', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

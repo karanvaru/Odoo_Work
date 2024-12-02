@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="report_payment_details_pdf"
+        string="Finance Analysis Info pdf"
+        model="finance.analysis"
+        report_type="qweb-pdf"
+        name="finance_analysis.report_payment_transaction_info"
+        file="finance_analysis.report_payment_transaction_info"/>
+</odoo>

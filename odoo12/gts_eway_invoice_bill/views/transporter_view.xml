@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_partner_form_inherit_transporter" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="transporter"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_res_partner_filter_inherit_transporter" model="ir.ui.view">
+        <field name="name">res.partner.select.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <filter name="type_company" position="after">
+                <filter name="transporter" string="Transporters" domain="[('transporter', '=', True)]"
+                        help="Transporters"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="action_partner_transporter_form" model="ir.actions.act_window">
+        <field name="name">Transporters</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('transporter', '=', True)]</field>
+        <field name="context">{'default_is_company': True, 'default_transporter': True}</field>
+        <field name="filter" eval="True"/>
+         <field name="search_view_id" ref="base.view_res_partner_filter"/>
+        <field name="view_id" ref="base.view_partner_tree"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new Transporter in your address book
+          </p><p>
+            Easily track all activities related to a Transporter.
+          </p>
+        </field>
+    </record>
+
+<!--    <menuitem id="menu_action_transporters" parent="gst_ewaybill" action="action_partner_transporter_form"-->
+<!--              groups="gts_eway_bill.group_ebill_manager"/>-->
+<menuitem id="menu_transportation" name="Transporters"
+            parent="account.menu_finance_payables"
+            action="action_partner_transporter_form" sequence="201"/>
+    <menuitem id="menu_transportation_purchase" name="Transporters"
+            parent="purchase.menu_procurement_management"
+            action="action_partner_transporter_form" sequence="17"/>
+
+</odoo>

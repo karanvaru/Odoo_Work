@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+service_types_user,service.types,model_service_types,base.group_user,1,1,1,0
+asp_locations_user,asp.locations,model_asp_locations,base.group_user,1,1,1,0
+asp_crms_user,asp.crms,model_asp_crms,base.group_user,1,1,1,0
+asp_tags_user,asp.tags,model_asp_tags,base.group_user,1,1,1,0
+asp_source_user,asp.source,model_asp_source,base.group_user,1,1,1,0
+
+

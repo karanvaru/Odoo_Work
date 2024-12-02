@@ -1,0 +1,743 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bi_rma
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-30 10:29+0000\n"
+"PO-Revision-Date: 2021-03-30 10:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bi_rma
+#: model:mail.template,body_html:bi_rma.email_template_edi_rma
+msgid ""
+"\n"
+"\t\t\t\t\t<p>Dear ${object.partner.name}\n"
+"\n"
+"\t\t\t\t\t\tYour RMA Order : ${object.name} with subject ${object.subject} on date ${object.date} is in ${object.state} state.\n"
+"\n"
+"\t\t\t\t\t</p>\n"
+"\t\t\t\t\t\n"
+"\t\t\t\t\t\t\n"
+"\t\t\t"
+msgstr ""
+
+#. module: bi_rma
+#: model:mail.template,report_name:bi_rma.email_template_edi_rma
+msgid "${(object.name or '')}"
+msgstr ""
+
+#. module: bi_rma
+#: model:mail.template,subject:bi_rma.email_template_edi_rma
+msgid "${object.subject}"
+msgstr ""
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "APPROVE"
+msgstr "APROBAR"
+
+#. module: bi_rma
+#: model:ir.model.fields.selection,name:bi_rma.selection__rma_main__state__approved
+msgid "APPROVED"
+msgstr "APROBADA"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__action
+#: model:ir.model.fields,field_description:bi_rma.field_rma_reason__reason_action
+msgid "Action"
+msgstr "Acción"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_res_company__b2b_destination_picking_type_id
+msgid "B2B Destination Picking Type"
+msgstr "Tipo de selección de destino B2B"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_res_company__b2b_source_picking_type_id
+msgid "B2B Source Picking Type"
+msgstr "Tipo de selección de origen B2B"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "CLOSE"
+msgstr "CERRAR"
+
+#. module: bi_rma
+#: model:ir.model.fields.selection,name:bi_rma.selection__rma_main__state__close
+msgid "CLOSED"
+msgstr "CERRADA"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.change_product_wizard
+#: model_terms:ir.ui.view,arch_db:bi_rma.create_rfq_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_stock_picking__claim_count
+msgid "Claim Count"
+msgstr "Recuento de reclamaciones"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_stock_picking__claim_id
+msgid "Claim ID"
+msgstr "ID de reclamo"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_stock_picking_rma_form
+msgid "Claims"
+msgstr "Reclamación"
+
+#. module: bi_rma
+#: model:ir.model,name:bi_rma.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: bi_rma
+#: model:ir.model,name:bi_rma.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de Configuración"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_change_product__create_invoice
+msgid "Create Invoice"
+msgstr "Crear factura"
+
+#. module: bi_rma
+#: model:ir.actions.act_window,name:bi_rma.action_reject_wizard
+msgid "Create Reject"
+msgstr "Crear rechazo"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_create_reject__create_uid
+#: model:ir.model.fields,field_description:bi_rma.field_reject_reason__create_uid
+#: model:ir.model.fields,field_description:bi_rma.field_rma_change_product__create_uid
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__create_uid
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__create_uid
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__create_uid
+#: model:ir.model.fields,field_description:bi_rma.field_rma_reason__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_create_reject__create_date
+#: model:ir.model.fields,field_description:bi_rma.field_reject_reason__create_date
+#: model:ir.model.fields,field_description:bi_rma.field_rma_change_product__create_date
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__create_date
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__create_date
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__create_date
+#: model:ir.model.fields,field_description:bi_rma.field_rma_reason__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.rma_report_template
+msgid "Customer :"
+msgstr "Cliente :"
+
+#. module: bi_rma
+#: model:ir.model.fields.selection,name:bi_rma.selection__rma_main__state__draft
+msgid "DRAFT"
+msgstr "SEQUÍA"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__date
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.rma_report_template
+msgid "Date :"
+msgstr "Fecha :"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__deadline
+msgid "Deadline"
+msgstr "Fecha límite"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__delivery_qty
+msgid "Delivered Quantity"
+msgstr "Cantidad entregada"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__delivery_order
+msgid "Delivery Order"
+msgstr "Orden de entrega"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.rma_report_template
+msgid "Delivery Quantity"
+msgstr "Cantidad de entrega"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.rma_report_template
+msgid "Description"
+msgstr "Descripción"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_res_config_settings__b2b_destination_picking_type_id
+msgid "Destination Picking Type"
+msgstr "Tipo de selección de destino"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_change_product__diff_product
+msgid "Diff Product"
+msgstr "Producto diferente"
+
+#. module: bi_rma
+#: model:ir.model.fields,help:bi_rma.field_rma_change_product__diff_product
+msgid "Different Product Options"
+msgstr "Diferentes opciones de productos"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_create_reject__display_name
+#: model:ir.model.fields,field_description:bi_rma.field_reject_reason__display_name
+#: model:ir.model.fields,field_description:bi_rma.field_rma_change_product__display_name
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__display_name
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__display_name
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__display_name
+#: model:ir.model.fields,field_description:bi_rma.field_rma_reason__display_name
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__email
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: bi_rma
+#: model:ir.model.fields.selection,name:bi_rma.selection__rma_main__priority__2
+msgid "High"
+msgstr "Alta"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_create_reject__id
+#: model:ir.model.fields,field_description:bi_rma.field_reject_reason__id
+#: model:ir.model.fields,field_description:bi_rma.field_rma_change_product__id
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__id
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__id
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__id
+#: model:ir.model.fields,field_description:bi_rma.field_rma_reason__id
+msgid "ID"
+msgstr "IDENTIFICACIÓN"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__in_delivery_count
+msgid "Incoming Orders"
+msgstr "Órdenes entrantes"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__is_invoice
+msgid "Is invoice"
+msgstr "Es factura"
+
+#. module: bi_rma
+#: model:ir.model,name:bi_rma.model_account_move
+msgid "Journal Entries"
+msgstr "Asientos contables"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_create_reject____last_update
+#: model:ir.model.fields,field_description:bi_rma.field_reject_reason____last_update
+#: model:ir.model.fields,field_description:bi_rma.field_rma_change_product____last_update
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim____last_update
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines____last_update
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main____last_update
+#: model:ir.model.fields,field_description:bi_rma.field_rma_reason____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_create_reject__write_uid
+#: model:ir.model.fields,field_description:bi_rma.field_reject_reason__write_uid
+#: model:ir.model.fields,field_description:bi_rma.field_rma_change_product__write_uid
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__write_uid
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__write_uid
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__write_uid
+#: model:ir.model.fields,field_description:bi_rma.field_rma_reason__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por última vez por"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_create_reject__write_date
+#: model:ir.model.fields,field_description:bi_rma.field_reject_reason__write_date
+#: model:ir.model.fields,field_description:bi_rma.field_rma_change_product__write_date
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__write_date
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__write_date
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__write_date
+#: model:ir.model.fields,field_description:bi_rma.field_rma_reason__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización en"
+
+#. module: bi_rma
+#: model:ir.model.fields.selection,name:bi_rma.selection__rma_main__priority__0
+msgid "Low"
+msgstr "Baja"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_res_company__name
+#: model:ir.model.fields,field_description:bi_rma.field_res_config_settings__name
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: bi_rma
+#: code:addons/bi_rma/models/rma.py:0
+#, python-format
+msgid "New"
+msgstr "Nuevo"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__nxt_act
+msgid "Next Action"
+msgstr "Next Action"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__nxt_act_dt
+msgid "Next Action Date"
+msgstr "Próxima fecha de acción"
+
+#. module: bi_rma
+#: model:ir.model.fields.selection,name:bi_rma.selection__rma_main__priority__1
+msgid "Normal"
+msgstr "Normal"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.create_rfq_wizard_form
+msgid "OR"
+msgstr "O"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.rma_report_template
+msgid "Order Referance :"
+msgstr "Order Referance :"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__out_delivery_count
+msgid "Outgoing Orders"
+msgstr "Órdenes salientes"
+
+#. module: bi_rma
+#: model:ir.model.fields.selection,name:bi_rma.selection__rma_main__state__processing
+msgid "PROCESSING"
+msgstr "PROCESANDO"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__partner
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__partner
+msgid "Partner"
+msgstr "Pareja"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__phone
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "Picking Order"
+msgstr "Picking Order"
+
+#. module: bi_rma
+#: code:addons/bi_rma/models/rma.py:0
+#, python-format
+msgid "Please confirm the sale order first."
+msgstr "Confirme primero la orden de venta."
+
+#. module: bi_rma
+#: code:addons/bi_rma/models/rma.py:0
+#, python-format
+msgid ""
+"Please define income account for this product: \"%s\" (id:%d) - or for its "
+"category: \"%s\"."
+msgstr ""
+
+#. module: bi_rma
+#: code:addons/bi_rma/models/rma.py:0
+#, python-format
+msgid "Please select a proper date."
+msgstr "Seleccione una fecha adecuada."
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__price_unit
+msgid "Price"
+msgstr "Precio"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__priority
+msgid "Priority"
+msgstr "Prioridad"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_change_product__rma_prod
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__product_id
+#: model_terms:ir.ui.view,arch_db:bi_rma.change_product_wizard
+msgid "Product"
+msgstr "Producto"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_change_product__prod_change_qty
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: bi_rma
+#: code:addons/bi_rma/models/rma.py:0
+#, python-format
+msgid "Quantity should be less than delivered."
+msgstr "La cantidad debe ser menor que la entregada."
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "REJECT"
+msgstr "RECHAZAR"
+
+#. module: bi_rma
+#: model:ir.model.fields.selection,name:bi_rma.selection__rma_main__state__reject
+msgid "REJECTED"
+msgstr "RECHAZADA"
+
+#. module: bi_rma
+#: model:ir.ui.menu,name:bi_rma.menu_rma_b2b
+#: model:ir.ui.menu,name:bi_rma.menu_rma_order
+msgid "RMA"
+msgstr "RMA"
+
+#. module: bi_rma
+#: model:ir.actions.act_window,name:bi_rma.action_change_wizard
+msgid "RMA Change Product"
+msgstr "RMA Cambiar producto"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_claim_tree
+msgid "RMA Claim"
+msgstr "Reclamación de RMA"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.res_config_settings_view_form_rma
+msgid "RMA Configuration"
+msgstr "Configuración RMA"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "RMA Details"
+msgstr "RMA Details"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_stock_picking__rma_id
+msgid "RMA ID"
+msgstr "ID de RMA"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_account_move__rma_id
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__rma_id
+#: model:ir.model.fields,field_description:bi_rma.field_sale_order__rma_id
+msgid "RMA Id"
+msgstr "ID de RMA"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__rma_line_ids
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "RMA Lines"
+msgstr "Líneas RMA"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__rma_note
+msgid "RMA Note"
+msgstr "RMA Note"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "RMA Notes"
+msgstr "Notas RMA"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.rma_report_template
+msgid "RMA Notes :"
+msgstr "Notas de RMA:"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_change_product__rma_id
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__rma_id
+msgid "RMA Number"
+msgstr "Número RMA"
+
+#. module: bi_rma
+#: model:ir.actions.act_window,name:bi_rma.action_rma_order
+#: model:ir.ui.menu,name:bi_rma.menu_return_order
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_claim_form
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "RMA Order"
+msgstr "Pedido RMA"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_tree
+msgid "RMA Orders"
+msgstr "Órdenes RMA"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_reason__rma_reason
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_reason_form
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_reason_tree
+msgid "RMA Reason"
+msgstr "Razón de RMA"
+
+#. module: bi_rma
+#: model:ir.actions.act_window,name:bi_rma.action_rma_reason
+#: model:ir.ui.menu,name:bi_rma.menu_return_reason
+msgid "RMA Reasons"
+msgstr "RMA Reasons"
+
+#. module: bi_rma
+#: model:ir.actions.report,name:bi_rma.rma_report
+msgid "RMA Report"
+msgstr "Informe RMA"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__reason
+#: model_terms:ir.ui.view,arch_db:bi_rma.rma_report_template
+msgid "Reason"
+msgstr "Razón"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__recieved_qty
+msgid "Recieved Quantity"
+msgstr "Cantidad recibida"
+
+#. module: bi_rma
+#: model:ir.model.fields.selection,name:bi_rma.selection__rma_reason__reason_action__refund
+msgid "Refund"
+msgstr "Reembolso"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__refund_inv_count
+msgid "Refund Invoice"
+msgstr "Factura de reembolso"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "Refund Invoices"
+msgstr "Facturas de reembolso"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.create_rfq_wizard_form
+msgid "Reject"
+msgstr "Rechazar"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.create_rfq_wizard_form
+msgid "Reject Claim"
+msgstr "Reject Claim"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_reject_reason__reject_reason
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__reject_reason
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_reject_reason_form
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_reject_reason_tree
+msgid "Reject Reason"
+msgstr "Razón del rechazo"
+
+#. module: bi_rma
+#: model:ir.actions.act_window,name:bi_rma.action_reject_reason
+msgid "Reject Reasons"
+msgstr "Reject Reasons"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_create_reject__rma_reason_id
+msgid "Reject reason"
+msgstr "Rechazar la razón"
+
+#. module: bi_rma
+#: model:ir.model.fields.selection,name:bi_rma.selection__rma_reason__reason_action__repair
+msgid "Repair"
+msgstr "Reparar"
+
+#. module: bi_rma
+#: model:ir.model.fields.selection,name:bi_rma.selection__rma_reason__reason_action__replace
+msgid "Replace"
+msgstr "Reemplazar"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "Replace product"
+msgstr "Reemplazar producto"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__replaced_qty
+msgid "Replaced Quantity"
+msgstr "Cantidad reemplazada"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__replaced_with
+msgid "Replaced with"
+msgstr "Reemplazadas con"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__responsible
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__responsible
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.rma_report_template
+msgid "Responsible :"
+msgstr "Responsable :"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.rma_report_template
+msgid "Return Address :"
+msgstr "Dirección del remitente :"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.rma_report_template
+msgid "Return Order #"
+msgstr "Número de orden de devolución"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__return_qty
+#: model_terms:ir.ui.view,arch_db:bi_rma.rma_report_template
+msgid "Return Quantity"
+msgstr "Cantidad devuelta"
+
+#. module: bi_rma
+#: code:addons/bi_rma/models/rma.py:0
+#, python-format
+msgid "Return quantity should be less or equal to delivery quantity."
+msgstr "La cantidad de devolución debe ser menor o igual a la cantidad de entrega."
+
+#. module: bi_rma
+#: code:addons/bi_rma/models/rma.py:0
+#, python-format
+msgid "Return quantity should be less or equal to return quantity."
+msgstr "La cantidad devuelta debe ser menor o igual a la cantidad devuelta."
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "SEND BY MAIL"
+msgstr "ENVIAR POR CORREO ELECTRÓNICO"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "SET TO DRAFT"
+msgstr "AJUSTAR A BORRADOR"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__sale_order
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__sale_order_count
+msgid "Sale Order"
+msgstr "Orden de venta"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "Sale Orders"
+msgstr "Sale Orders"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__sales_channel
+msgid "Sales Channel"
+msgstr "Canal de ventas"
+
+#. module: bi_rma
+#: model:ir.model,name:bi_rma.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.change_product_wizard
+msgid "Save"
+msgstr "Ahorrar"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.rma_report_template
+msgid "Shipping Referance :"
+msgstr "Referance de envío:"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_lines__show_prod_setting
+msgid "Show Poduct setting"
+msgstr "Mostrar configuración de Poduct"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_res_config_settings__b2b_source_picking_type_id
+msgid "Source Picking Type"
+msgstr "Tipo de selección de origen"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__stock_picking_id
+msgid "Stock Picking"
+msgstr "La selección de valores"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_claim__subject
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__subject
+msgid "Subject"
+msgstr "Sujeta"
+
+#. module: bi_rma
+#: model:ir.model,name:bi_rma.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"
+
+#. module: bi_rma
+#: model_terms:ir.ui.view,arch_db:bi_rma.view_rma_order_form
+msgid "VALIDATE"
+msgstr "VALIDAR"
+
+#. module: bi_rma
+#: model:ir.model.fields,field_description:bi_rma.field_rma_main__is_validate
+msgid "Validated"
+msgstr "Validada"
+
+#. module: bi_rma
+#: model:ir.model,name:bi_rma.model_create_reject
+msgid "create.reject"
+msgstr ""
+
+#. module: bi_rma
+#: model:ir.model,name:bi_rma.model_reject_reason
+msgid "reject.reason"
+msgstr ""
+
+#. module: bi_rma
+#: model:ir.model,name:bi_rma.model_rma_change_product
+msgid "rma.change.product"
+msgstr ""
+
+#. module: bi_rma
+#: model:ir.model,name:bi_rma.model_rma_claim
+msgid "rma.claim"
+msgstr ""
+
+#. module: bi_rma
+#: model:ir.model,name:bi_rma.model_rma_lines
+msgid "rma.lines"
+msgstr ""
+
+#. module: bi_rma
+#: model:ir.model,name:bi_rma.model_rma_main
+msgid "rma.main"
+msgstr ""
+
+#. module: bi_rma
+#: model:ir.model,name:bi_rma.model_rma_reason
+msgid "rma.reason"
+msgstr ""

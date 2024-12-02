@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+{
+    'name': "Reddot Contract Extension",
+    'summary': """Reddot Contract Extension""",
+    'author': "Reddot Contract Extension",
+    'category': 'Uncategorized',
+    'version': '0.8',
+    "website": "https://reddotdistribution.com",
+    'depends': [
+        'web',
+        'hr',
+        'hr_contract',
+    ],
+    'data': [
+        'security/ir.model.access.csv',
+#         'data/send_employee_mail.xml',
+        'data/contract_sequence.xml',
+        'data/contract_running_cron.xml',
+#         'data/contract_expire_send_mail.xml',
+        'data/contract_send_mail_template.xml',
+        'data/contract_send_mail_to_approve.xml',
+        'reports/hr_contract_tempate.xml',
+        'wizard/exception_remark_wizard_view.xml',
+        'wizard/accept_contract_wizard_view.xml',
+        'wizard/renew_contract_wizard_view.xml',
+        'wizard/do_not_renew_contract_wizard_view.xml',
+        'views/contract_report_template_view.xml',
+        'views/hr_contract_view.xml',
+    ],
+}

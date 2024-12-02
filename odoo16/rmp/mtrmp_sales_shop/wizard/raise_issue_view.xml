@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="raise_issue_wizard_view">
+            <field name="name">raise.issue.wizard.form</field>
+            <field name="model">raise.issue.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="raise_comment"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="record_raise_submit" string="Submit" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_raise_issue_wizard">
+            <field name="name">Raise Issue</field>
+            <field name="res_model">raise.issue.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

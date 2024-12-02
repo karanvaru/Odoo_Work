@@ -1,0 +1,15 @@
+
+.o_payment_container_report_page {
+    background-color: $o-view-background-color;
+    margin: 25px 25px;
+    padding: 25px 25px;
+
+    table.o_payment_expandable {
+        
+        tbody tr {
+            border-width: 1px;
+            border-top-style: solid;
+            border-bottom-style: groove;
+        }
+    }
+}

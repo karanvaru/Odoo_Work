@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="hr_mass_email_candidates_email_template" model="mail.template">
+            <field name="name">Mass Email Candidates Template(New)</field>
+            <field name="model_id" ref="rdp_hr_applicant_extended.model_hr_applicant"/>
+            <field name="auto_delete">1</field>
+<!--            <field name="email_from">${object.user_id}</field>-->
+            <field name="email_to">${object.email_from}</field>
+            <field name="subject">Job opportunity for the Position of "${object.job_id.name}"</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>Dear Candidate,</p>
+                    <br/>
+                    <br/>
+                    I hope this email finds you well. We recently had a job opening for the Position of  "${object.job_id.name}" at RDP, and I wanted to reach out to you as we are considering candidates who applied for a similar position in the past.
+                    <br/>
+                    <br/>
+                    As you may recall, you applied for the ${object.job_id.name}"   role at our company previously. Although we were impressed with your qualifications and experience, we had already filled the position with a suitable candidate. However, we have recently had new openings in our company, and we would like to explore if you are still interested in joining our team.
+                    <br></br>
+                    We value the time and effort you put into applying for the position, and we believe that your skills and experience could be an excellent fit for our current requirements. We are looking for someone similar to your experience (based on previous application).
+                    <br></br>
+                    If you are still interested in this opportunity then we request you to apply through the link below. We would appreciate it if you could confirm your interest as soon as possible to enable us to move forward with the hiring process.
+                    <br></br>
+                    Thank you for your time and consideration, and we look forward to hearing back from you soon.
+                    <br></br>
+                    You appreciate your interest in getting associated with us.
+                    <br></br>
+                    Name of the JP:   ${object.job_id.name}
+                    <br></br>
+                    Link: <a href ="${object.base_url}https://rdp.in/jobs/detail/${object.job_id.id}"> Click Here</a>
+                    <br></br>
+                    With Best Regards
+                    <br></br>
+                    RDP People Team
+
+
+
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

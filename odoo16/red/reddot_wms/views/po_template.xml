@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+<!--        <template id="inherit_purchase_dashboard" inherit_id="purchase.PurchaseDashboard" name="Inherited Purchase Dashboard">-->
+<!--                <xpath expr="//div[contains(@class, 'g-col-3')][contains(text(), 'All RFQs')]" position="replace">-->
+<!--                    Purchase Requests-->
+<!--                </xpath>-->
+<!--            </template>-->
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+.horizontal_category{
+    margin-top:20px;
+}
+.horizontal_category_unlink_list >ul>li{
+    display:inline-block;
+
+}

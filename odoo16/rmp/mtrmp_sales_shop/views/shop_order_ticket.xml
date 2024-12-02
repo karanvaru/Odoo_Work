@@ -1,0 +1,109 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="shop_order_ticket_view_tree">
+            <field name="name">shop.order.ticket.tree</field>
+            <field name="model">shop.order.ticket</field>
+            <field name="arch" type="xml">
+                <tree string="Shop Order Ticket">
+                    <field name="name"/>
+                    <field name="order_id"/>
+                    <field name="type"/>
+                    <field name="qa_result"/>
+                    <field name="ecomm_panlulty_planned"/>
+                    <field name="ecomm_penulty_actual"/>
+                    <field name="create_date"/>
+                    <field name="issue_date"/>
+                    <field name="days_remain"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="shop_order_ticket_view_form">
+            <field name="name">shop.order.ticket.from</field>
+            <field name="model">shop.order.ticket</field>
+            <field name="arch" type="xml">
+                <form string="Shop Order Ticket">
+                    <header>
+                        <button name="action_confirm" string="Confirm" type="object"
+                                attrs="{'invisible': [('state', '!=', 'new')]}"/>
+                        <button name="goods_return" string="Goods Return" type="object"
+                                attrs="{'invisible': [('state', '!=', 'confirm')]}"/>
+                        <button name="%(mtrmp_sales_shop.actions_quality_check_wizard)d" string="Quality Check"
+                                type="action"
+                                attrs="{'invisible': [('state', '!=', 'goods_return')]}"/>
+                        <button name="%(mtrmp_sales_shop.actions_raise_issue_wizard)d" string="Raise Issue"
+                                type="action"
+                                attrs="{'invisible': ['|',('state', '!=', 'qa'),('quality_type','!=','not_ok')]}"/>
+                        <button name="action_in_settlement" string="Resolve" type="object"
+                                attrs="{'invisible': [('state', 'not in', ['issue','qa'])]}"/>
+                        <button name="action_close" string="Close" type="object"
+                                attrs="{'invisible': [('state', '!=', 'in_settlement')]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="order_id" attrs="{'readonly': [('state', '!=', 'new')]}"/>
+                                <field name="type" attrs="{'readonly': [('state', '!=', 'new')]}"/>
+                                <field name="in_picking" readonly="1"/>
+                                <field name="qa_result" attrs="{'readonly': [('state', '!=', 'new')]}"/>
+                            </group>
+                            <group>
+                                <field name="ecomm_panlulty_planned" attrs="{'readonly': [('state', '!=', 'new')]}"/>
+                                <field name="ecomm_penulty_actual" attrs="{'readonly': [('state', '!=', 'new')]}"/>
+                                <field name="create_date" invisible="1"/>
+                                <field name="issue_date" attrs="{'readonly': [('state', '!=', 'new')]}"/>
+                                <field name="days_remain" attrs="{'readonly': [('state', '!=', 'new')]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Quality Check">
+                                <group>
+                                    <group>
+                                        <field name="quality_type" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="comment" readonly="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Raise Issue">
+                                <group>
+                                    <group>
+                                        <field name="raise_comment" readonly="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="o_attachment_preview"/>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="actions_shop_order_ticket_view" model="ir.actions.act_window">
+            <field name="name">Shop Order Ticket</field>
+            <field name="res_model">shop.order.ticket</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="shop_order_ticket_view_root_menu"
+                  name="Shop Order Ticket"
+                  parent="mtrmp_sales_shop.ticket_menu"
+                  action="actions_shop_order_ticket_view"
+
+        />
+
+    </data>
+</odoo>

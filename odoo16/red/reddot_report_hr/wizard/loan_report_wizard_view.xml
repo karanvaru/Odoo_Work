@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_loan_report_wizard_form">
+            <field name="name">loan.report.wizard.view</field>
+            <field name="model">loan.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Export Report">
+                    <group>
+                        <group>
+                            <field name="start_period"/>
+                            <field name="company_ids" widget="many2many_tags" options="{'no_create_edit': True,'no_create': True}"/>
+                            <field name="department_ids" widget="many2many_tags" options="{'no_create_edit': True,'no_create': True}"/>
+                            <field name="employee_ids" widget="many2many_tags" options="{'no_create_edit': True,'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="end_period"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_print_report" class='btn btn-primary' string="Export" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_loan_report_wizard">
+            <field name="name">Loan Report</field>
+            <field name="res_model">loan.report.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_loan_report_wizard"
+                  parent="hr.hr_menu_hr_reports"
+                  name="Loan Report"
+                  sequence="60"
+                  action="actions_loan_report_wizard"
+        />
+
+    </data>
+</odoo>

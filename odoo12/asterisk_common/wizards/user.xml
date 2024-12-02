@@ -1,0 +1,27 @@
+<odoo>
+    <record id="common_user_change_option_view" model="ir.ui.view">
+        <field name="name">Change Option</field>
+        <field name="model">asterisk_common.user_option_wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="option"/>
+                    <field name="value"/>
+                </group>
+                <footer>
+                    <button string="Submit" name="do_change" type="object"
+                            class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id='common_user_change_option_wizard_action' model='ir.actions.act_window'>
+        <field name='name'>Change option</field>
+        <field name='res_model'>asterisk_common.user_option_wizard</field>
+        <field name="target">new</field>
+        <field name='view_mode'>form</field>
+        <field name="binding_model_id" ref="model_asterisk_common_user"/>
+    </record>
+</odoo>

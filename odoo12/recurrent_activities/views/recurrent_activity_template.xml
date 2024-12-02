@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="recurrent_activity_template_view_search" model="ir.ui.view" >
+        <field name="name">recurrent.activity.template.search</field>
+        <field name="model">recurrent.activity.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="activity_type_id"/>
+                <field name="res_model_id"/>
+                <filter string="Archived"
+                        name="inactive"
+                        domain="[('active','=',False)]"
+                />
+                <group  expand='0' string='Group by...'>
+                    <filter name="user_group"
+                            string="Responsible"
+                            context="{'group_by' : 'user_id'}"
+                    />
+                    <filter name="model_group"
+                            string="Model"
+                            context="{'group_by' : 'res_model_id'}"
+                    />
+                    <filter name="activity_type_group"
+                            string="Activity Type"
+                            context="{'group_by' : 'activity_type_id'}"
+                    />
+                    <filter name="res_reference_group"
+                            string="Document"
+                            context="{'group_by' : 'res_reference'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="recurrent_activity_template_view_form" model="ir.ui.view" >
+        <field name="name">recurrent.activity.template.form</field>
+        <field name="model">recurrent.activity.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-archive"
+                        >
+                            <field name="active"
+                                   widget="boolean_button"
+                                   options='{"terminology": "archive"}'
+                            />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field  name="name"
+                                    placeholder="Name"
+                                    class="oe_inline"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="res_reference"/>
+                            <field name="number_of_days"/>
+                            <field name="res_model_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="activity_type_id"
+                                   options="{'no_create_edit': 1, 'no_quick_create': 1}"
+                            />
+                            <field name="user_id"
+                                   domain="[('is_int_user', '=', True)]"
+                                   options="{'no_create_edit': 1, 'no_quick_create': 1}"
+                            />
+                            <field name="summary"/>
+                            <field name="note"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Recurrency">
+                            <group>
+                                <group>
+                                    <label for="periodicity"/>
+                                    <div class="o_row">
+                                        <field name="interval" required="1"/>
+                                        <field name="periodicity" required="1"/>
+                                    </div>
+                                    <field name="next_sent_date" required="1"/>
+                                    <field name="last_sent_date" readonly="1"/>
+                                    <field name="the_very_last_date"/>
+                                </group>
+                                <group attrs="{'invisible': [('periodicity', '!=', 'weekly')]}"
+                                       name="weekdays"
+                                >
+                                    <field name="mo"/>
+                                    <field name="tu"/>
+                                    <field name="we"/>
+                                    <field name="th"/>
+                                    <field name="fr"/>
+                                    <field name="sa"/>
+                                    <field name="su"/>
+                                </group>
+                                <group attrs="{'invisible': [('periodicity', '!=', 'yearly')]}">
+                                    <div class="o_row">
+                                        <field name="year_day"/>
+                                        <field name="year_month"/>
+                                    </div>
+                                </group>
+                                <group attrs="{'invisible': [('periodicity', '!=', 'monthly')]}">
+                                    <label string="Day of Month"
+                                           for="month_by"
+                                    />
+                                    <div class="o_row">
+                                        <field name="month_by"
+                                               attrs="{'required': [('periodicity', '=', 'monthly')],}"
+                                        />
+                                        <field name="day"
+                                               attrs="{'required': [('month_by', '=', 'date'), ('periodicity', '=', 'monthly')], 'invisible': [('month_by', '!=', 'date')]}"/>
+                                        <field name="byday"
+                                               string="The"
+                                               attrs="{'required': [('month_by', '=', 'day'), ('periodicity', '=', 'monthly')], 'invisible': [('month_by', '!=', 'day')]}"/>
+                                        <field name="week_list"
+                                               nolabel="1"
+                                               attrs="{'required': [('month_by', '=', 'day'), ('periodicity', '=', 'monthly')], 'invisible': [('month_by', '!=', 'day')]}"
+                                        />
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="recurrent_activity_template_view_tree" model="ir.ui.view" >
+        <field name="name">recurrent.activity.template.tree</field>
+        <field name="model">recurrent.activity.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name='name'/>
+                <field name='user_id'/>
+                <field name='res_reference'/>
+                <field name="activity_type_id"/>
+                <field name="summary"/>
+                <field name='next_sent_date'/>
+                <field name="the_very_last_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="recurrent_activity_template_action" model="ir.actions.act_window">
+        <field name="name">Recurring Activities</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">recurrent.activity.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="search_view_id" eval="recurrent_activity_template_view_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a recurring activity
+            </p>
+        </field>
+    </record>
+
+</odoo>

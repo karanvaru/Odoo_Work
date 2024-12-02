@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="merge_ticket_wiz_view" model="ir.ui.view">
+            <field name="name">ticket.merge.wizard.form</field>
+            <field name="model">ticket.merge.wizard</field>
+                <field name="arch" type="xml">
+                    <form string="Merge Ticket">
+                        <separator color="grey" string="This wizard will allow you to merge tickets into primary ticket. It can also allow you to create new ticket from the selected ticket as a part of merge process."/>
+                        <group>
+                            <group>
+                                <field name="responsible_user_id"/>
+                                <field name="partner_id"/>
+                                <field name="partner_name"/>
+                                <field name="partner_email"/>
+                                <field name="ticket_type_id"/>
+                                <field name="ticket_subject" attrs="{'invisible' : [('create_new_ticket','!=',True)],'required': [('create_new_ticket','=',True)]}"/>
+                                <field name="priority"/>
+                                <field name="team_id"/>
+                            </group>
+                            <group>
+                                <field name="create_new_ticket"/>
+                                <field name="merge_reason"/>
+                                <field name="is_sure"/>
+                                <field name="primary_id" domain="[('id','in', merge_ids)]" attrs="{'invisible': [('create_new_ticket','==',True)], 'required' : [('create_new_ticket','!=',True)]}"/>
+                                <field name="tag_ids" widget="many2many_tags"/>
+                                <field name='merge_ids' widget="many2many_tags" invisible='True'/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name='merge ticket' string="Tickets to Merge">
+                                <field name="merge_ticket_line_ids" readonly='1'>
+                                    <tree name="ticket_line" editable="bottom">
+                                        <field name="ticket_id"/>
+                                        <field name="subject"/>
+                                        <field name="responsible_user_id"/>
+                                        <field name="partner_id"/>
+                                        <field name="partner_name"/>
+                                        <field name="partner_email"/>
+                                        <field name="ticket_type_id"/>
+                                        <field name="priority"/>
+                                        <!-- <field name="tag_ids"/> -->
+                                        <field name="team_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <footer>
+                            <button name="action_merge_ticket" type="object" string="Merge Now" class="btn-primary"/>
+                            or
+                            <button string="_Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </form>
+                </field>
+        </record>
+     <!--    
+        <act_window 
+            id="action_merge_tickets"
+            name="Merge Support Tickets"
+            res_model="ticket.merge.wizard" 
+            binding_model="helpdesk.ticket"
+            view_mode="form" 
+            target="new"/> -->
+            <act_window id="action_merge_tickets"
+                    name="Merge Support Tickets"
+                    res_model="ticket.merge.wizard"
+                    view_mode="form"
+                    target="new"
+                    src_model="helpdesk.ticket"
+                    key2="client_action_multi"/>
+
+   </data>
+</odoo>

@@ -1,0 +1,13 @@
+<odoo>
+    <record id="mrp_production_inherit_form_record_type" model="ir.ui.view">
+        <field name="name">mrp.production.inherit.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bom_id']" position="after">
+                <field name="record_type_id" />
+                <field name="record_category_id" domain="[('record_type_ids', 'in', record_type_id)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

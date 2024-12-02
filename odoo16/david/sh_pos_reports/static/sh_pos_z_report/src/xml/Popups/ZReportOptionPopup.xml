@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ZReportOptionPopup" owl="1">
+        <div role="dialog" class="modal-dialog sh_z_report_modal_dialog">
+            <div class="popup popup-text popup-lg product-configurator-popup sh_z_report_modal_dialog_popup">
+                <header class="title">
+                    Print Z-Report
+                </header>
+                <main class="main-body body touch-scrollable scrollable-y main_div_sh_statement">
+                    <div class="sh_print_statement_option">
+                        <div class="sh_pdf_div sh_custom_radio_btn">
+                            <input class="sh_print_input" type="radio" id="pdf_statement" name="print_option" value="pdf" checked="true" />
+                            <label class="sh_print_lbl" for="pdf_statement">Generate PDF</label>
+                        </div>
+                        <div class="sh_receipt_div sh_custom_radio_btn">
+                            <input class="sh_print_input" type="radio" id="receipt_statement" name="print_option" value="receipt" />
+                            <label class="sh_print_lbl" for="receipt_statement">Generate Receipt</label>
+                        </div>
+                    </div>
+                </main>
+                <footer class="footer">
+                    <div class="button print highlight" t-on-click="print">
+                        Print
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Close
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+    
+</templates>

@@ -1,0 +1,29 @@
+<odoo>
+    <record id="asterisk_base_queues_queue_member_agent_access" model="ir.model.access">
+        <field name="name">asterisk_base_queues_queue_member_agent_access</field>
+        <field name="model_id" ref="model_asterisk_base_queues_queue_member"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_agent"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1" />
+    </record>
+    <record id="asterisk_base_queues_queue_agent_access" model="ir.model.access">
+        <field name="name">asterisk_base_queues_queue_agent_access</field>
+        <field name="model_id" ref="model_asterisk_base_queues_queue"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_agent"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0" />
+    </record>
+    <record id="asterisk_common_user_agent_access" model="ir.model.access">
+        <field name="name">asterisk_common_user_agent_access</field>
+        <field name="model_id" ref="model_asterisk_common_user"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_agent"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0" />
+    </record>
+</odoo>

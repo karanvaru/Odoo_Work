@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rdp_it_custom,RDP IT Custom,model_rdp_it_custom,,1,1,1,1
+access_record.category,record.category,model_record_category,,1,1,1,1
+access_record.type,record.type,model_record_type,,1,1,1,1

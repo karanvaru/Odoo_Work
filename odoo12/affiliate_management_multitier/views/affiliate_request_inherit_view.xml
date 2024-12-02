@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record model='ir.ui.view' id='affiliate_request_inherit_form_view'>
+			<field name="name">Affiliate Request Form</field>
+			<field name="model">affiliate.request</field>
+			<field name="inherit_id" ref="affiliate_management.affiliate_request_view_form" />
+			<field name="arch"  type="xml">
+          <xpath expr="//field[@name='name']"  position="after">
+            <field name="parent_aff_key" attr="{'invisble': [('parent_aff_key', '=', False)]}"/>
+          </xpath>
+			</field>
+		</record>
+
+
+	</data>
+</odoo>

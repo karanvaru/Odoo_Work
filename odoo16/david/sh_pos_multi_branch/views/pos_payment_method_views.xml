@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="sh_multi_branch_pos_payment_method_form_view_inherit" model="ir.ui.view">
+        <field name="name">pos.payment.method.inherit.form.view.branch</field>
+        <field name="model">pos.payment.method</field>
+        <field name="inherit_id" ref="point_of_sale.pos_payment_method_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="branch_id" groups="sh_base_branch.sh_multi_branch_group" widget="many2many_tag" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_pos_payment_method_search_view_inherit" model="ir.ui.view">
+        <field name="name">pos.payment.method.search.branch</field>
+        <field name="model">pos.payment.method</field>
+        <field name="inherit_id" ref="point_of_sale.pos_payment_method_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//search//group//filter[@name='group_by_receivable_account']" position="after">
+                <filter string="Branch" name="branch_id" domain="[]" context="{'group_by': 'branch_id'}" groups="sh_base_branch.sh_multi_branch_group" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_pos_payment_method_tree_view_inherit" model="ir.ui.view">
+        <field name="name">pos.payment.method.inherit.tree.view.branch</field>
+        <field name="model">pos.payment.method</field>
+        <field name="inherit_id" ref="point_of_sale.pos_payment_method_view_tree" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" groups="sh_base_branch.sh_multi_branch_group" />
+            </field>
+        </field>
+    </record>
+    
+</odoo>

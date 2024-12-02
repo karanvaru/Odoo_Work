@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="quality_audit_ticket_close_remainder_email_template" model="mail.template">
+            <field name="name">Quality Ticket Closing Remainder</field>
+            <field name="model_id" ref="rdp_helpdeskquality_audit.model_quality_audit"/>
+            <field name="auto_delete">0</field>
+            <!-- <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field> -->
+            <field name="email_to">customer.success1@rdp.in,tech.support11@rdp.in,md.zaheeruddin@rdp.in,md.abdulshafeeq@rdp.in,tech.support9@rdp.in,tech.support3@rdp.in,tech.support12@rdp.in,haricharan@rdp.in,tech.support@rdp.in,praveen.s@rdp.in,tech.support4@rdp.in,bibhuti.sahu@rdp.in</field>
+            <field name="subject">Quality Audit Ticket Closing Remainder For SLA</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear Team,
+                        <br /><br />
+
+                        This is a kind and gentle reminder that some of your tickets are still open, but the Customer problem is solved. So needs to be closed which avoids Service level breaches. .
+
+                         <br /><br />
+                         We understand that sometimes there may be a delay in resolving the issue, however, we would like to remind you that prompt closure of tickets is important to ensure that our customers receive the best support possible.
+                         <br /><br />
+                        If you need any further assistance, please do not hesitate to contact us.
+                         <br /><br />
+                         Thank you for your understanding,
+                        <br /><br />
+                        Sincerely,
+                        <br /><br />
+                        Quality Team.
+                    </p>
+
+                </div>
+            </field>
+        </record>
+    </data>
+
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_account_group_form_inherit_parent" model="ir.ui.view">
+        <field name="name">account.group.form.parent</field>
+        <field name="model">account.group</field>
+        <field name="inherit_id" ref="account.view_account_group_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                       <field name="parent_id"/>
+                       <field name="complete_name"/>
+            </xpath>
+        </field>
+    </record>
+    
+    
+    <record id="view_account_group_tree_inherit_parent" model="ir.ui.view">
+        <field name="name">account.group.tree.parent</field>
+        <field name="model">account.group</field>
+        <field name="inherit_id" ref="account.view_account_group_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="before">
+                       <field name="parent_id"/>
+                       <field name="complete_name"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- RMA form view -->
+    <record id="rma_issue_view_form_inherit" model="ir.ui.view">
+        <field name="name">rma.issue.form.inherit</field>
+        <field name="model">rma.issue</field>
+        <field name="inherit_id" ref="sync_rma.ram_issue_view_form"/>
+        <field name="arch" type="xml">
+            <field name="issue_date" position="after">
+                <field name="ticket_id" required="1" domain="[('partner_id', '=', partner_id)]" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- RMA search view -->
+    <record model="ir.ui.view" id="view_rma_search_view">
+        <field name="name">rma.issue.search.inherit</field>
+        <field name="model">rma.issue</field>
+        <field name="inherit_id" ref="sync_rma.view_rma_search_view"/>
+        <field name="arch" type="xml">
+            <filter name="user_id" position="after">
+                <filter string="Ticket" name="ticket_id" context="{'group_by':'ticket_id'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

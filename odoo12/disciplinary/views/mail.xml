@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="mail_act_employee_disc" model="mail.activity.type">
+            <field name="name">Employee Disciplinary Created</field>
+            <field name="icon">fa-dollar</field>
+            <field name="res_model_id" ref="disciplinary.model_employee_disciplinary"/>
+        </record>
+
+        <record id="mail_act_employee_disc2" model="mail.activity.type">
+            <field name="name">Employee Disciplinary Created</field>
+            <field name="icon">fa-dollar</field>
+            <field name="res_model_id" ref="disciplinary.model_employee_disciplinary"/>
+        </record>
+
+        <record id="mail_act_employee_disc3" model="mail.activity.type">
+            <field name="name">Employee Disciplinary Created</field>
+            <field name="icon">fa-dollar</field>
+            <field name="res_model_id" ref="disciplinary.model_employee_disciplinary"/>
+        </record>
+
+        <record id="mail_act_employee_disc4" model="mail.activity.type">
+            <field name="name">Employee Disciplinary Created</field>
+            <field name="icon">fa-dollar</field>
+            <field name="res_model_id" ref="disciplinary.model_employee_disciplinary"/>
+        </record>
+
+<!--                     PIP
+ -->        
+        <record id="mail_act_employee_pip" model="mail.activity.type">
+            <field name="name">Employee PIP Created</field>
+            <field name="icon">fa-dollar</field>
+            <field name="res_model_id" ref="disciplinary.model_employee_pip"/>
+        </record>
+
+        <record id="mail_act_employee_pip1" model="mail.activity.type">
+            <field name="name">PIP Refused By Employee</field>
+            <field name="icon">fa-dollar</field>
+            <field name="res_model_id" ref="disciplinary.model_employee_pip"/>
+        </record>
+
+        <record id="mail_act_employee_pip3" model="mail.activity.type">
+            <field name="name">PIP Accepted By Employee</field>
+            <field name="icon">fa-dollar</field>
+            <field name="res_model_id" ref="disciplinary.model_employee_pip"/>
+        </record>
+
+        <record id="mail_act_employee_appeal" model="mail.activity.type">
+            <field name="name">Employee Appeal</field>
+            <field name="icon">fa-dollar</field>
+            <field name="res_model_id" ref="disciplinary.model_employee_appeal"/>
+        </record>
+
+        <record id="mail_act_employee_appeal1" model="mail.activity.type">
+            <field name="name">Employee Appeal</field>
+            <field name="icon">fa-dollar</field>
+            <field name="res_model_id" ref="disciplinary.model_employee_appeal"/>
+        </record>
+
+        <record id="mail_act_employee_appeal2" model="mail.activity.type">
+            <field name="name">Employee Appeal</field>
+            <field name="icon">fa-dollar</field>
+            <field name="res_model_id" ref="disciplinary.model_employee_appeal"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,90 @@
+<odoo>
+    <!-- kv_cache.cache -->
+    <record id="kv_cache_asterisk_agent_access" model="ir.model.access">
+        <field name="name">kv_cache_asterisk_agent_access</field>
+        <field name="model_id" ref="model_kv_cache_cache"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_agent"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <!-- res_partner -->
+    <record id="res_partner_asterisk_agent_access" model="ir.model.access">
+        <field name="name">res_partner_asterisk_agent_access</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_agent"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>    
+
+    <!-- Events -->
+    <record id="asterisk_event_agent" model="ir.model.access">
+        <field name="name">asterisk_event_agent</field>
+        <field name="model_id" ref="asterisk_common.model_asterisk_common_event"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_agent"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <!-- res_users -->
+    <record id="res_users_asterisk_agent_access" model="ir.model.access">
+        <field name="name">res_users_asterisk_agent_access</field>
+        <field name="model_id" ref="base.model_res_users"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_agent"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <!-- ir.config_paramater -->
+    <record id="ir_config_parameter_agent_access" model="ir.model.access">
+        <field name="name">ir_config_parameter_agent_access</field>
+        <field name="model_id" ref="base.model_ir_config_parameter"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_agent"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>    
+
+    <!-- asterisk_common.user -->
+    <record id="asterisk_common_user_agent_access" model="ir.model.access">
+        <field name="name">asterisk_common_user_agent_access</field>
+        <field name="model_id" ref="asterisk_common.model_asterisk_common_user"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_agent"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>    
+
+    <!-- asterisk_common.user_channel -->
+    <record id="asterisk_user_channel_agent_rule" model="ir.model.access">
+        <field name="name">Asterisk user channel agent rule</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>                
+        <field name="model_id" ref="model_asterisk_common_user_channel"/>
+        <field name="group_id" ref="group_asterisk_agent"/>
+    </record>
+
+    <!-- asterisk_common.settings -->
+    <record id="asterisk_settings_agent_access" model="ir.model.access">
+        <field name="name">asterisk_settings_agent_access</field>
+        <field name="model_id" ref="asterisk_common.model_asterisk_common_settings"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_agent"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+</odoo>

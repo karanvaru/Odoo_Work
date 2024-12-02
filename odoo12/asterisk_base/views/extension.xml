@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="asterisk_base_extension_action" model="ir.actions.act_window">
+    <field name="name">Extensions</field>
+    <field name="res_model">asterisk_base.extension</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[]</field>
+    <field name="context">{'search_default_standard': '1'}</field>
+  </record>
+  <menuitem action="asterisk_base_extension_action" id="asterisk_base_extension_menu" name="Extensions" parent="asterisk_base_menu" sequence="40"/>
+  <record id="asterisk_base_extension_list" model="ir.ui.view">
+    <field name="name">asterisk_base.extension.list</field>
+    <field name="model">asterisk_base.extension</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree create="false" delete="false" duplicate="false">
+        <button aria-label="Open Extension" icon="fa-arrow-right" name="open_extension" title="Open Extension" type="object"/>
+        <field name="number"/>
+        <field name="icon"/>
+        <field name="name"/>
+        <field name="exten_type"/>
+        <field name="server"/>
+        <field name="record_calls" string="Record"/>
+      </tree>
+    </field>
+  </record>
+  <record id="asterisk_base_extension_form" model="ir.ui.view">
+    <field name="name">asterisk_base.extension.form</field>
+    <field name="model">asterisk_base.extension</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <form create="false" delete="false">
+        <header>
+          <button aria-label="Open" class="btn-primary" icon="fa-arrow-right" name="open_extension" title="Open" type="object"/>
+        </header>
+        <sheet>
+          <div class="oe_title" name="title">
+            <h1 class="o_row row no-gutters d-flex">
+              <div class="col">
+                <div class="o_row">
+                  <label class="oe_edit_only" for="number"/>
+                  <field class="oe_inline" name="number" placeholder="Extension number..." required="1"/>
+                  <span class="oe_grey p-2">at</span>
+                </div>
+              </div>
+              <div class="col">
+                <div class="o_row d-flex">
+                  <label class="oe_grey oe_edit_only" for="server"/>
+                  <field name="server" options="{'no_create': '1'}"/>
+                </div>
+              </div>
+            </h1>
+          </div>
+          <group>
+            <group>
+              <field invisible="1" name="app_model"/>
+              <field name="exten_type" readonly="1"/>
+              <field name="model" readonly="1"/>
+              <field name="record_calls"/>
+            </group>
+            <group>
+              <field name="name" readonly="1"/>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+  <record id="asterisk_base_extension_search" model="ir.ui.view">
+    <field name="name">asterisk_base.extension.search</field>
+    <field name="model">asterisk_base.extension</field>
+    <field name="type">search</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="number"/>
+        <field name="name"/>
+        <field name="server"/>
+        <filter domain="[('model', '=', 'dialplan')]" name="dialplans" string="Dialplan"/>
+        <separator/>
+        <filter domain="[('exten_type', '=', 'standard')]" name="standard" string="Standard"/>
+        <filter domain="[('exten_type', '=', 'service')]" name="service" string="Service"/>
+        <filter context="{'group_by': 'exten_type'}" name="by_type" string="Type"/>
+        <filter context="{'group_by': 'server'}" name="by_server" string="Server"/>
+        <filter context="{'group_by': 'model'}" name="by_model" string="Model"/>
+      </search>
+    </field>
+  </record>
+</odoo>

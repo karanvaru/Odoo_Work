@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="menu_asp_form" model="website.menu">
+        <field name="name">ASP Registration</field>
+        <field name="url">/aspr</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">55</field>
+    </record>
+
+    <template id="aspr" name="ASP Registration">
+             <t t-call="website.layout">
+             <script src="/static/src/js/choosen.jquery.min.js" />
+             <script src="/static/src/css/choosen.min.css" />
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <div class="container">
+                            <form role="form" action="/create/aspregistration" method="POST">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                               
+                                   <div> 
+                                      <h6> Basic Company Information </h6>
+                                       <div>
+                                                <select name="country" t-attf-class="form-control"
+                                                        required="required">
+                                                    <option value="">Country*</option>
+                                                    <t t-foreach="countries or []" t-as="ctn">
+                                                        <option t-att-value="ctn.id">
+                                                            <t t-esc="ctn.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                            <div>
+
+                                                <select name="state" t-attf-class="form-control">
+                                                    <option value="">State*</option>
+                                                    <t t-foreach="states or []" t-as="st">
+                                                        <option t-att-value="st.id"
+                                                                t-att-data-country_id="st.country_id.id">
+                                                            <t t-esc="st.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                             <div class="form-group">
+                                                <input type="text" name="name" t-att-value="name" id="name"
+                                                    class="form-control"  placeholder="ASP Name*"/>
+                                            </div> 
+                                            <div class="form-group">
+                                                <!-- <input type="text" name="asp_contact_name" t-att-value="asp_contact_name" id="asp_contact_name" -->
+                                                    class="form-control"   placeholder="ASP Contact Name*"/>
+                                            </div> 
+                                             <div class="form-group">
+                                                <input type="text" name="gst_number" t-att-value="gst_number" id="gst_number"
+                                                    class="form-control"  placeholder="Year Established*"/>
+                                            </div>  
+                                            <div class="form-group">
+                                                <input type="text" name="street" t-att-value="street" id="street"
+                                                    class="form-control"   placeholder="Street*"/>
+                                            </div> 
+                                            <div class="form-group">
+                                                <input type="text" name="street2" t-att-value="street2" id="street2"
+                                                    class="form-control"   placeholder="Street2*"/>
+                                            </div> 
+                                            <div class="form-group">
+                                                <input type="text" name="city" t-att-value="city" id="city"
+                                                    class="form-control"   placeholder="City*"/>
+                                            </div> 
+                                            <div class="form-group">
+                                                <input type="text" name="zip" t-att-value="zip" id="zip"
+                                                    class="form-control"   placeholder="Pincode*"/>
+                                            </div>     
+
+                                            
+                                            <div class="form-group">
+                                                <input type="text" name="year_established" t-att-value="year_established" id="year_established" class="form-control" placeholder="GST Number*"/>
+                                            </div>  
+                                            <div class="form-group">      
+                                                <input type="text" name="total_people" t-att-value="total_people" id="total_people" class="form-control" placeholder="Total No.Of People in Company*"/>
+                                            </div>
+                                            <div class="form-group">      
+                                                <input type="text" name="company_mail" t-att-value="company_mail" id="company_mail" class="form-control" placeholder="Company Mail*"/>
+                                            </div>
+                                            <div class="form-group">      
+                                                <input type="text" name="avg_turn_over" t-att-value="avg_turn_over" id="avg_turn_over" class="form-control"  placeholder="Last 3 Years Avg Turnover*"/>
+                                            </div>
+                                            <div class="form-group">      
+                                                <input type="checkbox" name="rma_center" t-att-value="rma_center" id="rma_center" />
+                                                   <label for="rma_center">RMA Center</label>   
+                                                <input type="checkbox" name="is_gst_registered" t-att-value="is_gst_registered" id="is_gst_registered"
+                                                    placeholder="Is GST Registered*"/>
+                                                 <label for="is_gst_registered">Is GST Registered</label>    
+                                            </div>
+
+                                        </div>
+                                        <div><h6> Key People Contact Information </h6>
+                                            <div class="form-group">
+                                                <input type="text" name="promoter_name" t-att-value="promoter_name" id="promoter_name" class="form-control"  placeholder="Promoter Name*"/>
+                                            </div>  
+                                            <div class="form-group">      
+                                                <input type="text" name="promoter_email" t-att-value="promoter_email" id="promoter_email" class="form-control"  placeholder="Promoter Email*"/>
+                                            </div>
+                                            <div class="form-group">      
+                                                <input type="text" name="promoter_mobile" t-att-value="promoter_mobile" id="promoter_mobile" class="form-control" placeholder="Promoter Mobile*"/>
+                                            </div>
+                                            <div class="form-group">      
+                                                <input type="text" name="service_delivery_head_name" t-att-value="service_delivery_head_name" id="service_delivery_head_name" class="form-control"  placeholder="Service Delivery Head Name*"/>
+                                            </div>
+                                            <div class="form-group">      
+                                                <input type="text" name="service_delivery_head_email" t-att-value="service_delivery_head_email" id="service_delivery_head_email" class="form-control"  placeholder="Service Delivery Head Email*"/>
+                                            </div>
+                                            <div class="form-group">      
+                                                <input type="text" name="service_delivery_head_mobile" t-att-value="service_delivery_head_mobile" id="service_delivery_head_mobile" class="form-control"  placeholder="Service Delivery Head Mobile*"/>
+                                            </div>
+                                            <div class="form-group">      
+                                                <input type="text" name="senior_technical_person_name" t-att-value="senior_technical_person_name" id="senior_technical_person_name" class="form-control"  placeholder="Senior Technical Person Name*"/>
+                                            </div>
+                                            <div class="form-group">      
+                                                <input type="text" name="senior_technical_person_email" t-att-value="senior_technical_person_email" id="senior_technical_person_email" class="form-control" placeholder="Senior Technical Person Email*"/>
+                                            </div>
+                                            <div class="form-group">      
+                                                <input type="text" name="senior_technical_person_mobile" t-att-value="senior_technical_person_mobile" id="senior_technical_person_mobile" class="form-control" placeholder="Senior Technical Person Mobile*"/>
+                                            </div>
+                                        </div>
+                                   
+                         
+                                
+                                <div class="clearfix oe_login_buttons">
+                                            <button type="submit" class="btn btn-primary pull-left">Create ASP Ticket</button>
+                                        </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </t> 
+      
+    </template>
+
+    <record id="asp_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/asp-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">rdp_asp_partner_extend.asp_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="rdp_asp_partner_extend.asp_thanks">
+                <t t-call="website.layout">
+                  <div id="wrap">
+                    <div class="container">
+                        <h1>Thank You!</h1>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="alert alert-success" role="status">
+                                    successfully You Have Registered As Our ASP Will Get back to you Shortly.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+</odoo>

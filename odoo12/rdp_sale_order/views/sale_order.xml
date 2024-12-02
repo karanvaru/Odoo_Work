@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--        <record id="sale_order_other_information_form_view_inherit" model="ir.ui.view">-->
+        <!--            <field name="name">sale.order.other.information.form.view.inherit</field>-->
+        <!--            <field name="model">sale.order</field>-->
+        <!--            <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <xpath expr="//field[@name='picking_policy']" position="after">-->
+        <!--                    <field name="scheduled_delivery_date"/>-->
+        <!--                    <field name="delivery_delay_days"/>-->
+        <!--                    <field name="delivery_status"/>-->
+        <!--                </xpath>-->
+        <!--            </field>-->
+        <!--        </record>-->
+        <record id="sale_order_nssd_page_form_view_inherit" model="ir.ui.view">
+            <field name="name">sale.order.nssd.page.form.view.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='other_information']" position="after">
+                    <page string=" N/SSD" name="n_or_ssd_page">
+                        <group>
+                            <group>
+                                <field name="otd_type" string="OTD Type" attrs="{}" required="1"/>
+                                <field name="nssd_reason"
+                                       attrs="{'invisible': [['otd_type','!=','NSSD']], 'required': [['otd_type','=','NSSD']]}"/>
+                                <field name="execution_specs" required="1"/>
+                                <field name="otd_version" string="OTD Version"/>
+                                <field name="potca_gen_two"/>
+
+                            </group>
+                            <group>
+                                <field name="scheduled_delivery_date"/>
+                                <field name="delivery_delay_days"/>
+                                <field name="delivery_status"/>
+                                <field name="ssd_failed_reason_id"
+                                       attrs="{'invisible': [['delivery_status','!=','fail']], 'required': [['delivery_status','=','fail']]}"/>
+                                <field name="ready_op"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Purchase Details" name="purchase_details_page"
+                          groups="studio_customization.sale_order_purchase__8110742e-92f3-45cd-9c33-1c1fe508a34e,base.group_system">
+                        <group string="Purchase Tender">
+                            <field name="purchase_tender_ids" string="Purchase Tender"
+                                   domain="[['state','!=','cancel']]" nolabel="1">
+                                <tree string="Purchase Tender" decoration-danger="purchase_open_days &gt;= 2"
+                                      default_order="create_date desc" create="0">
+                                    <field name="name"/>
+                                    <field name="create_date" widget="date"/>
+                                    <field name="sh_purchase_user_id"/>
+                                    <field name="sh_agreement_type"/>
+                                    <field name="sh_vender_id"/>
+                                    <field name="sh_agreement_deadline"/>
+                                    <field name="sh_order_date"/>
+                                    <field name="sh_delivery_date"/>
+                                    <field name="related_id"/>
+                                    <field name="sh_source"/>
+                                    <field name="state"/>
+                                    <field name="purchase_open_days" invisible="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Purchase Order">
+                            <field name="purchase_order_ids" string="Purchase Order" nolabel="1">
+                                <tree decoration-bf="message_unread==True" decoration-muted="state=='cancel'"
+                                      decoration-info="state in ('wait','confirmed')" string="Purchase Order"
+                                      create="0">
+                                    <field name="message_unread" invisible="1"/>
+                                    <field name="name" string="Reference" attrs="{}"/>
+                                    <field name="agreement_id"/>
+                                    <field name="date_order"/>
+                                    <field name="partner_id"/>
+                                    <field name="date_planned"
+                                           invisible="context.get('quotation_only', False)"/>
+                                    <field name="user_id"/>
+                                    <field name="origin"/>
+                                    <field name="amount_untaxed" sum="Total Untaxed amount" string="Untaxed"
+                                           widget="monetary"/>
+                                    <field name="amount_total" sum="Total amount" widget="monetary"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="state"/>
+                                    <field name="invoice_status"
+                                           attrs="{'column_invisible': [('parent.state', 'not in', ('purchase', 'done'))]}"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Vendor Bill">
+                            <field name="vendor_bill_ids" string="Vendor Bill" nolabel="1">
+                                <tree string="GST Invoice Records" create="0">
+                                    <field name="date_invoice"/>
+                                    <field name="number"/>
+                                    <field name="partner_id"/>
+                                    <field name="reference" string="Vendor Reference No"/>
+                                    <field name="date_due"/>
+                                    <field name="origin"/>
+                                    <field name="journal_id"/>
+                                    <field name="amount_untaxed_invoice_signed" string="Untaxed Amount"/>
+                                    <field name="amount_tax_signed" string="Tax Amount"/>
+                                    <field name="amount_total_signed" string="Total"/>
+                                    <field name="residual_signed" string="Amount Due"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="shipping"/>
+                </xpath>
+                <xpath expr="//form[1]/sheet[1]/notebook[1]" position="after">
+                    <group>
+                        <field name="amount_in_words"/>
+                    </group>
+                </xpath>
+                <!-- <field name="r_scheduled_delivery_date" /> -->
+                <!-- <field name="r_delivery_delay_days"/> -->
+                <!-- <field name="r_delivery_status"/> -->
+            </field>
+        </record>
+
+        <record id="sale_margin_percent_inherit_form" model="ir.ui.view">
+            <field name="name">sale_margin_percent_inherit_form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_margin_percent.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='margin_percent']" position="after">
+                    <field name="receipt_amount"/>
+                    <field name="defer_amount" style="font-size:16px; font-weight:bold"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="manufacturing_details_page_form" model="ir.ui.view">
+            <field name="name">manufacturing.details.page.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="product_category_head_id"/>
+                    <field name="revenue_head_id"/>
+                    <field name="vice_president_id"/>
+                </xpath>
+                <xpath expr="//notebook//page[@name='other_information']" position="after">
+                    <page string="Manufacturing Details" name="manufacturing_details"
+                          attrs="{'invisible': [['state','in',['draft','sent','cancel']]]}">
+                        <group>
+                            <field name="manufacturing_details_ids" nolabel="1">
+                                <tree decoration-bf="message_needaction==True" default_order="date_planned_start desc"
+                                      decoration-info="state=='confirmed'"
+                                      decoration-danger="date_planned_start&lt;current_date and state not in ('done','cancel')"
+                                      decoration-muted="state in ('done','cancel')" string="Manufacturing Orders"
+                                      create="0">
+                                    <field name="message_needaction" invisible="1"/>
+                                    <field name="name"/>
+                                    <field name="date_planned_start"/>
+                                    <field name="product_id"/>
+                                    <field name="origin"/>
+                                    <field name="product_qty" sum="Total Qty" string="Quantity"/>
+                                    <field name="product_uom_id" string="Unit of Measure"
+                                           options="{'no_open':True,'no_create':True}" groups="uom.group_uom"/>
+                                    <field name="cost" string="Cost" groups="base.group_system"/>
+                                    <field name="availability"/>
+                                    <field name="routing_id" groups="mrp.group_mrp_routings"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+                <!-- Added by sabitha -->
+                <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='discount']"
+                       position="before">
+                    <field name="discount_amount"/>
+
+                </xpath>
+                <xpath expr="//field[@name='amount_untaxed']" position="before">
+                    <field name="total_discount_amount"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_order_manufacturing_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.manufacturing.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                    <button name="action_view_manufacturing_orders" class="oe_stat_button" type="object"
+                            icon="fa-cubes" attrs="{'invisible': [['state','in',['draft','sent','cancel']]]}">
+                        <field string="Manufacturing Order" name="mp_count_id"
+                               widget="statinfo"/>
+                    </button>
+                    <button name="action_view_p_tender_orders" class="oe_stat_button" type="object"
+                            icon="fa-sitemap" attrs="{'invisible': [['state','in',['draft','sent','cancel']]]}"
+                            groups="studio_customization.sale_order_purchase__8110742e-92f3-45cd-9c33-1c1fe508a34e,base.group_system">
+                        <field string="P Tender" name="purchase_tender_count"
+                               widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="sale_order_list_view_reason_otd_type" model="ir.ui.view">
+            <field name="name">sale.order.list.view.reason.otd.type</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_status']" position="after">
+                    <field name="nssd_reason"/>
+                    <field name="ssd_failed_reason_id"/>
+                    <field name="ready_op"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_status']" position="after">
+                    <field name="open_days"/>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <field name="total_discount_amount"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_sales_order_filter_inherits_delivery" model="ir.ui.view">
+            <field name="name">sale.order.list.select.inherit.delivery</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//filter[@name='order_month']" position="after">
+                        <filter string="Delivery Status" name="group_delivery_status"
+                                context="{'group_by':'delivery_status'}"/>
+                        <filter string="Ready OP" name="group_ready_op" context="{'group_by':'ready_op'}"/>
+
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+        <!--Form View-->
+        <record id="sale_order_so_gem_rp_form_view" model="ir.ui.view">
+            <field name="name">sale.order.so.gem.rp.form.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_management.sale_order_form_quote"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sale_order_template_id']" position="after">
+                    <field name="so_gem_rp_id" domain="[[&quot;customer&quot;,&quot;=&quot;,True]]" string="SO GeM RP"
+                           attrs="{&quot;invisible&quot;: [[&quot;team_id&quot;,&quot;!=&quot;,20]], &quot;required&quot;: [[&quot;team_id&quot;,&quot;=&quot;,20]]}"/>
+                    <field name="otd_ots_priority"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

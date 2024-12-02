@@ -1,0 +1,277 @@
+<odoo>
+    <template id="print_pdf_commission_structure">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="row">
+                            <h4>
+                                <span t-field="o.user_id"/> [ <span t-field="o.name"/> ]
+                            </h4>
+                        </div>
+                        <div class="row pt8">
+                            <div class="col-6">
+                                <div class="row">
+                                    <b>Start Period :</b>
+                                    <span t-field="o.start_month"/>
+                                    <span t-field="o.start_year"/>
+                                </div>
+                                <div class="row pt8">
+                                    <b>End Period :</b>
+                                    <span t-field="o.end_month"/>
+                                    <span t-field="o.end_year"/>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <b>Commission Type :</b>
+                                    <span t-field="o.commission_type"/>
+                                </div>
+                                <div class="row pt8">
+                                    <b>Commission Measure Type :</b>
+                                    <span t-field="o.commission_measure_type"/>
+                                </div>
+                            </div>
+                        </div>
+                        <t t-if="o.apply_commission_revenue">
+                        	<h5 class="mt32"><strong>Revenue/GP Targets</strong></h5>
+							<div class="row mt16">
+								<div class="col-6">
+									<strong>Revenue/GP Commission Amount: </strong><span t-field="o.revenue_commission_amount"  t-options='{"widget": "monetary", "display_currency": o.commission_currency_id}'/>
+								</div>
+								<div class="col-6">
+									<strong>Revenue/GP Commission Achieved: </strong><span t-field="o.revenue_commission_achieved"  t-options='{"widget": "monetary", "display_currency": o.commission_currency_id}'/>
+								</div>
+							</div>                        	
+	                        <div class="row mt32">
+		                        <table class="table table-sm o_main_table table-bordered">
+		                            <thead>
+		                                    <th class="text-center">Company</th>
+		                                    <th class="text-center">BU Group</th>
+		                                    <th class="text-center">BU</th>
+		                                    <th class="text-center">Country Group</th>
+		                                    <th class="text-center">Country</th>
+		                                    <th class="text-center">Target</th>
+		                                    <th class="text-center">
+		                                        <span>Target Amount</span>
+		                                    </th>
+		                                    <th class="text-center">
+		                                        <span>Commission Amount</span>
+		                                    </th>
+		                                    <th class="text-center">
+		                                        <span>Target Achieved</span>
+		                                    </th>
+		                                    <th class="text-center">
+		                                        <span>Target Achieved(%)</span>
+		                                    </th>
+		                                    <th class="text-center">
+		                                        <span>Commission Amount Achieved</span>
+		                                    </th>
+		                            </thead>
+		                            <tbody>
+		                                <t t-foreach="o.commission_structure_line_ids" t-as="line">
+		                                    <tr>
+		                                        <td>
+		                                            <span t-field="line.company_id"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.bu_group_id"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.business_unit_id"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.country_group_id"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.country_id"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.country_group_id"/>
+		                                        </td>
+		                                        <td class="text-end">
+		                                            <span t-field="line.target_amount" t-options='{"widget": "monetary", "display_currency": line.line_currency_id}'/>
+		                                        </td>
+		                                        <td class="text-end">
+		                                            <span t-field="line.commission_amount" t-options='{"widget": "monetary", "display_currency": o.commission_currency_id}'/>
+		                                        </td>
+		                                        <td class="text-end">
+		                                            <span t-field="line.target_achived" t-options='{"widget": "monetary", "display_currency": line.line_currency_id}'/>
+		                                        </td>
+		                                        <td class="text-end">
+		                                            <span t-field="line.target_percentage_achived"/>
+		                                        </td>
+		                                        <td class="text-end">
+		                                            <span t-field="line.commission_amount_achived" t-options='{"widget": "monetary", "display_currency": o.commission_currency_id}'/>
+		                                        </td>
+		                                    </tr>
+		                                </t>
+		                            </tbody>
+		                        </table>
+	                        </div>
+                        </t>
+
+                        <t t-if="o.apply_commission_breadth">
+                        	<h5 class="mt32"><strong>Breadth Targets</strong></h5>
+							<div class="row mt16">
+								<div class="col-6">
+									<strong>Breadth Commission Amount: </strong><span t-field="o.breadth_commission_amount"  t-options='{"widget": "monetary", "display_currency": o.commission_currency_id}'/>
+								</div>
+								<div class="col-6">
+									<strong>Breadth Commission Achieved: </strong><span t-field="o.breadth_commission_achieved"  t-options='{"widget": "monetary", "display_currency": o.commission_currency_id}'/>
+								</div>
+							</div>                        	
+	                        <div class="row mt32">
+		                        <table class="table table-sm o_main_table table-bordered">
+		                            <thead>
+		                                    <th class="text-center">Company</th>
+		                                    <th class="text-center">BU Group</th>
+		                                    <th class="text-center">BU</th>
+		                                    <th class="text-center">Country Group</th>
+		                                    <th class="text-center">Country</th>
+		                                    <th class="text-center">Target</th>
+		                                    <th class="text-center">
+		                                        <span>Target</span>
+		                                    </th>
+		                                    <th class="text-center">
+		                                        <span>Commission Amount</span>
+		                                    </th>
+		                                    <th class="text-center">
+		                                        <span>Target Achieved</span>
+		                                    </th>
+		                                    <th class="text-center">
+		                                        <span>Target Achieved(%)</span>
+		                                    </th>
+		                                    <th class="text-center">
+		                                        <span>Commission Amount Achieved</span>
+		                                    </th>
+		                            </thead>
+		                            <tbody>
+		                                <t t-foreach="o.breadth_commission_structure_line_ids" t-as="line">
+		                                    <tr>
+		                                        <td>
+		                                            <span t-field="line.company_id"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.bu_group_id"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.business_unit_id"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.country_group_id"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.country_id"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.country_group_id"/>
+		                                        </td>
+		                                        <td class="text-end">
+		                                            <span t-field="line.breadth_target_count"/>
+		                                        </td>
+		                                        <td class="text-end">
+		                                            <span t-field="line.breadth_commission_amount" t-options='{"widget": "monetary", "display_currency": o.commission_currency_id}'/>
+		                                        </td>
+		                                        <td class="text-end">
+		                                            <span t-field="line.breadth_target_achived" t-options='{"widget": "monetary", "display_currency": line.line_currency_id}'/>
+		                                        </td>
+		                                        <td class="text-end">
+		                                            <span t-field="line.breadth_target_percentage_achived"/>
+		                                        </td>
+		                                        <td class="text-end">
+		                                            <span t-field="line.breadth_commission_amount_achived" t-options='{"widget": "monetary", "display_currency": o.commission_currency_id}'/>
+		                                        </td>
+		                                    </tr>
+		                                </t>
+		                            </tbody>
+		                        </table>
+	                        </div>
+                        </t>
+                        <t t-if="o.apply_commission_kpi">
+                        	<h5 class="mt32"><strong>KPI Targets</strong></h5>
+							<div class="row mt16">
+								<div class="col-6">
+									<strong>KPI Commission Amount: </strong><span t-field="o.kpi_commission_amount"  t-options='{"widget": "monetary", "display_currency": o.commission_currency_id}'/>
+								</div>
+								<div class="col-6">
+									<strong>KPI Commission Achieved: </strong><span t-field="o.kpi_commission_achieved"  t-options='{"widget": "monetary", "display_currency": o.commission_currency_id}'/>
+								</div>
+							</div>                        	
+	                        <div class="row mt32">
+		                        <table class="table table-sm o_main_table table-bordered">
+		                            <thead>
+		                                    <th class="text-center">Description</th>
+		                                    <th class="text-center">Manager Result</th>
+		                                    <th class="text-center">Comment</th>
+		                            </thead>
+		                            <tbody>
+		                                <t t-foreach="o.kpi_commission_structure_line_ids" t-as="line">
+		                                    <tr>
+		                                        <td>
+		                                            <span t-field="line.name"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.manager_result"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.comment"/>
+		                                        </td>
+		                                    </tr>
+		                                </t>
+		                            </tbody>
+		                        </table>
+	                        </div>
+                        </t>
+
+						<t t-if="o.apply_commission_deduction">
+                        	<h5 class="mt32"><strong>Deductions</strong></h5>
+							<div class="row mt16">
+								<div class="col-6">
+									<strong>Deduction Amount: </strong><span t-field="o.deduction_commission_amount"  t-options='{"widget": "monetary", "display_currency": o.commission_currency_id}'/>
+								</div>
+								<div class="col-6">
+									<strong>Deduction to be Deducted: </strong><span t-field="o.deduction_commission_achieved"  t-options='{"widget": "monetary", "display_currency": o.commission_currency_id}'/>
+								</div>
+							</div>                        	
+	                        <div class="row mt32">
+		                        <table class="table table-sm o_main_table table-bordered">
+		                            <thead>
+		                                    <th class="text-center">Description</th>
+		                                    <th class="text-center">Manager Result</th>
+		                                    <th class="text-center">Comment</th>
+		                            </thead>
+		                            <tbody>
+		                                <t t-foreach="o.ded_commission_structure_line_ids" t-as="line">
+		                                    <tr>
+		                                        <td>
+		                                            <span t-field="line.name"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.manager_result"/>
+		                                        </td>
+		                                        <td>
+		                                            <span t-field="line.comment"/>
+		                                        </td>
+		                                    </tr>
+		                                </t>
+		                            </tbody>
+		                        </table>
+	                        </div>
+                        </t>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    <record id="action_pdf_commission_structure" model="ir.actions.report">
+        <field name="name">Commission Structure PDF</field>
+        <field name="model">commission.structure</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">reddot_commission.print_pdf_commission_structure</field>
+        <field name="report_file">reddot_commission.print_pdf_commission_structure</field>
+        <field name="binding_model_id" ref="model_commission_structure"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="finance_check_status" model="ir.rule">
+    <field name="name">check status for accounting department</field>
+    <field name="model_id" ref="rdp_account.model_account_invoice"/>
+    <field name="domain_force">[('employee_name_id','=',user.id)]</field>
+    <field name="groups" eval="[(4,ref('rdp_account.group_check_status_user'))]"/>
+    </record>
+</odoo>

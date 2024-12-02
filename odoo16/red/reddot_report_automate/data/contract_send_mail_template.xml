@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="contract_reminder_email_template" model="mail.template">
+            <field name="name">Reminders For Terminate Contract</field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="email_from">{{object.company_id.email}}</field>
+            <field name="subject">Reminder For Contract</field>
+            <field name="reddot_specific" eval="True"/>
+            <field name="body_html" type="html">
+                <div style="font-size: 13px; margin: 0px; padding: 0px;">
+                    <h2>Hello
+                        <t t-out="object.hr_responsible_id.name"/>
+                        or
+                        <t t-out="object.employee_id.parent_id.name"/>
+                    </h2>
+                    <b>
+                        Contract Will Terminate In
+                        <t t-out="ctx.get('days')"/> Days
+                    </b>
+                    <br></br>
+                    Contract End Date Is
+                    <t t-out="object.date_end"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    Thank You,
+                    <br/>
+                    <t t-out="object.company_id.name"/>
+
+                </div>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

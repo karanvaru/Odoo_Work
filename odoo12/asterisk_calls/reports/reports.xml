@@ -1,0 +1,12 @@
+<odoo><data>
+    <report 
+        id="calls_report_action"
+        model="asterisk_calls.call"
+        string="Call Report"
+        name="asterisk_calls.calls_report"
+        file="asterisk_calls.calls_report"
+        report_type="qweb-html"
+        groups="asterisk_common.group_asterisk_user"
+    />
+
+</data></odoo>

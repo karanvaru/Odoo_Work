@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- tax rule -->
+
+    <record id="account.tax_comp_rule" model="ir.rule">
+        <field name="active" eval="False" />
+    </record>
+
+    <record model="ir.rule" id="tax_comp_rule">
+        <field name="name">Account tax multi-company</field>
+        <field name="model_id" ref="account.model_account_tax" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            [ '|','|','|', 
+            '&amp;',('company_id', '=', False), ('branch_id', '=', False), 
+            '&amp;',('company_id', 'in', company_ids), ('branch_id', '=', False), 
+            '&amp;',('company_id', '=',False),('branch_id', 'in', user.allowed_branch_ids.ids), 
+            '&amp;',('company_id', 'in', company_ids),('branch_id', 'in', user.allowed_branch_ids.ids)]
+        </field>
+    </record>
+
+    <!-- journal rule -->
+
+    <record id="account.journal_comp_rule" model="ir.rule">
+        <field name="active" eval="False" />
+    </record>
+
+    <record model="ir.rule" id="journal_comp_rule">
+        <field name="name">Account Journal multi-company</field>
+        <field name="model_id" ref="account.model_account_journal" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            [ '|','|','|', 
+            '&amp;',('company_id', '=', False), ('branch_id', '=', False), 
+            '&amp;',('company_id', 'in', company_ids), ('branch_id', '=', False), 
+            '&amp;',('company_id', '=',False),('branch_id', 'in', user.allowed_branch_ids.ids), 
+            '&amp;',('company_id', 'in', company_ids),('branch_id', 'in', user.allowed_branch_ids.ids)]
+        </field>
+    </record>
+
+    <!-- payment term rule -->
+
+    <record id="account.account_payment_term_comp_rule" model="ir.rule">
+        <field name="active" eval="False" />
+    </record>
+
+    <record model="ir.rule" id="account_payment_term_comp_rule">
+        <field name="name">Account payment term multi-company</field>
+        <field name="model_id" ref="account.model_account_payment_term" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            [ '|','|','|', 
+            '&amp;',('company_id', '=', False), ('branch_id', '=', False), 
+            '&amp;',('company_id', 'in', company_ids), ('branch_id', '=', False), 
+            '&amp;',('company_id', '=',False),('branch_id', 'in', user.allowed_branch_ids.ids), 
+            '&amp;',('company_id', 'in', company_ids),('branch_id', 'in', user.allowed_branch_ids.ids)]
+        </field>
+    </record>
+
+    <!-- fiscal position rule -->
+    <record id="account.account_fiscal_position_comp_rule" model="ir.rule">
+        <field name="active" eval="False" />
+    </record>
+
+    <record model="ir.rule" id="account_fiscal_position_comp_rule">
+        <field name="name">Account fiscal position multi-company</field>
+        <field name="model_id" ref="account.model_account_fiscal_position" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            [ '|','|','|', 
+            '&amp;',('company_id', '=', False), ('branch_id', '=', False), 
+            '&amp;',('company_id', 'in', company_ids), ('branch_id', '=', False), 
+            '&amp;',('company_id', '=',False),('branch_id', 'in', user.allowed_branch_ids.ids), 
+            '&amp;',('company_id', 'in', company_ids),('branch_id', 'in', user.allowed_branch_ids.ids)]
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+	 <record model="ir.ui.view" id="view_form_account_move">
+            <field name="name">view.form.account.move</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="groups_id" eval="[(4, ref('amazon_ept.group_amazon_user_ept'))]"/>
+            <field name="arch" type="xml">
+                <data>
+                	<xpath expr="//form/sheet/group/group[1]/field[@name='ref']" position="after">
+                		<field name='seller_id' widget="selection" readonly="1"/>
+                		<field name="amazon_instance_id"></field>
+                	</xpath>
+                </data>
+            </field>
+        </record>
+      </data>
+</openerp>

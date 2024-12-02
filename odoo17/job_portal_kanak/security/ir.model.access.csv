@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_personal_detail,access.personal.detail,model_personal_detail,,1,1,1,1
+access_certificate_detail,access.certificate.detail,model_certificate_detail,,1,1,1,1
+access_professional_detail,access.professional.detail,model_professional_detail,,1,1,1,1
+access_hr_functional,access.hr.functional,model_hr_functional,,1,1,1,1
+access_employee_academic_line_id,access_employee_academic_line_name,model_employee_academic_line,,1,1,1,1
+access_employee_certificate_line_id,access_employee_certificate_line_name,model_employee_certificate_line,,1,1,1,1
+access_employee_professional_line_id,access_employee_professional_line_name,model_employee_professional_line,,1,1,1,1

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+marketing_app_user,marketing.app,model_marketing_app,,1,1,1,0
+marketing_app_tags_user,marketing.tags,model_marketing_tags,,1,1,1,0
+

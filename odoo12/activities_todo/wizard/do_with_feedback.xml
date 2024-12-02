@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+
+     <record id="do_with_feedback_form_view" model="ir.ui.view">
+        <field name="name">do.with.feedback.form</field>
+        <field name="model">do.with.feedback</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="activity_id"
+                           invisible="1"
+                    />
+                    <field name="todo_id"
+                           invisible="1"
+                    />
+                    <field name="feedback"/>
+                </group>
+                <footer>
+                    <button name="action_do_with_feedback"
+                            string="Mark Done"
+                            type="object"
+                            class="oe_highlight"
+                    />
+                    <button string="Cancel"
+                            class="oe_link"
+                            special="cancel"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="do_with_feedback_action" model="ir.actions.act_window">
+         <field name="name">Mark Done With Feedback</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">do.with.feedback</field>
+         <field name="target">new</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">form</field>
+    </record>
+
+</odoo>

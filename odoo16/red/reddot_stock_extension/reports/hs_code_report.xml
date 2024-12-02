@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="picking_hs_code_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-6 text-left">
+                                    <p>DETAILED COMMODITY CLASSIFICATION FORM <br></br>FOR STATISTICAL USE
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row pt16">
+                                <div class="col-6 text-left">
+                                    <p>Port,Custom &amp; Free Zone Corporation</p>
+                                </div>
+                            </div>
+
+                            <table class="table table-bordered mt16">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" width="5%" style="font-size:15px;">Sr.#</th>
+                                        <th class="text-center" width="15%" style="font-size:15px;">HARMONISED PRODUCT
+                                            CODE
+                                        </th>
+                                        <th class="text-center" width="40%" style="font-size:15px;">DESCRIPTION</th>
+                                        <th class="text-center" width="10%" style="font-size:15px;">COUNTRY OF ORIGIN
+                                        </th>
+                                        <th class="text-center" width="10%" style="font-size:15px;">QUANTITY</th>
+                                        <th class="text-center" width="10%" style="font-size:15px;">WEIGHT</th>
+                                        <th class="text-center" width="10%" style="font-size:15px;">TOTAL VALUE</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <t t-set="sr_no" t-value="1"/>
+                                    <t t-set="product_names" t-value="''"/>
+                                    <t t-foreach="o.move_ids_without_package" t-as="lines">
+                                        <tr>
+                                            <td class="text-center">
+                                                <span t-esc="sr_no"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="lines.product_id.default_code"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="lines.product_id.name"/>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <span/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="lines.quantity_done"/>
+                                            </td>
+
+                                            <td style="text-align:right">
+                                                <span t-esc="lines.weight"/>
+                                            </td>
+
+                                            <td style="text-align:right">
+                                                <span t-esc="lines.quantity_done * lines.price_unit"
+                                                      t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                        <t t-set="sr_no" t-value="sr_no+1"/>
+                                        <t t-set="product_names"
+                                           t-value="product_names + (' And ' if product_names else '') + lines.product_id.name "/>
+                                    </t>
+                                </tbody>
+
+                            </table>
+                            <div class="row pt16 text-center">
+                                <span>STC: 42PCS OF
+                                    <t t-esc="product_names"/>
+                                    PRODUCTS
+                                </span>
+                            </div>
+
+                       </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_hs_code_report" model="ir.actions.report">
+            <field name="name">HS Code</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">reddot_stock_extension.picking_hs_code_report_template</field>
+            <field name="report_file">reddot_stock_extension.picking_hs_code_report_template</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="print_report_name">'HS_Code'</field>
+            <field name="binding_type">report</field>
+        </record>
+
+
+    </data>
+</odoo>

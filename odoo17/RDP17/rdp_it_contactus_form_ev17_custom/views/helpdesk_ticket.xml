@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="helpdesk_ticket_inherit_form" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.inherit.form</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tag_ids']" position="after" >
+                    <field name="asp_engineer_id"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                        <page string="Product Info">
+                            <group>
+                                <group>
+                                    <field name="purchase_channel_ids"/>
+                                    <field name="order_id"/>
+                                    <field name="serial_no"/>
+                                    <field name="product_name"/>
+                                    <field name="helpdesk_ticket_type"/>
+                                    <field name="purchase_date"/>
+                                    <field name="invoice_number"/>
+                                    <field name="upload_inv" widget="binary" filename="document_name"/>
+                                    <field name="document_name" invisible="True"/>
+                                    <field name="partner_name"/>
+                                    <field name="customer_mobile"/>
+                                    <field name="email_cc"/>
+                                </group>
+                                <group>
+                                    <field name="street" placeholder="Street..." class="o_address_street"/>
+                                    <field name="landmark"/>
+                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                    <field name="state" class="o_address_state" placeholder="State"/>
+                                    <field name="pincode" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="country" placeholder="Country" class="o_address_country"/>
+                                </group>
+                            </group>
+                        </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

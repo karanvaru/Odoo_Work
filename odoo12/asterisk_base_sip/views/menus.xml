@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="asterisk_base_sip_menu" parent='asterisk_common.asterisk_apps_menu'
+              name='SIP' sequence='190'/>
+
+    <menuitem id="asterisk_base_sip_reports_menu" parent='asterisk_common.asterisk_reports_menu'
+              name='SIP' sequence='190'/>
+
+    <menuitem id="asterisk_base_sip_settings_menu" 
+        parent='asterisk_common.asterisk_settings_menu'
+        name='SIP' sequence='10'/>
+
+</odoo>

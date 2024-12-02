@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="action_distributor" model="ir.actions.act_window">
+        <field name="name">Distributor</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('custom_partner_type','=','distributor')]</field>
+        <field name="context">{'default_custom_partner_type':'distributor'}</field>
+    </record>
+
+    <record id="action_chanel_partner" model="ir.actions.act_window">
+        <field name="name">Chanel Partner</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('custom_partner_type','=','chanel_partner')]</field>
+        <field name="context">{'default_custom_partner_type':'chanel_partner'}</field>
+    </record>
+
+    <menuitem id="menu_distributor"
+              name="Distributor"
+              action="action_distributor"
+              parent="sale.sale_order_menu"
+              sequence="41"/>
+
+    <menuitem id="menu_chanel_partner"
+              name="Chanel Partner"
+              action="action_chanel_partner"
+              parent="sale.sale_order_menu"
+              sequence="42"/>
+
+</odoo>

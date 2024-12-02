@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_account_move_form_inherits" model="ir.ui.view">
+        <field name="name">account.move.inherit.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_vendor_bill_id']" position="after">
+                <field name="commission_sheet_id"/>
+                <field name="agent_id"/>
+                <field name="is_create_commission"/>
+                <field name="commission_history_line_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//page/field[@name='invoice_line_ids']/tree/field[@name='tax_ids']" position="after">
+                <field name="amount_gross_profit"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_hr_employee_form_inherits" model="ir.ui.view">
+        <field name="name">hr.employee.inherit.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='coach_id']" position="after">
+                <field name="is_agent" groups="reddot_commission.ki_group_commission_manager"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_commission_history_line"
+                        string="Commissions"
+                        class="oe_stat_button"
+                        icon="fa-list-ul"
+                        type="object"
+                        attrs="{'invisible': [('commission_amount_count', '=', 0)]}"
+
+                >
+                    <field name="commission_amount_count" widget="statinfo" string="Commissions"/>
+                </button>
+                <button name="action_commission_rule"
+                        string="Commission Rules"
+                        class="oe_stat_button"
+                        icon="fa-list-ul"
+                        type="object"
+                        attrs="{'invisible': [('commission_rule_count', '=', 0)]}"
+
+                >
+                    <field name="commission_rule_count" widget="statinfo" string="Commission Rules"/>
+                </button>
+
+
+            </xpath>
+
+            <!-- xpath expr="//page[last()]" position="after">
+                <page string="Commission Childs" invisible="1">
+                    <group>
+                        <field name="commission_child_ids" nolabel="1">
+                        </field>
+                    </group>
+                </page>
+                <page string="Commissions"
+                      attrs="{'invisible': [('is_agent', '!=', True)]}"
+                      groups="reddot_commission.ki_group_commission_manager"
+                      invisible="1">
+                    <group>
+                        <group>
+                            <field name="commission_taxes_id"/>
+                            <field name="direct_commission"/>
+                            <field name="create_target_commission"/>
+
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                    <label for="target_commission_ids" class="oe_edit_only"/>
+                    <field name="target_commission_ids">
+                        <tree editable="bottom">
+                            <field name="from_amount"/>
+                            <field name="to_amount"/>
+                            <field name="percentage"/>
+                        </tree>
+                    </field>
+                    <group>
+                        <group>
+                            <field name="create_product_commission"/>
+                        </group>
+                    </group>
+                    <label for="product_commission_ids" class="oe_edit_only"
+                           attrs="{'invisible': [('create_product_commission', '=', False)]}"
+                    />
+                    <field name="product_commission_ids"
+                           attrs="{'invisible': [('create_product_commission', '=', False)]}">
+                        <tree editable="bottom">
+                            <field name="product_ids" widget="many2many_tags"/>
+                            <field name="percentage"/>
+                        </tree>
+                    </field>
+                    <group>
+                        <group>
+                            <field name="create_bonus_commission"/>
+                        </group>
+                    </group>
+                    <label for="special_target_commission_ids" class="oe_edit_only"
+                           attrs="{'invisible': [('create_bonus_commission', '=', False)]}"
+                    />
+                    <field name="special_target_commission_ids"
+                           attrs="{'invisible': [('create_bonus_commission', '=', False)]}"
+                    >
+                        <tree editable="bottom">
+                            <field name="from_amount"/>
+                            <field name="to_amount"/>
+                            <field name="bonus_amount"/>
+                        </tree>
+                    </field>
+
+                </page>
+            </xpat-->
+        </field>
+    </record>
+
+    <record id="action_employee_commission_history_line" model="ir.actions.act_window">
+        <field name="name">Commission Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">commission.history.line</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+
+    <record id="open_view_employee_list_my_agent" model="ir.actions.act_window">
+        <field name="name">Employees</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">kanban,tree,form,activity,graph,pivot</field>
+        <field name="domain">[('is_agent', '=', True)]</field>
+        <field name="context">{'chat_icon': True,'default_is_agent':True}</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="hr.view_employee_filter"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new employee
+            </p>
+            <p>
+                With just a quick glance on the Odoo employee screen, you
+                can easily find all the information you need for each person;
+                contact data, job position, availability, etc.
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

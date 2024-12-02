@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.actions.server" id="calls_settings_action">
+        <field name="type">ir.actions.server</field>
+        <field name="name">Calls Settings</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="asterisk_common.model_asterisk_common_settings"/>
+        <field name="code">action = model.open_settings_form(module='calls')</field>
+    </record>
+
+    <menuitem id="settings_menu" parent='asterisk_common.asterisk_settings_menu'
+      groups="asterisk_common.group_asterisk_admin"
+      name='Calls' action='calls_settings_action' sequence='30'/>
+
+    <record id='calls_settings_form' model='ir.ui.view'>
+        <field name='name'>asterisk_calls.settings.form</field>
+        <field name='model'>asterisk_common.settings</field>
+        <field name='type'>form</field>
+        <field name='arch' type='xml'>
+          <form create="false" delete="false">
+              <sheet>
+                <group name="calls">
+                  <group string="Call History Archive">
+                    <field name="calls_keep_days"/>
+                    <field name="recordings_keep_days"/>
+                  </group>
+                  <group string="Call Recording">
+                    <field name="use_mp3_encoder"/>
+                    <field name="mp3_encoder_quality" attrs="{'invisible': [('use_mp3_encoder', '=', False)]}"/>
+                    <field name="mp3_encoder_bitrate" attrs="{'invisible': [('use_mp3_encoder', '=', False)]}"/>
+                    <field name="delete_recordings"/>
+                    <field name="recording_storage"/>
+                    <button type="object" name="sync_recording_storage"
+                      help="Use this button after changing the storage type."
+                      string="Move storage" class="btn btn-info oe_read_only"/>
+                  </group>
+                  <group name="ui" string="User Interface">
+                    <field name="auto_reload_channels"/>
+                    <field name="is_widget_enabled"/>
+                  </group>
+                </group>
+              </sheet>
+          </form>
+        </field>
+    </record>
+
+</odoo>

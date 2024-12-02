@@ -1,0 +1,12 @@
+
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+	<!-- main menu -->
+	<menuitem name="Referral Manager" id="referral_manager_menu_base_root" groups="base.group_system"/>
+		<menuitem name="Referral Transaction Request" id="referral_request_menu" parent="referral_manager_menu_base_root" sequence='1' />
+			<menuitem id="referral_transaction_sub_menu_1" parent="referral_request_menu" name="Transaction History" action="referral_transaction_history_view_action" sequence="1"/>
+		<menuitem name="Configuration" id="referral_cofiguration_menu" parent="referral_manager_menu_base_root"  />
+			<menuitem id="referral_setting_sub_menu_1" parent="referral_cofiguration_menu" name="Settings" action="action_refer_and_earn_configuration"/>
+</odoo>

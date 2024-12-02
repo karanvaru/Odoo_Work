@@ -1,0 +1,32 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+	<data>
+	  <record id="view_partner_referral detail_form" model="ir.ui.view">
+            <field name="name">res.partner.property.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="priority">2</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <page name="sales_purchases" position="after">
+               			 <page name="referral_detail" string="Referral Details">
+								<group >
+									<group string="Referral Programme" name="referral" >
+										<field name="referral_code" string="Referral Code"/>
+										<field name="parent_user_id" string="Referred By"/>
+										<field name="referral_earning" string="Referral Earnings" widget="monetary" options="{'currency_field': 'currency_id'}" />
+										<field name="is_direct" string="Direct Referral" invisible='1'/>
+										<div>
+											<button class="btn btn-secondary o_form_button_create" name="open_transactions" type="object"  icon="fa-sitemap" string="Transactions" />
+										</div>
+									</group>
+								</group>
+						</page>
+                </page>
+            </field>
+        </record>
+
+
+	</data>
+</odoo>

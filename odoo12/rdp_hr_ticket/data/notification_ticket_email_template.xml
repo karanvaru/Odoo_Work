@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+                <record id="notification_of_the_hr_ticket_email_template" model="mail.template">
+                    <field name="name">Once the Ticket is Created for the Spoc</field>
+                    <field name="model_id" ref="rdp_hr_ticket.model_hr_ticket"/>
+                    <field name="email_from">${object.employee_name_id.work_email |safe}</field>
+                    <field name="email_to">${object.spoc_id.work_email}</field>
+                    <field name="subject">Hr ticket notification(ref ${object.spoc_id})</field>
+                    <field name="body_html" type="html">
+                        <div>
+
+                        </div>
+                        <div style="margin: 0px; padding: 0px;">
+                            <h3>Dear ${object.spoc_id.name}</h3>
+                            <hr/>
+
+                            <h3>One New HR Ticket is Created From HR Ticket App</h3>
+                            <br/>
+                            <br/>
+                            Thank you!!!
+                            <br></br>
+                            <a href="${object.base_url}/web?debug=true#id=3&amp;action=484&amp;model=hr.ticket&amp;view_type=form&amp;menu_id=108">
+                                Click Here
+                            </a>
+                        </div>
+                    </field>
+                </record>
+
+
+        <record id="automated_email_of_the_response_should_be_received_by_the_employee_template" model="mail.template">
+            <field name="name">Notification: Hr ticket employee</field>
+            <field name="model_id" ref="rdp_hr_ticket.model_hr_ticket"/>
+            <field name="email_from">${object.spoc_id.work_email |safe}</field>
+            <field name="email_to">${object.employee_name_id.work_email}</field>
+            <field name="subject">Hr ticket notification(ref ${object.employee_name_id})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+
+                    <h3>Dear ${object.employee_name_id.name}</h3>
+
+
+                    <h3>One New HR Ticket is Raised from HR Ticket App</h3>
+                    <br/>
+                    <br/>
+                    Thank you!!!
+                    <br></br>
+                    <a href="${object.base_url}/web?debug=true#id=3&amp;action=484&amp;model=hr.ticket&amp;view_type=form&amp;menu_id=108">
+                        Click Here
+                    </a>
+
+                </div>
+            </field>
+        </record>
+        <record id="employee_who_raised_the_ticket_about_the_closure_of_the_ticket_once_the_ticket_is_closed"
+                model="mail.template">
+            <field name="name">Notification: Hr ticket employee</field>
+            <field name="model_id" ref="rdp_hr_ticket.model_hr_ticket"/>
+            <field name="email_from">${object.spoc_id.work_email |safe}</field>
+            <field name="email_to">${object.employee_name_id.work_email}</field>
+            <field name="subject">Hr ticket notification(ref ${object.employee_name_id})</field>
+            <field name="body_html" type="html">
+
+                <div style="margin: 0px; padding: 0px;">
+
+                    <h3>Dear ${object.employee_name_id.name}</h3>
+
+
+                    <h3>HR Ticket is Closed</h3>
+                    <br/>
+                    <br/>
+                    Thank you!!!
+                    <br></br>
+                    <a href="${object.base_url}/web?debug=true#id=1&amp;action=484&amp;model=hr.ticket&amp;view_type=form&amp;menu_id=108">
+                        Click Here
+                    </a>
+
+                </div>
+            </field>
+        </record>
+
+    </data>
+</odoo>

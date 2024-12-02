@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_session_form_inherit" model="ir.ui.view">
+        <field name="name">pos.session.form</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form//sheet//group" position="replace">
+                <group>
+                    <group>
+                        <field name="cash_control" invisible="1"/>
+                        <field name="user_id" readonly="state != 'opening_control'"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="config_id" readonly="1"/>
+                        <field name="move_id" readonly="1" groups="account.group_account_readonly"/>
+                        <field name="start_at" invisible="state == 'opening_control'"/>
+                        <field name="stop_at" invisible="state != 'closed'"/>
+                        <field name="cash_register_balance_start"/>
+                        <field name="cash_register_balance_end_real" invisible="state != 'closed'"/>
+                    </group>
+                    <group>
+                        <field name="visa_total"/>
+                        <field name="cash_total"/>
+                        <field name="session_cash_total"/>
+                        <field name="session_bank_total"/>
+                        <field name="cash_diff"/>
+                        <field name="visa_diff"/>
+                        <field name="total_diff"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,178 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced" style="max-width: 100%;">
+        <h2 class="oe_slogan" style="color:#875A7B;">
+            Price Inclusive For Group Taxes
+        </h2>
+        <h3 class="oe_slogan">Get the right calculation of taxes for invoices.</h3>
+        <p class="oe_mt16" style="text-align: justify;" >
+            Now calculate correct tax(Include/ Exclude) in case tax is a group type.
+        </p>
+    </div>
+</section>
+
+<section class="oe_container oe_dark lead">
+
+    <div class="oe_row" style="max-width: 100%;">
+        <div class="panel panel-primary" id="wkid0">
+        <div class="panel-heading">
+        <h3 class="panel-title" style="font-size: 25px;"><i class="fa fa-mail-forward"></i> Features:</h3>
+        </div>
+            <div class="panel-body">
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-check text-primary"></i> Calculate correct taxes for invoices.</li>
+                    <li><i class="fa fa-check text-primary"></i> Manage Include/Exclude for group type taxes in Odoo.</li>
+                    <li><i class="fa fa-check text-primary"></i> Manage tax rate for group tax in Odoo.</li>
+                    <li><i class="fa fa-check text-primary"></i> Fix major issue for including tax calculation(Group Type Tax) in Odoo.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <ul class="nav nav-tabs justify-content-center">
+        <li class="active" style="border-right: 1px solid lightgray;">
+            <a href="#price_inclusive_tax_tab1" >
+                <h4 class="panel-title"><i class="fa fa-sign-in"></i> <b>Backend View</b> </h4>
+            </a>
+        </li>
+        <li>
+            <a href="#price_inclusive_tax_tab2" >
+                <h4 class="panel-title"><i class="fa fa-code"></i> <b>Change Log</b> </h4>
+            </a>
+        </li>
+    </ul>
+</section>
+    <div id="my-tab-content" class="tab-content">
+        <section id="price_inclusive_tax_tab1">
+            <section class="oe_container">
+                <div class="oe_row oe_spaced" style="max-width: 100%;">
+                    <h2 class="oe_slogan" style="color:#875A7B;">Fix major issue for inclusive tax calculation(Group Type Tax) in Odoo.</h2>
+                    <div class="oe_span12" style="max-width: 100%;">
+                        <h3>As per Odoo default calculation for price inclusive tax,</h3>
+                            Formula = base_amount - (base_amount / (1 + rate / 100))<br/><br/>
+                            <h4>So in case of group type taxes,</h4><br/>
+                                GroupTax = {base_amount - (base_amount / (1 + tax-1 / 100))} + {base_amount - (base_amount / (1 + tax-2 / 100))}<br/>
+<br/>
+                                Which makes a wrong calculation.<br/>
+<br/>
+                                <h4>Example :</h4>
+                                    <ul>
+                                        <li>base_amount = 100</li>
+                                        <li>rate(GroupTax) = 18% (9% + 9%)</li>
+                                        <li>Expected Tax : 15.2542373</li>    <br/>
+                                    </li><b>As per default flow:</b></li><br/>
+                                            <li>GroupTax = {100-(100/(1 + 9/100))} + {100-(100/(1 + 9/100))}</li>
+                                            <li>GroupTax = 8.25688073 + 8.25688073</li>
+                                            <li>GroupTax = 16.5137615</li>
+                                        <br/>
+                                    </ul>
+                                    It makes 1.2595242 difference from expected amount.<br/>
+                        <h3> So this module helps to calculate correct inclusive tax in case of group type taxes.</h3>
+                    </div>
+                </div>
+                <div class="oe_row oe_spaced" style="max-width: 100%;">
+                    <h2 class="oe_slogan" style="color:#875A7B;">Manage Include/Exclude and rate for group type taxes in Odoo</h2>
+                    <div class="oe_span12" style="max-width: 100%;">
+                        <div class="oe_demo oe_picture oe_screenshot">
+                            <a href="1.png" target="_blank">
+                                <img src="1.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <section id="price_inclusive_tax_tab2">
+            <section class="oe_container oe_dark">
+                <div class="oe_row" style="max-width: 100%;">
+                    <div class='oe_span12' style="max-width: 100%;">
+                        <div class="panel panel-primary" id="wkid0">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><b>Module Change Log</b></h3>
+                            </div>
+                            <div class="panel-body">
+                                <p>
+                                    Notations description used in this document.
+                                </p>
+                                <ul class="list-unstyle">
+                                    <li>
+                                        <i class="fa fa-plus text-success"></i>
+                                        [Features Added]
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-minus text-danger"></i>
+                                        [Features Removed]
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-bug text-warning"></i>
+                                        [Bug Fixed]
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="panel-body">
+                                <div class="alert alert-info">
+                                    <i class="fa fa-plus-circle"></i>
+                                    <b>  App Released version 1.0.0</b>
+                                    <b style="float:right"> Released in May 2018 </b>
+                                </div>
+                                <div class="oe_span12" style="max-width: 100%;">
+                                    <p>
+                                        <i class="fa fa-plus text-success"></i>
+                                        Calculate correct taxes for invoices.
+                                    </p>
+                                    <p>
+                                        <i class="fa fa-plus text-success"></i>
+                                        Manage Include/Exclude for group type taxes in Odoo.
+                                    </p>
+                                    <p>
+                                        <i class="fa fa-plus text-success"></i>
+                                        Manage tax rate for group tax in Odoo.
+                                    </p>
+                                    <p>
+                                        <i class="fa fa-plus text-success"></i>
+                                        Fix major issue for including tax calculation(Group Type Tax) in Odoo.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+
+<section class='oe_container oe_dark'>
+    <div class='oe_row' style="max-width: 100%;">
+        <div class="oe_span12" style="max-width: 100%;">
+            <h2 class='oe_slogan'>Complimentary Support</h2>
+            <p>
+                You will get 90 days free support for any doubt, queries, and bug fixing (excluding data recovery) or any type of issue related to this module.
+            </p>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced" style="max-width: 100%;">
+        <div class="oe_span12" style="max-width: 100%;">
+            <h2 class="oe_slogan">Help and Support</h2>
+        </div>
+        <div class="oe_slogan oe_spaced">
+            <img src="icon-help.png">
+        <span ><a onMouseOver="this.style.color='#AC1EE0'"
+onMouseOut="this.style.color='#7c7bad'" style="color:#7c7bad;" target="_blank" href="https://webkul.com/ticket/open.php">Help</a></span>
+                <img src="icon-support.png">
+        <span ><a onMouseOver="this.style.color='#AC1EE0'"
+onMouseOut="this.style.color='#7c7bad'" style="color:#7c7bad;" target="_blank" href="https://webkul.com/ticket/open.php">Support</a></span>
+                <img src="icon-features.png">
+        <span ><a onMouseOver="this.style.color='#AC1EE0'"
+onMouseOut="this.style.color='#7c7bad'" style="color:#7c7bad;" target="_blank" href="https://webkul.com/ticket/open.php">Request new Features</a></span>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_span12" style="max-width: 100%;">
+    <!-- Piwik Image Tracker-->
+    <img style="display:none" src="http://odooimg.webkul.com/analytics/piwik/piwik.php?idsite=3&rec=1&action_name=Price-Inclusive-Tax&url=https://apps.openerp.com/apps/modules/12.0/price_inclusive_tax&uid=price_inclusive_tax" style="border:0" alt="" />
+    <!-- End Piwik -->
+    </div>
+</section>

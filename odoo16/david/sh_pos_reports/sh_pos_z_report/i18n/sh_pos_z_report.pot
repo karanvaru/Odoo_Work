@@ -1,0 +1,665 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_pos_z_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-04 07:51+0000\n"
+"PO-Revision-Date: 2023-01-04 07:51+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_pos_z_report
+#: model:ir.actions.report,print_report_name:sh_pos_z_report.sh_pos_z_report_backend
+msgid "'POS Z Report'"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+msgid "<span style=\"margin-bottom: 0px;\"><b>Z Report</b></span>"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+msgid ""
+"<span style=\"margin-bottom: 10px;margin-top: 10px;\"><b>Category Wise "
+"Detail</b></span>"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+msgid ""
+"<span style=\"margin-bottom: 10px;margin-top: 10px;\"><b>Customer Wise "
+"Detail</b></span>"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+msgid ""
+"<span style=\"margin-bottom: 10px;margin-top: 10px;\"><b>Payments "
+"Detail</b></span>"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+msgid ""
+"<span style=\"margin-bottom: 10px;margin-top: 10px;\"><b>Product Wise "
+"Detail</b></span>"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+msgid ""
+"<span style=\"margin-bottom: 10px;margin-top: 10px;\"><b>Session "
+"Detail</b></span>"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+msgid "<span style=\"margin-bottom: 10px;margin-top: 10px;\"><b>Status</b></span>"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_config__sh_allow_posted_session_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_res_config_settings__pos_sh_allow_posted_session_report
+msgid "Allow Posted Session Report"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_hr_employee__sh_is_allow_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_res_users__sh_is_allow_z_report
+msgid "Allow to Generate Z-Report ?"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_config__sh_enable_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_res_config_settings__pos_sh_enable_z_report
+msgid "Allow to Print Z Report"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Amount"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields.selection,name:sh_pos_z_report.selection__pos_config__sh_allow_z_report_type__both
+msgid "Both"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.view_pos_z_report_wizard
+msgid "Cancel"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "Category Wise Detail"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Popups/ZReportOptionPopup.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Popups/ZReportPostedSessionOptionPopup.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/ReceiptScreen.xml:0
+#, python-format
+msgid "Close"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "Closed & Posted"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+msgid "Closed &amp; Posted"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Closing Balance"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Closing Control"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Closing Date"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model,name:sh_pos_z_report.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_z_report_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_z_report_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "Customer Wise Detail"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Difference"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_config__sh_display_category_wise_detail
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_z_report_wizard__sh_display_category_wise_detail
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_res_config_settings__pos_sh_display_category_wise_detail
+msgid "Display Category Wise Detail"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_config__sh_display_customer_wise_detail
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_z_report_wizard__sh_display_customer_wise_detail
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_res_config_settings__pos_sh_display_customer_wise_detail
+msgid "Display Customer Wise Detail"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_z_report_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_config__sh_display_payment_detail
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_z_report_wizard__sh_display_payment_detail
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_res_config_settings__pos_sh_display_payment_detail
+msgid "Display Payment Detail"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_config__sh_display_product_wise_detail
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_z_report_wizard__sh_display_product_wise_detail
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_res_config_settings__pos_sh_display_product_wise_detail
+msgid "Display Product Wise Detail"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "Email :"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model,name:sh_pos_z_report.model_hr_employee
+msgid "Employee"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Popups/ZReportOptionPopup.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Popups/ZReportPostedSessionOptionPopup.xml:0
+#, python-format
+msgid "Generate PDF"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Popups/ZReportOptionPopup.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Popups/ZReportPostedSessionOptionPopup.xml:0
+#, python-format
+msgid "Generate Receipt"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_z_report_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "In Progress"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_z_report_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_z_report_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_z_report_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "Logo"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Name"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/ReceiptScreen.xml:0
+#, python-format
+msgid "New Order"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "No Any Data Found"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "No. Of Customers"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+msgid "No. Of Customers :"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "No. Of Orders"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+msgid "No. Of Orders :"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Opened Date"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Opening Balance"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Opening Control"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "POS Name"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.actions.report,name:sh_pos_z_report.sh_pos_z_report_backend
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_pos_config_views
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_res_config_settings
+msgid "POS Z Report"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/ReceiptScreen.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/ReceiptScreen.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/ReceiptScreen.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/ReceiptScreen.xml:0
+#, python-format
+msgid "Pay"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "Payments Detail"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields.selection,name:sh_pos_z_report.selection__pos_config__sh_allow_z_report_type__pdf
+msgid "Pdf"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "Phone :"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_hr_employee_views
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_res_users_views
+msgid "Point Of Sale"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model,name:sh_pos_z_report.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model,name:sh_pos_z_report.model_pos_session
+msgid "Point of Sale Session"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model,name:sh_pos_z_report.model_pos_z_report_wizard
+msgid "Point of Sale Z Report"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ProductScreen/ControlButtons/PostedSessionReport.xml:0
+#, python-format
+msgid "Posted Session Z - Report"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Popups/ZReportPostedSessionOptionPopup.xml:0
+#, python-format
+msgid "Posted Session Z-Report"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Popups/ZReportOptionPopup.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Popups/ZReportPostedSessionOptionPopup.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.view_pos_z_report_wizard
+#, python-format
+msgid "Print"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Popups/ZReportOptionPopup.xml:0
+#, python-format
+msgid "Print Z-Report"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "Product Wise Detail"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Quantity"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields.selection,name:sh_pos_z_report.selection__pos_config__sh_allow_z_report_type__receipt
+msgid "Receipt"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "Report Date"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+msgid "Report Date :"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.view_pos_z_report_wizard
+msgid "Sales Details"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "Salesperson"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+msgid "Salesperson :"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Popups/ZReportPostedSessionOptionPopup.xml:0
+#, python-format
+msgid "Select Session :"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_z_report_wizard__sh_session_id
+msgid "Session"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#, python-format
+msgid "Session Detail"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Session Name"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Status"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Total"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Total Cash-In"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Total Cash-Out"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Total Discount"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Total Return"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Total Sales"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.report_zdetails
+#: model_terms:ir.ui.view,arch_db:sh_pos_z_report.sh_pos_z_report_doc
+#, python-format
+msgid "Total Tax"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model,name:sh_pos_z_report.model_res_users
+msgid "User"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ProductScreen/ControlButtons/ShPosZReport.xml:0
+#, python-format
+msgid "Z - Report"
+msgstr ""
+
+#. module: sh_pos_z_report
+#. odoo-javascript
+#: code:addons/sh_pos_z_report/static/src/xml/Screens/ReceiptScreen/PosZReceipt.xml:0
+#: model:ir.actions.act_window,name:sh_pos_z_report.action_report_z_detail
+#: model:ir.actions.report,name:sh_pos_z_report.pos_z_report_detail
+#: model:ir.ui.menu,name:sh_pos_z_report.menu_z_report_detail
+#, python-format
+msgid "Z Report"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_pos_config__sh_allow_z_report_type
+#: model:ir.model.fields,field_description:sh_pos_z_report.field_res_config_settings__pos_sh_allow_z_report_type
+msgid "Z Report Type"
+msgstr ""
+
+#. module: sh_pos_z_report
+#: model:ir.model,name:sh_pos_z_report.model_report_sh_pos_z_report_sh_pos_z_report_doc
+msgid "pos person report abstract model"
+msgstr ""

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_incoming_mail_record,access.incoming.mail.record,model_incoming_mail_record,,1,1,1,1
+access_convert_to_task_wizard,access.convert.to.task.wizard,model_convert_to_task_wizard,,1,1,1,1

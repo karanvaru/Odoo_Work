@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_claim_approve_wizard_form">
+            <field name="name">claim.approve.wizard.form</field>
+            <field name="model">claim.approve.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="approve_amount"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_approve" class="btn-primary" string="Apply" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_claim_approve_wizard">
+            <field name="name">Claim Approve Wizard</field>
+            <field name="res_model">claim.approve.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

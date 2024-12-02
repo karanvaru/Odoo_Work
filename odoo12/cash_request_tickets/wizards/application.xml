@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="cash_request_application_form" model="ir.ui.view">
+         <field name="name">cash.request.tickets.application.wizard</field>
+         <field name="model">cash.request.tickets.application</field>
+         <field name="arch" type="xml">
+            <form string="Wizard Application">
+                    <h1>Congratulations</h1>
+                <footer>
+					<button name="button_confirmed" type="object"  string="Ok" class="btn_primary"  />
+
+<!--                    <button string="Cancel" class="btn-secondary" special="cancel"/>-->
+                </footer>
+            </form>
+         </field>
+     </record>
+    <record id="cash_request_tickets_wizard" model="ir.actions.act_window">
+        <field name="name">Cash Request Tickets Application</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cash.request.tickets.application</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="cash_request_application_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

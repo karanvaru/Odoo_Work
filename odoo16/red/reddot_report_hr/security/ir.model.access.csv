@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_contract_report_wizard,access_hr.contract.report.wizard,model_hr_contract_report_wizard,base.group_user,1,1,1,1
+access_excel_export_document,access_excel.export.document,model_excel_export_document,base.group_user,1,1,1,1
+access_hr_employee_report_wizard,access_hr.employee.report.wizard,model_hr_employee_report_wizard,base.group_user,1,1,1,1
+access_leave_wizard_report,access_leave.wizard.report,model_leave_wizard_report,base.group_user,1,1,1,1
+access_contact_report_wizard,access_contact.report.wizard,model_contact_report_wizard,base.group_user,1,1,1,1
+access_employee_demographic_summary_wizard,access_employee_demographic_summary_wizard,model_employee_demographic_summary_wizard,base.group_user,1,1,1,1
+access_loan_report_wizard,access_loan.report.wizard,model_loan_report_wizard,base.group_user,1,1,1,1
+access_kpi_performance_report_wizard,access_kpi_performance_report_wizard,model_kpi_performance_report_wizard,base.group_user,1,1,1,1
+access_attendance_report_summary_wizard,access_attendance_report_summary_wizard,model_attendance_report_summary_wizard,base.group_user,1,1,1,1
+access_helpdesk_report_wizard,access_helpdesk_report_wizard,model_helpdesk_report_wizard,base.group_user,1,1,1,1

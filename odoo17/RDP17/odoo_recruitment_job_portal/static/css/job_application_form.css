@@ -1,0 +1,17 @@
+
+.no-side-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background-color: #FFFFFF !important;
+}
+.s_website_form_input {
+  padding-left: 10px;/* This should be at least as wide as the icon */
+}
+
+.fa-linkedin-square {
+  color: #0A66C2;
+  position: absolute;
+  left: 10px; /* Horizontal position from the left */
+  top: 50%; /* Vertically center */
+  transform: translateY(-50%); /* Offset the icon by half its height for vertical centering */
+}

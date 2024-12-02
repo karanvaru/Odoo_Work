@@ -1,0 +1,232 @@
+<templates id="template" xml:space="preserve">
+    <t t-name="DashBoardCrm">
+        <div class="oh_dashboards">
+            <div class="container-fluid o_crm_dashboard"> </div>
+        </div>
+    </t>
+
+    <t t-name="CRMDashboard">
+        <h2 class="section-header-crm"></h2>
+        <div class="o_my_dashboard">
+                    <div class="box_class">
+                        <div class="row">
+                            CRM Dashboard
+                        </div>
+                        <div class="row mt42 count_data">
+                            <div class="col-2 all_leads">
+                              <span>Total leads</span>
+                                <div class="row">
+                                    <div class="col">
+                                        <h1><b><div id="total_lead_count"></div></b></h1>
+                                    </div>
+
+                                    <!--                                    <div class="col">-->
+                                    <!--                                        <h1><b><div id="total_lead_revenue"></div></b></h1>-->
+                                    <!--                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="col-2 my_leads">
+                                <span> My Leads</span>
+                                <div class="row">
+                                    <div class="col">
+                                        <h1><b><div id="my_lead_count"></div></b></h1>
+                                    </div>
+
+                                    <div class="col lead_revenue">
+                                        <h1><b><div id="my_lead_revenue"></div></b></h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-2 all_revenue">
+                               <span> Total Revenue</span>
+                                <div class="row">
+<!--                                    <div class="col lead_count">-->
+                                    <!--                                        <h1><b><div id="total_lead_count"></div></b></h1>-->
+                                    <!--                                    </div>-->
+
+                                    <div class="col lead_revenue">
+                                        <h1><b><div id="total_lead_revenue"></div></b></h1>
+                                    </div>
+                                </div>
+                            </div>
+
+<!--                            <div class="col-6">-->
+<!--                            <div class="box_class">-->
+<!--                                <div>-->
+<!--                                    <canvas id="lead_by_status" width="200" height="200"></canvas>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+
+                        </div>
+                        <!--                <div class="col-12 col-sm-3 col-lg-1 mb-3 o_dashboard_years">-->
+                        <!--                    <div class="pt-2 class_year"  t-att-data-id="2017">-->
+                        <!--                        <button class="btn btn-primary ">2017</button>-->
+                        <!--                    </div>-->
+                        <!--                    <div class="pt-2 class_year"  t-att-data-id="2018">-->
+                        <!--                        <button class="btn btn-primary">2018</button>-->
+                        <!--                    </div>-->
+                        <!--                    <div class="pt-2 class_year"  t-att-data-id="2019">-->
+                        <!--                        <button class="btn btn-primary">2019</button>-->
+                        <!--                    </div>-->
+                        <!--                </div>-->
+                        <!--                <div class="col-12 col-sm-12 col-lg-7 mb-3">-->
+                        <!--                    <div class="row">-->
+                        <!--                        <div class="col-6 col-md-3 mb-3">-->
+                        <!--                            <div class="header">-->
+                        <!--                                <span><b>Employee Overview</b></span>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="details">-->
+                        <!--                                <h1><b><div id="all_employee_count"></div></b></h1>-->
+                        <!--                                <span>HeadCount</span>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="col-6 col-md-3 mb-3">-->
+                        <!--                            <div class="header">-->
+                        <!--                                <span><b>Monthly Analysis</b></span>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="details">-->
+                        <!--                                  <h1><b><div id="hired_employee_count"></div></b></h1>-->
+                        <!--                                <span>Hires</span>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="col-6 col-md-3 mb-3">-->
+                        <!--                            <div class="header">-->
+                        <!--                                <span><b>Performance</b></span>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="details">-->
+                        <!--&lt;!&ndash;                                <h1><b>60</b></h1>&ndash;&gt;-->
+                        <!--                                <h1><b><div id="terminate_employee_count"></div></b></h1>-->
+
+                        <!--                                <span>Terminations</span>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="col-6 col-md-3 mb-3">-->
+                        <!--                                                        <div class="header">-->
+                        <!--                                <span><b>Performance</b></span>-->
+                        <!--                            </div>-->
+
+                        <!--                            <div class="details_top_demography">-->
+                        <!--                        <div class="row">-->
+                        <!--                            <div class="col">-->
+                        <!--                                <h1>-->
+                        <!--                                    <i style="font-size: 50px;" class="fa fa-female"></i>-->
+                        <!--                                </h1>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="col pt16">-->
+                        <!--                                <h2>-->
+                        <!--                                     <div id="female_count"></div>-->
+                        <!--                                    &lt;!&ndash;                                    <span t-esc="widget.gender_dct['female']"/>&ndash;&gt;-->
+                        <!--                                </h2>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                    </div>-->
+
+                        <!--                        </div>-->
+                        <!--                    </div>-->
+                        <!--                </div>-->
+                        <!--                <div class="col-12 col-sm-6 col-lg-2 mb-3">-->
+                        <!--                    <div class="header">-->
+                        <!--                        <span><b>Historical &amp; Trends</b></span>-->
+                        <!--                    </div>-->
+                        <!--                    <div class="details_top_demography">-->
+                        <!--                        <div class="row">-->
+                        <!--                            <div class="col">-->
+                        <!--                                <h1>-->
+                        <!--                                    <i style="font-size: 50px;" class="fa fa-male"></i>-->
+                        <!--                                </h1>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="col pt16">-->
+                        <!--                                <h2>-->
+                        <!--&lt;!&ndash;                                    <span id="male_count"/>&ndash;&gt;-->
+                        <!--                                    <div id="male_count"></div>-->
+                        <!--                                    &lt;!&ndash;                                    <span t-esc="widget.gender_dct['male']"/>&ndash;&gt;-->
+                        <!--                                </h2>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                    </div>-->
+                        <!--                </div>-->
+            </div>
+            <!--            <div class="row">-->
+            <!--                <div class="col-4 open_contract" t-att-data-name="open">-->
+            <!--                    <div class="details">-->
+            <!--                        <h1><b><div id="open_contact_count"></div></b></h1>-->
+            <!--                        <span>Open</span>-->
+            <!--                            </div>-->
+            <!--                </div>-->
+            <!--                <div class="col-4 expired_contract" t-att-data-id="expired">-->
+
+            <!--                        <div class="details">-->
+            <!--                            <h1><b><div id="expired_contact_count"></div></b></h1>-->
+            <!--                            <span>Expired</span>-->
+
+            <!--                        </div>-->
+
+            <!--                </div>-->
+            <!--                <div class="col-4 upcoming_contract" t-att-data-id="upcoming">-->
+
+            <!--                        <div class="details">-->
+            <!--                            <h1><b><div id="upcoming_contact_count"></div></b></h1>-->
+            <!--                            <span>Upcoming</span>-->
+            <!--                        </div>-->
+
+            <!--                </div>-->
+
+
+            <!--             </div>-->
+
+
+            <!--            <div class="row mt16">-->
+            <!--                 <div class="col-12 col-md-6 col-lg-4 mb-3">-->
+            <!--                    <div class="box_class">-->
+            <!--                        <div>-->
+            <!--                            <canvas id="head_count_contract_type" width="200" height="200"></canvas>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+
+            <!--                <div class="col-12 col-md-6 col-lg-4 mb-3">-->
+            <!--                    <div class="box_class">-->
+            <!--                        <div>-->
+            <!--                            <canvas id="open_possition_chart" width="200" height="200"></canvas>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <div class="col-12 col-md-6 col-lg-4 mb-3">-->
+            <!--                    <div class="box_class">-->
+            <!--                        <canvas id="HeadcountByOfficePieChart" width="200" height="200"></canvas>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--          -->
+            <!--            </div>-->
+            <!--            <div class="row pt-3">-->
+
+            <!--                <div class="col-12 col-md-6 mb-3">-->
+            <!--                    <div class="box_class">-->
+            <!--                        <canvas id="headcountByEducationChart"></canvas>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+
+            <!--                <div class="col-12 col-md-6 mb-3">-->
+            <!--                    <div class="box_class">-->
+            <!--                        <canvas id="HeadCountByDepartmentPieChart"></canvas>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="row pt-3">-->
+
+            <!--                <div class="col-12 col-md-12 mb-3">-->
+            <!--                    <div class="box_class">-->
+            <!--                        <div>-->
+            <!--                            <canvas id="handCount_by_range_bar_chart"></canvas>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                -->
+
+            <!--             </div>-->
+        </div>
+    </t>
+</templates>

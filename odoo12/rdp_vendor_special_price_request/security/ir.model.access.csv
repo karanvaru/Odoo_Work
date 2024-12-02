@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+vendor_special_price,vendor.special.price,model_vendor_special_price,,1,1,1,1
+vspr_program,vspr.program,model_vspr_program,,1,1,1,1
+
+

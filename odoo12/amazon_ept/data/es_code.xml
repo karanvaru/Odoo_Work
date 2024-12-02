@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data noupdate="1">
+    	
+    	<record id="XESB" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">XESB</field>
+    		<field name="country_id" ref="base.es"></field>
+        </record>
+        <record id="XESA" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">XESA</field>
+    		<field name="country_id" ref="base.es"></field>
+        </record>
+        <record id="MAD4" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">MAD4</field>
+    		<field name="country_id" ref="base.es"></field>
+        </record>
+        <record id="BCN3" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">BCN3</field>
+    		<field name="country_id" ref="base.es"></field>
+        </record>
+        <record id="BCN2" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">BCN2</field>
+    		<field name="country_id" ref="base.es"></field>
+        </record>
+        <record id="BCN1" model="amazon.fulfillment.country.rel">
+    		<field name="fulfillment_code">BCN1</field>
+    		<field name="country_id" ref="base.es"></field>
+        </record>
+    </data>
+</odoo>

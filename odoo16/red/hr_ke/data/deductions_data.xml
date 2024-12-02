@@ -1,0 +1,53 @@
+<openerp>
+    <data noupdate="1">
+	<record id="ke_deduction1" model="ke.deductions.type">
+	   <field name="name">H.E.L.B</field>
+           <field name="rule_id" ref="hr_ke.ke_rule107"/>
+	</record>
+
+	<record id="ke_deduction2" model="ke.deductions.type">
+	   <field name="name">Salary Advance</field>
+           <field name="rule_id" ref="hr_ke.ke_rule108"/>
+	</record>
+
+	<record id="ke_deduction3" model="ke.deductions.type">
+	   <field name="name">SACCO Contributions</field>
+           <field name="rule_id" ref="hr_ke.ke_rule109"/>
+	</record>
+
+	<record id="ke_deduction4" model="ke.deductions.type">
+	   <field name="name">FOR FUTURE USE</field>
+           <field name="rule_id" ref="hr_ke.ke_rule110"/>
+	</record>
+
+	<record id="ke_deduction5" model="ke.deductions.type">
+	   <field name="name">FOR FUTURE USE</field>
+           <field name="rule_id" ref="hr_ke.ke_rule111"/>
+	</record>
+
+	<record id="ke_deduction6" model="ke.deductions.type">
+	   <field name="name">FOR FUTURE USE</field>
+           <field name="rule_id" ref="hr_ke.ke_rule112"/>
+	</record>
+
+	<record id="ke_deduction7" model="ke.deductions.type">
+	   <field name="name">FOR FUTURE USE</field>
+           <field name="rule_id" ref="hr_ke.ke_rule113"/>
+	</record>
+
+	<record id="ke_deduction8" model="ke.deductions.type">
+	   <field name="name">FOR FUTURE USE</field>
+           <field name="rule_id" ref="hr_ke.ke_rule114"/>
+	</record>
+
+	<record id="ke_deduction9" model="ke.deductions.type">
+	   <field name="name">Other Deductions Kenya</field>
+           <field name="rule_id" ref="hr_ke.ke_rule123"/>
+	</record>
+
+	<record id="ke_before_gross_deduction1" model="ke.before.gross.deduction.type">
+	   <field name="name">Absenteesm</field>
+           <field name="rule_id" ref="hr_ke.ke_rule4"/>
+	</record>
+    </data>
+</openerp>

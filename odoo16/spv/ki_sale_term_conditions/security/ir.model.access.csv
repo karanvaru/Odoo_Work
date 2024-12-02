@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_term_condition_employee,access.sale.term.condition.employee,model_sale_term_condition,base.group_user,1,0,0,0
+access_sale_term_condition_salesmanager,Access.sale.term.condition.salesmanager,model_sale_term_condition,sales_team.group_sale_salesman_all_leads,1,1,1,1

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="asterisk_base_sip_user_form" model="ir.ui.view">
+        <field name="name">asterisk_base_sip.user.form</field>
+        <field name="model">asterisk_common.user</field>
+        <field name="inherit_id" ref="asterisk_common.asterisk_user_form"/>
+        <field name="arch" type="xml">
+            <field name="channel" position="attributes"> 
+              <attribute name="placeholder">Example: Local/101</attribute>
+            </field>
+            <page name="common" position="after">
+              <page name="sip" string="SIP">
+                <group name="channels" string="Follow me">
+                  <group col="1">
+                    <field name="ring_channels"
+                        domain="[('asterisk_user', '=', active_id)]"
+                        context="{'default_asterisk_user': active_id}">
+                      <tree create="false" delete="false" editable="bottom"> 
+                        <field name="sequence" widget="handle"/>
+                        <field name="channel"/>                      
+                        <field name="ring_enabled" widget="boolean_toggle"/>
+                        <field name="ring_timeout"/>
+                      </tree>
+                    </field>
+                  </group>
+                  <group>                    
+                    <field name="call_waiting" widget="boolean_toggle"/>
+                    <field name="route_groups"
+                        groups='asterisk_common.group_asterisk_admin'
+                        required="1" widget="many2many_tags"/>
+                    <field name="callerid_numbers" widget="many2many_tags"/>
+                  </group>
+                </group>
+                <group name="vm" string="VoiceMail">
+                  <group>
+                    <field name="vm_enabled" string="Enabled"/>
+                    <field name="vm_on_busy_enabled"
+                      attrs="{'invisible': [('vm_enabled', '=', False)]}"/>
+                    <field name="vm_on_unavail_enabled"
+                      attrs="{'invisible': [('vm_enabled', '=', False)]}"/>
+                    <field name="vm_direct_call_enabled"
+                      attrs="{'invisible': [('vm_enabled', '=', False)]}"/>                    
+                  </group>
+                  <group>
+                    <field name="vm_email"
+                      attrs="{'invisible': [('vm_enabled', '=', False)]}"/>
+                    <field name="vm_max_length"
+                      attrs="{'invisible': [('vm_enabled', '=', False)]}"/>
+                    <field name="vm_max_messages"
+                      attrs="{'invisible': [('vm_enabled', '=', False)]}"/>
+                  </group>
+                </group>
+                <group name="cf" string="Call Forwarding">
+                  <group string="On Busy">
+                    <field name="cf_on_busy_enabled" string="Enabled" class="oe_inline"/>
+                    <field name="cf_on_busy_number" string="Number"
+                      attrs="{'invisible': [('cf_on_busy_enabled', '=', False)]}"/>
+                  </group>
+                  <group string="On Unavailable">
+                    <field name="cf_on_unavail_enabled" string="Enabled"/>
+                    <field name="cf_on_unavail_number" string="Number"
+                      attrs="{'invisible': [('cf_on_unavail_enabled', '=', False)]}"/>
+                  </group>
+                  <group string="Unconditional">
+                    <field name="cf_uncond_enabled" string="Enabled"/>
+                    <field name="cf_uncond_number" string="Number"
+                      attrs="{'invisible': [('cf_uncond_enabled', '=', False)]}"/>
+                  </group>
+                </group>
+                <group name="dialplan" string="Dialplan" groups="asterisk_common.group_asterisk_guru">
+                  <field name="dialplan" widget="asterisk_conf" nolabel="1"/>
+                </group>                
+              </page>
+            </page>
+        </field>
+    </record>
+</odoo>

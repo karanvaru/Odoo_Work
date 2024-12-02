@@ -1,0 +1,205 @@
+<odoo>
+    <record id="mobile_service_report_wizard_view" model="ir.ui.view">
+        <field name="name">Mobile Service Report Wizard</field>
+        <field name="model">mobile.service.report</field>
+        <field name="arch" type="xml">
+            <form string="Stock Report">
+                <group>
+                    <group>
+                        <field name="date_start"/>
+                        <field name="status"/>
+                    </group>
+                    <group>
+                        <field name="date_end"/>
+                        <field name="technician"/>
+                    </group>
+
+                </group>
+                <footer>
+                    <button name="get_report" string="Print PDF Report" type="object" class="oe_highlight"/>
+                    <button name="print_xlsx_report" string="Print XLSX Report" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="parts_usage_report_wizard_view" model="ir.ui.view">
+        <field name="name">Parts Usage Report Wizard</field>
+        <field name="model">mobile.parts.report</field>
+        <field name="arch" type="xml">
+            <form string="Stock Report">
+                <group>
+                    <group>
+                        <field name="date_start"/>
+                        <field name="parts_name"/>
+                    </group>
+                    <group>
+                        <field name="date_end"/>
+                    </group>
+
+                </group>
+                <footer>
+                    <button name="get_report" string="Print PDF Report" type="object" class="oe_highlight"/>
+                    <button name="print_xlsx_report" string="Print XLSX Report" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="complaint_type_report_wizard_view" model="ir.ui.view">
+        <field name="name">Complaint Type Report Wizard</field>
+        <field name="model">complaint.type.report</field>
+        <field name="arch" type="xml">
+            <form string="Stock Report">
+                <group>
+                    <group>
+                        <field name="date_start"/>
+                        <field name="complaint_type"/>
+                    </group>
+                    <group>
+                        <field name="date_end"/>
+                    </group>
+
+                </group>
+                <footer>
+                    <button name="get_report" string="Print PDF Report" type="object" class="oe_highlight"/>
+                    <button name="print_xlsx_report" string="Print XLSX Report" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="service_pivot_report_search" model="ir.ui.view">
+        <field name="name">service.report.search</field>
+        <field name="model">mobile.pivot.report</field>
+        <field name="arch" type="xml">
+            <search string="Service Analysis">
+                <field name="person_name"/>
+                <filter string="This Year" name="year" invisible="1" domain="[('date_request','&lt;=', time.strftime('%%Y-12-31')),('date_request','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                <filter name="service_state" string="Service State"/>
+                <filter name="return_date" string="Return date"/>
+                <filter name="date_request" string="Request date"/>
+                <separator/>
+                <field name="technician_name"/>
+                <field name="model_name"/>
+                <group expand="1" string="Group By">
+                    <filter string="Customer" name="person_name" context="{'group_by':'person_name'}"/>
+                    <filter string="Brand" name="person_name" context="{'group_by':'brand_name'}"/>
+                    <filter string="Model" name="person_name" context="{'group_by':'model_name'}"/>
+                    <filter string="Technician" name="technician_name" context="{'group_by':'technician_name'}"/>
+                    <filter string="Service Status" name="service_state" context="{'group_by':'service_state'}"/>
+                    <separator orientation="vertical"/>
+                    <filter string="Request date" name="date_request" context="{'group_by':'date_request'}" help="Date of the service request"/>
+                    <filter string="Return date" name="return_date" context="{'group_by':'return_date'}" help="Service request return date"/>
+
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="mobile_service_custom_pivot_report" model="ir.ui.view">
+       <field name="name">mobile.service.pivot.report</field>
+       <field name="model">mobile.pivot.report</field>
+        <field name="priority" eval="8" />
+       <field name="arch" type="xml">
+            <pivot string="Mobile Service">
+                <field name="technician_name"  type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="mobile_service_custom_graph_report" model="ir.ui.view">
+       <field name="name">mobile.service.graph.report</field>
+       <field name="model">mobile.pivot.report</field>
+       <field name="arch" type="xml">
+            <graph string="Service Graph">
+                <field name="technician_name" type="row"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="filter_sale_report_technician" model="ir.filters">
+        <field name="name">By Technician</field>
+        <field name="model_id">mobile.pivot.report</field>
+        <field name="user_id" eval="False"/>
+        <field name="context">{'group_by': ['date_request:month', 'technician_name']}</field>
+    </record>
+
+    <record id="filter_sale_report_parts" model="ir.filters">
+        <field name="name">By Parts</field>
+        <field name="model_id">mobile.pivot.report</field>
+        <field name="user_id" eval="False"/>
+        <field name="context">{'group_by': ['date_request:month', 'product_tmpl_id']}</field>
+    </record>
+
+    <record id="filter_sale_report_status" model="ir.filters">
+        <field name="name">By Status</field>
+        <field name="model_id">mobile.pivot.report</field>
+        <field name="user_id" eval="False"/>
+        <field name="context">{'group_by': ['date_request:month', 'service_state']}</field>
+    </record>
+
+    <record id="filter_sale_report_customer" model="ir.filters">
+        <field name="name">By Customer</field>
+        <field name="model_id">mobile.pivot.report</field>
+        <field name="user_id" eval="False"/>
+        <field name="context">{'group_by': ['date_request:month', 'person_name']}</field>
+    </record>
+
+    <record id="action_mobile_service_report_wizard" model="ir.actions.act_window">
+        <field name="name">Mobile Service Report</field>
+        <field name="res_model">mobile.service.report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="mobile_service_report_wizard_view"/>
+        <field name="target">new</field>
+    </record>
+    <record id="action_parts_usage_report_wizard" model="ir.actions.act_window">
+        <field name="name">Parts Usage Report</field>
+        <field name="res_model">mobile.parts.report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="parts_usage_report_wizard_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_complaint_type_report_wizard" model="ir.actions.act_window">
+        <field name="name">Complaint Type Report</field>
+        <field name="res_model">complaint.type.report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="complaint_type_report_wizard_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_pivot_report_wizard" model="ir.actions.act_window">
+        <field name="name">Mobile Service</field>
+        <field name="res_model">mobile.pivot.report</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="search_view_id" ref="service_pivot_report_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to view pivot report.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="mobile_service_report_menu" name="Reports"
+              parent="mobile_service_shop.mobile_service_main_menu" sequence="2"/>
+
+    <menuitem id="mobile_service_service_report" name="Service Reports" action="action_mobile_service_report_wizard"
+              parent="mobile_service_report_menu" sequence="2"/>
+
+    <menuitem id="mobile_service_parts_report" name="Parts Usage" action="action_parts_usage_report_wizard"
+              parent="mobile_service_report_menu" sequence="3"/>
+
+    <menuitem id="mobile_service_custom_report" name="Mobile Service" action="action_pivot_report_wizard"
+              parent="mobile_service_report_menu" sequence="1"/>
+
+    <menuitem id="service_complaint_type_report" name="Complaint Type" action="action_complaint_type_report_wizard"
+              parent="mobile_service_report_menu" sequence="4"/>
+
+</odoo>

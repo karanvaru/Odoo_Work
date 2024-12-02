@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Email template -->
+    <record id="email_template_rma_issue" model="mail.template">
+        <field name="name">RMA Issue - Send by Email</field>
+        <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+        <field name="subject">${object.company_id.name} (Ref ${object.name or 'n/a' })</field>
+        <field name="partner_to">${object.partner_id.id}</field>
+        <field name="model_id" ref="sync_rma.model_rma_issue"/>
+        <field name="auto_delete" eval="False"/>
+        <field name="report_template" ref="action_report_rma_issue_order"/>
+        <field name="report_name">${object.name}</field>
+        <field name="lang">${object.partner_id.lang}</field>
+        <field name="body_html"><![CDATA[
+            <p>Dear ${object.partner_id.name}
+            ,</p>
+            <p>
+            Here is your RMA document number: ${doc_name} <strong>${object.name}</strong>
+            </p>
+            <p>Please check attached pdf</p>
+
+            <p>You can reply to this email if you have any questions.</p>
+            <p>Thank you,</p>
+
+            <p style="color:#eeeeee;">
+            % if object.user_id and object.user_id.signature:
+                ${object.user_id.signature | safe}
+            % endif
+            </p>
+            ]]>
+        </field>
+    </record>
+
+    <!--Done RMA email template -->
+    <record id="email_template_done_rma_issue" model="mail.template">
+        <field name="name">RMA Issue Done - Send by Email</field>
+        <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+        <field name="subject">${object.company_id.name} (Ref ${object.name or 'n/a' }) Done</field>
+        <field name="partner_to">${object.partner_id.id}</field>
+        <field name="model_id" ref="sync_rma.model_rma_issue"/>
+        <field name="auto_delete" eval="False"/>
+        <field name="report_template" ref="action_report_rma_issue_order"/>
+        <field name="report_name">${object.name}</field>
+        <field name="lang">${object.partner_id.lang}</field>
+        <field name="body_html"><![CDATA[
+            <p>Dear ${object.partner_id.name}
+            ,</p>
+            <p>
+            We have done your RMA, please check: <strong>${object.name}</strong> RMA.
+            </p>
+            <p>Pleasse check attached pdf</p>
+
+            <p>You can reply to this email if you have any questions.</p>
+            <p>Thank you,</p>
+
+            <p style="color:#eeeeee;">
+            % if object.user_id and object.user_id.signature:
+                ${object.user_id.signature | safe}
+            % endif
+            </p>
+            ]]>
+        </field>
+    </record>
+</odoo>

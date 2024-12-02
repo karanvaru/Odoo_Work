@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="report_automation_config_lead_assign" model="report.automation.config">
+            <field name="name">On Create Lead</field>
+            <field name="email_template_id" ref="lead_email_template"/>
+        </record>
+
+        <record id="report_automation_config_close_lead_date" model="report.automation.config">
+            <field name="name">Lead Close Date Reminder</field>
+            <field name="action_id" ref="actions_send_close_lead_crone"/>
+            <field name="email_template_id" ref="lead_close_date_email_template"/>
+        </record>
+
+        <record id="report_automation_config_lead_status" model="report.automation.config">
+            <field name="name">Lead Status</field>
+            <field name="action_id" ref="actions_send_lead_status_crone"/>
+            <field name="email_template_id" ref="lead_status_email_template"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="menu_custom_rental_parent" name="Rental"/>
+    
+    <menuitem id="sub_menu_custom_rental_order"
+        name="Rental Orders"
+        parent="odoo_rental_request_management.menu_custom_rental_parent"
+        sequence="1"
+        groups="sales_team.group_sale_salesman"/>
+
+    <menuitem id="sub_menu_custom_rental_quotations"
+        name="Rental Quotations"
+        parent="odoo_rental_request_management.sub_menu_custom_rental_order"
+        action="odoo_rental_request_management.action_custom_rental_quotations"
+        sequence="1"/>
+
+    <menuitem id="sub_menu_custom_rental_reserved_order"
+        name="Reserved Orders"
+        parent="odoo_rental_request_management.sub_menu_custom_rental_order"
+        action="odoo_rental_request_management.action_custom_rental_reserved_orders"
+        sequence="2"/>
+
+    <menuitem id="sub_menu_custom_rental_sale_order"
+        name="Rental Orders"
+        parent="odoo_rental_request_management.sub_menu_custom_rental_order"
+        action="odoo_rental_request_management.action_custom_rental_sale_order"
+        sequence="3"/>
+
+    <menuitem id="menu_rental_custom_products" 
+        name="Rental Products"
+        parent="odoo_rental_request_management.menu_custom_rental_parent"
+        sequence="2"
+        groups="sales_team.group_sale_salesman"/>
+    <menuitem id="menu_rental_custom_products_tmpl"
+        name="Rental Products"
+        action="odoo_rental_request_management.product_template_action_inherit_rental_custom"
+        parent="odoo_rental_request_management.menu_rental_custom_products"
+        sequence="1"/>
+    <menuitem id="menu_rental_custom_products_variant"
+        action="odoo_rental_request_management.product_normal_action_sell_inherit_rental_custom"
+        name="Rental Product Variants"
+        parent="odoo_rental_request_management.menu_rental_custom_products"
+        groups="product.group_product_variant"
+        sequence="2"/>
+    <menuitem id="menu_rental_custom_products_rental_pricing"
+        name="Rental Pricing"
+        action="odoo_rental_request_management.action_rent_day_price_report"
+        parent="odoo_rental_request_management.menu_rental_custom_products"
+        sequence="3"/>
+
+    <menuitem id="menu_rental_main_reporting"
+        name="Report"
+        parent="odoo_rental_request_management.menu_custom_rental_parent"
+        sequence="3"
+        groups="sales_team.group_sale_salesman"/>
+    <menuitem id="menu_rental_reservation_reporting"
+        name="Rental Reservation"
+        action="odoo_rental_request_management.action_rental_so_line_reservations"
+        parent="odoo_rental_request_management.menu_rental_main_reporting"
+        sequence="1"/>
+
+    <menuitem id="menu_rental_custom_configuration"
+        name="Configuration"
+        parent="odoo_rental_request_management.menu_custom_rental_parent"
+        sequence="4"
+        groups="sales_team.group_sale_manager"/>
+    <menuitem id="menu_rental_custom_drop_options"
+        name="Drop Options"
+        action="odoo_rental_request_management.action_custom_drop_options"
+        parent="odoo_rental_request_management.menu_rental_custom_configuration"
+        sequence="1"/>
+</odoo>

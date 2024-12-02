@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Tree view -->
+        <record id="nps_voice_tree_view" model="ir.ui.view">
+            <field name="name">nps.voice.tree.view</field>
+            <field name="model">nps.voice</field>
+            <field name="arch" type="xml">
+                <tree string="NPS Voice" create="false">
+                    <field name="name"/>
+                    <field name="sale_order_id"/>
+                    <field name="so_state"/>
+                    <field name="inv_status"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Form View-->
+        <record id="nps_voice_form_view" model="ir.ui.view">
+            <field name="name">nps.voice.form.view</field>
+            <field name="model">nps.voice</field>
+            <field name="arch" type="xml">
+                <form string="NPS Voice" create="false">
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="sale_order_id"/>
+                                <field name="partner_id"/>
+                                <!-- <field name="so_gem_rp_id"/> -->
+                                <field name="phone"/>
+                                <field name="mobile"/>
+                            </group>
+                            <group>
+                                <field name="so_state"/>
+                                <field name="inv_status"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="NPS Voice">
+                                <group>
+                                    <group>
+                                        <field name="nps_rating" widget="radio" class="oe_inline"
+                                               options="{'vertical': true}"/>
+                                    </group>
+                                    <group>
+                                        <field name="nps_category_id"/>
+                                        <field name="problem_category_id"/>
+                                        <field name="nps_feed_back"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Dealing Detractors [DD]">
+                                <group>
+                                    <field name="sdm_asdm_call_done"/>
+                                    <field name="dd_comments"/>
+                                </group>
+                            </page>
+                            <page string="Feedback Improvements">
+                                <group>
+                                    <group>
+                                        <field name="improvement_task_id"/>
+                                        <field name="is_implemented"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Internal Notes">
+                                <group>
+                                    <field name="note" nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--        pivot view-->
+        <record id="nps_voice_pivot_view" model="ir.ui.view">
+            <field name="name">nps.voice.pivot</field>
+            <field name="model">nps.voice</field>
+            <field name="arch" type="xml">
+                <pivot string="NPS Voice">
+                    <field name="name"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="nps_voice_search_view" model="ir.ui.view">
+            <field name="name">nps.voice.search</field>
+            <field name="model">nps.voice</field>
+            <field name="arch" type="xml">
+                <search string="FA Admin">
+                    <field name="name"/>
+                    <!--                    <field name="vendor"/>-->
+                    <!--                    <field name="vendor_product_category"/>-->
+                    <!--                    <field name="category_type"/>-->
+                    <!--                    <field name="tags_ids"/>-->
+                    <!--                    <field name="department_id"/>-->
+
+
+                    <!--                    <filter name="draft" string="New" domain="[('x_studio_field_MuJqw','=','new')]"/>-->
+                    <!--                    <filter name="wip" string="Wip" domain="[('x_studio_field_MuJqw', '=', 'wip')]"/>-->
+                    <!--                    <filter name="hold" string="Hold" domain="[('x_studio_field_MuJqw', '=', 'hold')]"/>-->
+                    <!--                    <filter name="close" string="Close" domain="[('x_studio_field_MuJqw', '=', 'close')]"/>-->
+                    <!--                    <filter name="cancel" string="Cancel" domain="[('x_studio_field_MuJqw', '=', 'cancel')]"/>-->
+
+
+                    <!--                    <group expand="0" string="Group By">-->
+                    <!--                        <filter name="name" string="Reference" domain="[]" context="{'group_by':'name'}"/>-->
+                    <!--                        <filter name="create_date" string="Created On" domain="[]"-->
+                    <!--                                context="{'group_by':'create_date'}"/>-->
+                    <!--                        <filter name="department_id" string="Department" domain="[]"-->
+                    <!--                                context="{'group_by':'department_id'}"/>-->
+                    <!--                        <filter name="vendor" string="Vendor" domain="[]" context="{'group_by':'vendor'}"/>-->
+                    <!--                        <filter name="vendor_product_category" string="Product/Service Name" domain="[]"-->
+                    <!--                                context="{'group_by':'vendor_product_category'}"/>-->
+                    <!--                        <filter name="category_type" string="Product Category" domain="[]"-->
+                    <!--                                context="{'group_by':'category_type'}"/>-->
+                    <!--                        <filter name="priority" string="Vendor Quality" domain="[]"-->
+                    <!--                                context="{'group_by':'x_studio_priority'}"/>-->
+                    <!--                        <filter name="vendor_relation" string="Vendor Relation" domain="[]"-->
+                    <!--                                context="{'group_by':'x_studio_vendor_relation'}"/>-->
+                    <!--                        <filter name="create_uid" string="Created by" context="{'group_by': 'create_uid'}"/>-->
+                    <!--                        <filter name="category_id" string="Category" context="{'group_by': 'category_id'}"/>-->
+                    <!--                        <filter name="sub_category_id" string="Sub Category" context="{'group_by': 'sub_category_id'}"/>-->
+                    <!--                    </group>-->
+                </search>
+            </field>
+        </record>
+
+
+        <!-- Graph view -->
+        <record id="nps_voice_graph_view" model="ir.ui.view">
+            <field name="name">nps.voice.graph</field>
+            <field name="model">nps.voice</field>
+            <field name="arch" type="xml">
+                <graph string="NPS Voice" type="pie">
+                    <field name="name"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- gantt view -->
+
+        <record id="nps_voice_tickets" model="ir.ui.view">
+            <field name="name">nps.voice.gantt</field>
+            <field name="model">nps.voice</field>
+            <field name="arch" type="xml">
+                <gantt date_start="create_date" date_stop="closed_date" string="Default Grant view"></gantt>
+            </field>
+        </record>
+        <!-- calendar view -->
+        <record id="nps_voice_calendar_view" model="ir.ui.view">
+            <field name="name">nps.voice.calendar</field>
+            <field name="model">nps.voice</field>
+            <field name="arch" type="xml">
+                <calendar string="NPS Voice" date_start="create_date" color="name" mode="month"
+                          quick_add="True">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+
+        <!--        kanban view-->
+        <record id="nps_voice_kanban" model="ir.ui.view">
+            <field name="name">nps.voice.tree</field>
+            <field name="model">nps.voice</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban"  create="0">
+                    <field name="name"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill nps_voice_kanban">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title"></strong>
+                                    <div class="o_kanban_tags_section"/>
+                                    <ul>
+                                        <li>Reference:
+                                            <field name="name"/>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!--  action -->
+        <record id="action_nps_voice" model="ir.actions.act_window">
+            <field name="name">NPS Voice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">nps.voice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot,graph,gantt,calendar,kanban</field>
+            <!-- <field name="search_view_id" ref=""/> -->
+        </record>
+
+        <!--        <menuitem id="menu_nps_voice_root" name="NPS Voice"  action="action_nps_voice"/>-->
+
+
+        <!-- Menu -->
+        <menuitem id="menu_nps_voice_root" name="NPS Voice" action="action_nps_voice"
+                  parent="studio_customization.rdp_scm_74e2b27f-6ded-45d5-96a7-b482a586fe9b"/>
+
+        <!-- Local -->
+        <!-- <menuitem id="menu_nps_voice_root" name="NPS Voice" />
+        <menuitem id="menu_nps_voice_local" name="NPS Voice"  action="action_nps_voice" parent="menu_nps_voice_root"/> -->
+
+    </data>
+</odoo>

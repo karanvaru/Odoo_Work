@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <data>
+        <record id="inherit_wk_account_tax_form_view" model="ir.ui.view">
+            <field name="name">account.tax.form.inherit</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+				<field name="amount_type" position="after">
+					<field name="is_group_inclusive" attrs="{'invisible':[('amount_type','!=', 'group')]}"/>
+				</field>
+				<xpath expr="//field[@name='amount']/../../div" position="attributes">
+					<attribute name="attrs">{'invisible':[('amount_type','=', 'code')]}</attribute>
+				</xpath>
+				<xpath expr="//field[@name='amount']/../../label" position="attributes">
+					<attribute name="attrs">{'invisible':[('amount_type','=', 'code')]}</attribute>
+				</xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

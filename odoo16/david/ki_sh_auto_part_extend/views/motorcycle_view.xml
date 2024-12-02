@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="motorcycle_motorcycle_inhert_view" model="ir.ui.view">
+        <field name="name">motorcycle.motorcycle.inherit</field>
+        <field name="model">motorcycle.motorcycle</field>
+        <field name="inherit_id" ref="sh_auto_part_vehicle.sh_motorcycle_motorcycle_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vehicle_image']" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_product" type="object"
+                            class="oe_stat_button" icon="fa-bars">
+                        <div class="o_stat_info">
+                            <field name="product_count" class="o_stat_value"/>
+                            <span class="o_stat_text">Products</span>
+                        </div>
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_product_only_form_inherit" model="ir.ui.view">
+        <field name="name">sh.product.only.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(create_product_variant_wizard_action)d" type="action" string="add models"
+                        attrs="{'invisible': [('sh_is_common_product', '=', True)]}" class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//page[@name='Specification']" position="after">
+                <page name="motorcycle" string="Vehicles">
+                    <group>
+                        <field name="sh_is_common_product"/>
+                        <field name="garde" widget="many2many_tags" invisible="1"/>
+                        <field name="engine" widget="many2many_tags"
+                               attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+                        <field name="transmission_ids" widget="many2many_tags"
+                               attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+                        <field name="product_type" widget="many2many_tags"
+                               attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+                        <field name="brand" attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+                        <field name="made_in" attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+                    </group>
+                    <field name="motorcycle_ids" attrs="{'invisible': [('sh_is_common_product', '=', True)]}">
+                        <tree editable="bottom">
+                            <field name="make_id"/>
+                            <field name="mmodel_id"/>
+                            <field name="year_id"/>
+                            <field name="end_year_id"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <field name="make_id"/>
+                                <field name="mmodel_id"/>
+                                <field name="year_id"/>
+                                <field name="end_year_id"/>
+                            </group>
+                        </form>
+                    </field>
+
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_product_only_form_inherits" model="ir.ui.view">
+        <field name="name">sh.product.only.form.inherits</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="garde" position="attributes">
+                   <attribute name="invisible">1</attribute>
+            </field>
+            <xpath expr="//field[@name='garde']" position="after">
+                    <field name="vin_number" attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+                    <field name="engine_number" attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+                    <field name="serial_number" attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//notebook/page[@name='motorcycle']" position="before">
+				<page name="Vehicle OEM" string="Vehicle OEM">
+					 <field name="vehicle_oem_lines" widget="one2many" context="{'show_attribute': False}">
+                        <tree string="Variants" editable="bottom">
+                        	 <field name="name"/>
+                        	 <field name="supplier_id"/>
+                        	 <field name="is_visible_website"/>
+                        </tree>
+                     </field>
+				</page>
+
+                <page name="Specification" string="Specification">
+					 <field name="specification_lines" widget="one2many" context="{'show_attribute': False}">
+                        <tree editable="bottom">
+                        	 <field name="name"/>
+                        	 <field name="value"/>
+                        </tree>
+                     </field>
+				</page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_motorcycle_motorcycle_search_new" model="ir.ui.view">
+        <field name="name">sh.motorcycle.motorcycle.search.new</field>
+        <field name="model">motorcycle.motorcycle</field>
+        <field name="inherit_id" ref="sh_auto_part_vehicle.sh_motorcycle_motorcycle_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='name']" position="replace">
+                <field name="name" string="Auto Parts"
+                       filter_domain="['|','|','|','|',('end_year_id','ilike',self),('type_id','ilike',self),('make_id','ilike',self),('mmodel_id','ilike',self),('year_id','ilike',self)]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

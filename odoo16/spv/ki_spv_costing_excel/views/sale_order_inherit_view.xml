@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_inherit_form" model="ir.ui.view">
+        <field name="name">view.sale.order.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="generate_file" type="object" string="Generate file" class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//group[@name='partner_details']" position="inside">
+                <field name="distributor_id"/>
+                <field name="area_type"/>
+                <field name="discom"/>
+                <field name="kw_capacity"/>
+<!--                <field name="original_file" filename="original_char"/>-->
+<!--                <field name="original_char" invisible="1"/>-->
+            </xpath>
+            <xpath expr="//group[@name='order_details']" position="inside">
+                <field name="panel_distributor_id"/>
+                <field name="terrif_type"/>
+                <field name="generated_file" filename="generated_char"/>
+                <field name="generated_char" invisible="1"/>
+                <field name="generated_pdf_file" filename="generated_pdf_char"/>
+                <field name="generated_pdf_char" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

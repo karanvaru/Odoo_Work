@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+
+	<t t-name="SearchIcon">
+		<li class="o_sys_item" title='Odoo Search'>
+			<a href="#" class="odoo_search_icon">
+				<i class="fa fa-search"/>
+			</a>
+		</li>
+		<div class="search_panel">
+			<div class="close_search">
+				<span class="odoo_search_close">
+					<i class="fa fa-close"/>
+				</span>
+			</div>
+		
+			<div class="open_search">
+				<input class="search_field" placeholder="Search" type="text"/>
+				<span class="odoo_search_click">
+					<i class="fa fa-search"/>
+				</span>
+			</div>
+			<input type='text' class="dummy_class" style="display: none"></input>
+			<span class='fold-all' style='display: none' >Fold All</span><span class='unfold-all' style='display: none' >Unfold All</span>
+			<select class='search-level o_input' style="width: 140px" >
+			     <option value='2'>Relational Stage1</option>
+			     <option value='1'>Simple</option>
+			     <option value='3'>Relational Stage2</option>
+			</select>
+            <span style="color: red; font-size: 20px;">
+			     <i class="fa fa-question-circle toolt" title="Consider two objects: Product and Sale Order &#013;&#010;&#013;&#010; Assume Product Barcode is XYZ &#013;&#010; If we enter search string 'XYZ' it will show result by following way &#013;&#010; 1. Simple- &#013;&#010; It will show only matching Product records &#013;&#010;&#013;&#010; 2. Relational Stage1(recomended)- &#013;&#010; It will show matching Product records as well as matching Sale Order Line records &#013;&#010;&#013;&#010; 3. Relational Stage2(Takes more time)- &#013;&#010; It will show matching Product records, matching Sale Order Line records AND matching Sale Order records" ></i>
+			</span>
+			<br/>
+			<div class="search_results">
+
+			</div>
+		</div>
+	</t>
+
+
+</templates>

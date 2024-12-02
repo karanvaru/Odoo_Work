@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- 
+    <template id="my_ticket" name="Portal layout : sales menu entries" inherit_id="portal.portal_layout" priority="28">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+    <template id="my_ticket" name="my ticket: project menu entry" inherit_id="website_portal.portal_layout" priority="28">
+       <xpath expr="//ul[contains(@class,'o_portal_submenu')]" position="inside">
+            <li t-att-class="page_name == 'ticket' and 'active' or ''">
+                 <a href="/my/tickets">Tickets</a>
+            </li>
+        </xpath>
+    </template>
+    -->
+    <template id="portal_my_ticket" name="Portal My ticket: project entries" inherit_id="portal.portal_my_home" priority="28"><!-- odoo11 -->
+        <!--xpath expr="//ul[hasclass('o_portal_docs')]" position="inside"--><!-- odoo11 -->
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+<!--    <template id="portal_my_ticket" name="Portal My ticket: project entries" inherit_id="website_portal.portal_my_home" priority="28">-->
+<!--        <xpath expr="//div[contains(@class,'o_my_home_content')]" position="inside">-->
+           <!-- <h3  class="page-header">
+                <a href="/my/tickets">Your Tickets
+                    <small class="ml8">
+                      <t t-if="ticket_count">
+                        <span class='badge'><t t-esc="ticket_count"/></span>
+                    </t>
+                    <t t-if =" not ticket_count">
+                        There are currently no ticket for your account.
+                    </t>
+                    </small>
+                </a> 
+            </h3> -->
+            <!-- <t t-if="ticket_count" t-call="portal.portal_docs_entry"> -->
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Tickets</t>
+                <t t-set="url" t-value="'/my/tickets'"/>
+                <!-- <t t-set="count" t-value="ticket_count"/> -->
+                <!-- <t t-set="placeholder_count" t-value="ticket_count"/> -->
+                <t t-set="placeholder_count" t-value="'ticket_count'"/>
+            </t>
+<!--             <li t-if="ticket_count" class="list-group-item">-->
+<!--                <span class="badge" t-esc="ticket_count"/>-->
+<!--                <a href="/my/tickets">Tickets</a>-->
+<!--            </li>-->
+        </xpath>
+    </template>
+    
+    <template id="portal_my_home_menu_ticket" name="Portal layout : sales menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'ticket_page' or ticket" t-attf-class="breadcrumb-item #{'active' if not ticket else ''}">
+                <a t-if="ticket" t-attf-href="/my/tickets?{{ keep_query() }}">Tickets</a>
+                <t t-else="">Tickets</t>
+            </li>
+            <li t-if="ticket" class="breadcrumb-item active">
+                <t t-esc="ticket.name"/>
+            </li>
+        </xpath>
+    </template>
+    
+    <template id="display_tickets" name="Display Tickets">
+        <t t-call="portal.portal_layout"><!-- odoo11 -->
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Tickets</t>
+            </t>
+            <t t-if="not tickets">
+                <p>There are currently no tickets for your account.</p>
+            </t>
+<!--        <h3 class="page-header">Your Support Tickets-->
+<!--            <t t-call="portal.portal_searchbar"/>-->
+<!--        </h3>-->
+            <t t-if="tickets" t-call="portal.portal_table">
+<!--            <table class="table table-hover o_my_status_table">-->
+                <thead>
+                  <tr class="active">
+                    <th>Ticket No</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Priority</th>
+                    <th>Stage</th>
+                  </tr>
+                </thead>
+                <t t-foreach="tickets" t-as="ticket">
+                    <tr>
+                        <td>
+                            <t t-set="ticket_access_token" t-value="ticket.get_portal_url()"/>
+                            <a t-attf-href="/my/ticket/#{ticket.id}?{{ keep_query(access_token=ticket.access_token) }}"><span t-field="ticket.name"/></a>
+                        </td>
+                        <td>
+                            <span t-field="ticket.subject"/>
+                        </td>
+                        <td>
+                            <span t-field="ticket.request_date"/>
+                        </td>
+                        <td>
+                            <span t-field="ticket.priority"/>
+                        </td>
+                         <td>
+                            <span t-field="ticket.stage_type"/>
+                        </td>
+                    </tr>
+                </t>
+<!--            </table>-->
+        </t>
+<!--            <div t-if="pager" class="o_portal_pager text-center">-->
+<!--                    <t t-call="portal.pager"/>-->
+<!--                </div>-->
+             </t>
+    </template>
+
+    <template id="display_ticket" name="display ticket">
+        <t t-call="portal.portal_layout">
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <!-- <div class="row no-gutters">
+                        <div class="col-md" name="headder_name">
+                            <h5 class="mb-1 mb-md-0">
+                                <span t-field="ticket.name"/> - <span t-field="ticket.subject"/>
+                                <small class="text-muted"> (#<span t-field="ticket.id"/>)</small>
+                            </h5>
+                        </div>
+                        <div class="col-md text-md-right" name="ticket_status">
+                            <small class="text-right">Status:</small>
+                            <span t-field="ticket.sudo().stage_id.name" class=" badge badge-pill badge-info" title="Current stage of this ticket"/>
+                        </div>
+                    </div> -->
+                    <div class="col-12">
+                        <h5 class="d-flex mb-1 mb-md-0 row">
+                            <div class="col-9">
+                                <span t-field="ticket.name" class="text-truncate"/> - <span t-field="ticket.subject"/>
+                                <small class="text-muted d-none d-md-inline"> (#<span t-field="ticket.id"/>)</small>
+                            </div>
+                            <div class="col-3 text-end">
+                                <small class="text-end">Stage:</small>
+                                <span t-field="ticket.sudo().stage_id.name" class=" badge rounded-pill text-bg-info" title="Current stage of this ticket"/>
+                            </div>
+                       </h5>
+                   </div>
+                </t>
+                <t t-set="card_body">
+                    <div class="row" name="div_ass_cust">
+<!--                        <div class="col-12 col-md-6 mb-1">-->
+<!--                            <strong>Assigned to :</strong> <span t-field="ticket.user_id"/>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-6" t-if="ticket.partner_id">-->
+<!--                            <strong>Customer:</strong> <span t-field="ticket.partner_id"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row" name="div_email_phn">-->
+<!--                        <div class="col-12 col-md-6 mb-1">-->
+<!--                            <strong>Email :</strong> <span t-field="ticket.email"/>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-6">-->
+<!--                            <strong>Phone :</strong> <span t-field="ticket.phone"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row" name="div_supp_team">-->
+<!--                        <div class="col-12 col-md-6 mb-1">-->
+<!--                            <strong>Support Team :</strong> <span t-field="ticket.team_id"/>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-6" >-->
+<!--                            <strong>Team Leader :</strong> <span t-field="ticket.team_leader_id"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row" name="dept_ana">-->
+<!--                        <div class="col-12 col-md-6 mb-1">-->
+<!--                            <strong>Department  :</strong> <span t-field="ticket.department_id"/>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-6" >-->
+<!--                            <strong>Analytic Account  :</strong> <span t-field="ticket.analytic_account_id"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row" name="proj_pri">-->
+<!--                        <div class="col-12 col-md-6 mb-1">-->
+<!--                            <strong>Project:</strong> <span t-field="ticket.project_id"/>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-6">-->
+<!--                            <strong>Priority:</strong> <span t-field="ticket.priority"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row" name="crtdt_cldt">-->
+<!--                        <div class="col-12 col-md-6 mb-1">-->
+<!--                            <strong>Create Date:</strong> <span t-field="ticket.request_date" t-options='{"widget": "date"}'/>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-6">-->
+<!--                            <strong>Close Date:</strong> <span t-field="ticket.close_date" t-options='{"widget": "date"}'/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row" name="tcktcls_hrs">-->
+<!--                        <div class="col-12 col-md-6 mb-1">-->
+<!--                            <strong>Is Ticket Closed?:</strong> <span t-field="ticket.is_close"/>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-6">-->
+<!--                            <strong>Total Hours Spent:</strong> <span t-field="ticket.total_spend_hours"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row" id="description">-->
+<!--                        <div t-if="ticket.description" t-attf-class="col-12 col-lg-7 mb-4 mb-md-0}}">-->
+<!--                            <hr class="mb-1"/>-->
+<!--                            <strong class="d-block mb-2">Description</strong>-->
+<!--                            <div class="py-1 px-2 bg-100 small" t-field="ticket.description"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div t-if="ticket.user_id" class="col-12 col-md-6 mb-2 mb-md-0">
+                        <h6><strong>Assigned to</strong></h6>
+                            <div class="row">
+                                <div class="col flex-grow-0 pr-3">
+                                    <img t-if="ticket.user_id.sudo().image_1024" class="rounded-circle mt-1 o_portal_contact_img" 
+                                    t-att-src="image_data_uri(ticket.user_id.image_1024)" alt="Contact"/>
+                                    <img t-else="" class="rounded-circle mt-1 o_portal_contact_img" 
+                                    src="/web/static/src/img/user_menu_avatar.png" alt="Contact"/>
+                                </div>
+                                <div class="col pl-sm-0">
+                                    <address t-field="ticket.user_id" 
+                                    t-options='{"widget": "contact", "fields": ["name", "email", "phone"]}'/>
+                                </div>
+                            </div>
+                        </div>
+                        <div t-if="ticket.partner_id" class="col-12 col-md-6 mb-2 mb-md-0">
+                            <h6><strong>Customer</strong></h6>
+                            <div class="row">
+                                <div class="col flex-grow-0 pr-3">
+                                    <img t-if="ticket.partner_id.image_1024" class="rounded-circle mt-1 o_portal_contact_img" 
+                                    t-att-src="image_data_uri(ticket.partner_id.image_1024)" alt="Contact"/>
+                                    <img t-else="" class="rounded-circle mt-1 o_portal_contact_img" 
+                                    src="/web/static/src/img/user_menu_avatar.png" alt="Contact"/>
+                                </div>
+                                <div class="col pl-sm-0">
+                                    <address t-field="ticket.partner_id" 
+                                    t-options='{"widget": "contact", "fields": ["name", "email", "phone"]}'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr class="mb-3"/>
+                    <div class="row" name="div_email_phn">
+                        <div class="col-md-2 mb-1">
+                            <strong>Your Email</strong> 
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <span t-field="ticket.email"/>
+                        </div>
+                        <div class="col-md-2 mb-1">
+                            <strong>Your Phone</strong> 
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <span t-field="ticket.phone"/>
+                        </div>
+                    </div>
+                    <div class="row" name="div_supp_team">
+                        <div class="col-md-2 mb-1">
+                            <strong>Support Team</strong> 
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <span t-field="ticket.team_id"/>
+                        </div>
+                        <div class="col-md-2 mb-1">
+                            <strong>Team Leader</strong>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <span t-field="ticket.team_leader_id"/>
+                        </div>
+                    </div>
+                    <div class="row" name="dept_ana">
+                        <div class="col-md-2 mb-1">
+                            <strong>Project</strong>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <span t-field="ticket.project_id"/>
+                        </div>
+                        <div class="col-md-2 mb-1">
+                            <strong>Analytic Account</strong>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <span t-field="ticket.analytic_account_id"/>
+                        </div>
+                    </div>
+                    <div class="row" name="proj_pri">
+                        <div class="col-md-2 mb-1">
+                            <strong>Department</strong>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <span t-field="ticket.department_id"/>
+                        </div>
+                        <div class="col-md-2 mb-1">
+                            <strong>Priority</strong>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <span t-field="ticket.priority"/>
+                        </div>
+                    </div>
+                    <div class="row" name="crtdt_cldt">
+                        <div class="col-md-2 mb-1">
+                            <strong>Created Date</strong>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <span t-field="ticket.request_date" t-options='{"widget": "date"}'/>
+                        </div>
+                        <div class="col-md-2 mb-1">
+                            <strong>Total Hours Spent</strong>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <span t-field="ticket.total_spend_hours"/>
+                        </div>
+                    </div>
+                    <div class="row" name="tcktcls_hrs">
+                        <div class="col-md-2 mb-1">
+                            <strong>Is Ticket Closed ?</strong>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <input type="checkbox" t-att-checked="ticket.is_close"
+                            disabled="disabled"/>
+                        </div>
+                        <div class="col-md-2 mb-1">
+                            <strong>Closed Date</strong>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <span t-field="ticket.close_date" t-options='{"widget": "date"}'/>
+                        </div>
+                    </div>
+                     <div class="row" name="crtdt_cldt">
+                        <div class="col-md-2 mb-1">
+                            <strong>Category</strong>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <span t-field="ticket.category"/>
+                        </div>
+                    </div>
+                    
+                    <hr class="mb-3"/>
+                    <div class="row" id="description">
+                        <div t-if="ticket.description" t-attf-class="col-12 col-lg-12 mb-4 mb-md-0}}">
+                            <strong class="d-block mb-2">Description</strong>
+                            <div class="py-1 px-2 bg-100" t-field="ticket.description"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+            <div class="mt32" name="msg_comm_hstry">
+                <h4><strong>Message and communication history</strong></h4>
+                <t t-call="portal.message_thread">
+                    <t t-set="object" t-value="ticket"/>
+                    <t t-set="token" t-value="ticket.access_token"/>
+                    <t t-set="pid" t-value="pid"/>
+                    <t t-set="hash" t-value="hash"/>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,100 @@
+<odoo>
+    <data>
+   
+        <record id="custom_clearance_form_view_inherit" model="ir.ui.view">
+            <field name="name">Customs Clearance</field>
+            <field name="model">custom.clearance</field>
+            <field name="inherit_id" ref="ob_freight_management_system.custom_clearance_form_view"/>
+            <field name="arch" type="xml">
+               <xpath expr="//header//button[@name='action_confirm']" position="after">
+                   <button name="action_not_released" string="Not Released" type="object" class="oe_highlight" states="draft"/>
+               </xpath>
+               <xpath expr="//header//field[@name='state']" position="replace">
+                   <field name="state" widget="statusbar" statusbar_visible="draft,confirm,not-released" readonly="1"/>
+               </xpath>
+               <xpath expr="//field[@name='date']" position="after">
+                   <field name="picking_id"/>
+                   <field name="bill_of_exit" attrs="{'invisible':[('picking_id','=',False)]}"/>
+
+               </xpath>
+               <xpath expr="//page" position="after">
+                   <page string="Remarks">
+                       <group string="Reasons for not releasing">
+                           <field name="remark_not_released" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                       </group>
+                   </page>
+               </xpath>
+            </field>
+        </record>
+        <record id="custom_clearance_form_view_wizard" model="ir.ui.view">
+            <field name="name">custom.clearance.wizard.form</field>
+            <field name="model">custom.clearance.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Reasons for not releasing">
+                    <group class="oe_title">
+                        <field name="reason"/>
+                    </group>
+                     <footer>
+                        <button name="reason_for_not_releasing" string="Not Released" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+         <record id="custom_clearance_tree_view_inherit" model="ir.ui.view">
+            <field name="name">Customs Clearance</field>
+            <field name="model">custom.clearance</field>
+            <field name="inherit_id" ref="ob_freight_management_system.custom_clearance_tree_view"/>
+            <field name="arch" type="xml">
+               <xpath expr="//tree//field[@name='freight_id']" position="after">
+                   <field name="state"/>
+               </xpath>
+<!--                <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids" groups="base.group_user"/>-->
+<!--                        <field name="message_ids" widget="mail_thread"/>-->
+<!--                 </div>-->
+            </field>
+        </record>
+
+
+        <record id="custom_clearance_window_view_wizard" model="ir.actions.act_window">
+            <field name="name">Not released reason</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">custom.clearance.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="custom_clearance_form_view_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+         <record id="asset_allot_wizard_view_form" model="ir.ui.view">
+            <field name="name">customs.clearance.wizard.form</field>
+            <field name="model">customs.clearance.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Customs">
+                    <strong style="color: red;">
+                        <field name="warning" attrs="{'invisible': [('warning', '=', False)]}"/>
+                    </strong>
+                    <group>
+                        <field name="date"/>
+                        <field name="agent_id"/>
+                        <field name="bill_of_exit"/>
+                    </group>
+                      <group>
+                          <field name="shipper_id"/>
+                           <field name="company_id"/>
+                    </group>
+                    <group>
+                        <field name="transport_type"/>
+                        <field name="loading_port_id"/>
+                        <field name="discharging_port_id"/>
+                    </group>
+                     <footer>
+                        <button name="submit" string="Submit" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

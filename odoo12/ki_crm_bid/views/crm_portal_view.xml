@@ -1,0 +1,589 @@
+<odoo>
+    <data>
+
+        <template id="portal_my_home_menu_crm_lead" name="Portal layout : CRM Lead menu entries"
+                  inherit_id="portal.portal_breadcrumbs" priority="25">
+            <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+                <li t-if="page_name == 'crm_lead'" class="breadcrumb-item">Master Opportunity</li>
+            </xpath>
+        </template>
+
+        <template id="portal_lead_menu" name="Portal My Lead : CRM Lead entry"
+                  inherit_id="portal.portal_my_home"
+                  priority="30">
+            <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">Master Opportunity</t>
+                    <t t-set="url" t-value="'/lead/portal'"/>
+                    <t t-set="count" t-value="crm_lead_count"/>
+                </t>
+            </xpath>
+        </template>
+
+        <template id="crm_lead_portal_template_list" name="Portal: My BIDs">
+            <t t-call="portal.portal_layout">
+
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Master Opportunity</t>
+                </t>
+                <t t-if="not grouped_tasks">
+                    <div class="alert alert-warning mt8" role="alert">
+                        No Master Opportunity Available.
+                    </div>
+                </t>
+                <t t-if="grouped_tasks">
+                    <t t-call="portal.portal_table">
+                        <t t-foreach="grouped_tasks" t-as="leads">
+                            <thead>
+                                <tr t-attf-class="{{'thead-light' if not groupby == 'none' else ''}}">
+                                    <th t-if="groupby == 'none'">Master Opportunity</th>
+                                    <th t-elif="groupby == 'date'">
+                                        <em class="font-weight-normal text-muted">
+                                            Closing Day:
+                                        </em>
+                                        <span t-esc="leads[0]"/>
+                                        (<span t-esc="leads[2]"/>)
+                                    </th>
+                                    <th t-elif="groupby == 'date_week'">
+                                        <em class="font-weight-normal text-muted">
+                                            Closing Week:
+                                        </em>
+                                        <span t-esc="leads[0]"/>
+                                        (<span t-esc="leads[2]"/>)
+                                    </th>
+                                    <th t-elif="groupby == 'date_month'">
+                                        <em class="font-weight-normal text-muted">
+                                            Closing Month:
+                                        </em>
+                                        <span t-esc="leads[0]"/>
+                                        (<span t-esc="leads[2]"/>)
+                                    </th>
+                                    <th t-elif="groupby == 'date_quarter'">
+                                        <em class="font-weight-normal text-muted">
+                                            Closing Quarter:
+                                        </em>
+                                        <span t-esc="leads[0]"/>
+                                        (<span t-esc="leads[2]"/>)
+                                    </th>
+                                    <th t-elif="groupby == 'date_year'">
+                                        <em class="font-weight-normal text-muted">
+                                            Closing Year:
+                                        </em>
+                                        <span t-esc="leads[0]"/>
+                                        (<span t-esc="leads[2]"/>)
+                                    </th>
+                                    <th t-elif="groupby == 'create_date'">
+                                        <em class="font-weight-normal text-muted">
+                                            Create Day:
+                                        </em>
+                                        <span t-esc="leads[0]"/>
+                                        (<span t-esc="leads[2]"/>)
+                                    </th>
+                                    <th t-elif="groupby == 'create_week'">
+                                        <em class="font-weight-normal text-muted">
+                                            Create Week:
+                                        </em>
+                                        <span t-esc="leads[0]"/>
+                                        (<span t-esc="leads[2]"/>)
+                                    </th>
+                                    <th t-elif="groupby == 'create_month'">
+                                        <em class="font-weight-normal text-muted">
+                                            Create Month:
+                                        </em>
+                                        <span t-esc="leads[0]"/>
+                                        (<span t-esc="leads[2]"/>)
+                                    </th>
+                                    <th t-elif="groupby == 'create_quarter'">
+                                        <em class="font-weight-normal text-muted">
+                                            Create Quarter:
+                                        </em>
+                                        <span t-esc="leads[0]"/>
+                                        (<span t-esc="leads[2]"/>)
+                                    </th>
+                                    <th t-elif="groupby == 'create_year'">
+                                        <em class="font-weight-normal text-muted">
+                                            Create Year:
+                                        </em>
+                                        <span t-esc="leads[0]"/>
+                                        (<span t-esc="leads[2]"/>)
+                                    </th>
+                                    <th>Bid Closing Date &amp; Time</th>
+                                    <th>Category</th>
+                                    <th>QTY</th>
+                                    <th>Revenue</th>
+                                    <th>Customer State</th>
+                                    <th>Model No.</th>
+                                    <th>SKU</th>
+                                    <th>Catalog ID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="leads[1]" t-as="lead">
+                                    <tr>
+                                        <td>
+                                            <a t-att-href="'/my/lead/%s' % (lead.id)">
+                                                <t t-esc="lead.name"/>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <t t-esc="lead.bid_closing_date.strftime('%m/%d/%Y %H:%M')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="lead.crm_product_category_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="lead.x_studio_quantity"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="lead.planned_revenue"
+                                               t-options='{"widget": "monetary", "display_currency": lead.company_currency}'/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="lead.customer_state_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="lead.x_studio_gem_model_no"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="lead.x_studio_gem_sku"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="lead.x_studio_catalog_id"/>
+                                        </td>
+                                        <td>
+                                            <span class="badge-pill badge-info">
+                                                <span t-field="lead.stage_id.name"/>
+                                            </span>
+                                        </td>
+
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <template id="portal_layout" inherit_id="portal.portal_layout" name="Portal Layout">
+            <xpath expr="//div[@t-attf-class='col-12 col-md col-lg-6']" position="attributes">
+                <attribute name="t-attf-class" separator=" " add="#{'col-lg-8' if is_crm_lead else ''}"/>
+            </xpath>
+        </template>
+
+        <template id="crm_lead_portal_form_view_new" name="My CRM lead Portal">
+            <t t-call="portal.portal_layout">
+                <t t-set="my_details" t-value="True"/>
+                <t t-set="is_crm_lead" t-value="True"/>
+                <div class="row align-items-center bg-white no-gutters border rounded">
+                    <div class="col">
+                        <t t-call="portal.portal_breadcrumbs"></t>
+                    </div>
+                    <div t-if="prev_record or next_record" class="col flex-grow-0">
+                        <t t-call='portal.record_pager'/>
+                    </div>
+                </div>
+                <t t-call="portal.portal_record_layout">
+                    <t t-set="card_body">
+                        <h2 class="card-title text-center">
+                            <strong>Master Opportunity</strong>
+                        </h2>
+                        <div class="card-text">
+                            <t t-set="is_readonly" t-value="true"/>
+                            <form t-att-action="form_action" method="post"
+                                  class="s_website_form container-fluid mt32" enctype="multipart/form-data">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="form-group row form-field">
+                                    <div class="col-lg-12">
+                                        <div t-if="error_message" class="alert alert-danger" role="alert">
+                                            <t t-foreach="error_message" t-as="err">
+                                                <t t-esc="err"/>
+                                                <br/>
+                                            </t>
+                                        </div>
+                                    </div>
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="name">Master Opportunity
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <input type="text"
+                                               name="name"
+                                               t-attf-value="#{lead_id.name if lead_id else ''}"
+                                               t-attf-class="form-control #{error.get('name') and 'is-invalid' or ''}"
+                                               t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="bid_closing_date">Bid
+                                        Closing Date &amp;
+                                        Time
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <div class="input-group date" id="datetime_bid_container"
+                                             data-target-input="nearest">
+                                            <input type="text" name="bid_closing_date"
+                                                   t-attf-class="datetimepicker-input form-control #{error.get('bid_closing_date') and 'is-invalid' or ''}"
+                                                   data-target="#datetime_bid_container"
+                                                   t-attf-value="#{bid_closing_date or (bid_id.bid_closing_date if bid_id else '')}"
+                                                   id="date_publish" t-att-readonly="is_readonly"
+                                                   t-att-disabled="is_readonly"/>
+                                            <div t-if="not is_readonly" class="input-group-append"
+                                                 data-target="#datetime_bid_container"
+                                                 data-toggle="datetimepicker">
+                                                <div class="input-group-text">
+                                                    <i class="fa fa-calendar"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="crm_mii_content_id">
+                                        MII Content Required
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <select name="crm_mii_content_id" t-att-readonly="is_readonly"
+                                                t-att-disabled="is_readonly"
+                                                t-attf-class="form-control #{error.get('crm_mii_content_id') and 'is-invalid' or ''}">
+                                            <option value="">MII Content...</option>
+                                            <t t-foreach="bid_mii_ids or []" t-as="bid_mii">
+                                                <option t-att-value="bid_mii['id']"
+                                                        t-att-selected="bid_mii['id'] == int(lead_id.crm_mii_content_id.id) if lead_id and lead_id.crm_mii_content_id else 0">
+                                                    <t t-esc="bid_mii['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="crm_capture_type_id">
+                                        Bid Capture Type
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <select name="crm_capture_type_id" t-att-readonly="is_readonly"
+                                                t-att-disabled="is_readonly"
+                                                t-attf-class="form-control #{error.get('crm_capture_type_id') and 'is-invalid' or ''}">
+                                            <option value="">Capture Type...</option>
+                                            <t t-foreach="bid_cap_ids or []" t-as="bid_cap">
+                                                <option t-att-value="bid_cap['id']"
+                                                        t-att-selected="bid_cap['id'] == int(lead_id.crm_capture_type_id.id) if lead_id and lead_id.crm_capture_type_id else 0">
+                                                    <t t-esc="bid_cap['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="crm_category_type_id">
+                                        Bid Category Type
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <select name="crm_category_type_id" t-att-readonly="is_readonly"
+                                                t-att-disabled="is_readonly"
+                                                t-attf-class="form-control #{error.get('crm_category_type_id') and 'is-invalid' or ''}">
+                                            <option value="">Category Type...</option>
+                                            <t t-foreach="bid_cat_ids or []" t-as="bid_cat">
+                                                <option t-att-value="bid_cat['id']"
+                                                        t-att-selected="bid_cat['id'] == int(lead_id.crm_category_type_id.id) if lead_id and lead_id.crm_category_type_id else 0">
+                                                    <t t-esc="bid_cat['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="bid_to_ra_id">
+                                        Bid To RA Enabled
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <select name="bid_to_ra_id" t-att-readonly="is_readonly"
+                                                t-att-disabled="is_readonly"
+                                                t-attf-class="form-control #{error.get('bid_to_ra_id') and 'is-invalid' or ''}">
+                                            <option value="">Bid To RA...</option>
+                                            <t t-foreach="bid_ra_ids or []" t-as="bid_ra">
+                                                <option t-att-value="bid_ra['id']"
+                                                        t-att-selected="bid_ra['id'] == int(lead_id.bid_to_ra_id.id) if lead_id and lead_id.bid_to_ra_id else 0">
+                                                    <t t-esc="bid_ra['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="mii_purchase_id">MII Purchase
+                                        Preference
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <select name="mii_purchase_preference" t-att-readonly="is_readonly"
+                                                t-att-disabled="is_readonly"
+                                                t-attf-class="form-control #{error.get('mii_purchase_preference') and 'is-invalid' or ''}">
+                                            <option value="">MII Purchase Preference...</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="bid_type_id">
+                                        Bid Type
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <select name="bid_type_id" t-att-readonly="is_readonly"
+                                                t-att-disabled="is_readonly"
+                                                t-attf-class="form-control #{error.get('bid_type_id') and 'is-invalid' or ''}">
+                                            <option value="">Bid Type...</option>
+                                            <t t-foreach="bid_type_ids or []" t-as="bid_type">
+                                                <option t-att-value="bid_type['id']"
+                                                        t-att-selected="bid_type['id'] == int(lead_id.bid_type_id.id) if lead_id and lead_id.bid_type_id else 0">
+                                                    <t t-esc="bid_type['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="crm_product_category_id">
+                                        Product Category
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <select name="crm_product_category_id" t-att-readonly="is_readonly"
+                                                t-att-disabled="is_readonly"
+                                                t-attf-class="form-control #{error.get('crm_product_category_id') and 'is-invalid' or ''}">
+                                            <option value="">Product Category....</option>
+                                            <t t-foreach="categories or []" t-as="categ">
+                                                <option t-att-value="categ['id']"
+                                                        t-att-selected="categ['id'] == int(lead_id.crm_product_category_id.id) if lead_id and lead_id.crm_product_category_id else 0">
+                                                    <t t-esc="categ['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="x_studio_quantity">Quantity
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <input type="number" min="0"
+                                               t-attf-class="form-control #{error.get('x_studio_quantity') and 'is-invalid' or ''}"
+                                               name="x_studio_quantity"
+
+                                               t-attf-value="#{lead_id.x_studio_quantity if lead_id else ''}"
+                                               t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="value">Expected Revenue
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <input type="number" step="0.01"
+                                               t-attf-class="form-control #{error.get('value') and 'is-invalid' or ''}"
+                                               name="value"
+
+                                               t-attf-value="#{lead_id.value if lead_id else ''}"
+                                               t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="value"
+                                           style="padding-top:20px;">Priority
+                                    </label>
+                                    <div class="col-lg-7 col-md-8" style="padding-bottom:30px;">
+                                        <input type="hidden" name="priority"/>
+                                        <div class="form-check-inline">
+                                            <input class="priority-star" type="checkbox"
+                                                   id="priority_1" name="priority_1"
+                                                   t-att-checked="'checked' if int(lead_id and lead_id.priority) >= 1 else None"
+                                                   t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <input class="priority-star" type="checkbox"
+                                                   id="priority_2" name="priority_2"
+                                                   t-att-checked="'checked' if int(lead_id and lead_id.priority) >= 2 else None"
+                                                   t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <input class="priority-star" type="checkbox"
+                                                   id="priority_3" name="priority_3"
+                                                   t-att-checked="'checked' if int(lead_id and lead_id.priority) >= 3 else None"
+                                                   t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="user_id">Sales Person
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <select name="user_id" t-att-readonly="is_readonly"
+                                                t-att-disabled="is_readonly"
+                                                t-attf-class="form-control #{error.get('user_id') and 'is-invalid' or ''}">
+                                            <option value="">Sales Person...</option>
+                                            <t t-foreach="users or []" t-as="user">
+                                                <option t-att-value="user['id']"
+                                                        t-att-selected="user['id'] == int(lead_id.user_id.id) if lead_id and lead_id.user_id else 0">
+                                                    <t t-esc="user['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="team_id">Sales Team
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <select name="team_id" t-att-readonly="is_readonly"
+                                                t-att-disabled="is_readonly"
+                                                t-attf-class="form-control #{error.get('team_id') and 'is-invalid' or ''}">
+                                            <option value="">Sales Team...</option>
+                                            <t t-foreach="teams or []" t-as="team">
+                                                <option t-att-value="team['id']"
+                                                        t-att-selected="team['id'] == int(lead_id.team_id.id) if lead_id and lead_id.user_id else 0">
+                                                    <t t-esc="team['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="gem_customer_name">GeM
+                                        Customer Name
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <input type="text"
+                                               t-attf-class="form-control #{error.get('customer_pincode') and 'is-invalid' or ''}"
+                                               name="gem_customer_name"
+                                               t-attf-value="#{lead_id.gem_customer_name if lead_id else ''}"
+                                               t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="customer_city">Customer
+                                        City
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <input type="text"
+                                               t-attf-class="form-control #{error.get('customer_pincode') and 'is-invalid' or ''}"
+                                               name="customer_city"
+                                               t-attf-value="#{lead_id.customer_city if lead_id else ''}"
+                                               t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="customer_pincode">Customer
+                                        Pincode
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <input type="text"
+                                               t-attf-class="form-control #{error.get('customer_pincode') and 'is-invalid' or ''}"
+                                               name="customer_pincode"
+                                               t-attf-value="#{lead_id.customer_pincode if lead_id else ''}"
+                                               t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="customer_state_id">Customer
+                                        State
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <select name="customer_state_id" t-att-readonly="is_readonly"
+                                                t-att-disabled="is_readonly"
+                                                t-attf-class="form-control #{error.get('customer_state_id') and 'is-invalid' or ''}">
+                                            <option value="">Customer State...</option>
+                                            <t t-foreach="states or []" t-as="state">
+                                                <option t-att-value="state['id']"
+                                                        t-att-selected="state['id'] == int(lead_id.customer_state_id.id) if lead_id and lead_id.customer_state_id else 0">
+                                                    <t t-esc="state['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="file_upload">Attach Bid
+                                        Document
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <input type="file"
+                                               t-attf-class="form-control #{error.get('file_upload') and 'is-invalid' or ''}"
+                                               name="file_upload"
+                                               t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label"
+                                           for="x_studio_gem_model_no">GeM Model No.
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <input type="text"
+                                               t-attf-class="form-control #{error.get('x_studio_gem_model_no') and 'is-invalid' or ''}"
+                                               name="x_studio_gem_model_no"
+                                               t-attf-value="#{lead_id.x_studio_gem_model_no if lead_id else ''}"
+                                               t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="x_studio_gem_sku">GeM SKU
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <input type="text"
+                                               t-attf-class="form-control #{error.get('x_studio_gem_sku') and 'is-invalid' or ''}"
+                                               name="x_studio_gem_sku"
+                                               t-attf-value="#{lead_id.x_studio_gem_sku if lead_id else ''}"
+                                               t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="x_studio_catalog_id">GeM
+                                        Catalog ID (Intel)
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <input type="text"
+                                               t-attf-class="form-control #{error.get('x_studio_catalog_id') and 'is-invalid' or ''}"
+                                               name="x_studio_catalog_id"
+                                               t-attf-value="#{lead_id.x_studio_catalog_id if lead_id else ''}"
+                                               t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="catalog_id_amd">GeM Catalog ID
+                                        (AMD)
+
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <input type="text"
+                                               t-attf-class="form-control #{error.get('catalog_id_amd') and 'is-invalid' or ''}"
+                                               name="catalog_id_amd"
+                                               t-attf-value="#{lead_id.catalog_id_amd if lead_id else ''}"
+                                               t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field">
+                                    <label class="col-lg-3 col-md-4 col-form-label" for="description">
+                                        Comments
+                                    </label>
+                                    <div class="col-lg-7 col-md-8">
+                                        <input type="text"
+                                               t-attf-class="form-control #{error.get('description') and 'is-invalid' or ''}"
+                                               name="description"
+                                               t-attf-value="#{lead_id.description if lead_id else ''}"
+                                               t-att-readonly="is_readonly" t-att-disabled="is_readonly"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row" t-if="mode=='edit'">
+                                    <div class="offset-lg-3 offset-md-4 col-md-8 col-lg-7">
+                                        <button type="submit"
+                                                class="btn btn-primary">
+                                            <t t-if="not lead_id">Save As Draft</t>
+                                            <t t-if="lead_id">Save</t>
+                                        </button>
+                                        <span id="o_website_form_result"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

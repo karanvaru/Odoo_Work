@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_solar_power" model="ir.actions.report">
+            <field name="name">Solar Power Plant Proposal</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ki_spv_sale_extension.solar_power_report_template</field>
+            <field name="report_file">ki_spv_sale_extension.solar_power_report_template</field>
+            <field name="print_report_name">'Quotation'</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="solar_power_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div style="text-align: center; font-size: 17px; font-weight: bold;">
+                                <span t-esc="o.proposal_subject"/>
+                            </div>
+                            <div style="text-align: center; font-size: 15px;"><span t-esc="o.proposal_subject_2"/></div>
+                            <div class="row">
+                                <table width="100%" class="table-sm table-condensed">
+                                    <tr>
+                                        <td width="8%" style="font-weight: bold; border-right: none;">Sr. No.:
+                                        </td>
+                                        <td colspan="2" width="45%" style="border-left: none;">
+                                            <span t-esc="o.name"/>
+                                        </td>
+                                        <td colspan="2" width="45%" style="text-align: center;">
+                                            <strong>Date:</strong>
+                                            <span t-field="o.date_order"
+                                                  t-options='{"widget": "date","format": "MM/dd/yyyy"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2" width="8%"></td>
+                                        <td colspan="2" style="font-weight: bold; black; border-right:none;">To:-
+                                            <span t-esc="o.partner_id.name"/>
+                                        </td>
+                                        <td colspan="2" style="border-left:none;">C.P.: <span t-esc="o.chanel_partner.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold;">Location:
+                                            <span t-esc="o.location"/>
+                                        </td>
+                                        <td colspan="2" style="font-weight: bold;">Tarrif Type:
+                                            <t t-if="o.tarrif_type == 'residential'">
+                                                <span>Residential</span>
+                                            </t>
+                                            <t t-if="o.tarrif_type == 'corporate'">
+                                                <span>Corporate</span>
+                                            </t>
+                                            <t t-if="o.tarrif_type == 'industrial'">
+                                                <span>Industrial</span>
+                                            </t>
+                                        </td>
+                                        <td colspan="2" style="font-weight: bold;">Discom: <span t-esc="o.distributor_id.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold;">Sr.No.</td>
+                                        <td style="text-align: center; font-weight: bold;">Description</td>
+                                        <td style="text-align: center; font-weight: bold;">Proposed Capacity (KW)</td>
+                                        <td style="text-align: center; font-weight: bold;">Rate/KW</td>
+                                        <td style="text-align: center; font-weight: bold;">Value (INR)</td>
+                                    </tr>
+                                    <tr t-foreach="o.order_line" t-as="line">
+                                        <td style="text-align: center;">
+                                            <span t-esc="line_index+1"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line.name"/>
+                                        </td>
+                                        <td style="text-align: right;">
+                                            <span t-esc="line.product_uom_qty"/>
+                                        </td>
+                                        <td style="text-align: right;">₹
+                                            <span t-esc="line.price_unit"/>
+                                        </td>
+                                        <td style="text-align: right;">₹
+                                            <span t-esc="line.price_subtotal"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;" colspan="2">Subsidy Rate:- <span t-esc="o.subsidy_rate_kw"/>/KW</td>
+                                        <t t-if="o.order_line.product_uom_qty &lt;= 3">
+                                            <td style="text-align: center;" colspan="2">Subsidy (40%, Upto 3.00KW)</td>
+                                        </t>
+                                        <t t-elif="o.order_line.product_uom_qty &gt; 3 and o.order_line.product_uom_qty &lt;= 10">
+                                            <td style="text-align: center;" colspan="2">Subsidy (20%, 3.01KW to 10.00KW)</td>
+                                        </t>
+                                        <t t-else="">
+                                            <td style="text-align: center;" colspan="2"></td>
+                                        </t>
+                                        <td style="text-align: right;">
+                                            <span t-field="o.subsidy"/>
+                                        </td>
+                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td style="text-align: right;" colspan="4">Net - Meter Charges</td>-->
+<!--                                        <td style="text-align: right;">₹-->
+<!--                                            <span t-field="o.net_meter_charges"/>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td style="text-align: right;" colspan="4">Extra Cable Charges, Structure Charges and Mono perc panel charges</td>-->
+<!--                                        <td style="text-align: right;">₹-->
+<!--                                            <span t-field="o.extra_charges"/>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+                                    <tr t-if="o.amount_untaxed != o.amount_total">
+                                        <td style="text-align: right;" colspan="4">Untaxed Amount</td>
+                                        <td style="text-align: right;">
+                                            <span t-field="o.amount_untaxed"/>
+                                        </td>
+                                    </tr>
+
+                                    <t t-set="tax_totals" t-value="o.tax_totals"/>
+                                    <t t-foreach="tax_totals['subtotals']" t-as="subtotal">
+                                        <t t-set="subtotal_to_show" t-value="subtotal['name']"/>
+                                        <tr t-foreach="tax_totals['groups_by_subtotal'][subtotal_to_show]"
+                                            t-as="amount_by_group">
+
+                                            <t t-if="len(tax_totals['groups_by_subtotal'][subtotal_to_show]) > 1">
+                                                <td style="text-align: right;" colspan="4"><span t-esc="amount_by_group['tax_group_name']"/></td>
+                                                <td style="text-align: right;">
+                                                    <span class="text-right"
+                                                          t-esc="amount_by_group['formatted_tax_group_amount']"/>
+                                                </td>
+                                            </t>
+                                            <t t-else="">
+                                                <td style="text-align: right;" colspan="4"><span t-esc="amount_by_group['tax_group_name']"/></td>
+                                                <td style="text-align: right;">
+                                                    <span class="text-right"
+                                                          t-esc="amount_by_group['formatted_tax_group_amount']"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </t>
+
+                                    <tr>
+                                        <td style="text-align: right; font-weight: bold;" colspan="4">Total
+                                        </td>
+                                        <td style="text-align: right; font-weight: bold;">
+                                            <span t-field="o.amount_total"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="text-align: right;" colspan="4">Net - Meter Charges</td>
+                                        <td style="text-align: right;">₹
+                                            <span t-field="o.net_meter_charges"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: right;" colspan="4">Extra Cable Charges, Structure Charges and Mono perc panel charges</td>
+                                        <td style="text-align: right;">₹
+                                            <span t-field="o.extra_charges"/>
+                                        </td>
+                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td style="text-align: right; font-weight: bold;" colspan="4">TOTAL-->
+<!--                                        </td>-->
+<!--                                        <td style="text-align: right; font-weight: bold;">-->
+<!--                                            <span t-field="o.amount_total"/>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+                                    <tr>
+                                        <td style="text-align: right; font-weight: bold; border-right:none;"
+                                            colspan="4">Solar Plant Cost
+                                        </td>
+                                        <td style="text-align: right; font-weight: bold; border-left:none;">
+                                            <span t-field="o.solar_plant_cost"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold;" colspan="5">Note:- <span t-esc="o.pv_note"/></td>
+                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td colspan="5">Local Gevernment Agency Charges (Excluded per application): ₹-->
+<!--                                            15,340/-(For Commercial segments)-->
+<!--                                            Net Meter Charges(Excluded per application): Up to Approx. ₹ 17,607/- -->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td style="text-align: center;" width="8%">1</td>-->
+<!--                                        <td colspan="2">Roof/Space area required - 8 Sq. Mtr/KW</td>-->
+<!--                                        <td colspan="2">Customer Scope</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td style="text-align: center;">2</td>-->
+<!--                                        <td colspan="2">Liasoning/Permission</td>-->
+<!--                                        <td colspan="2">Included</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td style="text-align: center;">3</td>-->
+<!--                                        <td colspan="2">Earthing and LA material</td>-->
+<!--                                        <td colspan="2">Included</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td style="text-align: center;">4</td>-->
+<!--                                        <td colspan="2">Transportation</td>-->
+<!--                                        <td colspan="2">Included</td>-->
+<!--                                    </tr>-->
+                                    <tr>
+                                        <td style="text-align: center; font-weight: bold;" colspan="5">Terms &amp;
+                                            Conditions
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold;" colspan="5">
+                                            <span t-esc="o.note"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center; font-weight: bold;" colspan="5">Warranty &amp;
+                                            Guarantee
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold;" colspan="5">
+                                            <span t-esc="o.warranty_detail"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center; font-weight: bold;" colspan="5">Warranty will be
+                                            provided by particular manufacturers of the product.
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br/>
+<!--                            <p style="page-break-before: always;"/>-->
+                            <div class="row" style="page-break-inside: avoid;">
+                                <table width="100%" class="table-sm table-condensed">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center; font-weight: bold;">ITEMS CONSIDERED
+                                            FOR PROPOSAL
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center; font-weight: bold;">Sr.No.</td>
+                                        <td style="text-align: center; font-weight: bold;">Description</td>
+                                        <td style="text-align: center; font-weight: bold;">Unit</td>
+                                        <td style="text-align: center; font-weight: bold;">Qty.</td>
+                                        <td style="text-align: center; font-weight: bold;">Make</td>
+                                    </tr>
+                                    <tr t-foreach="o.item_ids" t-as="items">
+                                        <td style="text-align: center;">
+                                            <span t-esc="items_index+1"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="items.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="items.uom_id.name"/>
+                                        </td>
+                                        <td style="text-align: right;">
+                                            <span t-esc="items.qty"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="items.maker_id.name"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br/>
+                            <br/>
+
+                            <div class="row" style="page-break-inside: avoid;">
+                                <table width="100%" class="table-sm table-condensed">
+                                    <tr style="color: white; background-color: #444444;">
+                                        <td colspan="5" style="text-align: center;">Total Saving = Electicity bill
+                                            saving + Tax benefit through elevated depreciation
+                                        </td>
+                                    </tr>
+                                    <tr style="color: white; background-color: black;">
+                                        <td style="text-align: center;">Particular</td>
+                                        <td style="text-align: center;">1st Year</td>
+                                        <td style="text-align: center;">2nd Year</td>
+                                        <td style="text-align: center;">3rd Year</td>
+                                        <td style="text-align: center;">Fourth Year</td>
+                                    </tr>
+                                    <tr t-foreach="o.total_saving_ids" t-as="total_saving">
+                                        <td><span t-esc="total_saving.particular"/></td>
+                                        <td style="text-align: right;"><span t-esc="round(total_saving.first_year, 2)"/></td>
+                                        <td style="text-align: right;"><span t-esc="round(total_saving.second_year, 2)"/></td>
+                                        <td style="text-align: right;"><span t-esc="round(total_saving.third_year, 2)"/></td>
+                                        <td style="text-align: right;"><span t-esc="round(total_saving.four_year, 2)"/></td>
+                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td>Tax benefit @30% (A)</td>-->
+<!--                                        <td style="text-align: right;">184014.6</td>-->
+<!--                                        <td style="text-align: right;">110408.8</td>-->
+<!--                                        <td style="text-align: right;">139851.1</td>-->
+<!--                                        <td style="text-align: right;">10304.8</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td>Saving in Electricity Bill (B)</td>-->
+<!--                                        <td style="text-align: right;">393120</td>-->
+<!--                                        <td style="text-align: right;">393120</td>-->
+<!--                                        <td style="text-align: right;">393120</td>-->
+<!--                                        <td style="text-align: right;">393120</td>-->
+<!--                                    </tr>-->
+                                    <tr style="color: white; background-color: black;">
+                                        <td>Total Saving (A+B)</td>
+                                        <td style="text-align: right;"><span t-esc="round(o.total_saving_first_year, 2)"/></td>
+                                        <td style="text-align: right;"><span t-esc="round(o.total_saving_second_year, 2)"/></td>
+                                        <td style="text-align: right;"><span t-esc="round(o.total_saving_third_year, 2)"/></td>
+                                        <td style="text-align: right;"><span t-esc="round(o.total_saving_four_year, 2)"/></td>
+                                    </tr>
+                                    <tr style="color: white; background-color: #444444;">
+                                        <td>Net cash flow at the end</td>
+                                        <td style="text-align: right;"><span t-esc="round(o.net_cash_first_year, 2)"/></td>
+                                        <td style="text-align: right;"><span t-esc="round(o.net_cash_second_year, 2)"/></td>
+                                        <td style="text-align: right;"><span t-esc="round(o.net_cash_third_year, 2)"/></td>
+                                        <td style="text-align: right;"><span t-esc="round(o.net_cash_four_year, 2)"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br/>
+                            <br/>
+
+                            <div class="row" style="page-break-inside: avoid;">
+                                <table width="100%" class="table-sm table-condensed">
+                                    <tr style="color: white; background-color: #444444;">
+                                        <td colspan="3" style="text-align: center;">Savings &amp; ROI</td>
+                                    </tr>
+                                    <tr t-foreach="o.saving_roi_ids" t-as="roi">
+                                        <td style="text-align: center;"><span t-esc="roi_index+1"/></td>
+                                        <td><span t-esc="roi.name"/></td>
+                                        <td style="text-align: right;"><span t-esc="round(roi.amount, 2)"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div style="page-break-inside: avoid;">
+                                <div>
+                                    <div style="text-align: center; font-size: 20px; font-weight: bold;">*Payback Start from
+                                        5th Year
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <center>
+                                        <table width="40%" class="table-sm table-condensed">
+                                            <tr>
+                                                <td>Year</td>
+                                                <td style="text-align: center;">Bill Save</td>
+                                            </tr>
+                                            <tr t-foreach="o.payback_ids" t-as="payback">
+                                                <t t-if="payback.year &lt; '5'">
+                                                    <td style="color: red;"><span t-esc="payback.year"/>st Year</td>
+                                                    <td style="color: red; text-align: right;">₹ <span t-esc="payback.amount"/></td>
+                                                </t>
+                                                <t t-if="payback.year &gt; '4'">
+                                                    <td style="color: green;"><span t-esc="payback.year"/>st Year</td>
+                                                    <td style="color: green; text-align: right;">₹ <span t-esc="payback.amount"/></td>
+                                                </t>
+                                            </tr>
+                                        </table>
+                                    </center>
+                                </div>
+                            </div>
+                            <br/>
+                            <div style="page-break-inside: avoid;">
+                                <div>
+                                    <div style="text-align: center; font-size: 25px; font-weight: bold;">Payment Schedule
+                                        for Solar Power Plant:
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <table width="100%" class="table-sm table-condensed">
+                                        <tr style="color: white; background-color: #444444;">
+                                            <td>Payment Stage</td>
+                                            <td style="text-align: center;">Payment (In %)</td>
+                                            <td style="text-align: center;">Amount In Rs.</td>
+                                            <td style="text-align: center;">Process time (approx)</td>
+                                        </tr>
+                                        <tr t-foreach="o.payment_schedule_ids" t-as="schedule">
+                                            <td><span t-esc="schedule.payment_stage"/></td>
+                                            <td style="text-align: center;"><span t-esc="schedule.payment"/>%</td>
+                                            <td style="text-align: right;">₹ <span t-esc="round(schedule.amount, 2)"/></td>
+                                            <td style="text-align: center;"><span t-esc="schedule.process_time"/> Days</td>
+                                        </tr>
+                                        <tr style="color: white; background-color: #444444;">
+                                            <td>TotalTotal</td>
+                                            <td style="text-align: center;"><span t-esc="o.total_payment"/>%</td>
+                                            <td style="text-align: right;">₹ <span t-esc="round(o.total_amount, 2)"/></td>
+                                            <td style="text-align: center;"><span t-esc="o.total_process_time"/> Days</td>
+                                        </tr>
+                                        <tr style="color: white; background-color: #444444;">
+                                            <td colspan="4" style="text-align: center;">Timely payment will leads to faster
+                                                execution of projects.
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+
+                            <div class="row" style="page-break-inside: avoid;">
+                                <table width="100%" class="table-sm table-condensed">
+                                    <tr>
+                                        <td style="text-align: center; font-weight: bold;">Note : Net meter charges are
+                                            not considered in the above calculation.
+                                            Customer needs to pay the same seperately if its vary.(for commercial
+                                            segments)
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br/>
+                            <br/>
+
+                            <div class="row" style="page-break-inside: avoid;">
+                                <center>
+                                    <table width="50%" class="table-sm table-condensed">
+                                        <tr>
+                                            <td colspan="2" style="text-align: center; font-weight: bold;">Company Bank
+                                                details
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Account Name</td>
+                                            <td style="text-align: center;">
+                                                <span t-esc="o.company_id.partner_id.bank_ids.acc_holder_name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Account Number</td>
+                                            <td style="text-align: center;">
+                                                <span t-esc="o.company_id.partner_id.bank_ids.acc_number"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bank</td>
+                                            <td style="text-align: center;">
+                                                <span t-esc="o.company_id.partner_id.bank_ids.bank_id.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Branch</td>
+                                            <td style="text-align: center;">
+                                                <span t-esc="o.company_id.partner_id.bank_ids.bank_id.street"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>IFSC</td>
+                                            <td style="text-align: center;">
+                                                <span t-esc="o.company_id.partner_id.bank_ids.bank_id.bic"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </center>
+                            </div>
+                            <br/>
+                            <br/>
+
+                            <div class="row" style="page-break-inside: avoid;">
+                                <center>
+                                    <table width="50%" class="table-sm table-condensed">
+                                        <tr>
+                                            <td colspan="2" style="text-align: center; font-weight: bold;">Documents
+                                                Required for Application
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="o.document_required_for_application" t-as="document">
+                                            <td width="10%" style="text-align: center;"><span t-esc="document_index+1"/></td>
+                                            <td><span t-esc="document.name"/></td>
+                                        </tr>
+                                    </table>
+                                </center>
+                            </div>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

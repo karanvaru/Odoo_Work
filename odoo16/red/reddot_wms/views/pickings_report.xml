@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+<!--        <template id="report_picking_inherit"  inherit_id="stock.report_picking">-->
+<!--            <xpath expr="//div[hasclass('page')]/table/thead/tr" position="inside">-->
+<!--                <th>-->
+<!--                    <strong>Length</strong>-->
+<!--                </th>-->
+<!--                <th>-->
+<!--                    <strong>Width</strong>-->
+<!--                </th>-->
+<!--                <th>-->
+<!--                    <strong>Height</strong>-->
+<!--                </th>-->
+<!--             </xpath>-->
+<!--           <xpath expr="//div[hasclass('page')]/table/tbody/t/tr" position="inside">-->
+<!--               <td style="text-align:center;">-->
+<!--                   <span>-->
+<!--                       <span t-field="ml.length"/><br/>-->
+<!--                   </span>-->
+<!--               </td>-->
+<!--                <td style="text-align:center;">-->
+<!--                    <span>-->
+<!--                       <span t-field="ml.width"/><br/>-->
+<!--                   </span>-->
+<!--                </td>-->
+<!--               <td style="text-align:center;">-->
+<!--                    <span>-->
+<!--                       <span t-field="ml.height"/><br/>-->
+<!--                   </span>-->
+<!--               </td>-->
+<!--           </xpath>-->
+<!--        </template>-->
+    </data>
+</odoo>

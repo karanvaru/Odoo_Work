@@ -1,0 +1,650 @@
+/*--color-change--*/
+$-background-primary: map-get($o-user-theme-color-palette, 'alpha');
+$-color-secondary: map-get($-palette-default, 'beta');
+$-color-secondary_user: map-get($o-user-theme-color-palette, 'beta');
+
+@if ($-color-secondary_user) {
+	$-color-secondary : $-color-secondary_user;
+}
+
+$text: color('text');
+/*--color-change--*/
+
+
+/*--sh_motorcycle--*/
+.id_sh_motorcycle_search_diff_bike_div {
+	z-index: 9;
+	margin-bottom: 10px;
+}
+
+.oe_website_sale .text-center {
+	color: $text;
+}
+
+.id_sh_motorcycle_select_diff_bike_btn {
+	text-decoration: none;
+}
+
+
+#id_sh_motorcycle_search_form .form-control {
+	margin-right: 5px;
+	padding: 0.375em 2em 0.375em 1em;
+	border-radius: 0px;
+}
+
+
+
+.id_sh_motorcycle_search_diff_bike_form {
+	padding: 1.5rem 0;
+}
+
+.id_sh_motorcycle_search_diff_bike_form .form-control {
+	margin-right: 5px;
+	padding: 0.375em 3.5em 0.375em 1em;
+	border-radius: 0px;
+}
+
+#id_sh_motorcycle_search_form .form-control {
+	margin-right: 5px;
+	padding: 0.375em 2em 0.375em 1em;
+	border-radius: 0px;
+}
+
+#id_sh_motorcycle_garage_div {
+	padding: 20px 30px;
+	position: relative;
+	border-color: #875A7B #ddd #ddd #ddd;
+	border-style: solid;
+	border-width: 2px 1px 1px 1px;
+	border-top-color: #875A7B;
+	position: relative;
+	margin-bottom: 1rem;
+}
+
+#id_sh_motorcycle_garage_div h4 {
+	padding-right: 5px;
+}
+
+.id_sh_motorcycle_save_bike_to_garage_btn i {
+	padding-right: 5px;
+}
+
+.id_sh_motorcycle_save_bike_to_garage_btn {
+	text-decoration: none;
+}
+
+/*--sh_motorcycle--*/
+
+.id_sh_motorcycle_select_diff_bike_btn i {
+	padding-right: 5px;
+}
+
+#id_sh_motorcycle_search_div {
+	padding: 1.5rem 0;
+	border: 1px solid #ddd;
+	border-top: 2px solid $-color-secondary;
+	;
+	margin-bottom: 10px;
+
+}
+
+/*--media-query--*/
+@media screen and (max-width:991px) {
+	#id_sh_motorcycle_select_saved_bike_btn {
+		margin-left: 0% !important;
+		margin-top: 5%;
+	}
+}
+
+@media screen and (max-width:768px) {
+	#id_sh_motorcycle_search_form .form-control {
+		padding: 0.375em 1em 0.375em 1em;
+	}
+
+	.id_sh_motorcycle_search_diff_bike_form .form-control {
+		padding: 0.375em 1em 0.375em 1em;
+	}
+
+	.id_sh_motorcycle_search_diff_bike_div {
+		padding: 20px 0px;
+	}
+
+	#id_sh_motorcycle_search_form .form-control {
+		padding: 0.375em 1em 0.375em 1em;
+	}
+
+	#id_sh_motorcycle_select_saved_bike_btn {
+		margin-left: 0% !important;
+		margin-top: 5%;
+	}
+}
+
+@media screen and (max-width:575px) {
+	#id_sh_motorcycle_search_form .form-group {
+		width: 100%
+	}
+
+	#id_sh_motorcycle_search_form {
+		align-items: baseline;
+	}
+
+	#id_sh_motorcycle_search_form .form-control {
+		padding: 0.375em 1em 0.375em 1em;
+	}
+
+	#id_sh_motorcycle_go_submit_button {
+		width: 100%;
+		margin-bottom: 1rem
+	}
+
+	.id_sh_motorcycle_search_diff_bike_div .form-group {
+		width: 100%
+	}
+
+	.id_sh_motorcycle_search_diff_bike_form {
+		margin-top: 10px;
+	}
+
+	#id_sh_motorcycle_search_form {
+		margin-top: 10px;
+	}
+
+	.id_sh_motorcycle_select_saved_bike_btn {
+		width: 100%;
+		margin-left: 0% !important;
+		margin-top: 0% !important
+	}
+}
+
+/*--media-query--*/
+
+
+/* ===================
+	shop attributes
+====================== */
+.oe_website_sale .products_pager form[action^="/shop"] {
+	margin-top: 0.5rem !important;
+}
+
+#products_grid_before form.js_attributes .sh_scroll_bar label.nav-link {
+	cursor: pointer;
+}
+
+#products_grid_before form.js_attributes .sh_scroll_bar {
+	max-height: 235px;
+	overflow: auto;
+}
+
+#products_grid_before form.js_attributes .sh_scroll_bar::-webkit-scrollbar {
+	width: 3px;
+}
+
+#products_grid_before form.js_attributes .sh_scroll_bar::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+#products_grid_before form.js_attributes .sh_scroll_bar::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+#products_grid_before form.js_attributes .sh_scroll_bar::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+
+/* ==============================
+	Product Shop Attributes
+================================= */
+form.js_attributes ul.nav.nav-pills.flex-column {
+	margin-bottom: 1rem;
+}
+
+form.js_attributes ul.nav.nav-pills.flex-column>li.nav-item>div,
+form.js_attributes ul.nav.nav-pills.flex-column>div:first-child {
+	color: #212121;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e8e8e8;
+	font-size: 16px;
+	padding: 10px 0 10px 0;
+	margin-bottom: 6px;
+}
+
+form.js_attributes ul.nav.nav-pills.flex-column div strong {
+	color: o-color('o-color-1');
+}
+
+ul.nav.nav-pills.flex-column li.nav-item ul.nav.nav-pills.flex-column {
+	margin-left: 0px !important;
+}
+
+#products_grid_before form.js_attributes .sh_scroll_bar label.nav-link {
+	padding: 3px 0px 3px 9px !important;
+	border-radius: 3px;
+	margin: 3px 0;
+}
+
+ul.nav.nav-pills.flex-column li.nav-item ul.nav.nav-pills.flex-column li.nav-item label.nav-link {
+	padding: 3px 0px 3px 9px !important;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+input.sh_product_garde_input,
+span.sh_product_garde_title,
+input.sh_product_engine_input,
+span.sh_product_engine_title,
+input.sh_product_country_input,
+span.sh_product_country_title,
+input.sh_product_brand_input,
+span.sh_product_brand_title {
+	vertical-align: middle;
+}
+
+ul.nav.nav-pills.flex-column li.nav-item label.css_attribute_color input {
+	margin: 6px;
+	height: 10px;
+}
+
+label.css_attribute_color {
+	border-radius: 2px;
+}
+
+label.css_attribute_color,
+label.css_attribute_color input {
+	cursor: pointer;
+}
+
+ul.nav.nav-pills.flex-column li.nav-item div+label.css_attribute_color {
+	margin-left: 8px;
+}
+
+/* Product Detail Table*/
+#sh_optional table tbody td .make_box:last-child span.separater,
+#sh_alternate table tbody td .make_box:last-child span.separater,
+#sh_supported td.engine_td .engine_box:last-child span.separater {
+	display: none;
+}
+
+#sh_supported td {
+	vertical-align: middle;
+}
+
+#sh_optional .action_td .btn,
+#sh_optional .action_td .btn {
+	padding: 5px 12px;
+	vertical-align: text-top;
+}
+
+#sh_optional .info_td,
+#sh_alternate .info_td {
+	height: 100%;
+	vertical-align: middle;
+}
+
+
+
+td .engine_box:last-child span.separater,
+td .transmission_box:last-child span.separater {
+	display: none;
+}
+
+table.sh_supported_products tbody .hide_on_desktop,
+table.sh_optional_products tbody .hide_on_desktop,
+table.sh_supported_products .hide_in_desktop_name {
+	display: none;
+}
+
+table.sh_alternative_products tbody .hide_on_desktop,
+table.sh_alternative_products .hide_in_desktop_name,
+table.sh_optional_products .hide_in_desktop_name {
+	display: none;
+}
+
+#products_grid.o_wsale_layout_list .hide_on_list_view {
+	display: none !important;
+}
+
+table.sh_supported_products thead th:first-child {
+	padding-left: 0.6rem;
+}
+
+@media(max-width:540px) {
+	table.sh_supported_products thead th {
+		padding-left: 0rem;
+		text-align: center;
+		padding: 0.5rem;
+	}
+
+	#products_grid.o_wsale_layout_list .oe_product_cart .oe_product_image img {
+		object-fit: fill;
+	}
+
+	#products_grid.o_wsale_layout_list .oe_product_cart .oe_product_image {
+		width: 100%;
+	}
+
+	#id_sh_motorcycle_search_form {
+		padding-right: 0% !important;
+	}
+
+	table.sh_optional_products tbody tr td:first-child div:first-child,
+	table.sh_alternative_products tbody td:first-child div:first-child {
+		max-width: 325px;
+	}
+
+	table.sh_supported_products th:first-child {
+		width: auto;
+	}
+
+	//table.sh_supported_products th{border-bottom:0px solid #DEE2E6;border-top:0;}
+	table.sh_supported_products span.varinat_image_main {
+		width: 120px !important;
+	}
+
+	table.sh_supported_products tbody .hide_on_desktop,
+	table.sh_alternative_products tbody .hide_on_desktop,
+	table.sh_optional_products tbody .hide_on_desktop {
+		display: inline-block;
+	}
+
+	table.sh_supported_products tr td {
+		text-align: left;
+	}
+
+	table.sh_supported_products .hide_in_desktop_name,
+	table.sh_alternative_products .hide_in_desktop_name,
+	table.sh_optional_products .hide_in_desktop_name {
+		display: inline-block;
+	}
+
+	table.sh_supported_products th.hide_in_mobile,
+	td.hide_in_mobile,
+	table.sh_optional_products th.hide_in_mobile,
+	table.sh_alternative_products th.hide_in_mobile,
+	td.hide_in_mobile,
+	span.hide_in_mobile {
+		display: none;
+	}
+
+	table.sh_alternative_products div button.sh_add_to_cart,
+	table.sh_optional_products div button.sh_add_to_cart {
+		margin: 8px 0;
+		position: absolute;
+		bottom: 4px;
+		right: 7px;
+		border-radius: 0;
+		background: o-color(o-color-1);
+		border: 1px solid o-color(o-color-1);
+	}
+
+	table.sh_optional_products .hide_on_desktop {
+		width: 87%;
+	}
+}
+
+#products_grid:not(.o_wsale_layout_list) .sh_product_ither_info,
+#products_grid.o_wsale_layout_list .hide_on_list_view {
+	display: none !important;
+}
+
+/* Supported Vehicles*/
+
+.sh_supported_products_sec ul.nav.nav-tabs {
+	border-bottom: 1px solid #DEE2E6;
+	margin-bottom: 0.8rem;
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+	flex-wrap: nowrap;
+	width: 100%;
+}
+
+.sh_supported_products_sec ul.nav.nav-tabs a {
+	padding: 7px 25px;
+	display: inline-block;
+	text-decoration: none;
+	transition: all 0.4s ease;
+	color: rgba(0, 0, 0, 0.7);
+	position: relative;
+	bottom: -1px;
+}
+
+.sh_supported_products_sec ul.nav.nav-tabs a:hover {
+	background: #f7f7f7;
+	box-shadow: 0 -1px #e5e5e5 inset;
+}
+
+.sh_supported_products_sec ul.nav.nav-tabs a.active {
+	box-shadow: 0 -2px o-color(o-color-1) inset;
+	transition: all 0.2s ease;
+	color: o-color(o-color-1);
+	transition: all 0.4s ease;
+
+}
+
+.sh_supported_products_sec table tbody td {
+	vertical-align: middle;
+}
+
+//.sh_supported_products_sec .sh_supported_products{    border: 1px solid lightgray;}
+table.sh_supported_products thead th {
+	color: #6c757d;
+	//border-bottom: 1px solid lightgrey;
+	//border-top: 0;
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+.sh_supported_products_sec table tbody td {
+	vertical-align: middle;
+	//border: 0;
+	padding: 0.3rem;
+}
+
+/*.sh_supported_products_sec table tbody tr:first-child() td{
+	padding-top: 0.6rem;
+}
+.sh_supported_products_sec table tbody tr:last-child() td{
+	padding-bottom: 0.6rem;
+}*/
+.sh_supported_products_sec h3 {
+	display: block;
+	font-size: 28px;
+	color: o-color(o-color-1);
+	font-weight: 500;
+	line-height: 1.4;
+	text-align: center;
+}
+
+@media(max-width:540px) {
+	.sh_supported_products_sec th.hide_in_desktop_name {
+		display: block;
+	}
+
+	table.sh_supported_products thead th:first-child {
+		padding-left: 0rem;
+	}
+
+	.sh_supported_products_sec ul.nav.nav-tabs a {
+		padding: 5px 30px;
+	}
+
+	/*.sh_supported_products tbody tr:not(:last-child){
+		border-bottom:1px solid lightgray;
+	}*/
+	.sh_supported_products .cls_vehicle_btn {
+		position: absolute;
+		display: block;
+		bottom: 4px;
+		right: 7px;
+	}
+
+}
+
+
+// SHOP ATTRIBUTES TAGS IN SHOP
+
+.form-select:focus,
+.form-select:active,
+.form-control:focus,
+.form-control:active {
+	box-shadow: unset;
+}
+
+input.sh_product_brand_input,
+input.sh_product_made_in_input,
+input.sh_product_garde_input,
+input.sh_product_transmission_input,
+input.sh_product_engine_input,
+input.sh_product_p_type_input {
+	display: none;
+}
+
+span.sh_product_brand_title,
+span.sh_product_made_in_title,
+span.sh_product_garde_title,
+span.sh_product_transmission_title,
+span.sh_product_engine_title,
+span.sh_product_p_type_title {
+	font-weight: normal;
+	padding: 4px 12px;
+	display: block;
+	color: #fff;
+	border-radius: 3px;
+	background: o-color(o-color-1);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	cursor: pointer;
+	transition: all .6s;
+	font-size: 14px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: row;
+}
+
+span.js_cls_sh_shop_product_brands_selected_tag,
+span.js_cls_sh_shop_product_made_in_selected_tag,
+span.js_cls_sh_shop_product_garde_selected_tag,
+span.js_cls_sh_shop_product_transmission_selected_tag,
+span.js_cls_sh_shop_product_engine_selected_tag,
+span.js_cls_sh_shop_product_p_type_selected_tag {
+	font-size: 23px;
+	transition: all 0.6s;
+	display: block !important;
+}
+
+.js_attributes label.active .sh_product_brand_title,
+.js_cls_offcanvas_shop_attributes label.active .sh_product_brand_title,
+.js_attributes label.active .sh_product_made_in_title,
+.js_cls_offcanvas_shop_attributes label.active .sh_product_made_in_title,
+.js_attributes label.active .sh_product_garde_title,
+.js_cls_offcanvas_shop_attributes label.active .sh_product_garde_title,
+.js_attributes label.active .sh_product_transmission_title,
+.js_cls_offcanvas_shop_attributes label.active .sh_product_transmission_title,
+.js_attributes label.active .sh_product_engine_title,
+.js_cls_offcanvas_shop_attributes label.active .sh_product_engine_title,
+.js_attributes label.active .sh_product_p_type_title,
+.js_cls_offcanvas_shop_attributes label.active .sh_product_p_type_title {
+	background: transparent;
+	color: #000;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+label.active span.js_cls_sh_shop_product_brands_selected_tag:before,
+label.active span.js_cls_sh_shop_product_made_in_selected_tag:before,
+label.active span.js_cls_sh_shop_product_garde_selected_tag:before,
+label.active span.js_cls_sh_shop_product_transmission_selected_tag:before,
+label.active span.js_cls_sh_shop_product_engine_selected_tag:before,
+label.active span.js_cls_sh_shop_product_p_type_selected_tag:before {
+	position: absolute;
+	content: '';
+	top: 44%;
+	right: 2px;
+	background: o-color(o-color-1);
+	width: 15px;
+	height: 2px;
+	transform: translateX(-50%) rotateZ(-45deg);
+	transition: all 0.6s ease;
+}
+
+label.active span.js_cls_sh_shop_product_brands_selected_tag:after,
+label.active span.js_cls_sh_shop_product_made_in_selected_tag:after,
+label.active span.js_cls_sh_shop_product_garde_selected_tag:after,
+label.active span.js_cls_sh_shop_product_transmission_selected_tag:after,
+label.active span.js_cls_sh_shop_product_engine_selected_tag:after,
+label.active span.js_cls_sh_shop_product_p_type_selected_tag:after {
+	position: absolute;
+	content: '';
+	top: 44%;
+	right: 2px;
+	background: o-color(o-color-1);
+	width: 15px;
+	height: 2px;
+	transform: translateX(-50%) rotateZ(45deg);
+	transition: all 0.6s ease;
+}
+
+label.active:hover span.js_cls_sh_shop_product_brands_selected_tag:before,
+label.active:hover span.js_cls_sh_shop_product_made_in_selected_tag:before,
+label.active:hover span.js_cls_sh_shop_product_garde_selected_tag:before,
+label.active:hover span.js_cls_sh_shop_product_transmission_selected_tag:before,
+label.active:hover span.js_cls_sh_shop_product_engine_selected_tag:before,
+label.active:hover span.js_cls_sh_shop_product_p_type_selected_tag:before {
+	transition: all 0.6s ease;
+	transform: translateX(-50%) rotateZ(45deg);
+}
+
+label.active:hover span.js_cls_sh_shop_product_brands_selected_tag:after,
+label.active:hover span.js_cls_sh_shop_product_made_in_selected_tag:after,
+label.active:hover span.js_cls_sh_shop_product_garde_selected_tag:after,
+label.active:hover span.js_cls_sh_shop_product_transmission_selected_tag:after,
+label.active:hover span.js_cls_sh_shop_product_engine_selected_tag:after,
+label.active:hover span.js_cls_sh_shop_product_p_type_selected_tag:after {
+	transition: all 0.6s ease;
+	transform: translateX(-50%) rotateZ(-45deg);
+}
+
+.js_attributes label.active .sh_product_brand_title,
+.js_cls_offcanvas_shop_attributes label.active .sh_product_brand_title,
+.js_attributes label.active .sh_product_made_in_title,
+.js_cls_offcanvas_shop_attributes label.active .sh_product_made_in_title,
+.js_attributes label.active .sh_product_garde_title,
+.js_cls_offcanvas_shop_attributes label.active .sh_product_garde_title,
+.js_attributes label.active .sh_product_transmission_title,
+.js_cls_offcanvas_shop_attributes label.active .sh_product_transmission_title,
+.js_attributes label.active .sh_product_engine_title,
+.js_cls_offcanvas_shop_attributes label.active .sh_product_engine_title,
+.js_attributes label.active .sh_product_p_type_title,
+.js_cls_offcanvas_shop_attributes label.active .sh_product_p_type_title {
+	padding: 3px 28px 3px 13px;
+}
+
+/* width */
+.sh_custom_tag_area::-webkit-scrollbar {
+	width: 3px;
+}
+
+/* Track */
+.sh_custom_tag_area::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey;
+	border-radius: 0;
+}
+
+/* Handle */
+.sh_custom_tag_area::-webkit-scrollbar-thumb {
+	background: o-color(o-color-1);
+	border-radius: 0px;
+	cursor: pointer;
+}
+
+/* Handle on hover */
+.sh_custom_tag_area::-webkit-scrollbar-thumb:hover {
+	background: o-color(o-color-1);
+
+}

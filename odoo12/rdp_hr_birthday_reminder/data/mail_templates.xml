@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="0">
+        <record id="email_birthday_wishes_employee_template" model="mail.template">
+            <field name="name">Many Many Happy returns of the Day</field>
+            <field name="subject">Many Many Happy returns of the Day ${object.name} 🎂</field>
+            <field name="email_to">dayanithi@rdp.in</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+            <div style="width:650px;margin:10px auto;-webkit-box-shadow: 0px 0px 2px 1px #ccc;box-shadow: 0px 0px 2px 1px #ccc;-moz-box-shadow: 0px 0px 2px 1px #ccc;border:1px solid #ccc; color:#333;font-family:Arial, Helvetica, sans-serif; font-size:14px !important; line-height:1.5">
+  <div class="container" style="margin:0;padding:0;">
+    <div style="text-align:right;padding-right:32px; margin:30px 0;">
+      <img src="https://rdp.in/web/image/res.company/1/logo?unique=068276c" class="img-fluid" style="border-style: none; height: auto; max-width: 100%; vertical-align: middle; width: auto;">
+    </div>
+    <div style="text-align:center;padding-left: 39px;">
+      <img src="https://rdp.in/web/image/1735960/Employee-Birthday-Design.png" class="img-fluid" alt="Happy Birthday" style="border-style: none; height: auto; max-width: 100%; vertical-align: middle; width: auto;">
+    </div>
+    <div style="background-color: #AFEEEE;padding:50px 10px;margin-top: -42px !important;">
+      <div style="margin:0px auto; width:128px;">
+        <img src="/web/image?&amp;model=hr.employee&amp;id=${object.id}&amp;field=image_medium" style="width:150px; height:150px; background-color:#FFF;border-radius:128px;" class="">
+      </div>
+    </div>
+    <div style="background-color:#0000FF; padding: 0px 30px 30px 30px; color:white;">
+      <div style="border-top: 15px dotted #fff;margin-top: -67px;margin-bottom: 80px;">
+      </div>
+      <p style="font-weight:bold; font-size:20px;">
+        Dear
+        <b>${object.name}</b>
+        🥳,
+      </p>
+      <p style="font-weight:bold; font-size:16px;">
+        Many More Happy Returns of the Day!!
+      </p>
+      <p style="font-size:16px;">Happy Birthday! On this special day, we hope you're surrounded by love, joy, and all the things that bring a smile to your face.
+       You are a valuable member of our team and it's a privilege to work with you every day.
+       We wish you all the best on your birthday and throughout the coming year.</p>
+
+                ]]>
+            </field>
+        </record>
+    </data>
+</odoo>

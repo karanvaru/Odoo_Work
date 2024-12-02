@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    
+<!--    <template id="rental_product_request" name="rental_product_request" inherit_id="website.assets_frontend">-->
+<!--           <xpath expr="." position="inside">-->
+<!--             <script type="text/javascript" src="/odoo_rental_request_management/static/src/js/rental_product_request.js"></script>-->
+<!--           </xpath>-->
+<!--    </template>-->
+
+
+    <template id="add_rental_product_so" name="Add Rental Product">
+        <div role="dialog" class="modal fade modal_add_rental_product" id="modalrentalproduct">
+            <div class="modal-dialog">
+                <form class="modal-content" method="POST" id="rental_request_template" action="/create/rental_so">
+                    <div class="modal-content">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <header class="modal-header">
+                        <h4 class="modal-title">Add Product on rent</h4>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&amp;times;</button>
+                    </header>
+                    <main class="modal-body website_wallet" id="select-rentalproduct">
+                        <input type="hidden" t-if="sale_order_id" name="rental_sale_order" t-att-value="sale_order_id.id"/>
+                        <div class="row col-12">
+                            <t t-set="website_rental_pricelists" t-value="pricelist_ids" />
+                            <div class="col-6 pull-right rental_web_pricelist_fade_div">
+                                <select class="form-control" name="rental_web_pricelist_fade" id="rental_web_pricelist_fade">
+                                    <option value="">Select Pricelists</option>
+                                    <t t-foreach="website_rental_pricelists" t-as="website_rental_pricelist">
+                                        <option t-att-value="website_rental_pricelist.id" t-att-selected="sale_order_id.pricelist_id.id == website_rental_pricelist.id if sale_order_id else None"><span t-field="website_rental_pricelist.display_name"/></option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+
+                        <input type="hidden" class="form-control o_rental_customer_fade" name="customer_id" 
+                        required="True" t-attf-value="#{user_id.partner_id.name if not user_id._is_public() else ''} "/>
+                        <input type="hidden" class="form-control o_rental_customer_email_fade" name="email" 
+                        required="True" t-attf-value="#{user_id.partner_id.email if not user_id._is_public() else ''}"/>
+                        <input type="hidden" class="form-control o_rental_customer_phone_fade" name="phone" 
+                        required="True" t-attf-value="#{user_id.partner_id.phone if not user_id._is_public() else ''}"/>
+
+                        <div class="row col-12 mb16 mt8" name="rental_product_tmpl">
+                            <label class="col-3 control-label" for="name">Product * </label>
+                            <div class="col-9">
+                                <select id="rental_product_templ_select" name="rental_product_templ_select" class="form-control rental_product_templ_select probc_select_2">
+                                    <option value="">Select</option>
+                                    <t t-foreach="product_templ_ids" t-as="product_tmpl">
+                                        <option t-att-value="product_tmpl.id">
+                                            <t t-esc="product_tmpl.display_name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row col-12 mb16 mt8" name="rental_product_variant">
+                            <label class="col-3 control-label" for="name">Product Variant *</label>
+                            <div class="col-9">
+                                <select id="rental_product_variant_select" name="rental_product_variant_select" class="form-control rental_product_variant_select">
+                                    <option value="">Select</option>
+                                    <t t-foreach="product_varian_ids" t-as="variant">
+                                        <option t-att-value="variant.id" t-att-product-tmpl-id="variant.product_tmpl_id.id" t-att-lst-price="variant.lst_price">
+                                            <t t-esc="variant.display_name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <t t-foreach="product_varian_ids.sudo()" t-as="variant">
+                            <div class="row col-12 mb16 mt16 variants_desc" t-attf-id="variant_desc_#{variant.id}">
+                                <div class="col-3">
+                                    <img t-att-src="website.image_url(variant, 'image_1920', '80x80')"/>
+                                </div>
+                                
+                                <div class="col-9">
+                                    <span t-field="variant.description_sale"/>
+                                </div>
+                            </div>
+                        </t>
+                        
+                        <div class="row col-12 mb16 mt8" name="rental_duration">
+    
+                            <div class="col-md-6 col-sm-12">
+                                <label class="control-label" for="name">Rental Start Date *</label>
+                                <div class="form-group">
+                                    <div class="input-group date" id="fade_start_datetime" data-target-input="nearest">
+                                        <input id ="input_rental_start_datetime" type="text" name="input_rental_start_datetime"  class="form-control datetimepicker-input input_rental_start_datetime" data-date-format="YYYY-MM-DD HH:MM:SS" placeholder="YYYY-MM-DD HH:MM:SS" t-on-change="() => this.onRentalDateChange()"/>
+<!--                                        o_datepicker_input o_input datetimepicker-input-->
+                                       <div class="o_start_date_picket"/>
+                                       <div class="input-group-append" data-target="#input_rental_start_datetime" data-toggle="datetimepicker" data-date-format="dd-mm-yyyy HH:MM:SS">
+                                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           
+                           <div class="col-md-6 col-sm-12">
+                                <label class="control-label" for="name">Rental End Date *</label>
+                                <div class="form-group">
+                                    <div class="input-group date" id="fade_end_datetime" data-target-input="nearest">
+                                        <input id ="input_rental_end_datetime" type="text" name="input_rental_end_datetime"  class="form-control datetimepicker-input input_rental_end_datetime" data-date-format="YYYY-MM-DD HH:MM:SS" placeholder="YYYY-MM-DD HH:MM:SS" t-on-change="() => this.onRentalDateChange()"/>
+                                       <div class="o_start_date_picket"/>
+                                       <div class="input-group-append" data-target="#input_rental_end_datetime" data-toggle="datetimepicker" data-date-format="dd-mm-yyyy HH:MM:SS">
+                                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                       </div>
+<!--                                       <div class="input-group-append ml8 o_edit_rental_duration_fade">-->
+<!--                                                <a id="get_rental_date" -->
+<!--                                                    class="btn btn-sm btn-light ml8" -->
+<!--                                                    data-placement="top" -->
+<!--                                                    data-bs-html="true" -->
+<!--                                                    data-bs-toggle="modal" -->
+<!--                                                    data-bs-target="#start_end_date_fade" >-->
+<!--                                                    <i class="fa fa-pencil"></i>-->
+<!--                                                </a>-->
+<!--                                       </div>-->
+                                   </div>
+                               </div>
+                           </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div id="div_fade_date_warning" class="col-12 alert alert-warning o_hidden">
+                                <strong>Startdate Enddate Must be Set</strong>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class="row col-12 mb16 mt8" name="rental_duration">
+                                <div class="col-md-3 col-sm-6">
+                                    <strong>Quantity</strong>
+                                    <div class="css_quantity input-group to_open_select" contenteditable="false">
+                                        <div class="input-group-prepend">
+                                            <a t-attf-href="#" class="btn btn-secondary js_add_rent_qty" aria-label="Remove one" title="Remove one">
+                                                <i class="fa fa-minus"></i>
+                                            </a>
+                                        </div>
+                                        <input type="text" class="form-control rental_product_fade_qty" data-bs-min="1" name="rental_product_fade_qty" t-att-value="add_qty or 1" readonly="readonly"/>
+                                        <div class="input-group-append">
+                                            <a t-attf-href="#" class="btn btn-secondary float_left js_add_rent_qty" aria-label="Add one" title="Add one">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-3 col-sm-6">
+                                    <strong>Price</strong>
+                                    <input type="hidden" class="form-control rental_product_fade_price" data-min="1" name="rental_product_fade_price" t-att-value="add_price or 1"/>
+                                    <div class="oe_structure"/>
+                                    <span class="rental_variant_price"/>
+                                </div>
+                                
+                                <div class="col-md-3 col-sm-6">
+                                        <strong>Days</strong>
+                                        <input type="text" class="form-control rental_product_fade_days" data-min="1" name="rental_product_fade_days" t-att-value="add_days or 1" readonly="readonly"/>
+                                </div>
+                                
+                                <div class="col-md-3 col-sm-6">
+                                    <strong>Hours</strong>
+                                    <input type="text" class="form-control rental_product_fade_hours" data-min="1" name="rental_product_fade_hours" t-att-value="add_hours or 1" readonly="readonly"/>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="col-12 o_js_rental_avail_status alert ml16">
+                                <strong><span id="rental_product_avail_status"/></strong>
+                            </div>
+                        </div>
+
+    
+                        
+                    </main>
+                    <footer class="modal-footer">
+                        <button type="submit" t-attf-class="btn btn-primary buy_rental_product_fade">Add</button>
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
+                    </footer>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </template>
+
+    <template id="rental_request_template_view" name="Buy Rental Product">
+        <t t-call="website.layout">
+            <div class="container mb64">
+
+                <div class="row rental_product_request_probc">
+                    <t t-call="odoo_rental_request_management.add_rental_product_so"/>
+                    <form action="/sale/rental/product" method="post" class="col-12 mt32" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <input type="hidden" name="rental_sale_order_id" t-attf-value="#{sale_order_id.id if sale_order_id else ''}"/>
+                        <div class="row col-md-12 rental_pricelist_div">
+                            <t t-set="website_rental_pricelists" t-value="pricelist_ids" />
+                            <div class="col-md-3 col-sm-9">
+                                <select class="form-control btn-info" name="rental_web_pricelist" id="rental_web_pricelist" t-att-disabled="'disabled' if sale_order_id and not sale_order_id.custom_request_to_reset_pricelist else None">
+                                    <option value="">Select Pricelists</option>
+                                    <t t-foreach="website_rental_pricelists" t-as="website_rental_pricelist">
+                                        <option t-att-value="website_rental_pricelist.id" t-att-selected="sale_order_id.pricelist_id.id == website_rental_pricelist.id if sale_order_id  else None" t-att-currency-symbol="website_rental_pricelist.currency_id.symbol" t-att-currency-sym-position="website_rental_pricelist.currency_id.position"><span t-field="website_rental_pricelist.display_name"/></option>
+                                    </t>
+                                </select>
+                                <span class="text-muted">(* Select Pricelist  in order to add rental items in your request)</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="text-muted">
+                                    <button type="button" t-attf-class="btn btn-primary reset_rental_so_pricelist #{'o_hidden' if sale_order_id and sale_order_id.is_custom_rental_so_submitted else None}">Reset <i class="fa fa-refresh"/></button>
+                              </span>
+                            </div>
+                        </div>
+                        <div class="row col-md-12 sol-sm-12">
+                            <div class="col-md-4 col-sm-12">
+                                <input type="hidden" t-att-value="user_id._is_public()" class="is_public_input_probc"/>
+                                <label class="control-label" for="name">Your Name</label>
+                                    <input type="text" class="form-control o_rental_customer_contacts" name="customer_id" 
+                                    required="True" t-attf-value="#{sale_order_id.partner_id.name if sale_order_id else user_id.partner_id.name if not user_id._is_public() else ''} " t-att-readonly="'readonly' if sale_order_id and sale_order_id.partner_id else 'readonly' if not user_id._is_public() else None"/>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label class="control-label" for="name">Your Email</label>
+                                    <input type="text" class="form-control o_rental_customer_contacts" name="email" 
+                                    required="True" t-attf-value="#{sale_order_id.partner_id.email if sale_order_id else user_id.partner_id.email if not user_id._is_public() else ''}" t-att-readonly="'readonly' if sale_order_id and sale_order_id.partner_id and sale_order_id.partner_id.email else 'readonly' if not user_id._is_public() else None"/>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <label class="control-label" for="name">Your Phone</label>
+                                    <input type="text" class="form-control o_rental_customer_contacts" name="phone" 
+                                    required="True" t-attf-value="#{sale_order_id.partner_id.phone if sale_order_id else user_id.partner_id.phone if not user_id._is_public() else ''}" t-att-readonly="'readonly' if sale_order_id and sale_order_id.partner_id else 'readonly' if not user_id._is_public() else None"/>
+                            </div>
+                            <div class="clearfix"/>
+                            <div class="col-12 o_add_rental_product">
+                                
+<!--                                <div class="modal fade" id="start_end_date_fade" role="dialog" aria-hidden="true">-->
+<!--                                <div class="modal-dialog" >-->
+<!--                                    <div class="modal-content h-75" >-->
+<!--                                        <form id="rental_datetime" method="POST" class="modal-content">-->
+<!--                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>-->
+<!--                                            <div class="modal-header">-->
+<!--                                                <h3 class="modal-title">Set Rental Periods</h3>-->
+<!--                                            </div>-->
+<!--                                            <div class="modal-body">-->
+<!--                                                <button type="button" class="close" data-bs-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>-->
+
+<!--                                            <div class="row col-12">-->
+<!--                                                <div class="start_date col-md-6 col-sm-12">-->
+<!--                                                    <div class="form-group">-->
+<!--                                                        <label for="start_datetime_fade" class="control-label">Start Datetime</label>-->
+<!--                                                        <div class="input-group date" id="start_datetime_picker" data-bs-target-input="nearest">-->
+<!--                                                            <input id ="start_datetime_fade" type="text" name="start_datetime_fade"  class="form-control datetimepicker-input" data-target="#start_datetime_picker" data-date-format="YYYY-MM-DD HH:mm:ss" placeholder="YYYY-MM-DD HH:MM:SS"/>-->
+<!--                                                           <div class="o_start_date_picket"/>-->
+<!--                                                           <div class="input-group-append" data-target="#start_datetime_picker" data-toggle="datetimepicker" data-bs-date-format="dd-mm-yyyy HH:mm:ss">-->
+<!--                                                               <div class="input-group-text"><i class="fa fa-calendar"></i></div>-->
+<!--                                                           </div>-->
+<!--                                                       </div>-->
+<!--                                                   </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="end_date col-md-6 col-sm-12">-->
+<!--                                                    <div class="form-group">-->
+<!--                                                        <label for="end_datetime_fade" class="control-label">End Datetime</label>-->
+<!--                                                        <div class="input-group date" id="end_datetime_picker" data-target-input="nearest">-->
+<!--                                                            <input id ="end_datetime_fade" type="text" name="end_datetime_fade"  class="form-control datetimepicker-input" data-target="#end_datetime_picker" data-date-format="YYYY-MM-DD HH:mm:ss" placeholder="YYYY-MM-DD HH:MM:SS" />-->
+<!--                                                           <div class="input-group-append" data-target="#end_datetime_picker" data-toggle="datetimepicker">-->
+<!--                                                               <div class="input-group-text"><i class="fa fa-calendar"></i></div>-->
+<!--                                                           </div>-->
+<!--                                                       </div>-->
+<!--                                                   </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div id="div_fade_date_compare_warning" class="col-12 alert alert-info o_hidden">-->
+<!--                                                <strong>End Date Must Be Greater Then Start Date</strong>-->
+<!--                                            </div>-->
+<!--                                                <div id="div_fade_date_warning" class="col-12 alert alert-warning o_hidden">-->
+<!--                                                    <strong>Startdate Enddate Must be Set</strong>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="modal-footer">-->
+<!--                                                <button id="o_rental_date_submit" type="button" class="bnt btn-md btn-primary">Set</button>-->
+<!--                                                <a role="button" href="#" class="btn btn-link btn-sm" data-bs-dismiss="modal">Close</a>-->
+<!--                                            </div>-->
+<!--                                        </form>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="clearfix"/>
+                        </div>
+                            <div class="col-md-12 col-sm-12 rental_order_line_div_probc mt16" >
+                                <h4 t-if="sale_order_id and sale_order_id.order_line"><strong>Rental Lines</strong></h4>
+                                <div class="clearfix"/>
+                                <table class="table table-striped table-responsive-sm table_product_rent_probc" t-if="sale_order_id and sale_order_id.order_line">
+                                    <thead>
+                                        <th colspan="2">Product</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Days</th>
+                                        <th>Hours</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="sale_order_id.order_line" t-as="order_line_id">
+                                            <tr class="o_rental_soline_product" t-att-product_id="order_line_id.product_id.id" t-att-data-product-tmpl-id="order_line_id.product_id.product_tmpl_id.id">
+
+                                                <td name="td_rental_product_img">
+                                                    <img t-att-src="website.image_url(order_line_id.product_id, 'image_1920', '100x100')"/>
+                                                </td>
+
+                                                <td name="td_rental_product_name">
+                                                    <span t-field="order_line_id.product_id.display_name"/>
+                                                </td>
+
+                                                <td name="td_rental_product_start_date">
+                                                    <span t-field="order_line_id.custom_start_datetime"/>
+                                                </td>
+
+                                                <td name="td_rental_product_end_date">
+                                                    <span t-field="order_line_id.custom_end_datetime"/>
+                                                </td>
+                                                
+                                                <td name="td_rental_product_select">
+                                                      <span t-field="order_line_id.custom_rent_days"/>
+                                                </td>
+                                                
+                                                <td name="td_rental_product_select">
+                                                    <span t-esc="'{0:02.0f}:{1:02.0f}'.format(*divmod(order_line_id.custom_rent_hours * 60, 60))"/>
+                                                </td>
+                                                
+                                                <td name="td_rental_product_qty">
+                                                    <span t-field="order_line_id.product_uom_qty"/>
+                                                </td>
+                                                
+                                                <td name="td_rental_product_select">
+                                                      <span t-field="order_line_id.price_unit" class="monetary_field" t-options="{'widget': 'monetary', 'display_currency': sale_order_id.currency_id}"/>
+                                                </td>
+                                                <td name="td_remove_rental_line">
+                                                    <span t-attf-class="fa fa-trash remove_order_line_trash #{'o_hidden' if sale_order_id and sale_order_id.is_custom_rental_so_submitted else None}" t-att-line-id="order_line_id.id"/>
+                                                </td>
+
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+    
+                                <div class="clearfix"/>
+                                <div class="mt16">
+                                        <button type="button" t-attf-class="btn btn-success add_rental_req_probc #{'o_hidden' if sale_order_id and sale_order_id.is_custom_rental_so_submitted else None}" title="Pricelist must be select To Add Product" data-bs-toggle="tooltip">Add Product</button> <span class="add_prod_disable_warning text-danger o_hidden"> Select Pricelist  in order to add rental items in your request</span>
+                                </div>
+                                <div class="clearfix"/>
+
+<!--                                <div class="col-md-3 col-sm-6 pull-right text-right" t-if="sale_order_id and sale_order_id.order_line">-->
+                                <div class="col-sm-4 col-md-4 ms-auto" t-if="sale_order_id and sale_order_id.order_line">
+                                    <table class="table table-sm">
+                                        <tr>
+                                            <td class="border-0">Subtotal: </td><td class="border-0"><span t-field="sale_order_id.amount_untaxed"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border-0">Taxes: </td><td class="border-0"> <span t-field="sale_order_id.amount_tax"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total: </td><td> <span t-field="sale_order_id.amount_total"/></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="clearfix"/>
+                            <div class="row rental_request_confirmed_div" t-if="sale_order_id and sale_order_id.is_custom_rental_so_submitted">
+                                <div class="form-group ml16">
+                                    <div t-attf-class="alert col-12 mt16 alert-info">
+                                        <h5>This Order has been confirmed for add product please add new rental request</h5>
+                                        <a href="/product/sale/rental_request" class="btn btn-success btn-sm" title="Add New Product">Add New Product</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    
+                    <form action="/submit/custom/rental/order" method="post" class="col-12 mt32">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="container">
+                            <div class="row col-12">
+                                <input type="hidden" name="sale_order_id" t-attf-value="#{sale_order_id.id if sale_order_id else ''}"/>
+                                <div class="col-md-4 col-sm-12 mt16" t-if="sale_order_id">
+                                    <h4><label class="control-label" for="payment_order_number">Order Number: </label></h4>
+                                    <span t-field="sale_order_id.name"/>
+                                </div>
+
+                                <div class="clearfix"/>
+                                <div class="col-md-4 col-sm-12 mt16" t-if="payment_term_id">
+                                    <h4><label class="control-label" for="payment_term">Payment Term: </label></h4>
+                                    <span t-field="payment_term_id.name" name="payment_term"/>
+                                </div>
+
+                                <div class="row col-12 mt16">
+                                    <div class="col-md-6 col-sm-6" t-if="sale_order_id and sale_order_id.order_line">
+                                        <h4><label for="rental_drop_options" class="control-label">Select Pickup Options</label></h4>
+                                        <div class="clearfix"/>
+                                        <t t-foreach="rental_drop_options_ids" t-as="rental_drop_options_id" t-if="sale_order_id and not sale_order_id.is_custom_rental_so_submitted">
+                                            <input type="radio" name="rental_drop_options" t-att-value="rental_drop_options_id.id" t-att-checked="'checked' if sale_order_id.custom_rental_drop_options_id.id == rental_drop_options_id.id else None"> <span t-field="rental_drop_options_id.name"/> </input>
+                                            <div class="clearfix"/>
+                                        </t>
+                                        
+                                        <t t-if="sale_order_id and sale_order_id.is_custom_rental_so_submitted and sale_order_id.custom_rental_drop_options_id">
+                                            <input type="radio" name="rental_drop_options_selected" t-att-value="sale_order_id.custom_rental_drop_options_id.id" checked="checked"> <span t-field="sale_order_id.custom_rental_drop_options_id.name"/> </input>
+                                        </t>
+                                        <input t-if="sale_order_id and sale_order_id.is_custom_rental_so_submitted and not sale_order_id.custom_rental_drop_options_id" type="radio" name="rental_drop_options_dummy" checked="checked"> Not Selected </input>
+                                    </div>
+                                </div>
+
+                                <div class="row col-12 rental_request_submit_comment_div mt16" t-if="sale_order_id and sale_order_id.order_line and not sale_order_id.is_custom_rental_so_submitted">
+                                    <div class="form-group form-field col-md-12 col-sm-12">
+                                        <h4><label class="control-label" for="payment_term">Addition Comment: </label></h4>
+                                        <textarea id="rental_submit_comment_probc" name="customer_additional_comment" t-attf-class="form-control #{'o_hidden' if not sale_order_id and not sale_order_id.order_line else None}" title="Submit Comment" t-att-readonly="'readonly' if sale_order_id and sale_order_id.is_custom_rental_so_submitted else None"/>
+                                    </div>
+                                </div>
+
+                                <div class="row rental_request_btn_div" t-if="not sale_order_id or sale_order_id and not sale_order_id.is_custom_rental_so_submitted">
+                                    <div class="form-group form-field o_website_form_required_custom col-md-12 col-sm-12 ml16 mt16">
+                                        <button type="submit" class="btn btn-success submit_rental_req_probc" t-if="sale_order_id and sale_order_id.order_line">Submit</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </t>
+      </template>
+
+    <template id="rental_request_submitted" name="Rental Request Submitted Successfully">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <div t-attf-class="alert col-6 mt16 alert-success" t-if="is_rental_quot_submitted or so_allready_submitted">
+                        <h5><p>Dear <span t-field="sale_order_id.partner_id.name"/>,</p></h5>
+                        <p>Your Rental Request has been submitted success fully sent, Our Team will get back to you soon,</p>
+                        <p>Thank You,</p>
+                        <p><span t-field="sale_order_id.company_id.name"/></p>
+                    </div>
+                    <div t-attf-class="alert col-6 mt16 alert-warning" t-if="not is_rental_quot_submitted and not so_allready_submitted">
+                        <p><span t-esc="message"/></p>
+                    </div>
+                    <div>
+                        <a t-attf-href="/product/sale/rental_request/#{sale_order_id}" class="btn btn-md btn-primary" t-if="not is_rental_quot_submitted and not so_allready_submitted">
+                            Back to Edit
+                        </a>
+                        <a href="/" class="btn btn-md btn-primary">
+                            Go To Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="custom_rental_request_page" model="website.page">
+        <field name="url">/product/rental_request</field>
+        <field name="website_published">True</field>
+        <field name="view_id" ref="rental_request_template_view" />
+    </record>
+    
+    <record id="custom_rental_request_web_menu" model="website.menu">
+      <field name="name">Rental Request</field>
+      <field name="url">/product/sale/rental_request</field>
+      <field name="sequence" type="int">59</field>
+    </record>
+</odoo>

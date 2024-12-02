@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+<!--        <report-->
+<!--            id="print_support_request" -->
+<!--            model="helpdesk.support"-->
+<!--            report_type="qweb-pdf"-->
+<!--            string="Print Support Request"-->
+<!--            name="website_helpdesk_support_ticket.support_report"-->
+<!--            file="website_helpdesk_support_ticket.support_report"-->
+<!--         />-->
+         <record id="print_support_request" model="ir.actions.report">
+            <field name="name">Print Support Request</field>
+            <field name="model">helpdesk.support</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">website_helpdesk_support_ticket.support_report</field>
+            <field name="report_file">website_helpdesk_support_ticket.support_report</field>
+            <field name="binding_model_id" ref="model_helpdesk_support"/>
+            <field name="binding_type">report</field>
+        </record>
+         
+        <template id="support_report">
+          <t t-call="web.html_container">
+             <t t-foreach="docs" t-as="doc">
+              <!-- <t t-call="report.external_layout"> -->
+               <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="text-left mt32 mb32" name="ticket_header">
+                         <h3>
+                            <strong><span t-field="doc.name"/> - <span t-field="doc.subject"/> [<span t-field="doc.stage_type"/>]</strong>
+                         </h3>
+                    </div>
+                    
+                    <table class="table table-sm table-bordered" name="ticket_assign">
+                       <tr >
+                           <td><strong>Assigned To</strong></td><td><span t-field="doc.user_id"/></td>
+                           <td><strong>Customer</strong></td><td><span t-field="doc.partner_id"/></td>
+                           
+                       </tr>
+                       <tr >
+                           <td><strong>Email</strong></td><td><span t-field="doc.email"/></td>
+                           <td><strong>Phone</strong></td><td><span t-field="doc.phone"/></td>
+                       </tr>
+                       <tr >
+                           <td><strong>Company</strong></td><td><span t-field="doc.company_id"/></td>
+                           <td><strong></strong></td><td></td>
+                       </tr>
+                    </table>
+                    <table class="table table-sm table-bordered" name="ticket_dept">
+<!--                       <tr style="border: 2px solid black;">-->
+                        <tr>
+                           <td><strong>Support Team</strong></td><td><span t-field="doc.team_id"/></td>
+                           <td><strong>Team Leader</strong></td><td><span t-field="doc.team_leader_id"/></td>
+                       </tr>
+<!--                       <tr style="border: 2px solid black;">-->
+                        <tr>
+                           <td><strong>Department</strong></td><td><span t-field="doc.department_id"/></td>
+                           <td><strong>Analytic Account</strong></td><td><span t-field="doc.analytic_account_id"/></td>
+                       </tr>
+                       <tr>
+<!--                       <tr style="border: 2px solid black;">-->
+                           <td><strong>Project</strong></td><td><span t-field="doc.project_id"/></td>
+                           <td><strong>Priority</strong></td><td><span t-field="doc.priority"/></td>
+                       </tr>
+                    </table>
+                    <table class="table table-sm table-bordered" name="ticket_details">
+                        <tr>
+<!--                       <tr style="border: 2px solid black;">-->
+                           <td><strong>Create Date</strong></td><td><span t-field="doc.request_date"/></td>
+                           <td><strong>Close Date</strong></td><td><span t-field="doc.close_date"/></td>
+                       </tr>
+                       <tr>
+<!--                       <tr style="border: 2px solid black;">-->
+                           <td><strong>Is Ticket Closed ?</strong></td><td><span t-field="doc.is_close"/></td>
+                           <td><strong>Total Hours Spent</strong></td><td><span t-field="doc.total_spend_hours" t-options='{"widget":"float_time"}'/><!--span t-esc="time.strftime('%H:%M', time.gmtime(doc.total_spend_hours*60*60))"/--></td>
+                       </tr>
+                    </table>
+                    <div class="oe_title" name="ticket_description">
+                        <p><h3>Description</h3><span t-field="doc.description"/></p>
+                    </div>
+<!--                    <p><h3>Description</h3><span t-field="doc.description"/></p>-->
+                    <t t-if="doc.timesheet_line_ids">
+                        <p><h3>Timesheets</h3></p>
+                        <table class="table table-sm table-bordered" name="ticket_timesheet">
+                            <tbody>
+                                <t t-if="doc.timesheet_line_ids">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Analytic Account</th> 
+                                        <th>Helpdesk Support</th>
+                                        <th>Billable</th>
+                                        <th>Description</th>
+                                        <th>Hours</th>
+                                    </tr>
+                                </t>
+                                <tr t-foreach ="doc.timesheet_line_ids" t-as="li">
+                                    <td><span t-field="li.date"/></td>
+                                    <td><span t-field="li.account_id"/></td>
+                                    <td><span t-field="li.support_request_id"/></td>
+                                    <td><span t-field="li.billable"/></td>
+                                    <td><span t-field="li.name"/></td>
+                                    <td><span t-field="li.unit_amount" t-options='{"widget":"float_time"}'/><!--span t-esc="time.strftime('%H:%M', time.gmtime(li.unit_amount*60*60))"/--></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                </div>
+              </t>
+            </t>
+          </t>
+        </template>
+    </data>
+</odoo>

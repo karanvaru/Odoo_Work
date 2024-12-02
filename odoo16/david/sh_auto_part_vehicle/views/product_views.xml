@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_motorcycle_product_normal_form" model="ir.ui.view">
+        <field name="name">sh.motorcycle.product.normal.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="motorcycle" string="Vehicles">
+                	<group>
+						<field name="sh_is_common_product"/>
+						<field name="garde" widget="many2many_tags" attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+		                <field name="engine" widget="many2many_tags" attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+		                <field name="transmission_ids" widget="many2many_tags" attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+		                <field name="product_type" widget="many2many_tags" attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+		                <field name="brand" attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+		                <field name="made_in" attrs="{'invisible': [('sh_is_common_product', '=', True)]}"/>
+					</group>
+                    <field name="motorcycle_ids" attrs="{'invisible': [('sh_is_common_product', '=', True)]}">
+                        <tree editable="bottom">
+                            <field name="make_id" />
+                            <field name="mmodel_id" />
+                            <field name="year_id" />
+                            <field name="end_year_id" />
+                        </tree>
+                        <form>
+                            <group>
+                                <field name="make_id" />
+                                <field name="mmodel_id" />
+                                <field name="year_id" />
+                                <field name="end_year_id" />
+                            </group>
+                        </form>
+                    </field>
+
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+    
+    <!-- Product Template -->
+    <!-- <record id="sh_optional_product_normal_form" model="ir.ui.view">
+        <field name="name">sh.optional.product.normal.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+        	<field name="alternative_product_ids" position="after">
+			    <field name='optional_product_ids' widget='many2many_tags'/>
+			</field>
+			
+			
+        </field>
+    </record> -->
+    
+    
+    
+    <!-- Product Template onyl form-->
+    <record id="sh_product_only_form" model="ir.ui.view">
+        <field name="name">sh.product.only.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+			<xpath expr="//page[last()]" position="after">		
+				<page name="Vehicle OEM" string="Vehicle OEM">
+					 <field name="vehicle_oem_lines" widget="one2many" context="{'show_attribute': False}">
+                        <tree string="Variants" editable="bottom">
+                        	 <field name="name"/>
+                        	 <field name="supplier_id"/>
+                        	 <field name="is_visible_website"/>
+                        </tree>
+                     </field>
+				</page>
+				
+				<page name="Specification" string="Specification">
+					 <field name="specification_lines" widget="one2many" context="{'show_attribute': False}">
+                        <tree editable="bottom">
+                        	 <field name="name"/>
+                        	 <field name="value"/>
+                        </tree>
+                     </field>
+				</page>
+
+			</xpath>	
+			
+        </field>
+    </record>
+</odoo>

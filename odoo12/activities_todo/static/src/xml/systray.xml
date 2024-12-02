@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="mail.systray.ActivityMenu.Previews">
+        <t t-jquery="t[t-foreach='activities']" t-operation="after">
+            <div class="dropdown-item-text text-center"  t-if="!_.isEmpty(activities)">
+                <button type="button"
+                        class="btn btn-link activity_todo"
+                >
+                    Process as to-do list
+                </button>
+            </div>
+        </t>
+    </t>
+
+</templates>

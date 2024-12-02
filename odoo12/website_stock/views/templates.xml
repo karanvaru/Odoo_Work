@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_frontend_stock" inherit_id="website.assets_frontend" name="Assets Frontend Stock">
+        <xpath expr="." position="inside">
+            <link rel='stylesheet' href='/website_stock/static/src/css/website_stock.css' />
+            <script type="text/javascript" src="/website_stock/static/src/js/website_stock_main.js"></script>
+            <script type="text/javascript" src='/website_stock/static/src/js/stock_quntity_vaildation.js'></script>
+            <script type="text/javascript" src='/website_stock/static/src/js/stock_checkout_validation.js'></script>
+        </xpath>
+    </template>
+
+    <template id="website_stock_show" inherit_id="website_sale.product" active="True" customize_show="True" name="Show Product Stock">
+        <xpath expr="//section//div//a[@id='add_to_cart']" position="before">
+            <t t-set="config_setting" t-value="website.get_config_settings_values()"/>
+            <t t-set="color_array" t-value="website.get_message_color(config_setting)"/>
+            <t t-call="website_stock.product_stock" />
+        </xpath>
+    </template>
+
+    <template id="cart_line_validate_lines" inherit_id="website_sale.cart_lines">
+        <xpath expr="//table//tbody//td[hasclass('td-qty')]" position="replace">
+            <t t-set="validate_value" t-value="website.cart_line_stock_validate(int(line.product_id.id), float(line.product_uom_qty))"/>
+            <t t-if="not validate_value">
+                <td class="text-center td-qty" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id">
+                    <div class="cart-line-error-md hidden-xs">
+                        <i class="fa fa-exclamation-triangle"> Product Not Available</i>
+                        <a href="#" class="remove-cart-line"><i class="fa fa-trash-o fa-2x"/></a>
+                    </div>
+                </td>
+            </t>
+            
+            <t t-if="validate_value">
+                <td class="text-center td-qty">
+                    <div t-if="not line.linked_line_id" class="css_quantity input-group oe_website_spinner">
+                        <div class="input-group-prepend">
+                            <a t-attf-href="#" class="btn btn-link js_add_cart_json d-none d-md-inline-block" aria-label="Remove one" title="Remove one">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                        </div>
+                        <input type="text" class="js_quantity form-control quantity" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id" t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty" />
+                        <div class="input-group-append">
+                            <a t-attf-href="#" class="btn btn-link float_left js_add_cart_json d-none d-md-inline-block" aria-label="Add one" title="Add one">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <t t-if="line.linked_line_id">
+                        <span class="js_quantity text-muted" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id" t-esc="int(line.product_uom_qty)"/>
+                    </t>
+                </td>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="product_stock">
+        <t t-foreach="product.product_variant_ids" t-as="product">
+            <t t-set="product_quantity" t-value="website.get_product_stock_qty(product.sudo(), config_setting.get('wk_stock_type'))" />
+            <div class="stock_info_div" t-att-id="'%s' % product.id" t-att-value="'%s' % product_quantity" t-att-allow="'%s' %product.wk_order_allow" style="display:none;">
+                <t t-set="product_obj" t-value="product" />
+                <t t-if="product_quantity > 0 and config_setting.get('wk_display_qty') and product.type != 'service'">
+                    <b><span t-esc="product_quantity"/></b>&#032;<span t-esc="product.sudo().uom_id.name" />
+                </t>
+                <t t-call="website_stock.show_stock_msg" />
+            </div>
+        </t>
+    </template>
+
+    <template id="stock_panel" inherit_id="website_sale.products_item" active="True" customize_show="True" name="Show Stock Information">
+        <xpath expr="//form" position="before">
+            <t t-set="config_setting" t-value="website.get_config_settings_values()"/>
+            <t t-set="color_array" t-value="website.get_message_color(config_setting)"/>
+            <t t-set="product_quantity" t-value="website.get_product_stock_qty(product.sudo(), config_setting.get('wk_stock_type'))" />
+        </xpath>
+
+        <xpath expr="//div[@itemscope='itemscope']" position="attributes">
+            <attribute name="t-att-data-publish">'off' if product.product_variant_ids and not product_quantity &gt; 0 and product.product_variant_ids[0].wk_order_allow != 'allow' else 'on'</attribute>
+        </xpath>
+
+        <xpath expr="//form" position="inside">
+            <div class="stock-panel pull-right">
+                <t t-if="product.product_variant_ids">
+                    <t t-set="product_obj" t-value="product.product_variant_ids[0]" />
+                    <t t-call="website_stock.show_stock_msg" />
+                </t>
+            </div>
+        </xpath>
+
+        <xpath expr="//section//div//b" position="after">
+            <t t-if="config_setting.get('wk_display_qty') and product.type != 'service'">
+                <span class="stock-quantity">
+                    <i><u><t t-esc="product_quantity"/> <t t-esc="product.sudo().uom_id.name"/> left.</u></i>
+                </span>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="show_stock_msg" name="Show Stock Message">
+        <t t-if="product_quantity &gt; 0">
+            <t t-if="product.type == 'service'">
+                <t t-call="website_stock.in_stock_msg" />
+            </t>
+
+            <t t-if="product.type != 'service'">
+                <t t-if="config_setting.get('wk_extra_msg')">
+                    <t t-if="config_setting.get('wk_minimum_qty') &gt; product_quantity">
+                        <div class="custom-stock-msg stock-status mt8" t-attf-style="background:#{color_array[2][0]};color:#{color_array[2][1]};" t-esc="config_setting.get('wk_custom_message')"></div>
+                    </t>
+                    <t t-if="not config_setting.get('wk_minimum_qty') &gt; product_quantity">
+                        <t t-call="website_stock.in_stock_msg"></t>
+                    </t>
+                </t>
+                <t t-if="not config_setting.get('wk_extra_msg')">
+                    <t t-call="website_stock.in_stock_msg"></t>
+                </t>
+            </t>
+        </t>
+
+        <t t-if="not product_quantity &gt; 0">
+            <div class="out-stock-msg stock-status mt8" t-attf-style="background:#{color_array[1][0]};color:#{color_array[1][1]};">
+                <t t-if="not product_obj.wk_override_default">
+                    <t t-esc="config_setting.get('wk_out_of_stock_msg')" />
+                </t>
+                <t t-if="product_obj.wk_override_default">
+                    <t t-esc="product_obj.wk_out_of_stock_msg" />
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="in_stock_msg">
+        <div class="in-stock-msg stock-status mt8" t-attf-style="background:#{color_array[0][0]};color:#{color_array[0][1]};">
+            <t t-if="not product_obj.wk_override_default">
+                <t t-esc="config_setting.get('wk_in_stock_msg')" />
+            </t>
+            <t t-if="product_obj.wk_override_default">
+                <t t-esc="product_obj.wk_in_stock_msg" />
+            </t>
+        </div>
+    </template>
+
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="intercompany_purchase_notification" model="mail.template">
+            <field name="name">Intercompany Transaction</field>
+            <field name="model_id" ref="reddot_wms.model_purchase_order"/>
+            <field name="subject">Intercompany Purchase: {{object.name}}</field>
+            <field name="email_from">{{ object.company_id.email or 'default@example.com' }}</field>
+            <field name="email_to">{{ object.emails_notify }}</field>
+            <field name="description">Mail template: Intercompany Notifications for Sales/Purchase</field>
+            <field name="body_html" type="html">
+                <div>
+                    Dear Sir/Madam, <br/><br/>
+
+                        This Order has been created from <t t-out="object.company_id.name"/>
+                    <br></br> <br></br>
+
+                    <a t-att-href="ctx['url']" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;" target="_blank">click here to open</a>
+                    <br></br> <br></br>
+
+                    <t t-if="object.partner_ref">
+                        <t t-if="object.actual_vendor">
+                            The resulting Purchase and Sale Orders that have been created automatically in <t t-out="object.partner_id.name"/> are <t t-out="ctx['resulting_po']"/> and <t t-out="object.partner_ref"/> respectively.
+                        </t>
+                    </t>
+                    <t t-if="object.partner_ref">
+                        <t t-if="not object.actual_vendor">
+                            The reSale Order in <t t-out="object.partner_id.name"/> is <t t-out="object.partner_ref"/>.
+                        </t>
+                    </t>
+
+                    <br></br>
+
+                    Thank you.<br></br>
+                    <div style="border-top: 1px solid #ccc; margin-top: 20px; padding-top: 10px;">
+                        <p style="font-size: 12px; color: #888;">
+                            <i>This email is system generated</i>
+                        </p>
+                    </div>
+                </div>
+            </field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+    </data>
+</odoo>

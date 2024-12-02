@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    
+        <record model="helpdesk.stage.config" id="helpdesk_stage_1">
+            <field name="name">New</field>
+            <field name="stage_type">new</field>
+            <field name="sequence">1</field>
+        </record>
+        <record model="helpdesk.stage.config" id="helpdesk_stage_2">
+            <field name="name">Assigned</field>
+            <field name="stage_type">assigned</field>
+            <field name="sequence">2</field>
+        </record>
+        <record model="helpdesk.stage.config" id="helpdesk_stage_3">
+            <field name="name">Work in Progress</field>
+            <field name="stage_type">work_in_progress</field>
+            <field name="sequence">3</field>
+        </record>
+        <record model="helpdesk.stage.config" id="helpdesk_stage_4">
+            <field name="name">Needs More Info</field>
+            <field name="stage_type">needs_more_info</field>
+            <field name="sequence">4</field>
+        </record>
+        <record model="helpdesk.stage.config" id="helpdesk_stage_5">
+            <field name="name">Needs Reply</field>
+            <field name="stage_type">needs_reply</field>
+            <field name="sequence">5</field>
+        </record>
+        
+        <record model="helpdesk.stage.config" id="helpdesk_stage_6">
+            <field name="name">Reopened</field>
+            <field name="stage_type">reopened</field>
+            <field name="sequence">6</field>
+        </record>
+        <record model="helpdesk.stage.config" id="helpdesk_stage_7">
+            <field name="name">Solution Suggested</field>
+            <field name="stage_type">solution_suggested</field>
+            <field name="sequence">7</field>
+        </record>
+        <record model="helpdesk.stage.config" id="helpdesk_stage_8">
+            <field name="name">Closed</field>
+            <field name="stage_type">closed</field>
+            <field name="sequence">8</field>
+        </record>
+        
+    </data>
+</odoo>

@@ -1,0 +1,1366 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* website_helpdesk_support_ticket
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-22 05:32+0000\n"
+"PO-Revision-Date: 2017-08-22 05:32+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_helpdesk_support_ticket
+#: model:mail.template,body_html:website_helpdesk_support_ticket.email_template_helpdesk_ticket
+msgid "\n"
+"            \n"
+"<p>Dear ${object.partner_id.name},\n"
+"\n"
+"% set access_action = object.get_access_action()\n"
+"% set access_url = access_action['type'] == 'ir.actions.act_url' and access_action['url'] or '/helpdesk_email/feedback/'+str(object.id)\n"
+"% set is_online = access_action and access_action['type'] == 'ir.actions.act_url'\n"
+"\n"
+"<p>We have closed your ticket for now, if you want to reopen please do not hesitate contact us.\n"
+"\n"
+"<p><a style=\"padding: 8px 30px 8px 30px;border-radius: 6px;border: 1px solid #CCCCCC;background:#008080;margin-left: 2px;text-decoration: none;color:#FFFFFF;\" href=\"${access_url}\">Please give your feedback</a>\n"
+"<p>Thanks for your participation!     \n"
+"<p>Thank you for choosing ${object.company_id.name or 'us'}!</p>\n"
+"           <br/>\n"
+"           <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n"
+"       <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n"
+"           <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n"
+"   </div>\n"
+"   <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n"
+"       <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"           ${object.company_id.partner_id.sudo().with_context(show_address=True, html_format=True).name_get()[0][1] | safe}\n"
+"       </span>\n"
+"       % if object.company_id.phone:\n"
+"           <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n"
+"               Phone:&nbsp; ${object.company_id.phone}\n"
+"           </div>\n"
+"       % endif\n"
+"       % if object.company_id.website:\n"
+"           <div>\n"
+"               Web :&nbsp;<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n"
+"           </div>\n"
+"       %endif\n"
+"       <p></p>\n"
+"   </div>\n"
+"            "
+msgstr "\n"
+"            \n"
+"<p>Estimado ${object.partner_id.name},\n"
+"\n"
+"% set access_action = object.get_access_action()\n"
+"% set access_url = access_action['type'] == 'ir.actions.act_url' and access_action['url'] or '/helpdesk_email/feedback/'+str(object.id)\n"
+"% set is_online = access_action and access_action['type'] == 'ir.actions.act_url'\n"
+"\n"
+"<p>Hemos cerrado su caso, Si desea abrirlo de nuevo no dude en contactarnos.\n"
+"\n"
+"<p><a style=\"padding: 8px 30px 8px 30px;border-radius: 6px;border: 1px solid #CCCCCC;background:#008080;margin-left: 2px;text-decoration: none;color:#FFFFFF;\" href=\"${access_url}\">Por favor díganos su opinión</a>\n"
+"<p>Gracias por su participación!     \n"
+"<p>Muchas gracias por escoger ${object.company_id.name or 'us'}!</p>\n"
+"           <br/>\n"
+"           <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n"
+"       <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n"
+"           <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n"
+"   </div>\n"
+"   <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n"
+"       <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"           ${object.company_id.partner_id.sudo().with_context(show_address=True, html_format=True).name_get()[0][1] | safe}\n"
+"       </span>\n"
+"       % if object.company_id.phone:\n"
+"           <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n"
+"               Phone:&nbsp; ${object.company_id.phone}\n"
+"           </div>\n"
+"       % endif\n"
+"       % if object.company_id.website:\n"
+"           <div>\n"
+"               Web :&nbsp;<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n"
+"           </div>\n"
+"       %endif\n"
+"       <p></p>\n"
+"   </div>\n"
+"            "
+
+#. module: website_helpdesk_support_ticket
+#: model:mail.template,subject:website_helpdesk_support_ticket.email_template_helpdesk_ticket
+msgid "${object.name} - ${object.subject} (Closed)"
+msgstr "${object.name} - ${object.subject} (Cerrado)"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_invalid
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.thanks_mail_send
+msgid "&amp;times;"
+msgstr "&amp;horas;"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.successful_feedback
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.successful_ticket_send
+msgid "<span class=\"hidden-xs\">Go Back</span><span class=\"fa fa-long-arrow-left\"/>"
+msgstr "<span class=\"hidden-xs\">Retornar</span><span class=\"fa fa-long-arrow-left\"/>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Analytic Account  :</strong>"
+msgstr "<strong>Cuenta Analítica  :</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Analytic Account</strong>"
+msgstr "<strong>Cuenta Analítica</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Assigned To</strong>"
+msgstr "<strong>Asignado A</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Assigned to :</strong>"
+msgstr "<strong>Asignado A :</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Close Date:</strong>"
+msgstr "<strong>Cierre :</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Close Date</strong>"
+msgstr "<strong>Cierre</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Company</strong>"
+msgstr "<strong>Empresa</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Create Date:</strong>"
+msgstr "<strong>Creado:</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Create Date</strong>"
+msgstr "<strong>Creado</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Customer:</strong>"
+msgstr "<strong>Cliente:</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Customer</strong>"
+msgstr "<strong>Cliente</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Department  :</strong>"
+msgstr "<strong>Departamento  :</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Department</strong>"
+msgstr "<strong>Departamento</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Email :</strong>"
+msgstr "<strong>Email :</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Email</strong>"
+msgstr "<strong>Email</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Is Ticket Closed ?</strong>"
+msgstr "<strong>Esta cerrado el caso ?</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Is Ticket Closed?:</strong>"
+msgstr "<strong>Esta cerrado el caso:</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Message and communication history</strong>"
+msgstr "<strong>Historia de mensajes y comunicación</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Phone :</strong>"
+msgstr "<strong>Teléfono :</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Phone</strong>"
+msgstr "<strong>Teléfono</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "<strong>Printed by :</strong>"
+msgstr "<strong>Impreso por :</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "<strong>Printed on :</strong>"
+msgstr "<strong>Impreso en :</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Priority:</strong>"
+msgstr "<strong>Prioridad:</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Priority</strong>"
+msgstr "<strong>Prioridad</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Project:</strong>"
+msgstr "<strong>Proyecto:</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Project</strong>"
+msgstr "<strong>Proyecto</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.website_ticket_attachment
+msgid "<strong>Send Message and Attachments</strong>"
+msgstr "<strong>Enviar mensaje y Adjuntos</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Support Team :</strong>"
+msgstr "<strong>Equipo de Soporte :</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Support Team</strong>"
+msgstr "<strong>Equipo de Soporte</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Team Leader :</strong>"
+msgstr "<strong>Lider Equipo :</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Team Leader</strong>"
+msgstr "<strong>Lider Equipo</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "<strong>Total Hours Spent:</strong>"
+msgstr "<strong>Total horas gastadas:</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "<strong>Total Hours Spent</strong>"
+msgstr "<strong>Total horas gastadas</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "<strong>Total</strong>"
+msgstr "<strong>Total</strong>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+msgid "Add Invoice Lines"
+msgstr "Adicionar a factura"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.website_ticket_attachment
+msgid "Add a comment..."
+msgstr "Adc comentario..."
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+msgid "Add an internal note..."
+msgstr "Adc nota interna..."
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_account_analytic_account
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_analytic_account_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_analytic_account_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_analytic_account_id
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.menu_helpdesk_account
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "Analytic Account"
+msgstr "Cuenta Analítica"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.menu_item_helpdesk_anlytic_accounts
+msgid "Analytic Accounts"
+msgstr "Cuenta Analítica"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Linea Analítica"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_user_id
+msgid "Assign To"
+msgstr "Asignado A"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,state:0
+#: selection:helpdesk.support,state:0
+msgid "Assigned"
+msgstr "Asignado"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "Assigned To"
+msgstr "Asignado A"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_user_id
+msgid "Assigned to"
+msgstr "Asignado A"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.support,rating:0
+msgid "Average"
+msgstr "Promedio"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_account_analytic_line_billable
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "Billable"
+msgstr "Facturable"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_ticket_invoice_search
+msgid "Billable Timesheets"
+msgstr "Horas Facturables"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_task_timesheet_invoice_wizard_view
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.weekly_timesheet_report_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_category
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_category
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "Category"
+msgstr "Categoría"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_close_date
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_close_date
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "Close Date"
+msgstr "Fecha Cierre"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,state:0
+#: selection:helpdesk.support,state:0
+msgid "Closed"
+msgstr "Cerrado"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_company_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_company_id
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "Company"
+msgstr "Empresa"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.menu_helpdesk_configuration
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_prepared_purchase_hours_prepared_hours_id
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_request_date
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_request_date
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "Create Date"
+msgstr "Creado"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_task_timesheet_invoice_wizard_view
+msgid "Create Invoice"
+msgstr "Crear Factura"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+msgid "Create Task"
+msgstr "Crear Tarea"
+
+#. module: website_helpdesk_support_ticket
+#: model:website.menu,name:website_helpdesk_support_ticket.support_page_add
+msgid "Create Ticket"
+msgstr "Crear Caso"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_create_uid
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_prepared_purchase_hours_create_uid
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_create_uid
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_team_create_uid
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_task_timesheet_invoice_create_uid
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_weekly_timesheetreport_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_create_date
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_prepared_purchase_hours_create_date
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_create_date
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_team_create_date
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_task_timesheet_invoice_create_date
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_weekly_timesheetreport_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_partner_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_partner_id
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_comment
+msgid "Customer Comment"
+msgstr "Comentario del cliente"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_rating
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+msgid "Customer Rating"
+msgstr "Califiación del Cliente"
+
+#. module: website_helpdesk_support_ticket
+#: code:addons/website_helpdesk_support_ticket/controllers/main.py:52
+#: code:addons/website_helpdesk_support_ticket/controllers/main.py:174
+#, python-format
+msgid "Customer has sent %s attachments to this helpdesk ticket. Name of attachments are: "
+msgstr "El cliente ha enviado %s adjuntos a esta area de soporte. Los nombres de adjuntos son: "
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_tickets
+msgid "Date"
+msgstr "Fecha"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Date  ____________________________"
+msgstr "Fecha ____________________________"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_prepared_purchase_hours_date
+msgid "Date of Sales Order"
+msgstr "Fecha Orden de Venta"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_department_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_department_id
+msgid "Department"
+msgstr "Departamento"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_description
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_name
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "Description"
+msgstr "Descripción"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_display_name
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_display_name
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_prepared_purchase_hours_display_name
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_report_website_helpdesk_support_ticket_report_weekly_display_name
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_display_name
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_team_display_name
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_task_timesheet_invoice_display_name
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_weekly_timesheetreport_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_email
+msgid "Email"
+msgstr "Email"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_email
+msgid "Emails"
+msgstr "Emails"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_weekly_timesheetreport_employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Employee Signature  __________________________"
+msgstr "Firma Empleado  __________________________"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_weekly_timesheetreport_end_date
+msgid "End Date"
+msgstr "Fecha Final"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.support,rating:0
+msgid "Excellent"
+msgstr "Excelente"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Friday (HH:MM)"
+msgstr "Viernes (HH:MM)"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,category:0
+#: selection:helpdesk.support,category:0
+msgid "Functional"
+msgstr "Funcional"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+msgid "General Information"
+msgstr "Informacón General"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.support,rating:0
+msgid "Good"
+msgstr "Bueno"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "Group By"
+msgstr "Agrupar Por"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.actions.act_window,name:website_helpdesk_support_ticket.action_helpdesk_support
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.main_helpdesk_support
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.menu_helpdesk_support
+#: model:website.menu,name:website_helpdesk_support_ticket.support_page
+msgid "Helpdesk"
+msgstr "Mesa de Ayuda"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.actions.act_window,name:website_helpdesk_support_ticket.action_helpdesk_user_tree
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.menu_helpdesk_analysis
+msgid "Helpdesk Analysis"
+msgstr "Análisis Mesa de Ayuda"
+
+#. module: website_helpdesk_support_ticket
+#: model:mail.template,report_name:website_helpdesk_support_ticket.email_template_helpdesk_ticket
+msgid "Helpdesk Report"
+msgstr "Reporte Mesa de Ayuda"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_helpdesk_support
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_account_analytic_line_support_request_id
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "Helpdesk Support"
+msgstr "Soporte Mesa de Ayuda"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+msgid "Helpdesk Support Subject"
+msgstr "Tema Mesa de Ayuda"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.actions.act_window,help:website_helpdesk_support_ticket.action_helpdesk_support
+msgid "Helpdesk Support Tree."
+msgstr "Lista Mesa de ayuda."
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.actions.act_window,name:website_helpdesk_support_ticket.action_support_team
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_team_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_team_id
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "Helpdesk Team"
+msgstr "Equipo Mesa de Ayuda"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.menu_item_support_team
+msgid "Helpdesk Teams"
+msgstr "Equipos Mesa de Ayuda"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_project_task_ticket_id
+msgid "Helpdesk Ticket"
+msgstr "Caso Mesa de Ayuda"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.menu_item_helpdesk_support
+msgid "Helpdesk Tickets"
+msgstr "Casos Mesa de Ayuda"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,priority:0
+#: selection:helpdesk.support,priority:0
+msgid "High"
+msgstr "Alto"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "Hours"
+msgstr "Horas"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_prepared_purchase_hours_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_report_website_helpdesk_support_ticket_report_weekly_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_team_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_task_timesheet_invoice_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_weekly_timesheetreport_id
+msgid "ID"
+msgstr "ID"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_journal_id
+msgid "Invoice Journal"
+msgstr "Diario de Facturas"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_invoice_line_ids
+msgid "Invoice Lines"
+msgstr "Lineas de Factura"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_invoice_id
+msgid "Invoice Reference"
+msgstr "Referencia "
+
+#. module: website_helpdesk_support_ticket
+#: code:addons/website_helpdesk_support_ticket/wizard/task_timesheet_invoice.py:86
+#, python-format
+msgid "Invoice can not be created since some of timsheet lines are already invoiced so please check."
+msgstr "La factura no se puede crear por que ya se han facturado algunas de la horas por favor verifique."
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_account_analytic_line_invoiced_created
+msgid "Invoiced"
+msgstr "Facturado"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.menu_helpdesk_support_ticket_invoice
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.menu_timesheet_invoice_52
+msgid "Invoicing"
+msgstr "Facturación"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_team_is_team
+msgid "Is Default Team?"
+msgstr "Es el equipo por defecto?"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_is_invoice
+msgid "Is Invoice Create"
+msgstr "Debe Facturarce"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_is_invoice_created
+msgid "Is Invoice Created"
+msgstr "Esta ya Facturado "
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_is_task_created
+msgid "Is Task Created ?"
+msgstr "Se creo la tarea ?"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_is_close
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_is_close
+msgid "Is Ticket Closed ?"
+msgstr "Se cerro el caso ?"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report___last_update
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support___last_update
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_prepared_purchase_hours___last_update
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_report_website_helpdesk_support_ticket_report_weekly___last_update
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line___last_update
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_team___last_update
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_task_timesheet_invoice___last_update
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_weekly_timesheetreport___last_update
+msgid "Last Modified on"
+msgstr "Ultima modificación"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_write_uid
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_prepared_purchase_hours_write_uid
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_write_uid
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_team_write_uid
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_task_timesheet_invoice_write_uid
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_weekly_timesheetreport_write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_write_date
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_prepared_purchase_hours_write_date
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_write_date
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_team_write_date
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_task_timesheet_invoice_write_date
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_weekly_timesheetreport_write_date
+msgid "Last Updated on"
+msgstr "Actualizado"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_team_leader_id
+msgid "Leader"
+msgstr "Lider"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,priority:0
+#: selection:helpdesk.support,priority:0
+msgid "Low"
+msgstr "Bajo"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.actions.act_window,name:website_helpdesk_support_ticket.helpdesk_task_timsheet_wizard_action
+msgid "Make Invoice"
+msgstr "Crear Factura"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Manager Signature  ____________________________"
+msgstr "Firma Administrador  ____________________________"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.support,priority:0
+msgid "Middle"
+msgstr "Medio"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Monday (HH:MM)"
+msgstr "Lunes (HH:MM)"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_ticket
+msgid "My Ticket"
+msgstr "Mi Caso"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_team_name
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "Name"
+msgstr "Nombre"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,state:0
+#: selection:helpdesk.support,state:0
+msgid "Needs More Info"
+msgstr "Necesita más Info"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,state:0
+#: selection:helpdesk.support,state:0
+msgid "Needs Reply"
+msgstr "Necesita Respuesta"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,state:0
+#: selection:helpdesk.support,state:0
+msgid "New"
+msgstr "Nuevo"
+
+#. module: website_helpdesk_support_ticket
+#: code:addons/website_helpdesk_support_ticket/wizard/task_timesheet_invoice.py:88
+#, python-format
+msgid "No customer found on some timesheet lines."
+msgstr "No esta el clietne en algunas lineas de tiempo."
+
+#. module: website_helpdesk_support_ticket
+#: code:addons/website_helpdesk_support_ticket/wizard/task_timesheet_invoice.py:99
+#, python-format
+msgid "No invoices created."
+msgstr "No se facturo."
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,priority:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_name
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_name
+msgid "Number"
+msgstr "Numero"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_res_partner
+msgid "Partner"
+msgstr "Asociado"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_phone
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_phone
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: website_helpdesk_support_ticket
+#: code:addons/website_helpdesk_support_ticket/wizard/weekly_timesheet_report.py:43
+#, python-format
+msgid "Please Select Correct Date For one week"
+msgstr "Por favor seleccione la fecha correcta para la semana"
+
+#. module: website_helpdesk_support_ticket
+#: code:addons/website_helpdesk_support_ticket/models/helpdesk_support.py:311
+#, python-format
+msgid "Please add invoice lines."
+msgstr "Por favor adic las lineas de factura."
+
+#. module: website_helpdesk_support_ticket
+#: code:addons/website_helpdesk_support_ticket/wizard/task_timesheet_invoice.py:64
+#, python-format
+msgid "Please configure Default Income account for Product income: `property_account_income_categ_id`."
+msgstr "Por favor configre la cuenta de ingresos por defecto para el ingreso por producto: `property_account_income_categ_id`."
+
+#. module: website_helpdesk_support_ticket
+#: code:addons/website_helpdesk_support_ticket/models/helpdesk_support.py:287
+#: code:addons/website_helpdesk_support_ticket/wizard/task_timesheet_invoice.py:21
+#, python-format
+msgid "Please configure an accounting sale journal for this company."
+msgstr "Por favor ocnfigure un diario contable de ventas para esta empresa."
+
+#. module: website_helpdesk_support_ticket
+#: code:addons/website_helpdesk_support_ticket/models/helpdesk_support.py:255
+#, python-format
+msgid "Please define expense account for this product: \"%s\" (id:%d) - or for its category: \"%s\"."
+msgstr "Por favor defina la cuenta de gastos para este producto: \"%s\" (id:%d) - o para su categoría: \"%s\"."
+
+#. module: website_helpdesk_support_ticket
+#: code:addons/website_helpdesk_support_ticket/models/helpdesk_support.py:285
+#, python-format
+msgid "Please set pricelist."
+msgstr "Defina lista de precios."
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.support,rating:0
+msgid "Poor"
+msgstr "Pobre"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_account_analytic_account_prepared_hours_ids
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_project_project_prepared_hours_ids
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.view_account_analytic_account_form_inherit_helpdesk
+msgid "Prepaid Hours"
+msgstr "Horas Prepagadas"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.view_account_analytic_account_form_inherit_helpdesk
+msgid "Prepaired Hours"
+msgstr "Horas Prepagadas"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_project_project_price_rate
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_project_task_price_rate
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_res_partner_price_rate
+msgid "Price / Rate (Company Currency)"
+msgstr "Precio / Moneda (Moneda de la Empresa)"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.weekly_timesheet_report_view
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.actions.report.xml,name:website_helpdesk_support_ticket.print_support_request
+msgid "Print Support Request"
+msgstr "Imprimir Caso de Soporte"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_priority
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_priority
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_tickets
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "Priority"
+msgstr "Prioridad"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_project_project
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_project_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_project_id
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Project"
+msgstr "Proyecto"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.view_helpdesk_graph
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.view_helpdesk_pivot
+msgid "Project Tasks"
+msgstr "Tareas del Proyecto"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_prepared_purchase_hours_purchased_hours
+msgid "Purchased Hours"
+msgstr "Horas Compradas"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_product_uom_qty
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+msgid "Re Open"
+msgstr "Re Abrir"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_account_analytic_account_remaining_hours
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_remaining_hours
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_project_project_remaining_hours
+msgid "Remaining Hours"
+msgstr "Horas Restantes"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,state:0
+#: selection:helpdesk.support,state:0
+msgid "Reopened"
+msgstr "Re Abierto"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.menu_helpdesk_report
+msgid "Reports"
+msgstr "Reportes"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_prepared_purchase_hours_sale_order_id
+msgid "Sales Order"
+msgstr "Orden de Venta"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Saturday (HH:MM)"
+msgstr "Sabado (HH:MM)"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+msgid "Set To Close"
+msgstr "Para Cerrar"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,state:0
+#: selection:helpdesk.support,state:0
+msgid "Solution Suggested"
+msgstr "Solución Sugerida"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_invalid
+msgid "Sorry!"
+msgstr "Lo Siento!"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_tickets
+msgid "Stage"
+msgstr "Escenario"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_weekly_timesheetreport_start_date
+msgid "Start Date"
+msgstr "Fecha Inicio"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_state
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_state
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "State"
+msgstr "Estado"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_subject
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_subject
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "Subject"
+msgstr "Tema"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Sunday (HH:MM)"
+msgstr "Domingo (HH:MM)"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,category:0
+#: selection:helpdesk.support,category:0
+msgid "Support"
+msgstr "Soporte"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_support_id
+msgid "Support Invoice"
+msgstr "Factura de Soporte"
+
+#. module: website_helpdesk_support_ticket
+#: model:res.groups,name:website_helpdesk_support_ticket.group_helpdesk_manager
+msgid "Support Manager"
+msgstr "Administrador de Soporte"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_support_team
+msgid "Support Team"
+msgstr "Equipo de Soporte"
+
+#. module: website_helpdesk_support_ticket
+#: model:res.groups,name:website_helpdesk_support_ticket.group_helpdesk_user
+msgid "Support User"
+msgstr "Usuario de Soporte"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_project_task
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_task_id
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+msgid "Task"
+msgstr "Tarea"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_task_timesheet_invoice_wizard_view
+msgid "Task Timsheet Invoice"
+msgstr "Factura Horas de Tarea"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_tax_id
+msgid "Taxes"
+msgstr "Impuestos"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_report_team_leader_id
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_team_leader_id
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "Team Leader"
+msgstr "Lider de Equipo"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_team_team_ids
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_team_form_view
+msgid "Team Members"
+msgstr "Miembros del Equipo"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,category:0
+#: selection:helpdesk.support,category:0
+msgid "Technical"
+msgstr "Técnico"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.portal_my_ticket
+msgid "There are currently no ticket for your account."
+msgstr "No hay casos en su cuenta."
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.actions.act_window,help:website_helpdesk_support_ticket.action_helpdesk_user_tree
+msgid "This report allows you to analyse the performance of your projects and users. You can analyse the quantities of tasks, the hours spent compared to the planned hours, the average number of days to open or close a task, etc."
+msgstr "Este reporte le permite analizar el desempeño de sus proyectos y usuarios. Puede analizar la cantidades de tareas, las horas utilizadas comparado con las planeadas, el promedio de días para abrir y cerrar una tarea, etc."
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_task_timesheet_invoice_wizard_view
+msgid "This wizard will create customer invoice for selected timesheet lines..."
+msgstr "Este ayudante le permite crear facturas a clients para las lineas de tiempo seleccionadas..."
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.weekly_timesheet_report_view
+msgid "This wizard will print timesheet report for selected employee between selected date range."
+msgstr "Este ayudante imprime un reporte de horas para el empleado seleccionado entre un rango de fechas."
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Thursday (HH:MM)"
+msgstr "Jueves (HH:MM)"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,help:website_helpdesk_support_ticket.field_support_team_is_team
+msgid "Tick this box to set this team as default support team when request come from website"
+msgstr "Seleccione para establecer este equipo como el equipo de soporte por defecto cuando un requerimiento viene por la página Web"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_search_view
+msgid "Ticket"
+msgstr "Caso"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_tickets
+msgid "Ticket No"
+msgstr "Caso No"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.my_ticket
+msgid "Tickets"
+msgstr "Casos"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_account_analytic_line_time_in
+msgid "Time In"
+msgstr "Hora In"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_account_analytic_line_time_out
+msgid "Time Out"
+msgstr "Hora Fin"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_account_analytic_account_timesheet_custom_ids
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_project_project_timesheet_custom_ids
+msgid "Timesheet Custom"
+msgstr "Hoja de horas personalizada"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Timesheet of"
+msgstr "Horas de"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.actions.act_window,name:website_helpdesk_support_ticket.action_helpdesk_support_ticket_invoice
+#: model:ir.actions.act_window,name:website_helpdesk_support_ticket.helpdesk_invoice_action_ts_1
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.menu_helpdesk_timesheet_invoice_53
+msgid "Timesheet to Invoice"
+msgstr "Horas a Facturar"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_timesheet_line_ids
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_report
+msgid "Timesheets"
+msgstr "Horas"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.sub_menu_helpdesk_support_ticket_invoice
+msgid "Timesheets to Invoice"
+msgstr "Horas a Facturar"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_tickets
+msgid "Title"
+msgstr "Título"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_support_form_view
+msgid "To View Current Status of Customer Prepaid Support Hours.Please Click Analytic Account Button."
+msgstr "Para ver el estado de las horas prepagadas por el cliente. Seleccione el botón de Cuentas Analíticas."
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Total"
+msgstr "Total"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_account_analytic_account_total_consumed_hours
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_total_consumed_hours
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_project_project_total_consumed_hours
+msgid "Total Consumed Hours"
+msgstr "Horas Totales Consumidas"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_total_spend_hours
+msgid "Total Hours Spent"
+msgstr "Horas Totales Gastadas"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_account_analytic_account_total_purchase_hours
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_helpdesk_support_total_purchase_hours
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_project_project_total_purchase_hours
+msgid "Total Purchase Hours"
+msgstr "Horas Totales Compradas"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Tuesday (HH:MM)"
+msgstr "Martes (HH:MM)"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_price_unit
+msgid "Unit Price"
+msgstr "Precio Unitario"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model.fields,field_description:website_helpdesk_support_ticket.field_support_invoice_line_product_uom
+msgid "Unit of Measure"
+msgstr "Unidad de Medida"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.support,rating:0
+msgid "Very Good"
+msgstr "Muy Bueno"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.thanks_mail_send
+msgid "We have received your support request."
+msgstr "Hemos recibido su petición de soporte."
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Wednesday (HH:MM)"
+msgstr "Miercoles (HH:MM)"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.menu,name:website_helpdesk_support_ticket.helpdesk_timesheet_report_wizard
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "Weekly Timesheet"
+msgstr "Horas Semanales"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.actions.act_window,name:website_helpdesk_support_ticket.helpdesk_weekly_timesheet_report_action
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.weekly_timesheet_report_view
+msgid "Weekly Timesheet Report"
+msgstr "Reporte Horas Semanales"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.actions.report.xml,name:website_helpdesk_support_ticket.helpdesk_weekly_time_sheet_report
+msgid "Weekly Timesheet report"
+msgstr "Reporte Horas Semanales"
+
+#. module: website_helpdesk_support_ticket
+#: selection:helpdesk.report,state:0
+#: selection:helpdesk.support,state:0
+msgid "Work in Progress"
+msgstr "Trabajo en Progreso"
+
+#. module: website_helpdesk_support_ticket
+#: code:addons/website_helpdesk_support_ticket/models/helpdesk_support.py:237
+#, python-format
+msgid "You can not delete record which are not in draft state."
+msgstr "No puede eliminar un registro que no esta en modo de borrador."
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.support_invalid
+msgid "You have entered wrong Email ID, we request you to recheck.<br/>"
+msgstr "Usted a ingresado un correo errado, Por favor verifiqué.<br/>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.successful_feedback
+msgid "Your Feedabck have been sent successfully.<br/><br/>\n"
+"                    thank you,<br/><br/>\n"
+"                    Administrator"
+msgstr "Su comentario se ha enviado correctamente.<br/><br/>\n"
+"                    Muchas Gracias,<br/><br/>\n"
+"                    Administrador"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.successful_ticket_send
+msgid "Your Message/Attachments have been sent successfully.<br/><br/>\n"
+"                Thank,<br/><br/>\n"
+"                Administrator"
+msgstr "Su Mensaje/Adjuntos se han enviado satisfactoriamente.<br/><br/>\n"
+"                Muchas Gracias,<br/><br/>\n"
+"                Administrador"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.display_tickets
+msgid "Your Support Tickets"
+msgstr "Sus Casos de Soporte"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.portal_my_ticket
+msgid "Your Tickets"
+msgstr "Sus Casos"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.thanks_mail_send
+msgid "Your ticket number is"
+msgstr "Su número de caso es"
+
+#. module: website_helpdesk_support_ticket
+#: code:addons/website_helpdesk_support_ticket/controllers/main.py:108
+#, python-format
+msgid "has send this feedback rating is %s and comment is %s"
+msgstr "ha enviado el comentario con calificación %s y comentario %s"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.Helpdesk_calendar
+msgid "helpdesk"
+msgstr "Mesa de Ayuda"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_helpdesk_report
+msgid "helpdesk.report"
+msgstr "helpdesk.report"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.helpdesk_task_timesheet_invoice_wizard_view
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.weekly_timesheet_report_view
+msgid "or"
+msgstr "or"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.thanks_mail_send
+msgid "please note it for further communication and you will also receive email \n"
+"                                     from our support team shortly, Please reply to that email for feature conversation.<br/>"
+msgstr "por favor anote para la comunicación posterior, ademas también recibirá un correo \n"
+"                                     de nuestro equipo de soporte, Por favor responda a ese correo pra establecer una conversación.<br/>"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_prepared_purchase_hours
+msgid "prepared.purchase.hours"
+msgstr "prepared.purchase.hours"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_report_website_helpdesk_support_ticket_report_weekly
+msgid "report.website_helpdesk_support_ticket.report_weekly"
+msgstr "report.website_helpdesk_support_ticket.report_weekly"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.successful_feedback
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.successful_ticket_send
+msgid "show ticket"
+msgstr "mostrar caso"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_support_invoice_line
+msgid "support.invoice.line"
+msgstr "support.invoice.line"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_task_timesheet_invoice
+msgid "task.timesheet.invoice"
+msgstr "task.timesheet.invoice"
+
+#. module: website_helpdesk_support_ticket
+#: model:res.groups,comment:website_helpdesk_support_ticket.group_helpdesk_user
+msgid "the user will have access to his own data in the support application."
+msgstr "el usuario tendra acceso a su propia información en la aplicación de soporte."
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.ui.view,arch_db:website_helpdesk_support_ticket.report_weekly
+msgid "to"
+msgstr "a"
+
+#. module: website_helpdesk_support_ticket
+#: model:ir.model,name:website_helpdesk_support_ticket.model_weekly_timesheetreport
+msgid "weekly.timesheetreport"
+msgstr "weekly.timesheetreport"

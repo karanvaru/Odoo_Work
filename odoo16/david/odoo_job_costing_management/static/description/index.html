@@ -1,0 +1,643 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+           <h2 class="oe_slogan" style="color:olive;"><b>Construction Management | Project Job Costing | Contracting and Job Cost Sheet | Cost Sheet Management</h2>
+           <p class="oe_slogan" style="color:red; font-size:24px;"><b>Job Costing Management of Projects and Contracting Jobs</b></p>
+           <p class="oe_slogan" style="color:purple; font-size:22px;"><b>Construction Management with Job Costing Odoo App</b></p>
+
+           <p style="color:olive; font-size:22px;">
+            This app allows you to manage any type of project(s)/contract(s) using its job costing (contracting) and job cost sheet features. </p>
+           <p style="color:olive; font-size:22px;">
+            Basically, it allows you to prepare a job costing and job cost sheet to plan your material, labour, and overhead cost for your project.</p>
+            <p style="color:olive; font-size:22px;">
+            This app also allows you to have a construction management business in odoo which allows you to manage projects related to your constructions in odoo. 
+            </p>
+            <p style="color:olive; font-size:22px;">
+            Your project manager can plan your material cost, labour cost, and overhead costs on the job cost sheet.
+            </p>
+            <p style="color:olive; font-size:22px;">
+            It can also give you actual costs based on your purchase order, timesheets, and vendor bills so you can see what was planning costs and what is your actual cost for labour, material, and overheads related to your project and job order/ work orders.</p>
+        <p style="color:CRIMSON; font-size:20px;"><b>Main Features:</b>
+        <ul style="color:olive; font-size:18px;">
+            <li style="color:red;">Allow your project managers to create a job cost sheet(s) for your project(s)/contract(s)/job order(s)/work order(s)/construction projects under the job application.</li>
+            <li style="color:purple;">Allow you to create and manage projects/contract with job orders / work orders which are nothing but project tasks of model in odoo (technically).</li>
+            <li style="color:red;">Allow your project team to create and manage project notes and job order notes / work order notes.</li>
+            <li style="color:purple;">Allow your users to create and manage notes in odoo.</li>
+            <li style="color:red;">Allow your employee and project users / managers to create and manage material requisition for job orders / work orders they are working on for any project. 
+            They can create material requisition requests for materials/stock they want in job order for project.</li>
+            <li style="color:purple;">Allow you to create and manage material requisitions (BOQ) for job orders / work orders of project(s).</li>
+            <li style="color:red;">Allow your project team/project manager to configure/set up material costs, labour costs, and overheads costs on the job cost sheet where the project team can plan for your different jobs of the project.</li>
+            <li style="color:purple;">Allow you to create and manage multiple job cost sheets for a single project/job order/contract.</li>
+            <li style="color:red;">Allow you to print pdf reports for job cost sheet and job orders as shown in below sample.</li>
+            <li style="color:purple;">Allow you to create job types for different types of jobs your company is doing for your customers.</li>
+            <li style="color:red;">Allow you to configure job stages for job orders of projects.</li>
+            <li style="color:purple;">Cost center selection on vendor bill, purchase order, timesheet: first you select the analytic account on your line (make sure the analytic account which you select must be the same as which you have selected in your job cost sheet). and also make sure your job cost sheet must be approved. please go to your job cost sheet and make sure the analytic account is the same as your line and the state is approved.
+            </li>
+            <li style="color:red;">Allow you to set up, create and manage your subcontractors as a res.partner in odoo.</li>
+            <li style="color:purple;">Allow your employee/workers/project team to fill timesheets based on the job they are working on and allow them to select the job cost center and cost line on timesheets/activities.</li>
+            <li style="color:red;">Materials Requisition / BOQ request and management. This also allows on-the-fly creation of purchase orders and internal picking / internal transfer from Materials Requisition / BOQ. (More details about dependent app of material requisition click here: (<a href="https://apps.odoo.com/apps/modules/16.0/material_purchase_requisitions" target="_blank">https://apps.odoo.com/apps/modules/16.0/material_purchase_requisitions</a>)</li>
+            <li style="color:purple;">Generation of the unique sequence number for job cost sheet record.</li>
+            <li style="color:red;">Create subtask/sub-job orders for the main job order/work order/task for the project.</li>
+            <li style="color:purple;">Manage material planning and consumption of material on job order/work order (manually).</li>
+            <li style="color:red;">It gives a complete idea about your planned cost and actual cost since the system allows you to set up a planned amount for material, labor, and overhead on the job cost sheet and at the same time show actual amounts shown on the cost sheet automatically. This actual amount is based on linking purchase orders, vendor bills, and timesheets where the system allows you to select the job cost center and cost line on purchase orders, vendor bills, and timesheets.</li>
+            <!--<li>Main feature of this actual cost is that if you do not select Cost line on Purchase order, Vendor bills and Timesheets then system will create/add new cost sheet line under that job cost center on confirmation of document.</li> -->
+            <li style="color:purple;">For more details, please check the below screenshots and watch the video.</li>
+        </ul>
+    </li>
+</p>
+<p style="color:olive;">
+
+</p>
+
+    <!-- <ul>
+        <li style="color:CRIMSON;"><b>Highlighted Steps:</b>
+            <ul>
+                <li style="color:olive;">
+                    Create Project/Contract -> Create Job Orders -> Create Multiple Job Cost Sheets under Same Project -> Plan your materials, labour and overhead for each Jobs -> View of Planned and Actual Amount/Qty by each Cost Sheet Lines (Material, Labour and Overheads) -> Allow your purchase, accounting and HR department to select cost center (cost sheet) and cost center line (cost sheet line) to encode for expenses and labour works. -> -->
+                     <!--Create Job Order Issues -->
+                   <!--  Create Material Requision Request -> Prepare Notes/ToDo lists for Projects and Jobs. -> .....
+                </li>
+            </ul>
+        </li>
+    </ul> -->
+    <!-- <ul> -->
+        <p style="color:CRIMSON; font-size:18px;"><b>Menus Available:</b>
+
+        <!-- <li style="color:CRIMSON; font-size:18px;"><b>Menus Available:</b> -->
+            <ul style="color:olive; font-size:18px;"><i>
+              <li>Jobs
+                <ul><li>Job Costs
+                        <ul><li>Job Cost Sheets</li></ul>
+                    </li>
+                    <li>Projects
+                        <ul><li>Projects</li>
+                           <!-- <li>Project Budgets</li>-->
+                            <li>Project Notes</li>
+                        </ul>
+                    </li>
+                    <li>Job Orders
+                        <ul>
+                            <li>Job Orders</li>
+                            <li>Job Notes</li>
+                            <!-- <li><h8 style="color:RED;">NOT AVAILABLE IN Odoo11 </h8>Project Issues</li> -->
+                        </ul>
+                    </li>
+                    <li>Sub Contractors
+                        <ul>
+                            <li>Sub Contractors</li>
+                        </ul>
+                    </li>
+                    <li>Materials / BOQ
+                        <ul>
+                            <li>Materials</li>
+                            <li>Materials Requisition / BOQ</li>
+                        </ul>
+                    </li>
+                    <li>Configuration
+                        <ul>
+                            <li>Stages</li>
+                            <li>Job Types</li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+              </li>
+             </ul>
+         </li>
+     </ul>
+     <!-- <p style="color:green; font-size:18px;"><b>For more features please see: https://apps.odoo.com/apps/modules/13.0/job_costing_contracting_bundle/ which is bundle / packge for more features for Job Costing Mangement / Construction Managements.</p> -->
+      <p style="font-size:20px;"><font style="color:green;">For more features please see:(<a href="https://apps.odoo.com/apps/modules/16.0/job_costing_contracting_bundle" target="_blank">https://apps.odoo.com/apps/modules/16.0/job_costing_contracting_bundle</a>) which is a bundle/package for more features for job costing management / construction management.<br/></p>
+
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="row">
+          <div class="col-12">
+              <center>
+                  <p style="font-size:25px; border-width:0px; border-style:solid;background-color: #4BB0A2;width:450px;color:white; " class="px-sm-4 p-2 pt-4">
+                        <b>Edition Compatibility:</b>
+                  </p><br/>
+                  <span class="btn btn-primary fa fa-check-circle" style="width:auto; font-weight:bold; font-size:21px; padding-top:12px; padding-bottom:12px; padding-left:60px; padding-right:60px; border-radius:28px; color:white; border:none;background-color: purple;">    Enterprise</span>
+                  <span class="btn btn-primary fa fa-check-circle" style="width:auto; font-weight:bold; font-size:21px; padding-top:12px; padding-bottom:12px; padding-left:60px; padding-right:60px; border-radius:28px; color:white; border:none;background-color: purple;">    Odoo.sh</span>
+                  <span class="btn btn-primary fa fa-check-circle" style="width:auto; font-weight:bold; font-size:21px; padding-top:12px; padding-bottom:12px; padding-left:60px; padding-right:60px; border-radius:28px; color:white; border:none;background-color: purple;">    Community</span>
+              </center>
+              <br/>
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Cost Sheet Preparation for Project/Contract/Job</b></h2>
+       <center><h4 style="color:green; font-size:22px;">Job Cost Sheets with Material Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_12.png">
+           <tmg src="s_12_1.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Job Cost Sheets with Labour Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s14.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Job Cost Sheets with Overheads Tab</h4></center>
+       <div class="oe_demo oe_screenshot ">
+           <img src="s_15.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Job Cost Sheets Showing Total Cost of All Tabs</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_13.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Create Project/Contract/Job</b></h2>
+<p> 
+       <div class="oe_demo oe_screenshot">
+           <img src="s_1.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Create Job Notes for Project/Contract/Job</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_2.png">
+           <img src="s_3.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Creating Job orders for Project/Contract/Job</b></h2>
+       <center><h4 style="color:green; font-size:22px;">Kanban View of Job Orders</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_4.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Job Order with Timesheet Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_5.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Job Order with Material Plannings Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_6.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Job Order with Consume Materials Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_7.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Job Order with Material Requisitions Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s8.png">
+       </div>
+<!--       <center><h4 style="color:green;">Job Order with Stock Moves Tab</h4></center>-->
+<!--       <div class="oe_demo oe_screenshot">-->
+<!--           <img src="s9.png">-->
+<!--       </div>-->
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Materials/ BOQ Management</b></h2>
+       <center><h4 style="color:green; font-size:22px;">Materials/Labour/Overhead Configuration for Project/Contract/Job</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="material.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Materials Requisitions / BOQ for Project/Contract/Job</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s11.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Configuration of Job Types for Project/Contract/Job</b></h2>
+       <center><h4 style="color:green; font-size:22px;">Job Types</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="job_type.png">
+       </div>
+   </div>
+</section>
+
+
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Create Purchase Order for Project/Contract/Job<!-- - https://youtu.be/bJ23dX5unyk--> </b></h2>
+       <center><h4 style="color:green; font-size:22px;">Request for Quotation</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_16_0.png">
+           <img src="s_16_0_1.png">
+           <img src="s_16_1.png">
+           <img src="s_16_2.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Create Purchase Order Line WITHOUT selecting Job Cost Line.</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_18.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">After Confirm Purchase Order System will Add Job Cost Sheet Line Automatically</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_19.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Job Cost Sheet Showing Added Line</h4></center>
+        <p style="color:blue; font-size:20px;"> If user select job cost line on Purchase order then system will not add new line but system will compute purchased quantity and show it to cost sheet.
+       <div class="oe_demo oe_screenshot">
+           <img src="s_20.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Vendor Bills allow You to Select Job Cost and Cost Line</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="vendor.png">
+           <img src="vendor_2.png">
+       </div>
+   </div>
+</section>
+<!--
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Timesheet Activities allow You to Select Job Cost and Cost Line</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="timesheet.png">
+       </div>
+   </div>
+</section>
+-->
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Showing Actual Purchased Quantity, Actual Invoice Quantity</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="actual.png">
+           <img src="actual_hr.png">
+       </div>
+       <br/>
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Showing Actual Hours On Labour Job Cost</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="actual_hr.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Smart Button on Cost Sheet</b></h2>
+       <center><h4 style="color:green; font-size:22px;">Show Purchase order lines, Timesheet Lines, and Account Invoice Line From Given Buttons.</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_21.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Related Purchase Order lines for Cost Sheet</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_22.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Related Timesheet Lines for Cost Sheet</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_23.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Related Account Invoice Line for Cost Sheet</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s_24.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Reports by System</b></h2>
+       <center><h4 style="color:green; font-size:22px;">Project/Contract/Job Report Sample</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="project_repo.png">
+           <img src="project_repo_1.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Job Order Report Sample</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="task_repo_1.png">
+           <img src="task_repo_2.png">
+           <img src="task_repo_3_1.png">
+           <img src="task_repo_3_2.png">
+       </div>
+       <br/>
+       <center><h4 style="color:green; font-size:22px;">Job Cost Sheet Report Sample</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="job_cost_repo_1.png">
+           <img src="job_cost_repo_2.png">
+           <img src="job_cost_repo_2_1.png">
+           <img src="job_cost_3.png">
+           <img src="job_cost_4.png">
+       </div>
+   </div>
+</section>
+
+<b style="color:CRIMSON;">
+=============================================================================================================================================</b>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+        <!-- <h2 class="oe_slogan" style="color:olive"><b>Product/Material Purchase Requisitions by Employees/Users</b></h2>  -->
+        <h2 class="oe_slogan" style="color:crimson"><b>Product/Material Purchase Requisitions and Internal Picking Requisitions by Employee(s) / User (s)
+        </b></h2> 
+          <h2 class="oe_slogan" style="color:crimson"><b>Maternal Requisition Request by Employee(s)/User(s) - Odoo Module</b></h2>
+            <p style="color:green; font-size:20px;">This app allows your employee to create material requisition requests in odoo which will then be followed by the department manager's approval and requisition office approval process.
+            <p class="oe_mt32">
+               <b style="color:CRIMSON; font-size : 20px;">Main Features:</b>
+                    <ul style="font-size : 18px;">
+                        <li style="color:red;">Allow your employees to create requests for material purchase requisitions.</li>
+                        <li style="color:purple;">Employees can see only their own records of product/material purchase requisitions.</li>
+                        <li style="color:red;">Employees can request multiple materials/items on a single material purchase requisition request.</li>
+                        <li style="color:purple;">The department manager can approve of department approval of material purchase requisition.</li>
+                        <li style="color:red;">The department manager can also reject material purchase requisition.</li>
+                        <li style="color:purple;">Requisition users can approve material purchase requisition.</li>
+                        <li style="color:red;">Requisition users can also reject material purchase requisition.</li>
+                        <li style="color:purple;">Email notifications to department manager, and requisition manager for approval.</li>
+                        <li style="color:red;">Request for material purchase requisition will go to stock/warehouse as internal picking / internal order and purchase order.</li>
+                        <li style="color:purple;">The warehouse can dispatch material to the employee location and if material not presents then procurement will be created by Odoo standard.</li>
+                        <li style="color:red;">Material purchase requisition users can decide whether the product requested by an employee will come from stock/warehouse directly or it needs to be purchased from the vendor. So we have a field on requisition lines where the respondent can select requisition action: 1. purchase order 2. internal picking. If option 1 is selected then the system will create internal order / internal picking request and if option 2 is selected system will create multiple purchase orders / RFQ to vendors set on lines.</li>
+                        <li style="color:purple;">For more details please see the video on the live preview and check the below screenshots.</li>
+<!--                        <li style="color:olive">Latest version video: https://youtu.be/byR2cM0c274</li>-->
+
+                    </ul>
+                </li>
+            </ul>
+            <p style="color:CRIMSON;"><b>
+            </p>
+            <b style="color:CRIMSON; font-size: 16px">Product/Material purchase requisitions by employees/users</b>
+            <ul style="color:olive; font-size: 20px;">
+                  1. Employee <br/>
+                  2. Department Manager <br/>
+                  3. Requisition User / Officer<br/>
+                 
+            <br/>
+            <h3 style="color:olive;">Role of Employee / Internal User</h3>
+            <li style="color:#ff8000;">
+                Employees can create material purchase requisition requests.
+            </li>
+            <li style="color:#ff8000;"> 
+                Employees can request multiple materials/items on a single material purchase requisition request.
+            </li>
+            <li style="color:#ff8000;">
+               Employees can add requisition lines and confirm purchase requisition requests.
+            </li>
+            <li style="color:#ff8000;">
+                Employees can print material purchase requisition reports in pdf format.
+            </li>
+            <li style="color:#ff8000;">
+                Once an employee received materials/items at their location then they can click the received button manually at the end.
+            </li>
+            <br/>
+            <h3 style="color:olive;"> Role of Department Manager</h3>
+            <li style="color:#ff8000;">
+                The department manager can approve of department approval of material purchase requisition.
+            </li>
+            <li style="color:#ff8000;">
+                The department manager can also reject material purchase requisition.
+            </li>
+            <li style="color:#ff8000;">
+                The department manager can print material purchase requisition reports in pdf format.
+            </li>
+            <br/>
+            <h3 style="color:olive;">Role of Requisition User / Officer</h3>
+            <li style="color:#ff8000;">
+                Requisition users can add a destination location on employee forms and department forms.
+            </li>
+            <li style="color:#ff8000;">
+                Requisition users can approve material purchase requisition.
+            </li>
+            <li style="color:#ff8000;">
+                Requisition users can also reject material purchase requisition.
+            </li>
+            <li style="color:#ff8000;">
+                Requisition users can add vendors to the requisition line.
+            </li>
+            <li style="color:#ff8000;">
+                Requisition user can add picking details information in material purchase requisition Form.
+            </li>
+            <li style="color:#ff8000;">
+                Requisition users can create picking and PO.
+            </li>
+            <li style="color:#ff8000;">
+                Requisition users can print material purchase requisition reports in pdf format.
+            </li>
+            </ul>
+        <p>
+            
+              <p style="color:green" class="oe_mt32"><h4 style="color:green">For more additional features: please check our bundle apps here: <a target="new" href="https://apps.odoo.com/apps/modules/15.0/material_requisition_bundle/">https://apps.odoo.com/apps/modules/15.0/material_requisition_bundle/</a> </h4></p>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan" style="color:crimson"><b>Material Purchase Requisition User ,Manager and Department Manager Groups added on Users Form</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="groups.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan" style="color:crimson"><b>Employee Stock Location on Employee Form</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="ms1.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan" style="color:crimson"><b>Department Stock Location on Department Form</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="ms2.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan" style="color:crimson"><b>Requisition Action Options 
+       <br/>
+       1.Purchase Order <br/>
+       2.Internal Picking <br/>
+      </b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="blank.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan" style="color:crimson"><b>Employee Create Request for Material Purchase Requisition</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="ms3.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <!-- <h2 class="oe_slogan" style="color:crimson"><b>Purchase Requisition
+        <h2 class="oe_slogan" style="color:olive"><b>Product/Material Purchase Requisitions by Employees/Users</b></h2> 
+
+       <h2 class="oe_slogan" style="color:crimson"><b>Purchase Requisition Request Confirmed By Employee</b></h2>
+        Request Confirmed By Employee</b></h2> -->
+       <div class="oe_demo oe_screenshot">
+           <img src="ms4.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan" style="color:crimson"><b>Material Purchase Requisition Waiting for Department Approval</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="ms5.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan" style="color:crimson"><b>Department Manager Approve Material Purchase Requisition Request</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="ms6.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan" style="color:crimson"><b>Material Purchase Requisition Head Approve Material Purchase Requisition Request</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="ms7.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan" style="color:crimson"><b>Create Picking and Purchase order based on Requisition Action</b></h2>
+        <p style="color:red"> <b><h3 style="color:red">If stock is available then Purchase Requisition user can select Internal Picking in Requisition Action on Requisition line and if stock is not avialable and if they want to create purchase order they can select multiple vendors and system will create multiple RFQ's based on Vendors selected on lines.</h3></b></p>
+       <div class="oe_demo oe_screenshot">
+           <img src="ms8.png">
+       </div>
+   </div>
+</section>
+<!--
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan" style="color:crimson"><b>Internal Picking of Internal Requisition</b></h3>
+       <div class="oe_demo oe_screenshot">
+           <img src="ms9.png">
+       </div>
+   </div>
+</section>-->
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan" style="color:crimson"><b>Received Material Purchase Requistion Button</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="ms10.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan" style="color:crimson"><b>Received State on Material Purchase Requistion</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="ms11.png">
+       </div>
+   </div>
+</section>
+<!--
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan" style="color:crimson"><b>Received Internal Requistion</b></h3>
+       <div class="oe_demo oe_screenshot">
+           <img src="ms12.png"><img src="ms13.png">
+       </div>
+   </div>
+</section>-->
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan" style="color:crimson"><b>Print Material Purchase Requisition PDF Report</b></h2>
+       <div class="oe_demo oe_screenshot">
+          <img src="r1.png">
+          <img src="r2.png">
+          <img src="r3.png">
+           <!-- <img src="ms14.png">
+           <img src="ms14_1.png"> -->
+       </div>
+   </div>
+</section>
+<section class="oe_container" >
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">
+            <strong><font style="color:#2dd280;" class="text-epsilon">Contact / Support<br/></font></strong>
+            <strong><font style="color:crimson" class="text-epsilon">Introducing</font>
+            <font style="color:crimson;" class="text-epsilon">Probuse Consulting Services Pvt. Ltd.</font></strong>
+          </h2>
+       <div class="oe_span6">
+           <div class="mt32 col-md-10">
+           <div class="oe_picture" style="margin: 25px 10%;">
+               <a  target='new' href="http://www.probuse.com/">
+                   <img src="logo.png">
+               </a>
+           </div>
+           <p class="oe_mt32">
+               <font style="color:crimson;">If you need any help or want more additional features, you may contact us through:</font><br/>
+               <font style="color:crimson;">Email: <a href="contact@probuse.com">contact@probuse.com</a> <br/>
+               <font style="color:crimson;">Website: </font><a href="http://www.probuse.com/" target='new'><u>www.probuse.com</u></a> <br/>
+               <font style="color:crimson;">Skype: mustufa_probuse</font><br/>
+           </p>
+           <p>
+                <h2>
+                    <a href="https://www.facebook.com/probusecs" target="new">
+                      <i class="fa fa-facebook-square" style="font-size:38px;"></i>
+                    </a>
+                    <a href="https://twitter.com/mustufa_odoo" target="new">
+                      <i class="fa fa-twitter" style="font-size:38px;"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mustufa-rangwala-odoo-openerp-0a46777/" target="new">
+                      <i class="fa fa-linkedin" style="font-size:38px;"></i>
+                    </a>
+                    <!--<a href="https://www.youtube.com/channel/UCHlyoC4khP44M1cOCJXo2FQ" target="new">
+                      <i class="fa fa-youtube-play" style="font-size:38px;"></i>
+                    </a>-->
+                    <a href="https://plus.google.com/u/0/113284573788891837715/posts" target="new" rel="publisher">
+                      <i class="fa fa-google-plus-square" style="font-size:38px;"></i>
+                    </a>
+              </h2>
+            </p>
+           </div>
+       </div>
+    <div class="mt32 oe_span6">
+           <p style="text-align: justify; ">
+            <font class="text-epsilon" style="color:crimson;">Probuse Consulting Service Pvt Ltd is an Software and Web development specialist which offers complete business application together. We are well experienced to provide a face for your business on the software and Internet level.</font>
+          </p>
+          <p style="text-align: justify;">
+            <font class="text-epsilon" style="color:crimson">Probuse Consulting Service Pvt Ltd is a specialist in Odoo/OpenERP services and could give your business open source hand to drive.</font>
+          </p>
+            <h2 class="o_animate o_anim_bounce_in" style="text-align: left; animation-play-state: paused;">
+                <font style="font-size: 18px;color:#ff8000;" class="text-epsilon"><strong>Our Services</strong></font>
+            </h2>
+            <ul style="list-style-type:square">
+                <a href="http://www.probuse.com/page/odoo-implementation" target="new"><li list-style-type: "*";><p style="text-align: left; color:crimson;">Odoo Implementation</p></a></li>
+                <a href="http://www.probuse.com/page/odoo-support" target="new"><li><p style="text-align: left; color:crimson;">Odoo Support</p></a></li>
+                <a href="http://www.probuse.com/page/odoo-customization" target="new"><li><p style="text-align: left; color:crimson;">Odoo Customization</p></li></a>
+                <a href="http://www.probuse.com/page/odoo-migration" target="new"><li><p style="text-align: left; color:crimson;">Odoo Migration</p></a></li>
+                <a href="http://www.probuse.com/page/odoo-training" target="new"><li><p style="text-align: left; color:crimson;">Odoo Training</p></a></li>
+            </ul>
+           </p>
+       </div>
+   </div>
+</section>

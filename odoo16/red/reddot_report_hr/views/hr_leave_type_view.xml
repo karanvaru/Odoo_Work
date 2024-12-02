@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_edit_holiday_status_form_inherit" model="ir.ui.view">
+            <field name="name">view.hr.leave.type.form.inherit</field>
+            <field name="model">hr.leave.type</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="arch" type="xml">
+                <field name="allocation_validation_type" position="after">
+                    <field name="is_anual_type"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

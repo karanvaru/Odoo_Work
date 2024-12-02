@@ -1,0 +1,118 @@
+<odoo>
+    <data>
+        <record id="sale_shop_product_view_tree" model="ir.ui.view">
+            <field name="name">sale.shop.product.tree</field>
+            <field name="model">sale.shop.product</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Shop Product List">
+                    <field name="product_id"/>
+                    <field name="name"/>
+                    <field name="default_code"/>
+                    <field name="master_code"/>
+                    <field name="list_price"/>
+                    <field name="uom_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="shop_categ_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sale_shop_product_view_search" model="ir.ui.view">
+            <field name="name">sale.shop.product.search</field>
+            <field name="model">sale.shop.product</field>
+            <field name="arch" type="xml">
+                <search string="Sale Shop Product Search">
+                    <field name="product_id"/>
+                    <field name="name"/>
+                    <field name="default_code"/>
+                    <field name="master_code"/>
+                    <field name="list_price"/>
+                    <field name="uom_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="shop_categ_id"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Base Product" name="base_product_id"
+                                context="{'group_by':'product_id'}"/>
+                        <filter string="Company" name="group_company_id" context="{'group_by':'company_id'}"/>
+                        <filter string="Category" name="group_shop_categ_id" context="{'group_by':'shop_categ_id'}"/>
+                    </group>
+                    <searchpanel>
+                        <field name="shop_id" icon="fa-users" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_shop_product_view_form">
+            <field name="name">sale.shop.product.from</field>
+            <field name="model">sale.shop.product</field>
+            <field name="arch" type="xml">
+                <form string="Sale Shop Product Form">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="publish_product" string="Published"
+                                    icon="fa-globe" attrs="{'invisible': [('is_published', '!=', False)]}">
+                            </button>
+                            <button class="oe_stat_button" type="object" name="unpublish_product" string="UnPublished"
+                                    icon="fa-globe" attrs="{'invisible': [('is_published', '!=', True)]}">
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="default_code"/>
+                                <field name="master_code"/>
+                                <field name="uom_id"/>
+                                <field name="product_public_category_id"/>
+                                <field name="size"/>
+                                <field name="country_id"/>
+                                <field name="taxes_id" widget="many2many_tags"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="description"/>
+                                <field name="product_category"/>
+                            </group>
+                            <group>
+                                <field name="shop_id" readonly="0"/>
+                                <field name="product_tmpl_id"/>
+                                <field name="product_id" readonly="0"/>
+                                <field name="shop_categ_id" readonly="0"/>
+                                <field name="list_price" readonly="0"/>
+                                <field name="l10n_in_hsn_code" readonly="0"/>
+                                <field name="is_published" invisible="0"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <!--                                <field name="company_id" groups="base.group_multi_company"/>-->
+                                <!--                                <field name="taxes_id" widget="many2many_tags"/>-->
+                            </group>
+                            <group string="General Information">
+                                <group>
+                                    <field name="publish_date" readonly="1"/>
+                                    <field name="last_sale_order_id"/>
+                                    <field name="last_sale_order_line_id" invisible="1"/>
+                                    <field name="last_sale_order_date"/>
+                                    <field name="last_sale_order_line_qty"/>
+                                </group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="actions_sale_product_shop_view" model="ir.actions.act_window">
+            <field name="name">Shop product</field>
+            <field name="res_model">sale.shop.product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="sale_shop_product_menu"
+                  name="Shop product"
+                  parent="sale.product_menu_catalog"
+                  action="actions_sale_product_shop_view"
+        />
+
+    </data>
+</odoo>

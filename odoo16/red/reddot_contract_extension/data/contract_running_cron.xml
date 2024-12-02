@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+    <record id="make_contract_state_running" model="ir.cron">
+        <field name="name">Contract : Make Contract State Running</field>
+        <field eval="True" name="active"/>
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="model_id" ref="hr_contract.model_hr_contract"/>
+        <field name="state">code</field>
+        <field name="code">model.contract_state_running()</field>
+    </record>
+</odoo>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="custom_quotation_template">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="web.html_container">
+                            <div class="page">
+                                <style>
+                                    label {
+                                    font-size: 15px;
+                                    font-weight:bold;
+                                    color:black;
+                                    }
+                                    .right_content,.col-3 label {
+                                    font-size: 15px;
+                                    font-weight:bold;
+                                    color:black;
+                                    }
+                                </style>
+
+                                <div class="row pt16 pb16">
+                                    <div class="col-6" style="color:black;padding-left:10px">
+                                        <b>
+                                            <span t-field="doc.partner_id.name"/>
+                                            <br/>
+                                        </b>
+                                        <span t-field="doc.partner_id.street"/>
+                                        <br/>
+                                        <span t-field="doc.partner_id.street2"/>
+                                        <br/>
+                                        <span t-field="doc.partner_id.city"/>
+                                        <span t-field="doc.partner_id.zip"/>
+                                        <br/>
+                                        <span t-field="doc.partner_id.state_id.name"/>
+                                        <br/>
+                                        <span t-field="doc.partner_id.country_id.name"/>
+                                        <br/>
+                                    </div>
+                                    <div class="col-6 text-end" style="padding-right:10px">
+                                        <div>
+                                            <h2>
+                                                <b>
+                                                    <span class='text-uppercase' t-field="doc.category_type"/>
+                                                    <span t-if="env.context.get('proforma', False) or is_pro_forma">
+                                                        PRO-FORMA INVOICE
+                                                    </span>
+                                                    <span t-elif="doc.state in ['draft','sent']">QUOTATION</span>
+                                                    <span t-else="">ORDER</span>
+                                                </b>
+
+                                            </h2>
+                                        </div>
+                                        <div>
+                                            <b>
+                                                <label>Date:</label>
+                                            </b>
+                                            <span t-field="doc.date_order" t-options='{"format": "y-MM-dd h:mm a"}'/>
+                                            <br></br>
+                                            <b>
+                                                <label>Quotation No.:</label>
+                                            </b>
+                                            <span t-field="doc.name"/>
+                                            <br></br>
+                                            <b>
+                                                <label>Valid Until:</label>
+                                            </b>
+                                            <span t-field="doc.validity_date"/>
+                                            <br></br>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right_content row pt16 pb16" style="background:#cccccc;padding-top:16px;padding-bottom:16px;">
+                                    <div class="col-3 text-center">Sales
+                                    </div>
+                                    <div class="col-3 text-center">Parts</div>
+                                    <div class="col-3 text-center">Service</div>
+                                    <div class="col-3 text-center">Rental</div>
+                                </div>
+                                <div class="row pt16">
+                                    <div class="col-6">
+                                        <label>Order Date</label>
+                                        <br/>
+                                        <span t-field="doc.date_order" t-options='{"format": " MMMM d,  y"}'/>
+                                    </div>
+                                    <div class="col-3">
+                                        <label>Salesperson</label>
+                                        <br/>
+                                        <span t-field="doc.user_id.name"/>
+                                    </div>
+                                    <div class="col-3">
+                                        <label>Source</label>
+                                        <br/>
+                                        <span t-field="doc.source_id"/>
+                                    </div>
+                                </div>
+                                <div class="row pt16">
+                                    <t t-set="lines_to_report" t-value="doc._get_order_lines_to_report()"/>
+                                    <t t-set="display_discount" t-value="any(l.discount for l in lines_to_report)"/>
+
+                                    <table class="table table-sm o_main_table table-borderless mt-4">
+                                        <thead style="display: table-row-group">
+                                            <tr>
+                                                <th name="th_description" class="text-start">Description</th>
+                                                <th name="th_quantity" class="text-end">Quantity</th>
+                                                <th name="th_priceunit" class="text-end">Unit Price</th>
+                                                <th name="th_discount" t-if="display_discount" class="text-end">
+                                                    <span>Disc.%</span>
+                                                </th>
+                                                <th name="th_taxes" class="text-end">Taxes</th>
+                                                <th name="th_subtotal" class="text-end">
+                                                    <span groups="account.group_show_line_subtotals_tax_excluded">
+                                                        Amount
+                                                    </span>
+                                                    <span groups="account.group_show_line_subtotals_tax_included">Total
+                                                        Price
+                                                    </span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="sale_tbody">
+
+                                            <t t-set="current_subtotal" t-value="0"/>
+
+                                            <t t-foreach="lines_to_report" t-as="line">
+
+                                                <t t-set="current_subtotal"
+                                                   t-value="current_subtotal + line.price_subtotal"
+                                                   groups="account.group_show_line_subtotals_tax_excluded"/>
+                                                <t t-set="current_subtotal"
+                                                   t-value="current_subtotal + line.price_total"
+                                                   groups="account.group_show_line_subtotals_tax_included"/>
+
+                                                <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                                    <t t-if="not line.display_type">
+                                                        <td name="td_name">
+                                                            <span t-field="line.name"/>
+                                                        </td>
+                                                        <td name="td_quantity" class="text-end">
+                                                            <span t-field="line.product_uom_qty"/>
+                                                            <span t-field="line.product_uom"/>
+                                                        </td>
+                                                        <td name="td_priceunit" class="text-end">
+                                                            <span t-field="line.price_unit"/>
+                                                        </td>
+                                                        <td t-if="display_discount" class="text-end">
+                                                            <span t-field="line.discount"/>
+                                                        </td>
+                                                        <td name="td_taxes" class="text-end">
+                                                            <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
+                                                        </td>
+                                                        <td t-if="not line.is_downpayment" name="td_subtotal"
+                                                            class="text-end o_price_total">
+                                                            <span t-field="line.price_subtotal"
+                                                                  groups="account.group_show_line_subtotals_tax_excluded"/>
+                                                            <span t-field="line.price_total"
+                                                                  groups="account.group_show_line_subtotals_tax_included"/>
+                                                        </td>
+                                                    </t>
+                                                    <t t-elif="line.display_type == 'line_section'">
+                                                        <td name="td_section_line" colspan="99">
+                                                            <span t-field="line.name"/>
+                                                        </td>
+                                                        <t t-set="current_section" t-value="line"/>
+                                                        <t t-set="current_subtotal" t-value="0"/>
+                                                    </t>
+                                                    <t t-elif="line.display_type == 'line_note'">
+                                                        <td name="td_note_line" colspan="99">
+                                                            <span t-field="line.name"/>
+                                                        </td>
+                                                    </t>
+                                                </tr>
+
+                                                <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section') and not line.is_downpayment">
+                                                    <tr class="is-subtotal text-end">
+                                                        <td name="td_section_subtotal" colspan="99">
+                                                            <strong class="mr16">Subtotal</strong>
+                                                            <span
+                                                                    t-out="current_subtotal"
+                                                                    t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+                                <div class="clearfix" name="so_total_summary">
+                                    <div id="total" class="row" name="total">
+                                        <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
+                                            <table class="table table-sm table-borderless">
+                                                <!-- Tax totals -->
+                                                <t t-set="tax_totals" t-value="doc.tax_totals"/>
+                                                <t t-call="account.document_tax_totals"/>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div t-if="doc.signature" class="mt-4 ml64 mr4" name="signature">
+                                    <div class="offset-8">
+                                        <strong>Signature</strong>
+                                    </div>
+                                    <div class="offset-8">
+                                        <img t-att-src="image_data_uri(doc.signature)"
+                                             style="max-height: 4cm; max-width: 8cm;"/>
+                                    </div>
+                                    <div class="offset-8 text-center">
+                                        <p t-field="doc.signed_by"/>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p t-field="doc.note" name="order_note"/>
+                                    <p t-if="not is_html_empty(doc.payment_term_id.note)">
+                                        <span t-field="doc.payment_term_id.note"/>
+                                    </p>
+                                    <p t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)"
+                                       id="fiscal_position_remark">
+                                        <strong>Fiscal Position Remark:</strong>
+                                        <span t-field="doc.fiscal_position_id.sudo().note"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="paperformat_quotation_report_custom" model="report.paperformat">
+            <field name="name">Custom Sale Report Paperformate</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">50</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">45</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="action_custom_quotation_report" model="ir.actions.report">
+            <field name="name">Custom Report</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ki_sale_report.custom_quotation_template</field>
+            <field name="report_file">ki_sale_report.custom_quotation_template</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="paperformat_id" ref="ki_sale_report.paperformat_quotation_report_custom"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+    </data>
+</odoo>
+

@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+        <record id="quotation_inherit" model="ir.ui.view">
+            <field name="name">Quotation.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="cost_estimation_ref" attrs="{'invisible': [('cost_estimation_ref', '=', False)]}"
+                           readonly="1"/>
+                    <field name="total_margin" attrs="{'invisible': [('cost_estimation_ref', '=', False)]}"
+                           readonly="1"/>
+                    <field name="margin_percent" attrs="{'invisible': [('cost_estimation_ref', '=', False)]}"
+                           readonly="1"/>
+                    <field name="total_cost" attrs="{'invisible': [('cost_estimation_ref', '=', False)]}" readonly="1"/>
+                </xpath>
+                <xpath expr="//group[@name='sale_reporting']" position="attributes">
+                    <attribute name="groups">base.group_user</attribute>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="quotation_cost_inherit" model="ir.ui.view">
+            <field name="name">Quotation.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_crm.sale_view_inherit123"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='opportunity_id']" position="attributes">
+                    <attribute name="groups">base.group_user</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_order_template_view_form_inherit_sequence" model="ir.ui.view">
+            <field name="name">sale.order.template.form.inherit.sequence</field>
+            <field name="model">sale.order.template</field>
+            <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sale_order_template_line_ids']//tree//field[@name='sequence']" position="after">
+                    <field name="sequence_float"/>
+                </xpath>
+                <xpath expr="//field[@name='sale_order_template_line_ids']//tree//field[@name='product_uom_id']" position="after">
+                    <field name="cost_template_id" optional="show"  domain="[('product_id', '=', product_id)]"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="ki_firebase_notification_view_form" model="ir.ui.view">
+            <field name="name">ki_firebase_notification_view_form</field>
+            <field name="model">ki.firebase.notification</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="config_firebase_certificate"
+                            string="Authenticate" type="object" class="btn-primary" attrs="{'invisible': [('state','=','active')]}"
+                            />
+                        <button name="deactivate_firebase"
+                            string="De-Activate" type="object" class="btn-primary" attrs="{'invisible': [('state','=','inactive')]}"
+                            />
+                        <button name="config_firebase_certificate"
+                            string="Re-Authenticate" type="object" class="btn-primary" attrs="{'invisible': [('state','=','inactive')]}"
+                            />
+                        <field name="state" widget="statusbar" statusbar_visible="inactive,active"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="type" />
+                            <field name="project_id"/>
+                            <field name="private_key_id"/>
+                            <field name="private_key" />
+                            <field name="client_email"/>
+                            <field name="client_id"/>
+                            <field name="auth_uri" />
+                            <field name="token_uri"/>
+                            <field name="auth_provider_x509_cert_url"/>
+                            <field name="client_x509_cert_url"/>
+                        </group>
+                        <notebook>
+                            <page string="Test Android Connection">
+                                <group>
+                                    <field name="mobile_device_id"/>
+                                    <field name="title" placeholder="Notification Title"/>
+                                    <field name="body" placeholder="Notification Body"/>
+                                </group>
+                                <button string="Send Notification" name="action_test_notif" type="object" class="btn-primary"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ki_firebase_notification_view_tree" model="ir.ui.view">
+            <field name="name">ki_firebase_notification_view_tree</field>
+            <field name="model">ki.firebase.notification</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_firebase_notification" model="ir.actions.act_window">
+            <field name="name">Firebase Notification</field>
+            <field name="res_model">ki.firebase.notification</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Firebase Notification
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_firebase_notification"
+            name="Firebase Notification"
+            action="action_firebase_notification"
+            parent="base.menu_administration"
+            sequence="10" />
+    </data>
+</odoo>

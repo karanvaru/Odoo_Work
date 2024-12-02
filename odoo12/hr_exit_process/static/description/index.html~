@@ -1,0 +1,79 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+            <h2 class="oe_slogan">Employee Exit Process Management</h2>
+        <p class="oe_mt32"> 
+This module allow organization to handle employee exit process or when employee leaving organization.<br/>
+Available Features:<br/><i>
+    &ensp;&ensp;* Configure Checklists For Exit Process<br/>
+    &ensp;&ensp;* Employee Exit Request<br/>
+    &ensp;&ensp;* Employee Exit Checklists<br/>
+    &ensp;&ensp;* Print Employee Exit PDF Report.</i><br/>
+        </p> 
+Notes: Two new groups has been added: 1. Department Manager 2. Genaral Manager. So we have added record rules and ACL which will take care of exit process requests and its workflow!<br/>
+This apps add below menus: <br/><i>
+&ensp;&ensp;* Employees/Configuration/Configure Checklists<br/>
+&ensp;&ensp;* Employees/Employee Exit<br/>
+&ensp;&ensp;&ensp;&ensp;* Employees/Employee Exit/Employee Exit Checklists<br/>
+&ensp;&ensp;&ensp;&ensp;* Employees/Employee Exit/Exit Requests<br/> </i>
+    </div>
+</section>
+<section class="oe_container" >
+    <h2 class="oe_slogan">Configure Checklists - For Exit Process</h2>
+    <p>This configuration allow organization to setup all checklist which must be pass before employe exit company. This is kind of initial setup and will be used during exit process. As you can see in screenshot in example, checklist of account department with all checklist listed.</p>
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <img class="oe_picture oe_screenshot" src="s4.png">
+        </div>
+    </div>
+</section>
+<section class="oe_container" >
+    <h2 class="oe_slogan">Employee Exit Request</h2>
+    <p>Below screen allow employee to request for exit in orginization. Employee request and confirm request and then it will be passed to workflow of approvals.<i> Draft-Confirmed-Approved by Depatment-Apporoved by HR-Approved by General Manager-Done</i> </p>
+    <p>We have interated calendar meetings and survey on exit process form. This will allow HR department to arrange meetings with variaous departments and also ask employee to fill exit survey. You can see Meetings, <i>Start Interview and Print Interview button on form.</i></p>
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <img class="oe_picture oe_screenshot" src="s2.png">
+            <img class="oe_picture oe_screenshot" src="s3.png">
+        </div>
+    </div>
+</section>
+<section class="oe_container" >
+    <h2 class="oe_slogan">Employee Exit Checklists</h2>
+    <p>This is checklist request sent to respected department for verification and approval. Once department manager approve exit request all checklists configured in the system will make individual checklist request to respected departments for approval. We have also added constraint as well, if all checklists are not approved and HR try to approve exit request then we are showing warning to HR to make sure all resepected departments approval needed.</p>
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <img class="oe_picture oe_screenshot" src="s1.png">
+        </div>
+    </div>
+</section>
+<section class="oe_container" >
+    <h2 class="oe_slogan">Print Employee Exit Report</h2>
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <img class="oe_picture oe_screenshot" src="s5.png">
+        </div>
+        <div class="oe_span12">
+            <img class="oe_picture oe_screenshot" src="s6.png">
+        </div>
+    </div>
+</section>
+<section class="oe_container" >
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Contact / Support</h2>
+        <div class="oe_span6">
+            <div class="oe_picture" style="margin: 25px 10%;">
+                <a href="http://www.probuse.com/">
+                    <img src="500X200-sm.png">
+                </a>
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+                If you need any help or want more additional features,<br/> you may contact us through e-mail at <br/>
+                Email:<a href="mailto:contact@probuse.com" target="new">contact@probuse.com</a><br/>
+                Website:<a href="http://www.probuse.com" target="new">www.probuse.com</a><br/>
+                Skype: mustufa_probuse
+            </p>
+        </div>
+    </div>
+</section>

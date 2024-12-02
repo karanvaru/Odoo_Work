@@ -1,0 +1,12 @@
+<odoo>
+
+    <data noupdate="0">
+        <record id="gate_pass_sequence" model="ir.sequence">
+            <field name="name">Gate Pass sequence</field>
+            <field name="code">gate.pass.sequence</field>
+            <field name="prefix">GP</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

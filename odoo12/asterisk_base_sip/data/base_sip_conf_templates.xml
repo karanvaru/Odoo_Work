@@ -1,0 +1,333 @@
+<odoo>
+<template id="asterisk_base_sip.extension">
+exten => <t t-esc="rec.exten"/>,n,Dial(SIP/<t t-esc="rec.name"/>,<t t-esc="rec.extension.sip_user_dial_timeout"/>,t)
+same =>     n,Hangup()
+</template>
+
+<template id="asterisk_base_sip.template">
+[<t t-esc="rec.section_name"/>](!)<t t-if="rec.note">; <t t-raw="rec.note"/></t>
+<t t-foreach="rec.common_options" t-as="option">
+    <t t-raw="option.param"/>=<t t-raw="option.value"/>
+</t>
+</template>
+
+<template id="asterisk_base_sip.sip_peer">;
+[<t t-esc="rec.name"/>]<t t-if="rec.template">(<t t-raw="rec.template.name.replace(' ','_').lower()"/>)</t><t t-if="rec.note">; <t t-raw="rec.note"/></t>
+<t t-if="rec.accountcode">accountcode=<t t-raw="rec.accountcode"/></t>
+<t t-if="rec.disallow">disallow=<t t-raw="rec.disallow"/></t>
+<t t-if="rec.allow">allow=<t t-raw="rec.allow"/></t>
+<t t-if="rec.allowoverlap">allowoverlap=<t t-raw="rec.allowoverlap"/></t>
+<t t-if="rec.allowtransfer">allowtransfer=<t t-raw="rec.allowtransfer"/></t>
+<t t-if="rec.allowsubscribe">allowsubscribe=<t t-raw="rec.allowsubscribe"/></t>
+<t t-if="rec.amaflags">amaflags=<t t-raw="rec.amaflags"/></t>
+<t t-if="rec.autoframing">autoframing=<t t-raw="rec.autoframing"/></t>
+<t t-if="rec.avpf">avpf=<t t-raw="rec.avpf"/></t>
+<t t-if="rec.buggymwi">buggymwi=<t t-raw="rec.buggymwi"/></t>
+<t t-if="rec.busylevel">busylevel=<t t-raw="rec.busylevel"/></t>
+<t t-if="rec.callbackextension">callbackextension=<t t-raw="rec.callbackextension"/></t>
+<t t-if="rec.callcounter">callcounter=<t t-raw="rec.callcounter"/></t>
+<t t-if="rec.callgroup">callgroup=<t t-raw="rec.callgroup"/></t>
+<t t-if="rec.callingpres">callingpres=<t t-raw="rec.callingpres"/></t>
+<t t-if="rec.callerid">callerid=<t t-raw="rec.callerid"/></t>
+<t t-if="rec.canreinvite">canreinvite=<t t-raw="rec.canreinvite"/></t>
+<t t-if="rec.cancallforward">cancallforward=<t t-raw="rec.cancallforward"/></t>
+<t t-if="rec.context">context=<t t-raw="rec.context"/></t>
+<t t-if="rec.contactacl">contactacl=<t t-raw="rec.contactacl"/></t>
+<t t-if="rec.contactdeny">contactdeny=<t t-raw="rec.contactdeny"/></t>
+<t t-if="rec.contactpermit">contactpermit=<t t-raw="rec.contactpermit"/></t>
+<t t-if="rec.defaultip">defaultip=<t t-raw="rec.defaultip"/></t>
+<t t-if="rec.defaultuser">defaultuser=<t t-raw="rec.defaultuser"/></t>
+<t t-if="rec.deny">deny=<t t-raw="rec.deny"/></t>
+<t t-if="rec.dtlsautogeneratecert">dtlsautogeneratecert=<t t-raw="rec.dtlsautogeneratecert"/></t>
+<t t-if="rec.dtlscafile">dtlscafile=<t t-raw="rec.dtlscafile"/></t>
+<t t-if="rec.dtlscertfile">dtlscertfile=<t t-raw="rec.dtlscertfile"/></t>
+<t t-if="rec.dtlscipher">dtlscipher=<t t-raw="rec.dtlscipher"/></t>
+<t t-if="rec.dtlsenable">dtlsenable=<t t-raw="rec.dtlsenable"/></t>
+<t t-if="rec.dtlsfingerprint">dtlsfingerprint=<t t-raw="rec.dtlsfingerprint"/></t>
+<t t-if="rec.dtlssetup">dtlssetup=<t t-raw="rec.dtlssetup"/></t>
+<t t-if="rec.dtlsverify">dtlsverify=<t t-raw="rec.dtlsverify"/></t>
+<t t-if="rec.directmedia">directmedia=<t t-raw="rec.directmedia"/></t>
+<t t-if="rec.dtmfmode">dtmfmode=<t t-raw="rec.dtmfmode"/></t>
+<t t-if="rec.faxdetect">faxdetect=<t t-raw="rec.faxdetect"/></t>
+<t t-if="rec.force_avp">force_avp=<t t-raw="rec.force_avp"/></t>
+<t t-if="rec.fromdomain">fromdomain=<t t-raw="rec.fromdomain"/></t>
+<t t-if="rec.fromuser">fromuser=<t t-raw="rec.fromuser"/></t>
+<t t-if="rec.g726nonstandard">g726nonstandard=<t t-raw="rec.g726nonstandard"/></t>
+<t t-if="rec.host">host=<t t-raw="rec.host"/></t>
+<t t-if="rec.ignoresdpversion">ignoresdpversion=<t t-raw="rec.ignoresdpversion"/></t>
+<t t-if="rec.insecure">insecure=<t t-raw="rec.insecure"/></t>
+<t t-if="rec.icesupport">icesupport=<t t-raw="rec.icesupport"/></t>
+<t t-if="rec.language">language=<t t-raw="rec.language"/></t>
+<t t-if="rec.mailbox">mailbox=<t t-raw="rec.mailbox"/></t>
+<t t-if="rec.mask">mask=<t t-raw="rec.mask"/></t>
+<t t-if="rec.maxcallbitrate">maxcallbitrate=<t t-raw="rec.maxcallbitrate"/></t>
+<t t-if="rec.md5secret">md5secret=<t t-raw="rec.md5secret"/></t>
+<t t-if="rec.mohinterpret">mohinterpret=<t t-raw="rec.mohinterpret"/></t>
+<t t-if="rec.mohsuggest">mohsuggest=<t t-raw="rec.mohsuggest"/></t>
+<t t-if="rec.musiconhold">musiconhold=<t t-raw="rec.musiconhold"/></t>
+<t t-if="rec.nat">nat=<t t-raw="rec.nat"/></t>
+<t t-if="rec.outboundproxy">outboundproxy=<t t-raw="rec.outboundproxy"/></t>
+<t t-if="rec.parkinglot">parkinglot=<t t-raw="rec.parkinglot"/></t>
+<t t-if="rec.permit">permit=<t t-raw="rec.permit"/></t>
+<t t-if="rec.pickupgroup">pickupgroup=<t t-raw="rec.pickupgroup"/></t>
+<t t-if="rec.port">port=<t t-raw="rec.port"/></t>
+<t t-if="rec.progressinband">progressinband=<t t-raw="rec.progressinband"/></t>
+<t t-if="rec.qualify">qualify=<t t-raw="rec.qualify"/></t>
+<t t-if="rec.qualifyfreq">qualifyfreq=<t t-raw="rec.qualifyfreq"/></t>
+<t t-if="rec.regcontext">regcontext=<t t-raw="rec.regcontext"/></t>
+<t t-if="rec.regexten">regexten=<t t-raw="rec.regexten"/></t>
+<t t-if="rec.remotesecret">remotesecret=<t t-raw="rec.remotesecret"/></t>
+<t t-if="rec.restrictcid">restrictcid=<t t-raw="rec.restrictcid"/></t>
+<t t-if="rec.rfc2833compensate">rfc2833compensate=<t t-raw="rec.rfc2833compensate"/></t>
+<t t-if="rec.rtcp_mux">rtcp_mux=<t t-raw="rec.rtcp_mux"/></t>
+<t t-if="rec.rtpholdtimeout">rtpholdtimeout=<t t-raw="rec.rtpholdtimeout"/></t>
+<t t-if="rec.rtpkeepalive">rtpkeepalive=<t t-raw="rec.rtpkeepalive"/></t>
+<t t-if="rec.rtptimeout">rtptimeout=<t t-raw="rec.rtptimeout"/></t>
+<t t-if="rec.secret">secret=<t t-raw="rec.secret"/></t>
+<t t-foreach="channel_vars" t-as="chan_var">
+setvar=<t t-raw="chan_var"/></t>
+<t t-if="rec.sendrpid">sendrpid=<t t-raw="rec.sendrpid"/></t>
+<t t-if="rec.srvlookup">srvlookup=<t t-raw="rec.srvlookup"/></t>
+<t t-if="rec.subscribecontext">subscribecontext=<t t-raw="rec.subscribecontext"/></t>
+<t t-if="rec.subscribemwi">subscribemwi=<t t-raw="rec.subscribemwi"/></t>
+<t t-if="rec.supportpath">supportpath=<t t-raw="rec.supportpath"/></t>
+<t t-if="rec.t38pt_usertpsource">t38pt_usertpsource=<t t-raw="rec.t38pt_usertpsource"/></t>
+<t t-if="rec.textsupport">textsupport=<t t-raw="rec.textsupport"/></t>
+<t t-if="rec.timerb">timerb=<t t-raw="rec.timerb"/></t>
+<t t-if="rec.timert1">timert1=<t t-raw="rec.timert1"/></t>
+<t t-if="rec.transport">transport=<t t-raw="rec.transport"/></t>
+<t t-if="rec.trustrpid">trustrpid=<t t-raw="rec.trustrpid"/></t>
+<t t-if="rec.type">type=<t t-raw="rec.type"/></t>
+<t t-if="rec.usereqphone">usereqphone=<t t-raw="rec.usereqphone"/></t>
+<t t-if="rec.videosupport">videosupport=<t t-raw="rec.videosupport"/></t>
+<t t-if="rec.vmexten">vmexten=<t t-raw="rec.vmexten"/></t>
+</template>
+
+<template id="asterisk_base_sip.pjsip_peer">;
+[odoo-user-<t t-esc="rec.id"/>]<t t-if="rec.template">(<t t-raw="rec.template.name"/>)</t><t t-if="rec.note">; <t t-raw="rec.note"/></t>
+</template>
+
+<template id="asterisk_base_sip.dialplan_extension">
+exten => <t t-esc="rec.exten"/>,n,Goto(odoo-user-<t t-esc="rec.id"/>,${EXTEN},1)
+</template>
+
+<template id="asterisk_base_sip.user_dialplan">;
+[odoo-user-<t t-esc="rec.id"/>] ; <t t-esc="rec.user.name"/>
+<t t-foreach="rec.route_groups" t-as="route_group">
+    include => route-group-<t t-esc="route_group.id"/> ; <t t-esc="route_group.name"/>
+</t>
+exten => <t t-esc="rec.exten"/>,1,Verbose(CALL TO USER <t t-esc="rec.user.name"/>)
+<t t-if="rec.lang">
+    same => n,Set(CHANNEL(language)=<t t-esc="rec.lang"/>)
+</t>
+<t t-if="not rec.call_waiting">
+    same => n,Verbose(CALL WAITING NOT SET CHECKING CALLS COUNT)
+    same => n,Set(GROUP(cw)=odoo-user-<t t-esc="rec.id"/>)
+    same => n,ExecIf($[ ${GROUP_COUNT(odoo-user-<t t-esc="rec.id"/>@cw)} > 1 ]?Goto(busy))
+</t>
+<t t-if="rec.cf_uncond_enabled">
+    same => n,Verbose(UNCONDITIONAL CF ENABLED)
+    same => n,Set(CHANNEL(accountcode)=<t t-esc="rec.accountcode"/>)
+    same => n,Dial(Local/<t t-esc="rec.cf_uncond_number"/>@odoo-user-<t t-esc="rec.id"/>)
+    <t t-if="rec.vm_enabled">
+        same => n,Goto(vm)
+    </t>
+    <t t-else="">
+        same => n,Answer()
+        same => n,Playtones(congestion)
+        same => n,Wait(11)
+        same => n,Hangup()
+    </t>
+</t>
+<t t-if="rec.get_ring_channels_dial_string()">
+    same => n,Dial(<t t-raw="rec.get_ring_channels_dial_string()"/>,<t t-esc="rec.get_ring_channels_timeout()"/>,tT)
+</t>
+same => n,ExecIf($["${DIALSTATUS}" = "BUSY"]?Goto(busy))
+same => n,Goto(unavail)
+<t t-if="rec.cf_on_unavail_enabled">
+    same => n(unavail),Set(CHANNEL(accountcode)=<t t-esc="rec.accountcode"/>)
+    same => n,Dial(Local/<t t-esc="rec.cf_on_unavail_number"/>@odoo-user-<t t-esc="rec.id"/>)
+</t>
+<t t-else="">
+    same => n(unavail),Verbose(NOT AVAILABLE)</t>
+    same => n,Goto(vm)
+<t t-if="rec.cf_on_busy_enabled">    
+    same => n(busy),Set(CHANNEL(accountcode)=<t t-esc="rec.accountcode"/>)
+    same => n,Dial(Local/<t t-esc="rec.cf_on_busy_number"/>@odoo-user-<t t-esc="rec.id"/>)
+</t>
+<t t-else=""> 
+    same => n(busy),Verbose(BUSY)</t>
+    same => n,Goto(vm)
+    <t t-if="rec.vm_enabled">
+        same => n(vm),ExecIf($["${DIALSTATUS}" = "BUSY"]?Goto(vm-busy))
+        same => n(vm-unavail),VoiceMail(<t t-esc="rec.exten"/>,u)
+        same => n,Answer()
+        same => n,Playtones(congestion)
+        same => n,Wait(11)
+        same => n,Hangup()
+        same => n(vm-busy),VoiceMail(<t t-esc="rec.exten"/>,b)
+        same => n,Answer()
+        same => n,Playtones(busy)
+        same => n,Wait(11)
+        same => n,Hangup()
+    </t>
+    <t t-else="">
+        same => n(vm),Verbose(VOICEMAIL NOT ENABLED)
+        same => n,Answer()
+        same => n,Playtones(busy)
+        same => n,Wait(11)
+        same => n,Hangup()
+    </t>
+exten => i,1,Answer()
+exten => i,2,Playback(invalid)
+exten => i,3,Hangup()
+</template>
+
+<template id="asterisk_base_sip.peer_context">;
+[sip-peer-<t t-esc="rec.id"/>] ; <t t-esc="rec.peer_type.capitalize()"/> <t t-esc="rec.name"/>
+<t t-if="rec.user">
+    <t t-foreach="rec.user_route_groups" t-as="route_group">
+        include => route-group-<t t-esc="route_group.id"/> ; <t t-esc="route_group.name"/>
+    </t>
+</t>
+<t t-else="">
+    <t t-foreach="rec.route_groups" t-as="route_group">
+        include => route-group-<t t-esc="route_group.id"/> ; <t t-esc="route_group.name"/>
+    </t>
+</t>
+</template>
+
+<template id="asterisk_base_sip.route_group">;
+[route-group-<t t-esc="rec.id"/>] ; <t t-esc="rec.name"/>
+exten => _+X.,1,Goto(${EXTEN:1},1)
+exten => _X.,1,Verbose(ROUTE GROUP ID <t t-esc="rec.id"/> <t t-esc="rec.name"/>)
+<t t-if="rec.include_extensions">
+    exten => _X.,n,GotoIf($["${DIALPLAN_EXISTS(odoo-extensions,${EXTEN},1)}" = "1"]?odoo-extensions,${EXTEN},1)
+</t>
+<t t-foreach="rec.routes.sorted(lambda r: r.sequence)" t-as="route">
+    exten => _X.,n,GosubIf($["${DIALPLAN_EXISTS(route-<t t-esc="route.id"/>,${EXTEN},1)}" = "1"]?route-<t t-esc="route.id"/>,${EXTEN},1) ; <t t-esc="route.name"/>
+</t>
+    exten => _X.,n,Hangup()
+</template>
+
+<template id="asterisk_base_sip.route">;
+[route-<t t-esc="rec.id"/>] ; <t t-esc="rec.name"/>
+<t t-set="prio" t-value="1"/>
+exten => <t t-esc="rec.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,Verbose(ROUTE ID <t t-esc="rec.id"/> <t t-esc="rec.name"/>)
+<t t-if="rec.lang">
+    <t t-set="prio" t-value="prio + 1"/>
+    exten => <t t-esc="rec.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,Set(CHANNEL(language)=<t t-esc="rec.lang"/>)
+</t>
+<t t-if="rec.recording_enabled">
+    <t t-set="prio" t-value="prio + 1"/>
+    exten => <t t-esc="rec.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,MixMonitor(${UNIQUEID}.wav)
+</t>
+<t t-if="rec.destination_type == 'exten' and rec.partner_lookup_enabled">
+    <t t-set="prio" t-value="prio + 1"/>
+    exten => <t t-esc="rec.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,Gosub(partner-name-lookup,${EXTEN},1)
+</t>
+<t t-if="rec.destination_type == 'exten'">
+    <t t-set="prio" t-value="prio + 1"/>
+    exten => <t t-esc="rec.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,Goto(odoo-extensions,<t t-esc="rec.exten.number"/>,1)
+</t>
+<t t-if="rec.destination_type == 'dialplan'">
+    <t t-set="prio" t-value="prio + 1"/>
+    exten => <t t-esc="rec.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,Goto(dialplan-<t t-esc="rec.dialplan.id"/>,${EXTEN},1)
+</t>
+<t t-if="rec.destination_type == 'sip_trunk'">
+    <t t-set="prio" t-value="prio + 1"/>
+    exten => <t t-esc="rec.dst"/>,<t t-esc="prio"/>,ExecIf($["${OUTBOUND_CALLERID}" != ""]?Set(CALLERID(all)=${OUTBOUND_CALLERID}))
+    <!-- Channel translations -->
+    <t t-if="rec.src_translations">
+        <t t-foreach="rec.src_translations" t-as="t">
+            <t t-if="t.src_channel">
+                <t t-set="prio" t-value="prio + 1"/>
+                exten => <t t-esc="rec.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,ExecIf($[ "${CHANNEL(name)}" =~ "<t t-esc="t.src_channel"/>" ]?Set(CALLERID(number)=<t t-esc="t.src_replace"/>)) ; <t t-esc="t.src_channel"/>
+            </t>
+        </t>
+    </t>
+    <!-- Account code user translations -->
+    <t t-if="rec.src_translations">
+        <t t-foreach="rec.src_translations" t-as="t">
+            <t t-if="t.src_user">
+                <t t-set="prio" t-value="prio + 1"/>
+                exten => <t t-esc="rec.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,ExecIf($[ "${CHANNEL(accountcode)}" = "<t t-esc="t.src_accountcode"/>" ]?Set(CALLERID(number)=<t t-esc="t.src_replace"/>)) ; <t t-esc="t.src_user"/> accountcode.
+            </t>
+        </t>
+    </t>
+    <!-- Src number translations -->
+    <t t-if="rec.src_translations">
+        <t t-set="prio" t-value="prio + 1"/>
+        exten => <t t-esc="rec.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,NoOp()
+        <!-- Default match without caller ID -->
+        <t t-foreach="rec.src_translations" t-as="t">
+            <t t-if="t.src">
+                <t t-if="t.src_replace">
+                    exten => <t t-esc="rec.dst"/><t t-if="t.src">/<t t-esc="t.src"/></t>,<t t-esc="prio"/>,Set(CALLERID(number)=<t t-esc="t.src_replace"/>)<t t-if="t.src_user">; <t t-esc="t.src_user.name"/></t>
+                </t>
+                <t t-else="">
+                    exten => <t t-esc="rec.dst"/><t t-if="t.src">/<t t-esc="t.src"/></t>,<t t-esc="prio"/>,Set(CALLERID(number)=<t t-esc="t.src_prefix"/><t t-esc="t.src"/><t t-if="t.src_skip"><t t-esc="t.src_skip"/><t if="t.src_skip_length">:<t t-esc="t.src_skip_length"/></t></t>)
+                </t>
+            </t>
+        </t>
+    </t>
+    <!-- Get destination number -->
+    <t t-set="prio" t-value="prio + 1"/>
+    <t t-set="number" t-value="str('')"/>
+    <t t-if="rec.dst_translations">
+        <t t-foreach="rec.dst_translations" t-as="t">
+            <t t-if="t.dst_replace">
+                <t t-set="number" t-value="t.dst_replace"/>
+            </t>
+            <t t-else="">
+                <t t-if="t.dst_prefix">
+                    <t t-set="number" t-value="t.dst_prefix"/>
+                </t>
+                <t t-if="t.dst_skip">
+                    <t t-set="number" t-value="number + '${EXTEN:' + t.dst_skip"/>
+                    <t t-if="t.dst_skip_length">
+                        <t t-set="number" t-value="number + ':' + t.dst_skip_length"/>
+                    </t>
+                    <t t-set="number" t-value="number + '}'"/>
+                </t>
+                <t t-else="">
+                    <t t-set="number" t-value="number + '${EXTEN}'"/>
+                </t>
+            </t>
+            exten => <t t-esc="t.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,Dial(<t t-esc="rec.sip_trunk.channel_name"/>/<t t-esc="number"/>,<t t-esc="rec.sip_trunk_dial_timeout"/>,<t t-esc="rec.sip_trunk_dial_options"/>)            
+        </t>
+    </t>
+    <t t-else="">
+        exten => <t t-esc="rec.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,Dial(<t t-esc="rec.sip_trunk.channel_name"/>/${EXTEN},<t t-esc="rec.sip_trunk_dial_timeout"/>,<t t-esc="rec.sip_trunk_dial_options"/>)
+    </t>
+    <t t-set="prio" t-value="prio + 1"/>
+    <t t-if="rec.fail_over_route and rec.fail_over_route != rec.id">
+        exten => <t t-esc="rec.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,Goto(route-<t t-esc="rec.fail_over_route.id"/>,${EXTEN},1)
+    </t>
+    <t t-else="">
+        exten => <t t-esc="rec.dst"/><t t-if="rec.src">/<t t-esc="rec.src"/></t>,<t t-esc="prio"/>,Return()
+    </t>
+</t>
+<t t-if="rec.destination_type == 'block'">
+    <t t-if="rec.block_type == 'busy'">
+        same => n,Playtones(busy)
+        same => n,Wait(60)
+        same => n,Hangup(17)
+    </t>
+    <t t-if="rec.block_type == 'ring'">
+        same => n,Ringing()
+        same => n,Wait(60)
+        same => n,Hangup(16)
+    </t>
+    <t t-if="rec.block_type == 'monkeys'">
+        same => n,Answer()
+        same => n,Playback(tt-monkeys)
+        same => n,Hangup(16)
+    </t>        
+    <t t-if="rec.destination_type == 'custom'">
+        <t t-esc="rec.dialplan"/>
+    </t>
+</t>
+</template>
+
+</odoo>

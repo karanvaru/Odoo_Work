@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record model="ir.config_parameter" id="emp_wish_template_id_record">
+            <field name="key">employee.emp_wish_template_id</field>
+            <field name="value" ref="rdp_hr_anniversary_reminder.email_anniversary_wishes_employee_template"/>
+        </record>
+    </data>
+</odoo>

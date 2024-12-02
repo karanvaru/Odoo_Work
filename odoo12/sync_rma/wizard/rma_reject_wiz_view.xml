@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Reject RMA form view -->
+    <record id="rma_issue_reject_view" model="ir.ui.view">
+        <field name="name">rma.reject.wiz.form</field>
+        <field name="model">rma.reject.wiz</field>
+        <field name="arch" type="xml">
+            <form string="RMA Issue">
+                <group string="Reject Note">
+                    <field name="name" nolabel="1"/>
+                </group>
+                <footer>
+                    <button name="reject_rma" type="object" string='Reject RMA' class="btn-primary" context="{'sale_order': True}" />
+                    <button string="Close" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Reject RMA action -->
+    <record id="action_rma_issue_reject_view" model="ir.actions.act_window">
+        <field name="name">RMA Reject</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">rma.reject.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="rma_issue_reject_view"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

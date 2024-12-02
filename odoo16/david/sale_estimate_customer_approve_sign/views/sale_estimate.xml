@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="custom_sale_estimate_form_inherit_signature" model="ir.ui.view">
+        <field name="name">sale.estimate.signature.inherit</field>
+        <field name="model">sale.estimate</field>
+        <field name="inherit_id" ref="odoo_sale_estimates.view_sale_estimate_form"/>
+        <field name="arch" type="xml">
+           <xpath expr="//page[last()]" position="after">
+                 <page name="Signature" string="Signature">
+                    <group>
+                        <field name="custom_signed_on" readonly="1"/>
+                        <field name="custom_signed_by" readonly="1"/>
+                        <field name="custom_signature" widget="image" options='{"size": [350, 250]}' readonly="1"/>
+                        </group>
+                    </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

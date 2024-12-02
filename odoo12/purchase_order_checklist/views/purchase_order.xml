@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_view_form" model="ir.ui.view">
+        <field name="name">purchase.order.form.check.list</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Check List" attrs="{'invisible': [('check_list_len', '=', 0)]}">
+                    <field name="checklist_progress"
+                           widget="progressbar"
+                    />
+                    <group>
+                        <field name="check_list_line_ids"
+                               widget="many2many_checkboxes"
+                               domain="[('state', '=', state), ('company_id', '=', company_id)]"
+                               nolabel="1"
+                               class="oe_inline"
+                        />
+                    </group>
+                    <group string="History">
+                        <field name="check_list_history_ids"
+                               readonly="1"
+                               nolabel="1"
+                        >
+                            <tree decoration-success="done_action in ['done']"
+                                  decoration-danger="done_action in ['reset']"
+                            >
+                                <field name="check_list_id"/>
+                                <field name="done_action"/>
+                                <field name="user_id"/>
+                                <field name="complete_date"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Tech" invisible="1">
+                        <field name="check_list_len"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="purchase_order_view_tree_quotatins_checklist" model="ir.ui.view">
+        <field name="name">purchase.order.tree.check.list</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="todo_check_ids"
+                       widget="many2many_tags"
+                       options="{'color_field': 'color'}"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="purchase_order_view_search_checklist" model="ir.ui.view">
+        <field name="name">purchase.order.search.check.list</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="todo_check_ids"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_move_inherit_form" model="ir.ui.view">
+                  <field name="name">account.move.inherit.form</field>
+                  <field name="model">account.move</field>
+                  <field name="inherit_id" ref="account.view_move_form" />
+                  <field name="arch" type="xml">
+                        <!-- Added By Sabitha -->
+                        <xpath expr="//notebook" position="inside">
+                          <page string="GST Returns" name="gst_returns">
+                            <group>
+                                <group>
+                                    <field name="gst_returns_year_id"/>
+                                    <field name="gst_returns_month_id"/>
+                                    <field name="transaction_type_id"/>
+                                </group>
+                                <group>
+                                </group>
+
+                            </group>
+                            </page>
+                            <page string="TDS/TCS/PT Returns" name="tds_returns">
+                                <group>
+                                    <group>
+                                      <field  name="tax_type_id"/>
+                                      <field  name="account_tds_paid_year_id"/>
+                                      <field  name="account_tds_paid_month_id"/>
+                                      <!-- <field  name="invoice_id"/>  -->
+
+
+                                    </group>
+                                    <group>
+                                      <field  name="bsr_code"/>
+                                      <field name="challan_number"/>
+                                      <field name="challan_amount"/>
+                                      <field name="tds_certificate_number"/>
+                                        <field name="tds_certificate"/>
+
+                                    </group>
+
+                                </group>
+                              </page>
+                         </xpath>
+<!--                         <xpath expr="//form/sheet/group/group[2]/field[@name='global_channel_id']" position="before" >-->
+<!--                            <field name='transaction_type_id' />-->
+<!--                         </xpath>-->
+                  </field>
+        </record>
+
+
+
+
+        <!-- stock picking Form View Inheritance -->
+        <record id="stock_picking_inherit_form" model="ir.ui.view">
+          <field name="name">stock.picking.form.inherit</field>
+          <field name="model">stock.picking</field>
+          <field name="inherit_id" ref="stock.view_picking_form" />
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="after">
+              <field name="transaction_type_id"/>
+            </xpath>
+          </field>
+        </record>
+
+        <!-- Sale order Form View Inheritance -->
+
+        <record id="sale_order_inherit_form" model="ir.ui.view">
+          <field name="name">sale.order.inherit.form</field>
+          <field name="model">sale.order</field>
+          <field name="inherit_id" ref="sale.view_order_form" />
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+              <field name="transaction_type_id"/>
+            </xpath>
+          </field>
+        </record>
+
+
+        <!-- Purchase Order Form View Inheritance -->
+        <record id="purchase_order_inherit_form" model="ir.ui.view">
+          <field name="name">purchase.order.inherit.form</field>
+          <field name="model">purchase.order</field>
+          <field name="inherit_id" ref="purchase.purchase_order_form"/>
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+              <field name="transaction_type_id"/>
+            </xpath>
+          </field>
+        </record>
+
+
+
+
+
+
+    </data>
+</odoo>

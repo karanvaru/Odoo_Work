@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<template id="template_move_lines">
+		<div class="row" style="width:1200px;">
+            <label style="display:none;">Stock Picking</label>
+            <input style="display:none;" type="number" id="picking_number" name="picking_number" t-att-value="stock_picking.id"/>
+			<table class="table table-bordered" id="move_lines">
+				<thead>
+					<th style="display:none;">Move</th>
+					<th>Product</th>
+					<th>Demanded Qty</th>
+					<th>Lot Number</th>
+					<th>Scanned Qty</th>
+				</thead>
+				<tbody>
+					<t t-foreach="move_lines" t-as="line">
+						<tr t-att-id="str(line.id)" class="text-muted">
+							<td name="move" style="display:none;"><span t-esc="line.id"/></td>
+							<td name="product"><span t-esc="line.product_id.name"/></td>
+							<td name="demand_qty"><span t-esc="line.product_uom_qty"/></td>
+							<td name="lot_id">
+								<t t-foreach="line.move_line_ids" t-as="lot">
+									<span t-esc="lot.lot_id.name"/>,
+								</t>
+							</td>
+							<td name="qty" class="qty"><span t-att-id="str(line.id)">0</span></td>
+						</tr>
+					</t>
+				</tbody>
+			</table>
+		</div>
+	</template>
+
+</odoo>

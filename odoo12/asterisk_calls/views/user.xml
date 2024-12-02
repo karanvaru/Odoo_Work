@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="asterisk_user_calls_action" model="ir.actions.act_window">
+    <field name="name">User Calls</field>
+    <field name="res_model">asterisk_calls.call</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[
+        '|',
+        ('src_user', '=', context.get('current_user')),
+        ('dst_user', '=', context.get('current_user')),
+        ]</field>
+  </record>
+
+    <record id="asterisk_calls_user_form" model="ir.ui.view">
+        <field name="name">asterisk_calls.user.form</field>
+        <field name="model">asterisk_common.user</field>
+        <field name="inherit_id" ref="asterisk_common.asterisk_user_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button type="action" name="%(asterisk_user_calls_action)d"
+                    context="{'current_user': active_id}"
+                    icon="fa-phone">
+                    <field name="calls_count" widget="statinfo"/>
+                </button>
+            </div>
+            <page name="common" position="after">
+                <page name="calls" string="Calls">
+                    <group>
+                        <group>
+                            <field name="missed_calls_notify"/>
+                            <field name="open_partner_form"/>
+                        </group>
+                        <group>
+                            <field name="call_popup_is_enabled"/>
+                            <field name="call_popup_is_sticky"
+                                attrs="{'invisible': [('call_popup_is_enabled', '=', False)]}"/>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

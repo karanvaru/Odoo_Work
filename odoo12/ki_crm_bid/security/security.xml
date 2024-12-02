@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <record id="group_enable_bid_access" model="res.groups">
+            <field name="name">Create BID Access</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_portal'))]"/>
+        </record>
+    </data>
+</odoo>

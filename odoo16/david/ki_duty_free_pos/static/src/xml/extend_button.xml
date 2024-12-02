@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="SalePersonButton" owl="1">
+        <div class="actionpad">
+            <button class="button set-partner" t-att-class="{'decentered': isLongName}"
+                    style="background: #389B6A;  color: white;">
+<!--                6EC89B-->
+            <i class="fa fa-user" role="img" aria-label="Duty Free Details" title="Duty Free Details"/>
+                <t t-esc="SalesPersonName"/>
+            </button>
+        </div>
+    </t>
+
+</templates>
+

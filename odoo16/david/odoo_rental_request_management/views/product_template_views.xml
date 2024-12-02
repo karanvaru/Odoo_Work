@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_new_inherit_rental_product" model="ir.ui.view">
+        <field name="name">product.template.rental.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//div[@name='options']/div[last()]" position="after">-->
+            <xpath expr="//div[@name='options']" position="inside">
+<!--                <div> -->
+<!--                    <field name="custom_rental_product" nolable="1"/>-->
+<!--                    <label for="custom_rental_product" string="Is Rental Product"/>-->
+<!--                </div>-->
+                <span class="d-inline-block">
+                    <field name="custom_rental_product"/>
+                    <label for="custom_rental_product" string="Is Rental Product"/>
+                </span>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_only_form_view_inherit_days_price" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.days_price</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_rental_so_line_report" type="object" icon="fa-outdent" class="oe_stat_button" attrs="{'invisible': [('custom_rental_product', '!=', True)]}" string="Rental Reservations">
+                </button>
+            </xpath>
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page name="rental_price_configuration" string="Rental Price Configuration" attrs="{'invisible': [('custom_rental_product', '=', False)]}">
+                    <group string="Rental Price Configuration" name="rental_price_info_grp">
+                        <group>
+                            <field name="is_custom_rental_published"/>
+                        </group>
+                    </group>
+                    <field name="custom_rent_day_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="product_tmpl_id" invisible="1"/>
+                            <field name="days_from"/>
+                            <field name="days_to"/>
+                            <field name="price" widget="monetary"/>
+                            <field name="pricelist_id"/>
+                            <field name="product_variant_ids" widget="many2many_tags" domain="[('product_tmpl_id', '=', parent.id)]"/>
+                            <field name="currency_id" invisible="1"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="days_from"/>
+                                    <field name="price"/>
+                                </group>
+                                <group>
+                                    <field name="product_tmpl_id" invisible="1"/>
+                                    <field name="days_to"/>
+                                    <field name="product_variant_ids" widget="many2many_tags"/>
+                                </group>
+                            </group>
+                        </form>
+                    </field>
+    
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="product_normal_form_view_inherit_custom_rental_qty" model="ir.ui.view">
+        <field name="name">product.product.form.inherit.rental.qty</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_rental_so_line_report" type="object" icon="fa-outdent" class="oe_stat_button" attrs="{'invisible': [('custom_rental_product', '!=', True)]}" string="Rental Reservations">
+                </button>
+            </xpath>
+            <xpath expr="//page[last()]" position="after">
+                <page name="retal_custom_page" string="Rental Information">
+                    <group>
+                        <group>
+                            <field name="custom_rental_qty"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="product_template_action_inherit_rental_custom" model="ir.actions.act_window">
+        <field name="name">Rental Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="view_id" ref="product.product_template_kanban_view"/>
+        <field name="search_view_id" ref="product.product_template_search_view"/>
+        <field name="context">{"search_default_filter_to_sell":1, "sale_multi_pricelist_product_template": 1, 'default_custom_rental_product':1}</field>
+        <field name="domain">[('custom_rental_product', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new rental product
+            </p><p>
+                You must define a product for everything you sell on rent,
+                whether it's a storable product, a consumable or a service.
+            </p>
+        </field>
+    </record>
+    
+    <record id="product_normal_action_sell_inherit_rental_custom" model="ir.actions.act_window">
+            <field name="name">Rental Product Variants</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">kanban,tree,form,activity</field>
+            <field name="context">{"search_default_filter_to_sell":1, 'default_custom_rental_product':1}</field>
+            <field name="view_id" ref="product.product_product_tree_view"/>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="domain">[('custom_rental_product', '=', True)]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new product variant
+              </p><p>
+                You must define a product for everything you sell, whether it's a physical product,
+                a consumable or a service you offer to customers.
+                The product form contains information to simplify the sale process:
+                price, notes in the quotation, accounting data, procurement methods, etc.
+              </p>
+            </field>
+        </record>
+    
+</odoo>

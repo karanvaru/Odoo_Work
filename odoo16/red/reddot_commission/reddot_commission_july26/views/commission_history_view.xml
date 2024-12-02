@@ -1,0 +1,155 @@
+<odoo>
+    <data>
+        <record id="view_commission_history_form" model="ir.ui.view">
+            <field name="name">view.commission.history.form</field>
+            <field name="model">commission.history</field>
+            <field name="arch" type="xml">
+                <form string="Commission Sheet">
+                    <header>
+                        <button string="Refresh Commission"
+                                attrs="{'invisible': [('state', 'not in', ('new', 'exception'))]}" type="object"
+                                class="btn-primary" name="refresh_commission"/>
+                        <button name="action_submit" attrs="{'invisible': [('state', 'not in', ('new', 'exception'))]}"
+                                type="object" class="btn-primary" string="Submit For Approval"/>
+
+                        <!--                        <button name="action_exception" attrs="{'invisible': [('state', 'not in', ('new', 'exception'))]}" type="object" class="btn-warning" string="Raise Exception"/>-->
+
+                        <button type="action"
+                                name="%(reddot_commission.commission_history_exception_reason_wizard_action)d"
+                                string="Raise Exception"
+                                class="btn-warning"
+                                attrs="{'invisible': [('state', 'not in', ('new', 'exception'))]}"/>
+
+                        <button name="action_approve" type="object" class="btn-primary" icon="fa-check"
+                                attrs="{'invisible': [('state', 'not in', ('submit'))]}" string="Approve"/>
+                        <button name="action_reject" type="object" class="btn-danger" icon="fa-close"
+                                attrs="{'invisible': [('state', 'not in', ('submit'))]}" string="Reject"
+                                title="Reject"/>
+
+                        <button name="action_reset_draft"
+                                attrs="{'invisible': [('state', 'not in', [ 'exception', 'reject'])]}" type="object"
+                                string="Reset to Draft"/>
+                        <button name="action_mark_as_paid" class="btn-primary"
+                                attrs="{'invisible': [('state', 'not in', ['approve'])]}" type="object"
+                                string="Mark As Paid"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="new,confirm,invoiced',paid"/>
+                    </header>
+                    <sheet>
+                        <div name="button_box" class="oe_button_box">
+                            <button name="action_open_commission_bills" string="Bills" class="oe_stat_button"
+                                    icon="fa-list-ul" type="object" invisible="True">
+                                <!--                                 invisible="state in ('new', 'cancel')" -->
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="commission_user_id"/>
+                                <field name="company_id" groups="base.group_multi_company"
+                                       options="{'no_create': True}"/>
+                                <field name="currency_id" groups="base.group_multi_currency" readonly="True"/>
+
+                            </group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="date_end"/>
+                                <field name="create_date"/>
+                                <field name="Confirmed_date"/>
+                            </group>
+                        </group>
+                        <group string="Accounting">
+                            <group>
+                                <field name="total_commission" widget="monetary"/>
+                                <field name="total_amount" widget="monetary" invisible="True"/>
+                                <field name="amount_paid" widget="monetary"/>
+                            </group>
+                            <group>
+                                <field name="invoice_id" invisible="1"/>
+                                <field name="sale_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="All Commissions">
+                                <field name="commission_line_ids" widget="one2many_list">
+                                    <tree string="Components" editable="bottom" decoration-danger="state == 'reject'"
+                                          decoration-success="state == 'approve'">
+                                        <field name="date_commission" optional="show"/>
+                                        <field name="calculation_types" optional="hide"/>
+                                        <field name="commission_type"/>
+                                        <field name="target_amount" optional="show" widget="monetary" readonly="1"/>
+                                        <field name="target_achieved_amount" optional="show" widget="monetary" readonly="1"/>
+                                        <field name="base_amount" optional="show" widget="monetary" readonly="1"/>
+                                        <field name="percentage" readonly="1" optional="show"/>
+                                        <field name="commission_amount" optional="show" sum="commission_amount"
+                                               widget="monetary"/>
+                                        <field name="state" readonly="1" optional="show" invisible="True"/>
+                                        <field name="origin_ref" readonly="1"/>
+                                        <!-- field name="approval_date" optional="show"/>
+                                        <button string="" type="object" class="btn-primary" name="view_source"
+                                                icon="fa-folder-open" title="Source"/>
+                                        <button type="object" class="btn-primary" name="approved"
+                                                attrs="{'invisible': [('state', '!=','draft')]}" icon="fa-check"
+                                                title="Approve"/>
+                                        <button type="object" class="btn-secondary" name="reject"
+                                                attrs="{'invisible': [('state', 'not in', ['draft','approve'])]}"
+                                                icon="fa-close" title="Reject"/-->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Notes">
+                                <field name="note" nolabel="1" placeholder="Add Notes....."/>
+                            </page>
+                            <page string="Exception Reason">
+                                <group>
+                                    <field name="exception_reason" readonly="True"/>
+                                </group>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" colspan="4" widget="mail_thread" nolabel="1"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="view_commission_history_tree" model="ir.ui.view">
+            <field name="name">view.commission.history.tree</field>
+            <field name="model">commission.history</field>
+            <field name="arch" type="xml">
+                <tree string="Commission Sheets">
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="commission_user_id"/>
+                    <field name="currency_id" invisible="True"/>
+                   <field name="total_commission" widget="monetary"/>
+                    <field name="state"/>
+                    <button string="" type="object" class="btn-primary" name="action_approve" icon="fa-check"
+                            title="Approve"
+                            invisible="True"/>
+                    <button string="" type="object" class="btn-secondary" name="action_reject" icon="fa-close"
+                            title="Reject"
+                            invisible="True"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_commission_history" model="ir.actions.act_window">
+            <field name="name">Commission Sheets</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">commission.history</field>
+            <field name="context">{'search_default_group_by_date_start': 1, 'filter_state': ['draft']}</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph</field>
+        </record>
+        <record id="action_commission_history_non_draft" model="ir.actions.act_window">
+            <field name="name">Commission History</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">commission.history</field>
+            <field name="domain">[('state', '=', 'confirm')]</field>
+            <field name="context">{'search_default_group_by_date_start': 1,'filter_state': ['approve', 'invoiced']}
+            </field>
+            <field name="view_mode">tree,kanban,form,pivot,graph</field>
+        </record>
+    </data>
+</odoo>

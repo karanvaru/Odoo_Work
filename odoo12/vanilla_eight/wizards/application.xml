@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="vanilla_eight_application_form" model="ir.ui.view">
+         <field name="name">vanilla.eight.application.wizard</field>
+         <field name="model">vanilla.eight.application</field>
+         <field name="arch" type="xml">
+            <form string="Wizard Application">
+                    <h1>Congratulations</h1>
+                <footer>
+					<button name="button_confirmed" type="object"  string="Ok" class="btn_primary"  />
+
+<!--                    <button string="Cancel" class="btn-secondary" special="cancel"/>-->
+                </footer>
+            </form>
+         </field>
+     </record>
+    <record id="vanilla_eight_application_wizard" model="ir.actions.act_window">
+        <field name="name">Vanilla Eight Application</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">vanilla.eight.application</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="vanilla_eight_application_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

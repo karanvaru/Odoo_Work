@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='asterisk_calls_partner_action' model='ir.actions.act_window'>
+        <field name='name'>Partner calls</field>
+        <field name='res_model'>asterisk_calls.call</field>
+        <field name='view_mode'>tree,form</field>
+        <field name="domain">['|', ('partner','=', active_id), ('partner.parent_id','=', active_id)]</field>
+    </record>
+
+    <!-- First view for adding button field -->
+    <record id="view_partner_form_1" model="ir.ui.view">
+        <field name="name">asterisk_calls.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">51</field>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="%(asterisk_calls.asterisk_calls_partner_action)d" type="action"
+                    class="oe_stat_button oe_read_only" icon="fa-phone"> 
+                    <field name="asterisk_calls_count" string="Calls" widget="statinfo"/>
+                </button>
+            </div>
+            <page name="internal_notes" position="after">
+                <page string="Recorded Calls" name="recordings">
+                    <group>
+                        <field name="recorded_calls"
+                            class="oe_read_only" nolabel="1">
+                            <tree limit="5">
+                                <field name="started"/>
+                                <field name="billsec_human"/>                                
+                                <field name="recording_widget" widget="html"/>
+                                <field name="src_user"/>
+                                <field name="dst_user"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <!-- The 2-nd form is for overwriting widget after sms form view will apply its changes. -->
+    <record id="view_partner_form_2" model="ir.ui.view">
+        <field name="name">asterisk_calls.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">52</field>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_kanban_details')]//field[@name='name']" position="after">
+                <a type="action" name="%(asterisk_calls.asterisk_calls_partner_action)d">
+                    <span class="fa fa-phone oe_right">
+                        <field name="asterisk_calls_count"/>
+                    </span>
+                </a>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<templates id="template" xml:space="preserve">
+
+    <t t-name="Dashboard">
+        <div class="oh_dashboards o_action_manager">
+            <style>
+                html .o_web_client > .o_action_manager {
+                    overflow:scroll;
+                }
+            </style>
+            <div class="container-fluid o_pos_dashboard">
+            </div>
+        </div>
+    </t>
+
+    <t t-name="DashboardOrders">
+        <div class="container" id="main_div">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <form id="form" role="search">
+                <div class="row">
+                    <div class="mb-3 field-gender col-6">
+                        <label style="font: 16px Arial, sans-serif; font-weight: bold;">Operation Type:</label>
+                        <select class="o_select_product form-control"
+                                name="picking_type" id="picking_type" style="min-width: 100px;">
+                            <t t-foreach="widget.picking_type_dict" t-as="picking_type_dict">
+                                <option t-attf-data-key="#{picking_type_dict}">
+                                    <t t-esc="widget.picking_type_dict[picking_type_dict]"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="mb-3 field-gender col-6">
+                        <div>
+                            <label for="picking_search_by" style="font: 16px Arial, sans-serif; font-weight: bold;">Picking Search By : </label>
+                            <input type="radio" id="name" name="picking_search_by" value="Name" checked="checked"/>
+                            <label for="name" style="font: 17px;">Name</label>
+                        </div>
+                        <div style="padding-left: 154px;">
+                            <input type="radio" id="tracking_reference" name="picking_search_by"
+                                   value="Tracking Reference"/>
+                            <label for="tracking_reference" style="font: 17px;">Tracking Reference</label>
+                        </div>
+                        <div style="padding-left: 154px;">
+                            <input type="radio" id="awb_number" name="picking_search_by" value="AWB Number"/>
+                            <label for="awb_number" style="font: 17px;">AWB Number</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 field-gender col-6">
+                        <div>
+                            <label for="product_search_by"
+                                   style="font: 16px Arial, sans-serif; font-weight: bold;">Product Search By : </label>
+                            <input type="radio" id="barcode" name="product_search_by" value="Barcode"
+                                   checked="checked"/>
+                            <label for="name" style="font: 16px;">Barcode</label>
+                        </div>
+                        <div style="padding-left: 158px;">
+                            <input type="radio" id="internal_reference" name="product_search_by"
+                                   value="Internal Reference"/>
+                            <label for="internal_reference" style="font: 16px;">Internal Reference</label>
+                        </div>
+                        <div>
+                        <label for="oe_import_tracking" style="font: 16px Arial, sans-serif; font-weight: bold;">
+                            Search By Lot?:
+                        </label>
+                        <input type="checkbox" id="search_by_lot"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                <div class="row">
+                    <div class="mb-3 field-name col-6">
+                        <label for="login"
+                               style="font: 16px Arial, sans-serif; font-weight: bold;">Picking Name / Tracking Reference / AWB Number</label>
+                        <input style="height:35px;" type="search"
+                               name="login" id="picking_name"
+                               class="form-control form-control-sm"
+                               placeholder="Search..."
+                        />
+                    </div>
+                    <div class="mb-3 field-name col-6">
+                        <label for="login"
+                               style="font: 16px Arial, sans-serif; font-weight: bold;">Product Barcode / Internal Reference</label>
+                        <input style="height:35px;" type="search"
+                               name="login" id="picking_product"
+                               class="form-control form-control-sm"
+                               placeholder="Search..."
+                        />
+                    </div>
+
+                    <!--                    <div class="mb-3 field-name col-6">-->
+                    <!--                        <label for="picking_product_lot"-->
+                    <!--                               style="font: 16px Arial, sans-serif; font-weight: bold;">Product Search By Lot Number</label>-->
+                    <!--                        <input style="height:35px;" type="search"-->
+                    <!--                               name="picking_product_lot" id="picking_product_lot"-->
+                    <!--                               class="form-control form-control-sm"-->
+                    <!--                               placeholder="Search..."-->
+                    <!--                        />-->
+                    <!--                    </div>-->
+
+                </div>
+
+                <!--                <br/>-->
+
+                <!--                <div class="row">-->
+                <!--                    <div class="mb-3 field-name col-6">-->
+                <!--                    </div>-->
+                <!--                    <div class="mb-3 field-name col-6">-->
+                <!--                        <label for="picking_product_lot"-->
+                <!--                               style="font: 16px Arial, sans-serif; font-weight: bold;">OR</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <div class="row">
+                    <div class="mb-3 field-name col-6">
+                    </div>
+                    <div class="mb-3 field-name col-6" id="lot_no_box" style="display:none;">
+                        <label for="picking_product_lot"
+                               style="font: 16px Arial, sans-serif; font-weight: bold;">Scan By Lot Number</label>
+                        <input style="height:35px;" type="search"
+                               name="picking_product_lot" id="picking_product_lot"
+                               class="form-control form-control-sm"
+                               placeholder="Search..."
+                        />
+                    </div>
+                </div>
+                <br/>
+
+                <div id="alert" style="display:none;" class="alert alert-danger" role="alert"></div>
+
+                <div class="row" style="display:none;">
+                    <div class="col-6">
+
+                        <div class="mb-3 field-name">
+<!--                             <label>Stock Picking</label>
+                            <input type="number" id="picking_number" name="picking_number" value="Picking"/>
+ -->                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3 field-name">
+                            <label>Products</label>
+                            <select class="o_select_product form-control" multiple="multiple"
+                                    name="product" id="product" style="min-width: 100px;">
+                                <t t-foreach="widget.product_ids_dict" t-as="product_ids_dict">
+                                    <option>
+                                        <t t-esc="widget.product_ids_dict[product_ids_dict]"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <br/>
+                <br/>
+                <div class="row" id="product_lines">
+                </div>
+                <br/>
+                <br/>
+                <div id="picking_alert" style="display:none;" class="alert alert-success" role="alert"></div>
+                <div style="padding-left: 900px;">
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            id="picking_validate">Validate
+                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            id="next_button">Next
+                    </button>
+                </div>
+            </form>
+
+            <br/>
+            <br/>
+            <br/>
+
+        </div>
+    </t>
+</templates>

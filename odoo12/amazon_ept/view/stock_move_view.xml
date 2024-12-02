@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>	
+	
+	 <record model="ir.ui.view" id="view_form_stock_move_ept">
+            <field name="name">view.form.stock.move.ept</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form"/>
+            <field name="arch" type="xml">
+                <data>
+                	<xpath expr="//field[@name='location_dest_id']" position="after">
+                		<field name='seller_id' widget="selection" readonly="1"/>                		
+                	</xpath>
+					<!-- Added categ_id field by Uday on 18-05-2024 -->
+					<xpath expr="//field[@name='product_id']" position="after">
+						<field name="categ_id" readonly="1"/>
+					</xpath>
+					<field name="date" position="after">
+	            		<field name="return_reason_id"/>
+	            	</field>
+		            <group name="linked_group" position="after">
+						<group name="amazon_stock_adjustment" string="Stock Adjustment Details" colspan="4">
+		            		<group>
+		            			<field name="adjusted_date" readonly="1"/>
+		            			<field name="transaction_item_id" readonly="1"/>
+		            		</group>
+		            		<group>
+		            			<field name="fulfillment_center_id" readonly="1"/>
+		            			<field name="code_id" readonly="1"/>
+		            			<field name="code_description" readonly='1'/>            			
+		            		</group>
+						</group>            	
+		            </group>	            	
+                </data>
+            </field>
+        </record>
+        <record id="view_move_search_ept" model="ir.ui.view">
+            <field name="name">stock.move.search</field>
+            <field name="model">stock.move</field>
+			<field name="inherit_id" ref="stock.view_move_search"/>
+            <field name="arch" type="xml">
+				<field name="product_id" position="after">
+					<field name="return_reason_id"/>
+				</field>
+				<filter name="by_product" position="after">
+	                <filter string="Return Reason" name="return_reason_id" icon="terp-accessories-archiver" domain="[]"  context="{'group_by':'return_reason_id'}"/>
+	                <filter name="stock_adjustment_reason" string="Stock Adjustment Reason" icon="terp-go-month" domain="[]"  context="{'group_by':'code_description'}"/>				
+				</filter>
+            </field>
+        </record>        
+        
+       
+      </data>
+</openerp>     

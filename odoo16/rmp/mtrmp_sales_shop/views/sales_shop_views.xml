@@ -1,0 +1,402 @@
+<odoo>
+    <data>
+        <record id="sale_shop_view_tree" model="ir.ui.view">
+            <field name="name">sale.shop.tree</field>
+            <field name="model">sale.shop</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Shop List">
+                    <field name="name"/>
+                    <field name="pricelist_id"/>
+                    <field name="company_id"/>
+                    <field name="crm_team_id" invisible="1"/>
+                    <field name="user_id"/>
+                    <field name="ecommerse_merchant_type" optional="hide"/>
+                    <field name="default_warehouse_id" optional="hide"/>
+                    <field name="default_stock_location_id" optional="hide"/>
+                    <field name="default_discount_product_id" optional="hide"/>
+                    <field name="default_delivery_product_id" optional="hide"/>
+                    <field name="ecommerce_login" optional="hide"/>
+                    <field name="ecommerce_password" optional="hide"/>
+                    <field name="ecommerce_phone" optional="hide"/>
+                    <field name="state" widget="badge" decoration-success="state == 'active'"
+                           decoration-info="state == 'draft'"
+                           decoration-muted="state == 'in_active'" optional="show"/>
+                    <button class="oe_stat_button" type="object" name="get_shop_product"
+                            icon="fa-product-hunt">
+                        <field string="Shop Product" name="product_count" widget="statinfo"/>
+                    </button>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sale_shop_search_view" model="ir.ui.view">
+            <field name="name">sale.shop.search</field>
+            <field name="model">sale.shop</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="pricelist_id"/>
+                    <field name="company_id"/>
+                    <field name="crm_team_id"/>
+                    <field name="user_id"/>
+                    <field name="is_ecommerce_shop"/>
+                    <field name="ecommerse_merchant_type"/>
+                    <field name="active"/>
+                    <field name="own_sku_sequence"/>
+                    <field name="default_sku_sequence_id"/>
+                    <field name="sku_prefix"/>
+                    <field name="sku_suffix"/>
+                    <field name="sku_sequence"/>
+                    <field name="default_warehouse_id"/>
+                    <field name="default_stock_location_id"/>
+                    <field name="default_discount_product_id"/>
+                    <field name="default_delivery_product_id"/>
+                    <!--                    <field name="product_ids"/>-->
+                    <!--                    <field name="category_ids"/>-->
+                    <!--                    <field name="partner_ids"/>-->
+                    <field name="ecommerce_login"/>
+                    <field name="ecommerce_password"/>
+                    <field name="ecommerce_phone"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Status" name="group_state" context="{'group_by':'state'}"/>
+                        <filter string="Company" name="group_company_id"
+                                context="{'group_by':'company_id'}"/>
+                        <filter string="User" name="group_user_id"
+                                context="{'group_by':'user_id'}"/>
+                        <filter string="Sales Team" name="group_crm_team_id"
+                                context="{'group_by':'crm_team_id'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+        <record id="sale_shop_kanban_view" model="ir.ui.view">
+            <field name="name">sale.shop</field>
+            <field name="model">sale.shop</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="name"/>
+                    <field name="pricelist_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <strong>
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                    <div class="col-9 text-right">
+                                        <field name="pricelist_id"/>
+                                        <br/>
+                                        <field name="crm_team_id"/>
+                                        <br/>
+                                        <field name="company_id"/>
+                                        <br/>
+                                        <field name="user_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="sale_shop_view_form">
+            <field name="name">sale.shop.form</field>
+            <field name="model">sale.shop</field>
+            <field name="arch" type="xml">
+                <form string="Sale Shop Form">
+                    <header>
+                        <button name="action_active" type="object" class="btn-primary"
+                                string="Activate" states="draft"/>
+                        <button name="action_in_active" type="object" class="btn-primary"
+                                string="De-Activate" states="active"/>
+                        <button name="action_draft" type="object" class="btn-primary"
+                                states="active,in_active" string="Reset to Draft" invisible="0"/>
+                        <!--                        <button name="%(mtrmp_sales_shop.actions_import_return_wizard)d" string="Import Return"-->
+                        <!--                                type="action"/>-->
+                        <button name="%(mtrmp_sales_shop.actions_import_sales_shop_operation)d"
+                                context="{'default_shop_id': active_id,'default_operation' : 'import_products'}"
+                                type="action"
+                                class="btn-secondary"
+                                string="Import Product" states="active"/>
+                        <button name="%(mtrmp_sales_shop.actions_import_sales_shop_operation)d"
+                                context="{'default_shop_id': active_id,'default_operation' : 'import_sales_order'}"
+                                type="action"
+                                class="btn-secondary"
+                                string="Import Sale Order" states="active"/>
+                        <button name="%(mtrmp_sales_shop.actions_import_sales_shop_operation)d"
+                                context="{'default_shop_id': active_id,'default_operation' : 'import_AWB'}"
+                                type="action"
+                                class="btn-secondary"
+                                string="Import AWB/Tracking Number" states="active"/>
+                        <button name="%(mtrmp_sales_shop.actions_import_sales_shop_operation)d"
+                                context="{'default_shop_id': active_id,'default_operation' : 'import_return'}"
+                                type="action"
+                                class="btn-secondary"
+                                string="Import Return Orders" states="active"/>
+                        <button name="%(mtrmp_sales_shop.actions_import_sales_shop_operation)d"
+                                context="{'default_shop_id': active_id,'default_operation' : 'import_payment_settlement'}"
+                                type="action"
+                                class="btn-secondary"
+                                string="Import Payment Settlement" states="active"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,active,in_active"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="get_shop_product"
+                                    icon="fa-product-hunt">
+                                <field string="Shop Product" name="product_count"
+                                       widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button" type="object" name="get_sale_order"
+                                    icon="fa-shopping-cart">
+                                <field string="Sale Order" name="sale_count" widget="statinfo"/>
+                            </button>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="pricelist_id"/>
+                                <field name="crm_team_id"/>
+                                <field name="is_ecommerce_shop"/>
+                                <field name="default_warehouse_id" required="1"/>
+                                <field name="default_discount_product_id"/>
+                                <field name="default_category_id"/>
+                                <field name="is_button_invisible"/>
+                                <field name="create_prod"/>
+                                <field name="date_format" required="True"/>
+                            </group>
+                            <group>
+                                <field name="company_id"/>
+                                <field name="branch_id"/>
+                                <field name="user_id"/>
+                                <field name="ecommerse_merchant_type"/>
+                                <field name="active" invisible="1"/>
+                                <field name="default_stock_location_id"/>
+                                <field name="default_delivery_product_id"/>
+                                <field name="sale_file_format_id" required="1"/>
+                                <field name="delivery_file_format_id" required="1"/>
+                                <field name="return_file_format_id" required="1"/>
+                                <field name="payment_settlement_format_id" required="1"/>
+                                <field name="shop_customer_id" required="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Sequence">
+                                <field name="default_sku_sequence_id"/>
+                                <field name="own_sku_sequence"/>
+                                <field name="sku_prefix"
+                                       attrs="{'invisible' : [('own_sku_sequence', '=', False)]}"/>
+                                <field name="sku_suffix"
+                                       attrs="{'invisible' : [('own_sku_sequence', '=', False)]}"/>
+                                <field name="sku_sequence"
+                                       attrs="{'invisible' : [('own_sku_sequence', '=', False)]}"/>
+                            </group>
+                        </group>
+                        <div class="row">
+                            <div class="col-md-8 row">
+                                <div class="col-12">
+                                    <div class="o_horizontal_separator mb-3 mt-4 text-uppercase fw-bolder small">Legends
+                                        for supported Date and Time Formats
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div>%a - Abbreviated day of the week.</div>
+                                    <div>%A - Full day of the week.</div>
+                                    <div>%b - Abbreviated month name.</div>
+                                    <div>%B - Full month name."</div>
+                                    <div>%d - Day of the month [01,31]."</div>
+                                    <div>%j - Day of the year [001,366]."</div>
+                                    <div>%H - Hour (24-hour clock) [00,23]."</div>
+                                    <div>%I - Hour (12-hour clock) [01,12]."</div>
+                                </div>
+                                <div class="col-sm">
+                                    <div>%M - Minute [00,59]."</div>
+                                    <div>%p - Equivalent of either AM or PM."</div>
+                                    <div>%S - Seconds [00,61]."</div>
+                                    <div>%w - Day of the week number [0(Sunday),6]."</div>
+                                    <div>%y - Year without century [00,99]."</div>
+                                    <div>%Y - Year with century."</div>
+                                    <div>%m - Month number [01,12]."</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-info">
+                                <div class="o_horizontal_separator mb-3 mt-4 text-uppercase fw-bolder small">Examples
+                                </div>
+                                <div>1. %b, %B ==> Dec, December</div>
+                                <div>2. %a ,%A ==> Fri, Friday</div>
+                                <div>3. %y, %Y ==> 08, 2008</div>
+                                <div>4. %d, %m ==> 05, 12</div>
+                                <div>5. %H:%M:%S ==> 18:25:20</div>
+                                <div>6. %I:%M:%S %p ==> 06:25:20 PM</div>
+                                <div>7. %j ==> 340</div>
+                                <div>8. %S ==> 20</div>
+                                <div>9. %w ==> 5 ( Friday is the 6th day)</div>
+                            </div>
+                        </div>
+                        <notebook>
+                            <page string="Order">
+                                <field name="order_ids" readonly="1">
+                                    <tree editable="bottom">
+                                        <field name="state" invisible="1"/>
+                                        <field name="name" readonly="1"/>
+                                        <field name="sub_order_no" readonly="1"/>
+                                        <field name="partner_id"/>
+                                        <field name="company_id" invisible="1"/>
+                                        <field name="date_order" readonly="1"/>
+                                        <field name="amount_total" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Products">
+                                <field name="product_ids" readonly="1">
+                                    <tree editable="bottom">
+                                        <field name="shop_id" invisible="1"/>
+                                        <field name="product_id"/>
+                                        <field name="name"/>
+                                        <field name="default_code"/>
+                                        <field name="list_price"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Categories">
+                                <field name="category_ids"/>
+                            </page>
+                            <!--                            <page string="Customer">-->
+                            <!--                                <field name="partner_ids"/>-->
+                            <!--                            </page>-->
+                            <page string="Ecommerce Info">
+                                <group>
+                                    <group>
+                                        <field name="ecommerce_login"/>
+                                        <field name="ecommerce_password"/>
+                                    </group>
+                                    <group>
+                                        <field name="ecommerce_phone"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Email configuration">
+                                <group>
+                                    <group>
+                                        <field name="user_ids" widget="many2many_tags"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Attachment configuration">
+                                <field name="sample_attachment_ids">
+                                    <tree editable="bottom">
+                                        <field name="shop_id" invisible="1"/>
+                                        <field name="file_type"/>
+                                        <field name="attachment_id" readonly="1"/>
+                                        <field name="file_name" invisible="1"/>
+                                        <field name="file" filename="file_name" invisible="1"/>
+                                        <button name="%(mtrmp_sales_shop.actions_attachment_update_wizard)d"
+                                                string="Create Or Update Attachment" type="action"
+                                                class="oe_highlight"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="file_type"/>
+                                                <field name="attachment_id"/>
+                                            </group>
+                                            <group>
+                                                <field name="file_name" invisible="1"/>
+                                                <field name="file" filename="file_name"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_sale_shop_payment_settlement">
+            <field name="name">sale.shop.form</field>
+            <field name="model">sale.shop</field>
+            <field name="inherit_id" ref="mtrmp_sales_shop.sale_shop_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/header" position="inside">
+                    <button type="object"
+                            name="payment_settlement"
+                            string="Payment Settlement"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('is_button_invisible','=',False)]}"
+                    />
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <field name="ecommerse_merchant_type" invisible="1"/>
+                    <button class="oe_stat_button" type="object" name="see_payment_settlement"
+                            icon="fa-list" attrs="{'invisible' : [('ecommerse_merchant_type', '!=', 'Flipkart')]}">
+                        <field string="Payment Transaction" name="payment_settlement_count"
+                               widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" type="object" name="see_payment_settlement_amazon"
+                            icon="fa-list" attrs="{'invisible' : [('ecommerse_merchant_type', '!=', 'Amazon')]}">
+                        <field string="Payment Transaction" name="payment_settlement_count"
+                               widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" type="object" name="see_payment_settlement_ajio"
+                            icon="fa-list" attrs="{'invisible' : [('ecommerse_merchant_type', '!=', 'Ajio')]}">
+                        <field string="Payment Transaction" name="payment_settlement_count"
+                               widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" type="object" name="see_payment_settlement_myntra"
+                            icon="fa-list" attrs="{'invisible' : [('ecommerse_merchant_type', '!=', 'Myntra')]}">
+                        <field string="Payment Transaction" name="payment_settlement_count"
+                               widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" type="object" name="see_payment_settlement_citymall"
+                            icon="fa-list" attrs="{'invisible' : [('ecommerse_merchant_type', '!=', 'Citymall')]}">
+                        <field string="Payment Transaction" name="payment_settlement_count"
+                               widget="statinfo"/>
+                    </button>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="actions_sale_shop_view" model="ir.actions.act_window">
+            <field name="name">Shop</field>
+            <field name="res_model">sale.shop</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <menuitem id="sale_shop_main_menu"
+                  name="Shop/Sales Channel"
+                  parent="sale.sale_menu_root"
+                  sequence="40"
+
+        />
+        <menuitem id="sale_shop_menu"
+                  name="Shop"
+                  parent="sale_shop_main_menu"
+                  action="actions_sale_shop_view"
+                  sequence="1"
+
+        />
+
+
+    </data>
+    <data noupdate="1">
+         <record model="ir.rule" id="shop_instance_comp_rule">
+            <field name="name">Shop multi-company</field>
+            <field name="model_id" ref="model_sale_shop"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),
+                ('company_id','in',company_ids)]
+            </field>
+        </record>
+    </data>
+</odoo>

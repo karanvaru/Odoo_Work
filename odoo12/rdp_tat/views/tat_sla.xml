@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <!--        form view-->
+    <record id="sla_tat_form_view" model="ir.ui.view">
+        <field name="name">sla.tat.form</field>
+        <field name="model">tat.sla</field>
+        <field name="arch" type="xml">
+            <form string="TAT SLA">
+                <sheet>
+                <div class="oe_button_box" name="button_box">
+                 </div>
+                      <group>
+                          <group>   
+                                             <field name="ticket_id"/>
+                                             <field name="current_user" />
+                                             <field name="from_team_id"/>
+                                            <!-- <field name="from_stage_id" /> -->
+                                             <field name="to_team_id"/>
+                                            <field name="from_stage_id" />
+                                            <field name="to_stage_id" />
+
+                          </group>
+                           <group>
+                                           <field name="date_in"/>
+                                            <field name="date_out"/>
+                                           <field name="days" string="TAT Duration"/>
+                                            <field name="tat_name" string="TAT Name"/>
+                                        
+                                            <field name="sla_days" invisible="1"/>
+                                            <field name="tat_time" invisible="1"/>
+                                            <field name="tat_status" string="TAT Status"/>
+                                            <field name="tat_time_value" string="TAT Target"/>
+                                            <field name="duration" widget="time_tracking_counter" string="Opendays"/>
+                                            <field name="timer_status" invisible="1"/>
+                          </group>
+                          
+                      </group>
+
+                 </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view -->
+    <record id="tat_sla_tree_view" model="ir.ui.view">
+        <field name="name">tat.sla.tree</field>
+        <field name="model">tat.sla</field>
+        <field name="arch" type="xml">
+            <tree string="TAT SLA">
+                                             <field name="ticket_id"/>
+                                            <field name="current_user" />
+                                             <field name="from_team_id"/>
+                                            <!-- <field name="from_stage_id" /> -->
+                                             <field name="to_team_id"/>
+                                            <field name="from_stage_id" />
+                                            <field name="to_stage_id" />
+                                            <field name="date_in"/>
+                                            <field name="date_out"/>
+                                           <field name="days" string="TAT Duration"/>
+                                            <field name="tat_name" string="TAT Name"/>
+                                        
+                                            <field name="sla_days" invisible="1"/>
+                                            <field name="tat_time" invisible="1"/>
+                                            <field name="tat_status" string="TAT Status"/>
+                                            <field name="tat_time_value" string="TAT Target"/>
+                                            <field name="duration" widget="time_tracking_counter" string="Opendays"/>
+                                            <field name="timer_status" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+<!--        search view-->
+        <record id="tat_sla_search_view" model="ir.ui.view">
+        <field name="name">tat.sla.search</field>
+        <field name="model">tat.sla</field>
+        <field name="arch" type="xml">
+            <search string="TAT SLA">
+                <field  name="name"/>
+                   <field name="current_user" />
+                    <field name="from_team_id"/>
+                    <field name="to_team_id"/>
+                     <field name="from_stage_id" />
+                     <field name="to_stage_id" />
+                <filter name="from_team_id" string="From Team" domain="[]"/>
+                <filter name="to_team_id" string="To Team" domain="[]"/>
+                <filter name="current_user" string="User" domain="[]"/>
+
+<!--                    group by-->
+                <group expand="0" string="Group By">
+                    <filter name="current_user" string="User" domain="[]" context="{'group_by':'current_user'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--  action -->
+    <record id="tat_sla_action_view" model="ir.actions.act_window">
+        <field name="name">TAT</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tat.sla</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+        <!-- <menuitem id="menu_global_feedback_app" name="Global Feedback"  action="feedback_app_action_view"/> -->
+        <!-- <menuitem id="menu_tat_sla_root" name="SLA"/>
+         <menuitem id="menu_tat_sla_all_tickets" name="All Tickets"  action="tat_sla_action_view" parent="menu_tat_sla_root"/>
+         <menuitem id="menu_tat_config" name="Configuration"/>
+          <menuitem id="menu_sla_tat_config" name="TAT Configuration" parent="menu_tat_config" /> -->
+
+        <menuitem id="menu_tat_sla_root" name="TAT/SLA"/>
+         <menuitem id="menu_sla_all_tickets" name="All Tickets"  action="tat_sla_action_view" parent="menu_tat_sla_root"/>
+         <menuitem id="menu_tat_sla_config" name="Configuration"  parent="menu_tat_sla_root"/>
+          <menuitem id="menu_tat_config" name="TAT Configuration"  parent="menu_tat_sla_config" action="tat_config_action_view"/>
+</data>
+</odoo>

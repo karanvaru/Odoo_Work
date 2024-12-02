@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="kam_target_marks_view_tree" model="ir.ui.view">
+            <field name="model">kam.target</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="reference_no"/>
+                    <field name="kam"/>
+                    <field name="kam_target_assigned" widget="monetary"/>
+                    <field name="assigned_date"/>
+                    <field name="total_revenue_achieved_in_month" widget="monetary"/>
+                    <field name="total_kam_achieved_percentage" widget="percentage"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="kar_target_marks_view_form" model="ir.ui.view">
+            <field name="name">Kam Target</field>
+            <field name="model">kam.target</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h1>
+                            <field name="reference_no"/>
+                        </h1>
+                        <group>
+                            <group>
+
+                                <field name="kam"/>
+                                <field name="kam_target_assigned" widget="monetary"/>
+                                <field name="assigned_date"/>
+                            </group>
+                            <group>
+                                <field name="total_revenue_achieved_in_month" widget="monetary"/>
+                                <field name="total_kam_achieved_percentage" widget="percentage"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Internal Notes">
+                                <group>
+                                    <field name="internal_notes" widget="html"/>
+                                </group>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="kam_Target_vs_achievement_app_marks_action" model="ir.actions.act_window">
+            <field name="name">KAM Target</field>
+            <field name="res_model">kam.target</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="kam_target" name="KAM Target vs Achievement"
+                  action="kam_Target_vs_achievement_app_marks_action"
+                  parent="studio_customization.rdp_sales_463025d2-e8d8-4046-ba45-db57b012c250"/>
+
+    </data>
+</odoo>

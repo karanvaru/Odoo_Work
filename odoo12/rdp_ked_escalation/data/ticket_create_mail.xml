@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="kam_escalation_email_template" model="mail.template">
+            <field name="name">KAM Escalation</field>
+            <field name="model_id" ref="rdp_ked_escalation.model_ked_escalation"/>
+            <field name="auto_delete">0</field>
+            <!-- <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field> -->
+            <field name="email_to">${object.helpdesk_ticket_fed_id.user_id.login}</field>
+            <field name="subject">KAM Escalation Ticket Has been Created ${object.name}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.helpdesk_ticket_fed_id.user_id.name},
+                        <br /><br />
+                       
+                        KAM Escalation Has been Created Please go through it and Resolve it on High priority.              
+                       
+                         <br /><br />
+                         Please click on the link to view.
+                         <!-- <t t-set = (base_url="request.env['ir.config_parameter'].sudo().get_param('web.base.url')") -->
+                         <!-- <a href ="https://www.rdp.in/web?debug=true#id=${object.id}&amp;action=725&amp;model=quality.audit&amp;view_type=form&amp;menu_id=93" >Click Here</a> -->
+                         <a href ="${object.base_url}/web?debug=true#id=${object.id}&amp;action=2724&amp;model=quality.audit&amp;view_type=form&amp;menu_id=560" >Click Here</a>
+                         <br /><br />
+                         Thank you!!!
+                    </p>
+
+                </div>
+            </field>
+            <!-- <field name="report_template" ref="report_sale_challenge"/>
+            <field name="report_name">Sale_Challenge_${(object.name)}</field> -->
+        </record>
+    </data>
+
+</odoo>

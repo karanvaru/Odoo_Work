@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--        form view-->
+        <record id="check_list_view_form" model="ir.ui.view">
+            <field name="name">check.list.form</field>
+            <field name="model">check.list</field>
+            <field name="arch" type="xml">
+                <form string="Check List">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="check_list_view_tree" model="ir.ui.view">
+            <field name="name">check.list.tree</field>
+            <field name="model">check.list</field>
+            <field name="arch" type="xml">
+                <tree string="Check List">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <record id="rdp_dx_check_list_action" model="ir.actions.act_window">
+            <field name="name">Check List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">check.list</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!--        <field name="context">{}</field>-->
+        </record>
+        <menuitem id="rdp_dx_check_list_menu" name="CHECK LIST" parent="studio_customization.rdp_it_47752fce-42bf-4ee0-902d-58aa5c9b602f"/>
+        <menuitem id="rdp_dx_check_list_sub_menu" name="Dx Check List" action="rdp_dx_check_list_action" parent="rdp_dx_check_list_menu"/>
+<!--        <menuitem id="rdp_dx_check_list_menu" name="CHECK LIST" parent="rdp_dx_ticket_menu"/>-->
+    </data>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+
+        <record id="jobcard_seq" model="ir.sequence">
+            <field name="name">Jobcard Sequence</field>
+            <field name="code">project.task.seq</field>
+            <field name="prefix">JC/</field>
+            <field name="padding">5</field>
+        </record>
+        
+        <record id="jobcard_overseas_sequence" model="ir.sequence">
+            <field name="name">Jobcard Overseas Customer Sequence</field>
+            <field name="code">job.card.overseas.seq</field>
+            <field name="prefix">OJC/</field>
+            <field name="padding">5</field>
+        </record>
+
+    </data>
+
+</odoo>

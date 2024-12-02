@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--        <template id="successful_feedback" name="Success Page" page="True"-->
+<!--        <template id="successful_feedback" name="Success Page">< odoo11 - odoo13--> 
+<!--            <t t-call="website.layout">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-6">-->
+<!--                <h1>-->
+<!--                    Your Feedabck have been sent successfully.<br/><br/>-->
+<!--                    Thank you,<br/><br/>-->
+<!--                    Adminstrator-->
+<!--                </h1>-->
+<!--                <p>-->
+<!--                    <a class="btn btn-primary pull-left mb32" onclick="history.go(-1);" ><span class="hidden-xs">Go Back</span><span class="fa fa-long-arrow-left"/></a>-->
+<!--                </p>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                    <img width="200" height="200" src="/website_helpdesk_support_ticket/static/description/success.png" alt="show ticket" class="img-square" />-->
+<!--               </div>-->
+<!--            </div>    -->
+<!--               -->
+<!--            </t>-->
+<!--    </template>-->
+<!--    -->
+
+
+<!--     <template id="successful_feedback" name="Success Page">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <br/><br/>
+                <div class="oe_structure"/>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-info">
+                                <strong> Your Feedabck have been sent successfully.<br/>
+                                    Thank you,<br/>
+                                    Adminstrator
+                                </strong>
+                            </div>
+                            <a class="btn btn-primary pull-left mb32" 
+                            onclick="history.go(-1);" >
+                                <span class="hidden-xs">Go Back</span>
+                                <span class="fa fa-long-arrow-left"/>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <img width="200" height="200" 
+                            src="/website_helpdesk_support_ticket/static/description/success.png" 
+                            class="img-square" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template> -->
+
+    <template id="successful_feedback" name="Success Page">
+        <t t-call="website.layout">
+          <div id="wrap">
+            <div class="oe_structure" id="oe_structure_website_form_contact_us_thanks_1"/>
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-lg-7 col-xl-6 mr-lg-auto oe_structure">
+                        <section class="pt40 s_text_block pb40 o_colored_level o_cc o_cc1" data-snippet="s_text_block" data-name="Text">
+                            <div class="container">
+                                <span class="d-block fa fa-4x fa-thumbs-up mx-auto rounded-circle bg-primary"/><br/>
+                                <h1 class="text-center">Thank You!</h1>
+                                <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                                    <hr class="mx-auto border-top w-50 border-dark text-center"/>
+                                </div>
+                                <h5 class="text-center">
+                                    <span class="fa fa-check-circle"/>
+                                    <span>Your feedabck has been received.</span>
+                                    <br/>
+                                    <br/>
+                                    <!-- <a class="btn btn-primary "
+                                    onclick="history.go(-1);"> -->
+                                    <a href="/" class="btn btn-primary ">
+                                        <span class="hidden-xs">Continue</span>
+                                        <span class="fa fa-long-arrow-left"/>
+                                    </a>
+                                </h5>
+
+                                <!-- <a class="btn btn-primary pull-left mb32" 
+                                    onclick="history.go(-1);" > -->
+                                <!-- <a class="btn btn-primary "
+                                    onclick="history.go(-1);" >
+                                    <span class="hidden-xs">Go Back</span>
+                                    <span class="fa fa-long-arrow-left"/>
+                                </a> -->
+                            </div>
+                        </section>
+
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

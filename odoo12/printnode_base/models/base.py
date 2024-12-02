@@ -1,0 +1,19 @@
+# Copyright 2021 VentorTech OU
+# See LICENSE file for full copyright and licensing details.
+
+from odoo import models, _
+
+
+class Base(models.AbstractModel):
+    _inherit = 'base'
+
+    def run_printnode_universal_wizard(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Print Attachments Wizard'),
+            'res_model': 'printnode.attach.universal.wizard',
+            'view_mode': 'form',
+            'view_id': self.env.ref('printnode_base.printnode_attach_universal_wizard_form').id,
+            'target': 'new',
+            'context': self.env.context,
+        }

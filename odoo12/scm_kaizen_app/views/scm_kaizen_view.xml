@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="scm_kaizen_app_view_form" model="ir.ui.view">
+            <field name="name">scm.kaizen.form</field>
+            <field name="model">scm.kaizen</field>
+            <field name="arch" type="xml">
+                <form string="SCM Kaizen">
+                    <header>
+                        <button name="action_to_closed" type="object" string="closed"
+                                attrs="{'invisible': [('state', 'in', ['closed','cancel'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_cancel" type="object" string="cancel"
+                                attrs="{'invisible': [('state', 'in', ['cancel'])]}" class="btn-primary"/>
+                        <button name="action_set_draft" type="object" string="set to draft"
+                                attrs="{'invisible': [('state', 'in', ['draft','closed'])]}"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+
+                        <div>
+                            <group>
+                                <h1>
+                                    <field name="name" readonly="1"/>
+                                </h1>
+                            </group>
+
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="employee_name"/>
+                                <field name="raised_date"/>
+                                <field name="assigned_to"/>
+                                <field name="bcg"/>
+                            </group>
+                            <group>
+                                <field name="difficulty_level"/>
+                                <field name="category_id"/>
+                                <field name="scm_sub_category_id"/>
+                                <field name="tag_ids" widget="many2many_tags"/>
+                                <field name="priority" widget="priority"/>
+                            </group>
+                        </group>
+                        <div style="padding-right:40px">
+                            <group>
+                                <field name="scm_name"/>
+                                <field name="description"/>
+                            </group>
+                        </div>
+                        <notebook>
+                            <page string="Internal Notes">
+
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+
+            </field>
+        </record>
+        <!-- pivot view -->
+        <record id="scm_kaizen_pivot" model="ir.ui.view">
+            <field name="name">scm.kaizen.pivot</field>
+            <field name="model">scm.kaizen</field>
+            <field name="arch" type="xml">
+                <pivot string="SCM Kaizen">
+                    <field name="name"/>
+                </pivot>
+            </field>
+        </record>
+        <record id="scm_kaizen_kanban" model="ir.ui.view">
+            <field name="name">scm.kaizen.kanban</field>
+            <field name="model">scm.kaizen</field>
+            <field name="arch" type="xml">
+                <kanban string="SCM Kaizen">
+                    <field name="state"/>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!-- tree view -->
+        <record id="scm_kaizen_tree_view" model="ir.ui.view">
+            <field name="name">scm.kaizen.tree</field>
+            <field name="model">scm.kaizen</field>
+            <field name="arch" type="xml">
+                <tree string="SCM Kaizen">
+                    <field name="name"/>
+                    <field name="scm_name"/>
+                    <field name="category_id"/>
+                    <field name="scm_sub_category_id"/>
+                    <field name="bcg"/>
+                    <field name="open_day"/>
+                    <field name="priority" widget="priority"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="scm_kaizen_search_view" model="ir.ui.view">
+            <field name="name">scm.kaizen.search</field>
+            <field name="model">scm.kaizen</field>
+            <field name="arch" type="xml">
+                <search string="SCM Kaizen">
+                    <field name="name"/>
+                    <field name="category_id"/>
+                    <field name="scm_sub_category_id"/>
+                    <field name="scm_name"/>
+                    <field name="tag_ids"/>
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                    <filter name="closed" string="Closed" domain="[('state', '=', 'closed')]"/>
+                    <filter name="cancel" string="Cancel" domain="[('state', '=', 'cancel')]"/>
+                    <filter name="name" string="Reference"/>
+                    <filter name="scm_name" string="Name"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="assigned_to" string="Assigned To" domain="[]"
+                                context="{'group_by':'assigned_to'}"/>
+                        <filter name="raised_date" string="Raised Date" domain="[]"
+                                context="{'group_by':'raised_date'}"/>
+                        <filter name="category_id" string="Category" domain="[]" context="{'group_by':'category_id'}"/>
+                        <filter name="scm_sub_category_id" string="Subcategory" domain="[]"
+                                context="{'group_by':'scm_sub_category_id'}"/>
+                        <filter name="priority" string="Priority" domain="[]" context="{'group_by':'priority'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!--  action -->
+        <record id="scm_kaizen_action_view" model="ir.actions.act_window">
+            <field name="name">SCM Kaizen</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">scm.kaizen</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,pivot,search</field>
+            <field name="search_view_id" ref="scm_kaizen_search_view"/>
+            <!-- <field name="context">{"search_default_name":1}</field> -->
+        </record>
+
+        <!--        <menuitem id="scm_kaizen_main_menu" name="SCM Kaizen" parent="hr.menu_hr_root"/>-->
+        <menuitem id="scm_kaizen_sub_menu" name="SCM Kaizen Tickets" action="scm_kaizen_action_view"
+                  parent="studio_customization.rdp_scm_74e2b27f-6ded-45d5-96a7-b482a586fe9b"/>
+
+    </data>
+</odoo>

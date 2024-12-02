@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_project_project_inherit_2" model="ir.ui.view">
+		<field name="name">view.project.project.inherit</field>
+		<field name="model">project.project</field>
+		<field name="inherit_id" ref="project.edit_project"/>
+		<field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+              <field name="cost_estimation_ids"/>
+            </xpath>
+		    <xpath expr="//notebook" position="inside">
+				<page string="Cost Estimation">
+					<field name="cost_items_ids" readonly="True" mode="tree">
+					 <tree>
+                                            <field name="salable_product"
+                                                   options="{'no_quick_create': True, 'no_create_edit' : True,'no_open': True}"/>
+                                            <field name="sp_desc"/>
+                                            <field name="sp_quant"/>
+                                            <field name="cost_item" readonly="1" domain="[('cost_ok', '=', True)]"
+                                                   options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                            <field name="cost_item_uom_id" optional="hide"/>
+                                            <field name="cost_item_description" readonly="1"/>
+                                            <field name="cost_item_type" readonly="1"/>
+                                            <field name="cost_item_quant_sp" readonly="1"/>
+                                            <field name="cost_item_cost_currency" optional="hide"/>
+                                            <field name="fx" invisible="1"/>
+                                            <field name="cost_item_unit_cost" readonly="1"/>
+                                            <field name="cost_item_cost_sp"/>
+
+                                            <field name="total_cost_item_quantity" optional="hide"/>
+                                            <field name="total_cost_item_cost"/>
+                                            <field name="taxes" widget="many2many_tags"
+                                                   options="{'no_quick_create': True, 'no_create_edit' : True}"
+                                                   optional="hide"/>
+                                            <field name="tax_value"/>
+                                            <field name="cost_total_include_taxes"/>
+                                            <field name="markup_perc" readonly="1" force_save="1"/>
+                                            <field name="markup_value" readonly="0"/>
+
+                                        </tree>
+					</field>
+				</page>
+			</xpath>
+		</field>
+	</record>
+</odoo>

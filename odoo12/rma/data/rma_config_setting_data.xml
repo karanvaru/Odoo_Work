@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="1">
+        <!-- RMA Config settings -->
+
+        <function id="set_allow_quote_cancellation" model="ir.default" name="set" eval="('res.config.settings', 'allow_quote_cancellation', False)"/>
+
+        <function id="set_process_do_state" model="ir.default" name="set" eval="('res.config.settings', 'process_do_state', 'done')"/>
+
+        <function id="set_rma_term_condition" model="ir.default" name="set" eval="('res.config.settings', 'rma_term_condition', 'About Return and Refund Policies Most e-commerce stores should have a Return or Refund Policy, just as it should have a Privacy Policy. Wikipedia defines Returning as: In retail, returning is the process of a customer taking previously purchased merchandise back to the retailer, and in turn, receiving a cash refund, exchange for another item (identical or different), or a store credit. Most countries industry regulations require that stores (even digital) must have this kind of policy. eBay’s help pages mention that stores with return policies published online sell better (however, eBay requires all stores to have this policy): We’ve found that items with clear return policies typically sell better than items that don’t. A Terms and Conditions agreement for your store might be a good idea, but it is not required by law. If you’re looking for a Terms and Conditions agreement, you can generate it with our generator. What to include in your policy Your Return Policy should include at least the following sections: the numbers of days a customer can notify you for wanting to return an item after they received it what kind of refund you will give to the customer after the item is returned: another similar product, a store credit, etc. who will pay for the return shipping')"/>
+
+        <function id="set_days_for_rma" model="ir.default" name="set" eval="('res.config.settings', 'days_for_rma', 15)"/>
+
+        <function id="set_rma_day_apply_on" model="ir.default" name="set" eval="('res.config.settings', 'rma_day_apply_on', 'do_date')"/>
+
+        <function id="set_show_rma_stage" model="ir.default" name="set" eval="('res.config.settings', 'show_rma_stage', True)"/>
+	</data>
+</odoo>

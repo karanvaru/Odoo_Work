@@ -1,0 +1,7 @@
+id,name,description
+Polybagging,Polybagging,Indicates that polybagging is required.
+BubbleWrapping,BubbleWrapping,Indicates that bubble wrapping is required.
+Taping,Taping,Indicates that taping is required.
+BlackShrinkWrapping,BlackShrinkWrapping,Indicates that black shrink wrapping is required.
+Labeling,Labeling,Indicates that the FNSKU label should be applied to the item.
+HangGarment,HangGarment,Indicates that the item should be placed on a hanger.

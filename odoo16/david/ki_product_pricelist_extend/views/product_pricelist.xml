@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="new_product_pricelist_view" model="ir.ui.view">
+        <field name="name">product.pricelist.item</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='pricelist_rule_base']//field[@name='price_surcharge']" position="before">
+                 <label for="mark_up" string="Markup" attrs="{'invisible':[('compute_price', '!=', 'formula')]}"/>
+                 <div class="o_row" attrs="{'invisible':[('compute_price', '!=', 'formula')]}">
+                     <field name="mark_up"/>
+                     <span>%</span>
+                 </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product.product_variant_action" model="ir.actions.act_window">
+        <field name="view_ids"
+           eval="[(5, 0, 0),
+                  (0, 0, {'view_mode': 'tree'}),
+                  (0, 0, {'view_mode': 'form', 'view_id': ref('product.product_normal_form_view')}),
+                  (0, 0, {'view_mode': 'kanban'})]"/>
+    </record>
+</odoo>

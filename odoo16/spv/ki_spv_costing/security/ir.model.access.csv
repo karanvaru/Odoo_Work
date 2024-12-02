@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_cost_sheet,access.crm.cost.sheet,model_crm_cost_sheet,base.group_user,1,1,1,1
+access_crm_cost_sheet_line,access.crm.cost.sheet.line,model_crm_cost_sheet_line,base.group_user,1,1,1,1
+access_crm_panel_cost_line,access.crm.panel.cost.line,model_crm_panel_cost_line,base.group_user,1,1,1,1
+access_cost_sheet_template,access.cost.sheet.template,model_cost_sheet_template,base.group_user,1,1,1,1
+access_cost_sheet_template_line,access.cost.sheet.template.line,model_cost_sheet_template_line,base.group_user,1,1,1,1
+access_cost_template_wizard,access.cost.template.wizard,model_cost_template_wizard,base.group_user,1,1,1,1

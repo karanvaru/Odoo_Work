@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="asterisk_event_action" model="ir.actions.act_window">
+    <field name="name">Events</field>
+    <field name="res_model">asterisk_common.event</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem action="asterisk_event_action" id="asterisk_event_menu" name="Events"
+    groups="asterisk_common.group_asterisk_admin"
+    parent="common_settings_menu" sequence="50"/>
+
+  <record id="asterisk_event_list" model="ir.ui.view">
+    <field name="name">asterisk_common.event.list</field>
+    <field name="model">asterisk_common.event</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree>        
+        <field name="source"/>
+        <field name="name"/>
+        <field name="model"/>
+        <field name="method"/>
+        <field name="is_enabled"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="asterisk_event_form" model="ir.ui.view">
+    <field name="name">asterisk_common.event.form</field>
+    <field name="model">asterisk_common.event</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <div name="title" class="oe_title">
+            <h1>
+              <label class="oe_edit_only" for="name"/>
+              <field name="name" placeholder="Enter event name..." required="1"/>
+            </h1>
+          </div>
+          <group>
+            <group>
+              <field name="model"/>
+              <field name="method"/>
+              <field name="is_enabled"/>
+            </group>
+            <group>
+              <field name="source"/>
+              <field name="delay"/>
+              <field name="condition"/>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="asterisk_event_search" model="ir.ui.view">
+    <field name="name">asterisk_common.event.search</field>
+    <field name="model">asterisk_common.event</field>
+    <field name="type">search</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name"/>
+        <field name="model"/>
+        <field name="method"/>
+        <filter name="enabled" string="Enabled" domain="[('is_enabled', '=', True)]"/>
+        <filter name="disabled" string="Disabled" domain="[('is_enabled', '=', False)]"/>
+        <separator/>
+        <filter name="ami" string="AMI" domain="[('source', '=', 'ami')]"/>
+        <filter name="ari" string="ARI" domain="[('source', '=', 'ari')]"/>
+        <filter name="by_source" string="Source" context="{'group_by': 'source'}"/>
+      </search>
+    </field>
+  </record>
+
+    <record id="event_disable_action" model="ir.actions.server">
+        <field name="name">Disable</field>
+        <field name="model_id" ref="model_asterisk_common_event"/>
+        <field name="state">code</field>
+        <field name="code">records.write({'is_enabled': False})</field>
+        <field name="binding_model_id" ref="model_asterisk_common_event"/>
+    </record>
+    <record id="event_enable_action" model="ir.actions.server">
+        <field name="name">Enable</field>
+        <field name="model_id" ref="model_asterisk_common_event"/>
+        <field name="state">code</field>
+        <field name="code">records.write({'is_enabled': True})</field>
+        <field name="binding_model_id" ref="model_asterisk_common_event"/>
+    </record>
+
+
+</odoo>

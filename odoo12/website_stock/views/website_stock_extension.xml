@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  
+    <record id="Wk_website_stock_product" model="ir.ui.view">
+        <field name="name">product_product_form</field>
+        <field name="model">product.product</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <notebook position='inside'>
+                <page string='Product Stock Settings'>
+                    <group>
+                        <p>
+                            <strong>When Product is out of Stock:</strong>
+                            <span><field name="wk_order_allow"/></span>
+                        </p>
+                    </group>
+                    <group>
+                        <field name='wk_override_default' />
+                    </group>
+                    <group attrs="{'invisible':[('wk_override_default','=',False)]}">
+                        <p>
+                            <strong>Message to be displayed when Product is in Stock:</strong>
+                            <span><field name="wk_in_stock_msg"/></span>
+                        </p>
+                    </group>
+                    <group attrs="{'invisible':[('wk_override_default','=',False)]}">
+                        <p>
+                            <strong>Message to be displayed when Product is out of Stock:</strong>
+                            <span><field name="wk_out_of_stock_msg"/></span>
+                        </p>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="Wk_website_stock_product_template" model="ir.ui.view">
+        <field name="name">product_template_form</field>
+        <field name="model">product.template</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+            <header>
+                <button string="Update Stock Settings " type="object" name="wk_get_product_vatiants" attrs="{'invisible': [('product_variant_count', '&lt;', 1)]}" />
+            </header>
+        </field>
+    </record>
+
+</odoo>
+
+
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- Responsible Developer:- Sunny Kumar Yadav -->

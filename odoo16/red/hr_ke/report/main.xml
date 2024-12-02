@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- SINGLE EMPLOYEE P9 FORM -->
+
+        <template id="employee_p9_report" name="employee_p9_report">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-size: 12px !important; min-height:100vh !important;">
+                        <t t-set="names" t-value="employee['name'].split()" />
+
+                        <div>
+                            <t t-call="hr_ke.p9_top" />
+                        </div>
+                        <div>
+                            <t t-call="hr_ke.p9_body" />
+                        </div>
+                        <div>
+                            <t t-call="hr_ke.p9_bottom" />
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <!-- MULTI EMPLOYEE P9 FORMS -->
+        <template id="multi_employee_p9_report" name="multi_employee_p9_report">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <t t-foreach="payslips" t-as="p">
+                        <div class="page" style="font-size: 12px !important; min-height:100vh !important;">
+
+                            <t t-set="employee" t-value="p['employee']" />
+                            <t t-set="employer" t-value="p['employer']" />
+                            <t t-set="body" t-value="p['body']" />
+                            <t t-set="ms" t-value="p['ms']" />
+                            <t t-set="year" t-value="p['year']" />
+                            
+                            <t t-set="totals" t-value="p['totals']" />
+                            <t t-set="names" t-value="employee['name'].split()" />
+
+                            <div>
+                                <t t-call="hr_ke.p9_top" />
+                            </div>
+                            <div>
+                                <t t-call="hr_ke.p9_body" />
+                            </div>
+                            <div>
+                                <t t-call="hr_ke.p9_bottom" />
+                            </div>
+
+                            <p style="page-break-after:always;">   </p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="advanced_web_domain_widget.DomainSelectorRelationFieldBits" owl="1">
+        <t t-if="props.operator.category != 'in'">
+            <DomainSelectorFieldInputBits t-props="props" />
+        </t>
+    </t>
+    
+</templates>

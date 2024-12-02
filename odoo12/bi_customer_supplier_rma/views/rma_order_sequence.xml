@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="seq_rma_supplier" model="ir.sequence">
+			<field name="name">RMA Supplier</field>
+			<field name="code">rma.supplier.order</field>
+			<field name="prefix">SRMA</field>
+			<field name="padding">4</field>
+		</record>
+    </data>
+</odoo>

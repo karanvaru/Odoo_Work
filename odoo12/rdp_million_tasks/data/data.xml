@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <!-- Sequences for hospital.patient -->
+        <record id="seq_million_tasks" model="ir.sequence">
+            <field name="name">Million Tasks</field>
+            <field name="code">million.tasks.sequence</field>
+            <field name="prefix">MT</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

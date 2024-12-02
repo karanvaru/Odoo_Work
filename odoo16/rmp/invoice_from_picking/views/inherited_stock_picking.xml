@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <act_window id="bi_action_stock_invoice" 
+                    name="Create Draft Invoices"
+                    res_model="stock.invoice.onshipping"
+                    binding_model="stock.picking"
+                    view_mode="form"
+                    view_id="view_stock_invoice_onshipping_form"
+                    domain="[('id','in',active_ids)]"
+                    target="new"
+                    />
+
+        <record id="view_picking_form_inherit_add_field_invoice_state" model="ir.ui.view">
+            <field name="name">view.picking.form.inherit.add.field.invoice.state</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='origin']" position="after">
+                    <!-- Add new fields here -->
+                    <field name="invoice_state"/>
+
+                </xpath>
+                <xpath expr="//notebook//page[last()]" position="before">
+                    <page string="Original Order">
+                        <field name="original_order_lines"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_inherit_bi_id" model="ir.ui.view">
+            <field name="name">view.picking.inherit.bi</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='do_unreserve']" position="before">
+                    <button name="%(bi_action_stock_invoice)d" string="Create Invoice"
+                            attrs="{'invisible': ['|',('state','&lt;&gt;','done'),('invoice_state','&lt;&gt;','2binvoiced')]}"
+                            type="action" class="oe_highlight" groups="base.group_user"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="vpicktree_inherit_add_field_invoice_state" model="ir.ui.view">
+            <field name="name">vpicktree.inherit.add.field.invoice.state</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='origin']" position="after">
+                    <!-- Add new fields here -->
+                    <field name="invoice_state"/>
+
+                </xpath>
+
+            </field>
+        </record>
+
+        <!--  Add menu: Billing - Deliveries to invoice -->
+        <record id="action_invoice_from_picking_add_menu_delivery_invoice" model="ir.actions.act_window">
+            <field name="name">Deliveries to Invoice</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[('picking_type_id.code','=','outgoing'),('invoice_state','=','2binvoiced')]</field>
+            <field name="context">{'default_type': 'out', 'contact_display': 'partner_address',
+                'search_default_to_invoice': 1}
+            </field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        </record>
+        <menuitem action="action_invoice_from_picking_add_menu_delivery_invoice"
+                  id="menu_invoice_from_picking_add_menu_delivery_invoice" parent="sale.menu_sale_invoicing"/>
+
+
+    </data>
+</openerp>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+<!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+      <!-- See LICENSE URL <https://store.webkul.com/license.html/> for full copyright and licensing details. -->
+      <!-- <function model="ir.default" name="set_default">
+             <value>website.product.tags.setting</value>
+             <value>product_tags_limit</value>
+             <value>6</value>
+     </function> -->
+     <function id="set_wk_product_tags_limit"
+     model="ir.default" name="set"
+     eval="('website.product.tags.setting', 'product_tags_limit', 6)"/>
+		<record  id="tag_upto_50_off" model="wk.website.product.tags">
+            <field name="name">UPTO 50% off</field>
+            <field name="website_style">font-family: 'Opensans' Sans-serif; font-weight: 600;font-size: 25px;</field>
+
+        </record>
+        <record  id="tag_sport_kit" model="wk.website.product.tags">
+            <field name="name">Nike Sport Kit </field>
+        </record>
+        <record  id="tag_big_deal" model="wk.website.product.tags">
+            <field name="name">Big Deal</field>
+             <field name="website_style">font-family: 'Opensans' Sans-serif; font-weight: 600;font-size: 25px;</field>
+        </record>
+        <record  id="tag_smart_phone" model="wk.website.product.tags">
+            <field name="name">Smart Phone</field>
+        </record>
+        <record  id="tag_phone" model="wk.website.product.tags">
+            <field name="name">I-Phone</field>
+             <field name="website_style">font-family: 'Opensans' Sans-serif; font-weight: 600;font-size: 25px;</field>
+        </record>
+          <record  id="tag_new_year_offer" model="wk.website.product.tags">
+            <field name="name">New Year Offer </field>
+        </record>
+         <record  id="tag_imac" model="wk.website.product.tags">
+            <field name="name">Apple Imac</field>
+             <field name="website_style">font-family: 'Opensans' Sans-serif; font-weight: 600;font-size: 25px;</field>
+        </record>
+         <record  id="tag_nike_shoes" model="wk.website.product.tags">
+            <field name="name">Nike Shoes</field>
+
+        </record>
+        <record  id="tag_backpack" model="wk.website.product.tags">
+            <field name="name">BackPack </field>
+             <field name="website_style">font-family: 'Opensans' Sans-serif; font-weight: 600;font-size: 25px;</field>
+        </record>
+         <record  id="tag_iphone" model="wk.website.product.tags">
+            <field name="name">Apple EarPhone </field>
+        </record>
+
+    </data>
+</odoo>

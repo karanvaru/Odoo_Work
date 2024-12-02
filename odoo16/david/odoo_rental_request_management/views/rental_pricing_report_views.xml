@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+
+    <record id="view_rent_day_price_tree" model="ir.ui.view">
+        <field name="name">Rental Pricing Tree Report</field>
+        <field name="model">custom.rent.day.price</field>
+        <field name="arch" type="xml">
+            <tree string="Rental Day Pricing Tree">
+                <field name="product_tmpl_id"/>
+                <field name="days_from"/>
+                <field name="days_to"/>
+                <field name="price" widget="monetary"/>
+                <field name="pricelist_id" groups="product.group_product_pricelist"/>
+                <field name="currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="rent_day_price_search_view">
+        <field name="name">custom.rent.day.price search view</field>
+        <field name="model">custom.rent.day.price</field>
+        <field name="arch" type="xml">
+            <search>
+                 <field name="product_tmpl_id"/>
+                 <group expand="0" string="Group By">
+                    <filter name="group_product_tmpl" string="Product" context="{'group_by':'product_tmpl_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="view_rent_day_price_pivot" model="ir.ui.view">
+        <field name="name">Rental Pricing Pivot Report</field>
+        <field name="model">custom.rent.day.price</field>
+        <field name="arch" type="xml">
+            <pivot string="Rental Day Pricing">
+                <field name="product_tmpl_id" type="row"/>
+                <field name="price" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_rent_day_price_report" model="ir.actions.act_window">
+        <field name="context">{'search_default_group_product_tmpl':1,'create': 0,'write':0}</field>
+        <field name="name">Rental Pricing</field>
+        <field name="res_model">custom.rent.day.price</field>
+        <field name="search_view_id" ref="odoo_rental_request_management.rent_day_price_search_view"/>
+        <field name="view_mode">tree,pivot</field>
+    </record>
+
+</odoo>

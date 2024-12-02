@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="helpdesk_ked_inherit_id" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                 
+                   <button name="open_ked_tickets" class="oe_stat_button" type="object" icon="fa-pencil-square-o">
+                          <field string="KAM Escalation" name="ked_ticket_count" widget="statinfo" />
+                   </button>
+                </xpath>
+                 <xpath expr="//header" position="inside">
+                   <button name="action_to_ked_ticket" type="object" string="KAM Escalation" class="btn-primary"
+                           groups="rdp_ked_escalation.ked_group_status_manager"
+                           attrs="{'invisible': [('ked_ticket_count','>=',1)]}"/>
+<!--                     domain="[('is_int_user','=',True),('groups_id.id','=',304)]"-->
+                </xpath>
+                <xpath expr ="//h1" position ="before">
+                 <div style=" float: left; padding: 5px 12px 2px; background-color:#e6586c; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-left:5px;margin-bottom:10px; height:31px;" attrs="{'invisible': [('ked_ticket_count','=',0)]}"><i class="fa fa-star"></i> KAM Escalated</div>
+                 <div style="clear:both" />
+                </xpath>
+             
+            </field>
+        </record>
+      <record id="helpdesk_ked_inherit_id_custom" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.tree</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+            <field name="arch" type="xml">
+               
+                 <xpath expr="//field[@name='stage_id']" position="after">
+                   <field name="ked_ticket_id" />
+                    <field name="kam_delay_days" />
+                </xpath>
+                
+             
+            </field>
+        </record>
+      <record id="helpdesk_search_inherit_custom" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.search</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_search"/>
+            <field name="arch" type="xml">
+               <xpath expr="//filter[@name='is_open']" position="after">
+                 <filter string="KED Ticket" domain="[('ked_ticket_id','=',True)]" name="ked_ticket_id"/>
+                  <group expand="0" string="Group By">
+                    <filter name="ked_status" string="KED Status" domain="[]" context="{'group_by':'ked_status'}"/>
+                    
+                </group>
+
+            </xpath>
+             
+            </field>
+        </record>
+
+
+	</data>
+</odoo>

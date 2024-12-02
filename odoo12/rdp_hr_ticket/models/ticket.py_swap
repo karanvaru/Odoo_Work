@@ -1,0 +1,65 @@
+from odoo import api, fields, models, _
+from datetime import date, datetime
+import time
+
+class HrTicket(models.Model):
+    _name = "hr.ticket"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
+
+
+    date = fields.Date(string="Date")
+    # employee_name = fields.Char("Employee Name", default=lambda self: self.env.user.name, readonly='1')
+    employee_name_id = fields.Many2one('hr.employee', "Employee Name", compute='compute_employee', readonly='1', store=True)
+    request = fields.Html(string="Reason")
+    name = fields.Char(string='HR Reference No', required=True, copy=False, readonly=True, index=True,
+                       default=lambda self: _('New'))
+    open_days = fields.Char(string='Open Days', compute='calculate_open_days')
+    closed_date = fields.Datetime(string='closed date')
+    # spoc = fields.Many2one('hr.employee', 'SPOC', readonly='1')
+    spoc_id = fields.Many2one("hr.employee", 'SPOC', compute='compute_employee', store=True)
+    state = fields.Selection([
+        ('new', 'NEW'),
+        ('close', 'CLOSE'),
+        ('cancel', 'CANCEL'),
+    ], string='Status', default='new', track_visibility='always', store=True)
+
+    @api.model
+    def create(self, vals):
+        vals['name'] = self.env['ir.sequence'].next_by_code('hr.ticket.sequence')
+        res = super(HrTicket, self).create(vals)
+
+        return res
+
+    @api.multi
+    def action_to_close(self):
+        self.closed_date = datetime.today()
+        self.state = 'close'
+
+    @api.multi
+    def action_to_cancel(self):
+        self.closed_date = datetime.today()
+        self.state = 'cancel'
+
+    @api.multi
+    def action_set_new(self):
+        self.write({'state': 'new'})
+
+    @api.multi
+    def calculate_open_days(self):
+        for rec in self:
+            if rec.closed_date:
+                rec.open_days = (rec.closed_date - rec.create_date).days
+            else:
+                rec.open_days = (datetime.today() - rec.create_date).days
+
+    def compute_employee(self):
+        for rec in self:
+            print("The current user id ", rec.env.uid)
+            rec_spoc_id = rec.env['hr.employee'].sudo().search([('user_id', '=', rec.create_uid.id)])
+            rec.employee_name_id = rec_spoc_id.id
+            rec.spoc_id = rec_spoc_id.coach_id.id
+            # print("spoc_id", rec_spoc_id.coach_id.id)
+            # rec.spoc_id = rec_spoc_id.coach_id.id
+
+
+

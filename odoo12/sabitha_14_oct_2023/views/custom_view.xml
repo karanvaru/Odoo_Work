@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="res_partner_inherited" model="ir.ui.view">
+        <field name="name">res.partner.form.inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="total_canisters_count" />
+                 <field name="canisters_delivered" />
+                 <field name="canisters_reservered" />
+                 <field name="remaining_canisters" />
+             </xpath>
+             <!-- <xpath expr="//page[@name='internal_notes']" position="after">
+                <page string="Sales of Medicines">
+                    <group>
+                        <field name="sales_of_medicines" >
+                            <tree>
+                                <field name="name"/>
+                                <field name="create_date"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath> -->
+
+        </field>
+    </record>
+
+    <record id="product_template_inherited" model="ir.ui.view">
+        <field name="name">product.template.form.inherited</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="canister_id" />
+                <field  name="is_canister" />
+             </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_sale_order_form_inherited" model="ir.ui.view">
+        <field name="name">sale.order.form.inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="order_line" position="before">
+                <field name="medicine_product_id"/>
+                <field name="medicine_quantity"/>
+            </field>
+    
+            <!-- Add the Check Canisters button -->
+            <xpath expr="//header" position="inside" >
+            <button name="check_canisters" string="Check Canisters" type="object" class="oe_highlight"/>
+    
+            <!-- Add the Create MO button -->
+            <button name="create_manufacturing_order" string="Create Manufacturing Order" type="object" class="oe_highlight"/>
+        </xpath>
+        </field>
+    </record>
+
+</odoo>

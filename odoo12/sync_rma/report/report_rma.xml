@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_rmarepairorder">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.basic_layout">
+                <t t-set="o" t-value="o.with_context({'lang': o.partner_id.lang})" />
+                <div class="page" style="border:1px solid;hight:100%;">
+                    <div class="oe_structure"/>
+                    <h2 class="text-center"><strong>RETURN MATERIAL AUTHORIZATION</strong></h2>
+                    <div class="row" style="margin-left: 20px">
+                        <div style="width:12%;">
+                            <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)" style="max-height: 64px;"/>
+                        </div>
+                        <div class="text-center " style="border:1px solid;margin-bottom: 18px;width: 50%;margin: auto;margin-bottom: 10px;">
+                            <t t-if="o.company_id">
+                                <span t-esc="o.company_id.name"/>
+                                <span t-esc="o.company_id.street"/>
+                                <span t-esc="o.company_id.city"/>
+                                <span t-esc="o.company_id.state_id.name"/>
+                                <span t-esc="o.company_id.zip"/>
+                            </t>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6" style="padding-left: 0px;float:left;width:50%;margin-left: 14px">
+                            <table style="border:1px solid;width: 100%;border-left: none;">
+                                <thead style="border-bottom: 1px solid;">
+                                    <tr>
+                                        <th class="text-center" style="border-bottom:1px;" colspan="2">RMA Data</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left" style="width:30%;font-weight:bold;padding:5px;">RMA Date:</td>
+                                        <td class="text-left"><span t-field="o.issue_date"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left" style="width:30%;font-weight:bold;padding:5px;">RMA Number:</td>
+                                        <td class="text-left"><span t-field="o.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left" style="width:30%;font-weight:bold;padding:5px;">RMA Subject:</td>
+                                        <td class="text-left"><span t-field="o.subject"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left" style="width:30%;font-weight:bold;padding:5px;">Associated SO:</td>
+                                        <td class="text-left"><span t-field="o.associated_so and o.associated_so.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left" style="width:30%;font-weight:bold;padding:5px;">Repair Order:</td>
+                                        <td class="text-left"><span t-field="o.repair_order"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6" style="padding-right: 0px;float:right;width:47%;">
+                            <table class="" style="border:1px solid;width: 100%;border-right: none;">
+                                <thead style="border-bottom: 1px solid;">
+                                    <tr>
+                                        <th class="text-center" style="border-bottom:1px;" colspan="2">Customer Data</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left" style="width:30%;font-weight:bold;padding:5px;">Customer:</td>
+                                        <td class="text-left"><span t-field="o.partner_id.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left" style="width:30%;font-weight:bold;padding:5px;">Address:</td>
+                                        <td class="text-left"><span t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left" style="width:30%;font-weight:bold;padding:5px;">Contact:</td>
+                                        <td class="text-left"><span t-field="o.partner_id.phone"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                     <div>
+                        <div class="text-center" style="padding-bottom: 5px;padding-top:5px"><strong>Item To be Returned</strong></div>
+                        <table class="table table-condensed" style="border-top:1px solid;width: 100%;border-bottom: 1px solid;">
+                            <thead>
+                                <tr>
+                                    <th style="border:1px solid">Product</th>
+                                    <th class="text-right" style="border:1px solid">Delivered Qty</th>
+                                    <th class="text-right" style="border:1px solid">Return Qty</th>
+                                    <th style="border:1px solid">Serial / Lot Number</th>
+                                    <th style="border:1px solid">Return Type</th>
+                                    <th style="border:1px solid">Reason</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="o.issue_line_ids">
+                                    <tr t-foreach="o.issue_line_ids" t-as="line">
+                                        <t t-if="line.to_return != 0">
+                                            <td style="border:1px solid">
+                                                <span t-field="line.product_id.name" />
+                                            </td>
+                                            <td class="text-right" style="border:1px solid">
+                                                <span t-field="line.qty_delivered"/>
+                                            </td>
+                                            <td class="text-right" style="border:1px solid">
+                                                <span t-field="line.to_return"/>
+                                            </td>
+                                            <td class="text-left" style="border:1px solid">
+                                                <span t-field="line.serial_id.name"/>
+                                            </td>
+                                            <td class="text-left" style="border:1px solid">
+                                                <span t-field="line.return_type_id.return_purpose"/>
+                                            </td>
+                                            <td class="text-left" style="border:1px solid">
+                                                <span t-field="line.reason_id.name"/>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div>
+                    <table class="table table-condensed">
+                        <tbody>
+                            <tr>
+                                <td class="text-left" style="width:15%;"><strong>RMA Note:</strong></td>
+                                <td class="text-left" ><span t-field="o.rma_note"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <t t-if="o.rma_reject_note">
+                        <table class="table table-condensed">
+                            <tbody>
+                                <tr>
+                                    <td class="text-left" style="width:10%;"><strong>RMA Reject Note:</strong></td>
+                                    <td class="text-left"><span t-field="o.rma_reject_note"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_rmarepairorder2">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sync_rma.report_rmarepairorder" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

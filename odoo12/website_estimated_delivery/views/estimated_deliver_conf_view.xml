@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+	<data>
+		<record id="estimated_delivery_conf_view" model="ir.ui.view">
+            <field name="name">estimated.delivery.conf.form'</field>
+            <field name="model">estimated.delivery.conf</field>
+            <field name="arch" type="xml">
+                <form string="Estimated Delivery Configuration" version="7.0" class="oe_form_configuration">
+                    <separator string="Estimated Delivery"/>
+                    <group col="2">
+                        <field name="show_estimated_delivery"/>
+                       <field name="show_delivery_in_cart"/>
+                       <field name="available_message" placeholder="For example: Days Within the product will be delivered is: "/>
+                       <field name="unavailable_message" placeholder="For example: The product is not available in your location"/>
+                       <field name="display_mode"/>
+                   </group>
+                       <group col="4" attrs= "{'invisible':[('display_mode','=', 'exact')]}">
+                       <field name="add_days" attrs= "{'required':[('display_mode','=', 'range')]}"/>
+                       <field name="number_of_days" attrs= "{'required':[('display_mode','=', 'range')]}"/>
+                        </group>
+                        <p attrs= "{'invisible':[('display_mode','=', 'exact')]}" class="oe_grey oe_inline">For Example:- If the Actual Delivery Days = 7 days and the days <b>before = 2 </b>days then the delivery range = <b> 5 to 7</b> days..And if the Actual Delivery Days = 7 days and the days<b> after = 2 </b> days then the delivery range = <b> 7 to 9 </b> days </p>
+                    
+                        <group col="2">
+                       <field name="delivery_to_use"/>
+                   </group>
+                     <group col="4" attrs= "{'invisible':[('delivery_to_use','=', 'default')]}">
+                      <separator colspan="5" string="Zipcodes and thier Estimated Delivery"/>
+                       <field name="zip_ranges"  nolabel="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="pincodes"/>
+                                    <field name="delivered_within"/>
+                                </tree>
+                            </field>
+                    </group>
+                    <footer>
+                    <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" special="cancel" type="button" name="cancel" class="oe_link"/>
+                </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_estimated_delivery_conf" model="ir.actions.act_window">
+	        <field name="name">Estimated Delivery</field>
+	        <field name="res_model">estimated.delivery.conf</field>
+	        <field name="view_mode">form</field>
+	        <field name="target">new</field>
+    	</record>
+	</data>
+</odoo>

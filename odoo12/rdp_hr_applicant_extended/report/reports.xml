@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="report_mass_email_to_candidates_report"
+        string="Mass Email Candidates"
+        model="hr.applicant"
+        name="rdp_hr_applicant_extended.hr_mass_email_candidates_email_template"
+        file="rdp_hr_applicant_extended.hr_mass_email_candidates_email_template"/>
+</odoo>

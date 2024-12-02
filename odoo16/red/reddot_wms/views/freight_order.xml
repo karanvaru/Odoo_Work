@@ -1,0 +1,269 @@
+<odoo>
+
+    <data>
+<!--        <record id="inherit_view_freight_order_form_view1" model="ir.ui.view">-->
+<!--        <field name="name">inherit.freight_order_form_view1</field>-->
+<!--        <field name="model">freight.order</field>-->
+<!--        <field name="inherit_id" ref="reddot_wms.inherit_view_freight_order_form_view"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='release_date']" position="after">-->
+<!--                <field name="eta" string="ETA"-->
+<!--                       attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'confirm'))]}"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+
+
+        <record id="inherit_view_freight_order_form_view" model="ir.ui.view">
+            <field name="name">inherit.freight_order_form_view</field>
+            <field name="model">freight.order</field>
+            <field name="inherit_id" ref="ob_freight_management_system.freight_order_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='track_order']" position="replace">
+                    <button name="track_order" string="Tracking" invisible="1" type="object" class="oe_highlight"
+                            states="confirm,invoice" data-hotkey="w"/>
+
+                </xpath>
+                <xpath expr="//button[@name='action_submit']" position="replace">
+                    <button name="action_submit" string="Confirm" type="object" class="oe_highlight"
+                            data-hotkey="w" states="draft"/>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="replace">
+                    <button name="action_confirm" string="Receive" type="object" class="oe_highlight"
+                            data-hotkey="w" states="submit"/>
+                </xpath>
+
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                    <button class="oe_stat_button" type="object" name="action_related_pickings"
+                            icon="fa-truck">
+                        <field string="GRVs" name="grv_count" widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" type="object" name="action_related_purchases"
+                            icon="fa-arrows-h">
+                        <field string="Purchases" name="po_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+                <xpath expr="//field[@name='shipper_id']" position="replace">
+                    <field name="shipper_id" string="Shipper"
+                           attrs="{'readonly': [('state', 'not in', ('draft','submit','confirm'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="forwarding_agent"
+                           attrs="{'readonly': [('state', 'not in', ('draft','submit','confirm'))]}"
+                           domain="([('freight_forwarder', '=', True)])" string="Forwarding Agent"/>
+                </xpath>
+                <xpath expr="//field[@name='land_type']" position="attributes">
+                    <attribute name="attrs">{'invisible': True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='water_type']" position="attributes">
+                    <attribute name="attrs">{'invisible': True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='shipper_id']" position="after">
+                    <field name="delivery_method"
+                           attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'confirm'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='consignee_id']" position="replace">
+                    <field name="consignee_id"
+                           attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'confirm'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='order_date']" position="replace">
+                    <field name="order_date"
+                           attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'confirm'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='loading_port_id']" position="replace">
+                    <field name="loading_port_id"
+                           attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'confirm'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='discharging_port_id']" position="replace">
+                    <field name="discharging_port_id"
+                           attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'confirm'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='type']" position="replace">
+                    <field name="type" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'confirm'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='agent_id']" position="replace">
+                    <field name="agent_id" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'confirm'))]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='name']" position="replace">
+                    <field name="name" string="Pre Alert ID"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="before">
+                    <label for="name"/>
+                </xpath>
+                <xpath expr="//field[@name='transport_type']" position="replace">
+                    <field name="transport_type"
+                           attrs="{'readonly': [('state', 'not in', ('draft','submit','confirm'))]}"
+                           string="Shipping Methods"/>
+                </xpath>
+                <xpath expr="//field[@name='transport_type']" position="after">
+                    <field name="shipping_reference"
+                           attrs="{'readonly': [('state', 'not in', ('draft','submit','confirm'))]}"/>
+                    <field name="boe_number" attrs="{'readonly': [('state', 'not in', ('submit','confirm'))]}"/>
+                    <!--                        <field name="exit_number" attrs="{'readonly': [('state', 'not in', ('submit','confirm'))]}"/>-->
+                </xpath>
+                <xpath expr="//button[@name='create_invoice']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='consignee_id']" position="after">
+                    <field name="supplier" attrs="{'readonly': [('state', 'not in', ('draft','submit','confirm'))]}"/>
+                    <field name="supplier_reference"
+                           placeholer="Invoice number as shared by the vendor e.g. Invoice no. 9005068275-B"
+                           attrs="{'readonly': [('state', 'not in', ('draft','submit','confirm'))]}"/>
+                </xpath>
+                <xpath expr="//button[@name='get_invoice']" position="attributes">
+                    <attribute name="attrs">{'invisible': True}</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[1]" position="before">
+                    <page string="Bill Entries">
+                        <field name="bill_entry_ids"
+                               attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'confirm'))]}">
+                            <tree string="Bill Entries" editable="bottom">
+                                <field name="product_id"/>
+                                <field name="quantity"/>
+                                <field name="weight"/>
+                                <!--                                    <field name="cif_local_value" />-->
+                                <!--                                    <field name="currency_rate" />-->
+                                <!--                                    <field name="type_currency" />-->
+                                <!--                                    <field name="cif_foreign_value" />-->
+                                <field name="country_origin" string="COO"/>
+                                <field name="hs_code"/>
+                                <field name="purchase_order"/>
+                                <field name="unit_price"/>
+                            </tree>
+                        </field>
+                        <group>
+                            <group class="oe_subtotal_footer oe_right" colspan="2">
+                                <field name="weight_type"
+                                       attrs="{'readonly': [('state', 'not in', ('draft','submit','confirm'))]}"
+                                       string="Weight"/>
+                                <field name="weight"
+                                       attrs="{'invisible': ['|',('weight_type', '!=', 'gross'),('state', 'not in', ('draft','submit','confirm'))]}"/>
+                                <field name="net" attrs="{'invisible': [('weight_type', '!=', 'net')]}"/>
+                                <field name="class_pack"
+                                       attrs="{'readonly': [('state', 'not in', ('draft','submit','confirm'))]}"
+                                       string="Classification / Packages"/>
+                                <field name="quantity"
+                                       attrs="{'readonly': [('state', 'not in', ('draft','submit','confirm'))]}"/>
+                                <label for="class_pack_uom_id"/>
+                                <field name="class_pack_uom_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <field name="space"/>
+                        <group>
+                            <!--                                 <group colspan="2">-->
+                            <!--                                      <group class="oe_subtotal_footer oe_right" string="Exception of Duty and Customs Restrictions">-->
+                            <!--                                         <div class="oe_inline o_td_label">-->
+                            <!--                                            <label for="beneficiary"/>-->
+                            <!--                                        </div>-->
+                            <!--                                        <field name="beneficiary" nolabel="1"/>-->
+
+                            <!--                                        <div class="oe_inline o_td_label">-->
+                            <!--                                            <label for="sources"/>-->
+                            <!--                                        </div>-->
+
+                            <!--                                        <field name="sources" nolabel="1"/>-->
+                            <!--                                           <div class="oe_inline o_td_label">-->
+                            <!--                                                <label for="code"/>-->
+                            <!--                                            </div>-->
+                            <!--                                        <field name="code" nolabel="1"/>-->
+
+                            <!--                                          <div class="oe_inline o_td_label">-->
+                            <!--                                            <label for="release_ref"/>-->
+                            <!--                                        </div>-->
+                            <!--                                        <field name="release_ref" nolabel="1"/>-->
+
+                            <!--                                        <div class="oe_inline o_td_label">-->
+                            <!--                                            <label for="agency"/>-->
+                            <!--                                        </div>-->
+                            <!--                                        <field name="agency" nolabel="1"/>-->
+                            <!--                                    </group>-->
+                            <!--                                 </group>-->
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Remarks">
+                        <field name="remarks" attrs="{'readonly':[('state', 'not in', ('draft','submit','confirm'))]}"/>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='expected_date']" position="replace">
+                    <field name="release_date" attrs="{'readonly': [('state', '!=', 'draft')]}" string="Release Date"
+                           required="1"/>
+                </xpath>
+                <xpath expr="//page [2]" position="attributes">
+                    <attribute name="attrs">{'invisible': True}</attribute>
+                </xpath>
+                <xpath expr="//page [3]" position="attributes">
+                    <attribute name="attrs">{'invisible': True}</attribute>
+                </xpath>
+                <xpath expr="//page [4]" position="attributes">
+                    <attribute name="attrs">{'invisible': True}</attribute>
+                </xpath>
+                <xpath expr="//page [5]" position="attributes">
+                    <attribute name="attrs">{'invisible': True}</attribute>
+                </xpath>
+
+                <xpath expr="//sheet" position="inside">
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="ob_freight_management_system.action_freight_order" model="ir.actions.act_window">
+            <field name="name">Freight Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">freight.order</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="domain">[('state', '!=', 'delivery')]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Define a new freight order
+                </p>
+            </field>
+        </record>
+        <record id="freight_order_tree_view_inherited" model="ir.ui.view">
+            <field name="name">Freight Order</field>
+            <field name="model">freight.order</field>
+            <field name="inherit_id" ref="ob_freight_management_system.freight_order_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree//field[@name='transport_type']" position="after">
+                    <field name="supplier"/>
+                    <field name="loading_port_id"/>
+                    <field name="discharging_port_id"/>
+                    <field name="state"/>
+                </xpath>
+                <xpath expr="//tree//field[@name='type']" position="replace">
+                    <field name="release_date"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="ob_freight_management_system.menu_freight_container" model="ir.ui.menu">
+            <field name="active">False</field>
+        </record>
+        <record id="ob_freight_management_system.menu_freight_service" model="ir.ui.menu">
+            <field name="active">False</field>
+        </record>
+
+        <record id="ob_freight_management_system.menu_freight_price" model="ir.ui.menu">
+            <field name="active">False</field>
+        </record>
+        <record id="ob_freight_management_system.menu_freight_routes" model="ir.ui.menu">
+            <field name="active">False</field>
+        </record>
+
+        <record id="inherit_view_freight_order_form_view1" model="ir.ui.view">
+            <field name="name">inherit.freight_order_form_view1</field>
+            <field name="model">freight.order</field>
+            <field name="inherit_id" ref="reddot_wms.inherit_view_freight_order_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='release_date']" position="after">
+                    <field name="eta" string="ETA"
+                           attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'confirm'))]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

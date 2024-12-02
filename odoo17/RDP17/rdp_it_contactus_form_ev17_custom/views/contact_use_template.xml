@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>        
+
+        <!-- Username Authentication -->
+
+        <template id="ASP_Username_Form">
+            <t t-call="website.layout">
+                <div id="wrap" class="o_portal_wrap">
+                    <section class="bg-light py-5" style="margin-top: -20px; background-color: #FFFFFF;">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12 col-sm-8 col-md-6">
+                                    <h2 class="text-center mb-4">ASP Username Verification</h2>
+                                    <form action="/check_username" method="post">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <div class="input-group mb-3">
+                                            <input type="text" name="username" class="form-control asp_form_control" placeholder="Enter your username" required="1" />
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-primary btn-sm custom_button_username" >Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <t t-if="error_message">
+                                        <p class="text-danger text-center mt-3" t-esc="error_message"></p>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+               
+        <!-- Complaint Registration Form -->
+
+        <template id="website_contact_us_template">
+            <t t-call="website.layout">
+                <div class="o_portal_wrap">
+                    <div class="oe_structure"/>
+                    <div class="container mt-2">
+                        <div class="col-lg-12 main_heading">
+                            <h1>Get in Touch with GIBGI</h1>
+                            <p class="gibgi_text" >
+                                We’d love to hear from you! Whether it’s about our products, partnerships, or support, reach out and we’ll respond as soon as we can.
+                                 <br/>
+                                 Our team is here to assist you with any questions, feedback, or support you need.
+                            </p>
+                        </div>
+                        <div style="max-width:1450px; margin:7% auto; padding: 0 0 0 0;">
+                            <div class="row">
+                                <div class="col-lg-4 contact_info" style="padding: 0px 0px; line-height: 2.5;" >
+                                    <p> <strong>Contact Us:</strong>  </p>
+                                    <p>Phone: +1-800-GIBGI-123</p>
+                                    <p>Email: support@gibgi.com</p>
+                                    <p>Business Hours: Monday to Friday, 9 AM - 6 PM</p>
+                                    <p>  <strong>Support FAQ</strong></p>
+                                    <p> Self Help Center Link</p>
+                                    <p> <strong>AI Live Chat </strong> </p>
+                                    <p>Click Here</p>
+                                    <div class="col image_column">
+                                        <img src="" alt="bar_code_for_product_scan" />
+                                    </div>
+                                    <div classs="col text_column">
+                                        <p>Scan here for product virtual tours.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 support-head">
+                                    <div class="toggle-button-container" >
+                                        <div class="custom-toggle-wrapper toggle_button_type">
+                                            <label class="custom-toggle-wrap">
+                                                <input type="checkbox" class="custom-toggle-input"  id="toggle_switch_type_form"/>
+                                                <span class="custom-toggle-mark"></span>
+                                                <span class="toggle-label ticket-text">Ticket</span>
+                                                <span class="toggle-label asp-text">ASP</span>
+                                            </label>
+                                        </div> 
+                                    </div>
+                                    <br></br>
+                                    <form action="/website_contact_form" method="post" enctype="multipart/form-data"
+                                          role="form" class="contact_page"
+                                          id="contact_us_form" data-success-mode="redirect"
+                                          data-success-page="/contactus-thank-you" data-pre-fill="true">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <div class="container row">
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input type="text" class="form-control o_website_form_input email-input"
+                                                    name="partner_email"
+                                                    pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                                                    required="" placeholder="Email*"/>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input type="text" class="form-control o_website_form_input autofill-field"
+                                                    name="partner_name"
+                                                    required="" placeholder="Contact Name*"/>
+                                            </div>
+                                            
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input type="text" class="form-control o_website_form_input autofill-field"
+                                                    name="contact_mobile" required=""
+                                                    pattern="[1-9]{1}[0-9]{9}"
+                                                    placeholder="Phone Number*"/>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <select class="form-select" name="purchase_channel" required="1">
+                                                    <t t-set="channels" t-value="request.env['purchase.channel'].sudo().search([])"/>
+                                                    <option value="0" disabled="" selected="">Purchase Channel</option>
+                                                    <t t-foreach="channels" t-as="channel">
+                                                        <option t-att-value="channel.id">
+                                                            <span t-esc="channel.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>                                            
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input type="text" class="form-control o_website_form_input"
+                                                       name="contact_order"
+                                                       placeholder="Order ID*"
+                                                required="1"/>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input type="text" class="form-control o_website_form_input serial-input"
+                                                       name="contact_device_serial" placeholder="Product Serial Number*"
+                                                      required="1"/>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input type="text" class="form-control o_website_form_input"
+                                                       name="product_name" placeholder="Product*" readOnly="1"/>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input
+                                                        placeholder="Invoice Date*"
+                                                        name="partner_date"
+                                                        class="textbox-n form-control o_website_form_input"
+                                                        t-attf-class="form-control"
+                                                        type="text"
+                                                        required="required"
+                                                        onfocus="(this.type='date')"
+                                                        onblur="(this.type='text')"
+                                                        enctype="multipart/form-data"
+                                                        id="date"/>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input type="text" class="form-control o_website_form_input"
+                                                       name="partner_invoice_number"
+                                                       placeholder="Invoice Number*"
+                                                       required="1"/>
+                                            </div>
+                                            <div class="col-lg-6 form-group form-field o_website_form_required_custom">
+                                                <select class="form-select"
+                                                        name="complain_type" required="1">
+                                                    <t t-set="type"
+                                                       t-value="request.env['helpdesk.ticket.type'].sudo().search([])"/>
+                                                    <option value="0" disabled="" selected="" data-calc="0">
+                                                        Complaint Type
+                                                    </option>
+                                                    <t t-foreach="type" t-as="c">
+                                                        <option t-att-value="c.id" t-att-data-id="c.id">
+                                                            <span t-esc="c.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6 form-group form-field o_website_form_required_custom">
+                                                <input type="file"
+                                                       class="form-control inputfile o_website_form_input"
+                                                       name="partner_invoice"
+                                                       placeholder="Upload Invoice*"
+                                                       required="1"
+                                                       accept="application/pdf"/>
+                                            </div>
+                                            <div class="col-lg-12 form-group form-field">
+                                                <textarea class="form-control o_website_form_input"
+                                                          name="description"
+                                                          placeholder="Problem Description..."
+                                                required="1"/>
+                                            </div>
+                                            
+                                            <div class="shipping_address">
+                                                <div class="row pt40">
+                                                    <h5>
+                                                        <b>Shipping Address</b>
+                                                    </h5>
+                                                </div>
+                                                <div class="container row">
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <input type="text" class="form-control o_website_form_input"
+                                                               name="partner_street"
+                                                               placeholder="Street"
+                                                               required="1"/>
+                                                    </div>
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <select class="form-select"
+                                                                name="partner_city" required="1">
+                                                            <t t-set="city"
+                                                               t-value="request.env['res.city'].sudo().search([])"/>
+                                                            <option value="0" disabled="" selected="" data-calc="0">
+                                                                City
+                                                            </option>
+
+                                                            <t t-foreach="city" t-as="c">
+                                                                <option t-att-value="c.id" t-att-data-id="c.id">
+                                                                    <span t-esc="c.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <select class="form-select"
+                                                                name="partner_state" required="1">
+                                                            <t t-set="state"
+                                                               t-value="request.env['res.country.state'].sudo().search([])"/>
+                                                            <option value="0" disabled="" selected="" data-calc="0">
+                                                                State
+                                                            </option>
+
+                                                            <t t-foreach="state" t-as="c">
+                                                                <option t-att-value="c.id" t-att-data-id="c.id">
+                                                                    <span t-esc="c.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <select class="form-select"
+                                                                name="partner_country" required="1">
+                                                            <t t-set="country"
+                                                               t-value="request.env['res.country'].sudo().search([])"/>
+                                                            <option value="0" disabled="" selected="" data-calc="0">
+                                                                Country
+                                                            </option>
+
+                                                            <t t-foreach="country" t-as="c">
+                                                                <option t-att-value="c.id" t-att-data-id="c.id">
+                                                                    <span t-field="c.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <input type="text" class="form-control o_website_form_input"
+                                                               name="partner_pincode"
+                                                               placeholder="Pincode*"
+                                                               required="1"/>
+                                                    </div>
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <input type="text" class="form-control o_website_form_input"
+                                                               name="partner_landmark"
+                                                               placeholder="Landmark"
+                                                               required="1"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" id="contact-items-buttons">
+                                                <div class="col-lg-6" style="text-align:-moz-right;">
+                                                    <t t-if="website.recaptcha_sitekey">
+                                                        <script type="text/javascript"
+                                                                src="https://www.google.com/recaptcha/api.js"/>
+                                                        <script>function recaptchaCallback() {
+                                                            $('#submit').removeAttr('disabled');
+                                                            console.log("Checkbox checked..!") };
+                                                        </script>
+                                                        <div class="g-recaptcha"
+                                                             t-att-data-sitekey="website.recaptcha_sitekey"
+                                                             data-callback="recaptchaCallback"/>
+                                                        <br/>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="contact-items-buttons">
+                                                <div class="button-container" style="text-align: end;"> 
+                                                    <button class="btn btn-lg btn-primary o_website_form_send"
+                                                            data-original-title="" title="" id="submit"
+                                                            aria-describedby="tooltip971133">Submit
+                                                    </button>
+                                                    <span id="o_website_form_result" class="text-danger ml8"/>
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-lg-12  manufacturing_facility" >
+                                    <h1 class="manufact_heading" >Manufacturing Facility</h1>
+                                    <p class="manufact_address" >
+                                        Survey No.56, Plot No's. 43 to 54, Tech Park(MTP) Nacharam, TSIIC-IALA Nacharam, Hyderabad - 500 076, Telangana, India.
+                                    </p>
+                                    <section class="s_map pb56 pt56 o_half_screen_height" data-map-type="m" data-map-zoom="12" data-snippet="s_map" data-map-address="India" data-name="Map">
+                                        <div class="map_container o_not_editable">
+                                            <div class="css_non_editable_mode_hidden">
+                                                <div class="missing_option_warning alert alert-info rounded-0 fade show d-none d-print-none o_default_snippet_text">
+                                                    An address must be specified for a map to be embedded
+                                                </div>
+                                            </div>
+                                            <iframe class="s_map_embedded o_not_editable" src="https://maps.google.com/maps?q=250%20Executive%20Park%20Blvd%2C%20Suite%203400%20San%20Francisco%20California%20(US)%20United%20States&amp;t=m&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed" width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" aria-label="Map"/>
+                                            <div class="s_map_color_filter"/>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--                <script>-->
+<!--                    document.addEventListener('DOMContentLoaded', function() {-->
+<!--                        const emailInput = document.querySelector('.email-input');-->
+<!--                        const serialInput = document.querySelector('.serial-input');-->
+<!--                        const toggleSwitch = document.getElementById("toggle_switch_type_form");-->
+
+<!--                        toggleSwitch.addEventListener('change', function () {-->
+<!--                            if (toggleSwitch.checked) {-->
+<!--                                window.location.href = '/asp_type';-->
+<!--                            } else {-->
+<!--                                window.location.href = '/customer_type';-->
+<!--                            }-->
+<!--                        });-->
+
+<!--                        function populateFields(response, fieldType) {-->
+
+<!--                            const data = response.result || {};-->
+
+<!--                            if (data &amp;&amp; response.result.success === true) {-->
+
+<!--                                if (fieldType === 'email') {-->
+<!--                                    const nameField = document.querySelector('[name="partner_name"]');-->
+<!--                                    const mobileField = document.querySelector('[name="contact_mobile"]');-->
+<!--                                    const emailField = document.querySelector('[name="partner_email"]');-->
+
+<!--                                    if (nameField) {-->
+<!--                                        nameField.value = data.partner_name || '';-->
+<!--                                        nameField.readOnly = !!data.partner_name;-->
+<!--                                    }-->
+<!--                                    if (mobileField) {-->
+<!--                                        mobileField.value = data.contact_mobile || '';-->
+<!--                                        mobileField.readOnly = !!data.contact_mobile;-->
+<!--                                    }-->
+<!--                                    if (emailField) {-->
+<!--                                        emailField.value = data.partner_email || emailInput.value;-->
+<!--                                        emailField.readOnly = false;-->
+<!--                                    }-->
+<!--                                } else if (fieldType === 'serial') {-->
+<!--                                    const productField = document.querySelector('[name="product_name"]');-->
+<!--                                    if (productField) {-->
+<!--                                        productField.value = data.product_name || '';-->
+<!--                                        productField.readOnly = true;-->
+<!--                                    }else{-->
+<!--                                        console.error("productField not found.");-->
+<!--                                    }-->
+<!--                                }-->
+<!--                            } else {-->
+
+<!--                                if (fieldType === 'email') {-->
+<!--                                    const nameField = document.querySelector('[name="partner_name"]');-->
+<!--                                    const mobileField = document.querySelector('[name="contact_mobile"]');-->
+<!--                                    const emailField = document.querySelector('[name="partner_email"]');-->
+
+<!--                                    if (nameField) {-->
+<!--                                        nameField.value = '';-->
+<!--                                        nameField.readOnly = false;-->
+<!--                                    }-->
+<!--                                    if (mobileField) {-->
+<!--                                        mobileField.value = '';-->
+<!--                                        mobileField.readOnly = false;-->
+<!--                                    }-->
+<!--                                    if (emailField) {-->
+<!--                                        emailField.value = emailInput.value;-->
+<!--                                        emailField.readOnly = false;-->
+<!--                                    }-->
+<!--                                } else if (fieldType === 'serial') {-->
+<!--                                    const productField = document.querySelector('[name="product_name"]');-->
+
+<!--                                    if (productField) {-->
+<!--                                        productField.value = '';-->
+<!--                                        productField.readOnly = true; ;-->
+<!--                                    }-->
+<!--                                    alert("No product found with the specified serial number.");-->
+<!--                                }-->
+<!--                        }-->
+<!--                    }-->
+
+<!--                        emailInput.addEventListener('blur', function() {-->
+<!--                            const email = emailInput.value.trim();-->
+
+<!--                            if (email) {-->
+<!--                                $.ajax({-->
+<!--                                    url: '/fetch_data',-->
+<!--                                    type: 'POST',-->
+<!--                                    dataType: 'json',-->
+<!--                                    data: JSON.stringify({ partner_email: email }),-->
+<!--                                    contentType: 'application/json',-->
+<!--                                    success: function(response) {-->
+<!--                                        populateFields(response, 'email');-->
+<!--                                    },-->
+<!--                                    error: function(xhr, status, error) {-->
+<!--                                        console.error("Error while fetching contact data:", error);-->
+<!--                                    }-->
+<!--                                });-->
+<!--                            }-->
+<!--                        });-->
+
+<!--                        serialInput.addEventListener('blur', function() {-->
+<!--                            const serial = serialInput.value.trim();-->
+
+<!--                            if (serial) {-->
+<!--                                $.ajax({-->
+<!--                                    url: '/fetch_data',-->
+<!--                                    type: 'POST',-->
+<!--                                    dataType: 'json',-->
+<!--                                    data: JSON.stringify({ serial_no: serial }),-->
+<!--                                    contentType: 'application/json',-->
+<!--                                    success: function(response) {-->
+<!--                                        populateFields(response, 'serial');-->
+<!--                                    },-->
+<!--                                    error: function(xhr, status, error) {-->
+<!--                                        console.error("Error while fetching product data:", error);-->
+<!--                                    }-->
+<!--                                });-->
+<!--                            }-->
+<!--                        });-->
+<!--                    });-->
+<!--                </script>-->
+            </t>
+        </template>
+    </data>
+</odoo>

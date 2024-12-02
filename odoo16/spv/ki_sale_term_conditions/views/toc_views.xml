@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_sale_term_condition_form" model="ir.ui.view">
+            <field name="name">view.sale.term.condition.form</field>
+            <field name="model">sale.term.condition</field>
+            <field name="arch" type="xml">
+                <form string="Term and Condition">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group>
+                                <field name="partner_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                        <group>
+<!--                            <field name="description"  nolabel="1" />-->
+                            <field name="description"  />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_sale_term_condition_tree" model="ir.ui.view">
+            <field name="name">view.sale.term.condition.tree</field>
+            <field name="model">sale.term.condition</field>
+            <field name="priority">4</field>
+            <field name="arch" type="xml">
+                <tree string="Term and Conditions">
+                    <field name="name"/>
+                    <field name="partner_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_sale_term_condition" model="ir.actions.act_window">
+            <field name="name">Term and Conditions Templates</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.term.condition</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_sale_term_condition"
+                action="action_sale_term_condition"
+                parent="sale.menu_sale_config"  
+                sequence="10"/>
+
+</odoo>

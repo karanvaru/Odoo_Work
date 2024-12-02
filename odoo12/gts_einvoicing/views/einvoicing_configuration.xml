@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="form_view_einvoicing_configuration" model="ir.ui.view">
+        <field name="name">einvoicing.configuration.form</field>
+        <field name="model">einvoicing.configuration</field>
+        <field name="arch" type="xml">
+            <form string="E-Invoicing Configuration">
+                <header>
+                    <button name="handle_einvoicing_auth_token_test" string="Test Connection" type="object"
+                            class="oe_highlight"/>
+                </header>
+                <sheet string="E-Invoicing Configuration">
+                    <group>
+                        <group>
+                            <field name="testing" widget="radio" options="{'horizontal': True}"/>
+                            <field name="asp_id"/>
+                        </group>
+                        <group>
+                            <field name="asp_password"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <!-- <field name="ewaydetails_url"/> -->
+                            <field name="eway_url_staging"/>
+                            <field name="print_url_live" string="Eway Print URL(Live)" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="tree_einvoice_configuration" model="ir.ui.view">
+        <field name="name">einvoicing.configuration.tree</field>
+        <field name="model">einvoicing.configuration</field>
+        <field name="arch" type="xml">
+            <tree string="Eway Configuration">
+                <field name="testing"/>
+                <field name="active"/>
+                <field name="active_production"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_einvoice_configuration">
+        <field name="name">E-Invoicing Configuration</field>
+        <field name="res_model">einvoicing.configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- <menuitem id="gst_einvoice" name="E-Invoicing"/>
+    <menuitem id="gst_einvoice_configuration" name="Configuration" parent="gst_einvoice" action="action_einvoice_configuration"/> -->
+    <menuitem id="gst_einvoice_configuration" name="E-Invoicing" parent="account.account_account_menu" action="action_einvoice_configuration"/>
+
+<!--    <menuitem id="menu_eway_configuration" parent="gst_configuration" action="action_eway_configuration"-->
+<!--              groups="gts_eway_bill.group_ebill_manager"/>-->
+</odoo>

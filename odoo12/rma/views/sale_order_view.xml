@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+	<data>
+		<record id="sale_order_inherit_rma_id" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page/field/tree/field[@name='price_subtotal']" position="after">
+                  <field name="delivery_state" invisible="1"/>
+                  <button name="rma_open_wizards_button" type="object" string="Return" icon="" alt="return" attrs="{'invisible': [('delivery_state', '=', False)]}"/>
+                  <!-- <field name="can_create_rma" invisible="1"/>
+                  <field name="rma_generated" invisible="1"/>
+                  <button name="rma_open_wizards_button" type="object" string="Return" icon="" alt="return" attrs="{'invisible': [('can_create_rma','=', False),'|',('delivery_state', '=', False)]}"/>
+                  <button name="view_rma_records" type="object" string="View RMA" icon="" alt="View RMA" attrs="{'invisible': [('rma_generated', '=', False)]}"/> -->
+                </xpath>
+                <xpath expr="//page/field/form/group/group/div/field[@name='customer_lead']/.." position="after">
+                  <field name="delivery_state" invisible="1"/>
+                  <button name="rma_open_wizards_button" type="object" string="Return" icon="" alt="return" attrs="{'invisible': [('delivery_state', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+	</data>
+</odoo>

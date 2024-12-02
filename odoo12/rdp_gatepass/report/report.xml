@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report
+                id="report_rdp_gatepass"
+                model="gate.pass"
+                string="GatePass"
+                name="rdp_gatepass.rdp_gatepass_template"
+                file="rdp_gatepass.gatepass_template"
+                report_type="qweb-pdf"
+        />
+
+    </data>
+</odoo>
+
+    

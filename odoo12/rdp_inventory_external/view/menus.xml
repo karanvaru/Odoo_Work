@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+
+<menuitem parent="stock.all_picking"
+          id="menu_stock_picking_line" name="stock move line"
+          action="stock_move_line_action" sequence="2"/>
+

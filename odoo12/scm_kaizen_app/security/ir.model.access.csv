@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+scm_kaizen_user,scm.kaizen,model_scm_kaizen,,1,1,1,1
+scm_category_user,scm.category,model_scm_category,,1,1,1,1
+scm_tags_user,scm.tags,model_scm_tags,,1,1,1,1
+scm_subcategory_user,scm.subcategory,model_scm_subcategory,,1,1,1,1
+

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_report_configuration,access_hr.report.configuration,model_hr_report_configuration,base.group_user,1,1,1,1
+access_report_configuration_recurrence,access_report.configuration.recurrence,model_report_configuration_recurrence,base.group_user,1,1,1,1

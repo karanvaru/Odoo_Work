@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record id="product_template_policy_tree_view" model="ir.ui.view">
+        <field name="name">product.template.policy.product.tree</field>
+        <field name="model">product.template</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <tree string="Product" multi_edit="1" sample="1">
+                <header>
+                </header>
+                <field name="product_variant_count" invisible="1"/>
+                <field name="sale_ok" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="cost_currency_id" invisible="1"/>
+                <field name="priority" widget="priority" optional="show" nolabel="1"/>
+                <field name="name" string="Product Name"/>
+                <field name="categ_id" optional="show" string="Category"/>
+                <field name="insurance_company_id" optional="show"/>
+                <!--                <field name="default_code" optional="show"/>-->
+                <!--                <field name="product_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" optional="show"/>-->
+                <field name="barcode" optional="hide" attrs="{'readonly': [('product_variant_count', '>', 1)]}"/>
+                <field name="company_id" options="{'no_create': True}"
+                       groups="base.group_multi_company" optional="hide"/>
+                <field name="list_price" string="Sales Price" invisible="1" widget='monetary'
+                       options="{'currency_field': 'currency_id'}" optional="show" decoration-muted="not sale_ok"/>
+                <field name="standard_price" widget='monetary' invisible="1"
+                       options="{'currency_field': 'cost_currency_id'}" optional="show" readonly="1"/>
+
+                <field name="detailed_type" optional="hide" readonly="1"/>
+                <field name="type" invisible="1"/>
+                <field name="uom_id" readonly="1" optional="show" groups="uom.group_uom"/>
+                <field name="active" invisible="1"/>
+                <field name="activity_exception_decoration" widget="activity_exception"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="product_template_policy_form_view" model="ir.ui.view">
+        <field name="name">product.template.common.form</field>
+        <field name="model">product.template</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <form string="Policy Product">
+                <header>
+
+                </header>
+
+                <sheet name="product_form">
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_view_agent_policies" icon="fa-tasks"
+                        >
+                            <field name="product_counts" widget="statinfo" string="Policies"/>
+                        </button>
+                    </div>
+                    <field name='product_variant_count' invisible='1'/>
+                    <field name='is_product_variant' invisible='1'/>
+                    <field name='attribute_line_ids' invisible='1'/>
+                    <field name="type" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="id" invisible="True"/>
+                    <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                    <div class="oe_title">
+                        <label for="name" string="Product Name"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field name="priority" widget="priority" class="me-3"/>
+                                <field class="text-break" name="name" placeholder="e.g. Cheese Burger"/>
+                            </div>
+                        </h1>
+                    </div>
+                    <div name="options">
+                        <span class="d-inline-block" invisible="True">
+                            <field name="is_policy_product"/>
+                            <label for="is_policy_product"/>
+                        </span>
+                        <field name="sale_ok" invisible="True"/>
+                        <field name="purchase_ok" invisible="True"/>
+
+
+                    </div>
+                    <notebook>
+                        <page string="General Information" name="general_information">
+
+                            <group>
+                                <group>
+                                    <field name="active" invisible="1"/>
+                                    <field name="detailed_type" invisible="True"/>
+                                    <field name="categ_id" string="Policy Category"
+                                           domain="[('is_policy_category', '=', True)]"/>
+                                    <field name="insurance_company_id"
+                                           attrs="{'invisible': [('is_policy_product', '=', False)]}"
+                                           domain="[('partner_type', '=', 'insurance_company')]"/>
+
+                                </group>
+                                <group>
+                                    <label for="list_price" invisible="1"/>
+                                    <div name="pricing" invisible="1">
+                                        <field name="list_price" class="oe_inline" widget='monetary'
+                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                    </div>
+                                    <field name="product_tag_ids" string="Tags" widget="many2many_tags"
+                                           options="{'color_field': 'color'}"/>
+                                    <field name="company_id" groups="base.group_multi_company"
+                                           options="{'no_create': True}"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="cost_currency_id" invisible="1"/>
+                                    <field name="product_variant_id" invisible="1"/>
+                                </group>
+                            </group>
+
+                            <group string="Internal Notes" invisible="1">
+                                <field colspan="2" name="description" nolabel="1"
+                                       placeholder="This note is only for internal purposes."/>
+                            </group>
+                        </page>
+                        <page string="Sales" attrs="{'invisible':[('sale_ok','=',False)]}" name="sales">
+                            <group name="sale">
+                                <group string="Upsell &amp; Cross-Sell" name="upsell"/>
+                            </group>
+                            <group>
+                                <group string="Sales Description" name="description">
+                                    <field colspan="2" name="description_sale" nolabel="1"
+                                           placeholder="This note is added to sales orders and invoices."/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter" invisible="1">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_policy_product" model="ir.actions.act_window">
+        <field name="name">Policy Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="search_view_id" ref="product.product_template_search_view"/>
+        <field name="context">{"default_is_policy_product":True, "default_sale_ok": True,"default_detailed_type":
+            'service'}
+        </field>
+        <field name="domain">[('is_policy_product', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new policy product
+            </p>
+            <p>
+                You must define a product for everything you sell or purchase,
+                whether it's a storable product, a consumable or a service.
+            </p>
+        </field>
+    </record>
+
+
+    <record id="action_policy_product_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="product_template_policy_tree_view"/>
+        <field name="act_window_id" ref="action_policy_product"/>
+    </record>
+
+    <record id="action_policy_product_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="product_template_policy_form_view"/>
+        <field name="act_window_id" ref="action_policy_product"/>
+    </record>
+
+
+</odoo>

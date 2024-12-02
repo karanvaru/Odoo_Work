@@ -1,0 +1,32 @@
+<odoo>
+    <record id="access_asterisk_base_sip_route_admin" model="ir.model.access">
+        <field name="name">access_asterisk_base_sip_route_admin</field>
+        <field name="model_id" ref="asterisk_base_sip.model_asterisk_base_sip_route"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_admin"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="access_asterisk_base_sip_route_group_admin" model="ir.model.access">
+        <field name="name">access_asterisk_base_sip_route_group_admin</field>
+        <field name="model_id" ref="asterisk_base_sip.model_asterisk_base_sip_route_group"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_admin"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>    
+
+    <record id="access_asterisk_base_sip_translation_admin" model="ir.model.access">
+        <field name="name">access_asterisk_base_sip_translation_admin</field>
+        <field name="model_id" ref="asterisk_base_sip.model_asterisk_base_sip_translation"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_admin"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_parts_line_tree" model="ir.ui.view">
+        <field name="name">product.parts.line.view.tree</field>
+        <field name="model">refill.request.line</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false">
+                <field name="product_part_id" domain="[('categ_id.name', '=', 'Parts')]"/>
+                <field name="quantity"/>
+                <field name="comments"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_parts_line_search1" model="ir.ui.view">
+        <field name="name">product.parts.line.view.search</field>
+        <field name="model">refill.request.line</field>
+        <field name="arch" type="xml">
+            <search string="Parts History">
+                <filter string="parts" name="groupby_product_part_id" domain="[]"
+                        context="{'group_by': 'product_part_id'}"/>
+                <filter string="Date" name="groupby_date" domain="[]" context="{'group_by': 'line_date:day'}"/>
+
+                <filter string="Date" name="line_date"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="product" name="groupby_parts_cartridge_id" domain="[]"
+                            context="{'group_by': 'parts_cartridge_id'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+
+    <record id="product_parts_line_search2" model="ir.ui.view">
+        <field name="name">product.parts.line.view.search</field>
+        <field name="model">refill.request.line</field>
+        <field name="arch" type="xml">
+            <search string="Parts History">
+                <filter string="Date" name="line_date"/>
+                <filter string="Date" name="groupby_date" domain="[]" context="{'group_by': 'line_date:day'}"/>
+                <!--                  <filter string="parts" name="groupby_product_part_id" domain="[]"-->
+                <!--                        context="{'group_by': 'product_part_id'}"/>-->
+                <separator/>
+            </search>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_warranty_document">
+
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="o.with_context({'lang':o.user_id.lang})"/>
+            <t t-set="address">
+                <div t-field="o.parnter_invoice"
+                    t-options='{
+                        "widget": "contact", 
+                        "fields": ["address", "name", "phone", "email"],
+                        "no_marker": True, "phone_icons": True}' />
+            </t>
+            <div class="page">
+                <div class="oe_structure"/>
+                <h2>
+                    <span>Ref # </span>
+                    <span t-field="o.name"/>
+                </h2>
+                <div class="row col mt32 mb32" id="informations">
+                    <div class="mr32">
+                        <strong>Order Date:</strong>
+                        <p t-field="o.order_id.confirmation_date" t-options="{&quot;format&quot;: &quot;MM/dd/yyyy&quot;}"/>
+                    </div>
+                </div>
+                <table class="table table-striped warranty_rep">
+                    <tbody class="sale_tbody">
+                        <tr>
+                            <td style="line-height: 3 !important;"><b>Customer:</b></td>
+                            <td style="line-height: 3 !important;"><span t-field='o.partner_id'/></td>
+                            <td style="line-height: 3 !important;"><b>Sale Order:</b></td>
+                            <td style="line-height: 3 !important;"><span t-field='o.order_id'/></td>
+                        </tr>
+                        <tr>
+                            <td style="line-height: 3 !important;"><b>Product:</b></td>
+                            <td style="line-height: 3 !important;"><span t-field='o.product_id'/></td>
+                            <td style="line-height: 3 !important;"><b>Serial Number:</b></td>
+                            <td style="line-height: 3 !important;"><span t-field='o.lot_id'/></td>
+                        </tr>
+                        <tr>
+                            <td style="line-height: 3 !important;"><b>Warranty Start From:</b></td>
+                            <td style="line-height: 3 !important;">
+                                <span t-field='o.warranty_start_date' t-options="{&quot;format&quot;: &quot;MM/dd/yyyy&quot;}"/>
+                            </td>
+                            <td style="line-height: 3 !important;"><b>Warranty End:</b></td>
+                            <td style="line-height: 3 !important;"><span t-field='o.warranty_end_date'/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_warranty">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="warranty_management.report_warranty_document" t-lang="o.user_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_warranty_document_rec">
+
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="o.with_context({'lang':o.warranty_id.user_id.lang})"/>
+            <t t-set="address">
+                <div t-field="o.warranty_id.parnter_invoice"
+                    t-options='{
+                        "widget": "contact", 
+                        "fields": ["address", "name", "phone", "email"],
+                        "no_marker": True, "phone_icons": True}' />
+            </t>
+            <div class="page">
+                <div class="oe_structure"/>
+                <h2>
+                    <span>Ref # </span>
+                    <span t-field="o.name"/>
+                </h2>
+                <div class="row col mt32 mb32" id="informations">
+                    <div class="mr32">
+                        <strong>Order Date:</strong>
+                        <p t-field="o.warranty_id.order_id.confirmation_date" t-options="{&quot;format&quot;: &quot;MM/dd/yyyy&quot;}"/>
+                    </div>
+                </div>
+                <table class="table table-striped warranty_rep">
+                    <tbody class="sale_tbody">
+                        <t t-set="wrnty" t-value="o.warranty_id"/>
+                        <tr>
+                            <td style="line-height: 3 !important;"><b>Customer:</b></td>
+                            <td style="line-height: 3 !important;"><span t-field='wrnty.partner_id'/></td>
+                            <td style="line-height: 3 !important;"><b>Sale Order:</b></td>
+                            <td style="line-height: 3 !important;"><span t-field='wrnty.order_id'/></td>
+                        </tr>
+                        <tr>
+                            <td style="line-height: 3 !important;"><b>Product:</b></td>
+                            <td style="line-height: 3 !important;"><span t-field='wrnty.product_id'/></td>
+                            <td style="line-height: 3 !important;"><b>Serial Number:</b></td>
+                            <td style="line-height: 3 !important;"><span t-field='wrnty.lot_id'/></td>
+                        </tr>
+                        <tr>
+                            <td style="line-height: 3 !important;"><b>Warranty Start From:</b></td>
+                            <td style="line-height: 3 !important;">
+                                <span t-field='o.old_start_date'/>
+                            </td>
+                            <td style="line-height: 3 !important;"><b>Warranty End:</b></td>
+                            <td style="line-height: 3 !important;"><span t-field='o.old_end_date'/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_warranty_rec">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="warranty_management.report_warranty_document_rec" t-lang="o.warranty_id.user_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>
+    

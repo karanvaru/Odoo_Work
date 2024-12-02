@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="asterisk_common_assets_backend" name="asterisk_common_assets" inherit_id="web.assets_backend">
+    <xpath expr="." position="inside">
+      <script type="text/javascript" src="/asterisk_common/static/src/js/support.js"/>
+      <script type="text/javascript" src="/asterisk_common/static/src/js/originate.js"/>
+      <script type="text/javascript" src="/asterisk_common/static/src/js/notification.js"/>
+    </xpath>
+  </template>
+
+</odoo>

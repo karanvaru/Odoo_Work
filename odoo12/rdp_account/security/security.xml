@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+                                <!-- Groups -->
+     <record id="employee_finance_check_status" model="ir.module.category">
+            <field name="name">Accounting</field>
+            <field name="sequence" eval="1"/>
+     </record>
+
+        <!--groups-->
+
+        <record id="group_check_status_user" model="res.groups">
+            <field name="name">Check status user</field>
+            <field name="category_id" ref="employee_finance_check_status"/>
+        </record>
+</odoo>

@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kv_cache_cache,access_kv_cache_cache,model_kv_cache_cache,base.group_user,1,1,1,1
+access_remote_agent_agent_admin,access_remote_agent_agent_admin,model_remote_agent_agent,group_asterisk_admin,1,1,1,1
+access_remote_agent_agent_state,access_remote_agent_agent_state,model_remote_agent_agent_state,group_asterisk_admin,1,1,1,1
+access_remote_agent_agent2,access_remote_agent_agent2,model_remote_agent_agent,group_asterisk_user,1,0,0,0
+
+access_remote_agent_agent,access_remote_agent_agent,model_remote_agent_agent,group_asterisk_agent,1,0,0,0
+access_remote_agent_agent_state_agent,access_remote_agent_agent_state_agent,model_remote_agent_agent_state,group_asterisk_agent,1,1,1,0

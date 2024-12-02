@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <template id="picking_delivery_advice_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <t t-call="reddot_stock_extension.stock_report_header"/>
+                            <div class="row text-center pt48">
+                                <h2>
+                                    <b>DELIVERY ADVICE</b>
+                                </h2>
+                            </div>
+
+                            <div class="row pt16">
+                                <div class="col-6">
+                                    <span style="margin-right:50px;">Date</span>
+                                    <span t-field="o.scheduled_date" t-options='{"format": "d/MMM/Y"}'/>
+                                    <p class="pt8">
+                                        The Director,
+                                        <br></br>
+                                        Dept. of Port &amp; Customs
+                                        <br></br>
+                                        Jebel Ali, Dubai - UAE.
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <b>JOB NO:</b>
+                                            </td>
+                                            <td>
+                                                <b>
+                                                    <span t-field="o.name"/>
+                                                </b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>D.A. NO. :</b>
+                                            </td>
+                                            <td>
+                                                <b>
+                                                    <span>F/Z Lic No. AE1006868</span>
+                                                </b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>T7661/RDD/FZE/24432</b>
+                                            </td>
+                                            <td>
+                                                <span></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th>Importer Code</th>
+                                                    <th>Agent Code</th>
+                                                    <th>Rep. Card No</th>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+
+                                            </table>
+                                        </tr>
+
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="row pt16">
+                                <span>Please authorize release of the below mentioned goods from our warehouse to :
+                                </span>
+                                <b>
+                                    <span>TOP END FZE, JEBEL ALI FREE ZONE</span>
+                                </b>
+                                <t t-set="total_qty" t-value="0"/>
+                                <t t-set="total_weight" t-value="0"/>
+                                <t t-set="total_value" t-value="0"/>
+
+                                <t t-foreach="o.move_ids_without_package" t-as="lines">
+                                    <t t-set="total_qty" t-value="total_qty+ lines.quantity_done"/>
+                                    <t t-set="total_weight" t-value="total_weight+ lines.weight"/>
+                                    <t t-set="total_value"
+                                       t-value="total_value+ lines.price_unit * lines.quantity_done"/>
+                                </t>
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th width="10">MARKS &amp; NUMBERS</th>
+                                        <th width="10">TYPE</th>
+                                        <th width="10">QUANTITY</th>
+                                        <th width="10">WEIGHT KGS</th>
+                                        <th width="10">VOLUME CBM</th>
+                                        <th width="50">DESCRIPTION OF GOODS</th>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>PCS</td>
+                                        <td>
+                                            <span t-esc="total_qty"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="total_weight"/>
+                                        </td>
+                                        <td></td>
+                                        <td>STC: 42PCS OF DELL AND HP PRODUCTS</td>
+                                    </tr>
+
+
+                                </table>
+                            </div>
+                            <div class="row pt8">
+                                <div class="col-8" style="border:1px solid black;">
+
+                                    <div class="row pt8">
+                                        <div class="col-4">
+                                            <span style="font-size: 30px;">&#9633;</span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-size: 30px;">&#9633;</span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-size: 30px;">&#9633;</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <span style="font-size: 30px;">&#9633;</span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-size: 30px;">&#9633;</span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-size: 30px;">&#9633;</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <span style="font-size: 30px;">&#9633;&amp;nbsp;</span>
+                                            <span>F T T</span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-size: 30px;">&#9633; &amp;nbsp;</span>
+                                            <span>Alcohol</span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-size: 30px;">&#9633;&amp;nbsp;</span>
+                                            <span>Other</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6" style="border:1px solid black;">Ref. A/C No. *</div>
+                                <div class="col-3" style="border:1px solid black;">Exit Point</div>
+                                <div class="col-3" style="border:1px solid black;">Destination</div>
+                            </div>
+                            <div class="row" style="height:50px;">
+                                <div class="col-6" style="border:1px solid black;"></div>
+                                <div class="col-3" style="border:1px solid black;">JEBEL ALI FREE ZONE</div>
+                                <div class="col-3" style="border:1px solid black;">JEBEL ALI FREE ZONE</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6" style="border:1px solid black;">
+                                    B/E Ref. Nos. :
+                                </div>
+                                <div class="col-6 text-center" style="border:1px solid black;">
+                                    Carrier's Agent
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6" style="border:1px solid black;">
+                                    <div class="text-center" style="height:190px;">AS PER ATTACHED INVOICE</div>
+                                </div>
+                                <div class="col-6" style="border:1px solid black;">
+                                    <div style="height:45px;"></div>
+                                    <div class="row">
+                                        <div class="col text-center" style="border:1px solid black;">
+                                            Country of Origin
+                                        </div>
+                                        <div class="col text-center" style="border:1px solid black;">
+                                            Value (USD)
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+
+                                        </div>
+                                        <div class="col" style="padding-top:40px;">
+                                            <span t-esc="total_value"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 ">
+                                    <div class="row" style="border:1px solid black;">
+                                        <div class="col-6">
+                                            <span style="font-size: 30px;">&#9633;&amp;nbsp;</span>
+                                            <span>Import</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span style="font-size: 30px;">&#9633;&amp;nbsp;</span>
+                                            <span>Import for Re-Export</span>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <span style="font-size: 30px;">&#9633;&amp;nbsp;</span>
+                                            <span>Temporary Exit</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span style="font-size: 30px;">&#9632;</span>
+                                            <span style="font-size:15px;">Free Zone Internal Transfer</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span style="font-size: 30px;">&#9633;&amp;nbsp;</span>
+                                            <span>Export</span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-6" style="border:1px solid black;">
+                                    <div style="padding-top:110px;">
+                                        <b>Licensee / Agent Stamp &amp; Signature</b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="height:150px;">
+                                <div class="col-6" style="border:1px solid black;">
+                                    <b>For Customs Use</b>
+                                </div>
+                                <div class="col-6" style="border:1px solid black;">
+                                    <b>Importer's Stamp &amp; Signature *</b>
+                                    <br></br>
+                                    * Applicable only incase of imports
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <record id="action_delivery_advice_report" model="ir.actions.report">
+            <field name="name">Delivery Advice</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">reddot_stock_extension.picking_delivery_advice_report_template</field>
+            <field name="report_file">reddot_stock_extension.picking_delivery_advice_report_template</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="print_report_name">'Delivery_Advice'</field>
+            <field name="paperformat_id" ref="reddot_stock_extension.custom_picking_report_paper_format"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+    </data>
+</odoo>

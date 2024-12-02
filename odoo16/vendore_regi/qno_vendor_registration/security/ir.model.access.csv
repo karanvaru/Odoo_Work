@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_business_category,access.business.category,model_business_category,,1,1,1,1
+access_organization_type,access.organization.type,model_organization_type,,1,1,1,1
+access_customer_vendor_group,access.customer.vendor.group,model_customer_vendor_group,,1,1,1,1
+access_odoo_sap_master_update,access.odoo.sap.master.update,model_odoo_sap_master_update,,1,1,1,1
+

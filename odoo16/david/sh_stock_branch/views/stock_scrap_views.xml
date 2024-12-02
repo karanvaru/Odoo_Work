@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Scrap View -->
+    <record id="sh_multi_branch_stock_scrap_form_view_inherit" model="ir.ui.view">
+        <field name="name">stock.scrap.inherit.form.view.branch</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" groups="sh_base_branch.sh_multi_branch_group" options="{'no_create': True}" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_stock_scrap_search_view_inherit" model="ir.ui.view">
+        <field name="name">stock.scrap.search.branch</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_search_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//search//group//filter[@name='location']" position="after">
+                <filter string="Branch" name="branch_id" domain="[]" context="{'group_by': 'branch_id'}" groups="sh_base_branch.sh_multi_branch_group" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_stock_scrap_tree_view_inherit" model="ir.ui.view">
+        <field name="name">stock.scrap.inherit.tree.view.branch</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_tree_view" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" optional="show" groups="sh_base_branch.sh_multi_branch_group" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

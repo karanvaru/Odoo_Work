@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.actions.server" id="common_settings_action">
+        <field name="type">ir.actions.server</field>
+        <field name="name">Common Settings</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="model_asterisk_common_settings"/>
+        <field name="code">action = model.open_settings_form(module='common')</field>
+    </record>
+
+    <menuitem id="common_settings_menu" parent='asterisk_settings_menu'
+        groups="asterisk_common.group_asterisk_admin"
+        name='Common' sequence="30"/>
+
+    <menuitem id="common_settings_settings_menu" parent='common_settings_menu'
+        groups="asterisk_common.group_asterisk_admin"
+        name="Settings" action='common_settings_action' sequence='200'/>
+
+    <record id='common_settings_form' model='ir.ui.view'>
+        <field name='name'>asterisk_common.settings.form</field>
+        <field name='model'>asterisk_common.settings</field>
+        <field name='type'>form</field>
+        <field name='arch' type='xml'>
+          <form create="false" delete="false">
+              <sheet>
+                <group>
+                  <group name="originate" string="Originate Parameters">
+                    <field name="originate_context"/>
+                    <field name="originate_strip_plus"/>
+                    <field name="originate_format"/>
+                    <field name="originate_prefix"/>
+                    <field name="originate_timeout"/>
+                    <field name="originate_partner_callerid"/>
+                  </group>
+                  <group string="Partner numbers">
+                    <field placeholder="IP addresses by comma..."
+                      name="permit_ip_addresses"/>
+                    <button class="oe_read_only btn btn-info" name="reformat_numbers"
+                      type="object" string="Format Numbers"/>
+                  </group>
+                  <group name="agents" string="Agents">
+                    <button name="reload_events" string="Reload Events"
+                      type="object" class="btn btn-info"/>
+                  </group>
+                </group>
+              </sheet>
+          </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="finance_project_tree" model="ir.ui.view">
+            <field name="name">Finance Project</field>
+            <field name="model">finance.project</field>
+            <field name="arch" type="xml">
+                <tree string="Finance Project">
+                    <field name='reference'/>
+                    <field name='name'/>
+                    <field name='requirement_type'/>
+                    <field name='assigned_to'/>
+                    <field name="closed_date"/>
+                    <field name='deadline_date'/>
+                    <field name="open_days"/>
+                    <field name="delay_days"/>
+                    <field name="planed_days_utilization" widget="percentpie"/>
+                    <field name="planned_days"/>
+                    <field name="rating" widget="percentpie"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="finance_project_form_view" model="ir.ui.view">
+            <field name="name">finance.project.form.view</field>
+            <field name="model">finance.project</field>
+            <field name="arch" type="xml">
+                <form string="finance project">
+                    <header>
+                        <button name="ff_action_wip" type="object" string="WIP" class="btn-primary"
+                                attrs="{'invisible': [('state', 'in', ['wip','in_progress','hold','close','cancel','review'])]}"/>
+                        <button name="ff_action_in_review" type="object" string="Review" class="btn-primary"
+                                attrs="{'invisible': [('state', 'in', ['draft','in_progress','hold','close','cancel','review'])]}"/>
+                        <button name="ff_action_hold" type="object" string="Hold" class="btn-primary"
+                                attrs="{'invisible': [('state', 'in', ['wip','hold','draft','close','cancel'])]}"/>
+                        <button name="ff_action_close" type="object" string="Close" class="btn-primary"
+                                attrs="{'invisible': [('state', 'in', ['wip','close','draft','hold','cancel'])]}"/>
+                        <button name="ff_action_set_to_draft" type="object" string="Set to Draft"
+                                attrs="{'invisible': [('state', 'in', ['draft','close','hold','cancel'])]}"/>
+                        <button name="ff_action_cancel" type="object" string="Cancel"
+                                attrs="{'invisible': [('state', 'in', ['draft','close','hold','cancel'])]}"/>
+                        <button name="ff_action_set_to_wip" type="object" string="Set to Wip"
+                                attrs="{'invisible': [('state', 'in', ['draft','close','cancel','wip','in_progress','review'])]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name="reference" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="name" attrs="{'readonly': [('state', 'in', ['hold','close','cancel'])]}"/>
+                            <field name="description" attrs="{'readonly': [('state', 'in', ['hold','close','cancel'])]}"/>
+                            <field name="stakeholders" widget="many2many_tags" options="{'no_create_edit': True}" attrs="{'readonly': [('state', 'in', ['hold','close','cancel'])]}"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="requirement_type" attrs="{'readonly': [('state', 'in', ['hold','close','cancel'])]}"/>
+                                <field name="assigned_by" widget="selection" attrs="{'readonly': [('state', 'in', ['hold','close','cancel','review'])]}" domain="[('is_int_user','=',True),('groups_id.id','=',239)]"/>
+                                <field name="assigned_to" widget="selection" attrs="{'readonly': [('state', 'in', ['hold','close','cancel'])]}" domain="[('is_int_user','=',True),('groups_id.id','=',239)]"/>
+                            </group>
+                            <group>
+                                <field name="start_date" attrs="{'readonly': [('state', 'in', ['hold','close','cancel'])]}"/>
+                                <field name="deadline_date" attrs="{'readonly': [('state', 'in', ['hold','close','cancel'])]}"/>
+                                <field name="priority" widget="priority"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detailed Info">
+                                <group>
+                                    <field name="detail_desk" attrs="{'readonly': [('state', 'in', ['hold','close','cancel'])]}"/>
+                                </group>
+                            </page>
+                            <page name="open_days" string="Open Days">
+                                <group>
+                                    <group>
+                                        <field name="create_date" string="Created On"/>
+                                        <field name="hold_date" attrs="{'invisible': [('state', 'in', ['review','close','cancel','draft','wip'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="closed_date" attrs="{'invisible': [('state', 'in', ['review','cancel','draft','wip','hold'])]}"/>
+                                        <field name="cancel_date" attrs="{'invisible': [('state', 'in', ['review','close','close','draft','wip','hold'])]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--        search view-->
+        <record id="finance_project_search_view" model="ir.ui.view">
+            <field name="name">finance.project.search.view</field>
+            <field name="model">finance.project</field>
+            <field name="arch" type="xml">
+                <search string="Finance Project">
+                    <field name="reference"/>
+                    <field name="name"/>
+                    <field name="assigned_by"/>
+                    <field name="assigned_to"/>
+                    <field name="requirement_type"/>
+                    <field name="state"/>
+                    <!-- group by-->
+                    <group expand="0" string="Group By">
+                        <filter name="assigned_by" string="Assigned By" domain="[]"
+                                context="{'group_by':'assigned_by'}"/>
+                        <filter name="assigned_to" string="Assigned To" domain="[]"
+                                context="{'group_by':'assigned_to'}"/>
+                        <filter name="start_date" string="Start Date" domain="[]"
+                                context="{'group_by':'start_date'}"/>
+                        <filter name="closed_date" string="Closed Date" domain="[]"
+                                context="{'group_by':'closed_date'}"/>
+                        <filter name="deadline_date" string="Deadline Date" domain="[]"
+                                context="{'group_by':'deadline_date'}"/>
+                        <filter name="state" string="Status" domain="[]"
+                                context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!--         pivot view -->
+        <record id="finance_project_pivot_view" model="ir.ui.view">
+            <field name="name">finance.project.pivot</field>
+            <field name="model">finance.project</field>
+            <field name="arch" type="xml">
+                <pivot string="Finance Project">
+                    <field name="reference"/>
+                </pivot>
+            </field>
+        </record>
+        <!--  Graph view  -->
+        <record id="finance_project_graph" model="ir.ui.view">
+            <field name="name">finance.project.graph</field>
+            <field name="model">finance.project</field>
+            <field name="arch" type="xml">
+                <graph string="Finance Project" type="pie">
+                    <field name="reference"/>
+                </graph>
+            </field>
+        </record>
+        <!--  gantt view  -->
+        <record id="finance_project_gantt" model="ir.ui.view">
+            <field name="name">finance.project.gantt</field>
+            <field name="model">finance.project</field>
+            <field name="arch" type="xml">
+                <gantt date_start="create_date" date_stop="closed_date" string="Default Grant view"/>
+            </field>
+        </record>
+        <!--  calender view  -->
+        <record id="finance_project_calendar_view" model="ir.ui.view">
+            <field name="name">finance.project.calendar</field>
+            <field name="model">finance.project</field>
+            <field name="arch" type="xml">
+                <calendar string="Finance Project" date_start="create_date" color="name" mode="month"
+                          quick_add="True">
+                    <field name="reference"/>
+                </calendar>
+            </field>
+        </record>
+        <!--         kanban view -->
+        <record id="finance_project_kanban" model="ir.ui.view">
+            <field name="name">finance.project.kanban</field>
+            <field name="model">finance.project</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="reference"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill finance_project_finance_project_kanban">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title"/>
+                                    <div class="o_kanban_tags_section"/>
+                                    <ul>
+                                        <li>
+                                            Reference:
+                                            <field name="reference"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record id="action_finance_project" model="ir.actions.act_window">
+            <field name="name">Finance Project</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">finance.project</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph,gantt,calendar</field>
+        </record>
+        <menuitem id="menu_finance_project" name='Finance Project' action="action_finance_project" parent="studio_customization.rdp_finance_ea0121fa-f8f1-449a-bc70-1aa0fc07a21d"/>
+    </data>
+</odoo>

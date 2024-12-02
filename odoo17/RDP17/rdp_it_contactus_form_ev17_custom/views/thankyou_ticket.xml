@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="contactus_thanks" name="Contact Us Thanks Page">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-xl-12 me-lg-auto contactus_thanks_div">
+                        <span class="d-block fa fa-4x fa-thumbs-up mx-auto rounded-circle contactus_thanks-icon-circle"></span>
+                        <br/>
+                        <h1 class="text-center contactus_thanks-header">Thank You!</h1>
+                        <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                            <hr class="mx-auto border-top w-50 border-dark text-center"/>
+                        </div>
+                        <h5 class="text-center contactus_thanks-message">
+                            <span class="fa fa-check-circle"></span>
+                            <span>Your message has been sent
+                                <b>successfully</b>
+                            </span>
+                            <br></br>
+                            <span>Your Ticket Number is
+                                <strong t-esc="name"></strong>
+                            </span>
+
+                        </h5>
+                        <p class="text-center contactus_thanks-text">We will get back to you shortly.</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="contactus_error_form" name="Contact Us Error Page">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-xl-12 me-lg-auto">
+                        <h1 class="text-center contactus_thanks-header">Error Occured</h1>
+                        <p class="text-center contactus_thanks-text">Please check the form correctly</p>
+                        <p class="text-center text-danger">
+                            <t t-esc="error_message" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+
+</odoo>

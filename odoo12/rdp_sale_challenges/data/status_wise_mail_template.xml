@@ -1,0 +1,105 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="sale_challenge_ticket_creation_confirmation" model="mail.template">
+            <field name="name">SCA Ticket Creation Confirmation</field>
+            <field name="model_id" ref="rdp_sale_challenges.model_sale_challenge"/>
+            <field name="auto_delete">1</field>
+            <!-- <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field> -->
+            <field name="email_to">${object.create_uid.login}</field>
+            <field name="subject">SCA Ticket Creation Confirmation</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.create_uid.name},
+                        <br /><br />
+                          We hope this email finds you well. We would like to inform you that your SCA ticket <span style="color: red;">${object.name}</span> has been successfully created in our system. We acknowledge the importance of your request and are committed to providing prompt assistance.
+                        <br /><br />
+                          Status: [New]
+                       <br /><br />
+                          Subject: ${object.brief_concern}
+                       <br /><br />
+                          Description: ${object.action}
+                    </p>
+                </div>
+            </field>
+            <!-- <field name="report_template" ref="report_sale_challenge"/>
+            <field name="report_name">Sale_Challenge_${(object.name)}</field> -->
+        </record>
+
+        <record id="sale_challenge_ticket_update_work_in_progress" model="mail.template">
+            <field name="name">SCA Ticket Update Work in Progress [WIP]</field>
+            <field name="model_id" ref="rdp_sale_challenges.model_sale_challenge"/>
+            <field name="auto_delete">1</field>
+            <!-- <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field> -->
+            <field name="email_to">${object.create_uid.login}</field>
+            <field name="subject">SCA Ticket Update: Work in Progress [WIP]</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.create_uid.name},
+                        <br /><br />
+                         We would like to inform you that your ticket ${object.name} has now been moved to the <span style="color: red;">"Work in Progress" </span> stage. Our team has begun actively addressing the issue and is working diligently to provide a resolution.
+                         <br /><br />
+                          Status: [Work In Progress]
+                    </p>
+                </div>
+            </field>
+            <!-- <field name="report_template" ref="report_sale_challenge"/>
+            <field name="report_name">Sale_Challenge_${(object.name)}</field> -->
+        </record>
+
+        <record id="sale_challenge_ticket_update_once_ticket_is_closed" model="mail.template">
+            <field name="name">SCA Ticket Update: Once Ticket is Closed</field>
+            <field name="model_id" ref="rdp_sale_challenges.model_sale_challenge"/>
+            <field name="auto_delete">1</field>
+            <!-- <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field> -->
+            <field name="email_to">${object.create_uid.login}</field>
+            <field name="subject">SCA Ticket Update: Once Ticket is Closed</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.create_uid.name},
+                        <br /><br />
+                        we are pleased to inform you that your SCA ticket <span style="color: red;">${object.name}</span> has been closed. we appreciate your time and patience while we solved your ticket.
+                       <br /><br />
+                        If you need assistance with anything else, please respond to this same email within 2 working days.
+                      <br /><br />
+                          Subject: ${object.brief_concern}
+                       <br /><br />
+                          Description: ${object.action}
+                        <br/><br/>
+                        Thank you!!!
+                    </p>
+                </div>
+            </field>
+            <!-- <field name="report_template" ref="report_sale_challenge"/>
+            <field name="report_name">Sale_Challenge_${(object.name)}</field> -->
+        </record>
+
+        <record id="sale_challenge_ticket_update_once_ticket_is_cancelled" model="mail.template">
+            <field name="name">SCA Ticket Update: Once Ticket is Cancelled</field>
+            <field name="model_id" ref="rdp_sale_challenges.model_sale_challenge"/>
+            <field name="auto_delete">1</field>
+            <!-- <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field> -->
+            <field name="email_to">${object.create_uid.login}</field>
+            <field name="subject">SCA Ticket Update: Once Ticket is Cancelled</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.create_uid.name},
+                        <br /><br />
+                       We regret to inform you that your SCA ticket <span style="color: red;">${object.name}</span> below details has been cancelled, as it is under
+                       <br /><br />
+                        - Out of scope (or)
+                       <br /><br />
+                        - Not Relevant (or)
+                       <br /><br />
+                        - Other
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

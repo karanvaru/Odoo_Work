@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+      <!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+      <!-- See LICENSE URL <https://store.webkul.com/license.html/> for full copyright and licensing details. -->
+    <template id="websiteproducttags" name="website product tags  assert front template" inherit_id="website.assets_frontend">
+      <xpath expr="." position="inside">
+        <script src="/website_product_tags/static/src/js/website_product_tags.js" type="text/javascript"/>
+        <link href="/website_product_tags/static/src/css/website_product_tags.css" rel="stylesheet"/>
+      </xpath>
+    </template>
+    <template active="True" customize_show="True" id="website_product_tags" inherit_id="website_sale.products" name="Product Tags">
+      <xpath expr="//div[@id='products_grid_before']" position="inside">
+
+        <t t-if='product_tags'>
+          <br/>
+          <p>
+            <i class="fa fa-tags"/>
+            <b>Popular Tags</b>
+          </p>
+          <form class="js_product_tags form-horizontal" method="get" role="form">
+            <span class="text-center">
+              <t t-as="wk_tag" t-foreach="product_tags">
+                <a class="text-right product_tags_link" t-att-href="'/product/tags/'+str(wk_tag.id)" t-att-style="wk_tag.website_style">
+                  <t t-esc="wk_tag.name"/>
+                </a>
+              </t>
+            </span>
+            <br/>
+            <br/>
+            <a href="" class="col-md-6 col-md-push-6" data-target="#collapse_view_all_tags" data-toggle="collapse" style="float:right;">
+              <b>View All Tags</b>
+            </a>
+            <br/>
+            <div class="collapse" id="collapse_view_all_tags">
+              <span class="text-center">
+                <t t-as="wk_tag" t-foreach="website._get_active_tags()">
+                  <a class="text-right all_tags_link" t-att-href="'/product/tags/'+str(wk_tag.id)">
+                    <t t-esc="wk_tag.name"/>
+                  </a>
+                </t>
+              </span>
+            </div>
+          </form>
+        </t>
+      </xpath>
+      <xpath expr="//div[@id='products_grid_before']" position="attributes">
+        <attribute name="class">col-md-3 hidden-xs</attribute>
+      </xpath>
+      <xpath expr="//div[@id='products_grid']" position="attributes">
+        <attribute name="class">col-lg-9  col-md-9</attribute>
+      </xpath>
+    </template>
+    <template id="wk_website_product_tags_list" inherit_id="website_sale.products">
+      <xpath expr="//div[contains(@class,'oe_website_sale') and contains(@class,'container')]/div[hasclass('products_pager')]" position="after">
+        <div class="horizontal_category" t-if="wk_tags_list">
+          <div class="row">
+            <div class="col-md-12">
+              <center>
+                <ul class="list-inline">
+                  <li class="horizontal_category_unlink_list">
+                    <ul class="list-inline">
+                      <t t-as="t" t-foreach="wk_tags_list">
+                        <li>
+                          <a class="btn btn-primary " t-att-href="'/product/tags/remove/'+str(t.id)">
+                            <t t-esc="t.name"/>
+                            <span class="fa fa-trash"/>
+                          </a>
+                        </li>
+                      </t>
+                    </ul>
+                  </li>
+                </ul>
+              </center>
+            </div>
+          </div>
+        </div>
+      </xpath>
+    </template>
+  </data>
+</odoo>

@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_contact_report_wizard_form">
+            <field name="name">contact.report.wizard</field>
+            <field name="model">contact.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Export Report">
+                	<p>It will export list of contracts which starts in selected date range!</p>
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="company_ids" widget="many2many_tags" options="{'no_create_edit': True,'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_print_contract_report" class='btn btn-primary' string="Export" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_contact_report_wizard">
+            <field name="name">Running Contact Report</field>
+            <field name="res_model">contact.report.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_contact_report_wizard"
+                  parent="hr.hr_menu_hr_reports"
+                  name="Running Contract Report"
+                  sequence="50"
+                  action="actions_contact_report_wizard"
+        />
+
+    </data>
+</odoo>

@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- USERS -->
+    <record id="helpdesk_user_jack" model="res.users">
+        <field name="name">Jack</field>
+        <field name="login">jack@example.com</field>
+        <field name="email">jack@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-933-1124</field>
+        <field name="mobile">8568635263</field>
+        <field name="image" type="base64" file="sync_rma/static/img/101.jpeg"/>
+    </record>
+    <record id="helpdesk_user_jenson" model="res.users">
+        <field name="name">Jenson</field>
+        <field name="login">jenson@example.com</field>
+        <field name="email">jenson@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-931-1225</field>
+        <field name="mobile">9668985452</field>
+        <field name="image" type="base64" file="sync_rma/static/img/106.jpeg"/>
+    </record>
+    <record id="helpdesk_user_lewis" model="res.users">
+        <field name="name">Lewis</field>
+        <field name="login">lewis@example.com</field>
+        <field name="email">lewis@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-932-1124</field>
+        <field name="mobile">3568575452</field>
+        <field name="image" type="base64" file="sync_rma/static/img/109.jpeg"/>
+    </record>
+    <record id="helpdesk_user_william" model="res.users">
+        <field name="name">William</field>
+        <field name="login">william@example.com</field>
+        <field name="email">william@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-932-1226</field>
+        <field name="mobile">9668579652</field>
+        <field name="image" type="base64" file="sync_rma/static/img/110.jpeg"/>
+    </record>
+    <record id="helpdesk_user_oliver" model="res.users">
+        <field name="name">Oliver</field>
+        <field name="login">oliver@example.com</field>
+        <field name="email">oliver@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-932-1224</field>
+        <field name="mobile">9668575452</field>
+        <field name="image" type="base64" file="sync_rma/static/img/104.jpeg"/>
+    </record>
+    <record id="helpdesk_customer_frederick" model="res.partner">
+        <field name="name">Frederick</field>
+        <field name="street">3404  Edgewood Road</field>
+        <field name="street2"></field>
+        <field name="city">Jonesboro</field>
+        <field name="zip">72401</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="phone">(870)-931-0515</field>
+        <field name="mobile">8569654782</field>
+        <field name="email">frederick@example.com</field>
+        <field name="function">Consultant</field>
+    </record>
+
+    <record id="helpdesk_customer_elliott" model="res.partner">
+        <field name="name">Elliott</field>
+        <field name="street">3404  Edgewood Road</field>
+        <field name="street2"></field>
+        <field name="city">Jonesboro</field>
+        <field name="zip">72401</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="phone">(870)-931-0555</field>
+        <field name="mobile">6869854782</field>
+        <field name="email">elliott@example.com</field>
+        <field name="function">Sales Director</field>
+    </record>
+
+    <record id="helpdesk_customer_ryan" model="res.partner">
+        <field name="name">Ryan</field>
+        <field name="street">3404  Edgewood Road</field>
+        <field name="street2"></field>
+        <field name="city">Jonesboro</field>
+        <field name="zip">72401</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="phone">(870)-931-0505</field>
+        <field name="mobile">8569654782</field>
+        <field name="email">ryan@example.com</field>
+        <field name="function">Sales Executive</field>
+    </record>
+
+    <record id="helpdesk_customer_charles" model="res.partner">
+        <field name="name">Charles</field>
+        <field name="street">3404  Edgewood Road</field>
+        <field name="street2"></field>
+        <field name="city">Jonesboro</field>
+        <field name="zip">72401</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="phone">(870)-931-0525</field>
+        <field name="mobile">8569854710</field>
+        <field name="email">charles@example.com</field>
+        <field name="function">Consultant</field>
+    </record>
+    <!-- products -->
+    <record id="chair_product" model="product.product">
+        <field name="name">Chair</field>
+        <field name="list_price">140.0</field>
+        <field name="standard_price">120.0</field>
+        <field name="type">product</field>
+        <field name="default_code">CHAIR_FURN_0001</field>
+        <field name="tracking">serial</field>
+        <field name="barcode">1234567890012</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image" type="base64" file="sync_rma/static/img/chair.jpg"/>
+        <field name="description">Reactive dyeing, hard to fade.
+For both back and seat protection.
+Soft and comfotable to sit.
+Easy to clean and wash by machine or hands.
+Stretchable Material,stretch that recovers quickly.
+        </field>
+    </record>
+
+    <record id="lot_product_chair_0" model="stock.production.lot">
+        <field name="name">0000000000101</field>
+        <field name="product_id" ref="chair_product"/>
+    </record>
+
+    <record id="chair_stock_quant" model="stock.quant">
+        <field name="product_id" ref="chair_product"/>
+        <field name="location_id" ref="stock.stock_location_14"/>
+        <field name="reserved_quantity">10</field>
+        <field name="quantity">20</field>
+    </record>
+
+    <record id="typist_desk_product" model="product.product">
+        <field name="name">Typist Desk</field>
+        <field name="list_price">45.0</field>
+        <field name="standard_price">40.0</field>
+        <field name="type">product</field>
+        <field name="tracking">serial</field>
+        <field name="default_code">TYPOST_FURN_0002</field>
+        <field name="barcode">1234567890013</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image" type="base64" file="sync_rma/static/img/typist_desk.jpeg"/>
+        <field name="description">We have for sale a very nice golden oak desk with five drawers on one side and no woodworm or other damage. Some marks on the top from feet of old typewriter. There is some water marks on the bottom drawer, see photos.
+Please make sure you take a look at all the photos, as they do form part of the description and will give you a good idea of colour and condition. As with most of the items I sell they have been used and will have signs of wear etc.
+Any questions please ask and I will try and help as much as possible.
+        </field>
+    </record>
+
+    <record id="lot_product_desk_1" model="stock.production.lot">
+        <field name="name">0000000000102</field>
+        <field name="product_id" ref="typist_desk_product"/>
+    </record>
+
+    <record id="typist_desk_stock_quant" model="stock.quant">
+        <field name="product_id" ref="typist_desk_product"/>
+        <field name="location_id" ref="stock.stock_location_14"/>
+        <field name="reserved_quantity">10</field>
+        <field name="quantity">20</field>
+    </record>
+
+    <record id="shaker_coffee_tables_product" model="product.product">
+        <field name="name">Shaker Coffee Tables</field>
+        <field name="list_price">250.0</field>
+        <field name="standard_price">200.0</field>
+        <field name="type">product</field>
+        <field name="barcode">1234567890014</field>
+        <field name="tracking">serial</field>
+        <field name="default_code">SHAKER_FURN_0003</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image" type="base64" file="sync_rma/static/img/shaker_offee_ables.jpg"/>
+        <field name="description">Modern Furniture reflects the design philosophy of form following function prevalent in modernism. These designs represent the ideals of cutting excess, practicality and an absence of decoration.
+        </field>
+    </record>
+
+    <record id="lot_product_coffee_1" model="stock.production.lot">
+        <field name="name">0000000000103</field>
+        <field name="product_id" ref="shaker_coffee_tables_product"/>
+    </record>
+
+    <record id="shaker_coffee_tables_stock_quant" model="stock.quant">
+        <field name="product_id" ref="shaker_coffee_tables_product"/>
+        <field name="location_id" ref="stock.stock_location_14"/>
+        <field name="reserved_quantity">10</field>
+        <field name="quantity">20</field>
+    </record>
+
+    <record id="door3_product" model="product.product">
+        <field name="name">3 door wardrobe Cabinets</field>
+        <field name="list_price">400.0</field>
+        <field name="standard_price">390.0</field>
+        <field name="default_code">DOOR_FURN_0004</field>
+        <field name="type">product</field>
+        <field name="tracking">serial</field>
+        <field name="barcode">1234567890015</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image" type="base64" file="sync_rma/static/img/door3.jpg"/>
+        <field name="description">Modern Furniture reflects the design philosophy of form following function prevalent in modernism. These designs represent the ideals of cutting excess, practicality and an absence of decoration.
+
+The forms of furniture are visually light (like in the use of polished metal and engineered wood) and follow minimalist principles of design which are influenced by architectural concepts like the cantilever. Modern furniture fits best in open floor plans with clean lines that thrive in the absence of clutter.
+        </field>
+    </record>
+
+    <record id="lot_product_door3_0" model="stock.production.lot">
+        <field name="name">0000000000104</field>
+        <field name="product_id" ref="door3_product"/>
+    </record>
+
+    <record id="lot_product_door3_1" model="stock.production.lot">
+        <field name="name">0000000000114</field>
+        <field name="product_id" ref="door3_product"/>
+    </record>
+
+    <record id="lot_product_door3_2" model="stock.production.lot">
+        <field name="name">0000000000115</field>
+        <field name="product_id" ref="door3_product"/>
+    </record>
+
+    <record id="door3_product_stock_quant" model="stock.quant">
+        <field name="product_id" ref="door3_product"/>
+        <field name="location_id" ref="stock.stock_location_14"/>
+        <field name="reserved_quantity">10</field>
+        <field name="quantity">20</field>
+    </record>
+
+    <record id="sleigh_bed_product" model="product.product">
+        <field name="name">Sleigh Bed</field>
+        <field name="list_price">700.0</field>
+        <field name="standard_price">600.0</field>
+        <field name="type">product</field>
+        <field name="barcode">1234567890016</field>
+        <field name="tracking">serial</field>
+        <field name="default_code">SLEIGH_FURN_0005</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image" type="base64" file="sync_rma/static/img/sleigh_bed.jpg"/>
+        <field name="description">Defined by its traditional sleigh silhouette, this upholstered bed brings classic and approachable style to your master suite. Proudly made in the USA, this anchor piece is crafted with a solid and manufactured wood frame that’s wrapped in 100% polyester fabric in a neutral linen tone, so it’s sure to complement any color palette you dream up. Button-tufted details dot the headboard and footboard to round out this design with a touch of texture.
+        </field>
+    </record>
+
+    <record id="lot_product_bed_1" model="stock.production.lot">
+        <field name="name">0000000000105</field>
+        <field name="product_id" ref="sleigh_bed_product"/>
+    </record>
+
+    <record id="sleigh_bed_stock_quant" model="stock.quant">
+        <field name="product_id" ref="sleigh_bed_product"/>
+        <field name="location_id" ref="stock.stock_location_14"/>
+        <field name="reserved_quantity">10</field>
+        <field name="quantity">20</field>
+    </record>
+
+    <record id="dining_tables_product" model="product.product">
+        <field name="name">Dining Tables</field>
+        <field name="list_price">110.0</field>
+        <field name="standard_price">100.0</field>
+        <field name="type">product</field>
+        <field name="default_code">DINING_FURN_0006</field>
+        <field name="tracking">serial</field>
+        <field name="barcode">1234567890017</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image" type="base64" file="sync_rma/static/img/dining_tables.jpg"/>
+        <field name="description">CasaCraft offers the best in comfort with elan. The collections are a series of modern designs, which are simple yet striking and represent ideals of minimalism and cutting excess. The designs are a perfect blend of functionality and exceptional aesthetics. Each piece is crafted with passion and reflects quality and style, addressing the needs of a wide range of audience.
+        </field>
+    </record>
+
+    <record id="lot_product_dining_0" model="stock.production.lot">
+        <field name="name">0000000000106</field>
+        <field name="product_id" ref="dining_tables_product"/>
+    </record>
+
+    <record id="lot_product_dining_1" model="stock.production.lot">
+        <field name="name">0000000000116</field>
+        <field name="product_id" ref="dining_tables_product"/>
+    </record>
+
+    <record id="lot_product_dining_2" model="stock.production.lot">
+        <field name="name">0000000000117</field>
+        <field name="product_id" ref="dining_tables_product"/>
+    </record>
+
+    <record id="dining_tables_stock_quant" model="stock.quant">
+        <field name="product_id" ref="dining_tables_product"/>
+        <field name="location_id" ref="stock.stock_location_14"/>
+        <field name="reserved_quantity">10</field>
+        <field name="quantity">20</field>
+    </record>
+
+    <record id="seater_sofa_product" model="product.product">
+        <field name="name">2 Seater Sofa</field>
+        <field name="list_price">120.0</field>
+        <field name="standard_price">100.0</field>
+        <field name="type">product</field>
+        <field name="default_code">SOFA_FURN_0007</field>
+        <field name="barcode">1234567890018</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image" type="base64" file="sync_rma/static/img/seater_sofa.jpg"/>
+        <field name="tracking">serial</field>
+        <field name="description">Aesthetically pleasing and absolutely practical, the Monet Plus Leatherette 2 Seater Sofa comes in a gorgeous shade of beige. This piece features cushioned seats, wooden legs and perfectly square armrests. Its elegant and modern look is further accentuated by the elegant tufting on the back of the sofa. This piece is extremely practical because of the choice and colour of the fabric. The use of faux leather means that this piece requires low maintenance and can be cleaned easily, whereas the choice of colour implies that this piece can blend seamlessly with most room colour schemes.
+        </field>
+    </record>
+
+    <record id="lot_product_sofa_1" model="stock.production.lot">
+        <field name="name">0000000000107</field>
+        <field name="product_id" ref="seater_sofa_product"/>
+    </record>
+
+    <record id="seater_sofa_stock_quant" model="stock.quant">
+        <field name="product_id" ref="seater_sofa_product"/>
+        <field name="location_id" ref="stock.stock_location_14"/>
+        <field name="reserved_quantity">10</field>
+        <field name="quantity">20</field>
+    </record>
+
+    <record id="executive_desk_product" model="product.product">
+        <field name="name">Executive Desk</field>
+        <field name="list_price">300.0</field>
+        <field name="standard_price">290.0</field>
+        <field name="type">product</field>
+        <field name="barcode">1234567890020</field>
+        <field name="default_code">DESK_FURN_0009</field>
+        <field name="tracking">serial</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image" type="base64" file="sync_rma/static/img/executive_desk.jpg"/>
+        <field name="description">Modern Furniture reflects the design philosophy of form following function prevalent in modernism. These designs represent the ideals of cutting excess, practicality and an absence of decoration.
+
+The forms of furniture are visually light (like in the use of polished metal and engineered wood) and follow minimalist principles of design which are influenced by architectural concepts like the cantilever. Modern furniture fits best in open floor plans with clean lines that thrive in the absence of clutter.
+        </field>
+    </record>
+
+    <record id="lot_product_exe_1" model="stock.production.lot">
+        <field name="name">0000000000108</field>
+        <field name="product_id" ref="executive_desk_product"/>
+    </record>
+
+    <record id="executive_desk_stock_quant" model="stock.quant">
+        <field name="product_id" ref="executive_desk_product"/>
+        <field name="location_id" ref="stock.stock_location_14"/>
+        <field name="reserved_quantity">10</field>
+        <field name="quantity">20</field>
+    </record>
+
+    <record id="industrial_coffee_table_product" model="product.product">
+        <field name="name">Industrial Coffee Table</field>
+        <field name="list_price">300.0</field>
+        <field name="standard_price">239.0</field>
+        <field name="type">product</field>
+        <field name="barcode">1234567890021</field>
+        <field name="tracking">serial</field>
+        <field name="default_code">TABLE_FURN_0010</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image" type="base64" file="sync_rma/static/img/industrial_coffee_table.jpg"/>
+        <field name="description">Painstakingly crafted from solid wood, the Boxy Coffee Table is the right centrepiece for your living room. With it's natural wood finish and square block like design, it goes well with contemporary and modernist decor themes. Sturdy and spacious, this is sure to never go out of style.
+        </field>
+    </record>
+
+    <record id="lot_product_incoffee_1" model="stock.production.lot">
+        <field name="name">0000000000102</field>
+        <field name="product_id" ref="industrial_coffee_table_product"/>
+    </record>
+
+    <record id="industrial_coffee_table_stock_quant" model="stock.quant">
+        <field name="product_id" ref="industrial_coffee_table_product"/>
+        <field name="location_id" ref="stock.stock_location_14"/>
+        <field name="reserved_quantity">10</field>
+        <field name="quantity">20</field>
+    </record>
+</odoo>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_ageing_analysis">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                <div class="page">
+                    <div>
+                        <div>
+                            <h3 style="text-align:center;" >Stock Ageing Analysis</h3>
+                        </div>
+                        <div>
+                            <t t-if="categ">
+                                <b>Product Category:</b> <span t-esc="categ" />
+                                <br />
+                            </t>
+                            <b>Date :</b> <span t-esc="docs.from_date" />
+                            <br />
+                            <t t-if="loc">
+                                <b>Location:</b> <span t-esc="loc"/>
+                                <br />
+                            </t>
+                            <b>Interval(Days):</b> <span t-esc="docs.interval"/>
+                            <br/>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <table class="table table-sm o_main_table">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Product</th>
+                                    <th class="text-left">Location</th>
+                                    <th class="text-left">Lot</th>
+                                    <th class="text-left">Age</th>
+                                    <t t-foreach="interval" t-as="i">
+                                        <th class="text-right">
+                                            <t t-esc="i" />
+                                        </th>
+                                    </t>
+                                    <th class="text-right">Total</th>
+                                </tr>
+                            </thead>
+                          <tbody>
+                              <t t-set="c" t-value='0'/>
+                              <t t-set="qty" t-value='0'/>
+                              <t t-foreach="products" t-as="p">
+                                  <t t-foreach="products[p]" t-as="line">
+                                      <tr>
+                                            <td class="text-left">
+                                              <span t-esc="line['product']"/>
+                                            </td>
+                                            <td class="text-left">
+                                              <span t-esc="line['location']"/>
+                                            </td>
+                                            <td class="text-left">
+                                              <span t-esc="line['lot']"/>
+                                            </td>
+                                            <td class="text-left">
+                                              <span t-esc="line['age']"/>
+                                            </td>
+                                            <td class="text-right">
+                                                 <span t-esc="line['quantity'][0]"/>
+                                            </td>
+                                            <td class="text-right">
+                                                 <span t-esc="line['quantity'][1]"/>
+                                            </td>
+                                            <td class="text-right">
+                                                 <span t-esc="line['quantity'][2]"/>
+                                            </td>
+                                            <td class="text-right">
+                                                 <span t-esc="line['quantity'][3]"/>
+                                            </td>
+                                           <td class="text-right">
+                                                 <span t-esc="line['quantity'][4]"/>
+                                            </td>
+                                            <td class="text-right">
+                                              <span t-esc="line['total_qty']"/>
+                                            </td>
+
+                                      </tr>
+                                  </t>
+
+                              </t>
+                          </tbody>
+                      </table>
+                      </div>
+                  </div>
+            </t>
+            </t>
+        </t>
+    </template>
+
+    <report
+        id="report_product_ageing"
+        model="stock.quant"
+        report_type="qweb-pdf"
+        string="Ageing Analysis"
+        name="product_ageing_report.report_ageing_analysis"
+        file="product_ageing_report.report_ageing_analysis"
+        menu="False"
+    />
+
+</odoo>

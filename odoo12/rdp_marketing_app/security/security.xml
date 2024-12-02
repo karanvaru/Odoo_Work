@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+                                <!-- Groups -->
+     <record id="marketing_group_status" model="ir.module.category">
+            <field name="name">Marketing Team</field>
+            <field name="sequence" eval="1"/>
+     </record>
+    <!--groups-->
+
+        <record id="marketing_group_status_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="marketing_group_status"/>
+        </record>
+</odoo>

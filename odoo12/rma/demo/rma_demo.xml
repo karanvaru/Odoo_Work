@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="1">
+      <!-- RMA Stages -->
+    	<record id="rma_new" model="rma.stages">
+          <field name="name">New</field>
+          <field name="sequence">1</field>
+          <field name="related_status">new</field>
+          <field name="description">New Stage</field>
+     	</record>
+     	<record id="ask_fr_proof" model="rma.stages">
+          <field name="name">Ask For Proof</field>
+          <field name="sequence">2</field>
+          <field name="related_status">verification</field>
+          <field name="description">Admin will ask for proof from customer</field>
+     	</record>
+     	<record id="proof_sent" model="rma.stages">
+          <field name="name">Proof Sent</field>
+           <field name="sequence">3</field>
+          <field name="related_status">verification</field>
+          <field name="description">Proof sent by customer</field>
+     	</record>
+     	<record id="proof_recieved" model="rma.stages">
+          <field name="name">Proof Received</field>
+          <field name="sequence">4</field>
+          <field name="related_status">verification</field>
+          <field name="description">Proof received by admin</field>
+     	</record>
+     	<record id="proof_recieved" model="rma.stages">
+          <field name="name">Partial Refund</field>
+          <field name="sequence">5</field>
+          <field name="related_status">negotiation</field>
+          <field name="description">Ask for Partial Refund</field>
+     	</record>
+     	<record id="chng_request_type" model="rma.stages">
+          <field name="name">Change Request Type</field>
+           <field name="sequence">6</field>
+          <field name="related_status">negotiation</field>
+          <field name="description">Change request type</field>
+     	</record>
+     	<record id="accpt_chang_rqst_type" model="rma.stages">
+          	<field name="name">Accept Change Request Type</field>
+            <field name="sequence">7</field>
+         	<field name="related_status">negotiation</field>
+            <field name="description">Customer accepted request type</field>
+     	</record>
+     	<record id="rma_agree" model="rma.stages">
+         	<field name="name">Agree</field>
+          	<field name="sequence">8</field>
+         	<field name="related_status">resolved</field>
+            <field name="description">Customer agreed</field>
+     	</record>
+     	<record id="rma_reject" model="rma.stages">
+         	<field name="name">Reject</field>
+          	<field name="sequence">9</field>
+         	<field name="related_status">resolved</field>
+            <field name="description">Rejected</field>
+     	</record>
+     	<record id="cust_send_old_product" model="rma.stages">
+          	<field name="name">Customer Sent Old Product</field>
+          	<field name="sequence">10</field>
+         	<field name="related_status">resolved</field>
+            <field name="description">Customer Sent the Old Product</field>
+     	</record>
+     	<record id="Sent_replacement" model="rma.stages">
+         	 <field name="name">Admin Sent Replacement</field>
+          	<field name="sequence">11</field>
+         	<field name="related_status">resolved</field>
+            <field name="description"> Admin sent replacement</field>
+     	</record>
+     	<record id="rma_refund" model="rma.stages">
+          <field name="name">Refund</field>
+          <field name="sequence">12</field>
+         	<field name="related_status">resolved</field>
+            <field name="description">Order amout refunded</field>
+     	</record>
+
+      <record id="rma_agreement" model="rma.stages">
+          <field name="name">Agreement</field>
+          <field name="sequence">7</field>
+          <field name="related_status">agreement</field>
+            <field name="description">Agreement for repair, refund, or exchange</field>
+      </record>
+      <record id="rma_closed" model="rma.stages">
+          <field name="name">Closed</field>
+          <field name="sequence">12</field>
+          <field name="related_status">close</field>
+            <field name="description">RMA Closed</field>
+      </record>
+
+      <!-- RMA Reasons -->
+      <record id="defected_product" model="rma.reasons">
+          <field name="name">Defected Product</field>
+          <field name="is_enable_on_web">True</field>
+      </record>
+      <record id="wrong_product" model="rma.reasons">
+          <field name="name">Wrong Product</field>
+          <field name="is_enable_on_web">True</field>
+      </record>
+      <record id="diffrent_product" model="rma.reasons">
+          <field name="name">I Want Diffrent Product</field>
+          <field name="is_enable_on_web">True</field>
+      </record>
+
+    </data>
+</odoo>

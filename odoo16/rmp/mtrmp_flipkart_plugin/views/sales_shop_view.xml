@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Product Template Form View-->
+        <record id="sales_shop_view_form_inherit" model="ir.ui.view">
+            <field name="name">Sales Shop Form Extended</field>
+            <field name="model">sale.shop</field>
+            <field name="inherit_id" ref="mtrmp_sales_shop.sale_shop_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[last()]" position="after">
+                    <page name="flipkart_authentication" string="Flipkart Authentication">
+                        <group>
+                            <group>
+                                <field name="flipkart_api_key"/>
+                                <field name="flipkart_secret_key"/>
+                            </group>
+                            <group>
+                                <field name="is_api_connection" widget="boolean_toggle"/>
+                                <field name="flipkart_access_token"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

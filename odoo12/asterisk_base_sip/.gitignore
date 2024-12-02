@@ -1,0 +1,4 @@
+*.pyc
+__pytest__
+todo.txt
+

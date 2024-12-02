@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="self_appraisal_view_inherit" model="ir.ui.view">
+            <field name="name">Self Appraisal Ticket</field>
+            <field name="model">employee.appraisal</field>
+            <field name="inherit_id" ref="rdp_employee_appraisal.employee_appraisal_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_name']" position="after">
+                    <field name="spoc_id"/>
+                </xpath>
+                <xpath expr="//field[@name='priority']" position="before">
+                    <field name="difficulty_level"/>
+                </xpath>
+                <xpath expr="//field[@name='difficulty_level']" position="before">
+                    <field name="category"/>
+                </xpath>
+                <xpath expr="//field[@name='description']" position="before">
+                    <field name="sa_story_name"/>
+                </xpath>
+            </field>
+        </record>
+
+
+<!--        <record id="view_self_appraisal_tree_inherit" model="ir.ui.view">-->
+<!--            <field name="name">Self Appraisal Tree</field>-->
+<!--            <field name="model">employee.appraisal</field>-->
+<!--            <field name="inherit_id" ref="rdp_employee_appraisal.employee_appraisal_tree_view"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='appraisal_date']" position="after">-->
+<!--                    <field name="open_days"/>-->
+<!--                    <field name="closed_date"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="self_appraisal_search_view" model="ir.ui.view">
+            <field name="name">Employee Appraisal</field>
+            <field name="model">employee.appraisal</field>
+            <field name="arch" type="xml">
+                <search string="FAVORITE">
+                    <field name="name"/>
+                    <field name="employee_name"/>
+                    <field name="spoc_id"/>
+                    <field name="category"/>
+
+                    <!--                    filters-->
+                    <filter name="draft" string="New" domain="[('state','=','draft')]"/>
+                    <filter name="closed" string="closed" domain="[('state','=','closed')]"/>
+
+                    <!--                    group by-->
+                    <group expand="0" string="Group By">
+                        <filter name="spoc_id" string="SPOC" domain="[]" context="{'group_by':'spoc_id'}"/>
+                        <filter name="employee_name" string="Employee Name" domain="[]" context="{'group_by':'employee_name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>
+

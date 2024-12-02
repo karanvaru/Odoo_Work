@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding="utf-8"?>
+<odoo>
+    <record id="employee_educational_view" model="ir.ui.view">
+        <field name="name">Employee Educational Information</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='hr_settings']" position="before">
+                <page string="Academic details">
+                    <field name="academic_ids">
+                        <tree editable="bottom">
+                            <field name="course_name" />
+                            <field name="branch" />
+                            <field name="organization" />
+                            <field name="start_date" />
+                            <field name="end_date" />
+                            <field name="marks" />
+                        </tree>
+                    </field>
+                </page>
+                <page string="Certificate details">
+                    <field name="certificate_ids">
+                        <tree editable="bottom">
+                            <field name="course_name" />
+                            <field name="branch" />
+                            <field name="organization" />
+                            <field name="certificate_des" />
+                            <field name="attachment_ids" widget="many2many_binary" />
+                            <field name="start_date" />
+                            <field name="end_date" />
+                        </tree>
+                    </field>
+                </page>
+                <page string="Professional details">
+                    <field name="profession_ids">
+                        <tree editable="bottom">
+                            <field name="name" />
+                            <field name="organization" />
+                            <field name="department" />
+                            <field name="start_date" />
+                            <field name="end_date" />
+                            <field name="work_exp" />
+                            <field name="work_des" />
+                            <field name="projects" />
+                        </tree>
+                    </field>
+                </page>
+                <page string="Employee Summary">
+                    <field name="description" placeholder="Feedback.." />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

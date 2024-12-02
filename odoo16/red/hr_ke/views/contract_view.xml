@@ -1,0 +1,78 @@
+<openerp>
+    <data>
+<!--add remuneration type field in the hr contract types -->
+<record id="hr_ke_contract_type_inherit" model="ir.ui.view">
+    <field name="model">hr.contract.type</field>
+    <field name="inherit_id" ref="hr_contract_types.hr_contract_type_view_form"/>
+    <field name="arch" type="xml">
+        <data>
+        <xpath expr="//field[@name = 'name']" position="after">
+                <field name="rem_type" colspan="4"/>
+                <field name="tax_applicable" colspan="4"/>
+        </xpath>
+        </data>
+    </field>
+</record>
+<!--add remuneration type field in the hr contract types tree -->
+<record id="hr_ke_contract_type_inherit_tree" model="ir.ui.view">
+    <field name="model">hr.contract.type</field>
+    <field name="inherit_id" ref="hr_contract_types.hr_contract_type_view_tree"/>
+    <field name="arch" type="xml">
+        <data>
+        <xpath expr="//field[@name = 'name']" position="after">
+                <field name="rem_type"/>
+                <field name="tax_applicable"/>
+        </xpath>
+        </data>
+    </field>
+</record>
+<!--add remuneration type field in the hr contract -->
+<record id="hr_ke_contract_inherit" model="ir.ui.view">
+    <field name="model">hr.contract</field>
+    <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+    <field name="arch" type="xml">
+        <data>
+        <xpath expr="//field[@name = 'type_id']" position="after">
+                <field name="rem_type"/>
+                <field name="tax_applicable"/>
+        </xpath>
+        <xpath expr="//field[@name = 'job_id']" position="after">
+                <field name="house"/>
+                <field name="car"/>
+        </xpath>
+        <xpath expr="//field[@name = 'wage']" position="replace">
+                <field name="currency_id" invisible="1"/>
+            <field name="wage"  widget="monetary" options="{'currency_field': 'currency_id'}"/>
+        </xpath>
+        <xpath expr="//notebook" position="inside">
+		<page string="Housing" attrs="{'invisible':[('house', '=', False)]}">
+		  <group>
+			<group>
+			    <field name="house_type" attrs="{'required':[('house', '=', True)]}"/>
+			    <field name="rent" attrs="{'invisible':['|',('house_type', '=', 'agric'),('house_type','=','director')]}"/>
+			</group>
+			<group>
+			    <field name="rent_recovered" attrs="{'invisible':['|',('house_type', '=', 'agric'),('house_type','=','director')]}"/>
+			</group>
+		  </group>
+		</page>
+		<page string="Car Benefit" attrs="{'invisible':[('car', '=', False)]}">
+			<field name="cars">
+			 <tree editable="top">
+				<field name="name"/>
+				<field name="make"/>
+				<field name="body"/>
+				<field name="cc_rate"/>
+				<field name="cost_type"/>
+				<field name="cost_hire" attrs="{'readonly':[('cost_type','=','Owned')], 'required':[('cost_type','=','Owned')]}"/>
+				<field name="cost_own" attrs="{'readonly':[('cost_type','=','Hired')], 'required':[('cost_type','=','Hired')]}"/>
+			 </tree>
+			</field>
+		</page>
+        </xpath>
+        </data>
+    </field>
+</record>
+    </data>
+</openerp>
+

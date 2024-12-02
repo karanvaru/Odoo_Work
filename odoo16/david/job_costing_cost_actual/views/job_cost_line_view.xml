@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="job_costing_form_view_inherit_actual_cost" model="ir.ui.view">
+        <field name="name">Job.Costing.Form.inherit.actual_cost</field>
+        <field name="model">job.costing</field>
+        <field name="inherit_id" ref="odoo_job_costing_management.job_costing_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='job_cost_material_page']//tree//field[@name='actual_quantity']" position="after">
+                <field name="actual_purchase_cost" optional="hide" />
+            </xpath>
+            <xpath expr="//page[@name='job_cost_material_page']//tree//field[@name='actual_invoice_quantity']" position="after">
+                <field name="actual_vendor_cost" optional="hide" />
+            </xpath>
+            <xpath expr="//page[@name='job_cost_labour_page']//tree//field[@name='actual_hour']" position="after">
+                <field name="actual_timesheet_cost" optional="hide" />
+            </xpath>
+            <xpath expr="//page[@name='job_cost_overhead_page']//tree//field[@name='actual_quantity']" position="after">
+                <field name="actual_purchase_cost" optional="hide" />
+            </xpath>
+            <xpath expr="//page[@name='job_cost_overhead_page']//tree//field[@name='actual_invoice_quantity']" position="after">
+                <field name="actual_vendor_cost" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="job_cost_line_tree_view_inherit_costactual" model="ir.ui.view">
+        <field name="name">job.cost.line.tree.inherit.costactual</field>
+        <field name="model">job.cost.line</field>
+        <field name="inherit_id" ref="odoo_job_costing_management.job_cost_line_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='actual_quantity']" position="after">
+                <field name="actual_purchase_cost"  />
+            </xpath>
+            <xpath expr="//field[@name='actual_hour']" position="after">
+                <field name="actual_timesheet_cost" />
+            </xpath>
+            <xpath expr="//field[@name='actual_invoice_quantity']" position="after">
+                <field name="actual_vendor_cost" />
+            </xpath>
+        </field>
+    </record>
+    
+    
+</odoo>

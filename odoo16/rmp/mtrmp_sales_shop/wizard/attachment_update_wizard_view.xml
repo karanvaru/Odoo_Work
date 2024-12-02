@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="attachment_update_wizard_view_form">
+            <field name="name">attachment.update.wizard.form</field>
+            <field name="model">attachment.update.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="file_name" invisible="1"/>
+                        <field name="file" filename="file_name"/>
+                     </group>
+                    <footer>
+                        <button name="create_update_attachment" string="Create/Update Attachment"  class="oe_highlight" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_attachment_update_wizard">
+            <field name="name">Attachment Create/Update Wizard</field>
+            <field name="res_model">attachment.update.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

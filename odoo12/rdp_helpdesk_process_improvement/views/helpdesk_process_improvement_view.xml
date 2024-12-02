@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="helpdesk_process_improvement_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.process.improvement.form</field>
+        <field name="model">helpdesk.process.improvement</field>
+        <field name="arch" type="xml">
+            <form string="Helpdesk Process Improvement">
+
+         <header>
+
+                <button name="action_to_wip" type="object" string="WIP" attrs="{'invisible': [('state', 'in', ['improved','wip','future','cancel'])]}" class="btn-primary"/>
+             
+                <button name="action_to_improved" type="object" string="IMPROVE" attrs="{'invisible': [('state', 'in', ['new','improved','cancel','future'])]}" class="btn-primary"/>
+                <button name="%(rdp_helpdesk_process_improvement.future_hpi_wizard)d" type="action" string="FUTURE" attrs="{'invisible': [('state', 'in', ['future','cancel'])]}" class="btn-primary"/>
+                 <button name="%(rdp_helpdesk_process_improvement.cancel_hpi_wizard)d" type="action" string="CANCEL" attrs="{'invisible': [('state', 'in', ['cancel','future'])]}"/>
+                 <button name="action_set_new" type="object" string="SET TO NEW" attrs="{'invisible': [('state', 'in', ['new'])]}"/>
+                <field name="state" widget="statusbar" />
+
+                 </header>
+                <sheet>
+                             <div>
+
+                                 <h1>
+                                <field name="name" readonly="1"/>
+                                </h1>
+                            </div>
+                    <group>
+                        <group>
+                            <field name="engineering" />
+<!--                            <field name="helpdesk_ticket_id" string="Source" />-->
+                            <field name="helpdesk_ticket_id" string="Source" attrs="{'invisible': [('helpdesk_ticket_id', '=', False)]}"/>
+                            <field name="quality_audit_ticket_id" string="Source" attrs="{'invisible': [('quality_audit_ticket_id', '=', False)]}"/>
+                            <field name="kam_escalation_ticket_id" string="Source" attrs="{'invisible': [('kam_escalation_ticket_id', '=', False)]}"/>
+                            <field name="five_why_ticket_id" string="Source" attrs="{'invisible': [('five_why_ticket_id', '=', False)]}"/>
+                            <field name="sales_challenge_ticket_id" string="Source" attrs="{'invisible': [('sales_challenge_ticket_id', '=', False)]}"/>
+                            <field name="asp_ticket_id" string="Source" attrs="{'invisible': [('asp_ticket_id', '=', False)]}"/>
+                            <field name="pspr_ticket_id" string="Source" attrs="{'invisible': [('pspr_ticket_id', '=', False)]}"/>
+                            <field name="global_feedback_ticket_id" string="Source" attrs="{'invisible': [('global_feedback_ticket_id', '=', False)]}"/>
+<!--                            <field name="source"/>-->
+                            <field name="assigned_to" />
+                            <field name="goal_date"/>
+                            
+                        </group>
+                        <group>
+                            <field  name="create_date" readonly="1"/>
+                             <field  name="create_uid"/>
+                            <field  name="category_id"/>
+                            <field name="sub_category_id"/>
+                            <field name="process_imptovement_type" />
+                            <field  name="tag_ids" widget="many2many_tags"/>
+                            <field  name="priority" widget="priority"/>
+                        </group>
+                    </group>
+                    <group>
+                          <field  name="subject"/>
+                          <field name="description"/>
+                    </group>
+
+                 <notebook>
+                         <page string="Internal Notes">
+                                <field name="internal_notes"/>
+                         </page>
+                     <page string="Cancel">
+                                <field name="hpi_cancel_ids" widget='one2many' editable="bottom">
+
+                                    <tree create="0" delete="0" edit="false">
+                                        <field name="hdpi_cancel_category_id"/>
+                                        <field name="cancel_description"/>
+                                    </tree>
+                                </field>
+                            </page>
+                     <page string="Future">
+                                <field name="hpi_future_ids" widget='one2many' editable="bottom">
+
+                                    <tree create="0" delete="0" edit="false">
+                                        <field name="hdpi_future_category_id"/>
+                                        <field name="future_description"/>
+                                    </tree>
+                                </field>
+                            </page>
+                    </notebook>
+                </sheet>
+                 <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- pivot view -->
+    <record id="helpdesk_process_improvement_pivot" model="ir.ui.view">
+        <field name="name">helpdesk.process.improvement.pivot</field>
+        <field name="model">helpdesk.process.improvement</field>
+        <field name="arch" type="xml">
+            <pivot string="Helpdesk Process improvement">
+                <field  name="name"/>
+            </pivot>
+        </field>
+    </record>
+     <!-- calender view -->
+    <record id="helpdesk_process_improvement_calendar" model="ir.ui.view">
+        <field name="name">helpdesk.process.improvement.calendar</field>
+        <field name="model">helpdesk.process.improvement</field>
+        <field name="arch" type="xml">
+            <calendar string="Helpdesk Process improvement" date_start="create_date" color="name" mode="month" quick_add="True">
+               <field  name="name"/>
+            </calendar>
+        </field>
+    </record>
+        <!-- Gragh view -->
+    <record id="helpdesk_process_improvement_graph" model="ir.ui.view">
+        <field name="name">helpdesk.process.improvement.graph</field>
+        <field name="model">helpdesk.process.improvement</field>
+        <field name="arch" type="xml">
+            <graph string="Helpdesk Process improvement" type="pie">
+                    <field  name="name"/>
+            </graph>
+        </field>
+    </record>
+
+      <!-- gantt view -->
+
+     <record id="helpdesk_process_improvement_gantt" model="ir.ui.view">
+        <field name="name">helpdesk.process.improvement.gantt</field>
+        <field name="model">helpdesk.process.improvement</field>
+        <field name="arch" type="xml">
+            <gantt date_start="create_date" date_stop="closed_date" string="Default Grant view"></gantt>
+        </field>
+    </record>
+
+     <!-- kanban view-->
+    <record id="helpdesk_process_improvement_kanban" model="ir.ui.view">
+        <field name="name">helpdesk.process.improvement.kanban</field>
+        <field name="model">helpdesk.process.improvement</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban">
+                <field  name="name"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill rdp_helpdesk_process_improvement_kanban">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                <div class="o_kanban_tags_section"/>
+                                <ul>
+                                    <li>Reference: <field name="name"/></li>
+                                    <li>status : <field name="state"/></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                    <searchpanel>
+                        <field name="name" icon="fa-building"/>
+                        <field name="name" select="multi" icon="fa-tags"/>
+                    </searchpanel>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <!-- tree view -->
+    <record id="helpdesk_process_improvement_tree_view" model="ir.ui.view">
+        <field name="name">helpdesk.process.improvement.tree</field>
+        <field name="model">helpdesk.process.improvement</field>
+        <field name="arch" type="xml">
+            <tree string="Helpdesk Process improvement">
+                           <field name="name"/>
+                            <field name="subject"/>
+                            <field name="assigned_to" />
+                            <field name="create_date" widget="date"/>
+                            <field name="create_uid" />
+                            <field  name="category_id"/>
+                            <field name="sub_category_id"/>
+                            <field name="process_imptovement_type" />
+                            <field  name="priority" widget="priority"/>
+                            <field name="state" />
+                            <field name ="opendays" />
+            </tree>
+        </field>
+    </record>
+
+
+   <record id="helpdesk_process_improvement_search_view" model="ir.ui.view">
+        <field name="name">helpdesk.process.improvement.search</field>
+        <field name="model">helpdesk.process.improvement</field>
+        <field name="arch" type="xml">
+            <search string="Helpdesk Process improvement">
+                 <field name="name"/>
+                     <field name="create_uid"/>
+                <field name="category_id"/>
+                <field name="sub_category_id"/>
+                <field name="assigned_to"/>
+                <field name="process_imptovement_type"/>
+                <field name="engineering"/>
+
+                <filter name="new" string="NEW" domain="[('state','=','new')]"/>
+                <filter name="wip" string="WIP" domain="[('state','=','wip')]"/>
+                <filter name="improved" string="IMPROVED" domain="[('state', '=', 'improved')]"/>
+                <filter name="cancel" string="CANCELLED" domain="[('state', '=', 'cancel')]"/>
+                <filter name="future" string="FUTURE" domain="[('state', '=', 'future')]"/>
+                <filter name="name" string="REFERENCE"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="name" string="Reference" domain="[]" context="{'group_by':'name'}"/>
+                    <filter name="create_date" string="Created On" domain="[]" context="{'group_by':'create_date'}"/>
+                     <filter name="create_uid" string="Created By" domain="[]" context="{'group_by':'create_uid'}"/>
+                    <filter name="category_id" string="Category" domain="[]" context="{'group_by':'category_id'}"/>
+                    <filter name="sub_category_id" string="Sub Category" domain="[]" context="{'group_by':'sub_category_id'}"/>
+                    <filter name="assigned_to" string="Assigned To" domain="[]" context="{'group_by':'assigned_to'}"/>
+                    <filter name="process_imptovement_type" string="Process Improvement Type" domain="[]" context="{'group_by':'process_imptovement_type'}"/>
+                    <filter name="engineering" string="Engineering" domain="[]" context="{'group_by':'engineering'}"/>
+                    <filter name="assigned_to" string="Assigned To" domain="[]" context="{'group_by':'assigned_to'}"/>
+                    <filter name="state" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--  action -->
+    <record id="helpdesk_process_improvement_action_view" model="ir.actions.act_window">
+        <field name="name">Helpdesk Process Improvement</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">helpdesk.process.improvement</field>
+       <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,pivot,gantt,graph,calendar,search</field>
+       <field name="context">{}</field>
+<!--       <field name="search_view_id" ref="quality_audit_search_view"/>-->
+    </record>
+ <menuitem name="Helpdesk Process Improvement"
+		  id="hpi_menu"
+      	  action='helpdesk_process_improvement_action_view'
+          parent="rdp_ked_escalation.helpdesk_swift_menu"/>
+          sequence="153"
+<!--         <menuitem name="HDPI"-->
+<!--		  id="hpi_menu"-->
+<!--      	  action='helpdesk_process_improvement_action_view'-->
+<!--          parent="rdp_ked_escalation.helpdesk_swift_menu"/>-->
+
+
+</data>
+</odoo>

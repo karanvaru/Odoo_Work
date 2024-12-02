@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_saledetails_inherit" inherit_id="point_of_sale.report_saledetails">
+            <xpath expr="//div[@id='sales']" position="before">
+                <div class="row">
+                    <div class="col-3">
+                        <span>Name</span>
+                        <h5>
+                            <span t-out="session_name"/>
+                        </h5>
+                    </div>
+                    <div class="col-3">
+                        <span>Cashier</span>
+                        <h5>
+                            <span t-out="cashier"/>
+                        </h5>
+                    </div>
+                    <div class="col-3">
+                        <span>Payment Methods</span>
+                        <h5>
+                            <span t-out="payment_method"/>
+                        </h5>
+                    </div>
+                    <div class="col-3">
+                        <span>Start Date</span>
+                        <h5>
+                            <span t-out="date_start"/>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <span>Manual Counted</span>
+                        <h5>
+                            <span t-out="close_session_manual_counted"/>
+                        </h5>
+                    </div>
+                    <div class="col-3">
+                        <span>Real Counted</span>
+                        <h5>
+                            <span t-out="close_session_real_counted"/>
+                        </h5>
+                    </div>
+                    <div class="col-3">
+                        <span>Differance</span>
+                        <h5>
+                            <span t-out="diff"/>
+                        </h5>
+                    </div>
+                    <div class="col-3">
+                        <span>Orders</span>
+                        <h5>
+                            <span t-out="order_count"/>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <span>Sold Quantities</span>
+                        <h5>
+                            <span t-out="sold_qty"/>
+                        </h5>
+                    </div>
+                    <div class="col-3">
+                        <span>Refund Quantities</span>
+                        <h5>
+                            <span t-out="refund_qty"/>
+                        </h5>
+                    </div>
+                </div>
+                <br/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

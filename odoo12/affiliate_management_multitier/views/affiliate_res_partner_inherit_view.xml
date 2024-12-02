@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record model='ir.ui.view' id='view_partner_inherit_form2'>
+			<field name="name">res.partner.form.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="affiliate_management.view_partner_form2" />
+			<field name="arch"  type="xml">
+          <xpath expr="//notebook/page/group/group/field[@name='is_affiliate']"  position="after">
+            <field name="parent_affiliate" colspan="4"/>
+          </xpath>
+			</field>
+		</record>
+
+
+        <record model='ir.ui.view' id='view_Affiliate_partner_multitier_inherit2_detail_form'>
+			<field name="name">res.partner.multitier.form.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="affiliate_management.view_Affiliate_partner_inherit_detail_form" />
+			<field name="arch"  type="xml">
+          <xpath expr="//field[@name='is_affiliate']"  position="after">
+            <field name="parent_affiliate" colspan="4"/>
+          </xpath>
+			</field>
+		</record>
+
+
+
+	</data>
+</odoo>

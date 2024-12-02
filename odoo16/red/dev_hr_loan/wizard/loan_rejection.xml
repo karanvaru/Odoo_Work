@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_country_accountant_reject_wizard_form" model="ir.ui.view">
+        <field name="name">country.accountant.reject.wizard.form</field>
+        <field name="model">country.accountant.reject.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Country Accountant Rejection">
+                <group>
+                    <field name="reason"/>
+                </group>
+                <footer>
+                    <button string="Reject Request" class="btn-primary" name="reject_request" type="object"/>
+                    <button string="Cancel" class="btn-default" name="cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Loan Rejection Wizard -->
+    <record id="action_country_accountant_reject_wizard" model="ir.actions.act_window">
+        <field name="name">Country Accountant Rejection</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">country.accountant.reject.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_country_accountant_reject_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

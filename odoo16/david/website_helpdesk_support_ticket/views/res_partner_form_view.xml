@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <record id="help_desk_partner_form_prize" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <!-- <xpath expr = "//notebook/page[3]/group[last()]" position="after"> -->
+                <xpath expr="//notebook/page[2]/group[last()]" position="after">
+                    <group>
+                        <field name="price_rate"/>
+                        <field name="product_id_helpdesk"/>
+                    </group>
+                </xpath>
+
+                <xpath expr="//page[4]" position="after">
+                    <page string="Helpdesk Tickets">
+                         <field name="ticket_ids"/>
+                    </page>
+                </xpath> 
+
+                <xpath expr="//div[@name = 'button_box']" position="inside">
+                    <button context="{'default_partner_id': active_id}" class="oe_stat_button" type="object"  name="show_ticket"  icon="fa-tasks">
+                            <field name="ticket_count"  string="Tickets" widget="statinfo"/>
+                        </button>
+                </xpath>
+
+            </field>
+          </record>
+          
+    </data>
+ </odoo>
+ 

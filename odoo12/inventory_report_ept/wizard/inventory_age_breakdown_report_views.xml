@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="inventory_age_breakdown_report_ept_view"
+			model="ir.ui.view">
+			<field name="name">Inventory Age Breakdown Report</field>
+			<field name="model">inventory.age.breakdown.report.ept</field>
+			<field name="arch" type="xml">
+				<form string="Inventory Age Breakdown Report">
+					<group>
+						<!-- <field name="report_wise" widget="radio" options="{'horizontal': 
+							true}" /> -->
+						<!-- <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': 
+							True}" -->
+						<!-- attrs="{'invisible': [('report_wise', '!=', 'Warehouse')]}" /> -->
+						<!-- <field name="location_ids" widget="many2many_tags" options="{'no_create': 
+							True}" -->
+						<!-- attrs="{'invisible': [('report_wise', '=', 'Warehouse')]}" /> -->
+						<field name="company_ids" widget="many2many_tags"
+							options="{'no_create':True}" />
+						<field name="include_all_products" />
+					</group>
+					<div
+						attrs="{'invisible': [('include_all_products', '=', True)],'required': [('include_all_products', '=', False)]}">
+						<label for="product_ids" />
+						<field name="product_ids" nolabel="1"
+							options="{'no_create': True}"
+							attrs="{'invisible': [('include_all_products', '=', True)],'required': [('include_all_products', '=', False)]}"
+							domain="[('type', '=', 'product')]" />
+					</div>
+					<group>
+						<field name="day_breakdown_line_ids" mode="tree">
+							<tree string="Days Breakdown" editable="bottom" create="0">
+								<field name="day_start" />
+								<field name="day_end" />
+							</tree>
+						</field>
+
+					</group>
+					<footer>
+						<button string="Download Report" type="object"
+							name="print_inventory_age_breakdown_report" class="oe_highlight" />
+						<button string="_Cancel" class="btn-default"
+							special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="inventory_age_breakdown_report_ept_action"
+			model="ir.actions.act_window">
+			<field name="name">Inventory Age Breakdown</field>
+			<field name="res_model">inventory.age.breakdown.report.ept</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem id="inventory_age_breakdown_report_ept_menu"
+			parent="stock.menu_warehouse_report"
+			action="inventory_age_breakdown_report_ept_action" sequence="119" />
+
+	</data>
+</odoo>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="multi_approval_type_view_form_inherit" model="ir.ui.view">
+        <field name="name">multi_approval_type_view_form_inherit</field>
+        <field name="model">multi.approval.type</field>
+        <field name="inherit_id" ref="multi_level_approval.multi_approval_type_view_form" />
+        <field name="arch" type="xml">
+            <field name="description" position="after">
+                <field name="priority" />
+                <field name="apply_for_model" attrs="{'readonly': [('is_configured', '=', True)]}"/>
+                <field name="is_configured" invisible="1"/>
+                <field name="view_id" invisible="1"/>
+            </field>
+            <xpath expr="//group[@name='option_settings']" position="attributes">
+                <attribute name="attrs">{'invisible': [('apply_for_model', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//group[@name='option_settings']" position="after">
+                <group string="Model Settings" name="model_settings" attrs="{'invisible': [('apply_for_model', '=', False)]}">
+                    <field name="model_id"
+                        attrs="{'required': [('apply_for_model', '=', True)], 'readonly': [('is_configured', '=', True)]}"/>
+                    <field name="domain" widget="terabits_domain" options="{'model': 'model_id'}"
+                        attrs="{'required': [('apply_for_model', '=', True)], 'readonly': [('is_configured', '=', True)]}"/>
+                    <field name="hide_button"/>
+                    <field name="approve_python_code" placeholder="Python code" widget="ace" options="{'mode': 'python'}"
+                        attrs="{'invisible': [('apply_for_model', '=', False)]}"/>
+                    <field name="refuse_python_code" placeholder="Python code" widget="ace" options="{'mode': 'python'}"
+                        attrs="{'invisible': [('apply_for_model', '=', False)]}"/>
+                </group>
+            </xpath>
+            <xpath expr="//form/sheet" position="before">
+                <header>
+                    <button name="action_configure" type="object"
+                            string="Configure"
+                            attrs="{'invisible': ['|', '|', ('active', '=', False), ('is_configured', '=', True), ('apply_for_model', '=', False)]}"
+                            class="oe_highlight" />
+                </header>
+                <div class="alert alert-info" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('is_configured', '=', False)]}">
+                This type has been configured! 
+                </div>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Description Template" attrs="{'invisible': [('apply_for_model', '=', False)]}">
+                    <field name="request_tmpl"/>
+                </page>
+                <page string="Security" attrs="{'invisible': [('apply_for_model', '=', False)]}">
+                    <group>
+                        <group>
+                            <field name="company_id" />
+                            <field name="group_ids" />
+                        </group>
+                    </group>
+                </page>
+                <page string="Help" attrs="{'invisible': [('apply_for_model', '=', False)]}">
+                    <div style="margin-top: 4px;">
+                        <h3>Help with Python expressions</h3>
+                        <p>Various fields may use Python code or Python expressions. The following variables can <code>only</code> be used:</p>
+                        <ul>
+                            <li><code>env</code>: Odoo Environment on which the action is triggered</li>
+                            <li><code>model</code>: Odoo Model of the record on which the action is triggered; is a void recordset</li>
+                            <li><code>record</code>: record on which the action is triggered; may be be void</li>
+                            <li><code>log(message, level='info')</code>:logging function to record debug information in <code>ir.logging</code> table</li>
+                            <li><code>UserError</code>: UserError Exception to use with <code>raise</code></li>
+                            <li>To return an action, assign: <code>action = {...}</code></li>
+                        </ul>
+                        <div>
+                            <p>Example of Python code</p>
+<code style="white-space: pre-wrap">
+partner_name = record.name + '_code'
+env['res.partner'].create({'name': partner_name})
+</code>
+                        </div>
+                    </div>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='user_id']" position="after">
+                <field name="group_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="multi_approval_type_view_form_popup" model="ir.ui.view">
+        <field name="name">multi_approval_type_view_form_popup</field>
+        <field name="model">multi.approval.type</field>
+        <field name="priority" eval="1000" />
+        <field name="arch" type="xml">
+            <form>
+                <div class="alert alert-info" role="alert" style="margin-bottom:0px;">
+                    <p>
+                        Can not detect a state (or stage or status) field in Domain ! Please select it.
+                    </p>
+                    <p>
+                        State (or stage or status) field is required in Domain !
+                    </p>
+                </div>
+                <group>
+                    <field name="state_field_id" required="1"
+                        domain="[('model_id', '=', context.get('res_model_id')), ('name', 'in', context.get('dmain_fields'))]"
+                        widget="selection"
+                        />
+                </group>
+                <footer>
+                    <button name="action_configure" type="object" string="Configure" class='oe_highlight' />
+                    <button special="cancel" string="Discard" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="multi_approval_type_view_kanban_inherit" model="ir.ui.view">
+        <field name="name">multi_approval_type_view_kanban_inherit</field>
+        <field name="model">multi.approval.type</field>
+        <field name="inherit_id" ref="multi_level_approval.multi_approval_type_view_kanban" />
+        <field name="arch" type="xml">
+            <button name="create_request" position="before">
+                <field name="apply_for_model" invisible="1" />
+            </button>
+            <button name="create_request" position="attributes">
+                <attribute name="attrs">{'invisible': [('apply_for_model', '=', True)]}</attribute>
+            </button>
+        </field>
+    </record>
+
+    <record id="action_open_request" model="ir.actions.server">
+        <field name="name">Open My Approval Requests</field>
+        <field name="model_id" ref="multi_level_approval.model_multi_approval"/>
+        <field name="binding_model_id" ref="multi_level_approval.model_multi_approval"/>
+        <field name="state">code</field>
+        <field name="code">action = env['multi.approval'].open_request()</field>
+    </record>
+
+</odoo>

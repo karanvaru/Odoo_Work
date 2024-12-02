@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+                                <!-- Groups -->
+     <record id="ked_group_status" model="ir.module.category">
+            <field name="name">KED Team</field>
+            <field name="sequence" eval="1"/>
+     </record>
+    <!--groups-->
+
+        <record id="ked_group_status_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="ked_group_status"/>
+        </record>
+     <record id="ked_group_status_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="ked_group_status"/>
+        </record>
+</odoo>

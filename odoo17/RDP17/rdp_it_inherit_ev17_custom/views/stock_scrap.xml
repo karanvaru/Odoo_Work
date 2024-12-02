@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_scrap_form_record_type" model="ir.ui.view">
+        <field name="name">stock.scrap.inherit.form</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='scrap_location_id']" position="after">
+                <field name="record_type_id"/>
+                <field name="record_category_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,139 @@
+.search_panel {
+	display: none;
+	z-index: 99999999;
+	position: absolute;
+	background-color: white;
+	width: 60%;
+	height: 90vh !important;
+	margin-top: 46px;
+	padding: 20px;
+	border: 7px solid #7c7bad;
+	box-shadow: 0px 8px 8px 8px #888;
+	right: 0px;
+}
+
+.fold-all {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 6px 21px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.unfold-all {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 6px 21px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	margin-left: 8px;
+}
+
+.toggle-btn {
+	color: black;
+	font-size: 20px;
+	margin-left: 10px;
+}
+
+.odoo_search_click {
+	font-size: 25px;
+	margin-left: -31px;
+	color: #7c7bad;
+	margin-top: 2px;
+}
+
+.search_field {
+	padding: 6px;
+	border-radius: 10px;
+	border-color: #7b7bad;
+	font-size: 17px;
+	padding-left: 10px;
+}
+
+.odoo_search_close {
+	color: #7c7bad;
+	font-size: 26px;
+}
+
+.close_search {
+	position: absolute;
+	right: 10px;
+}
+
+.open_search {
+	display: flex;
+	width: 96%;
+	margin-bottom: 20px;
+}
+
+.search_results {
+	height: 83%;
+	overflow-y: scroll;
+	display: none;
+	margin-top: 10px;
+}
+
+.dummy_class {
+	height: 2px;
+	border-radius: 3px;
+	background-color: #7c7bad;
+	border: none;
+	display: none;
+}
+
+
+.search-level{
+    width: 125px;
+    /* background-color: #4CAF50; */
+    /* border: none; */
+    /* color: white; */
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+/* Mobile devices to iPads, Tablets */
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .search_results {
+    height: 75%;
+}
+.search_panel {
+    width: 95%;
+    height: 80vh !important;
+    }
+}
+
+/* Small screen laptops */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .search_results {
+    height: 75%;
+}
+.search_panel {
+    width: 85%;
+    height: 85vh !important;
+    }
+  
+  
+}
+
+
+
+
+
+
+

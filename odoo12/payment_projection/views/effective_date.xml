@@ -1,0 +1,68 @@
+<odoo>
+  <data>
+  
+      <!-- Inherit Effective Date after Due Date in account(Vendor Bills) module-->
+      <record id="account_invoice_vendor_bill_inherited_form_view" model="ir.ui.view">
+          <field name="name">account.vendor.bill.invoice.form.inherited</field>
+          <field name="model">account.invoice</field>
+          <field name="inherit_id" ref="account.invoice_supplier_form" />
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='date_due']" position="after">
+                  <field name="effective_date"/>
+              </xpath>
+          </field>
+      </record>
+
+    <!-- Inherit Effective Date in Hr Expense Sheet (Expenses) module-->
+      <record id="expenses_inherited_form_view" model="ir.ui.view">
+          <field name="name">expenses.inherited.form.view</field>
+          <field name="model">hr.expense.sheet</field>
+          <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form" />
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='accounting_date']" position="after">
+                  <field name="effective_date" />
+              </xpath>
+          </field>
+      </record>
+
+    <!-- Inherit Balance Amount in Chart of Accounts (Bank Accounts) module in form View-->
+      <record id="chart_of_account_inherited_view_form" model="ir.ui.view">
+        <field name="name">chart.of..account.form.inherit</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='group_id']" position='after'>
+                <field name="balance_amount" invisible = '1'/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit Balance Amount in Chart of Accounts (Bank Accounts) module in tree view-->
+    <record id="chart_of_account_inherited_view_tree" model="ir.ui.view">
+        <field name="name">chart.of..account.tree.inherit</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position='after'>
+                    <field name="balance_amount" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit Effective Date in Advance Payment (Finance) module-->
+
+<!--      <record id="account_advance_payment_inherited_form_view" model="ir.ui.view">-->
+<!--          <field name="name">advance.payment.form.inherited</field>-->
+<!--          <field name="model">advance.payment</field>-->
+<!--          <field name="inherit_id" ref="advance_payment.advance_payment_form_view" />-->
+<!--          <field name="arch" type="xml">-->
+<!--              <xpath expr="//field[@name='date']" position="after">-->
+<!--                  <field name="effective_date" />-->
+<!--              </xpath>-->
+<!--          </field>-->
+<!--      </record>-->
+
+
+  </data>
+
+</odoo>

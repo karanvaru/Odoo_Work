@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_stock_route_form_inherit_business_type" model="ir.ui.view">
+        <field name="name">stock.route.form.inherit.business_type</field>
+        <field name="model">stock.route</field>
+        <field name="inherit_id" ref="stock.stock_location_route_form_view"/> <!-- Inherit the original route form view -->
+        <field name="arch" type="xml">
+            <!-- Insert business_type field just after the product_selectable field -->
+            <xpath expr="//field[@name='product_selectable']" position="after">
+                <field name="business_type" string="Business Type"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

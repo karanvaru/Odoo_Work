@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="quality_checklist_name_form_view_custom">
+        <field name="name">quality.checklist.name.form.view.custom</field>
+        <field name="model">quality.checklist.name</field>
+        <field name="arch" type="xml">
+            <form string="Checklist Name">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="quality_checklist_name_tree_view_custom" model="ir.ui.view">
+        <field name="name">quality.checklist.name.tree.view.custom</field>
+        <field name="model">quality.checklist.name</field>
+        <field name="priority">2</field>
+        <field name="arch" type="xml">
+            <tree string="Quality Checklist">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="action_quality_checklist_name_custom" model="ir.actions.act_window">
+        <field name="name">Checklist Name</field>
+        <field name="res_model">quality.checklist.name</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+  
+    <menuitem action="action_quality_checklist_name_custom"
+        id="menu_checklist_name"
+        parent="job_card.menu_job_card_setting"
+        groups="project.group_project_manager"
+        sequence="3"/>
+</odoo>

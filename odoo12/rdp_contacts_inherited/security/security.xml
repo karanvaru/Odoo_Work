@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="contacts_otd_ots_group_category" model="ir.module.category">
+            <field name="name">Contacts OTD/OTS</field>
+            <field name="sequence" eval="1"/>
+        </record>
+        <record id="group_contacts_otd_ots_manager" model="res.groups">
+            <field name="name">Contacts OTD/OTS Manager</field>
+            <field name="category_id" ref="rdp_contacts_inherited.contacts_otd_ots_group_category"/>
+<!--            <field name="implied_ids" eval="[(4, ref('rdp_contacts_inherited.group_contacts_otd_ots_manager'))]"/>-->
+
+        </record>
+        <record id="access_contacts_otd_ots_manager" model="ir.model.access">
+            <field name="name">Contacts OTD/OTS Manager</field>
+            <field name="model_id" ref="rdp_contacts_inherited.model_res_partner"/>
+            <field name="group_id" ref="group_contacts_otd_ots_manager"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_confirm" eval="True"/>
+            <field name="perm_approve" eval="True"/>
+            <field name="perm_read" eval="True"/>
+        </record>
+   </data>
+</odoo>        

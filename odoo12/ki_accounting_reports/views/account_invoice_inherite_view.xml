@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <record id="account_invoice_inherit_field_view" model="ir.ui.view">-->
+<!--        <field name="name">account.invoice.inherit.fields.form</field>-->
+<!--        <field name="model">account.invoice</field>-->
+<!--        <field name="inherit_id" ref="account.invoice_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree" position="inside">-->
+<!--                <field name="sgst" invisible="1"/>-->
+<!--                <field name="cgst" invisible="1"/>-->
+<!--                <field name="igst" invisible="1"/>-->
+<!--                <field name="total_tax" invisible="1"/>-->
+<!--                <field name="invoice_value" invisible="1"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="invoice_line_form_view" model="ir.ui.view">
+        <field name="name">account.invoice.line.form.inherit</field>
+        <field name="model">account.invoice.line</field>
+        <field name="arch" type="xml">
+            <form create="0" delete="0" edit="0">
+                <header>
+                    <field name="invoice_line_state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="partner_gst_no"/>
+                            <field name="company_id"/>
+                            <field name="company_id"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="hsn_code"/>
+                            <field name="vendor_reference_no"/>
+                            <field name="product_id"/>
+<!--                            <field name="asset_category_id"/>-->
+                            <field name="categ_id"/>
+                        </group>
+                        <group>
+                            <field name="invoice_line_tax_ids" widget="many2many_tags" options="{'no_create': True}"
+                                   domain="[('type_tax_use','=','sale'),('company_id', '=', parent.company_id)]"/>
+                            <field name="price_subtotal"/>
+                            <field name="sgst"/>
+                            <field name="cgst"/>
+                            <field name="igst"/>
+                            <field name="total_tax"/>
+                            <field name="invoice_value" invisible="True"/>
+                            <field name="price_total" string="Invoice Value"/>
+                        </group>
+                        <group>
+                            <field name="move_id"/>
+                            <field name="uom_id"/>
+                            <field name="journal_id"/>
+                            <field name="transaction_type"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="invoice_line_tree_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.line.tree.inherit</field>
+        <field name="model">account.invoice.line</field>
+        <field name="arch" type="xml">
+            <tree string="GST Invoice Line Records" create="0" delete="0">
+                <field name="company_id"/>
+                <field name="company_gst_no"/>
+                <field name="partner_id"/>
+                <field name="partner_gst_no"/>
+                <field name="date"/>
+                <field name="hsn_code"/>
+                <field name="invoice_line_tax_ids" widget="many2many_tags" options="{'no_create': True}"
+                       domain="[('type_tax_use','=','sale'),('company_id', '=', parent.company_id)]"/>
+                <field name="price_subtotal" sum="price_subtotal" invisible="1"/>
+                <field name="price_subtotal_signed" sum="price_subtotal_signed"/>
+                <field name="sgst" sum="sgst"/>
+                <field name="cgst" sum="cgst"/>
+                <field name="igst" sum="igst"/>
+                <field name="total_tax" sum="total_tax"/>
+                <field name="invoice_value" sum="invoice_value" invisible="1"/>
+                <field name="price_total" sum="price_total" string="Invoice Value"/>
+                <field name="price_total_signed" sum="price_total_signed"/>
+                <field name="move_id"/>
+                <field name="uom_id"/>
+                <field name="journal_id"/>
+                <field name="transaction_type"/>
+                <field name="vendor_reference_no"/>
+                <field name="invoice_line_state"/>
+                <button name="action_invoice_button" string="Open Invoice" type="object"
+                        class="oe_highlight"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="invoice_line_kanban_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.line.kanban.inherit</field>
+        <field name="model">account.invoice.line</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1">
+                <field name="partner_id"/>
+                <field name="move_id"/>
+                <field name="invoice_line_tax_ids"/>
+                <field name="price_subtotal"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="row mb4">
+                                <div class="col-6 o_kanban_record_headings">
+                                    <strong>
+                                        <span>
+                                            <field name="partner_id"/>
+                                        </span>
+                                    </strong>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <strong>
+                                        <i class="fa fa-clock-o" aria-label="Date" role="img" title="Date"/>
+                                        <t t-esc="record.date"/>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>
+                                        <field name="move_id"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <span>
+                                        <field name="price_subtotal" widget="monetary"/>
+                                    </span>
+                                </div>
+                                <div class="col-6">
+                                    <span class="float-right">
+                                        <field name="invoice_line_tax_ids" widget="label_selection"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="invoice_line_calendar_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.line.calendar.inherit</field>
+        <field name="model">account.invoice.line</field>
+        <field name="arch" type="xml">
+            <calendar string="GST Invoice Line Records" date_start="date" color="create_uid">
+                <field name="partner_id"/>
+                <field name="move_id"/>
+                <field name="invoice_line_tax_ids"/>
+                <field name="price_subtotal"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="invoice_line_pivot_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.line.pivot.inherit</field>
+        <field name="model">account.invoice.line</field>
+        <field name="arch" type="xml">
+            <pivot string="GST Invoice Line Records">
+                <field name="partner_id"/>
+                <!--                <field name="invoice_line_tax_ids" type="row"/>-->
+                <field name="move_id"/>
+                <!--                <field name="price_subtotal" type="col"/>-->
+            </pivot>
+        </field>
+    </record>
+
+    <record id="invoice_line_graph_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.line.graph.inherit</field>
+        <field name="model">account.invoice.line</field>
+        <field name="arch" type="xml">
+            <graph string="GST Invoice Line Records">
+                <field name="partner_id"/>
+                <field name="invoice_line_state"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_line_filter" model="ir.ui.view">
+        <field name="name">account.invoice.line.filter</field>
+        <field name="model">account.invoice.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Invoice">
+                <filter name="draft" string="Draft" domain="[('invoice_line_state','=','draft')]"/>
+                <filter name="unpaid" string="Open" domain="[('invoice_line_state', '=', 'open')]"/>
+                <filter name="in_payment" string="In Payment" domain="[('invoice_line_state', '=', 'in_payment')]"/>
+                <filter name="paid" string="Paid" domain="[('invoice_line_state', '=', 'paid')]"/>
+                <filter name="cancel" string="Cancel" domain="[('invoice_line_state', '=', 'cancel')]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter name="group_hsn_code" string="HSN Code" domain="[]" context="{'group_by':'hsn_code'}"/>
+                    <filter name="group_product" string="Product" domain="[]" context="{'group_by':'product_id'}"/>
+                    <filter name="group_partner" string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter name="group_date" string="Date" domain="[]" context="{'group_by':'date'}"/>
+                    <filter name="group_invoice" string="Journal Entry" domain="[]"
+                            context="{'group_by':'invoice_id'}"/>
+                    <filter name="group_transaction_type" string="Transaction Type" domain="[]"
+                            context="{'group_by':'transaction_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_invoice_line_action" model="ir.actions.act_window">
+        <field name="name">GST Invoices line Records</field>
+        <field name="res_model">account.invoice.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban,pivot,graph,calendar,search</field>
+        <!--        <field name="view_id" ref="invoice_line_tree_inherit"/>-->
+        <field name="search_view_id" ref="view_account_invoice_line_filter"/>
+    </record>
+
+    <record id="action_invoice_line_action_tree" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="invoice_line_tree_inherit"/>
+        <field name="act_window_id" ref="action_invoice_line_action"/>
+    </record>
+    <record id="action_invoice_line_action_form" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="invoice_line_form_view"/>
+        <field name="act_window_id" ref="action_invoice_line_action"/>
+    </record>
+    <record id="action_invoice_line_action_pivot" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="invoice_line_pivot_inherit"/>
+        <field name="act_window_id" ref="action_invoice_line_action"/>
+    </record>
+    <record id="action_invoice_line_action_kanban" model="ir.actions.act_window.view">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="invoice_line_kanban_inherit"/>
+        <field name="act_window_id" ref="action_invoice_line_action"/>
+    </record>
+
+    <menuitem id="menu_invoice_line"
+              name="GST Invoice Line Records"
+              parent="account_gst_invoice_record.menu_invoice_Report_base"
+              action="ki_accounting_reports.action_invoice_line_action"/>
+
+
+</odoo>
+

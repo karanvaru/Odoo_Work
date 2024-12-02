@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="asterisk_calls_assets_backend" name="asterisk_calls assets" inherit_id="web.assets_backend">
+    <xpath expr="." position="inside">      
+      <script type="text/javascript" src="/asterisk_calls/static/src/js/channels.js"/>
+      <link rel="stylesheet" href="/asterisk_calls/static/src/css/asterisk_calls.css"/>      
+      <script type="text/javascript" src="/asterisk_calls/static/src/js/systray.js"/>
+      <link rel="stylesheet" href="/asterisk_calls/static/src/css/systray.css"/>
+    </xpath>
+  </template>
+
+</odoo>

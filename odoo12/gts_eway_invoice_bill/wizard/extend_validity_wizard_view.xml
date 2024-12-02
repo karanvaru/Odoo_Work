@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_extend_eway_validity" model="ir.ui.view">
+        <field name="name">extend.eway.validity.form</field>
+        <field name="model">extend.eway.validity</field>
+        <field name="arch" type="xml">
+            <form string="Extend Eway Validity">
+                <group>
+                    <group>
+                        <field name="transportation_mode" required="1"/>
+                        <field name="transit_type"
+                               attrs="{'invisible': [('transportation_mode', '!=', '5')],
+                               'required': [('transportation_mode', '=', '5')]}"/>
+
+                        <field name="city" required="1"/>
+                        <field name="zip" required="1"/>
+                        <field name="transporter_doc_no"/>
+                        <field name="vehicle_type" required="1"/>
+                    </group>
+                    <group>
+                        <field name="street"
+                               attrs="{'invisible': [('transportation_mode', '!=', '5')],
+                               'required': [('transportation_mode', '=', '5')]}"/>
+                        <field name="street2"
+                               attrs="{'invisible': [('transportation_mode', '!=', '5')],
+                               'required': [('transportation_mode', '=', '5')]}"/>
+                        <field name="street3"
+                               attrs="{'invisible': [('transportation_mode', '!=', '5')],
+                               'required': [('transportation_mode', '=', '5')]}"/>
+                        <field name="state_id" options="{'no_create': True, 'no_open': True}"
+                               required="1"/>
+                        <field name="transportation_distance" required="1"/>
+                        <field name="reason" required="1"/>
+                        <field name="transportation_doc_date"/>
+                    </group>
+                </group>
+                <grpup>
+                    <field name="remark" required="1" placeholder="Remarks..."/>
+                </grpup>
+                <footer>
+                    <button name="update_vehicle" string="Update" type="object" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_extend_eway_validity" model="ir.actions.act_window">
+        <field name="name">Extend Eway Validity</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">extend.eway.validity</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

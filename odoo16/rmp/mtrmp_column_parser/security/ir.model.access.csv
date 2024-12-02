@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mtrmp_document_category,access.mtrmp.document.category,model_mtrmp_document_category,,1,1,1,1
+access_mtrmp_document,access.mtrmp.document,model_mtrmp_document,,1,1,1,1
+access_mtrmp_document_column,access.mtrmp.document.column,model_mtrmp_document_column,,1,1,1,1
+access_document_column_wizard,access.document.column.wizard,model_document_column_wizard,,1,1,1,1

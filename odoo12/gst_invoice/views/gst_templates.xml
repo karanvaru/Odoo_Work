@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <template id="assets_backend" name="mob assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <!-- <script type="text/javascript" src="/gst_invoice/static/src/js/gst_dashboard.js"></script> -->
+             <link rel="stylesheet" type="text/scss" href="/gst_invoice/static/src/scss/gst_dashboard.scss"/> 
+        </xpath>
+    </template>
+</odoo>

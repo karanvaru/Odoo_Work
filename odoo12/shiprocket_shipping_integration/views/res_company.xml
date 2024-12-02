@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="Shiprocket_credential_configuration" model="ir.ui.view">
+        <field name="name">Shiprocket Configuration</field>
+        <field name="model">res.company</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[last()]" position="after">
+                <page string="Shiprocket Configuration">
+                    <group>
+                        <field name="use_shiprocket_shipping_provider"/>
+                    </group>
+                    <group attrs="{'invisible': [('use_shiprocket_shipping_provider', '!=', True)]}">
+                        <group>
+                            <field name="shiprocket_username"
+                                   attrs="{'required':[('use_shiprocket_shipping_provider','=',True)]}"/>
+                            <field name="shiprocket_password"
+                                   attrs="{'required':[('use_shiprocket_shipping_provider','=',True)]}"/>
+                            <field name="shiprocket_api_url"
+                                   attrs="{'required':[('use_shiprocket_shipping_provider','=',True)]}"/>
+                            <field name="shiprocket_api_token"/>
+                            <button string="Generate API Auth"
+                                    name="generate_shiprocket_api_auth"
+                                    class="fa fa-arrow-right oe_link"
+                                    type="object"/>
+                            <button string="Import All Channels"
+                                    name="import_all_channels_from_shiprocket_to_odoo"
+                                    class="fa fa-arrow-right oe_link"
+                                    type="object"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

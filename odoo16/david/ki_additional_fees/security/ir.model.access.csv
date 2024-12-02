@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_additional_fees_config,account.additional.fees.config,model_additional_fees_config,,1,1,1,1
+access_additional_fee_line,account.additional.fee.line,model_additional_fee_line,,1,1,1,1
+
+

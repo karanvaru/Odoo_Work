@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_recruitment_document_type_tree" model="ir.ui.view">
+            <field name="name">recruitment.document.type.tree</field>
+            <field name="model">recruitment.document.type</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="is_default"/>
+                    <field name="is_required"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_recruitment_document_type" model="ir.actions.act_window">
+            <field name="name">Recruitment Document Type</field>
+            <field name="res_model">recruitment.document.type</field>
+            <field name="view_mode">tree</field>
+            <field name="target">current</field>
+        </record>
+
+<!--        <menuitem id="menu_recruitment_document_type"-->
+<!--                  action="action_recruitment_document_type"-->
+<!--                  parent="hr_recruitment.menu_hr_recruitment_config_applications"-->
+<!--                  name="Application Document Type"-->
+<!--                  sequence="10"/>-->
+
+    </data>
+</odoo>

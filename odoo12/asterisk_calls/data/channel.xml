@@ -1,0 +1,9 @@
+<odoo>
+    <data noupdate="1">
+        <record id="qos_channel" model="mail.channel">
+            <field name="name">Call QoS</field>
+            <field name="description">Call quality monitor</field>
+            <field name="public">public</field>
+        </record>    
+    </data>
+</odoo>

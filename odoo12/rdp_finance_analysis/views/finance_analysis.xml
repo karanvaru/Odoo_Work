@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!-- Tree view =============================== Finance Analysis -->
+        <record id="finance_analysis_view_tree" model="ir.ui.view">
+            <field name="name">finance.analysis.view.tree</field>
+            <field name="model">finance.analysis</field>
+            <field name="arch" type="xml">
+                <tree string="Finance Analysis" create="false">
+                    <field name="name"/>
+                    <field name="model_name"/>
+                    <field name="source_reference"/>
+                    <field name="source_date"/>
+                    <field name="partner_id"/>
+                    <field name="payment_amount" sum="Total"/>
+                    <field name="amount" sum="Total"/>
+                    <field name="remaining_amount" sum="Total"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+<!--Form View ================================ Finance Analysis -->
+        <record id="finance_analysis_view_form" model="ir.ui.view">
+            <field name="name">finance.analysis.view.form</field>
+            <field name="model">finance.analysis</field>
+            <field name="arch" type="xml">
+                <form string="Finance Analysis" create="false">
+                    <sheet>
+                     <div class="oe_button_box" name="button_box">
+                        <!-- <button class="oe_stat_button" name="account_invoice_count" type="object" icon="fa-pencil" attrs="{'invisible': [('hr_expense_sheet_id', '=', False)]">
+                            <field string="Transaction " name="invoice_count" widget="statinfo"/>
+                        </button> -->
+                        <!-- <button class="oe_stat_button" name="hr_expenses_sheet_count" type="object" icon="fa-pencil" attrs="{'invisible': [('hr_expense_sheet_id', '=', False)]}">
+                            <field string="Transaction E " name="expenses_count" widget="statinfo"/>
+                        </button> -->
+                        <!-- <button class="oe_stat_button" name="account_payment_count" type="object" icon="fa-pencil" attrs="{'invisible': [('account_payment_id','=', False)]}">
+                            <field string="Transaction P" name="payment_count" widget="statinfo" />
+                        </button> -->
+                    </div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="model_name"/>
+                                <field name="model"/>
+                                <field name="source_reference"/>
+                                <field name="source_date"/>
+                                <field name="partner_id"/>
+                                <field name="payment_amount"/>
+                                <field name="status"/>
+                            </group>
+                            <group>
+                                <field name="finance_analysis"/>
+                                <field name="office_location_id" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                                <div style="margin-top:3px"> </div>
+                                <field name="multiple_office_location_ids" style="width:100%" widget="many2many_tags"
+                                    attrs="{'invisible': ['|',('finance_analysis', '=', False),('is_active', '=', False)],'required':[('is_active','=',True)]}"/>
+                                <field name="transaction_category_id" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                                <div style="margin-top:3px"> </div>
+                                <field name="transaction_sub_category_id" style="width:100%" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                                <field name="transaction_category_type_id" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                                <field name="amount" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                                <field name="account_payment_id" invisible ='1'/> 
+                                <field name="is_active" invisible ='1'/> 
+                                <field name="remaining_amount" invisible ='1'/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="account_payment" string="Payments" attrs="{'invisible': [('account_payment_id', '=', False)]}">
+                                <group>
+                                  <group>
+                                      <field name="account_payment_id" readonly='1'/>
+                                      <field name="payment_type" readonly='1'/>
+                                      <field name="partner_type" readonly='1'/>
+                                      <field name="journal_id" readonly='1'/>
+                                      <field name="company_id" readonly='1'/>
+                                  </group>
+                                  <group>
+                                  </group>
+                                </group>
+                            </page>
+                            <page name="hr_expenses" string="Expenses" attrs="{'invisible': [('hr_expense_sheet_id', '=', False)]}">
+                                <group>
+                                  <group>
+                                      <field name="hr_expense_sheet_id" readonly='1'/>
+                                      <field name="expense_date" readonly='1'/>
+                                      <field name="description" readonly='1'/>
+                                  </group>
+                                  <group>
+                                      <field name="attachment_ids" widget="many2many_binary" readonly='1'/>
+                                      <!-- <field name="hr_expense_amount"/> -->
+                                  </group>
+                                </group>
+                            </page>
+					        <page name="sale_order_details" string="SO Details">
+                              <group>
+                                <group>
+                                    <field name="sale_order_id" />
+                                    <field name="so_gem_rp_id" />
+                                </group>
+                                <group>
+                                    <field name="sales_person_id" />
+                                    <field name="product_category_head_id" />
+                                    <field name="revenue_head_id" />
+                                    <field name="vice_president_id" />
+                                    <field name="team_id" />
+                                </group>
+                              </group>
+                            </page>
+                            <page name="purchase_order_details" string="PO Details">
+                              <group>
+                                <group>
+                                    <field name="purchase_order_id" />
+                                </group>
+                                <group>
+                                </group>
+                              </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+<!--Kanban View ================================ Finance Analysis -->
+        <record id="finance_analysis_view_kanban" model="ir.ui.view">
+        <field name="name">finance.analysis.view.kanban</field>
+        <field name="model">finance.analysis</field>
+        <field name="arch" type="xml">
+            <kanban class="o_finance_analysis_kanban">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="model_name"/>
+                <field name="source_reference"/>
+                <field name="source_date"/>
+                <field name="amount"/>
+                <field name="status"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title">
+                                    <field name="name"/>
+                                </strong>
+                                <div name="tags"/>
+                                <ul>
+                                    <li>Model: <field name="model_name"/></li>
+                                    <li>Source: <field name="source_reference"/></li>
+                                    <li>Amount: <field name="amount" widget="monetary"/></li>
+                                    <li>status : <field name="status"/></li>
+                                </ul>
+                                <div name="tags"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+<!--Pivot View ================================ Finance Analysis -->
+    <record id="finance_analysis_view_pivot" model="ir.ui.view">
+            <field name="name">finance.analysis.view.pivot</field>
+            <field name="model">finance.analysis</field>
+            <field name="arch" type="xml">
+                <pivot string="Finance Analysis">
+                    <field name="name" type="row"/>
+                    <field name="model_name" type="col"/>
+                    <field name="source_reference"/>
+                    <field name="source_date" />
+                    <field name="partner_id" />
+                    <field name="payment_amount" />
+                    <field name="amount" type="measure" />
+                    <field name="status"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="finance_analysis_view_graph" model="ir.ui.view">
+            <field name="name">finance.analysis.view.graph</field>
+            <field name="model">finance.analysis</field>
+            <field name="arch" type="xml">
+                <graph string="Finance Analysis" type="bar">
+                    <field name="name" type="row"/>
+                    <field name="model_name"/>
+                    <field name="source_reference"/>
+                    <field name="source_date"/>
+                    <field name="partner_id"/>
+                    <field name="payment_amount" sum="Total"/>
+                    <field name="amount" sum="Total"/>
+                    <field name="status"/>
+                </graph>
+            </field>
+        </record>
+
+
+<!--Search View ======================================= Finance Analysis -->
+        <record id="finance_analysis_view_search" model="ir.ui.view">
+            <field name="name">finance.analysis.view.search</field>
+            <field name="model">finance.analysis</field>
+            <field name="arch" type="xml">
+                <search string="Finance Analysis">
+                    <field name="name"/> 
+                    <field name="source_reference"/> 
+                    <field name="model_name"/> 
+                    <field name="partner_id"/>
+                    <field name="sales_person_id"/>
+                    <group string="Group By">
+                        <filter string="Created On" name="create_date" domain="[]" context="{'group_by':'create_date'}"/>
+                        <filter string="Created By" name="create_uid" domain="[]" context="{'group_by':'create_uid'}"/>
+                        <filter string="Model Name" name="model_name" domain="[]" context="{'group_by':'model_name'}"/>
+                        <filter string="Source Date" name="source_date" domain="[]" context="{'group_by':'source_date'}"/>
+                        <filter string="Partner" name="partner_id" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Office Location" name="office_location_id" domain="[]" context="{'group_by':'office_location_id'}"/>
+                        <filter string="Transaction Category" name="transaction_category_id" domain="[]" context="{'group_by':'transaction_category_id'}"/>
+                        <filter string="Transaction Sub Category" name="transaction_sub_category_id" domain="[]" context="{'group_by':'transaction_sub_category_id'}"/>
+                        <filter string="Status" name="status" domain="[]" context="{'group_by':'status'}"/>
+                    </group>
+                </search>
+                </field>
+      	</record>
+
+<!--Action ================================ Finance Analysis -->
+        <record id="action_accounting_transaction" model="ir.actions.act_window">
+            <field name="name">Accounting Transaction</field>
+            <field name="res_model">finance.analysis</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph</field>
+        </record>
+
+<!--Kanban View Overview================================ Finance Analysis -->
+        <record id="finance_analysis_overview_view_kanban" model="ir.ui.view">
+            <field name="name">finance.analysis.overview.view.kanban</field>
+            <field name="model">finance.analysis</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_emphasize_colors o_stock_kanban" create="0">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="model_name"/>
+                    <field name="source_reference"/>
+                    <field name="source_date"/>
+                    <field name="amount"/>
+                    <field name="status"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div>
+                                <div>
+                                    <div t-attf-class="o_kanban_card_header">
+                                        <div class="o_kanban_card_header_title">
+                                            <div class="o_primary">
+                                                <a type="object" name="get_action_finance_analysis">
+                                                    <field name="name"/>
+                                                </a>
+                                            </div>
+                                            <div class="o_secondary"><field class="o_secondary"  name="source_reference"/></div>
+                                        </div>
+                                        <div class="o_kanban_manage_button_section">
+                                            <a class="o_kanban_manage_toggle_button" href="#"><i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="container o_kanban_card_content">
+                                        <div class="row">
+                                            <div class="col-6 o_kanban_primary_left">
+                                                <!-- <button class="btn btn-primary" name="get_action_picking_tree_ready" type="object">
+                                                    <span t-if="record.account_payment_id"><t t-esc="record.count_picking_ready.value"/> To Process</span>
+                                                    <span t-if="record.code.raw_value =='outgoing'"><t t-esc="record.count_picking_ready.value"/> To Process</span>
+                                                    <span t-if="record.code.raw_value =='internal'"><t t-esc="record.count_picking_ready.value"/> To Process</span>
+                                                </button> -->
+                                            </div>
+                                            
+                                        </div>
+                                    </div><div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
+
+                                        <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
+                                            <div class="col-8" role="menuitem" aria-haspopup="true">
+                                                <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+<!--Action Overview ================================ Finance Analysis -->
+        <record id="action_finance_analysis_overview" model="ir.actions.act_window">
+            <field name="name">Analysis Overview</field>
+            <field name="res_model">finance.analysis</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="rdp_finance_analysis.finance_analysis_overview_view_kanban"/>
+            <field name="view_mode">kanban,form</field>
+        </record>
+
+<!--Menu ================================ Finance Analysis -->
+        <menuitem id="menu_finance_analysis_main" name="Finance Analysis"   
+            web_icon="rdp_finance_analysis,static/description/icon.png" />
+
+        <menuitem id="menu_overview_finance_analysis_root" action="action_finance_analysis_overview" name="Overview"
+            parent="rdp_finance_analysis.menu_finance_analysis_main" sequence="1"/>
+
+        <menuitem id="menu_finance_analysis_root" name="Finance Analysis"
+            parent="rdp_finance_analysis.menu_finance_analysis_main" sequence="2"/>
+
+        <menuitem id="menu_accounting_transaction_finance_analysis" action="action_accounting_transaction" name="Accounting Transaction"
+            parent="rdp_finance_analysis.menu_finance_analysis_root" sequence="1"/>
+        
+        <menuitem id="menu_configuration_finance_analysis_root" name="Configuration"
+            parent="rdp_finance_analysis.menu_finance_analysis_main" sequence="3"/>
+   
+    </data>
+</odoo>

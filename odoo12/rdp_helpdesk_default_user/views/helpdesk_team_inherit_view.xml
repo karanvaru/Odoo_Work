@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_helpdesk_team_form_inherit" model="ir.ui.view">
+            <field name="name">helpdesk.team.form</field>
+            <field name="model">helpdesk.team</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_team_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='productivity']" position="inside">
+                    <div class="col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="default_assign_user_id"/>
+                            <div class="text-muted">
+                                Default User
+                            </div>
+                            <div>
+                                <field name="user_ids" class="mt16" invisible="1"/>
+                                <field name="default_assign_user_id" class="mt16"
+                                       domain="[('id', 'in',user_ids)]"/>
+
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+

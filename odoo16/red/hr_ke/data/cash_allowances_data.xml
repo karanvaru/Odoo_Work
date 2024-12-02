@@ -1,0 +1,84 @@
+<openerp>
+    <data noupdate="1">
+	<record id="ke_cash_allowance1" model="ke.cash.allowances.type">
+	   <field name="name">Bonus</field>
+           <field name="rule_id" ref="hr_ke.ke_rule11"/>
+	</record>
+
+	<record id="ke_cash_allowance2" model="ke.cash.allowances.type">
+	   <field name="name">Commission</field>
+           <field name="rule_id" ref="hr_ke.ke_rule12"/>
+	</record>
+
+	<record id="ke_cash_allowance3" model="ke.cash.allowances.type">
+	   <field name="name">Overtime Allowances</field>
+           <field name="rule_id" ref="hr_ke.ke_rule13"/>
+	</record>
+
+	<record id="ke_cash_allowance4" model="ke.cash.allowances.type">
+	   <field name="name">Transport Allowances</field>
+           <field name="rule_id" ref="hr_ke.ke_rule14"/>
+	</record>
+
+	<record id="ke_cash_allowance5" model="ke.cash.allowances.type">
+	   <field name="name">Leave Pay</field>
+           <field name="rule_id" ref="hr_ke.ke_rule15"/>
+	</record>
+
+	<record id="ke_cash_allowance6" model="ke.cash.allowances.type">
+	   <field name="name">Directors Fee</field>
+           <field name="rule_id" ref="hr_ke.ke_rule16"/>
+	</record>
+
+	<record id="ke_cash_allowance7" model="ke.cash.allowances.type">
+	   <field name="name">House Allowances</field>
+           <field name="rule_id" ref="hr_ke.ke_rule17"/>
+	</record>
+
+	<record id="ke_cash_allowance8" model="ke.cash.allowances.type">
+	   <field name="name">Lump Sum Pay</field>
+           <field name="rule_id" ref="hr_ke.ke_rule18"/>
+	</record>
+
+	<record id="ke_cash_allowance9" model="ke.cash.allowances.type">
+	   <field name="name">Other Allowances</field>
+           <field name="rule_id" ref="hr_ke.ke_rule19"/>
+	</record>
+
+	<record id="ke_cash_allowance10" model="ke.cash.allowances.type">
+	   <field name="name">Global Income (Non Full Time Dir.)</field>
+           <field name="rule_id" ref="hr_ke.ke_rule20"/>
+	</record>
+
+	<record id="ke_cash_allowance11" model="ke.cash.allowances.type">
+	   <field name="name">Per Diem</field>
+           <field name="rule_id" ref="hr_ke.ke_rule21"/>
+	</record>
+
+	<record id="ke_cash_allowance12" model="ke.cash.allowances.type">
+	   <field name="name">FOR FUTURE USE</field>
+           <field name="rule_id" ref="hr_ke.ke_rule22"/>
+	</record>
+
+	<record id="ke_cash_allowance13" model="ke.cash.allowances.type">
+	   <field name="name">FOR FUTURE USE</field>
+           <field name="rule_id" ref="hr_ke.ke_rule23"/>
+	</record>
+
+	<record id="ke_cash_allowance14" model="ke.cash.allowances.type">
+	   <field name="name">School Fees</field>
+           <field name="rule_id" ref="hr_ke.ke_rule24"/>
+	</record>
+
+	<record id="ke_cash_allowance15" model="ke.cash.allowances.type">
+	   <field name="name">Service Pay Kenya</field>
+           <field name="rule_id" ref="hr_ke.ke_rule121"/>
+	</record>
+
+	<record id="ke_cash_allowance16" model="ke.cash.allowances.type">
+	   <field name="name">Sick Pay Kenya</field>
+           <field name="rule_id" ref="hr_ke.ke_rule122"/>
+	</record>
+
+    </data>
+</openerp>

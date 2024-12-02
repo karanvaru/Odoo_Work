@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="menu_gf_form" model="website.menu">
+        <field name="name">Global Feedback</field>
+        <field name="url">/feedback</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">50</field>
+    </record>
+
+     <template id="global_feedback" name="Global Feedback">
+
+    
+          <div style="background-color:#F6f6f6"> 
+          <t name="Global Feedback" t-name="rdp_global_feedback.global_feedback">
+
+    
+          <div style="background-color:#F6f6f6"> 
+        <t name="Global Feedback" t-name="rdp_global_feedback.global_feedback">
+
+    
+          <div style="background-color:#F6f6f6"> 
+        <t t-call="website.layout">
+            <style>
+                .form-group input, button, .form-group  textarea, .form-group  select {
+                border-radius:0 !important;
+                
+                }
+                
+                
+                    
+                
+            </style>
+            
+            
+            <div id="wrap" style="margin-bottom:50px; margin-top:60px;">
+                <div class="oe_structure">
+                    <!--<h1 style="font-weight:700; letter-spacing:-1px; padding:50px; text-align:center;"> we'd love some feedback</h1>-->
+                    
+                    <div class="container feed-back-form" style="max-width:700px; background-color:#FFF;">
+                         <div stye="text-align:center; margin:10px auto;">
+    <!--                          <img src="https://rdp.in/web/image/1711849/800_FeadBack.png" alt="Help us Improve" class="img-responsive" style="max-width:700px; height:auto; padding: 10px!important;-->
+    <!--padding-top: 25px !important;"> </img>-->
+      <img src="https://rdp.in/web/image/1751680/Help%20Us%20Improve%20Final-1.jpg" alt="Help us Improve" class="img-responsive" style="max-width:700px; height:auto; padding: 10px!important;
+    padding-top: 25px !important;"> </img>
+    
+    </div>
+                        <div style="padding:20px;"> 
+                        <form role="form" action="/service/feedback" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            
+                           <div class="row"> 
+                            <div class="col-md-6"> 
+                            <div class="form-group">
+                                <!--<label for="email" class="control-label"> Email</label>-->
+                                <input type="text" name="first_name" t-att-value="first_name" id="first_name" class="form-control" required="required" placeholder="First Name*"/>
+                            </div>
+                            </div>
+                             <div class="col-md-6"> 
+                            <div class="form-group">
+                                <!--<label for="mobile" class="control-label">Mobile</label>-->
+                                <input type="text" name="last_name" t-att-value="last_name" id="last_name" class="form-control" required="required" placeholder="Last Name*"/>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="row"> 
+                           <div class="col-md-12">
+                            <div class="form-group">
+                                <!--<label for="customer_name" class="control-label">Name</label>-->
+                                <input type="text" name="company_name" t-att-value="company_name" id="company_name" class="form-control" placeholder="Company Name*" required="required"/>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="row"> 
+                            <div class="col-md-6"> 
+                            <div class="form-group">
+                                <!--<label for="email" class="control-label"> Email</label>-->
+                                <input type="email" name="email" t-att-value="email" id="email" class="form-control" required="required" placeholder="Email*"/>
+                            </div>
+                            </div>
+                             <div class="col-md-6"> 
+                            <div class="form-group">
+                                <!--<label for="mobile" class="control-label">Mobile</label>-->
+                                <input type="text" name="mobile" t-att-value="mobile" id="mobile" class="form-control" placeholder="Mobile"/>
+                            </div>
+                            </div>
+                            </div>
+                            
+                            <!-- <div>
+                                <select name="rating_text" id="rating_text" style="display:none;">
+                                    
+                                    <option value="0" selected="1"> </option>
+                                    <option value="1">Highly dissatisfied </option>
+                                    <option value="2">Not satisfied </option>
+                                    <option value="3">Satisfied </option>
+                                    
+                                </select>
+                                <div style = "background-color:#f6f6f6; border:1px solid #CCC; padding:10px; margin-bottom:20px;"> 
+                               <div class="row"> 
+                                <div class="col-md-3" style="margin-top:8px; color:#444;"> Rating* </div>
+                                    <div class="col-md-3"> <img src="https://rdp.in/web/image/1700079/rating_10.png" style="max-width:40px; height:auto;" id="fs"/> </div>
+                                    <div class="col-md-3"> <img src="https://rdp.in/web/image/1700081/rating_5.png" style="max-width:40px; height:auto;" id= "ns"/> </div>
+                                    <div class="col-md-3"> <img src="https://rdp.in/web/image/1700083/rating_1.png" style="max-width:40px; height:auto;" id="ds"/> </div>
+                                    
+                                </div>
+                                </div>
+                                
+                            </div> -->
+                            <div class="row">
+                               <div class="col-md-12"> 
+                             <div class="form-group">
+                               
+                                        <select name="improve_area" id="improve_area" placeholder="Improvement Area" style="width:100%;border: 1px solid #CCC; background-color: #FFF;color:#555; padding: 8px;">
+                                        <option value="" selected="product_delivery" style="">Improvement Area</option>
+                                        <option value="product_delivery">Product Delivery</option>
+                                        <option value="support_delivery">Support Delivery</option>
+                                        <option value="product_quality">Product Quality</option>
+                                        <option value="sales_response">Sales Response</option>
+                                        <option value="finance">Finance</option>
+                                        <option value="others">Others</option>
+                                        </select>
+
+                             </div>
+                            </div>
+                            </div>
+                            
+                            <div class="row"> 
+                           <div class="col-md-12">
+                            <div class="form-group">
+                                <!--<label for="customer_name" class="control-label">Name</label>-->
+                                <input type="text" name="subject" t-att-value="subject" id="subject" class="form-control" placeholder="Subject*" required="required"/>
+                            </div>
+                            </div>
+                            </div>
+                            <div calss="row">
+                            <div class="form-group">
+                                 
+                                 <textarea rows="4" cols="50" name="improvement_suggested" t-att-value="improvement_suggested" id="improvement_suggested" class="form-control" required="required" placeholder="Improvements Suggested*"/>
+                                     
+                                 
+                                <!--<label for="notes" class="control-label">Description</label>-->
+                                <!--<input type="text" name="notes" t-att-value="notes" id="notes" class="form-control" required="required" placeholder="Your Feedback"/>-->
+                            </div>
+                            </div>
+
+                            <div class="clearfix oe_login_buttons">
+                                <div class="pull-left">
+                                   <t t-if="website.recaptcha_sitekey">
+                                                        <center>
+                                                            <script type="text/javascript"
+                                                                    src="https://www.google.com/recaptcha/api.js"/>
+                                                            <script>function recaptchaCallback() {
+                                                                $('#submitBtn').removeAttr('disabled');
+                                                                console.log("Checkbox checked..!") };
+                                                            </script>
+                                                            <div class="g-recaptcha"
+                                                                 t-att-data-sitekey="website.recaptcha_sitekey"
+                                                                 data-callback="recaptchaCallback"/>
+                                                            <br/>
+                                                        </center>
+                                                    </t>
+                               
+                                 <button type="submit" class="btn btn-dark pull-left">Submit</button>
+                                </div> 
+                            </div>
+                        </form>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            
+            <script>
+                
+                <!-- $( document ).ready(function() {
+                
+         /* Product Delivery*/
+                
+              $( "#pd" ).click(function() {
+              $( "#pd" ).css('border', '3px solid #333');
+              $( "#pd" ).css('border-radius', '100px');
+              $("#improve_area").val('product_delivery');
+             
+              });
+              
+        /* Support Delivery*/
+                
+              $( "#sd" ).click(function() {
+              $( "#sd" ).css('border', '3px solid #333');
+              $( "#sd" ).css('border-radius', '100px');
+              $("#improve_area").val('support_delivery');
+             
+              });
+              
+       /* Product Quality.*/
+                
+              $( "#pq" ).click(function() {
+              $( "#pq" ).css('border', '3px solid #333');
+              $( "#pq" ).css('border-radius', '100px');
+              $("#improve_area").val('product_quality');
+             
+              });
+
+        /*Sales Response*/
+                
+              $( "#sr" ).click(function() {
+              $( "#sr" ).css('border', '3px solid #333');
+              $( "#sr" ).css('border-radius', '100px');
+              $("#improve_area").val('sales_response');
+             
+              });   
+
+         /* Finance */
+                
+              $( "#fn" ).click(function() {
+              $( "#fn" ).css('border', '3px solid #333');
+              $( "#fn" ).css('border-radius', '100px');
+              $("#improve_area").val('finance');
+             
+              });
+         /* Other.*/
+                
+              $( "#ot" ).click(function() {
+              $( "#ot" ).css('border', '3px solid #333');
+              $( "#ot" ).css('border-radius', '100px');
+              $("#improve_area").val('others');
+             
+              });              
+              
+              
+              
+
+}); -->
+                
+            </script>
+        </t>
+        </div>
+    </t>
+
+        </div>
+    </t>
+
+
+        </div>
+    </template>
+
+    <record id="gf_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/gf-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">rdp_global_feedback.gf_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="rdp_global_feedback.gf_thanks">
+            <div style="background-color:#f6f6f6"> 
+            <t t-set="no_footer">1</t>
+                <t t-call="website.layout">
+                  <div id="wrap" style="">
+                    <div class="container" style="max-width:600px; background-color:#FFF;padding:20px; margin-top:10%; ">
+                        <!-- <h1>Thanks!</h1> -->
+                            
+                                <div style="text-align:center;padding:50px 20px;">
+                                  <h3>Thanks for your feedback.</h3>
+                                
+                            
+                        </div>
+                    </div>
+                  </div>
+                </t>
+             </div>
+            </t>
+        
+        </field>
+    </record>
+
+</odoo>

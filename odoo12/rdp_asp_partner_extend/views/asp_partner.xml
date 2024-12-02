@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="asp_partner_inherited_view_form" model="ir.ui.view">
+            <field name="name">asp.partner.form.inherited</field>
+            <field name="model">asp.partner</field>
+            <field name="inherit_id" ref="asp_partner.asp_partner_form_view"/>
+            <field name="arch" type="xml">
+            
+                <xpath expr="//field[@name='service_categories']" position="after">
+                    <field name="service_type_ids" widget="many2many_tags"/>
+                    <field name="tag_ids" widget="many2many_tags"/>
+                    <field name="source_ids" widget="many2many_tags"/>
+
+                </xpath>
+                 <!-- <xpath expr="//field[@name='vendor']" position="after">
+                    <field name="asp_contact_name"/>
+                </xpath> -->
+                <xpath expr="//field[@name='asc_portal_access']" position="before">
+                    <field name="state"/>
+                    <field name="country"/>
+                </xpath>
+                <xpath expr="//field[@name='asp_other_brands']" position="after">
+                    <field name="avg_turn_over"/>
+                </xpath>
+                 <xpath expr="//field[@name='street']" position="before">
+                    <field name="company_name"/>
+                </xpath>
+                <xpath expr="//field[@name='service_delivery_by']" position="after">
+                                 <!-- <field name="asc_portal_access" />
+                                <field name="rma_center" />
+                                <field name="is_active" />
+                                <field name="is_gst_registered" /> -->
+                                <field name="rma_center" />
+                                <field name="is_active" />
+                                <field name="is_gst_registered" /> 
+                                <field name ="gst_number" />
+                </xpath>
+                  <xpath expr="//field[@name='country']" position="after">
+                    <field name="city"/>
+                    <field name="zip" />
+                    <field name="year_established"/>
+                    <field name="total_people" />
+                    <field name="company_mail"/>
+                    <field name ="location_ids" widget="many2many_tags" /> 
+                   
+                    <field name ="using_crm_ids" widget="many2many_tags" /> 
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                <page string="Key People Contact Information" >
+                    <group>
+                        <group>
+                         <field name="promoter_name"/>
+                        <field name="promoter_email" />
+                        <field name="promoter_mobile"/>
+                        <field name="service_delivery_head_name"/>
+                        <field name="service_delivery_head_email" />
+                        <field name="service_delivery_head_mobile"/>
+                        </group>
+                        <group>
+                        <field name="senior_technical_person_name"/>
+                        <field name="senior_technical_person_email" />
+                        <field name="senior_technical_person_mobile"/>
+                        </group>
+                    </group>
+                </page>
+               
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

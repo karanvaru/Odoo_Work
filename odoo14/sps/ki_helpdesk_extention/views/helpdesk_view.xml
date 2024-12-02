@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="helpdesk_view_edit_form" model="ir.ui.view">
+        <field name="name">helpdesk.edit.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+                <button
+                        string="Assign to"
+                        name="%(ki_helpdesk_extention.action_user_assign)d"
+                        type="action"
+                />
+                <button
+                        string="Refill Request"
+                        name="action_refill_request"
+                        type="object"
+                        attrs="{'invisible': [('ticket_id', '!=', False)]}"
+                />
+                <button
+                        string="Comment"
+                        name="%(ki_helpdesk_extention.action_call_close_comment)d"
+                        type="action"
+                />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_refill_request" type="object"
+                        class="oe_stat_button" icon="fa-list">
+                    <span class="o_stat_text">Refill Request</span>
+                </button>
+                <button name="action_open_in_out_register" type="object"
+                        class="oe_stat_button" icon="fa-exchange">
+                    <span class="o_stat_text">In/Out Register</span>
+                </button>
+            </xpath>
+            <xpath expr="//button[@name='assign_to_me']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="product_id"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="location_id" force_save="1"/>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="asset_number" force_save="1"/>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_title')]" position="after">
+               <h2> <field name="mobile_number"/></h2>
+            </xpath>
+
+
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="assigned_date"/>
+                <field name="closed_date"/>
+                <field name="ticket_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="contract_id" force_save="1"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_email']" position="after">
+                <field name="work_phone"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_name']" position="after">
+                <field name="department" force_save="1"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="string">Customer</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="string">Assigned Engineer</attribute>
+            </xpath>
+
+
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="product_category_id" force_save="1"/>
+            </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="issue_type"/>
+            </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='other_info']" position="after">
+                <page string="Parts Add" name="parts_add_info">
+                    <field name="ticket_line_ids">
+                        <tree editable="bottom">
+                            <control>
+                                <create string="Add Parts"/>
+                            </control>
+                            <field name="product_id" domain="[('categ_id.name', '=', 'Parts')]"/>
+                            <field name="quantity"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='work_phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='issue_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='channel_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_email']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+            <!--            <xpath expr="//field[@name='category_id']" position="attributes">-->
+            <!--                <attribute name="invisible">1</attribute>-->
+            <!--            </xpath>-->
+        </field>
+    </record>
+
+    <record id="helpdesk_tree_view_edit" model="ir.ui.view">
+        <field name="name">helpdesk.edit.tree.view</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="limit">50</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="string">User Name</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_name']" position="attributes">
+                <attribute name="string">Client Name</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_inherited_form" model="ir.ui.view">
+            <field name="name">res.partner.form.inherited</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <!-- <field name="state_id" position="attributes">
+                     <attribute name="option">{'no_open':False, 'no_create': False}</attribute>
+                 </field>
+             </field> -->
+                <!-- <xpath expr="//field[@name='vat']" position="after">
+                    <field name="last_2_yr_avg_revenue_in_crores"/>
+
+                </xpath> -->
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="options">{'no_open':True, 'no_create': True}</attribute>
+                </xpath>
+            </field>
+        </record>
+        <!-- <record id="res_partner_inherited_tree" model="ir.ui.view">
+            <field name="name">res.partner.tree.inherited</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='display_name']" position="after">
+                    <field name="last_2_yr_avg_revenue_in_crores"/>
+                </xpath>
+            </field>
+        </record> -->
+
+    </data>
+</odoo>

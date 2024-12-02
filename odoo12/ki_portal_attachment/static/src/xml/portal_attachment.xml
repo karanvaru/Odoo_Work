@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="portal.chatter_composer">
+        <t t-jquery=".o_portal_chatter_composer_form" t-operation="attributes">
+            <attribute name="enctype">multipart/form-data</attribute>
+        </t>
+        <t t-jquery=".o_portal_chatter_composer_form button[type='submit']" t-operation="after">
+            <button class="mt8 o_portal_chatter_attachment_btn btn btn-secondary" type="button" title="Add attachment">
+                <i class="fa fa-paperclip"/>
+            </button>
+            <input type="file" name="portal_multi_attach_input" class="o_portal_chatter_file_input d-none" multiple="multiple"/>
+        </t>
+
+    </t>
+
+</templates>

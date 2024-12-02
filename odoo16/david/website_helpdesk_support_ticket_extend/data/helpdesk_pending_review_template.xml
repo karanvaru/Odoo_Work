@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="helpdesk_pending_review_stage_mail_template" model="mail.template">
+            <field name="name">Ticket In Pending Review</field>
+            <field name="model_id" ref="model_helpdesk_support"/>
+            <field name="email_from">{{(object.company_id.email)}}</field>
+            <field name="email_to">{{(object.user_id.email)}}</field>
+            <field name="subject">Ticket In Pending Review</field>
+            <field name="body_html" type="html">
+                <div style="line-height: 28px;">
+                    Dear
+                    <strong>
+                        <t t-out="object.user_id.name"/>
+
+
+                    </strong>
+                    ,
+                    <br/>
+                    Please review
+                    <strong>
+                        <t t-out="object.name"/>
+                    </strong>
+                    to ensure that all tasks,
+                    timesheets, resolution and notes have been added where necessary.
+                    <br/>
+                    <br/>
+                    <div>Thank you...</div>
+                    <t t-out="object.company_id.name"/>
+                </div>
+            </field>
+        </record>
+
+    </data>
+</odoo>

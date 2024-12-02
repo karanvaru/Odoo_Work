@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="0">
+        <record id="hr_p9_employee_form" model="ir.ui.view">
+            <field name="name">Employee P9 Form</field>
+            <field name="model">hr.p9.form</field>
+            <field name="arch" type="xml">
+                <form string="Employee P9">
+                    <group>
+                        <span colspan="4" nolabel="1">Generate Employee (s) Yealy P9 Form.</span>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="year" />
+                        </group>
+                        <group></group>
+                    </group>
+                    <group>
+                        <separator string="Employees" />
+                        <newline />
+                        <field name="employee_ids" nolabel="1" colspan="7" >
+                            <tree editable="bottom">
+                                <field name="name" />
+                                <field name="company_id" invisible="0" />
+                                <field name="department_id" />
+                                <field name="job_id" />
+                                <field name="tax_pin" invisible="1" />
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="generate_multi_p9_forms" string="Generate P9 Forms" type="object" class="btn-primary" />
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_p9_employee_form" model="ir.actions.act_window">
+            <field name="name">Hr P9 Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.p9.form</field>
+            <field name="view_id" ref="hr_p9_employee_form" />
+            <field name="target">new</field>
+        </record>
+
+          
+    <menuitem id="hr_employee_employee_p9" name="P9 Forms" parent="hr.menu_hr_root" sequence="9" action="action_hr_p9_employee_form" />
+
+
+
+        <!-- /////////////////////////////////////////////////////// -->
+
+        <record id="single_employee_p9" model="ir.ui.view">
+            <field name="name">Single Employee P9 Form</field>
+            <field name="model">single.p9.form</field>
+            <field name="arch" type="xml">
+                <form string="Single Employee P9">
+                    <group>
+                        <group>
+                            <field name="year" />
+                        </group>
+                        <group></group>
+                    </group>
+
+                    <footer>
+                        <button name="generate_single_p9_form" string="Generate P9 Form" type="object" class="btn-primary" />
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_single_p9_employee_form" model="ir.actions.act_window">
+            <field name="name">Single P9 Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">single.p9.form</field>
+            <field name="view_id" ref="single_employee_p9" />
+            <field name="target">new</field>
+        </record>
+
+         <record id="hr_employee_bank_details_form_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.inherit.view.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//sheet" position="before">
+                <header>
+                    <button type="action" name="%(action_single_p9_employee_form)d" string='P9 Form' class="oe_secondary" />
+                </header>
+                </xpath>
+
+      </field>
+    </record>
+
+    </data>
+</odoo>

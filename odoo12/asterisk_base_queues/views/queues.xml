@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="queue_action" model="ir.actions.act_window">
+      <field name="name">Queues</field>
+      <field name="res_model">asterisk_base_queues.queue</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="asterisk_queues_separator_menu"
+              name="Queues" parent="asterisk_common.asterisk_apps_menu"
+              sequence="120"/>
+    <menuitem action="queue_action" id="asterisk_queues_menu"
+      name="Queues" parent="asterisk_queues_separator_menu"
+      sequence="170"/>
+    <record id="queue_list" model="ir.ui.view">
+      <field name="name">asterisk_base_queues.queue.list</field>
+      <field name="model">asterisk_base_queues.queue</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="exten"/>
+          <field name="name"/>
+          <field name="server"/>
+          <field name="is_user_joined" invisible="1"/>
+          <button name="join" type="object"
+              string="Join" class="oe_read_only oe_highlight" icon="fa-chain"
+              attrs="{'invisible': [('is_user_joined', '=', True)]}"/>
+          <button name="leave" type="object" icon="fa-chain-broken"
+            string="Leave" class="oe_read_only oe_highlight"
+            attrs="{'invisible': [('is_user_joined', '=', False)]}"/>
+        </tree>
+      </field>
+    </record>
+    <record id="queue_form" model="ir.ui.view">
+      <field name="name">asterisk_base_queues.queue.form</field>
+      <field name="model">asterisk_base_queues.queue</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <field name="is_user_joined" invisible="1"/>
+            <button name="join" type="object"
+              string="Join" class="oe_read_only oe_highlight" icon="fa-chain"
+              attrs="{'invisible': [('is_user_joined', '=', True)]}"/>
+            <button name="leave" type="object" icon="fa-chain-broken"
+              string="Leave" class="oe_read_only oe_highlight"
+              attrs="{'invisible': [('is_user_joined', '=', False)]}"/>
+            <button type="object" name="check_queue_status"
+                class="oe_read_only" string="Update Status"/>
+            <button type="object" name="check_users_status"
+                    class="oe_read_only" string="Update Users"/>
+            <button name="apply" type="object" string="Apply"
+                    icon="fa-upload"  class="oe_highlight oe_read_only"/>
+            <button name="reload" type="object" string="SIP Reload"
+                            icon="fa-refresh"  class="oe_read_only"/>
+          </header>
+          <sheet>
+            <div class="oe_title" name="title">
+              <h1>
+                <label class="oe_edit_only" for="name"/>
+                <field name="name" placeholder="Enter a queue name..." required="1"/>
+              </h1>
+              <h2 class="o_row row no-gutters d-flex">
+                <div class="col">
+                  <div class="o_row">
+                    <label class="oe_edit_only" for="exten"/>
+                    <field class="oe_inline" name="exten" placeholder="Number" required="1"/>
+                    <span class="oe_grey p-2">at</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="o_row d-flex">
+                    <label class="oe_grey oe_edit_only" for="server"/>
+                    <field name="server" options="{'no_create': '1'}"/>
+                  </div>
+                </div>
+              </h2>
+            </div>
+            <notebook>
+              <page name="memberd" string="Members">
+                <group>
+                  <group string="Static">
+                    <field name="static_members" nolabel="1"
+                        context="{'default_is_static': True}"
+                        domain="[('is_static', '=', True)]">
+                      <tree editable="bottom">
+                        <field name="user"/>
+                        <field name="is_static" invisible="1"/>
+                        <field name="interface"/>
+                      </tree>
+                    </field>
+                  </group>
+                  <group string="Dynamic">
+                    <field name="dynamic_members" nolabel="1">
+                      <tree>
+                        <field name="user"/>
+                        <field name="interface"/>
+                      </tree>
+                    </field>
+                  </group>
+                </group>
+              </page>
+              <page name="option" string="Options">
+                <group>
+                  <group string="Queue Settings">
+                    <field name="strategy"/>
+                    <field name="ringinuse"/>
+                    <field name="musicclass"/>
+                    <field name="joinempty"/>
+                    <field name="leavewhenempty"/>
+                    <field name="keepstats"/>
+                    <field name="maxlen"/>
+                    <field name="servicelevel"/>
+                    <field name="reportholdtime"/>
+                    <field name="ring_timeout"/>                    
+                    <field name="announce_holdtime"/>
+                    <field name="announce_frequency"
+                      attrs="{'invisible': [('announce_holdtime', '!=', 'yes')]}"/>
+                  </group>
+                  <group string="Queue Cmd Options">
+                    <field name="timeout"/>
+                    <field name="continue_on_hangup"/>
+                    <field name="options"/>
+                    <field name="timeout_exten"/>
+                    <field name="full_exten"
+                      attrs="{'invisible': [('maxlen', '=', 0)]}"/>
+                    <field name="join_empty_exten"
+                      attrs="{'invisible': [('joinempty', '=', 'yes')]}"/>
+                    <field name="leave_empty_exten"
+                      attrs="{'invisible': [('leavewhenempty', '!=', True)]}"/>
+                    <field name="join_unavail_exten"
+                      attrs="{'invisible': [('joinempty', '=', 'yes')]}"/>
+                    <field name="leave_unavail_exten"
+                      attrs="{'invisible': [('leavewhenempty', '!=', True)]}"/>
+                    <field name="continue_exten"
+                      attrs="{'invisible': [('continue_on_hangup', '!=', True)]}"/>
+                  </group>
+                </group>
+              </page>
+              <page name="status" string="Status" class="oe_read_only"
+                attrs="{'invisible': [('write_date', '=', False)]}">
+                <group>
+                  <!--
+                  <field name="available" readonly="1"/>
+                  <field name="callers" readonly="1"/>
+                  <field name="holdtime" readonly="1"/>
+                  <field name="logged_in" readonly="1"/>
+                  <field name="longest_hold_time" readonly="1"/>
+                  <field name="talk_time" readonly="1"/>
+                  -->
+                  <group>
+                    <field name="write_date" invisible="1"/>
+                    <field name="abandoned" readonly="1"/>
+                    <field name="calls" readonly="1"/>
+                    <field name="completed" readonly="1"/>
+                    <field name="holdtime" readonly="1"/>
+                    <field name="max_call" readonly="1"/>
+                    <field name="talk_time" readonly="1"/>
+                  </group>
+                  <group>
+                    <field name="service_level" readonly="1"/>
+                    <field name="service_level_perf" readonly="1"/>
+                    <field name="service_level_perf2" readonly="1"/>
+                    <field name="weight" readonly="1"/>
+                  </group>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="queue_search" model="ir.ui.view">
+      <field name="name">asterisk_base_queues.queue.search</field>
+      <field name="model">asterisk_base_queues.queue</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="exten"/>
+        </search>
+      </field>
+    </record>
+  </data>
+</odoo>

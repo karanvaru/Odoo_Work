@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <record id="mobile_service_report" model="ir.actions.report">
+            <field name="name">Mobile Service PDF Report</field>
+            <field name="model">mobile.service.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">mobile_service_shop_pro.service_template</field>
+            <field name="report_file">mobile_service_shop_pro.service_template</field>
+    </record>
+
+
+    <record id="parts_usage_report" model="ir.actions.report">
+            <field name="name">Parts Usage PDF Reportt</field>
+            <field name="model">mobile.parts.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">mobile_service_shop_pro.parts_template</field>
+            <field name="report_file">mobile_service_shop_pro.parts_template</field>
+    </record>
+
+
+
+    <record id="complaint_type_report" model="ir.actions.report">
+            <field name="name">complaint Type PDF Report</field>
+            <field name="model">complaint.type.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">mobile_service_shop_pro.complaint_template</field>
+            <field name="report_file">mobile_service_shop_pro.complaint_template</field>
+    </record>
+
+
+</odoo>

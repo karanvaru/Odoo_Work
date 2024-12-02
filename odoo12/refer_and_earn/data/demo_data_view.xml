@@ -1,0 +1,154 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+	<data >
+
+
+      <!-- res_partner -->
+      <record id="refer_and_earn_res_partner_1" model="res.partner">
+            <field name="name">Demo</field>
+            <field name="supplier">1</field>
+            <field eval="0" name="customer"/>
+            <field name="is_company">1</field>
+            <field name="city">DemoCity</field>
+            <field name="zip">106</field>
+            <field name="country_id" ref="base.tw"/>
+            <field name="street">31 Demo city  street</field>
+            <field name="email">Demo@example.com</field>
+            <field name="phone">(+886) (02) 4162 2023</field>
+            <field name="website">http://www.DemoUser.com</field>
+            <field name="referral_code">QWER123498</field>
+            <field name="customer">True</field>
+            <field name="supplier">False</field>
+      </record>
+
+            <record model="res.users" id="refer_and_earn_user_1" context="{'no_reset_password': True}">
+                  <field name="login">Demo@example.com</field>
+                  <field name="password">webkul</field>
+                  <field name="partner_id" ref="refer_and_earn.refer_and_earn_res_partner_1"/>
+            </record>
+
+
+      <record id="refer_and_earn_res_partner_2" model="res.partner">
+            <field name="name">Demo1</field>
+            <field name="supplier">1</field>
+            <field eval="0" name="customer"/>
+            <field name="is_company">12</field>
+            <field name="city">DemoCity2</field>
+            <field name="zip">1063</field>
+            <field name="country_id" ref="base.tw"/>
+            <field name="street">31 Demo1 city1  street1</field>
+            <field name="email">Demo1@example.com</field>
+            <field name="phone">(+886) (02) 4990 2023</field>
+            <field name="website">http://www.DemoUser1.com</field>
+            <field name="referral_code">QWER567498</field>
+            <field name="parent_user_id" ref="refer_and_earn.refer_and_earn_user_1"/>
+            <field name="customer">True</field>
+            <field name="supplier">False</field>
+      </record>
+
+
+
+             <record model="res.users" id="refer_and_earn_user_2" context="{'no_reset_password': True}">
+                  <field name="login">Demo1@example.com</field>
+                  <field name="password">webkul</field>
+                  <field name="partner_id" ref="refer_and_earn.refer_and_earn_res_partner_2"/>
+            </record>
+
+
+            <record model="transaction.history" id="refer_and_earn_transaction_2" >
+                  <field name="user_id" ref="refer_and_earn.refer_and_earn_user_2"/>
+                  <field name="partner_id" ref="refer_and_earn.refer_and_earn_res_partner_2"/>
+                  <field name="points">100.00</field>
+                  <field name="reason">Reffered bonus</field>
+                  <field name="state">approve</field>
+                  <field name="point_type">c</field>
+                  <field name="commission_type">child</field>
+                  <field name="parent_id" ref="refer_and_earn.refer_and_earn_user_1"/>
+                  <field name="total_amount">100.00</field>
+            </record>
+
+
+
+            <record model="transaction.history" id="refer_and_earn_transaction_debit_2" >
+                  <field name="user_id" ref="refer_and_earn.refer_and_earn_user_2"/>
+                  <field name="partner_id" ref="refer_and_earn.refer_and_earn_res_partner_2"/>
+                  <field name="points">50</field>
+                  <field name="reason">You used earned points SO001</field>
+                  <field name="state">approve</field>
+                  <field name="point_type">d</field>
+                  <field name="total_amount">50</field>
+            </record>
+
+
+
+            <record model="transaction.history" id="refer_and_earn_transaction_1" >
+                  <field name="user_id" ref="refer_and_earn.refer_and_earn_user_1"/>
+                  <field name="partner_id" ref="refer_and_earn.refer_and_earn_res_partner_1"/>
+                  <field name="points">100.00</field>
+                  <field name="reason">Refferer bonus</field>
+                  <field name="state">approve</field>
+                  <field name="point_type">c</field>
+                  <field name="commission_type">child</field>
+                  <field name="child_id" ref="refer_and_earn.refer_and_earn_user_2"/>
+                  <field name="total_amount">100.00</field>
+            </record>
+
+          <record model="transaction.history" id="refer_and_earn_transaction_3" >
+                  <field name="user_id" ref="refer_and_earn.refer_and_earn_user_1"/>
+                  <field name="partner_id" ref="refer_and_earn.refer_and_earn_res_partner_1"/>
+                  <field name="points">100.00</field>
+                  <field name="reason">Refferer bonus</field>
+                  <field name="state">draft</field>
+                  <field name="point_type">c</field>
+                  <field name="commission_type">child</field>
+                  <field name="child_id" ref="refer_and_earn.refer_and_earn_user_2"/>
+                  <field name="total_amount">100.00</field>
+            </record>
+
+           <record model="transaction.history" id="refer_and_earn_transaction_4" >
+                  <field name="user_id" ref="refer_and_earn.refer_and_earn_user_2"/>
+                  <field name="partner_id" ref="refer_and_earn.refer_and_earn_res_partner_2"/>
+                  <field name="points">100.00</field>
+                  <field name="reason">Reffered bonus</field>
+                  <field name="state">draft</field>
+                  <field name="point_type">c</field>
+                  <field name="commission_type">child</field>
+                  <field name="parent_id" ref="refer_and_earn.refer_and_earn_user_1"/>
+                  <field name="total_amount">100.00</field>
+            </record>
+
+
+
+            <record model="transaction.history" id="refer_and_earn_transaction_debit_1" >
+                  <field name="user_id" ref="refer_and_earn.refer_and_earn_user_1"/>
+                  <field name="partner_id" ref="refer_and_earn.refer_and_earn_res_partner_1"/>
+                  <field name="points">50</field>
+                  <field name="reason">You used earned points SO002</field>
+                  <field name="state">approve</field>
+                  <field name="point_type">d</field>
+                  <field name="total_amount">50</field>
+            </record>
+
+            <function
+                  id="how_it_works_content_refer_earn"
+                  model="res.config.settings"
+                  name="demodata_set"/>
+
+            <function id="referral_points_content_refer_earn"
+                    model="ir.default" name="set"
+                        eval="('res.config.settings', 'referral_points', 0)"/>
+            <function id="refered_points_content_refer_earn"
+                    model="ir.default" name="set"
+                        eval="('res.config.settings', 'refered_points', 50)"/>
+            <function id="equivalent_amount_content_refer_earn"
+                    model="ir.default" name="set"
+                        eval="('res.config.settings', 'equivalent_amount', 1)"/>
+
+            <function id="allow_external_user_signup"
+                    model="ir.config_parameter" name="set_param"
+                        eval="('auth_signup.allow_uninvited', True)"/>
+
+</data>
+</odoo>

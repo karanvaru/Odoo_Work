@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_report_automation_config_form" model="ir.ui.view">
+            <field name="name">report.automation.config.form.view</field>
+            <field name="model">report.automation.config</field>
+            <field name="arch" type="xml">
+                <form string="Report Config">
+                    <sheet>
+                        <div class="oe_title" attrs="{'invisible': [('name', '=', False)]}">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="action_id"/>
+                                <label for="interval_number" string="Execute Every"/>
+                                <div>
+                                    <field name="interval_number" class="oe_inline"/>
+                                    <field name="interval_type" class="oe_inline"/>
+                                </div>
+                                <field name="nextcall"/>
+                                <field name="period_days"/>
+                            </group>
+                            <group>
+                                <field name="email_template_id"/>
+                                <field name="email_to"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_report_automation_config_tree" model="ir.ui.view">
+            <field name="name">report.automation.config.tree.view</field>
+            <field name="model">report.automation.config</field>
+            <field name="arch" type="xml">
+                <tree string="Report Config">
+                    <field name="name"/>
+                    <field name="action_id"/>
+                    <field name="email_template_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_report_automation_config" model="ir.actions.act_window">
+            <field name="name">Report Configuration</field>
+            <field name="res_model">report.automation.config</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a new report config.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_report_automation_config"
+                  name="Report Automation"
+                  parent="base.menu_administration"
+                  sequence="3"
+                  action="action_report_automation_config"/>
+
+    </data>
+</odoo>

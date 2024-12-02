@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='crm']" position="inside">
+                <h2>CRM Duplicates</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-xs-12 col-md-6 o_setting_box" groups='base.group_multi_company'>
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="company_duplicate_id"/>
+                            <div class="text-muted">
+                                <field name='company_duplicate_id'/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box" groups='base.group_multi_company'/>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="duplicate_fields_partner_soft"/>
+                            <div class="text-muted">
+                                Select criteria, how to search partner duplicates.
+                                Odoo would show such duplicates on a special button, but would allow to save such object!
+                            </div>
+                            <div class="text-muted">
+                                <field name='duplicate_fields_partner_soft'
+                                       widget="many2many_tags"
+                                       options="{'no_quick_create': True, 'no_create': True, 'no_edit': True}"
+                                />
+                            </div>
+                            <label for="duplicate_fields_partner"/>
+                            <div class="text-muted">
+                                Select criteria, how to search partner duplicates.
+                                Odoo would not allow to save a duplicate in comparison the soft fields.
+                            </div>
+                            <div class="text-muted">
+                                <field name='duplicate_fields_partner'
+                                       widget="many2many_tags"
+                                       options="{'no_quick_create': True, 'no_create': True, 'no_edit': True}"
+                                />
+                            </div>
+                            <label for="search_duplicates_for_companies_only"/>
+                            <div class="text-muted">
+                                If checked duplicates would be searched only <strong>for</strong> and <strong>among
+                                </strong> partners without parent. In such a way all contacts would be excluded
+                            </div>
+                            <div class="text-muted">
+                                <field name='search_duplicates_for_companies_only'/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="duplicate_fields_lead_soft"/>
+                            <div class="text-muted">
+                               Select criteria, how to search opportunities duplicates.
+                               Odoo would show such duplicates on a special button, but would allow to save such object!
+                            </div>
+                            <div class="text-muted">
+                                <field name='duplicate_fields_lead_soft'
+                                       widget="many2many_tags"
+                                       options="{'no_quick_create': True, 'no_create': True, 'no_edit': True}"
+                                />
+                            </div>
+                            <label for="duplicate_fields_lead"/>
+                            <div class="text-muted">
+                                Select criteria, how to search opportunities duplicates.
+                                Odoo would not allow to save a duplicate in comparison the soft fields.
+                            </div>
+                            <div class="text-muted">
+                                <field name='duplicate_fields_lead'
+                                       widget="many2many_tags"
+                                       options="{'no_quick_create': True, 'no_create': True, 'no_edit': True}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

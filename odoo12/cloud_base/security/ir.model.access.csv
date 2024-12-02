@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sync_model,access_sync_model,model_sync_model,base.group_user,1,0,0,0
+access_sync_model_admin,access_sync_model_admin,model_sync_model,base.group_erp_manager,1,1,1,1
+access_sync_object,access_sync_object,model_sync_object,base.group_user,1,0,0,0
+access_sync_object_admin,access_sync_object_admin,model_sync_object,base.group_erp_manager,1,1,1,1
+access_sync_log,access_sync_log,model_sync_log,base.group_user,base.group_erp_manager,1,1,1,1

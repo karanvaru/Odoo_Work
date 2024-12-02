@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+	<data>
+        <record id="gst_port_tree" model="ir.ui.view">
+            <field name="name">port.code.tree</field>
+            <field name="model">port.code</field>
+            <field name="arch" type="xml">
+                <tree string="Port Code">
+                    <field name="name" required="1" groups="gst_invoice.group_gst_admin,gst_invoice.group_gst_user"/>
+                    <field name="location_desc" required="1" groups="gst_invoice.group_gst_admin,gst_invoice.group_gst_user"/>
+                    <field name="country_code" required="1" groups="gst_invoice.group_gst_admin,gst_invoice.group_gst_user"/>
+                    <field name="state" required="1" groups="gst_invoice.group_gst_admin,gst_invoice.group_gst_user"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

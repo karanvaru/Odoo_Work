@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+property_one_user,property.one,model_property_one,,1,1,1,0
+product_name_user,product.name,model_product_name,,1,1,1,0
+property_model_user,property.model,model_property_model,,1,1,1,0
+property_brand_user,property.brand,model_property_brand,,1,1,1,0
+property_category_user,property.category,model_property_category,,1,1,1,0
+property_sub_category_user,property.sub.category,model_property_sub_category,,1,1,1,0
+property_tags_user,property.tags,model_property_tags,,1,1,1,0
+property_location_user,property.location,model_property_location,,1,1,1,0
+property_amc_state_user,property.amc.state,model_property_amc_state,,1,1,1,0
+property_fm_location,fm.location,model_fm_location,,1,1,1,0
+

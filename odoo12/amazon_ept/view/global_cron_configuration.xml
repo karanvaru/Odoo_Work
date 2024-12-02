@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--This is a common view for cron configuration wizard -->
+        <record id="amazon_global_cron_configuration_ept_form_view"
+                model="ir.ui.view">
+            <field name="name">global.cron.configuration</field>
+            <field name="model">global.cron.configuration</field>
+            <field name="priority">11</field>
+            <field name="arch" type="xml">
+                <form string="Manual Queue Process">
+                    <field name="amz_seller_id" invisible="1"/>
+                    <field name="amazon_selling" invisible="1"/>
+                    <div name="payment_report" attrs="{'invisible': [('amz_seller_id', '=', False)]}">
+                        <h2>Payment Report</h2>
+                        <div name="payment_settlement">
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-xs-12 col-md-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name="amz_settlement_report_auto_create"
+                                               help="If Ticked, System will import settlement report from amazon."/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <label for="amz_settlement_report_auto_create"
+                                               string="Request Settlement Report ?"/>
+                                        <div class="text-muted">
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <field name="amz_settlement_report_create_interval_number"
+                                               attrs="{'required': [('amz_settlement_report_auto_create', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_settlement_report_auto_create', '=', False)]}"
+                                               class="oe_inline"/>
+                                        <field name="amz_settlement_report_create_interval_type"
+                                               attrs="{'required': [('amz_settlement_report_auto_create', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_settlement_report_auto_create', '=', False)]}"
+                                               class="oe_inline"/>
+                                        <field name="amz_settlement_report_create_next_execution"
+                                               attrs="{'required': [('amz_settlement_report_auto_create', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_settlement_report_auto_create', '=', False)]}"
+                                               class="oe_inline"/>
+                                        <field name="amz_settlement_report_create_user_id"
+                                               attrs="{'required': [('amz_settlement_report_auto_create', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_settlement_report_auto_create', '=', False)]}"
+                                               class="oe_inline"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name="amz_settlement_report_auto_process"
+                                               help="If Ticked, System will process settlement report from amazon."/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <label for="amz_settlement_report_auto_process"
+                                               string="Download and Process Settlement Report ?"/>
+                                        <div class="text-muted">
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <field name="amz_settlement_report_process_interval_number"
+                                               attrs="{'required': [('amz_settlement_report_auto_process', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_settlement_report_auto_process', '=', False)]}"
+                                               class="oe_inline"/>
+                                        <field name="amz_settlement_report_process_interval_type"
+                                               attrs="{'required': [('amz_settlement_report_auto_process', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_settlement_report_auto_process', '=', False)]}"
+                                               class="oe_inline"/>
+                                        <field name="amz_settlement_report_process_next_execution"
+                                               attrs="{'required': [('amz_settlement_report_auto_process', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_settlement_report_auto_process', '=', False)]}"
+                                               class="oe_inline"/>
+                                        <field name="amz_settlement_report_process_user_id"
+                                               attrs="{'required': [('amz_settlement_report_auto_process', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_settlement_report_auto_process', '=', False)]}"
+                                               class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div name="send_invoice">
+                        <h2>Send Invoice / Credit Notes</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="amz_auto_send_invoice"
+                                           help="If Ticked, System will send invoice by email."/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="amz_auto_send_invoice"/>
+                                    <div class="text-muted">
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <field name="amz_auto_send_invoice_interval_number"
+                                           attrs="{'required': [('amz_auto_send_invoice', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_auto_send_invoice', '=', False)]}"
+                                           class="oe_inline"/>
+                                    <field name="amz_auto_send_invoice_process_interval_type"
+                                           attrs="{'required': [('amz_auto_send_invoice', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_auto_send_invoice', '=', False)]}"
+                                           class="oe_inline"/>
+                                    <field name="amz_auto_send_invoice_next_execution"
+                                           attrs="{'required': [('amz_auto_send_invoice', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_auto_send_invoice', '=', False)]}"
+                                           class="oe_inline"/>
+                                    <field name="amz_auto_send_invoice_user_id"
+                                           attrs="{'required': [('amz_auto_send_invoice', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_auto_send_invoice', '=', False)]}"
+                                           class="oe_inline"/>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="amz_auto_send_refund"
+                                           help="If Ticked, System will send invoice by email."/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="amz_auto_send_refund"/>
+                                    <div class="text-muted">
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <field name="amz_auto_send_refund_interval_number"
+                                           attrs="{'required': [('amz_auto_send_refund', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_auto_send_refund', '=', False)]}"
+                                           class="oe_inline"/>
+                                    <field name="amz_auto_send_refund_process_interval_type"
+                                           attrs="{'required': [('amz_auto_send_refund', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_auto_send_refund', '=', False)]}"
+                                           class="oe_inline"/>
+                                    <field name="amz_auto_send_refund_next_execution"
+                                           attrs="{'required': [('amz_auto_send_refund', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_auto_send_refund', '=', False)]}"
+                                           class="oe_inline"/>
+                                    <field name="amz_auto_send_refund_user_id"
+                                           attrs="{'required': [('amz_auto_send_refund', '=', True),('amz_seller_id','!=',False)],'invisible': [('amz_auto_send_refund', '=', False)]}"
+                                           class="oe_inline"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <footer>
+                        <button string="Save Cron Configuration"
+                                class="oe_highlight" type="object" name="save_cron_configuration"/>
+                        <button string="Cancel" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_global_cron_configuration_ept" model="ir.actions.act_window">
+            <field name="name">Global Scheduled Actions Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">global.cron.configuration</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

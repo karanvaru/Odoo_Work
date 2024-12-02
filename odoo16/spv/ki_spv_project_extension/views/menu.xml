@@ -1,0 +1,9 @@
+<odoo>
+
+    <menuitem name="Dealers"
+              parent="project.menu_main_pm"
+              id="menu_dealer"
+              action="ki_spv_project_extension.action_dealers_view"
+    />
+
+</odoo>

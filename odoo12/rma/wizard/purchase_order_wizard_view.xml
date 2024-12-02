@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+	<data>
+		<record id="rma_purchase_order_wizard_id" model="ir.ui.view">
+			<field name="name">rma.purchase.order.wizard.form</field>
+			<field name="model">purchase.order.wizard</field>
+			<field name="arch" type="xml">
+				<form string="" version="7.0">
+					<group col="4">
+						<field name="partner_id"/>
+						<field name="company_id" options="{'no_create': True}"/>
+						<field name="product_id"/>
+						<field name="picking_type_id"   domain="[('code','=','incoming')]" options="{'no_create': True}" context="{'special_shortened_wh_name': True}" />
+						<field name="pricelist_id"/>
+						<field name="location_id"/>
+						<field name="product_qty"/>
+					</group>
+				<footer>
+					<button name="apply_and_view" string="Create and View PO" type="object" class="oe_highlight"/>
+					<button name="apply" string="Create" type="object" class="oe_highlight"/>
+					<button string="Cancel" class="oe_link" special="cancel" />
+				</footer>
+			</form>
+		</field>
+		</record>
+
+         <record id="action_rma_purchase_order_wizard_id" model="ir.actions.act_window">
+            <field name="name">Purchase Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="rma_purchase_order_wizard_id"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

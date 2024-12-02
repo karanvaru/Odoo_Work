@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="group_enable_assigned_bid" model="res.groups">
+            <field name="name">Subscription Users</field>
+        </record>
+    </data>
+</odoo>

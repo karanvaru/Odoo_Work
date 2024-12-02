@@ -1,0 +1,38 @@
+refer_and_earn
+=> [version:1.0.0]  Date : 21-9-2017
+*[IMPROVEMENT]
+
+*[FIX]
+    -
+*[ADD]
+    -first commit
+*[change]
+  -convert refer and earn v1.0.6 from odoo v10.0 to v11.0
+*[remove]
+
+--------------------------------------------------------------------------------------
+
+refer_and_earn
+=> [version:1.0.1]  Date : 25-9-2017
+*[IMPROVEMENT]
+
+*[FIX]
+    -
+*[ADD]
+    - add configure email template in config settings
+*[change]
+    -version from 1.00 to 1.01 in manifest
+*[remove]
+
+-----------------------------------------------------------------------------------------
+refer_and_earn
+=> [version:1.0.2]  Date : 25-9-2017
+*[IMPROVEMENT]
+
+*[FIX]
+    -remove shade from the refer_and_earn homepage_imagein features
+*[ADD]
+    -
+*[change]
+    -version from 1.0.1 to 1.0.2 in manifest
+*[remove]

@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="marketing_app_closing_update_email_template" model="mail.template">
+            <field name="name">Marketing Ticket Closing</field>
+            <field name="model_id" ref="rdp_marketing_app.model_marketing_app"/>
+            <field name="auto_delete">1</field>
+<!--             <field name="email_from">${object.assigned_to.email_formatted |safe}</field>-->
+            <field name="email_to">${object.assigned_by.email}</field>
+            <field name="subject">${object.name} Marketing Ticket Closing Update</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>Dear ${object.assigned_by.name}</p><br/>
+                    <p>Your Marketing Ticket - <b>${object.name}</b> is ready and live now.</p>
+                    <p>To Do - <b>${object.to_do}</b></p>
+                    <p>Please check and Close the Ticket.</p>
+                         <br /><br />
+                         Thank you!!!
+                </div>
+            </field>
+        </record>
+    </data>
+
+</odoo>

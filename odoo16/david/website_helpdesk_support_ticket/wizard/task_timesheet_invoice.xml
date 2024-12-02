@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <!-- Create Invoice On Task Timesheets -->
+           <record model="ir.ui.view" id="helpdesk_task_timesheet_invoice_wizard_view">
+               <field name="name">task.timesheet.invoice</field>
+               <field name="model">task.timesheet.invoice</field>
+               <field name="arch" type="xml">
+                   <form string="Task Timsheet Invoice">
+                          <h4>
+                              This wizard will create customer invoice for selected timesheet lines...
+                          </h4>
+                           <footer>
+                               <button groups="project.group_project_manager" context="{'open_invoices': True}" string="Create Invoice" type="object" name="create_timesheet_invoice" class="btn-primary"/>
+                               <button string="Cancel" class="btn-default" special="cancel"/>
+                           </footer>
+                    </form>
+               </field>
+           </record>
+
+       <!-- wizard action on account.analytic.line -->
+<!--        <act_window id="helpdesk_task_timsheet_wizard_action"-->
+<!--            name="Make Invoice"-->
+<!--            src_model="account.analytic.line"-->
+<!--            res_model="task.timesheet.invoice"-->
+<!--            view_type="form" view_mode="form"-->
+<!--            key2="client_action_multi" target="new"-->
+<!--            groups="project.group_project_manager"-->
+<!--            />odoo13-->
+            
+        <record model="ir.actions.act_window" id="helpdesk_task_timsheet_wizard_action">
+            <field name="name">Make Invoice</field>
+            <field name="res_model">task.timesheet.invoice</field>
+            <field name="binding_model_id" ref="account.model_account_analytic_line"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="helpdesk_task_timesheet_invoice_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

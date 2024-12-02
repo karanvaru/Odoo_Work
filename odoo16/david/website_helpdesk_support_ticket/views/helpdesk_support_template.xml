@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        
+        <template id="website_helpdesk_support_ticket" name="Helpdesk Support Ticket Generate"
+            customize_show="True">
+            <t t-call="website.layout">
+                <form action="/website_helpdesk_support_ticket/ticket_submitted" method="post" class="form-horizontal oe_helpdesk_ticket
+                    mt32" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <group>
+                        <div>
+                            <div class="container mb64">
+                                <div id="maindiv" class="col-md-9">
+                                    <div class="o_hidden form-group">
+                                        <label class="col-md-3 col-sm-4 control-label" for="team_id">Team</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" class="form-control" name="team_id" 
+                                                t-att-value="team and team.id or ''"/>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Customer</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" class="form-control" name="customer_id" required="True" t-attf-value="#{user_id.sudo().partner_id.name}"/>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Email</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" class="form-control" name="email" required="True" t-attf-value="#{user_id.partner_id.email}"/>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Phone</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" class="form-control" name="phone" required="True" t-attf-value="#{user_id.partner_id.phone}"/>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Category</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <select class="form-control" name="category">
+                                                <option value="technical" selected="selected">Technical</option>
+                                                <option value="functional">Functional</option>
+                                                <option value="support">Support</option>
+                                           
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Subject</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" class="form-control" name="subject" required="True" t-attf-value="#{subject
+                                                or ''}"/>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Description</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <textarea class="form-control" cols="60" name="description" required="True" rows="6"></textarea>
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                                        <label class="col-md-3 col-sm-4 control-label" for="name">Priority</label>
+                                        <div class="col-md-7 col-sm-8">
+                                            <select class="form-control" name="priority">
+                                                <option value="0" selected="selected">Low</option>
+                                                <option value="1">Normal</option>
+                                                <option value="2">High</option>
+                                            </select>
+                                            
+                                        </div>
+                                    </div>
+                                    <div t-attf-class="form-group form-field o_website_form_custom_attchments">
+<!--                                        <div class="col-md-3 col-sm-4 text-right"> odoo13-->
+                                        <div class="col-md-3 col-sm-4">
+                                            <label class="control-label" for="Attachments" >Attach Files</label>
+                                        </div>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="file" class="form-control o_website_form_input" name="attachment" multiple='multiple'/>
+                                            <label style="color:grey; font-size:12px;" >Multiple files can be attach</label>
+                                            
+                                        </div>
+<!--                                        <div> odoo13-->
+<!--                                            <label style="color:grey; font-size:12px;" >Multiple files can be attach</label>-->
+<!--                                        </div>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                                            <button class="btn btn-success">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </group>
+                </form>
+            </t>
+        </template>
+        
+        <!-- <template id="thanks_mail_send" name="Thanks">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure"/>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8" style="margin-top: 50px;">
+                                <div class="alert alert-success">
+                                    <h3>We have received your support ticket request.</h3>
+                                    <h5>
+                                        Your ticket number is
+                                        <t t-esc="support.name"/>
+                                        please note it for further communication and you will also receive email from our
+                                        support team shortly, Please reply to that email for feature conversation.
+                                        <br/>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="container">
+                                <t t-set="ticket_access_token" t-value="support.get_portal_url()"/>
+                                <a t-attf-href="/my/ticket/#{support.id}?{{ keep_query(access_token=support.access_token) }}" class="btn btn-primary pull-right mb32"><span class="hidden-xs">View Ticket</span></a>
+                            </p>
+                        </div>
+                    </div>
+            </t>
+        </template> -->
+
+        <!--                                <a t-attf-href="/my/ticket/#{support.id}?{{ keep_query() }}" class="btn btn-primary pull-right mb32"><span class="hidden-xs">View Ticket</span></a> odoo13-->
+
+        <template id="thanks_mail_send" name="Thanks">
+            <t t-call="website.layout">
+              <div id="wrap">
+                <div class="oe_structure" id="oe_structure_website_form_contact_us_thanks_1"/>
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col-lg-7 col-xl-6 mr-lg-auto oe_structure">
+                            <section class="pt40 s_text_block pb40 o_colored_level o_cc o_cc1" data-snippet="s_text_block" data-name="Text">
+                                <div class="container">
+                                    <span class="d-block fa fa-4x fa-thumbs-up mx-auto rounded-circle bg-primary"/><br/>
+                                    <h1 class="text-center">Thank You!</h1>
+                                    <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                                        <hr class="mx-auto border-top w-50 border-dark text-center"/>
+                                    </div>
+                                    <h5 class="text-center">
+                                        <span class="fa fa-check-circle"/>
+                                        <span>We have received your support ticket request.</span>
+                                    </h5>
+                                    <p class="text-center">Your ticket number is
+                                        <t t-esc="support.name"/>.
+                                        Please note it for further communication. You will also receive an email from our support team shortly. 
+                                        Please reply to that email for any further conversation..</p>
+
+                                    <p class="text-center">
+                                        <t t-set="ticket_access_token" t-value="support.get_portal_url()"/>
+                                        <a t-attf-href="/my/ticket/#{support.id}?{{ keep_query(access_token=support.access_token) }}" class="btn btn-primary mb32"><span class="hidden-xs">View Ticket</span></a>
+                                    </p>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- <div class="col-lg-4">
+                            <t t-call="website.company_description"/>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="oe_structure" id="oe_structure_website_form_contact_us_thanks_2"/>
+              </div>
+                <!-- <div class="row">
+                    <div class="col-md-8">
+                        <p class="container">
+                            <t t-set="ticket_access_token" t-value="support.get_portal_url()"/>
+                            <a t-attf-href="/my/ticket/#{support.id}?{{ keep_query(access_token=support.access_token) }}" class="btn btn-primary pull-right mb32"><span class="hidden-xs">View Ticket</span></a>
+                        </p>
+                    </div>
+                </div> -->
+            </t>
+        </template>
+
+        <template id="support_invalid" name="Support Invalid">
+            <t t-call="website.layout">
+               <div class="oe_structure"/>
+                   <div class="container">
+                       <div class="row">
+                           <div class="alert alert-warning text-left" role="alert" style="margin-top: 50px;">
+                                <h5 class="alert-heading">
+                                   Hello,<br/><br/>
+                                   You can not create tickets from here since you have entered the wrong Email ID. We ask that you recheck...<br/><br/>
+                                   Please contact us by email if you have any questions.<br/><br/>
+                                   Thanks.
+                                   <br/><br/>
+                                   Best regards,<br/><br/>
+                                   The PSI Helpdesk Team
+                                </h5>
+                        </div>
+                    </div>
+                </div>
+           </t>
+        </template>
+
+
+        <!-- <template id="support_invalid" name="Support Invalid">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure"/>
+                    <div class="container">
+                        <h1>Sorry!</h1>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                                    <h2>
+                                        You have entered wrong Email ID, we request you to recheck.
+                                        <br/>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template> -->
+        
+ <template id="website_search_ticket" name="Search Ticket" customize_show="True">
+        <t t-call="website.layout">
+        <div class="oe_structure"/>
+           <div class="container">
+               <div class="row">
+        <form action="/website_support_ticket/search_user_ticket" method="post" class="form-horizontal mt32" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <group>
+                <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                    <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h4 align="justify">Ticket Status</h4>
+                                    <p align="justify">Check status of previously opened tickets. we<br/>
+                                                       provide archives and history of all support<br/>
+                                                       your requests compete with responses.</p>
+                                <label class="col-md-5 col-sm-5">Ticket Number</label>
+                                <div class="col-md-7 col-sm-7">
+                                    <input type="text" class="form-control" name="ticket_no" placeholder="e.g TICK-00001" required="True" t-attf-value="#{name or ''}"/>
+                                    <br/><button class="btn btn-success">Check Status</button>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="/website_helpdesk_support_ticket/static/description/4.jpg" alt="show ticket" class="img-circle" />
+                            </div>
+                           </div>
+                    </div>
+                </div>
+            </group>
+        </form>
+    </div></div>
+        </t>
+   </template>
+   
+    <!-- <template id="ticket_invalid" name="Ticket Invalid">
+        <t t-call="website.layout">
+            <div id="wrap">
+            <div class="oe_structure"/>
+            <div class="container">
+                <h1>Error!</h1>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="alert alert-danger">
+                             <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                             <h2>You have entered wrong ticket number.<br/></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="oe_structure"/>
+            </div>
+        </t>
+    </template> -->
+
+        <template id="ticket_invalid" name="Ticket Invalid">
+            <t t-call="website.layout">
+               <div class="oe_structure"/>
+                   <div class="container">
+                       <div class="row">
+                           <div class="alert alert-warning text-left" role="alert" style="margin-top: 50px;">
+                                <h5 class="alert-heading">
+                                   Hello,<br/><br/>
+                                   You have entered the wrong ticket number. Kindly enter the correct ticket number or contact us by email or phone.<br/><br/>
+                                   Thank you for your understanding.
+                                   <br/><br/>
+                                   Best regards,<br/><br/>
+                                   Helpdesk Team
+                                </h5>
+                        </div>
+                    </div>
+                </div>
+           </t>
+        </template>
+        
+<!--        <record id="support_page" model="website.menu">-->
+<!--            <field name="name">Helpdesk</field>-->
+<!--            <field name="parent_id" ref="website.main_menu"/>-->
+<!--            <field name="url">/page/helpdesk_support_ticket</field>-->
+<!--            <field name="sequence" type="int">59</field>-->
+<!--        </record>-->
+        
+        <record id="ticket_page" model="website.page">
+            <field name="url">/helpdesk_support_ticket</field>
+            <field name="website_published">True</field>
+            <field name="view_id" ref="website_helpdesk_support_ticket" />
+        </record>
+        
+         <record id="support_page_add" model="website.menu">
+            <field name="name">Create Ticket</field>
+            <field name="url">/helpdesk_support_ticket</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="page_id" ref="ticket_page" />
+            <field name="sequence" type="int">59</field>
+        </record>
+        
+        <record id="support_page_show_tickets" model="website.menu">
+            <field name="name">Show Tickets</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="url">/my/tickets</field>
+            <field name="sequence" type="int">59</field>
+        </record>
+        
+<!--        <record id="support_page_show_tickets" model="website.menu">-->
+<!--            <field name="name">Show Tickets</field>-->
+<!--            <field name="url">/my/tickets</field>-->
+<!--            <field name="parent_id" ref="website.main_menu"/>-->
+<!--            <field name="sequence" type="int">1</field>-->
+<!--            <field name="website_id" ref="website.default_website"/>-->
+<!--        </record>-->
+
+        <record id="support_page_search_view" model="website.page">
+            <field name="url">/website_search_ticket</field>
+            <field name="website_published">True</field>
+            <field name="view_id" ref="website_search_ticket" />
+        </record>
+
+        <record id="support_page_search" model="website.menu">
+          <field name="name">Search Tickets</field>
+          <field name="url">/website_search_ticket</field>
+          <field name="parent_id" ref="website.main_menu"/>
+          <field name="sequence" type="int">59</field>
+        </record>
+        
+<!--        <record id="support_page_create_view" model="website.page">-->
+<!--            <field name="url">/website_create_ticket</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="view_id" ref="website.helpdesk_support_ticket" />-->
+<!--        </record>-->
+
+<!--        <record id="support_page_create" model="website.menu">-->
+<!--          <field name="name">Create New Tickets</field>-->
+<!--          <field name="url">/website_create_ticket</field>-->
+<!--          <field name="parent_id" ref="support_page" />-->
+<!--          <field name="sequence" type="int">3</field>-->
+<!--        </record>-->
+
+        <!--
+        <record id="support_page_add" model="website.menu">
+            <field name="name">Create Ticket</field>
+            <field name="url">/page/helpdesk_support_ticket</field>
+            <field name="parent_id" ref="support_page" />
+            <field name="sequence" type="int">1</field>
+        </record>
+        -->
+        
+        
+    </data>
+</odoo>

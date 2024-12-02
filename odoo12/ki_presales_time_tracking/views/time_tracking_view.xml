@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_time_tracking_search_presales" model="ir.ui.view">
+		<field name="name">time.tracking.search.presales</field>
+		<field name="model">time.tracking.users</field>
+		<field name="inherit_id"
+			ref="ki_base_time_tracking.view_time_tracking_search" />
+		<field name="arch" type="xml">
+			<xpath expr="//separator[@name='filter_section']"
+				position="after">
+				<filter string="Presales" name="tracking_presales"
+					domain="[('presales_id','!=', False)]"
+					help="Tracking for Presales" />
+			</xpath>
+		</field>
+	</record>
+
+
+</odoo>
+

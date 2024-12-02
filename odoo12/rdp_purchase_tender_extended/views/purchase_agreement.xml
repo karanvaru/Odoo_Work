@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="purchse_tender_extended_form_view" model="ir.ui.view">
+            <field name="name">purchase.agreement.form.inherited</field>
+            <field name="model">purchase.agreement</field>
+            <field name="inherit_id" ref="sh_po_tender_management.sh_purchase_agreement_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_ids']" position="after">
+                    <field name = "related_id" />
+                    <!-- <field name="opendays_count" /> -->
+                </xpath>
+            </field>
+        </record>
+         <record id="purchse_tender_extended_tree_view" model="ir.ui.view">
+            <field name="name">purchase.agreement.tree.inherited</field>
+            <field name="model">purchase.agreement</field>
+            <field name="inherit_id" ref="sh_po_tender_management.sh_purchase_agreement_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="before">
+                    <field name = "open_days" />
+                </xpath>
+                 <xpath expr="//field[@name='sh_source']" position="before">
+                     <field name = "related_id" />
+                </xpath>
+            </field>
+        </record> 
+
+     
+
+        
+    </data>
+</odoo>

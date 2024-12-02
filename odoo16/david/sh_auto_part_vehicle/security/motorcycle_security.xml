@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    
+    <record model="ir.module.category" id="module_category_sh_motorcycle">
+        <field name="name">Auto Parts</field>
+        <field name="sequence">103</field>
+    </record>
+
+    <record id="group_sh_motorcycle_user" model="res.groups">
+        <field name="name">Auto Parts User</field>
+        <field name="category_id" ref="module_category_sh_motorcycle" />
+        <field name="comment">The user will be able to just read motorcycle data.</field>
+        <field name="users" eval="[(4, ref('base.user_root'))]" />
+    </record>
+
+    <record id="group_sh_motorcycle_manager" model="res.groups">
+        <field name="name">Auto Parts Manager</field>
+        <field name="comment">The user will have access to CRUD motorcycle data.</field>
+        <field name="category_id" ref="module_category_sh_motorcycle" />
+        <field name="implied_ids" eval="[(4, ref('group_sh_motorcycle_user'))]" />
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
+    </record>
+
+    <record id="rule_sh_motorcycle_backend_vehicle" model="ir.rule">
+        <field name="name">Vehicle multi-company</field>
+        <field name="model_id" ref="model_motorcycle_motorcycle" />
+        <field name="domain_force"> ['|', ('company_id', 'in', company_ids), ('company_id', '=', False)]</field>
+    </record>
+
+    <record id="rule_sh_motorcycle_backend_garage" model="ir.rule">
+        <field name="name">Garage multi-company</field>
+        <field name="model_id" ref="model_motorcycle_garage" />
+        <field name="domain_force"> ['|', ('company_id', 'in', company_ids), ('company_id', '=', False)]</field>
+    </record>
+
+    <record id="rule_sh_motorcycle_backend_make" model="ir.rule">
+        <field name="name">Make multi-company</field>
+        <field name="model_id" ref="model_motorcycle_make" />
+        <field name="domain_force"> ['|', ('company_id', 'in', company_ids), ('company_id', '=', False)]</field>
+    </record>
+
+    <record id="rule_sh_motorcycle_backend_mmodel" model="ir.rule">
+        <field name="name">Model multi-company</field>
+        <field name="model_id" ref="model_motorcycle_mmodel" />
+        <field name="domain_force"> ['|', ('company_id', 'in', company_ids), ('company_id', '=', False)]</field>
+    </record>
+
+    <record id="rule_sh_motorcycle_backend_type" model="ir.rule">
+        <field name="name">Motorcycle Type multi-company</field>
+        <field name="model_id" ref="model_motorcycle_type" />
+        <field name="domain_force"> ['|', ('company_id', 'in', company_ids), ('company_id', '=', False)]</field>
+    </record>
+
+    <record id="rule_sh_motorcycle_backend_year" model="ir.rule">
+        <field name="name">Motorcycle Year multi-company</field>
+        <field name="model_id" ref="model_motorcycle_year" />
+        <field name="domain_force"> ['|', ('company_id', 'in', company_ids), ('company_id', '=', False)]</field>
+    </record>
+</odoo>

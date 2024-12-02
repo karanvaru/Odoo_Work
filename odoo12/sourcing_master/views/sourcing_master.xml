@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="sourcing_master_tree" model="ir.ui.view">
+            <field name="name">Sourcing Master</field>
+            <field name="model">sourcing.master</field>
+            <field name="arch" type="xml">
+                <tree string="Sourcing Master">
+                    <!--                    <field name='name'/>-->
+                    <field name="vendor"/>
+                    <field name="qiqo_ids" widget="many2many_tags"/>
+                    <field name="vendor_components" widget="many2many_tags"/>
+                    <field name="brand_ids" widget="many2many_tags"/>
+                    <field name="nature" widget="many2many_tags"/>
+                    <field name="country"/>
+                    <field name="ppt_rating" widget="priority"/>
+                    <field name="roadmap_last_attached"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sourcing_master_form_view" model="ir.ui.view">
+            <field name="name">sourcing.master.form</field>
+            <field name="model">sourcing.master</field>
+            <field name="arch" type="xml">
+                <form string="Sales Target">
+                    <header>
+                        <!--                        attrs="{'invisible' : [('state', 'in', ['confirmed','cancel'])]}"-->
+                        <button name="button_in_progress" string="In Progress" type="object" class="oe_highlight"
+                        />
+                        <button name="button_mvl" string="MVL" type="object" class="oe_highlight"
+                                attrs="{'invisible': [('c_user', '!=', True)]}"/>
+                        <button name="button_avl" string="AVL" type="object" class="oe_highlight"
+                                attrs="{'invisible': [('c_user', '!=', True)]}"/>
+                        <button name="button_scrapped" string="Scrapped" type="object" class="oe_highlight"
+                        />
+                        <button name="button_bank" string="Bank" type="object" class="oe_highlight"
+                        />
+                        <field name="state" widget="statusbar"/>
+                    </header>
+
+                    <sheet>
+
+                        <div>
+                            <h1>
+                                <field name='name' readonly="1"/>
+                            </h1>
+                        </div>
+                        <div style="float:right; margin-top:-55px;">
+                            <field name="image" nolabel="1" widget="image" class="oe_avatar"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="c_user" invisible='1'/>
+                                <field name="vendor_components" widget="many2many_tags"/>
+                                <field name="brand_ids" widget="many2many_tags"/>
+                                <field name="vendor" domain="[('supplier','=',True)]"/>
+                                <!--                                <field string="Address" name="vendor" widget="res_partner_many2one"-->
+                                <!--                                       context="{'search_default_customer':1, 'show_address': 1, 'default_is_company': True, 'show_vat': True}"-->
+                                <!--                                       options="{&quot;always_reload&quot;: True, &quot;no_quick_create&quot;: True}"-->
+                                <!--                                       domain="[('customer', '=', True)]"/>-->
+                                <label for="Street" string="Address"/>
+                                <div class="o_address_format">
+
+                                    <field name="street" placeholder="Street..." class="o_address_street"/>
+                                    <field name="street_two" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                    <field name="state_name" class="o_address_state" placeholder="State"/>
+                                    <!-- <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>-->
+                                    <field name="country" placeholder="Country" class="o_address_country"/>
+                                </div>
+
+                                <field name="website" widget="url"/>
+                                <field name="vendor_operations_ids" widget="many2many_tags"/>
+                                <field name="nature" widget="many2many_tags" string="Vendor Category"/>
+                                <field name="component_vendor" widget="many2many_tags"/>
+                                <field name="last_2_yr_avg_revenue_in_crores"/>
+                                <field name="vendor_head_count"/>
+                            </group>
+                            <group>
+                                <field name="product_category_ids" widget="many2many_tags"/>
+                                <field name="qiqo_ids" widget="many2many_tags"/>
+                                <field name="standardization_type_ids" widget="many2many_tags"/>
+                                <field name="quality_grade" widget="many2many_tags"/>
+                                <field name="payment_term_id"/>
+                                <field name="ppt_rating" widget="priority"/>
+                                <field name="established_in"/>
+                                <field name="years_in_business"/>
+                                <field name="company_profile_last_attached"/>
+                                <field name="roadmap_last_attached"/>
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Vendor Company Info">
+                                <group>
+                                    <field name="top_5_customers_for_reference"/>
+                                </group>
+                            </page>
+                            <page string="Partner Assignation">
+                                <group>
+                                </group>
+                            </page>
+                            <page string="SPOC">
+                                <group>
+                                    <group>
+                                        <field name="rdp_spoc_id" domain="[('employee','=',True)]"/>
+                                    </group>
+                                    <group>
+                                        <field name="vendor_spoc_id" domain="[('supplier','=',True)]"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="National Distributor">
+                                <group>
+                                    <group>
+                                        <field name="nd_components_ids" widget="many2many_tags"/>
+                                    </group>
+                                    <group>
+                                        <field name="nd_brands_ids" widget="many2many_tags"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Regional Distributor">
+                                <group>
+                                    <group>
+                                        <field name="rd_components_ids" widget="many2many_tags"/>
+                                    </group>
+                                    <group>
+                                        <field name="rd_brands_ids" widget="many2many_tags"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Internal Notes">
+                                <field name="notes"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!--            pivot view-->
+        <record id="sourcing_master_pivot" model="ir.ui.view">
+            <field name="name">sourcing.master.pivot</field>
+            <field name="model">sourcing.master</field>
+            <field name="arch" type="xml">
+                <pivot string="Sourcing Master">
+                    <field name="name"/>
+                </pivot>
+            </field>
+        </record>
+        <!--            kanban view-->
+        <record id="sourcing_master_kanban" model="ir.ui.view">
+            <field name="name">sourcing.master.kanban</field>
+            <field name="model">sourcing.master</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="name"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill sourcing_master_kanban">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <div class="o_kanban_tags_section"/>
+                                    <ul>
+                                        <li>Reference:
+                                            <field name="name"/>
+                                        </li>
+                                        <li>status :
+                                            <field name="state"/>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                        <searchpanel>
+                            <field name="name" icon="fa-building"/>
+                            <field name="name" select="multi" icon="fa-tags"/>
+                        </searchpanel>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!--            graph view-->
+        <record id="sourcing_master_graph" model="ir.ui.view">
+            <field name="name">sourcing.master.graph</field>
+            <field name="model">sourcing.master</field>
+            <field name="arch" type="xml">
+                <graph string="Sourcing Master" type="pie">
+                    <field name="name"/>
+                </graph>
+            </field>
+        </record>
+        <!--            calender view-->
+        <record id="sourcing_master_calendar" model="ir.ui.view">
+            <field name="name">sourcing.master.calendar</field>
+            <field name="model">sourcing.master</field>
+            <field name="arch" type="xml">
+                <calendar string="Sourcing Master" date_start="create_date" color="name" mode="month"
+                          quick_add="True">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+        <record id="sourcing_master_gantt" model="ir.ui.view">
+            <field name="name">sourcing.master.gantt</field>
+            <field name="model">sourcing.master</field>
+            <field name="arch" type="xml">
+                <gantt date_start="create_date" date_stop="closed_date" string="Default Grant view"></gantt>
+            </field>
+        </record>
+        <record id="sourcing_master_search_view" model="ir.ui.view">
+            <field name="name">sourcing.master.search</field>
+            <field name="model">sourcing.master</field>
+            <field name="arch" type="xml">
+                <search string="Sourcing Master">
+                    <field name="name"/>
+                    <field name="brand_ids"/>
+                    <field name="product_category_ids"/>
+                    <field name="city"/>
+                    <field name="state_name"/>
+                    <field name="country"/>
+                    <field name="nature"/>
+                    <field name="state"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="country" string="Country" context="{'group_by': 'country'}"/>
+                        <filter name="city" string="City" context="{'group_by': 'city'}"/>
+                        <filter name="state_name" string="State Name"
+                                context="{'group_by': 'state_name'}"/>
+                        <filter name="qiqo" string="QIQO" context="{'group_by': 'qiqo'}"/>
+                        <filter name="state" string="Status" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="sourcing_master_action_view" model="ir.actions.act_window">
+            <field name="name">Sourcing Master</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sourcing.master</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot,graph,calendar,kanban,gantt,search</field>
+        </record>
+        <menuitem id="sourcing_master_menu" name='Sourcing Master' action="sourcing_master_action_view"
+                  parent="studio_customization.rdp_plm_1456fa52-b221-4e71-b2b6-ee3aaf2eb3cc"/>
+    </data>
+</odoo>

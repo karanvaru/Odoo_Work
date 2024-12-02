@@ -1,0 +1,48 @@
+<openerp>
+  <data>
+	<record id="ke_overtime_rule" model="ir.rule">
+	 <field name="name">HR employee should see his/her own overtime only </field>
+	 <field name="model_id" ref="model_ke_overtime"/>
+	 <field name="domain_force">[('user_id', '=', user.id)]</field>
+	 <field name="groups"  eval="[(4, ref('base.group_user'))]"/>
+	</record>
+	<record id="ke_advance_rule" model="ir.rule">
+	 <field name="name">HR employee should see his/her own advance only </field>
+	 <field name="model_id" ref="model_ke_advance"/>
+	 <field name="domain_force">[('user_id', '=', user.id)]</field>
+	 <field name="groups"  eval="[(4, ref('base.group_user'))]"/>
+	</record>
+	<record id="ke_advance_rule2" model="ir.rule">
+	 <field name="name">HR Officer can see all advance requests for payroll reasons </field>
+	 <field name="model_id" ref="model_ke_advance"/>
+	 <field name="domain_force"></field>
+	 <field name="groups"  eval="[(4, ref('hr.group_hr_user'))]"/>
+	</record>
+
+	<record id="ke_overtime_rule2" model="ir.rule">
+	 <field name="name">HR Officer can see all overtime requests for payroll reasons </field>
+	 <field name="model_id" ref="model_ke_overtime"/>
+	 <field name="domain_force"></field>
+	 <field name="groups"  eval="[(4, ref('hr.group_hr_user'))]"/>
+	</record>
+
+	<record id="ke_overtime_rule3" model="ir.rule">
+	 <field name="name">The Overtime approving user can only approve 'OVERTIME' type of Earning </field>
+	 <field name="model_id" ref="model_ke_cash_allowances"/>
+	 <field name="domain_force">[('rule_id', '=', user.env.ref('hr_ke.ke_rule13').id)]</field>
+	 <field name="groups"  eval="[(4, ref('hr_ke.group_overtime'))]"/>
+	</record>
+	<record id="ke_overtime_rule4" model="ir.rule">
+	 <field name="name">The Overtime approving user can only approve Overtime requests from his/her department </field>
+	 <field name="model_id" ref="model_ke_overtime"/>
+	 <field name="domain_force">[('same_dept', '=', 1)]</field>
+	 <field name="groups"  eval="[(4, ref('hr_ke.group_overtime'))]"/>
+	</record>
+	<!-- <record id="hide_import_product_purchase_order_rule" model="ir.rule">
+	 <field name="name">The user will be able to add imported products to the Purchase Order</field>
+	 <field name="model_id" ref="model_purchase_order"/>
+	 <field name="domain_force">[('order_line.imported', '=', True)]</field>
+	 <field name="groups"  eval="[(4, ref('hr_ke.group_hide_purchase_order'))]"/>
+	</record> -->
+  </data>
+</openerp>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+    <div t-name="WidgetWebsiteButton" class="o_stat_info published">
+        <span class="o_stat_text o_value"/>
+        <span class="o_stat_text">On Website</span>
+    </div>
+
+    <t t-name="base_shipping_partner.ShippingDashboardMain">
+        <div class="o_dashboards">
+            <div class="container-fluid o_website_dashboard">
+                <t t-call="base_shipping_partner.dashboard_header"/>
+                <div class="o_website_dashboard_content"/>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="base_shipping_partner.dashboard_header">
+        <div class="row o_dashboard_common">
+                        <br/>
+        </div>
+    </t>
+
+    <t t-name="base_shipping_partner.dashboard_visits">
+        <div class="col-md-6 o_box">
+        <!--<div class="col-md-6 market-update-gd">
+            <div class="market-update-block clr-block-1">
+                <div class="col-md-8 market-update-left">
+                    <h3>83</h3>
+                    <h4>Registered User</h4>
+                    <p>Other hand, we denounce</p>
+                </div>
+                <div class="col-md-4 market-update-right">
+                    <i class="fa fa-truck"></i>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="col-md-6 market-update-gd">
+            <div class="market-update-block clr-block-2">
+                <div class="col-md-8 market-update-left">
+                    <h3>135</h3>
+                    <h4>Daily Visitors</h4>
+                    <p>Other hand, we denounce</p>
+                </div>
+                <div class="col-md-4 market-update-right">
+                    <i class="fa fa-truck" style="color:#F88300;"></i>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                </div>
+            </div>
+
+        </div>-->
+            <div class="col-md-10">
+                <div id="chartdiv" style="width: 420px; height: 320px;"/>
+            </div>
+                <div class="col-md-2">
+            </div>
+        </div>
+
+        <script type="text/javascript">
+             <!--data = this._rpc({-->
+                <!--model:'shipping.dashboard',-->
+                <!--method: 'get_dashboard_data',-->
+                <!--args: [],-->
+            <!--})-->
+            console.log(this)
+            var chart = AmCharts.makeChart( "chartdiv", {
+              "type": "pie",
+              "theme": "light",
+              "dataProvider": [ {
+                "title": "Fedex",
+                "value": 4852
+              }, {
+                "title": "UPS",
+                "value": 9899
+              }, {
+                "title": "DHL",
+                "value": 8966
+              }, {
+                "title": "USPS",
+                "value": 7896
+              } ],
+              "titleField": "title",
+              "valueField": "value",
+              "labelRadius": 5,
+
+              "radius": "42%",
+              "innerRadius": "60%",
+              "labelText": "[[title]]"
+            } );
+
+        </script>
+    </t>
+</templates>

@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_payroll_config_user,payroll_kpi.payroll.config,model_payroll_config,base.group_user,1,0,0,0
+access_kpi_category_user,payroll_kpi.kpi.category,model_kpi_category,base.group_user,1,0,0,0
+access_kpi_exceptions_user,payroll_kpi.kpi.exceptions,model_kpi_exceptions,base.group_user,1,0,0,0
+
+access_payroll_config_manager,payroll_kpi.payroll.config,model_payroll_config,hr.group_hr_user,1,1,1,1
+access_kpi_category_manager,payroll_kpi.kpi.category,model_kpi_category,hr.group_hr_user,1,1,1,1
+access_kpi_exceptions_manager,payroll_kpi.kpi.exceptions,model_kpi_exceptions,hr.group_hr_user,1,1,1,1
+
+access_employee_score_user,payroll_kpi.employee.score,model_employee_score,base.group_user,1,1,0,0
+access_employee_kpi_user,payroll_kpi.employee.kpi,model_employee_kpi,base.group_user,1,1,1,0
+access_kpi_employee_wizard_user,payroll_kpi.kpi.employee.wizard,model_kpi_employee_wizard,base.group_user,1,1,1,1
+access_payroll_kpi_payroll_kpi,access_payroll_kpi,model_payroll_kpi,base.group_user,1,1,1,0

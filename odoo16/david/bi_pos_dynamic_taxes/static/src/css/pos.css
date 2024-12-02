@@ -1,0 +1,63 @@
+.attribute {
+    text-align: left;
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+.tax-data {
+    margin-top: 10px;
+    text-align: center;
+}
+.delvry-block {
+    height: 250px;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+.delivery-blocks {
+    display: inline-block;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.child.highlight {
+    background: #017e84;
+    color: white;
+}
+
+.child:hover {
+    background: #0a7e84;
+    color: white;
+}
+
+.disk-block {
+    border: double;
+    text-align: center;
+    width: 150px;
+    height: 40px;
+    margin: 7px;
+    color: black;
+    background-color: white;
+    padding: 3px;
+    border-radius: 8px;
+}
+
+.child {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 1rem 1rem;
+    width: -webkit-fill-available;
+    vertical-align: middle;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    color: black;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.payment-screen .paymentlines-empty .total {
+    text-align: center;
+    padding: 24px 0px 18px;
+    font-size: 64px;
+    color: #017e84;
+    text-shadow: 0px 2px white, 0px 2px 2px rgb(0 0 0 / 27%);
+}

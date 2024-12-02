@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- commission.kpi.category tree view -->
+	<record id="kpi_commission_category_view_tree" model="ir.ui.view">
+		<field name="name">kpi.commission.category.view.tree</field>
+		<field name="model">commission.kpi.category</field>
+		<field name="arch" type="xml">
+			<tree editable="bottom">
+				<!-- Add your fields here -->
+				<field name="name"/>
+			</tree>
+		</field>
+	</record>
+
+	<!-- commission.ded.category tree view -->
+	<record id="commission_ded_category_view_tree" model="ir.ui.view">
+		<field name="name">commission.ded.category.view.tree</field>
+		<field name="model">commission.ded.category</field>
+		<field name="arch" type="xml">
+			<tree editable="bottom">
+				<!-- Add your fields here -->
+				<field name="name"/>
+				
+			</tree>
+		</field>
+	</record>
+
+	<!-- commission.kpi.category action window -->
+	<record id="commission_kpi_category_action" model="ir.actions.act_window">
+		<field name="name">Commission KPIs</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">commission.kpi.category</field>
+		<field name="view_mode">tree</field>
+		
+	</record>
+
+	<!-- commission.ded.category action window -->
+	<record id="commission_ded_category_action" model="ir.actions.act_window">
+		<field name="name">Commission Deductions</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">commission.ded.category</field>
+		<field name="view_mode">tree</field>
+
+	</record>
+
+	<!-- This Menu Item must have a parent and an action -->
+	<menuitem id="kpi_comm_menu_act" name="KPI Category" parent="menu_action_commission_configuration" action="commission_kpi_category_action" sequence="40"/>
+
+	<menuitem id="ded_comm_menu_act" name="Deduction Category" parent="menu_action_commission_configuration" action="commission_ded_category_action" sequence="50"/>
+
+
+</odoo>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_wk_website_config_settings" model="ir.ui.view">
+        <field name="name">Website Stock Settings</field>
+        <field name="model">website.stock.config.settings</field>
+        <field name="arch" type="xml">
+            <form string="Stock Configuration" class="oe_form_configuration">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_is_active" type="object" class="oe_stat_button" icon="fa-check">
+                            <field name="is_active" widget="boolean_button" options='{"terminology": "active"}' />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Website Stock" name="stock_detail">
+                            <field name="wk_warehouse_type" />
+                            <field name="wk_stock_location" widget="selection" attrs="{'required':[('wk_warehouse_type','==','specific')],'invisible':[('wk_warehouse_type','!=','specific')]}" />
+                            <field name="wk_warehouse_name" attrs="{'invisible':[('wk_warehouse_type','!=','specific')]}" />
+                            <field name="wk_stock_type" />
+                        </group>
+                        <group string="Custom Message" name="custom_message">
+                            <field name="wk_in_stock_msg" />
+                            <field name="in_stock_color" placeholder="hexadecimal value of color" />
+                            <field name="in_stock_text"></field>
+                            <field name="wk_out_of_stock_msg" />
+                            <field name="out_stock_color" placeholder="hexadecimal value of color" />
+                            <field name="out_stock_text"></field>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Extra Message" name="extra_message">
+                            <field name="wk_extra_msg" />
+                            <field name="wk_minimum_qty" attrs="{'required':[('wk_extra_msg','==',True)],'invisible':[('wk_extra_msg','==',False)]}" />
+                            <field name="wk_custom_message" attrs="{'required':[('wk_extra_msg','==',True)],'invisible':[('wk_extra_msg','==',False)]}" />
+                            <field name="custome_stock_color" placeholder="hexadecimal value of color" attrs="{'invisible':[('wk_extra_msg','==',False)]} " />
+                            <field name="custom_stock_text" attrs="{'invisible':[('wk_extra_msg','==',False)]}"></field>
+                        </group>
+                        <group string="Other Settings" name="other">
+                            <label for="wk_deny_order" />
+                            <div>
+                                <field name="wk_deny_order"></field> Deny Order
+                            </div>
+                            <field name="wk_display_qty"></field>
+                            <field name="save_setting_on_product"></field>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_wk_website_config_settings_tree" model="ir.ui.view">
+        <field name="name">Website Stock Settings</field>
+        <field name="model">website.stock.config.settings</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="is_active" />
+                <field name="wk_warehouse_type" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_website_stock_configuration" model="ir.actions.act_window">
+        <field name="name">Website Stock Configuration</field>
+        <field name="res_model">website.stock.config.settings</field>
+        <field name="view_type">form</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_wk_website_config_settings" />
+    </record>
+    
+</odoo>
+
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- Responsible Developer:- Sunny Kumar Yadav -->

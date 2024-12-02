@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="sale_challenge_response_form" model="ir.ui.view">
+         <field name="name">sale.response.wizard</field>
+         <field name="model">sale.response</field>
+         <field name="arch" type="xml">
+            <form string="Response">
+                <group>
+                    <field name="emp_name"/>
+                    <field name="remarks"/>
+
+
+                </group>
+                <footer>
+                    <button name="action_submit" string="Save" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+         </field>
+     </record>
+
+    <record id="sale_challenge_response" model="ir.actions.act_window">
+        <field name="name">Sale Challenge Response</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.response</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sale_challenge_response_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

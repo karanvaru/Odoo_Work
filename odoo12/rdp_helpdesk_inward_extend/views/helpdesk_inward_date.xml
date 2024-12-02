@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="helpdesk_inward_inherited_view_form" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.custom.inherited</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <!-- <field name="helpdesk_inward_date"/>
+                     <field name="helpdesk_outward_date"/> -->
+                    <field name="helpdesk_inward_days"/>
+                </xpath>
+            </field>
+        </record>
+         <record id="helpdesk_inward_inherited_view_kanban" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.kanban.inherited</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='priority']" position="after">
+                    <field name="helpdesk_inward_days"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

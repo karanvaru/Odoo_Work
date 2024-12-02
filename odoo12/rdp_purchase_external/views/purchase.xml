@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_purchase_order" model="ir.ui.view">
+        <field name="name">purchase order</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="open_days" string="Open Days" attrs="{'invisible' : [('state', '=', 'purchase')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_purchase_product" model="ir.ui.view">
+        <field name="name">Purchase Incoming Products</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree_receipt_picking"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="open_days" string="Open Days" attrs="{'invisible' : [('state', '=', 'done')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_purchase_request" model="ir.ui.view">
+        <field name="name">purchase request</field>
+        <field name="model">purchase.request</field>
+        <field name="inherit_id" ref="purchase_request.view_purchase_request_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="open_days" string="Open Days"
+                       attrs="{'invisible' : [('state', 'in',['done','approved','rejected'])]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_purchase_request_line" model="ir.ui.view">
+        <field name="name">purchase request line</field>
+        <field name="model">purchase.request.line</field>
+        <field name="inherit_id" ref="purchase_request.purchase_request_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='request_state']" position="after">
+                <field name="open_days" string="Open Days"
+                       attrs="{'invisible' : [('request_state', 'in',['done','approved','rejected'])]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_purchase_request_tender" model="ir.ui.view">
+        <field name="name">purchase.requisition</field>
+        <field name="model">purchase.requisition</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="open_days" string="Open Days"
+                       attrs="{'invisible' : [('state', 'in',['done','cancel'])]}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
+
+

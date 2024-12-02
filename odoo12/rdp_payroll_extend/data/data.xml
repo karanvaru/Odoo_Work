@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <!-- Sequences forKED-->
+        <record id="hr_payroll_seq" model="ir.sequence">
+            <field name="name">HR Payroll Advice Sheet</field>
+            <field name="code">hr.payroll.advice.line.sequence</field>
+            <field name="prefix">PA</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

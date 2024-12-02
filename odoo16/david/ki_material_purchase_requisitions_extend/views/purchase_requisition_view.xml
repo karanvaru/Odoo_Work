@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="material_purchase_requisition_form_view_inherit" model="ir.ui.view">
+        <field name="name">material.purchase.requisition.form.inherit</field>
+        <field name="model">material.purchase.requisition</field>
+        <field name="inherit_id" ref="material_purchase_requisitions.material_purchase_requisition_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="replace">
+                <field name="state" widget="statusbar" string="confirm"
+                       statusbar_visible="draft,approve,stock,receive"/>
+
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

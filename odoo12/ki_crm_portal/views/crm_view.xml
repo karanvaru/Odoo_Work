@@ -1,0 +1,103 @@
+<odoo>
+    <data>
+        <record id="crm_case_form_view_oppor_bid" model="ir.ui.view">
+            <field name="name">crm.lead.form.opportunity.bid</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <!--                <xpath expr="//field[name='x_studio_catalog_id']" position="after">-->
+                <!--                    <field name="bid_closing_date"/>-->
+                <!--                </xpath>-->
+                <xpath expr="//page[last()]" position="after">
+<!--                    <page name="gem_field" string="GeM Field">-->
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="x_studio_gem_model_no"/>-->
+<!--                                <field name="x_studio_gem_sku"/>-->
+<!--                                <field name="x_studio_catalog_id"/>-->
+<!--                                <field name="bid_closing_date"/>-->
+<!--                            </group>-->
+<!--                        </group>-->
+<!--                    </page>-->
+                    <page name="gem_customer" string="GeM Customer">
+                        <group>
+                            <group>
+                                <field name="gem_customer_name"/>
+                                <field name="gem_customer_id"/>
+                            </group>
+                            <group>
+                                <field name="customer_city"/>
+                                <field name="customer_pincode"/>
+                                <field name="customer_state_id"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page name="bid_status" string="BID Status">
+                        <group>
+                            <group>
+                                <field name="is_participated"/>
+                                <field name="is_l1"/>
+                                <field name="is_paired_catelog"/>
+                            </group>
+                            <group>
+                                <field name="is_contract_received"/>
+                                <field name="is_bid_lost"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page name="bid_details" string="Bid Details">
+                        <group>
+                            <group>
+                                <field name="crm_capture_type_id"/>
+                                <field name="crm_mii_content_id"/>
+                                <field name="bid_type_id"/>
+                            </group>
+                            <group>
+                                <field name="crm_category_type_id"/>
+                                <field name="bid_to_ra_id"/>
+<!--&lt;!&ndash;                                <-pavan->-->
+                                <field name="mii_purchase_preference"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='date_deadline']" position="after">
+<!--                    <field name="x_studio_opportunity_type_1"/>-->
+                    <field name="value"/>
+                    <field name="crm_product_category_id"/>
+<!--                    <field name="x_studio_quantity"/>-->
+<!--                    <field name="x_studio_product_category"/>-->
+                    <field name="is_master_opportunity" invisible="1"/>
+                </xpath>
+                <xpath expr="//header">
+                    <button string="Assign Partners" type="action" name="%(ki_crm_portal.action_assign_partner)d"
+                            attrs="{'invisible' : [('is_master_opportunity','=',False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='team_id']" position="after">
+                    <field name="sales_executive_ids" widget="many2many_tags"/>
+                </xpath>
+				<xpath expr="//field[@name='partner_id']" position="attributes">
+					<attribute name="domain">[]</attribute>
+				</xpath>
+<!--				<xpath expr="//field[@name='user_id']" position="attributes">-->
+<!--					<attribute name="domain">[]</attribute>-->
+<!--				</xpath>-->
+            </field>
+        </record>
+
+		<record id="crm_stage_form_portal" model="ir.ui.view">
+            <field name="name">crm.stage.form.portal</field>
+            <field name="model">crm.stage</field>
+			<field name="inherit_id" ref="crm.crm_stage_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name='probability']" position="after">
+					<field name="portal_stage"/>
+				</xpath>
+			</field>
+		</record>
+
+         <record model="ir.actions.act_window" id="crm.crm_lead_opportunities_tree_view">
+            <field name="domain">[('type','=','opportunity'),('is_master_opportunity','=',False)]</field>
+         </record>
+	</data>
+</odoo>

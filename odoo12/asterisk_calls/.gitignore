@@ -1,0 +1,5 @@
+.DS_Store
+*.pyc
+i18n/ru.mo
+*/__pycache__/*
+todo.txt

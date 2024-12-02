@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="employee_page_branding_kit_form" model="ir.ui.view">
+        <field name="name">employee.branding.kit.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[@name='public']" position="after">
+                <page string="Employee Branding Kit">
+                    <group name="Employee Branding Kit">
+                        <field name="branding_kit_ids" string="Employee Branding Kit">
+                            <tree>
+                                <field name="name"/>
+                                <field name="employee_name_id"/>
+                                <field name="spoc_id" invisible="1"/>
+                                <field name="employee_code"/>
+                                <field name="create_date"/>
+                                <field name="item_id"/>
+                                <field name="quantity"/>
+                                <field name="remarks"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

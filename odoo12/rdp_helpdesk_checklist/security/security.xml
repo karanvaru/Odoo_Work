@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_helpdesk_checklist_superuser" model="res.groups">
+        <field name="name">Helpdesk Checklists Super User</field>
+        <field name="implied_ids" eval="[(4, ref('helpdesk_team.group_helpdesk_support'))]"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,190 @@
+<odoo>
+    <data>
+        <record id="crm_case_form_view_Bid" model="ir.ui.view">
+            <field name="name">crm.bid.form.opportunity.inh</field>
+            <field name="model">crm.bid</field>
+            <field name="arch" type="xml">
+                <form string="Bid">
+                    <header>
+                        <button name="action_master_opportunity" type="object" string="Create Master Opportunity"
+                                attrs="{'invisible' : [('crm_lead_id','!=',False)]}"/>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <field name="active" invisible="1"/>
+                        <div class="badge-pill badge-danger float-right"
+                             attrs="{'invisible': ['|', ('probability', '&gt;', 0), ('active', '=', True)]}">Lost
+                        </div>
+                        <div class="badge-pill badge-success float-right"
+                             attrs="{'invisible': [('probability', '&lt;', 100)]}">Won
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="e.g. Product Pricing"/>
+                            </h1>
+                            <h2 class="o_row row no-gutters d-flex">
+                                <div class="col">
+                                    <label for="planned_revenue" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <field name="company_currency" invisible="1"/>
+                                        <field name="planned_revenue" class="oe_inline" widget='monetary'
+                                               options="{'currency_field': 'company_currency'}"/>
+                                        <span class="oe_grey">at</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="probability" class="oe_edit_only"/>
+                                    <div class="o_row d-flex">
+                                        <field name="probability" widget="integer" class="oe_inline"/>
+                                        <span class="oe_grey">%%</span>
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="partner_id"
+                                       widget="res_partner_many2one"
+                                       string="Customer"
+                                />
+                                <label for="email_from" class="oe_inline"/>
+                                <div class="o_row o_row_readonly">
+                                    <field name="email_from"
+                                           string="Email"
+                                           widget="email"/>
+                                </div>
+                                <field name="phone"
+                                       widget="phone"/>
+                            </group>
+
+                            <group>
+                                <field name="date_deadline"/>
+                                <field name="x_studio_opportunity_type_1"/>
+                                <field name="value"/>
+                                <field name="x_studio_quantity"/>
+                                <field name="crm_product_category_id"/>
+                                <field name="crm_lead_id" invisible="1"/>
+                            </group>
+
+                            <group>
+                                <field name="user_id"/>
+                                <field name="team_id"/>
+                                <field name="sales_executive_ids" widget="many2many_tags"/>
+                                <field name="file_upload" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="priority" widget="priority"/>
+                                <field name="lost_reason" attrs="{'invisible': [('active', '=', True)]}"/>
+                            </group>
+                        </group>
+
+                        <notebook colspan="4">
+                            <page string="Internal Notes">
+                                <field name="description"/>
+                            </page>
+                            <page name="lead" string="Followup">
+                                <group>
+                                    <group string="Initial Contact Information">
+                                        <label for="street" string="Address"/>
+                                        <div class="o_address_format">
+                                            <field name="street" placeholder="Street..." class="o_address_street"/>
+                                            <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                            <field name="city" placeholder="City" class="o_address_city"/>
+                                            <field name="state_id" class="o_address_state" placeholder="State"
+                                                   options='{"no_open": True}'/>
+                                            <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                            <field name="country_id" placeholder="Country" class="o_address_country"
+                                                   options='{"no_open": True, "no_create": True}'/>
+                                        </div>
+                                        <field name="website" widget="url" placeholder="e.g. https://www.odoo.com"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="gem_field" string="GeM Field">
+                                <group>
+                                    <group>
+                                        <field name="x_studio_gem_model_no"/>
+                                        <field name="x_studio_gem_sku"/>
+                                        <field name="x_studio_catalog_id"/>
+                                        <field name="catalog_id_amd" />
+                                        <field name="bid_closing_date"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="gem_customer" string="GeM Customer">
+                                <group>
+                                    <group>
+                                        <field name="gem_customer_name"/>
+                                        <field name="gem_customer_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="customer_city"/>
+                                        <field name="customer_pincode"/>
+                                        <field name="customer_state_id"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="bid_details" string="Bid Details">
+                                <group>
+                                    <group>
+                                        <field name="crm_capture_type_id"/>
+                                        <field name="crm_mii_content_id"/>
+                                        <field name="bid_type_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="crm_category_type_id"/>
+                                        <field name="bid_to_ra_id"/>
+                                        <field name="mii_purchase_preference"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="crm_case_tree_view_Bid" model="ir.ui.view">
+            <field name="name">crm.bid.tree.opportunity</field>
+            <field name="model">crm.bid</field>
+            <field name="arch" type="xml">
+                <tree string="BIDS">
+                    <field name="name" string="#BID"/>
+                    <field name="sales_executive_ids" widget="many2many_tags"/>
+                    <field name="user_id"/>
+                    <field name="team_id"/>
+                    <field name="create_date" string="Create Date"/>
+                    <field name="bid_closing_date"/>
+                    <field name="x_studio_quantity"/>
+                    <field name="value"/>
+                    <field name="x_studio_opportunity_type_1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_crm_Bid">
+            <field name="name">BID's</field>
+            <field name="res_model">crm.bid</field>
+            <field name="view_mode">tree,kanban,graph,pivot,form,activity</field>
+        </record>
+
+        <menuitem id="crm_menu_gem"
+                  name="GeM"
+                  parent="crm.crm_menu_root"
+                  sequence="6"/>
+
+        <menuitem id="crm_menu_Bid"
+                  name="BID's"
+                  parent="crm_menu_gem"
+                  sequence="1"
+                  action="action_crm_Bid"/>
+
+
+    </data>
+</odoo>

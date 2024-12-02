@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="contract_line_button_hide" model="ir.ui.view">
+            <field name="name">contract.line.button.hide</field>
+            <field name="model">contract.contract</field>
+            <field name="inherit_id" ref="contract.contract_contract_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='recurring_invoice_line']/field[@name='contract_line_fixed_ids']/tree/button[@name='action_stop']"
+                       position="replace">
+                    <button
+                            name="action_stop"
+                            string="Stop"
+                            type="object"
+                            icon="fa-stop text-danger"
+                            attrs="{'invisible': 1}"/>
+                </xpath>
+                <xpath expr="//notebook/page[@name='recurring_invoice_line']/field[@name='contract_line_fixed_ids']/tree/button[@name='cancel']"
+                       position="replace">
+                    <button
+                            name="cancel"
+                            string="Cancel"
+                            type="object"
+                            icon="fa-ban text-danger"
+                            confirm="Are you sure you want to cancel this line"
+                            attrs="{'invisible': 1}"/>
+                </xpath>
+
+                <xpath expr="//notebook/page[@name='recurring_invoice_line']/field[@name='contract_line_fixed_ids']/tree/button[@name='action_uncancel']"
+                       position="attributes">
+                    <attribute name="groups">ki_contract_menu.group_smart_printer_contract_view</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="contract_line_locations" model="ir.ui.view">
+            <field name="name">contract.line.locations</field>
+            <field name="model">contract.contract</field>
+            <field name="inherit_id" ref="contract.contract_contract_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='quantity']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!--              -->
+
+                <xpath expr="//notebook/page[@name='recurring_invoice_line']/field[@name='contract_line_fixed_ids']/tree/button[@name='action_uncancel']"
+                       position="attributes">
+                    <attribute name="groups">ki_contract_menu.group_smart_printer_contract_view</attribute>
+                </xpath>
+
+                <!--                <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='product_id']"-->
+                <!--                       position="attributes">-->
+                <!--                    <attribute name="invisible">1</attribute>-->
+                <!--                </xpath>-->
+
+                <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='uom_id']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='automatic_price']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='price_unit']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='discount']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='price_subtotal']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='date_end']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='last_date_invoiced']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='name']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

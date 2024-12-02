@@ -1,0 +1,852 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!--Add Fill KRA P10 Form Button-->
+        <record id="hr_ke_kra_form_inherit1" model="ir.ui.view">
+            <field name="model">hr.payslip.run</field>
+            <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_draft']" position="after">
+
+                    <button name="GetP10" type="object" string="KRA Returns"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('country_id', '!=', %(base.ke)d)]}"/>
+                    <button name="GetNHIFReturns" type="object"
+                            string="NHIF Returns" class="oe_highlight"
+                            attrs="{'invisible': [('country_id', '!=', %(base.ke)d)]}"/>
+                    <button name="GetPayrollSummary" type="object"
+                            string="Payroll Summmary" class="oe_highlight"
+                            attrs="{'invisible': [('country_id', '!=', %(base.ke)d)]}"/>
+                    <button name="GetNetPay" type="object" string="Net-Pay List"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('country_id', '!=', %(base.ke)d)]}"/>
+                    <button name="BatchConfirmPayslip" type="object"
+                            string="Confirm" class="oe_highlight"
+                            groups="hr_payroll.group_hr_payroll_manager"/>
+
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="country_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+        <!--Add Print Excel Button to payslip-->
+        <record id="hr_ke_payslip_excel_form_inherit1" model="ir.ui.view">
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//button[@name= 'action_payslip_cancel']"
+                           position="after">
+                        <button name="GetPayslipExcel" type="object"
+                                string="Print Excel Payslip"
+                                class="oe_highlight"/>
+                    </xpath>
+                    <xpath expr="//button[@name= 'action_payslip_done']"
+                           position="attributes">
+                        <attribute name="groups">
+                            hr_payroll.group_hr_payroll_manager
+                        </attribute>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+        <!-- Benefits Type Action-->
+        <record id="ke_benefits_type_action" model="ir.actions.act_window">
+            <field name="name">Types of Non-Cash Benefits</field>
+            <field name="res_model">ke.benefit.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Relation type Action-->
+        <record id="ke_relation_type_action" model="ir.actions.act_window">
+            <field name="name">Type of Relation</field>
+            <field name="res_model">ke.relation.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Relief Type Action-->
+        <record id="ke_reliefs_type_action" model="ir.actions.act_window">
+            <field name="name">Types of Tax Relief</field>
+            <field name="res_model">ke.relief.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Deduction Type Action-->
+        <record id="ke_deductions_type_action" model="ir.actions.act_window">
+            <field name="name">Types of Deduction</field>
+            <field name="res_model">ke.deductions.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Before Gross Deduction Type Action-->
+        <record id="ke_before_gross_deductions_type_action"
+                model="ir.actions.act_window">
+            <field name="name">Types of Before Gross Deduction</field>
+            <field name="res_model">ke.before.gross.deduction.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Cash Allowances Type Action-->
+        <record id="ke_cash_allowances_type_action"
+                model="ir.actions.act_window">
+            <field name="name">Types of Cash Allowances</field>
+            <field name="res_model">ke.cash.allowances.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_ke_cash_allowances_type"
+                  parent="hr_work_entry_contract_enterprise.menu_hr_payroll_configuration"
+                  name="Cash Allowances" sequence="101"
+                  action="ke_cash_allowances_type_action"
+                  groups="hr.group_hr_manager"/>
+        <menuitem id="menu_ke_benefits_type"
+                  parent="hr_work_entry_contract_enterprise.menu_hr_payroll_configuration"
+                  name="Non-Cash Benefits" sequence="102"
+                  action="ke_benefits_type_action"
+                  groups="hr.group_hr_manager"/>
+        <menuitem id="menu_ke_reliefs_type"
+                  parent="hr_work_entry_contract_enterprise.menu_hr_payroll_configuration"
+                  name="Tax Relief" sequence="103"
+                  action="ke_reliefs_type_action" groups="hr.group_hr_manager"/>
+        <menuitem id="menu_ke_deductions_type"
+                  parent="hr_work_entry_contract_enterprise.menu_hr_payroll_configuration"
+                  name="After Tax Deductions" sequence="104"
+                  action="ke_deductions_type_action"
+                  groups="hr.group_hr_manager"/>
+        <menuitem id="menu_ke_before_gross_deductions_type"
+                  parent="hr_work_entry_contract_enterprise.menu_hr_payroll_configuration"
+                  name="Before Gross Deductions" sequence="105"
+                  action="ke_before_gross_deductions_type_action"
+                  groups="hr.group_hr_manager"/>
+        <menuitem id="menu_ke_relations_type"
+                  parent="hr_work_entry_contract_enterprise.menu_hr_payroll_configuration"
+                  sequence="106" action="ke_relation_type_action"
+                  groups="hr.group_hr_manager"/>
+
+        <!-- Benefits Type Form view-->
+        <record id="ke_benefits_type_form" model="ir.ui.view">
+            <field name="name">ke.hr.benefits.type.form</field>
+            <field name="model">ke.benefit.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group name="benefit_type"
+                               string="Types of Non-Cash Benefits">
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="rule_id"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               widget="mail_followers"
+                               groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Benefits  Form view-->
+        <record id="ke_benefits_form" model="ir.ui.view">
+            <field name="name">ke.hr.benefits.form</field>
+            <field name="model">ke.benefits</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="company_id" invisible="1"/>
+                        <group name="benefit" string="Non Cash Benefits">
+                            <group>
+                                <field name="benefit_id"
+                                       domain="[('company_id','=',company_id)]"/>
+                                <field name="computation"/>
+                            </group>
+                            <group>
+                                <field name="contract_id" readonly="1"/>
+                                <field name="rule_id" readonly="1"/>
+                                <field name="company_id"/>
+                                <field name="fixed"
+                                       attrs="{'invisible': [('computation', '!=', 'fixed')], 'required': [('computation', '=', 'fixed')]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="is_permanent"/>
+                                <field name="date_end"
+                                       attrs="{'invisible': [('is_permanent', '=', True)]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="amount" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <notebook
+                                attrs="{'invisible':[('computation','!=','formula')]}">
+                            <page name="formula" string="Formula">
+                                <field name="formula"
+                                       attrs="{'required': [('computation','=','formula')]}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Cash Allowances  Form view-->
+        <record id="ke_cash_allowances_form" model="ir.ui.view">
+            <field name="name">ke.hr.cash.allowances.form</field>
+            <field name="model">ke.cash_allowances</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group name="cash_allowances" string="Cash Allowances">
+                            <field name="company_id" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <group>
+                                <field name="cash_allowance_id"
+                                       domain="[('company_id','=',company_id)]"/>
+                                <field name="computation"/>
+                            </group>
+                            <group>
+                                <field name="contract_id" readonly="1"/>
+                                <field name="rule_id" readonly="1"/>
+                                <field name="company_id" readonly="1"/>
+                                <field name="fixed"
+                                       attrs="{'invisible': [('computation', '!=', 'fixed')], 'required': [('computation', '=', 'fixed')]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="is_permanent"/>
+                                <field name="date_end"
+                                       attrs="{'invisible': [('is_permanent', '=', True)]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="amount" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <notebook
+                                attrs="{'invisible':[('computation', '!=', 'formula')]}">
+                            <page name="formula" string="Formula">
+                                <field name="formula"
+                                       attrs="{'required': [('computation', '=', 'formula')]}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               widget="mail_followers"
+                               groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- reliefs  Form view-->
+        <record id="ke_reliefs_form" model="ir.ui.view">
+            <field name="name">ke.hr.reliefs.form</field>
+            <field name="model">ke.reliefs</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group name="reliefs" string="Tax Relief">
+                            <field name="company_id" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <group>
+                                <field name="relief_id"/>
+                                <field name="computation"/>
+                            </group>
+                            <group>
+                                <field name="employee_id" readonly="1"/>
+                                <field name="rule_id" readonly="1"/>
+                                <field name="fixed"
+                                       attrs="{'invisible': [('computation', '!=', 'fixed')], 'required': [('computation', '=', 'fixed')]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="is_permanent"/>
+                                <field name="date_end"
+                                       attrs="{'invisible': [('is_permanent', '=', True)]}"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="amount" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </sheet>
+                    <notebook>
+                        <page name="formula" string="Formula">
+                            <field name="formula"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+        <!-- Before Gross Deductions Form view-->
+        <record id="ke_before_gross_deductions_form" model="ir.ui.view">
+            <field name="name">ke.hr.before.gross.deductions.form</field>
+            <field name="model">ke.before.gross.deduction</field>
+            <field name="arch" type="xml">
+                <form context="{'employee_id': employee_id}">
+                    <sheet>
+                        <field name="company_id" invisible="1"/>
+                        <field name="currency_id" invisible="1"/>
+                        <group name="deductions"
+                               string="Before Gross Deduction">
+                            <group>
+                                <field name="deduction_id"
+                                       domain="[('company_id','=',company_id)]"/>
+                                <field name="computation"/>
+                            </group>
+                            <group>
+                                <field name="employee_id" readonly="1"/>
+                                <field name="rule_id" readonly="1"/>
+                                <field name="company_id"/>
+                                <field name="fixed"
+                                       attrs="{'invisible': [('computation', '!=', 'fixed')], 'required': [('computation', '=', 'fixed')]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="is_permanent"/>
+                                <field name="date_end"
+                                       attrs="{'invisible': [('is_permanent', '=', True)]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="amount" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <notebook
+                                attrs="{'invisible': [('computation', '!=', 'formula')]}">
+                            <page name="ded_formula" string="Formula">
+                                <field name="formula"
+                                       attrs="{'required': [('computation', '=', 'formula')]}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               widget="mail_followers"
+                               groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="ke_deductions_form" model="ir.ui.view">
+            <field name="name">ke.hr.deductions.form</field>
+            <field name="model">ke.deductions</field>
+            <field name="arch" type="xml">
+                <form context="{'employee_id': employee_id}">
+                    <sheet>
+                        <field name="company_id" invisible="1"/>
+                        <field name="currency_id" invisible="1"/>
+                        <group name="deductions" string="After Tax Deduction">
+                            <group>
+                                <field name="deduction_id"
+                                       domain="[('company_id','=',company_id)]"/>
+                                <field name="computation"/>
+                            </group>
+                            <group>
+                                <field name="employee_id" readonly="1"/>
+                                <field name="rule_id" readonly="1"/>
+                                <field name="company_id"/>
+                                <field name="fixed"
+                                       attrs="{'invisible': [('computation', '!=', 'fixed')], 'required': [('computation', '=', 'fixed')]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="is_permanent"/>
+                                <field name="date_end"
+                                       attrs="{'invisible': [('is_permanent', '=', True)]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="amount" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <notebook
+                                attrs="{'invisible': [('computation', '!=', 'formula')]}">
+                            <page name="ded_formula" string="Formula">
+                                <field name="formula"
+                                       attrs="{'required': [('computation', '=', 'formula')]}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               widget="mail_followers"
+                               groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Cash Allowances Type Form view-->
+        <record id="ke_cash_allowances_type_form" model="ir.ui.view">
+            <field name="name">ke.hr.cash.allowances.type.form</field>
+            <field name="model">ke.cash.allowances.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="id" invisible="True"/>
+                        <group name="allowances_type" string="Cash Allowances">
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="rule_id"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               widget="mail_followers"
+                               groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Dependant/Kin Form-->
+        <record id="ke_kins_form" model="ir.ui.view">
+            <field name="name">ke.hr.kins.form</field>
+            <field name="model">ke.employee.kin</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="employee_id"/>
+                        </group>
+                        <group name="kins" string="Depandant/Kin">
+                            <group>
+                                <field name="name"/>
+                                <field name="gender"/>
+                                <field name="relation"/>
+                            </group>
+                            <group>
+                                <field name="birthday"/>
+                                <field name="kin"/>
+                                <field name="phone"
+                                       attrs="{'required': [('kin', '=', True)]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="address" string="Address">
+                                <field name="address"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Relations Type Form-->
+        <record id="ke_relations_type_form" model="ir.ui.view">
+            <field name="name">ke.hr.relations.type.form</field>
+            <field name="model">ke.relation.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group name="relation_type" string="Relation Type">
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="medical"/>
+                                <field name="amount"/>
+                                <field name="dep_multiplying_factor"/>
+                                <field name="non_dep_multiplying_factor"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- reliefs Type Form view-->
+        <record id="ke_reliefs_type_form" model="ir.ui.view">
+            <field name="name">ke.hr.reliefs.type.form</field>
+            <field name="model">ke.relief.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group name="relief_type" string="Tax Relief">
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="rule_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Deductions Type Form view-->
+        <record id="ke_deductions_type_form" model="ir.ui.view">
+            <field name="name">ke.hr.deductions.type.form</field>
+            <field name="model">ke.deductions.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group name="deduction_type"
+                               string="After Tax Deduction Type">
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="rule_id"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               widget="mail_followers"
+                               groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Before Gross Deduction Type Form view-->
+        <record id="ke_before_gross_deductions_type_form" model="ir.ui.view">
+            <field name="name">ke.hr.before.gross.deductions.type.form</field>
+            <field name="model">ke.before.gross.deduction.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group name="deduction_type"
+                               string="Before Gross Deduction Type">
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="rule_id"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               widget="mail_followers"
+                               groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- Cash Allowances Type Tree view-->
+        <record id="ke_cash_allowances_type_tree" model="ir.ui.view">
+            <field name="name">ke.hr.cash.allowances.type.tree</field>
+            <field name="model">ke.cash.allowances.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="rule_id"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Benefitss Type Tree view-->
+        <record id="ke_benefits_type_tree" model="ir.ui.view">
+            <field name="name">ke.hr.benefits.type.tree</field>
+            <field name="model">ke.benefit.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="rule_id"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Reliefs Type Tree view-->
+        <record id="ke_relief_type_tree" model="ir.ui.view">
+            <field name="name">ke.hr.relief.type.tree</field>
+            <field name="model">ke.relief.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="rule_id"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Deduction Type Tree view-->
+        <record id="ke_deduction_type_tree" model="ir.ui.view">
+            <field name="name">ke.hr.deduction.type.tree</field>
+            <field name="model">ke.deductions.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="rule_id"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Before Gross Deduction Type Tree view-->
+        <record id="ke_before_gross_deduction_type_tree" model="ir.ui.view">
+            <field name="name">ke.hr.before.gross.deduction.type.tree</field>
+            <field name="model">ke.before.gross.deduction.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="rule_id"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Relations Type Tree View-->
+        <record id="ke_relations_type_tree" model="ir.ui.view">
+            <field name="name">ke.hr.relations.type.tree</field>
+            <field name="model">ke.relation.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="medical"/>
+                    <field name="amount"/>
+                    <field name="dep_multiplying_factor"/>
+                    <field name="non_dep_multiplying_factor"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Modifying Employeee Form to add kenya specific details -->
+        <record id="ke_view_employee_form_inherit01" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit_01</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//group[@name='active_group']"
+                           position="attributes">
+                        <attribute name="string"/>
+                    </xpath>
+                    <xpath expr="//group[@name='active_group']"
+                           position="inside">
+                    </xpath>
+                    <xpath expr="//group[@name='active_group']"
+                           position="after">
+                        <group colspan="6" string="Payroll">
+                            <group>
+                                <field name="emp_type"/>
+                                <field name="resident"/>
+                                <field name="director"/>
+                                <field name="director_type"
+                                       attrs="{'invisible': [('director', '=', False)], 'required': [('director', '=', True)]}"/>
+                                <field name="global_income"
+                                       attrs="{'invisible': ['|',('director', '=', False), ('director_type', '=', 'full')], 'required': [('director_type', '=', 'nonfull')]}"/>
+                                <field name="disability"/>
+                                <field name="helb"/>
+                                <field name="helb_rate"
+                                       attrs="{'invisible': [('helb', '=', False)], 'required': [('helb', '=', True)]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="pension"
+                                       string="Pension/Providend Fund?"/>
+                                <field name="pen_contrib"
+                                       attrs="{'invisible': [('pension', '=', False)], 'required': [('pension', '=', True)]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="disability_rate"
+                                       attrs="{'invisible': [('disability', '=', False)], 'required': [('disability', '=', True)]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="disability_cert"
+                                       attrs="{'invisible': [('disability', '=', False)], 'required': [('disability', '=', True)]}"/>
+                            </group>
+                            <group>
+                                <field name="tax_pin"/>
+                                <field name="nhif"/>
+                                <field name="nssf"/>
+                                <field name="hosp"/>
+                                <field name="hosp_deposit"
+                                       attrs="{'invisible': [('hosp', '=', False)], 'required': [('hosp', '=', True)]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="mortgage"/>
+                                <field name="mortgage_interest"
+                                       attrs="{'invisible': [('mortgage', '=', False)], 'required': [('mortgage', '=', True)]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="nssf_vol"/>
+                                <field name="nssf_vol_mem"
+                                       attrs="{'invisible': [('nssf_vol', '=', False)], 'required': [('nssf_vol', '=', True)]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="nssf_vol_emp"
+                                       attrs="{'invisible': [('nssf_vol', '=', False)], 'required': [('nssf_vol', '=', True)]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="nssf_t3"/>
+                                <field name="nssf_t3_mem"
+                                       attrs="{'invisible': [('nssf_t3', '=', False)], 'required': [('nssf_t3', '=', True)]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="nssf_t3_emp"
+                                       attrs="{'invisible': [('nssf_t3', '=', False)], 'required': [('nssf_t3', '=', True)]}"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </group>
+                    </xpath>
+                    <xpath expr="//field[@name='country_id']"
+                           position="attributes">
+                        <attribute name="required">True</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='identification_id']"
+                           position="attributes">
+                        <attribute name="required">True</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='gender']" position="attributes">
+                        <attribute name="required">True</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='job_id']" position="attributes">
+                        <attribute name="required">True</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='marital']"
+                           position="attributes">
+                        <attribute name="required">True</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='birthday']"
+                           position="attributes">
+                        <attribute name="required">False</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='department_id']"
+                           position="attributes">
+                        <attribute name="required">True</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='address_home_id']"
+                           position="after">
+                        <field name="personal_email" widget="email"/>
+                    </xpath>
+                    <xpath expr="//field[@name='category_ids']"
+                           position="before">
+                        <group>
+                            <field name="id" invisible="1"/>
+                            <field name="employee_no"
+                                   attrs="{'invisible': ['|', ('id', '=', False), ('payroll_no', '!=',False )]}"/>
+                            <field name="payroll_no"/>
+                        </group>
+                    </xpath>
+                    <xpath expr="//notebook" position="inside">
+                        <field name="id" invisible="1"/>
+                        <page string="Dependents">
+                            <field name="kins"
+                                   context="{'default_employee_id': id}">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="relation"/>
+                                    <field name="birthday"/>
+                                    <field name="gender"/>
+                                    <field name="kin"/>
+                                    <field name="phone"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="deductions" string=" After Tax Deductions">
+                            <field name="deductions"
+                                   context="{'default_employee_id': id}">
+                                <tree colors="red:amount==0">
+                                    <field name="name"/>
+                                    <field name="deduction_id" invisible="1"/>
+                                    <field name="rule_id"/>
+                                    <field name="computation"/>
+                                    <field name="fixed"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="before_gross_deductions"
+                              string="Before Gross Deductions">
+                            <field name="before_gross_deductions"
+                                   context="{'default_employee_id': id}">
+                                <tree colors="red:amount==0">
+                                    <field name="name"/>
+                                    <field name="deduction_id" invisible="1"/>
+                                    <field name="rule_id"/>
+                                    <field name="computation"/>
+                                    <field name="fixed"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="reliefs" string="Tax Relief">
+                            <field name="reliefs"
+                                   context="{'default_employee_id': id}">
+                                <tree colors="red:amount==0">
+                                    <field name="relief_id"/>
+                                    <field name="rule_id"/>
+                                    <field name="computation"/>
+                                    <field name="fixed"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+        <!-- Modifying Contracts Form to add kenyan specific details -->
+        <record id="ke_view_contract_form_inherit01" model="ir.ui.view">
+            <field name="name">hr.contract.form.inherit_01</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//page[@name='information']" position="after">
+                        <page name="benefits" string="Non-Cash Benefits">
+                            <filed name="id" invisible="1"/>
+                            <field name="benefits"
+                                   context="{'default_contract_id': id}">
+                                <tree colors="red:amount == 0">
+                                    <field name="id" invisible="1"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="contract_id" invisible="1"/>
+                                    <field name="name"/>
+                                    <field name="rule_id"/>
+                                    <field name="computation"/>
+                                    <field name="fixed"
+                                           attrs="{'readonly': [('computation', '!=', 'fixed')]}"
+                                           widget="monetary"
+                                           options="{'currency_field': 'currency_id'}"/>
+                                    <field name="amount" widget="monetary"
+                                           options="{'currency_field': 'currency_id'}"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="cash_allowances" string="Cash Allowances">
+                            <field name="cash_allowances"
+                                   context="{'default_contract_id': id}">
+                                <tree colors="red:amount == 0">
+                                    <field name="contract_id" invisible="1"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="name"/>
+                                    <field name="rule_id"/>
+                                    <field name="computation"/>
+                                    <field name="fixed"
+                                           attrs="{'readonly': [('computation', '!=', 'fixed')]}"
+                                           widget="monetary"
+                                           options="{'currency_field': 'currency_id'}"/>
+                                    <field name="amount" widget="monetary"
+                                           options="{'currency_field': 'currency_id'}"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

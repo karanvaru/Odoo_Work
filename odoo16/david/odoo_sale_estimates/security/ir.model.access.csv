@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_estimate_salesuser,access_sale_estimate_salesuser,model_sale_estimate,sales_team.group_sale_salesman,1,1,1,1
+access_sale_estimate_line_salesuser,access_sale_estimate_line_salesuser,model_sale_estimate_line,sales_team.group_sale_salesman,1,1,1,1

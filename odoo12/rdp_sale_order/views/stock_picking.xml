@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_picking_ready_stage_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.ready.stage.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="rdp_gatepass.view_stock_picking_gate_pass_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='vehicle_details']" position="after">
+                    <page string="Open Days" name="open_days">
+                            <group>
+                                <group>
+                                    <field name="date_ready"/>
+                                    <field name="ready_op"/>
+                                </group>
+                            </group>
+                        </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

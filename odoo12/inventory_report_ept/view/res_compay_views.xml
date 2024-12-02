@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="res_company_view_inherit" model="ir.ui.view">
+		<field name="name">res.company.view.inherit</field>
+		<field name="model">res.company</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="base.view_company_form"></field>
+		<field name="arch" type="xml">
+			<xpath expr="//notebook" position="inside">
+				<page string="Breakdown Report Configuration">
+					<group>
+						<field name="breakdown_line_ids" mode="tree" nolabel="1">
+							<tree string="Days Breakdown" editable="bottom">
+								<field name="day_start" />
+								<field name="day_end" />
+							</tree>
+						</field>
+					</group>
+				</page>
+			</xpath>
+		</field>
+	</record>
+
+</odoo>

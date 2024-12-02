@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id="action_stock_picking_draft_to_waiting" model="ir.actions.server">
+            <field name="name">PickPack Records</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_draft_to_waiting()</field>
+        </record>
+        <!--<record id="action_stock_picking_waiting_to_ready" model="ir.actions.server">
+            <field name="name">2.Ready Order</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_waiting_to_ready()</field>
+        </record>
+        <record id="action_stock_picking_ready_to_done" model="ir.actions.server">
+            <field name="name">3.Done Order</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_ready_to_done()</field>
+        </record>-->
+    </data>
+</odoo>

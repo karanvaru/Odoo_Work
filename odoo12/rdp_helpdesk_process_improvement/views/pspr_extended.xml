@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_details_hpi_inherit_id" model="ir.ui.view">
+            <field name="name">product.details.inherited.form</field>
+            <field name="model">product.details</field>
+            <field name="inherit_id" ref="product_sar.product_detail_view_form"/>
+            <field name="arch" type="xml">
+               <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                        <button name="open_hpi_pspr_tickets" class="oe_stat_button" type="object" icon="fa-briefcase">
+                            <field string="HDPI" name="hpi_pspr_ticket_count"
+                                   widget="statinfo"/>
+                        </button>
+                </xpath>
+
+                <xpath expr="//header" position="inside">
+                    <button name="%(rdp_helpdesk_process_improvement.hpi_pspr_response)d" type="action" string="HDPI" class="btn-primary"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sh_stock_report_picking_inherit" inherit_id="stock.report_picking">
+        <xpath expr="//div[hasclass('page')]/div[3]" position="inside">
+            <div t-if="o.branch_id" class="col-auto" name="div_branch_id">
+                <strong groups="sh_base_branch.sh_multi_branch_group">Branch:</strong>
+                <p t-field="o.branch_id" groups="sh_base_branch.sh_multi_branch_group" />
+            </div>
+        </xpath>
+    </template>
+
+    <template id="sh_stock_report_delivery_inherit" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[hasclass('page')]/div[1]" position="inside">
+            <div t-if="o.branch_id" class="col-auto" name="div_branch_id">
+                <strong groups="sh_base_branch.sh_multi_branch_group">Branch:</strong>
+                <p t-field="o.branch_id" groups="sh_base_branch.sh_multi_branch_group" />
+            </div>
+        </xpath>
+    </template>
+</odoo>

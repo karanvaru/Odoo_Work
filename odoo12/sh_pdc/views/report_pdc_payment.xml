@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+	<template id="report_pdc_payment">
+	    <t t-call="web.html_container">
+	       
+                <t t-call="web.external_layout">
+                    <div class="page">
+                    	<center><h2>PDC Payment Report</h2></center>
+                    	 <br/>
+                    	 	<table class="table table-condensed" name="pdc_table" width="100%">
+                        		
+                        		<tr>
+                        			<th width="15%">Name</th>
+                        			<th width="15%">Customer</th>
+                        			<th width="15%">Bank</th>
+                        			<th width="10%">Payment Date</th>
+                        			<th width="15%">Payment Amount</th>
+                        			<th width="20%">Cheque Reference</th>
+                        			
+                        			<th width="10%">Status</th>
+                        		</tr>
+                        		<tr t-foreach="docs" t-as="doc">
+                        			<td width="15%">
+										<span t-field="doc.name"/>
+									</td>
+                        			<td width="15%"><span t-field="doc.partner_id.name"/></td>
+                        			<td width="15%"><span t-field="doc.bank_id.display_name"/></td>
+                        			<td width="10%"><span t-field="doc.payment_date"/></td>
+                        			<td width="15%"><span t-field="doc.payment_amount"/></td>
+                        			<td width="20%"><span t-field="doc.reference"/></td>
+                        			<td width="10%"><span t-field="doc.state"/></td>
+                        		</tr>
+                        	</table>
+                    </div>
+	        </t>
+	    </t>
+	</template>
+     <report 
+         id="action_report_pdc_payment"
+         string="PDC Payment Report"
+         model="pdc.wizard" 
+         report_type="qweb-pdf"
+         file="sh_pdc.report_pdc_payment" 
+         name="sh_pdc.report_pdc_payment"
+     />
+   
+</odoo>

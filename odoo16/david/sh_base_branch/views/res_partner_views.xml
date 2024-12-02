@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Partner View  -->
+    <record id="sh_multi_branch_partner_form_view_inherit" model="ir.ui.view">
+        <field name="name">res.partner.inherit.form.view.branch</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[@name='sales_purchases']//group//group[@name='misc']//field[@name='company_id']" position="after">
+                <field name="branch_id" groups="sh_base_branch.sh_multi_branch_group" attrs="{'readonly': [('parent_id', '!=', False)]}" force_save="1" options="{'no_create': True, 'no_open':True,'no_create_edit':True}" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_partner_tree_view_inherit" model="ir.ui.view">
+        <field name="name">res.partner.inherit.tree.view.branch</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" optional="show" groups="sh_base_branch.sh_multi_branch_group" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_partner_search_view_inherit" model="ir.ui.view">
+        <field name="name">res.partner.search.branch</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//search//group//filter[@name='group_company']" position="after">
+                <filter string="Branch" name="branch_id" domain="[]" context="{'group_by': 'branch_id'}" groups="sh_base_branch.sh_multi_branch_group" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

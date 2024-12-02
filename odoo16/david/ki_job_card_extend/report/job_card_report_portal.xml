@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_jobcard_portal" model="ir.actions.report">
+        <field name="name">Job Card Portal</field>
+        <field name="model">project.task</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ki_job_card_extend.report_jobcard_portal</field>
+        <field name="report_file">ki_job_card_extend.report_jobcard_portal</field>
+        <field name="paperformat_id" ref="job_card.paperformat_job_card_report_custom"/>
+<!--        <field name="binding_model_id" ref="project.model_project_task"/>-->
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_jobcard_portal">
+        <t t-foreach="docs.sudo()" t-as="o">
+            <t t-call="web.external_layout">
+                <t t-call="web.html_container">
+                    <div class="page">
+                        <style>
+                            .borderless td, .borderless th {
+                            border: none;
+                            }
+                        </style>
+                        <h2 class="text-center">
+                            Job Card
+                        </h2>
+                        <h2 class="text-center">
+                            <span t-field="o.number"/>
+                            -
+                            <span t-field="o.stage_id"/>
+                        </h2>
+                        <table class="table table-striped borderless mt-5">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <b>Customer:</b>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.partner_id"/>
+                                    </td>
+                                    <td>
+                                        <b>Assigned Date:</b>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.date_assign" t-options='{"widget": "datetime","format": "MMMM dd, yyyy hh:mm:ss"}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Project:</b>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.project_id"/>
+                                    </td>
+                                    <td>
+                                        <b>Ending Date:</b>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.date_end" t-options='{"widget": "datetime","format": "MMMM dd, yyyy hh:mm:ss"}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Assigned to:</b>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.user_ids"/>
+                                    </td>
+                                    <td>
+                                        <b>Analytic Account:</b>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.analytic_account_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Quality Checklist:</b>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.quality_checklist_id"/>
+                                    </td>
+                                    <td>
+                                        <b>Workshop Staff:</b>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.workshop_staff_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Deadline:</b>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.date_deadline" t-options='{"widget": "date","format": "MMMM dd, yyyy"}'/>
+                                    </td>
+                                    <td>
+                                        <b>Email:</b>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.email_from"/>
+                                    </td>
+                                </tr>
+
+                            </thead>
+                        </table>
+
+                        <table class="table table-bordered mt-5" style="width: 100%">
+                            <tr>
+                                <th style="font-size:1.17em;">
+                                    <b>Description</b>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span t-field="o.description"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <p style="page-break-before:always;"></p>
+                        <p>
+                            <h3>Vehicle Details</h3>
+                        </p>
+                        <table class="table table-bordered mt-5" style="width: 100%">
+                            <tr>
+                                <th colspan="4" style="font-size:1.17em;">
+                                    <b>Vehicle Basic Info</b>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <td style="width: 25%">
+                                    <b>Make :</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.brand"/>
+                                </td>
+                                <td style="width: 25%">
+                                    <b>Registration Number:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.register_no"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 25%">
+                                    <b>Model :</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.model_name"/>
+                                </td>
+                                <td style="width: 25%">
+                                    <b>VIN:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.vin"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 25%">
+                                    <b>Type:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.type_id"/>
+                                </td>
+                                <td style="width: 25%">
+                                    <b>Initial Registration :</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.initial_registration"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 25%">
+                                    <b>Fuel Type:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.fuel_type"/>
+                                </td>
+                                <td style="width: 25%">
+                                    <b>Engine:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.engine"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 25%">
+                                    <b>Color:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.vehicle_color"/>
+                                </td>
+                                <td style="width: 25%">
+                                    <b>Model Year:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.year"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 25%"><b>Id Number:</b></td>
+                                <td style="width: 25%"><span t-field="o.id_number"/></td>
+                                <td style="width: 25%"><b>Serial Number:</b></td>
+                                <td style="width: 25%"><span t-field="o.serial_number"/></td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" style="font-size:1.17em;">
+                                    <b>Extra Info</b>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td style="width: 25%"><b>Hour(s):</b></td>
+                                    <td style="width: 25%"><span t-field="o.hours" t-options='{"widget":"float_time"}'/></td>
+                                <td style="width: 25%">
+                                    <b>Last Service Date:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.last_service_date" t-options='{"widget": "date","format": "MMMM dd, yyyy"}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 25%">
+                                    <b>Odometer Reading:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.odometer"/>
+                                </td>
+                                <td style="width: 25%">
+                                    <b>Repair Category:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.repair_category"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 25%">
+                                    <b>Fuel Level:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.fuel_level"/>
+                                </td>
+                                <td style="width: 25%">
+                                    <b>Payment Type:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.pay_type"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="width: 25%">
+                                    <b>Average KM/Day:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.average_km"/>
+                                </td>
+                                <td style="width: 25%">
+                                    <b>Is Insurance Claim:</b>
+                                </td>
+                                <td style="width: 25%">
+                                    <span t-field="o.is_insurance"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" style="font-size:1.17em;">
+                                    <b>Vehicle Servicing Details</b>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <b>Service Details :</b>
+                                    <span style="margin-left:4px;" t-field="o.detail"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-bordered mt-5" id="vehicle_details_image">
+                            <tr>
+                                <th colspan="3" style="font-size:1.17em;">
+                                    <b>Images</b>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span t-if="o.image1">
+                                        <img style="width:230px;height:200px;"
+                                             t-attf-src="data:image/gif;base64, #{o.image1}"/>
+                                    </span>
+                                </td>
+                                <td t-if="o.image2">
+                                    <span>
+                                        <img style="width:230px;height:200px;"
+                                             t-attf-src="data:image/gif;base64, #{o.image2}"/>
+                                    </span>
+                                </td>
+                                <td t-if="o.image3">
+                                    <span>
+                                        <img style="width:230px;height:200px;"
+                                             t-attf-src="data:image/gif;base64, #{o.image3}"/>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td t-if="o.image4">
+                                    <span>
+                                        <img style="width:230px;height:200px;"
+                                             t-attf-src="data:image/gif;base64, #{o.image4}"/>
+                                    </span>
+                                </td>
+                                <td t-if="o.image5">
+                                    <span>
+                                        <img style="width:230px;height:200px;"
+                                             t-attf-src="data:image/gif;base64, #{o.image5}"/>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <p style="page-break-before:always;"></p>
+                        <p>
+                            <h3>Cost Sheet</h3>
+                        </p>
+                        <table class="table table-bordered" style="border: 2px solid black;">
+                            <tr style="border: 2px solid black;">
+                                <td>
+                                    <strong>Type</strong>
+                                </td>
+                                <td>
+                                    <strong>Product</strong>
+                                </td>
+                                <td>
+                                    <strong>Description</strong>
+                                </td>
+                                <td>
+                                    <strong>Qty</strong>
+                                </td>
+                                <td>
+                                    <strong>Unit Price</strong>
+                                </td>
+                                <td>
+                                    <strong>Discount</strong>
+                                </td>
+                                <td>
+                                    <strong>Taxes</strong>
+                                </td>
+                                <td>
+                                    <strong>Amount</strong>
+                                </td>
+                            </tr>
+                            <t t-foreach="o.job_cost_sheet_ids" t-as="cost_sheet">
+                                <tr style="border: 2px solid black;">
+                                    <td>
+                                        <span t-field="cost_sheet.cost_type"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="cost_sheet.product_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="cost_sheet.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="cost_sheet.quantity"/>
+                                        <span t-field="cost_sheet.uom_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="cost_sheet.price_unit"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="cost_sheet.discount"/>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="cost_sheet.invoice_line_tax_ids" t-as="tax">
+                                            <span t-field="tax.name"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span t-field="cost_sheet.price_subtotal"/>
+                                    </td>
+                                </tr>
+                            </t>
+                            <tr>
+                                <td colspan="7" class="text-right">
+                                    <strong>Untaxed Amount</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.cost_sheet_amount_untaxed"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="text-right">
+                                    <strong>Taxed Amount</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.cost_sheet_amount_tax"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="text-right">
+                                    <strong>Total</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.cost_sheet_amount_total"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

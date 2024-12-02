@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <template id="dailay_report_template">
+            <h1>
+                <center>
+                    <span t-esc="data['report_name']"/>
+                </center>
+            </h1>
+            <strong>Date :</strong>
+            <span t-esc="data['date']"/>
+            <table class="table table-hover o_my_status_table">
+                <thead>
+                    <tr class="active">
+                        <th>Date</th>
+                        <th>Project No</th>
+                        <th>Instruction No</th>
+                        <th>Instruction Description</th>
+                        <th>Leader</th>
+                        <th>Workers</th>
+                        <th>Report</th>
+                        <th>Hours</th>
+                    </tr>
+                </thead>
+                
+                <t t-set="project_id" t-value="''"/>
+                <t t-foreach="data['docs']" t-as="line">
+                    <t t-if="line.task_id.project_id.id != project_id">
+                        <t t-set="project_id" t-value="line.task_id.project_id.id"/>
+                        <tr>
+                            <td colspan="8">
+                                <b>
+                                    <span t-esc="line.task_id.project_id.name"/>
+                                </b>
+                            </td>
+                        </tr>
+                    </t>
+                    <t t-if="line.task_id.project_id.id == project_id">
+                        <tr>
+                            <td>
+                                <span t-esc="line.date"/>
+                            </td>
+                            <td>
+                                <span t-esc="line.task_id.project_id.name"/>
+                            </td>
+                            <td>
+                                <span t-esc="line.instruction_job_id.name"/>
+                            </td>
+                            <td>
+                                <span t-esc="line.description"/>
+                            </td>
+                            <td>
+                                <span t-esc="line.leader_id.name"/>
+                            </td>
+                            <td>
+                                <t t-foreach="line.workers_ids" t-as="workers">
+                                    <span t-esc="workers.name"/>
+                                    ,
+                                </t>
+                            </td>
+                            <td>
+                                <span t-esc="line.note"/>
+                            </td>
+                            <td>
+                                <span t-esc="line.unit_amount"/>
+                            </td>
+                        </tr>
+                    </t>
+                </t>
+            </table>
+        </template>
+        
+        <template id="project_report_template">
+            <h1>
+                <center>
+                    <span t-esc="data['report_name']"/>
+                </center>
+            </h1>
+            <strong>Project :</strong>
+            <span t-esc="data['project_name']"/>
+            <table class="table table-hover o_my_status_table">
+                <thead>
+                    <tr class="active">
+                        <th>Date</th>
+                        <th>Project No</th>
+                        <th>Instruction No</th>
+                        <th>Instruction Description</th>
+                        <th>Leader</th>
+                        <th>Workers</th>
+                        <th>Report</th>
+                        <th>Hours</th>
+                    </tr>
+                </thead>
+                <t t-foreach="data['docs']" t-as="line">
+                    <tr>
+                        <td>
+                            <span t-esc="line.date"/>
+                        </td>
+                        <td>
+                            <span t-esc="line.task_id.project_id.name"/>
+                        </td>
+                        <td>
+                            <span t-esc="line.instruction_job_id.name"/>
+                        </td>
+                        <td>
+                            <span t-esc="line.description"/>
+                        </td>
+                        <td>
+                            <span t-esc="line.leader_id.name"/>
+                        </td>
+                        <td>
+                            <t t-foreach="line.workers_ids" t-as="workers">
+                                <span t-esc="workers.name"/>
+                                ,
+                            </t>
+                        </td>
+                        <td>
+                            <span t-esc="line.note"/>
+                        </td>
+                        <td>
+                            <span t-esc="line.unit_amount"/>
+                        </td>
+                    </tr>
+                </t>
+            </table>
+        </template>
+        
+        <template id="employee_report_template">
+            <h1>
+                <center>
+                    <span t-esc="data['report_name']"/>
+                </center>
+            </h1>
+            <strong>Employee :</strong>
+            <span t-esc="data['leader_name']"/>
+            <br/>
+            <strong>Date :</strong>
+            <span t-esc="data['start_date']"/>
+            <strong>to</strong>
+            <span t-esc="data['end_date']"/>
+            <br/>
+            <table class="table table-hover o_my_status_table">
+                <thead>
+                    <tr class="active">
+                        <th>Date</th>
+                        <th>Project No</th>
+                        <th>Instruction No</th>
+                        <th>Instruction Description</th>
+                        <th>Leader</th>
+                        <th>Workers</th>
+                        <th>Report</th>
+                        <th>Hours</th>
+                    </tr>
+                </thead>
+                <t t-set="project_id" t-value="''"/>
+                <t t-foreach="data['docs']" t-as="line">
+                    <t t-if="line.task_id.project_id.id != project_id">
+                        <t t-set="project_id" t-value="line.task_id.project_id.id"/>
+                        <tr>
+                            <td colspan="8">
+                                <b>
+                                    <span t-esc="line.task_id.project_id.name"/>
+                                </b>
+                            </td>
+                        </tr>
+                    </t>
+                    <t t-if="line.task_id.project_id.id == project_id">
+                        <tr>
+                            <td>
+                                <span t-esc="line.date"/>
+                            </td>
+                            <td>
+                                <span t-esc="line.task_id.project_id.name"/>
+                            </td>
+                            <td>
+                                <span t-esc="line.instruction_job_id.name"/>
+                            </td>
+                            <td>
+                                <span t-esc="line.description"/>
+                            </td>
+                            <td>
+                                <span t-esc="line.leader_id.name"/>
+                            </td>
+                            <td>
+                                <t t-foreach="line.workers_ids" t-as="workers">
+                                    <span t-esc="workers.name"/>
+                                    ,
+                                </t>
+                            </td>
+                            <td>
+                                <span t-esc="line.note"/>
+                            </td>
+                            <td>
+                                <span t-esc="line.unit_amount"/>
+                            </td>
+                        </tr>
+                    </t>
+                </t>
+            </table>
+        </template>
+        
+        <template id="job_card_report_template">
+            <t t-call="web.internal_layout">
+                <t t-call="web.html_container">
+                    <div class="page">
+                        <t t-if="data['report_type'] == 'dailay_report'">
+                            <t t-call="job_card.dailay_report_template"/>
+                        </t>
+                        <t t-if="data['report_type'] == 'project_report'">
+                            <t t-call="job_card.project_report_template"/>
+                        </t>
+                        <t t-if="data['report_type'] == 'employee_report'">
+                            <t t-call="job_card.employee_report_template"/>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

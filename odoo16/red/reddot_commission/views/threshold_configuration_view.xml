@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_threshold_configuration_tree" model="ir.ui.view">
+            <field name="name">threshold.configuration.tree</field>
+            <field name="model">threshold.configuration</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Targets">
+                    <field name="name"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_threshold_configuration_form" model="ir.ui.view">
+            <field name="name">threshold.configuration.from</field>
+            <field name="model">threshold.configuration</field>
+            <field name="arch" type="xml">
+                <form string="Employee Target">
+                    <header>
+                        <button name="action_confirm" class="btn-primary"
+                                attrs="{'invisible': [('state', 'not in', ['draft'])]}" type="object"
+                                string="Approve"/>
+                        <field name="state" widget="statusbar" statusbar_visible="new,approved"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" attrs="{'readonly': [('state', '=', 'approved')]}"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="user_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Lines">
+                                <field name="line_ids" attrs="{'readonly': [('state', '=', 'approved')]}">
+                                    <tree string="Lines" editable="bottom" >
+                                        <field name="from_percentage" string="Upto(%)"/>
+                                        <field name="to_percentage"/>
+                                        <field name="is_prorata"/>
+                                        <field name="commission_percentage" attrs="{'readonly': [('is_prorata', '=', True)]}"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" colspan="4" widget="mail_thread" nolabel="1"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_threshold_configuration" model="ir.actions.act_window">
+            <field name="name">Thresholds</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">threshold.configuration</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

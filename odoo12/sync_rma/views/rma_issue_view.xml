@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- RMA form view -->
+    <record id="ram_issue_view_form" model="ir.ui.view">
+        <field name="name">rma.issue.form</field>
+        <field name="model">rma.issue</field>
+        <field name="arch" type="xml">
+            <form string="RMA Order">
+                <header>
+                    <button name="action_rma_quotation_send" string="Send by Email" type="object" class="btn-primary" context="{'rma_return':True,'active_id':active_id, 'rma_issue_id':id}" attrs="{'invisible': ['|', ('state', 'not in', ['draft','approve']), ('is_receipt','=',True)]}"/>
+                    <button name="rma_issue_print" string="Print" type="object" states="confirm,approve" groups="base.group_user"/>
+                    <button name="confirm_rma" type="object" string="Confirm" class="btn-primary" states="draft"/>
+                    <button name="rma_cancel" string="Cancel" type="object" states="draft"/>
+                    <button name="approve_rma" type="object" string="Approve" class="btn-primary" attrs="{'invisible': ['|', ('is_done_receipt', '=', False), ('state', '!=', 'confirm')]}" groups="sync_rma.group_rma_manager"/>
+                    <button name="%(action_rma_issue_reject_view)d" type="action" string="Reject" states="confirm"/>
+                    <button name="set_to_draft" type="object" string="Set to Draft" class="btn-primary" states="reject,cancel"/>
+                    <button name="action_generate_receipt" string="Generate Receipt" type="object" class="btn-primary" context="{'rma_return':True,'active_id':active_id, 'rma_issue_id':id}" attrs="{'invisible': ['|', ('is_receipt','=',True), ('state','!=','confirm')]}"/>
+                    <button name="action_rma_replace" string="Create Replacement SO" type="object"  context="{'active_id': active_id}" class="btn-primary" attrs="{'invisible': ['|', '|', ('is_replace','=',False), ('state','!=','approve'), ('order_ref_id','!=',False)]}"/>
+                    <button name="rma_repair" string="Create Repair Order" type="object"  context="{'active_id': active_id}" class="btn-primary" attrs="{'invisible': ['|', '|', ('is_repair','=',False), ('state','!=','approve'), ('repair_ids','!=', [])]}"/>
+                    <!-- <button name="%(action_rma_refund_invoice)d" type="action" string="Generate Credit Memo" context="{'active_id': active_id}" class="btn-primary" attrs="{'invisible': ['|', '|', ('is_credit','=',False), ('state','!=','approve'), ('invoice_ref_id','!=',False)]}"/> -->
+                    <button name="%(action_rma_refund_invoice)d" type="action" string="Generate Credit Memo" context="{'active_id': active_id}" class="btn-primary" attrs="{'invisible': ['|', '|', ('is_credit','=',False), ('state','!=','approve'), ('is_refund_done', '=', True)]}"/>
+                    <button name="done_rma" type="object" string="Set to Done" states="approve"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approve"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_return_delivery"
+                            type="object" class="oe_stat_button" icon="fa-truck" attrs="{'invisible': [('return_delivery_count', '=', 0)]}">
+                            <field name="return_delivery_count" widget="statinfo" string="Transfer"/>
+                        </button>
+                        <button name="action_view_repair_order"
+                            type="object" class="oe_stat_button" icon="fa-wrench" attrs="{'invisible': [('repair_count', '=', 0)]}">
+                            <field name="repair_count" widget="statinfo" string="Repair"/>
+                        </button>
+                        <button name="action_view_replace_so"
+                            type="object" class="oe_stat_button" icon="fa-usd" string="Replace SO" attrs="{'invisible': [('order_ref_id', '=', False)]}" />
+                        <button name="action_view_credit_memo"
+                            type="object" class="oe_stat_button" icon="fa-pencil-square-o"  attrs="{'invisible': [('invoice_count', '=', 0)]}" >
+                            <field name="invoice_count" widget="statinfo" string="Credit Memo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field  name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="subject"/>
+                            <field  name="partner_id"/>
+                            <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" options='{"always_reload": True}'/>
+                            <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}" options='{"always_reload": True}'/>
+                            <field name="user_id" options="{'no_create': True}"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                            <field name="repair_ids" invisible="1"/>
+                            <field name="invoice_ids" invisible="1"/>
+                            <field name="is_credit" invisible="1"/>
+                            <field name="is_replace" invisible="1"/>
+                            <field name="is_repair" invisible="1"/>
+                            <field name="is_done_receipt" invisible="1"/>
+                            <field name="is_refund_done"  invisible="1"/>
+                            <field name="invoice_ref_id" invisible="1"/>
+                            <field name="order_ref_id" invisible="1"/>
+                            <field name="is_receipt" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="issue_date"/>
+                            <label for="associated_so"/>
+                            <div>
+                                <field name="associated_so" domain="[('partner_id', '=', partner_id)]" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                <button name="%(sync_rma.action_rma_line_wiz_view)d" type="action" string="Generate Lines" attrs="{'invisible': ['|', ('associated_so','=',False), ('issue_line_ids','!=',[])]}"/>
+                            </div>
+                            <field name="location_id" attrs="{'required': [('associated_so','=',False)], 'invisible': [('associated_so','!=',False)]}" options="{'no_create_edit':1}"/>
+                            <field name="location_dest_id" attrs="{'required': [('associated_so','=',False)], 'invisible': [('associated_so','!=',False)]}" options="{'no_create_edit':1}"/>
+                            <field name="priority" widget="priority"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Return Lines" name="return_lines">
+                            <field name="issue_line_ids" attrs="{'readonly': [('state','not in',['draft','confirm'])]}" context="{'associated_so': associated_so}">
+                                <tree string="RMA Issue Lines" editable="bottom">
+                                    <field name="product_id" attrs="{'readonly': [('parent.associated_so', '!=', False)]}"/>
+                                    <field name="serial_id" domain="[('product_id','=',product_id)]" groups="stock.group_production_lot" attrs="{'readonly': [('parent.associated_so', '!=', False)]}"/>
+                                    <field name="qty_delivered" required="1" attrs="{'readonly': [('parent.associated_so', '!=', False)]}"/>
+                                    <field name="to_return" required="1"/>
+                                    <field name="product_uom" groups="uom.group_uom" attrs="{'readonly': [('parent.associated_so', '!=', False)]}"/>
+                                    <field name="return_type_id" attrs="{'required': ['|', ('parent.is_done_receipt', '=', True), ('parent.state', 'in', ['approve', 'done'])]}" options="{'no_create': 1}"/>
+                                    <field name="reason_id" attrs="{'required': ['|', ('parent.is_done_receipt', '=', True), ('parent.state', 'in', ['approve', 'done'])]}"/>
+                                    <field name="state" attrs="{'column_invisible': [('parent.state', 'not in', ['approve','done'])]}"/>
+                                    <field name="order_id" invisible="1"/>
+                                </tree>
+                            </field>
+                            <separator string="RMA Note"/>
+                            <field name="rma_note" nolabel="1"/>
+                            <separator string="RMA Rejection Note" attrs="{'invisible': [('state','!=','reject')]}"/>
+                            <field name="rma_reject_note" nolabel="1" attrs="{'invisible': [('state','!=','reject')]}"/>
+                        </page>
+                        <page string="Other Info" name="other_info">
+                            <group name="history">
+                                <label for="create_date" string="Created"/>
+                                <div>
+                                    <field name="create_date" readonly="1"/> By
+                                    <field name="create_uid" readonly="1"/>
+                                </div>
+                                <label for="write_date" string="Last Update on"/>
+                                <div>
+                                    <field name="write_date" readonly="1"/> By
+                                    <field name="write_uid" readonly="1"/>
+                                </div>
+                                <label for="confirm_by" attrs="{'invisible': [('confirm_by','=',False)]}"/>
+                                <div attrs="{'invisible': [('confirm_by','=',False)]}">
+                                    <field name="confirm_date" readonly="1"/> By
+                                    <field name="confirm_by" readonly="1"/>
+                                </div>
+                                <label for="approved_by" attrs="{'invisible': [('approved_by','=',False)]}"/>
+                                <div attrs="{'invisible': [('approved_by','=',False)]}">
+                                    <field name="approved_date" readonly="1"/> By
+                                    <field name="approved_by" readonly="1"/>
+                                </div>
+                                <label for="cancel_by" attrs="{'invisible': [('cancel_by','=',False)]}"/>
+                                <div attrs="{'invisible': [('cancel_by','=',False)]}">
+                                    <field name="cancel_date" readonly="1"/> By
+                                    <field name="cancel_by" readonly="1"/>
+                                </div>
+                                <label for="done_by" attrs="{'invisible': [('done_by','=',False)]}"/>
+                                <div attrs="{'invisible': [('done_by','=',False)]}">
+                                    <field name="done_date" readonly="1"/> By
+                                    <field name="done_by" readonly="1"/>
+                                </div>
+                                <label for="reject_by" attrs="{'invisible': [('reject_by','=',False)]}"/>
+                                <div attrs="{'invisible': [('reject_by','=',False)]}">
+                                    <field name="reject_date" readonly="1"/> By
+                                    <field name="reject_by" readonly="1"/>
+                                </div>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- RMA line form view -->
+    <record id="ram_issue_line_view_form" model="ir.ui.view">
+        <field name="name">rma.issue.line.form</field>
+        <field name="model">rma.issue.line</field>
+        <field name="arch" type="xml">
+            <form string="RMA Issue Line">
+                <group>
+                    <group name="product_info">
+                        <field name="product_id"/>
+                        <field name="serial_id" domain="[('product_id','=',product_id)]" groups="stock.group_production_lot" options="{'no_create': 1}"/>
+                        <field name="return_type_id" options="{'no_create': 1}"/>
+                        <field name="reason_id" />
+                    </group>
+                    <group name="qty_info">
+                        <field name="qty_delivered" />
+                        <field name="to_return" />
+                        <field name="product_uom" groups="uom.group_uom" />
+                        <field name="state" />
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- RMA tree view -->
+    <record id="view_rma_tree_view" model="ir.ui.view">
+        <field name="name">rma.issue.tree</field>
+        <field name="model">rma.issue</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Issue">
+                <field name="name"/>
+                <field name="issue_date"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- RMA search view -->
+    <record model="ir.ui.view" id="view_rma_search_view">
+        <field name="name">rma.issue.search</field>
+        <field name="model">rma.issue</field>
+        <field name="arch" type="xml">
+            <search string="Commission">
+                <field name="name"/>
+                <field name="subject"/>
+                <field name="location_id"/>
+                <field name="location_dest_id"/>
+                <group expand="0" string="Group By" name="group_by">
+                    <filter string="Customer" name="partner_id" context="{'group_by':'partner_id'}" />
+                    <filter string="Responsible" name="user_id" context="{'group_by':'user_id'}"/>
+                    <filter string="Sale Order" name="associated_so" context="{'group_by':'associated_so'}"/>
+                    <filter string="Company" name="company_id" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Return reason form view -->
+    <record id="ram_return_reason_view_form" model="ir.ui.view">
+        <field name="name">return.reason.form</field>
+        <field name="model">return.reason</field>
+        <field name="arch" type="xml">
+            <form string="RMA Return Reason">
+                <group name="rma_return_reason">
+                    <field name="name" class="oe_inline"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Return reason tree view -->
+    <record id="ram_return_reason_view_tree" model="ir.ui.view">
+        <field name="name">return.reason.tree</field>
+        <field name="model">return.reason</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Return Reason" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- RMA action -->
+    <record id="rma_issue" model="ir.actions.act_window">
+        <field name="name">RMA Issue</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">rma.issue</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="search_view_id" ref="view_rma_search_view"/>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- RMA action -->
+    <record id="rma_issue_form" model="ir.actions.act_window">
+        <field name="name">RMA Issue</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">rma.issue</field>
+        <field name="view_mode">form</field>
+        <field name="search_view_id" ref="ram_issue_view_form"/>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Return reason action -->
+    <record id="rma_return_reason_form" model="ir.actions.act_window">
+        <field name="name">RMA Return Reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">return.reason</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Return type tree view -->
+    <record id="ram_return_type_view_tree" model="ir.ui.view">
+        <field name="name">return.type.tree</field>
+        <field name="model">return.type</field>
+        <field name="arch" type="xml">
+            <tree string="RMA Return Type" editable="bottom">
+                <field name="name"/>
+                <field name="return_purpose"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Return type action -->
+    <record id="rma_return_type_form" model="ir.actions.act_window">
+        <field name="name">RMA Return Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">return.type</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+</odoo>

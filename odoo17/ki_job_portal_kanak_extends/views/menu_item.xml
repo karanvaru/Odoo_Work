@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_config_website"
+              name="Website"
+              parent="hr_recruitment.menu_hr_recruitment_configuration"
+              sequence="20"/>
+
+    <menuitem id="menu_job_portal_headers_detail"
+              action="action_job_portal_headers_details"
+              parent="ki_job_portal_kanak_extends.menu_config_website"
+              name="Job Page Headers"
+              sequence="8"/>
+
+    <menuitem id="menu_recruitment_document_type"
+              action="action_recruitment_document_type"
+              parent="ki_job_portal_kanak_extends.menu_config_website"
+              name="Application Document Type"
+              sequence="10"/>
+
+        <menuitem id="menu_recruiting_agent_type"
+              action="action_recruiting_agent"
+              parent="ki_job_portal_kanak_extends.menu_config_website"
+              name="Recruitment Agents"
+              sequence="6"/>
+
+
+
+</odoo>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="tree_view_finance_Audit" model="ir.ui.view">
+            <field name="name">Finance Audit</field>
+            <field name="model">finance.audit</field>
+            <field name="arch" type="xml">
+                <tree string="Finance Audit">
+                    <field name='name'/>
+                    <field name="partner_id"/>
+                    <field name="financial_year_id"/>
+                    <field name="statement_start_date"/>
+                    <field name="statement_end_date"/>
+                    <field name="ba_rdp_closing_amount"/>
+                    <field name="ba_partner_closing_amount"/>
+                    <field name="ba_differ_amount"/>
+                    <field name="aa_rdp_closing_amount"/>
+                    <field name="aa_partner_closing_amount"/>
+                    <field name="aa_differ_amount"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="finance_audit_form_view" model="ir.ui.view">
+            <field name="name">finance.audit.form</field>
+            <field name="model">finance.audit</field>
+            <field name="arch" type="xml">
+                <form string="Finance Audit">
+                    <header>
+                        <button name="action_request_statement" type="object" string="Request Statement"
+                                attrs="{'invisible': [('state', 'in', ['statement_received','request_statement', 'in_progress', 'close', 'cancel'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_statement_received" type="object" string="Received Statement"
+                                attrs="{'invisible': [('state', 'in', ['statement_received','in_progress', 'close', 'cancel','draft'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_in_progress" type="object" string="Start Audit"
+                                attrs="{'invisible': [('state', 'in', ['request_statement', 'in_progress', 'close', 'cancel','draft'])]}"
+                                class="btn-primary"/>/>
+                        <button name="action_to_close" type="object" string="End Audit"
+                                attrs="{'invisible': [('state', 'in', ['statement_received', 'request_statement', 'close', 'cancel','draft'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_cancel" type="object" string="Cancel"
+                                attrs="{'invisible': [('state', 'in', ['close', 'cancel'])]}"/>
+                        <button name="action_set_draft" type="object" string="Set To Draft"
+                                attrs="{'invisible': [('state', 'in', ['draft','cancel','close'])]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name='name' readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="partner_id" options="{'no_create_edit': True}"
+                                       attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;=&quot;,&quot;close&quot;]]}"/>
+                                <field name="financial_year_id"
+                                       attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;=&quot;,&quot;close&quot;]]}"/>
+                                <field name="statement_start_date"
+                                       attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;=&quot;,&quot;close&quot;]]}"/>
+                                <field name="statement_end_date"
+                                       attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;=&quot;,&quot;close&quot;]]}"/>
+                            </group>
+                            <group>
+                                <field name="audit_by"
+                                       attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;=&quot;,&quot;close&quot;]]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group name="audit_left" string="Before Audit">
+                                <field name="ba_rdp_closing_amount" attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;=&quot;,&quot;close&quot;]]}"/>
+                                <div style="margin-top:3px"> </div>
+                                <field name="ba_partner_closing_amount" attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;=&quot;,&quot;close&quot;]]}"/>
+                                <div style="margin-top:3px"> </div>
+                                <field name="ba_differ_amount"/>
+                            </group>
+                            <group name="audit_right" string="After Audit">
+                                <field name="aa_rdp_closing_amount" attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;=&quot;,&quot;close&quot;]]}"/>
+                                <div style="margin-top:3px"> </div>
+                                <field name="aa_partner_closing_amount" attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;=&quot;,&quot;close&quot;]]}"/>
+                                <div style="margin-top:3px"> </div>
+                                <field name="aa_differ_amount" attrs="{}" readonly="1" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="audit_remarks"
+                                   attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;=&quot;,&quot;close&quot;]]}"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--        search view-->
+        <record id="finance_audit_search_view" model="ir.ui.view">
+            <field name="name">finance.audit.search.view</field>
+            <field name="model">finance.audit</field>
+            <field name="arch" type="xml">
+                <search string="Finance Audit">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="financial_year_id"/>
+                    <field name="state"/>
+       <!-- group by-->
+                    <group expand="0" string="Group By">
+                        <filter name="partner_id" string="Partner" domain="[]"
+                                context="{'group_by':'partner_id'}"/>
+                        <filter name="financial_year_id" string="Financial Year"
+                                context="{'group_by':'financial_year_id'}"/>
+                        <filter name="state" string="Status" domain="[]"
+                                context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!--         pivot view -->
+        <record id="finance_audit_pivot_view" model="ir.ui.view">
+            <field name="name">finance.audit.pivot</field>
+            <field name="model">finance.audit</field>
+            <field name="arch" type="xml">
+                <pivot string="Finance Audit">
+                    <field name="name"/>
+                </pivot>
+            </field>
+        </record>
+        <!--  Graph view  -->
+        <record id="finance_audit_graph" model="ir.ui.view">
+            <field name="name">finance.audit.graph</field>
+            <field name="model">finance.audit</field>
+            <field name="arch" type="xml">
+                <graph string="Finance Audit" type="pie">
+                    <field name="name"/>
+                </graph>
+            </field>
+        </record>
+        <!--  gantt view  -->
+        <record id="finance_audit_gantt" model="ir.ui.view">
+            <field name="name">finance.audit.gantt</field>
+            <field name="model">finance.audit</field>
+            <field name="arch" type="xml">
+                <gantt date_start="create_date" date_stop="closed_date" string="Default Grant view"/>
+            </field>
+        </record>
+        <!--  calender view  -->
+        <record id="finance_audit_calendar_view" model="ir.ui.view">
+            <field name="name">finance.audit.calendar</field>
+            <field name="model">finance.audit</field>
+            <field name="arch" type="xml">
+                <calendar string="Cash Request Tickets" date_start="create_date" color="name" mode="month"
+                          quick_add="True">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+        <!--         kanban view -->
+        <record id="finance_audit_kanban" model="ir.ui.view">
+            <field name="name">finance.audit.kanban</field>
+            <field name="model">finance.audit</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="name"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill finance_audit_finance_audit_kanban">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title"/>
+                                    <div class="o_kanban_tags_section"/>
+                                    <ul>
+                                        <li>
+                                            Reference:
+                                            <field name="name"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="action_finance_audit" model="ir.actions.act_window">
+            <field name="name">Finance Audit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">finance.audit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot,graph,gantt,calendar,kanban</field>
+        </record>
+
+        <menuitem id="finance_audit_menu" name="Finance Audit" action="action_finance_audit"
+                  parent="studio_customization.rdp_finance_ea0121fa-f8f1-449a-bc70-1aa0fc07a21d"/>
+
+    </data>
+</odoo>

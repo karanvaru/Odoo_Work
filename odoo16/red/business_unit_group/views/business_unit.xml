@@ -1,0 +1,116 @@
+<odoo>
+  <data>
+
+  <!-- business.unit.group tree view -->
+  <record id="business_unit_group_view_tree" model="ir.ui.view">
+    <field name="name">business.unit.group.view.tree</field>
+    <field name="model">business.unit.group</field>
+    <field name="arch" type="xml">
+      <tree>
+          <field name="name"/>  
+      </tree>
+    </field>
+  </record>
+
+  <!-- business.unit.group form view -->
+  <record id="business_unit_group_view_form" model="ir.ui.view">
+    <field name="name">business.unit.group.view.form</field>
+    <field name="model">business.unit.group</field>
+    <field name="arch" type="xml">
+      <form string="BU Groups">
+        <sheet>
+          <div class="oe_title">
+              <label for="name"/>
+              <h1>
+                  <field name="name" placeholder="e.g. Volume"/>
+              </h1>
+          </div>
+          <notebook>
+            <page name="bu_group_managers" string="BU Managers">
+                <field name="bu_manager_ids">                 
+                  <tree string="group Managers" editable="bottom">
+                      <field name="user_id"/>
+                      <field name="company_ids" widget="many2many_tags"/>
+                  </tree>
+                </field>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+
+  <!-- business.unit tree view -->
+  <record id="business_unit_view_tree" model="ir.ui.view">
+    <field name="name">business.unit.view.tree</field>
+    <field name="model">business.unit</field>
+    <field name="arch" type="xml">
+      <tree>
+        <!-- Add your fields here -->
+          <field name="name"/>
+          <field name="bu_group_id"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- business.unit form view -->
+  <record id="business_unit_view_form" model="ir.ui.view">
+    <field name="name">business.unit.view.form</field>
+    <field name="model">business.unit</field>
+    <field name="arch" type="xml">
+      <form string="Business Unit">
+        <sheet>
+          <div class="oe_title">
+              <label for="name"/>
+              <h1>
+                  <field name="name" placeholder="e.g. Volume"/>
+              </h1>
+          </div>
+          <group>
+            <field name="bu_group_id"/>
+          </group>
+          <notebook>
+            <page name="bu_managers" string="BU Managers">
+                <field name="bu_manager_ids">                 
+                  <tree string="Managers" editable="bottom">
+                      <field name="user_id"/>
+                      <field name="company_ids" widget="many2many_tags"/>
+                  </tree>
+                </field>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- business.unit.group action window -->
+  <record id="business_unit_group_action" model="ir.actions.act_window">
+    <field name="name">BU Group</field>
+    <field name="res_model">business.unit.group</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <!-- business.unit action window -->
+  <record id="business_unit_action" model="ir.actions.act_window">
+    <field name="name">BUs</field>
+    <field name="res_model">business.unit</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+   
+    <!-- menu categories -->
+
+    <menuitem name="Business Units" id="business_units" parent="base.menu_administration" sequence="30"/>
+    
+    
+    <!-- actions -->
+
+    <menuitem name="Business Unit Group" id="business_unit_group" parent="business_units"
+              action="business_unit_group_action" sequence="10"/>
+
+    <menuitem name="Business Unit" id="business_unit" parent="business_units"
+              action="business_unit_action" sequence="20"/>
+   
+  </data>
+</odoo>

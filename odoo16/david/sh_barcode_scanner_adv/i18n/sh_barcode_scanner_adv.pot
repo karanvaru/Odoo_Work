@@ -1,0 +1,990 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_barcode_scanner_adv
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-25 10:32+0000\n"
+"PO-Revision-Date: 2023-08-25 10:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_inventory_barcode_scanner_res_config_settings_form
+msgid "Add new product in picking in Draft, Waiting or Ready state."
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "Alert"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_picking.py:0
+#, python-format
+msgid "Alert!"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_bom_barcode_scanner_type__all
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_inven_adjt_barcode_scanner_type__all
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_inventory_barcode_scanner_type__all
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_invoice_barcode_scanner_type__all
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_purchase_barcode_scanner_type__all
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_sale_barcode_scanner_type__all
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_scrap_barcode_scanner_type__all
+#, python-format
+msgid "All"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/sh_inventory_adjustment_barcode_scanner.xml:0
+#, python-format
+msgid "Apply"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_bom_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_inven_adjt_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_inventory_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_invoice_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_purchase_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_sale_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_scrap_barcode_scanner_res_config_settings_form
+msgid "Auto close alert/error message"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_bom_barcode_scanner_auto_close_popup
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_bom_barcode_scanner_auto_close_popup
+msgid "Auto close alert/error message after (BOM)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_inven_adjt_barcode_scanner_auto_close_popup
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_inven_adjt_barcode_scanner_auto_close_popup
+msgid "Auto close alert/error message after (Inventory Adjustment)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_invoice_barcode_scanner_auto_close_popup
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_invoice_barcode_scanner_auto_close_popup
+msgid "Auto close alert/error message after (Invoice)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_inventory_barcode_scanner_auto_close_popup
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_inventory_barcode_scanner_auto_close_popup
+msgid "Auto close alert/error message after (Picking)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_purchase_barcode_scanner_auto_close_popup
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_purchase_barcode_scanner_auto_close_popup
+msgid "Auto close alert/error message after (Purchase)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_scrap_barcode_scanner_auto_close_popup
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_scrap_barcode_scanner_auto_close_popup
+msgid "Auto close alert/error message after (Scrap)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_sale_barcode_scanner_auto_close_popup
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_sale_barcode_scanner_auto_close_popup
+msgid "Auto close alert/error message after (sale)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_bom_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_inven_adjt_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_inventory_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_invoice_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_purchase_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_sale_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_scrap_barcode_scanner_res_config_settings_form
+msgid "Auto close alert/error message after millisecond"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_bom_barcode_scanner_res_config_settings_form
+msgid "BOM Barcode Scanner"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_bom_barcode_scanner_type__barcode
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_inven_adjt_barcode_scanner_type__barcode
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_inventory_barcode_scanner_type__barcode
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_invoice_barcode_scanner_type__barcode
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_purchase_barcode_scanner_type__barcode
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_sale_barcode_scanner_type__barcode
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_scrap_barcode_scanner_type__barcode
+msgid "Barcode"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_account_move___barcode_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_mrp_bom___barcode_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_product_product___barcode_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_product_template___barcode_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_purchase_order___barcode_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_sale_order___barcode_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_stock_move___barcode_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_stock_picking___barcode_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_stock_scrap___barcode_scanned
+msgid "Barcode Scanned"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#, python-format
+msgid "Barcode:"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "Becareful! Quantity exceed than initial demand!"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#, python-format
+msgid "Can't create Lots/Serial Number record for this lot/serial. % s"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_sh_barcode_scanner_adv_search_document__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_sh_barcode_scanner_adv_search_document__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_global_document_search_action_target_type__current
+msgid "Current"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_sh_barcode_scanner_adv_search_document__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_global_document_search_action_target_type
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_global_document_search_action_target_type
+msgid "Document Open Mode"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#, python-format
+msgid "Document:"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_global_document_search_is_enable
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_global_document_search_is_enable
+msgid "Enable global document search"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_scrap.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_scrap.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_scrap.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_scrap.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_scrap.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_scrap.py:0
+#, python-format
+msgid "Error!"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "Failed"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_global_doc_search_res_config_settings_form
+msgid "Global Document Search"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_bom_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_inventory_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_invoice_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_purchase_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_sale_barcode_scanner_res_config_settings_form
+msgid "Highlight last scanned product with color"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_sh_barcode_scanner_adv_search_document__id
+msgid "ID"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_bom_barcode_scanner_type__int_ref
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_inven_adjt_barcode_scanner_type__int_ref
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_inventory_barcode_scanner_type__int_ref
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_invoice_barcode_scanner_type__int_ref
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_purchase_barcode_scanner_type__int_ref
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_sale_barcode_scanner_type__int_ref
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_scrap_barcode_scanner_type__int_ref
+msgid "Internal Reference"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_inventory_barcode_scanner_res_config_settings_form
+msgid "Inventory Barcode Scanner"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/js/sh_inventory_adjustment_barcode_scanner.js:0
+#, python-format
+msgid "Inventory Succeed"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#, python-format
+msgid "Invoice"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_global_document_search_is_invoice
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_global_document_search_is_invoice
+msgid "Invoice Order Search"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_invoice_barcode_scanner_res_config_settings_form
+msgid "Invoices Barcode Scanner"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_inventory_barcode_scanner_is_add_product
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_inventory_barcode_scanner_is_add_product
+msgid "Is add new product in picking?"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_sh_barcode_scanner_adv_search_document____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_account_move_line__sh_invoice_barcode_scanner_is_last_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_mrp_bom_line__sh_bom_barcode_scanner_is_last_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_purchase_order_line__sh_purchase_barcode_scanner_is_last_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_sale_order_line__sh_sale_barcode_scanner_is_last_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_stock_move__sh_inventory_barcode_scanner_is_last_scanned
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_stock_move_line__sh_inventory_barcode_scanner_is_last_scanned
+msgid "Last Scanned?"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_sh_barcode_scanner_adv_search_document__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_sh_barcode_scanner_adv_search_document__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_bom_barcode_scanner_last_scanned_color
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_bom_barcode_scanner_last_scanned_color
+msgid "Last scanned Color? (BOM)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_invoice_barcode_scanner_last_scanned_color
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_invoice_barcode_scanner_last_scanned_color
+msgid "Last scanned Color? (Invoice)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_inventory_barcode_scanner_last_scanned_color
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_inventory_barcode_scanner_last_scanned_color
+msgid "Last scanned Color? (Picking)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_purchase_barcode_scanner_last_scanned_color
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_purchase_barcode_scanner_last_scanned_color
+msgid "Last scanned Color? (Purchase)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_sale_barcode_scanner_last_scanned_color
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_sale_barcode_scanner_last_scanned_color
+msgid "Last scanned Color? (sale)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_bom_barcode_scanner_move_to_top
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_bom_barcode_scanner_move_to_top
+msgid "Last scanned Move To Top? (BOM)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_invoice_barcode_scanner_move_to_top
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_invoice_barcode_scanner_move_to_top
+msgid "Last scanned Move To Top? (Invoice)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_inventory_barcode_scanner_move_to_top
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_inventory_barcode_scanner_move_to_top
+msgid "Last scanned Move To Top? (Picking)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_purchase_barcode_scanner_move_to_top
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_purchase_barcode_scanner_move_to_top
+msgid "Last scanned Move To Top? (Purchase)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_sale_barcode_scanner_move_to_top
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_sale_barcode_scanner_move_to_top
+msgid "Last scanned Move To Top? (sale)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#, python-format
+msgid "Location"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_global_document_search_is_location
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_global_document_search_is_location
+msgid "Location Search"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#, python-format
+msgid "Lot"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_global_document_search_is_lot
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_global_document_search_is_lot
+msgid "Lots/Serial Number Search"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_bom_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_inventory_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_invoice_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_purchase_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_sale_barcode_scanner_res_config_settings_form
+msgid "Move last scanned product to top"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:res.groups,name:sh_barcode_scanner_adv.group_sh_barcode_scanner_multi_barcode
+msgid "Multi Barcodes"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/sh_inventory_adjustment_barcode_scanner.xml:0
+#, python-format
+msgid "Negative Counted Quantity?"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_global_document_search_action_target_type__new
+msgid "New"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_picking.py:0
+#, python-format
+msgid "No any valid stock move line field found for this operation"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/controllers/sh_barcode_scanner_adv.py:0
+#, python-format
+msgid "Only stock manager can do this action"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#, python-format
+msgid "Picking"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_global_document_search_is_picking
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_global_document_search_is_picking
+msgid "Picking Order Search"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "Picking type is not outgoing or incoming or internal transfer."
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_bom_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_inven_adjt_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_inventory_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_invoice_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_purchase_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_sale_barcode_scanner_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_scrap_barcode_scanner_res_config_settings_form
+msgid "Play sound with warning message"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "Pls add all product items in line than rescan."
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#: model:ir.model,name:sh_barcode_scanner_adv.model_product_template
+#, python-format
+msgid "Product"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/purchase_order.py:0
+#, python-format
+msgid "Product '%s' found with scanned code '%s' but it's not purchasable!"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_bom_barcode_scanner_type
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_bom_barcode_scanner_type
+msgid "Product Scan Options (BOM)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_inven_adjt_barcode_scanner_type
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_inven_adjt_barcode_scanner_type
+msgid "Product Scan Options (Inventory Adjustment)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_invoice_barcode_scanner_type
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_invoice_barcode_scanner_type
+msgid "Product Scan Options (Invoice)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_inventory_barcode_scanner_type
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_inventory_barcode_scanner_type
+msgid "Product Scan Options (Picking)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_purchase_barcode_scanner_type
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_purchase_barcode_scanner_type
+msgid "Product Scan Options (Purchase)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_scrap_barcode_scanner_type
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_scrap_barcode_scanner_type
+msgid "Product Scan Options (Scrap)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_sale_barcode_scanner_type
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_sale_barcode_scanner_type
+msgid "Product Scan Options (sale)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_global_document_search_is_product
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_global_document_search_is_product
+msgid "Product Search"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "Product: %s Qty: %s"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "Product: %s Qty: %s lot/serial: %s"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_purchase_barcode_scanner_res_config_settings_form
+msgid "Purchase Barcode Scanner"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#: model:ir.model,name:sh_barcode_scanner_adv.model_purchase_order
+#, python-format
+msgid "Purchase Order"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_global_document_search_is_purchase
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_global_document_search_is_purchase
+msgid "Purchase Order Search"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_bom_barcode_scanner_type__sh_qr_code
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_inven_adjt_barcode_scanner_type__sh_qr_code
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_inventory_barcode_scanner_type__sh_qr_code
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_invoice_barcode_scanner_type__sh_qr_code
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_purchase_barcode_scanner_type__sh_qr_code
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_sale_barcode_scanner_type__sh_qr_code
+#: model:ir.model.fields.selection,name:sh_barcode_scanner_adv.selection__res_company__sh_scrap_barcode_scanner_type__sh_qr_code
+msgid "QR Code"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_sale_barcode_scanner_res_config_settings_form
+msgid "Sale Barcode Scanner"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#, python-format
+msgid "Sale Order"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_global_document_search_is_sale
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_global_document_search_is_sale
+msgid "Sale Order Search"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#, python-format
+msgid "Scan Barcode"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "Scanned Internal Reference/Barcode not exist in any product!"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/account_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/mrp_bom.py:0
+#: code:addons/sh_barcode_scanner_adv/models/purchase_order.py:0
+#: code:addons/sh_barcode_scanner_adv/models/sale_order.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_picking.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_picking.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_picking.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_picking.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_picking.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_picking.py:0
+#, python-format
+msgid ""
+"Scanned Internal Reference/Barcode/QR Code '%s' does not exist in any "
+"product!"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_stock_scrap
+msgid "Scrap"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_scrap_barcode_scanner_res_config_settings_form
+msgid "Scrap Barcode Scanner"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#, python-format
+msgid "Search Document"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_sh_barcode_scanner_adv_search_document
+msgid "Search Document By Barcode"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_stock_move__sequence
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_stock_move_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "Serial Number already exist!"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/js/sh_inventory_adjustment_barcode_scanner.js:0
+#: code:addons/sh_barcode_scanner_adv/static/src/js/sh_inventory_adjustment_barcode_scanner.js:0
+#, python-format
+msgid "Something went wrong"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model_terms:ir.ui.view,arch_db:sh_barcode_scanner_adv.sh_inven_adjt_barcode_scanner_res_config_settings_form
+msgid "Stock Adjustment Barcode Scanner"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "Succeed"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#, python-format
+msgid "There are no available qty for this lot/serial.%s"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "There are no available qty for this lot/serial: %s"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "There are no available qty for this lot: %s"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:res.groups,comment:sh_barcode_scanner_adv.group_sh_barcode_scanner_multi_barcode
+msgid ""
+"This user will be able to scan multi barcode for product in sale, purchase, "
+"inventory, invoice etc."
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model,name:sh_barcode_scanner_adv.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,help:sh_barcode_scanner_adv.field_account_move___barcode_scanned
+#: model:ir.model.fields,help:sh_barcode_scanner_adv.field_mrp_bom___barcode_scanned
+#: model:ir.model.fields,help:sh_barcode_scanner_adv.field_product_product___barcode_scanned
+#: model:ir.model.fields,help:sh_barcode_scanner_adv.field_product_template___barcode_scanned
+#: model:ir.model.fields,help:sh_barcode_scanner_adv.field_purchase_order___barcode_scanned
+#: model:ir.model.fields,help:sh_barcode_scanner_adv.field_sale_order___barcode_scanned
+#: model:ir.model.fields,help:sh_barcode_scanner_adv.field_stock_move___barcode_scanned
+#: model:ir.model.fields,help:sh_barcode_scanner_adv.field_stock_picking___barcode_scanned
+#: model:ir.model.fields,help:sh_barcode_scanner_adv.field_stock_scrap___barcode_scanned
+msgid "Value of the last barcode scanned."
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#, python-format
+msgid "Warning"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_bom_barcode_scanner_warn_sound
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_bom_barcode_scanner_warn_sound
+msgid "Warning Sound? (BOM)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_inven_adjt_barcode_scanner_warn_sound
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_inven_adjt_barcode_scanner_warn_sound
+msgid "Warning Sound? (Inventory Adjustment)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_invoice_barcode_scanner_warn_sound
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_invoice_barcode_scanner_warn_sound
+msgid "Warning Sound? (Invoice)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_inventory_barcode_scanner_warn_sound
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_inventory_barcode_scanner_warn_sound
+msgid "Warning Sound? (Picking)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_purchase_barcode_scanner_warn_sound
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_purchase_barcode_scanner_warn_sound
+msgid "Warning Sound? (Purchase)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_scrap_barcode_scanner_warn_sound
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_scrap_barcode_scanner_warn_sound
+msgid "Warning Sound? (Scrap)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_company__sh_sale_barcode_scanner_warn_sound
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_res_config_settings__sh_sale_barcode_scanner_warn_sound
+msgid "Warning Sound? (sale)"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/account_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/purchase_order.py:0
+#: code:addons/sh_barcode_scanner_adv/models/sale_order.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_picking.py:0
+#, python-format
+msgid "You can not scan item in %s state."
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_picking.py:0
+#, python-format
+msgid ""
+"You can not scan product item for Detailed Operations directly here, Pls "
+"click detail button (at end each line) and than rescan your product item."
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_move_lot_serial.py:0
+#, python-format
+msgid "You can only process 1.0 %s of products with unique serial number."
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-python
+#: code:addons/sh_barcode_scanner_adv/models/stock_picking.py:0
+#: code:addons/sh_barcode_scanner_adv/models/stock_picking.py:0
+#, python-format
+msgid "You must first select a Operation Type."
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/sh_inventory_adjustment_barcode_scanner.xml:0
+#, python-format
+msgid "barcode"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#. odoo-javascript
+#: code:addons/sh_barcode_scanner_adv/static/src/xml/global_doc_search/global_doc_search.xml:0
+#, python-format
+msgid "earch Document"
+msgstr ""
+
+#. module: sh_barcode_scanner_adv
+#: model:ir.model.fields,field_description:sh_barcode_scanner_adv.field_sh_barcode_scanner_adv_search_document__name
+msgid "name"
+msgstr ""

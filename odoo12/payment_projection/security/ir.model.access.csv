@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+payment_projection,payment.projection,model_payment_projection,,1,1,1,1
+vendor_bills_projection_line,vendor.bills.projection.line,model_vendor_bills_projection_line,,1,1,1,1
+advance_payment_projection_line,advance.payment.projection.line,model_advance_payment_projection_line,,1,1,1,1
+expense_projection_line,expense.projection.line,model_expense_projection_line,,1,1,1,1
+bank_accounts_projection_line,bank.accounts.projection.line,model_bank_accounts_projection_line,,1,1,1,1
+cheques_projection_line,cheques.projection.line,model_cheques_projection_line,,1,1,1,1

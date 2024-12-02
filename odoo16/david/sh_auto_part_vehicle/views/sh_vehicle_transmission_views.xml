@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="sh_motorcycle_transmission_tree" model="ir.ui.view">
+        <field name="name">motorcycle.transmission.tree</field>
+        <field name="model">motorcycle.transmission</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- action -->
+    <record id="sh_motorcycle_transmission_action" model="ir.actions.act_window">
+        <field name="name">Transmission</field>
+        <field name="res_model">motorcycle.transmission</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- make menuitem -->
+    <menuitem
+    	id="sh_motorcycle_transmission_menuitem"
+    	action="sh_motorcycle_transmission_action"
+    	parent="sh_motorcycle_menuitem_config" sequence="7" />
+</odoo>

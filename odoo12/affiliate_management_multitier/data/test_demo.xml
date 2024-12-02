@@ -1,0 +1,51 @@
+
+<record id="affiliate_commission_visit_1" model="affiliate.visit">
+  <field name="affiliate_method">parentcommission</field>
+  <field name="affiliate_type">product</field>
+  <field name="type_id">6</field>
+  <field name="type_name">Antivirus</field>
+  <field name="is_converted">False</field>
+  <field name="affiliate_key">123OxPzL</field>
+  <field name="affiliate_partner_id" ref="demo_odoo_affiliate.res_partner_demo_1"/>
+  <field name="url">/shop/product/prod-antivirus-6?aff_key=123OxPzL</field>
+  <field name="sales_order_line_id" ref="affiliate_management.sol_id_2" />
+  <field name="affiliate_program_id" ref="affiliate_management.affiliate_program_1"/>
+  <field name="product_quantity">1</field>
+  <field name="amt_type">20.0 % parent comsn</field>
+  <field name="commission_amt">190.00</field>
+  <field name="state">confirm</field>
+</record>
+
+<record id="affiliate_commission_visit_2" model="affiliate.visit">
+  <field name="affiliate_method">parentcommission</field>
+  <field name="affiliate_type">product</field>
+  <field name="type_id">6</field>
+  <field name="type_name">Antivirus</field>
+  <field name="is_converted">False</field>
+  <field name="affiliate_key">123OxPzL</field>
+  <field name="affiliate_partner_id" ref="demo_odoo_affiliate.res_partner_demo_1"/>
+    <field name="url">/shop/product/prod-antivirus-6?aff_key=123OxPzL</field>
+  <field name="sales_order_line_id" ref="affiliate_management.sol_id_2" />
+  <field name="affiliate_program_id" ref="affiliate_management.affiliate_program_1"/>
+  <field name="product_quantity">1</field>
+  <field name="amt_type">20.0 % parent comsn</field>
+  <field name="commission_amt">190.00</field>
+  <field name="state">confirm</field>
+</record>
+
+<record id="affiliate_commission_visit_3" model="affiliate.visit">
+      <field name="affiliate_method">parentcommission</field>
+      <field name="affiliate_type">product</field>
+      <field name="type_id">6</field>
+      <field name="type_name">Antivirus</field>
+      <field name="is_converted">False</field>
+      <field name="affiliate_key">123OxPzL</field>
+      <field name="affiliate_partner_id" ref="demo_odoo_affiliate.res_partner_demo_1"/>
+        <field name="url">/shop/product/prod-antivirus-6?aff_key=123OxPzL</field>
+      <field name="sales_order_line_id" ref="affiliate_management.sol_id_2" />
+      <field name="affiliate_program_id" ref="affiliate_management.affiliate_program_1"/>
+      <field name="product_quantity">1</field>
+      <field name="amt_type">20.0 % parent comsn</field>
+      <field name="commission_amt">190.00</field>
+      <field name="state">confirm</field>
+</record>

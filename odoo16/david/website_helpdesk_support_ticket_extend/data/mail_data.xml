@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="customer_send_mail_verification_template" model="mail.template">
+            <field name="name">Ticket Verification</field>
+            <field name="model_id" ref="model_helpdesk_support"/>
+            <field name="email_from">{{object.company_id.email or ''}}</field>
+            <field name="email_to">{{object.partner_id.email or ''}}</field>
+            <field name="subject">Verification For {{ object.name }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <h4>
+                            <b>Dear <t t-out="object.partner_id.name"/>,
+                            </b>
+                        </h4>
+
+                        <a t-attf-href="{{ctx.get('url')}}">
+                            Verify And Close Your Ticket Here.
+                        </a>
+
+                        <br/>
+                        <br/>
+                        Thanks
+                        <br/>
+                        <t t-out="object.company_id.name"/>
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

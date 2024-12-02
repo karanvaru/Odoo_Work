@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- employee.breadth.target.wizard form view -->
+	<record id="employee_breadth_target_wizard_view_form" model="ir.ui.view">
+		<field name="name">employee.breadth.target.wizard.view.form</field>
+		<field name="model">employee.breadth.target.wizard</field>
+		<field name="arch" type="xml">
+			<form string="Add Breadth Target">
+				<sheet>
+					<group>
+						<!-- Add your fields here -->
+						<field name="breadth_target_id"/>
+
+						<field name="line_ids">
+							<tree editable="top">
+								<field name="company_id"/>
+								<field name="business_unit_id"/>
+								<field name="bu_group_id"/>
+								<field name="country_id"/>
+								<field name="country_group_id"/>
+								<field name="count"/>
+							</tree>
+						
+						</field>
+						
+					</group>
+				</sheet>
+				<footer>
+                    <button name="action_submit" string="Add Lines" type="object"
+                            default_focus="1" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+			</form>
+		</field>
+	</record>
+
+</odoo>

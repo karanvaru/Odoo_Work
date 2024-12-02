@@ -1,0 +1,20 @@
+{
+    'name': 'Incoming Mail Record',
+    'summary': """ Incoming Mail Record""",
+    'version': '16.0.0.0.2',
+    'category': 'Extra Tools',
+    "website": "http://www.qnomix.com/",
+    'description': """  Incoming Mail Record """,
+    'author': 'Qnomix',
+    'license': 'LGPL-3',
+    'depends': ['project'],
+    'data': [
+        'security/ir.model.access.csv',
+        'wizard/convert_to_task_wizard_view.xml',
+        'views/incoming_mail_record_view.xml',
+    ],
+    'demo': [],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}

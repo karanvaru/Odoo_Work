@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+
+        <!--Email template -->
+        <record id="email_template_edi_wk_warranty_regi_1" model="mail.template">
+            <field name="name">Warranty Confirmation - Send by Email</field>
+            <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+            <field name="email_to">${(object.partner_id.email and '%s &lt;%s&gt;' % (object.partner_id.name, object.partner_id.email) or '')|safe}</field>
+            <field name="subject">Warranty Confirmation</field>
+            <field name="model_id" ref="warranty_management.model_warranty_registration"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="action_report_warranty"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<p>Dear ${object.partner_id.name}
+% if object.partner_id.parent_id:
+    (<i>${object.partner_id.parent_id.name}</i>)
+% endif
+,</p>
+<p>
+Hi there
+% if object.name:
+ here is your warranty reference: <strong>${object.name}</strong>.
+% endif
+</p>
+<p>
+    Kindly find the attached warranty.
+</p>
+
+
+<p>You can reply to this email if you have any questions.</p>
+<p>Thank you,</p>
+
+<p style="color:#888888;">
+% if object.user_id and object.user_id.signature:
+    ${object.user_id.signature | safe}
+% endif
+</p>
+]]>
+            </field>
+        </record>
+
+
+
+        <record id="email_template_edi_wk_warranty_regi_2" model="mail.template">
+            <field name="name">Warranty Registration - Send by Email</field>
+            <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+            <field name="email_to">${(object.partner_id.email and '%s &lt;%s&gt;' % (object.partner_id.name, object.partner_id.email) or '')|safe}</field>
+            <field name="subject">Warranty Registration</field>
+            <field name="model_id" ref="warranty_management.model_warranty_registration"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<p>Dear ${object.partner_id.name}
+% if object.partner_id.parent_id:
+    (<i>${object.partner_id.parent_id.name}</i>)
+% endif
+,</p>
+<p>
+Thank you for purchasing <strong>${object.product_id.name}</strong> product from our website. 
+The shipment was successfully delivered on <strong>${ctx['wkdate']}</strong>.
+</p>
+<p>
+To register the product on our website please click on 'Register Product':
+</p>
+<div style="text-align: center; margin-top: 16px;">
+        <a href="${ctx['reglink']}" 
+            style="padding: 5px 10px; font-size: 12px; line-height: 18px; 
+                color: #FFFFFF; border-color:#875A7B; text-decoration: none; 
+                display: inline-block; margin-bottom: 0px; font-weight: 400; 
+                text-align: center; vertical-align: middle; cursor: pointer; 
+                white-space: nowrap; background-image: none; background-color: #875A7B; 
+                border: 1px solid #875A7B; border-radius:3px">
+            Register Product
+        </a>
+</div>
+
+
+<p>You can reply to this email if you have any questions.</p>
+<p>Thank you,</p>
+
+<p style="color:#888888;">
+% if object.user_id and object.user_id.signature:
+    ${object.user_id.signature | safe}
+% endif
+</p>
+]]>
+            </field>
+        </record>
+
+
+        <record id="email_template_edi_wk_warranty_regi_3" model="mail.template">
+            <field name="name">Warranty Registration - Send by Email</field>
+            <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+            <field name="email_to">${(object.partner_id.email and '%s &lt;%s&gt;' % (object.partner_id.name, object.partner_id.email) or '')|safe}</field>
+            <field name="subject">Warranty Registration</field>
+            <field name="model_id" ref="warranty_management.model_warranty_registration"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="action_report_warranty"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<p>Dear ${object.partner_id.name}
+% if object.partner_id.parent_id:
+    (<i>${object.partner_id.parent_id.name}</i>)
+% endif
+,</p>
+<p>
+Thank you for purchasing <strong>${object.product_id.name}</strong> product from our website. 
+The shipment was successfully delivered on <strong>${ctx['wkdate']}</strong>.
+</p>
+<p>
+Please note the warranty reference number of the product for future references- <strong>${ctx['warrantyref']}</strong>.
+
+
+<p>You can reply to this email if you have any questions.</p>
+<p>Thank you,</p>
+
+<p style="color:#888888;">
+% if object.user_id and object.user_id.signature:
+    ${object.user_id.signature | safe}
+% endif
+</p>
+]]>
+            </field>
+        </record>
+
+
+
+        <record id="email_warranty_expire_notification" model="mail.template">
+            <field name="name">Warranty Notification - Send by Email</field>
+            <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+            <field name="email_to">${(object.partner_id.email and '%s &lt;%s&gt;' % (object.partner_id.name, object.partner_id.email) or '')|safe}</field>
+            <field name="subject">Warranty Expire Notification</field>
+            <field name="model_id" ref="warranty_management.model_warranty_registration"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<p>Dear ${object.partner_id.name}
+% if object.partner_id.parent_id:
+    (<i>${object.partner_id.parent_id.name}</i>)
+% endif
+,</p>
+<p>
+This is to notify that the warranty for your product <strong>${object.product_id.name}</strong>
+associated with the sales Order <strong>${object.order_id.name}</strong> will become 
+void on <strong>${ctx['wkdate']}</strong>
+</p>
+<p>
+Please follow these steps to extend the warranty for the product.
+Login to your website account.
+Open the order and click on the ‘warranty’ tab next to the product.
+Now, click on ‘Renew’ and follow the steps to extend the warranty of the product.
+Once you have successfully extended the warranty of your product, 
+you will receive the confirmation mail on your registered email address.
+</p>
+
+<p>You can reply to this email if you have any questions.</p>
+<p>Thank you,</p>
+
+<p style="color:#888888;">
+% if object.user_id and object.user_id.signature:
+    ${object.user_id.signature | safe}
+% endif
+</p>
+]]>
+            </field>
+        </record>
+
+
+        <record id="email_template_product_register" model="mail.template">
+            <field name="name">Product Registration - Send by Email</field>
+            <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+            <field name="email_to">${(object.partner_id.email and '%s &lt;%s&gt;' % (object.partner_id.name, object.partner_id.email) or '')|safe}</field>
+            <field name="subject">Product Registration</field>
+            <field name="model_id" ref="warranty_management.model_warranty_registration"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="action_report_warranty"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<p>Dear ${object.partner_id.name}
+% if object.partner_id.parent_id:
+    (<i>${object.partner_id.parent_id.name}</i>)
+% endif
+,</p>
+<p>
+You have successfully registered the <strong>${object.product_id.name}</strong> with our website.
+Thank you for shopping from us.
+</p>
+<p>
+Please note the warranty reference number of the product for future references- <strong>${ctx['warrantyref']}</strong>.
+</p>
+
+
+<p>You can reply to this email if you have any questions.</p>
+<p>Thank you,</p>
+
+<p style="color:#888888;">
+% if object.user_id and object.user_id.signature:
+    ${object.user_id.signature | safe}
+% endif
+</p>
+]]>
+            </field>
+        </record>
+
+
+        <record id="email_template_warranty_renewal" model="mail.template">
+            <field name="name">Warranty Renew Confirmation - Send by Email</field>
+            <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+            <field name="email_to">${(object.partner_id.email and '%s &lt;%s&gt;' % (object.partner_id.name, object.partner_id.email) or '')|safe}</field>
+            <field name="subject">Warranty Renew Confirmation</field>
+            <field name="model_id" ref="warranty_management.model_warranty_registration"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="action_report_warranty"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<p>Dear ${object.partner_id.name}
+% if object.partner_id.parent_id:
+    (<i>${object.partner_id.parent_id.name}</i>)
+% endif
+,</p>
+<p>
+The warranty for the product <strong>${object.product_id.name}</strong> associcated with the 
+Order <strong>${object.order_id.name}</strong> has been extended successfully till <strong>${ctx['extendate']}</strong>.
+</p>
+<p>
+Thank you for being with us. Happy Shopping.
+</p>
+
+
+<p>You can reply to this email if you have any questions.</p>
+<p>Thank you,</p>
+
+<p style="color:#888888;">
+% if object.user_id and object.user_id.signature:
+    ${object.user_id.signature | safe}
+% endif
+</p>
+]]>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

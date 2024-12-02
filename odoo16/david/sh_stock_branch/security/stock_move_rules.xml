@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock.stock_move_rule" model="ir.rule">
+        <field name="active" eval="False" />
+    </record>
+
+    <record model="ir.rule" id="stock_move_rule">
+        <field name="name">stock_move multi-company</field>
+        <field name="model_id" ref="stock.model_stock_move" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            [ '|','|','|', 
+            '&amp;',('company_id', '=', False), ('branch_id', '=', False), 
+            '&amp;',('company_id', 'in', company_ids), ('branch_id', '=', False), 
+            '&amp;',('company_id', '=',False),('branch_id', 'in', user.allowed_branch_ids.ids), 
+            '&amp;',('company_id', 'in', company_ids),('branch_id', 'in', user.allowed_branch_ids.ids)]
+        </field>
+    </record>
+
+    <record id="stock.stock_move_line_rule" model="ir.rule">
+        <field name="active" eval="False" />
+    </record>
+
+    <record model="ir.rule" id="stock_move_line_rule">
+        <field name="name">stock_move_line multi-company</field>
+        <field name="model_id" ref="stock.model_stock_move_line" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            [ '|','|','|', 
+            '&amp;',('company_id', '=', False), ('branch_id', '=', False), 
+            '&amp;',('company_id', 'in', company_ids), ('branch_id', '=', False), 
+            '&amp;',('company_id', '=',False),('branch_id', 'in', user.allowed_branch_ids.ids), 
+            '&amp;',('company_id', 'in', company_ids),('branch_id', 'in', user.allowed_branch_ids.ids)]
+        </field>
+    </record>
+
+</odoo>

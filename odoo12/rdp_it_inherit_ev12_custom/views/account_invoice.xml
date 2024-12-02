@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+        <record id="account_invoice_inherit_form_record_type" model="ir.ui.view">
+            <field name="name">account.invoice.inherit.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='audit_status']" position="after">
+                    <field name="record_type_id" string="Record Type"/>
+                    <field name="record_category_id" string="Record Category" domain="[('record_type_ids', 'in', record_type_id)]"/>
+                    <field name="so_gem_rp_id" string="SO Gem RP" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="account_invoice_supplier_inherit_form_record_type" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.inherit.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='audit_status']" position="after">
+                    <field name="record_type_id"/>
+                    <field name="record_category_id" domain="[('record_type_ids', 'in', record_type_id)]"/>
+                    <field name="so_gem_rp_id" string="SO Gem RP" />
+                </xpath>
+            </field>
+        </record>
+
+</odoo>

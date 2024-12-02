@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="five_why_hpi_inherit_id" model="ir.ui.view">
+            <field name="name">five.why.inherited.form</field>
+            <field name="model">five.why</field>
+            <field name="inherit_id" ref="five_why.five_why_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div" position="before">
+                <div>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="open_hpi_five_why_tickets" class="oe_stat_button" type="object" icon="fa-briefcase">
+                            <field string="HDPI" name="hpi_five_why_ticket_count"
+                                   widget="statinfo"/>
+                        </button>
+                    </div>
+                </div>
+                </xpath>
+
+                <!-- <xpath expr="//header" position="inside">
+                    <button name="%(rdp_helpdesk_process_improvement.hpi_five_why_response)d" type="action" string="HDPI" class="btn-primary"/>
+                </xpath> -->
+                <xpath expr="//header" position="inside">
+                    <button name="%(rdp_helpdesk_process_improvement.hpi_five_why_response)d" type="action" string="HDPI" class="btn-primary"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

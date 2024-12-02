@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='asterisk_call_list' model='ir.ui.view'>
+        <field name='name'>asterisk_calls.call.list</field>
+        <field name='model'>asterisk_calls.call</field>
+        <field name='type'>tree</field>
+        <field name='arch' type='xml'>
+            <tree create='false' edit='false' duplicate='false'>
+                <button name="open_partner_form" type="object"
+                    aria-label="open"  title="Open" icon="fa-user"/>
+                <field name='started'/>
+                <field name='src'/>
+                <field name='dst'/>
+                <field name="src_user" string="From"/>
+                <field name="dst_user" string="To"/>
+                <field name="partner"/>
+                <field name='disposition'/>
+                <field name='billsec' sum='Total Duration'/>                
+                <field name='is_qos_bad'/>                
+                <field name="recording_icon" widget="html" string="R"/>                
+            </tree>
+        </field>
+    </record>
+
+    <record id='asterisk_call_form' model='ir.ui.view'>
+        <field name='name'>asterisk_calls.call.form</field>
+        <field name='model'>asterisk_calls.call</field>
+        <field name='type'>form</field>
+        <field name='arch' type='xml'>
+            <form duplicate="false" create="false">
+                <header></header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- Library needs refactoring
+                        <button class="oe_stat_button" type="object"
+                            name="toggle_library" icon="fa-book">
+                            <field name="in_library" widget="boolean_button"
+                                options="{'terminology': {
+                                            'string_true': 'In Lib',
+                                            'hover_true': 'Remove',
+                                            'string_false': 'Not in Lib',
+                                            'hover_false': 'Add'
+                                }}"/>
+                        </button>
+                        -->
+                    </div>
+                    <div class="badge-pill badge-danger float-right"
+                        attrs="{'invisible': [('is_private','=',False)]}">Private</div>
+                    <div class="oe_title">
+                        <field name="notes" placeholder="Enter your notes here..."/>
+                    </div>
+                    <notebook>
+                        <page name="main" string="Main">
+                            <group>
+                                <group>
+                                    <field name="is_private" invisible="1"/>
+                                    <field name="partner"
+                                        context="{'default_phone': dst}"/>
+                                    <field name="src_user"
+                                        attrs="{'invisible': [('src_user', '=', False)]}"/>
+                                    <field name="dst_user"
+                                        attrs="{'invisible': [('dst_user', '=', False)]}"/>
+                                    <field name="billsec_human"/>
+                                    <field name='duration_human'/>
+                                    <field name='disposition'/>
+                                </group>
+                                <group>
+                                    <field name='src' widget="originate_call"/>
+                                    <field name='dst' widget="originate_call"/>
+                                    <field name='clid'/>                                    
+                                    <field name='started'/>
+                                    <field name='answered'/>
+                                    <field name='ended'/>
+                                </group>
+                            </group>
+                            <group string="Recording" attrs="{'invisible': [('recording_filename', '=', False)]}">
+                                <group>
+                                    <field name="recording_filename" invisible="1"/>
+                                    <field name="recording_widget" widget="html" nolabel="1"
+                                        attrs="{'invisible': [('recording_filename', '=', False)]}"/>
+                                </group>
+                                <group>
+                                    <field name="recording_data" filename="recording_filename"
+                                        attrs="{'invisible': [('recording_data', '=', False)]}"/>
+                                    <field name="recording_attachment" filename="recording_filename"
+                                        attrs="{'invisible': [('recording_attachment', '=', False)]}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="qos" string="Quality">
+                            <group>
+                                <group string="Our Receiver">
+                                    <field name="ssrc"/>
+                                    <field name="rxcount"/>
+                                    <field name="lp"/>
+                                    <field name="rxjitter"/>                                
+                                </group>
+                                <group string="Their Sender">
+                                    <field name="themssrc"/>
+                                    <field name="txcount"/>
+                                    <field name="rlp"/>
+                                    <field name="txjitter"/>
+                                    <field name="rtt"/>
+                                </group>
+                            </group>                            
+                        </page>
+                        <page name="tech" string="Technical">
+                            <group>
+                                <group>
+                                    <field name='accountcode'/>
+                                    <field name='uniqueid'/>
+                                    <field name='linkedid'/>
+                                    <field name='channel'/>
+                                    <field name='dstchannel'/>
+                                </group>
+                                <group>
+                                    <field name="sequence" readonly="1"/>                                    
+                                    <field name='dcontext'/>
+                                    <field name='peeraccount'/>
+                                    <field name='lastapp'/>
+                                    <field name='lastdata'/>
+                                    <field name='userfield'/>
+                                    <field name='amaflags'/>
+                                </group>                                    
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>                
+            </form>
+        </field>
+    </record>
+
+    <record id="asterisk_call_graph" model="ir.ui.view">
+        <field name="name">asterisk_calls.call.graph</field>
+        <field name="model">asterisk_calls.call</field>
+        <field name="arch" type="xml">
+            <graph type="bar" string="Call by day">
+                <field name='started' type='row'  interval="day"/>
+                <field name='disposition' type='row'/>
+                <field name="billsec" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+
+    <record id="asterisk_call_pivot" model="ir.ui.view">
+        <field name="name">asterisk_calls.call.pivot</field>
+        <field name="model">asterisk_calls.call</field>
+        <field name="arch" type="xml">
+            <pivot display_quantity="true" string="Calls">
+                <field name='started' type='row'/>
+                <field name='disposition' type='row'/>
+                <field name="billsec" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+
+    <record id='asterisk_call_search' model='ir.ui.view'>
+        <field name='name'>asterisk_calls.call.search</field>
+        <field name='model'>asterisk_calls.call</field>
+        <field name='type'>search</field>
+        <field name='arch' type='xml'>
+            <search>
+                <field name="src"/>
+                <field name="dst"/>
+                <field name="partner"/>
+                <field name="partner_company"/>
+                <field name="src_user"/>
+                <field name="dst_user"/>
+                <field name="clid"/>
+                <field name="channel"/>
+                <field name="dstchannel"/>
+                <field name="started"/>
+                <field name="tags"/>
+                <field name="uniqueid"/>
+                <filter name="my" string="My Calls"
+                    domain="['|', ('src_user','=', uid), ('dst_user','=', uid)]"/> 
+                <filter name="answered" string="My Answered"
+                    domain="[('disposition', '=', 'ANSWERED'), '|', 
+                        ('src_user','=', uid), ('dst_user','=', uid)]"/>                
+                <filter name="missed" string="My Missed"
+                    domain="[('disposition', '!=', 'ANSWERED'), '|', 
+                        ('src_user','=', uid), ('dst_user','=', uid)]"/>                
+                <filter name="incoming" string="My Incoming"
+                    domain="[('dst_user','=', uid)]"/>
+                <filter name="incoming" string="My Outgoing"
+                    domain="[('src_user','=', uid)]"/>
+                <separator/>
+                <filter name="today" string="Today" domain="[
+                    ('started','&gt;', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                <filter name="week" string="This Week" domain="[
+                    ('started', '&gt;', (context_today() + relativedelta(weeks=-1, weekday=0)).strftime('%Y-%m-%d 00:00:00'))]"/>
+                <filter string="This month" name="this_month" domain="[
+                    ('started','&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d 00:00:00'))]"/>
+                <filter string="Previous month" name="prev_month" domain="[
+                    ('started','&gt;=',(context_today()+relativedelta(months=-1, day=1)).strftime('%Y-%m-%d 00:00:00')),
+                    ('started','&lt;=',(context_today()+relativedelta(months=-1, day=31)).strftime('%Y-%m-%d 23:59:59'))]"/>
+                <filter string="This year" name="this_year" domain="[
+                    ('started','&gt;=',(context_today()+relativedelta(month=1, day=1)).strftime('%Y-%m-%d 00:00:00'))]"/>                      
+                <separator/>
+                <filter name="private" string="Private" domain="[('is_private','=',True)]"/>
+                <filter name="recordings" string="Recordings" domain="[('recording_filename','!=',False)]"/>
+                <filter name="partners" string="Partners"
+                    domain="[('partner','!=',False)]"/>
+                <filter name="without_partner" string="No Partner"
+                    domain="[('partner','=',False)]"/>
+                <filter string="Missed" name="missed" domain="[('disposition','!=','ANSWERED')]"/>
+                <filter string="Answered" name="answered" domain="[('disposition','=','ANSWERED')]"/>
+                <filter string="Busy" name="busy" domain="[('disposition','=','BUSY')]"/>
+                <filter string="No answer" name="no_answer" domain="[('disposition','=','NO ANSWER')]"/>
+                <filter string="Failed" name="failed" domain="[('disposition','=','FAILED')]"/>
+                <filter string="Congestion" name="congestion" domain="[('disposition','=','CONGESTION')]"/>
+                <filter string="Partner" name="by_partner" context="{'group_by':'partner'}"/>
+                <filter string="From" name="by_from" context="{'group_by':'src_user'}"/>
+                <filter string="To" name="by_to" context="{'group_by':'dst_user'}"/>
+                <filter string="Started" name="by_started" context="{'group_by':'started'}"/>
+                <filter string="Disposition" name="by_dispostion" context="{'group_by':'disposition'}"/>
+
+            </search>
+        </field>
+    </record>
+
+    <record id='asterisk_calls_action' model='ir.actions.act_window'>
+        <field name='name'>Calls History</field>
+        <field name='res_model'>asterisk_calls.call</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="search_view_id" ref="asterisk_call_search"/>
+        <field name="context">{'search_default_my': '1'}</field>
+    </record>
+
+    <menuitem id="asterisk_calls_history_menu" parent="asterisk_calls_menu" 
+            sequence="10" name="History" action="asterisk_calls_action"/>
+
+
+
+    <!-- Dashboard -->
+    <record model="ir.ui.view" id="missed_calls_board_view">
+        <field name="name">Traffic</field>
+        <field name="model">board.board</field>
+        <field name="arch" type="xml">
+            <form string="Call Traffic">
+                <board style="1">
+                  <column>
+                    <action context="{
+                        'params': {'action': %(asterisk_calls_action)d},
+                      }"
+                      domain="[('disposition','!=', 'ANSWERED')]" name="%(asterisk_calls_action)d" 
+                        string="Missed Calls" view_mode="list" />
+                  </column>
+                </board>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="missed_calls_board_action">
+        <field name="name">Missed Calls</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="missed_calls_board_view"/>
+    </record>
+
+    <menuitem id="missed_calls_board_menu" parent="calls_board_menu" name="Missed"
+              action="missed_calls_board_action" sequence="5"/>
+
+    
+    <record model="ir.ui.view" id="daily_calls_board_view">
+        <field name="name">Daily</field>
+        <field name="model">board.board</field>
+        <field name="arch" type="xml">
+            <form string="Daily Calls">
+                <board style="1">
+                  <column>
+                    <action context="{
+                        'params': {'action': %(asterisk_calls_action)d},
+                      }"
+                      domain="[]" name="%(asterisk_calls_action)d" 
+                        string="Daily Calls" view_mode="graph" />
+                  </column>
+                </board>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="daily_calls_board_action">
+        <field name="name">Daily Calls</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="daily_calls_board_view"/>
+    </record>
+
+    <menuitem id="daily_calls_board_menu" parent="calls_board_menu" name="Daily"
+              action="daily_calls_board_action" sequence="4"/>
+
+
+</odoo>

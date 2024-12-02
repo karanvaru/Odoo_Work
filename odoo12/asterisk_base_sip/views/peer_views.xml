@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><data>
+
+    <!-- Common views for SIP peers -->
+    <record model="ir.ui.view" id="asterisk_base_sip_peer_list">
+        <field name="name">asterisk sip peer list</field>
+        <field name="model">asterisk_base_sip.peer</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="peer_status_count" string="S" icon='fa-phone'/>
+                <field name="server"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="asterisk_base_sip_peer_form">
+        <field name="name">asterisk sip peer form</field>
+        <field name="model">asterisk_base_sip.peer</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form>
+              <header>
+                <button name="apply" type="object" string="Apply"
+                            icon="fa-upload"  class="oe_highlight oe_read_only"/>
+                <button name="reload" type="object" string="SIP Reload"
+                            icon="fa-refresh"  class="oe_read_only"/>
+                <button name="update_status_button" type="object" 
+                    string="Status Update" icon="fa-download"  class="oe_read_only"/>
+                <field name="channel_type" widget="statusbar" clickable="1"/>
+                </header>
+                <sheet>                  
+                  <div class="oe_button_box">
+                      <button type="action" name="%(asterisk_base_sip_peer_status_action)d"
+                              context="{'search_default_peer': active_id}"
+                              icon="fa-calendar-check-o" class="oe_stat_button">
+                          <div class="o_stat_info">
+                            <field name="peer_status_count" string="Status"
+                                 widget="statinfo"/>
+                          </div>
+                      </button>
+                  </div>
+                  <div name="title" class="oe_title"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sip_peer_search" model="ir.ui.view">
+        <field name="name">asterisk_base_sip.peer.search</field>
+        <field name="model">asterisk_base_sip.peer</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="list_route_groups" string="Route Groups"/>
+                <field name="note"/>
+                <field name="server"/>
+                <field name="ipaddr"/>
+                <field name="host"/>
+                <field name="context"/>
+                <filter name="by_context" string="By Context" context="{'group_by': 'context'}"/>
+                <filter name="by_server" string="By Server" context="{'group_by': 'server'}"/>
+                <filter name="by_channel_type" string="By Channel Type" context="{'group_by': 'channel_type'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="sip_peer_update_status_context_action" model="ir.actions.server">
+        <field name="name">Update status</field>
+        <field name="model_id" ref="model_asterisk_base_sip_peer"/>
+        <field name="state">code</field>
+        <field name="code">records.update_status_request()</field>
+        <field name="binding_model_id" ref="model_asterisk_base_sip_peer"/>
+    </record>
+
+</data></odoo>

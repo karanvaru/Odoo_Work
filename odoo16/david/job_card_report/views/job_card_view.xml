@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        
+        <menuitem
+            id="menu_job_analysis_reports_custom"
+            name="Analysis Report"
+            groups="project.group_project_manager"
+            parent="job_card.menu_job_card"
+            sequence="8" />
+            
+        <record id="view_job_instructions_custom_tree_view" model="ir.ui.view">
+            <field name="name">instruction.job.order.tree</field>
+            <field name="model">instruction.job.order</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Job Order Instruction" create="false">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="note"/>
+                    <field name="pick_date"/>
+                    <field name="user_id"/>
+                    <field name="task_id" string="Job Card"/>
+                    <field name="status"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_job_instructions_custom_search_view" model="ir.ui.view">
+            <field name="name">instruction.job.order.search</field>
+            <field name="model">instruction.job.order</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <search string="Job Order Instruction">
+                    <field name="name" />
+                    <field name="description"/>
+                    <field name="status"/>
+                    <field name="task_id"/>
+                    <field name="user_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Job Card" name="task_id" context="{'group_by':'task_id'}"/>
+                        <filter string="User" name="user_id" context="{'group_by':'user_id'}"/>
+                        <filter string="Status" name="status" context="{'group_by':'status'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="view_job_instructions_custom_graph_view" model="ir.ui.view">
+            <field name="name">instruction.job.order.graph</field>
+            <field name="model">instruction.job.order</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <graph string="Job Order Instruction">
+                    <field name="name"/>
+                    <field name="task_id"/>
+                </graph>
+            </field>
+        </record>
+        
+        <record id="view_job_instructions_custom_pivot_view" model="ir.ui.view">
+            <field name="name">instruction.job.order.pivot</field>
+            <field name="model">instruction.job.order</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <pivot string="Job Order Instruction">
+                    <field name="task_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+        
+        
+        <record id="action_view_job_instructions_custom" model="ir.actions.act_window">
+            <field name="name">Job Card Instructions Report</field>
+            <field name="res_model">instruction.job.order</field>
+            <field name="view_mode">pivot,graph,tree</field>
+        </record>
+        
+        <menuitem
+            id="menu_job_instruction_custom_reports"
+            name="Job Card Instructions Report"
+            parent="menu_job_analysis_reports_custom"
+            groups="project.group_project_manager"
+            action="action_view_job_instructions_custom"
+            sequence="10" />
+        
+       <record id="view_job_costsheet_custom_tree_view" model="ir.ui.view">
+            <field name="name">job.cost.sheet</field>
+            <field name="model">job.cost.sheet</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Job Costsheet" create="false">
+                    <field name="task_id"/>
+                    <field name="cost_type"/>
+                    <field name="product_id"/>
+                    <field name="name"/>
+                    <field name="account_id"/>
+                    <field name="account_analytic_id"/>
+<!--                    <field name="analytic_tag_ids" widget="many2many_tags"/>-->
+                    <field name="quantity"/>
+                    <field name="uom_id"/>
+                    <field name="price_unit"/>
+                    <field name="discount"/>
+                    <field name="invoice_line_tax_ids" widget="many2many_tags"/>
+                    <field name="price_subtotal"/>
+                    <field name="tax_amount" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_job_costsheet_custom_search_view" model="ir.ui.view">
+            <field name="name">job.cost.sheet.search</field>
+            <field name="model">job.cost.sheet</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <search string="Job Costsheet">
+                    <field name="task_id"/>
+                    <field name="cost_type"/>
+                    <field name="product_id"/>
+                    <field name="name"/>
+                    <field name="account_id"/>
+                    <field name="account_analytic_id"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Job Card" name="task_id" context="{'group_by':'task_id'}"/>
+                        <filter string="Cost Type" name="cost_type" context="{'group_by':'cost_type'}"/>
+                        <filter string="Product" name="product_id" context="{'group_by':'product_id'}"/>
+                        <filter string="Account" name="account_id" context="{'group_by':'account_id'}"/>
+                        <filter string="Analytic Account" name="account_analytic_id" context="{'group_by':'account_analytic_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="view_job_costsheet_custom_report_graph_view" model="ir.ui.view">
+            <field name="name">job.cost.sheet</field>
+            <field name="model">job.cost.sheet</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <graph string="Job Costsheet">
+                    <field name="cost_type"/>
+                    <field name="task_id"/>
+                </graph>
+            </field>
+        </record>
+        
+        <record id="view_job_costsheet_custom_report_pivot_view" model="ir.ui.view">
+            <field name="name">job.cost.sheet</field>
+            <field name="model">job.cost.sheet</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <pivot string="Job Costsheet">
+                    <field name="cost_type" type="row"/>
+                    <field name="task_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+        
+        <record id="action_view_job_costsheet_custom" model="ir.actions.act_window">
+            <field name="name">Job Card Costsheets Report</field>
+            <field name="res_model">job.cost.sheet</field>
+            <field name="view_mode">pivot,graph,tree</field>
+        </record>
+       
+        <menuitem
+            id="menu_job_costsheet_reports"
+            name="Job Card Costsheets Report"
+            parent="menu_job_analysis_reports_custom"
+            groups="project.group_project_manager"
+            action="action_view_job_costsheet_custom"
+            sequence="11" />
+            
+        <record id="view_requistionlines_custom_tree_view" model="ir.ui.view">
+            <field name="name">material.purchase.requisition.line.tree</field>
+            <field name="model">material.purchase.requisition.line</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Requisition Lines" create="false">
+                    <field name="requisition_id"/>
+                    <field name="task_id"/>
+                    <field name="requisition_type"/>
+                    <field name="product_id"/>
+                    <field name="description"/>
+                    <field name="qty"/>
+                    <field name="uom"/>
+                    <field name="partner_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_requistionlines_custom_search_view" model="ir.ui.view">
+            <field name="name">material.purchase.requisition.line.search</field>
+            <field name="model">material.purchase.requisition.line</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <search string="Requisition Lines">
+                    <field name="requisition_id"/>
+                    <field name="task_id"/>
+                    <field name="requisition_type"/>
+                    <field name="product_id"/>
+                    <field name="partner_id"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Job Card" name="task_id" context="{'group_by':'task_id'}"/>
+                        <filter string="Requisition" name="requisition_id" context="{'group_by':'requisition_id'}"/>
+                        <filter string="Requisition Type" name="requisition_type" context="{'group_by':'requisition_type'}"/>
+                        <filter string="Product" name="product_id" context="{'group_by':'product_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="view_requistionlines_custom_report_graph_view" model="ir.ui.view">
+            <field name="name">material.purchase.requisition.line.graph</field>
+            <field name="model">material.purchase.requisition.line</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <graph string="Requisition Lines">
+                    <field name="requisition_id"/>
+                </graph>
+            </field>
+        </record>
+        
+        <record id="view_requistionlines_custom_report_pivot_view" model="ir.ui.view">
+            <field name="name">material.purchase.requisition.line.pivot</field>
+            <field name="model">material.purchase.requisition.line</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <pivot string="Requisition Lines">
+                    <field name="requisition_id" type="row"/>
+                    <field name="task_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+        
+        <record id="action_view_requistionlines_custom" model="ir.actions.act_window">
+            <field name="name">Job Card Requisition Lines Report</field>
+            <field name="res_model">material.purchase.requisition.line</field>
+            <field name="view_mode">pivot,graph,tree</field>
+        </record>
+       
+        <menuitem
+            id="menu_job_requistionlines_reports"
+            name="Job Card Requisition Lines Report"
+            parent="menu_job_analysis_reports_custom"
+            action="action_view_requistionlines_custom"
+            groups="project.group_project_manager"
+            sequence="13" />
+        
+        <record id="view_job_timesheetsline_custom_tree_view" model="ir.ui.view">
+            <field name="name">account.analytic.line.tree</field>
+            <field name="model">account.analytic.line</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Requisition Lines" create="false">
+                    <field name="instruction_job_id"/>
+                    <field name="description"/>
+                    <field name="name" />
+                    <field name="leader_id"/>
+                    <field name="note"/>
+                    <field name="account_id" />
+                    <field name="unit_amount" string="Working Hours"  widget="float_time"/>
+                    <field name="date" />
+                    <field name="task_id" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_view_timesheetline_custom" model="ir.actions.act_window">
+            <field name="name">Job Card Timesheets Report</field>
+            <field name="res_model">account.analytic.line</field>
+            <field name="view_mode">pivot,tree</field>
+        </record>
+      
+        <menuitem
+            id="menu_job_timesheetlines_reports"
+            name="Job Card Timesheets Report"
+            parent="menu_job_analysis_reports_custom"
+            groups="project.group_project_manager"
+            action="action_view_timesheetline_custom"
+            sequence="14" />
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <template id="stock_report_header">
+            <div class="row">
+                <div class="col-6" style="text-align:right;">
+                    <img src="/reddot_stock_extension/static/src/img/pdf_logo.png" style="width: 45%; height: 150px;"/>
+                    <br/>
+                    P.O Box 262459 | Jebel Ali Free Zone | Dubai-U.A.E
+                    <br/>
+                    Tel: +971 4 393 1441
+                </div>
+                <div class="col-6" style="border-left:1px solid black">
+                    <img src="/reddot_stock_extension/static/src/img/pdf_logo.png" style="width: 45%; height: 150px;"/>
+                    <br/>
+                    P.O Box 262459 | Jebel Ali Free Zone | Dubai-U.A.E
+                    <br/>
+                    Tel: +971 4 393 1441
+                </div>
+            </div>
+        </template>
+
+        <record id="custom_picking_report_paper_format" model="report.paperformat">
+            <field name="name">Picking Report Paper Format</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">2</field>
+            <field name="margin_bottom">2</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">10</field>
+            <field name="dpi">100</field>
+        </record>
+
+    </data>
+</odoo>

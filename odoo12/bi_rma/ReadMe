@@ -1,0 +1,16 @@
+
+v12.0.0.1 
+=> Added rma configuration
+=> changed flow of rma delivery creation to validate of rma instead of validate of picking.
+
+v12.0.0.2
+=> Fixed Validate Button for b2b rma.
+
+v12.0.0.3
+=> Fixed issue of source location on validate button.
+
+v12.0.0.4
+=> Fixed issue of received quantity while validating picking of repair action.
+
+
+12.0.0.5 ==>moved the configuration to general settings so that it will work for multi company.

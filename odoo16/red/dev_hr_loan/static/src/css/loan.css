@@ -1,0 +1,6 @@
+/* Custom CSS for highlighting required fields */
+.required-field .o_field_widget > input,
+.required-field .o_field_widget > select,
+.required-field .o_field_widget > textarea {
+    border: 1px solid red;
+}

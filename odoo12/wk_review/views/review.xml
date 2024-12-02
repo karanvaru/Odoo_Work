@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+	<data>
+		<template id="assets_frontend_review" inherit_id="website.assets_frontend" name="Assets Frontend Review">
+			<xpath expr="." position="inside">
+        <script type="text/javascript" src="/wk_review/static/src/js/review.js"></script>
+        <link id="website_css" rel='stylesheet' href='/wk_review/static/src/css/review.css' t-ignore="true"/>
+		    <link rel="stylesheet" href="/wk_review/static/src/css/star-rating.css" media="all" type="text/css"/>
+		    <script src="/wk_review/static/src/js/bootstrap-rating-input.min.js" type="text/javascript"></script>
+		    <script src="/wk_review/static/src/js/star-rating.js" type="text/javascript"></script>
+		    <script src="/wk_review/static/src/js/jquery.timeago.js" type="text/javascript"></script>
+	    </xpath>
+		</template>
+
+		<template id="wk_review" inherit_id="website_sale.product" active="True" name="Product Review">
+			<xpath expr="//p[@t-field='product.description_sale']" position="after">
+			 	<t t-set="val" t-value="product.avg_review()"/>
+			 	<t t-if="val != 0" >
+			 		<hr class="mb32"/>
+			 		<section class="container">
+						<div class="tot-rating">
+							<span>Ratings:  </span>
+							<span><t t-esc="val"/>/5</span>
+							<input
+								id="star-readonly"
+								class="rating form-control d-none"
+								t-attf-value="#{product.avg_review()}"
+								data-show-clear="false"
+								data-show-caption="false"
+								data-min="0"
+								data-max="5"
+								data-step="0.1"
+								data-readonly="true"
+								data-size="xs"
+								data-symbol="&#xf005;"
+								data-glyphicon="false"
+								data-rating-class="rating-fa"/>
+						</div>
+						<div class= "RootElement">
+							<a href="#reviewId">
+								<t t-if="product.user_review">
+	            		<span class="Count NonZeroCount ">
+	              		 <t t-if="len(product.fetch_active_review(product.id)) > 0" >
+	              		 	<span class="Number">
+	              		 		<t t-esc="len(product.fetch_active_review(product.id))"/>
+	              		 	</span>
+	              		 	<span> Review(s)</span>
+	              		</t>
+	              	</span>
+				        </t>
+							</a>
+						</div>
+					</section>
+				</t>
+			</xpath>
+
+			<xpath expr="//div[@id='product_full_description']" position="after">
+				<section class="container" >
+	        <div class="row" id="reviewId">
+	          <div class="col-md-12 col-xs-12 col-sm-12 box-review">
+	            <ul class="media-list" id="review-list"  t-if="product.user_review">
+	              <li id="display-all-review" class="media" style="margin-top:30px;  margin-bottom: 50px;">
+	              	<t t-set="total_reviews" t-value="product.fetch_active_review(product.id)"/>
+									<div class="row d-block" style="width:100%">
+										<div class="col-md-12" style="padding:0px">
+											<span class="col-md-2 add-all-review"><u>All Reviews</u></span>
+										<span class="col-md-1" style="background-color: #66bb6a;height: auto;width: auto;border-radius: 50px;margin-top: auto;padding-bottom: 3px;padding-top: 3px;">
+											<span id="viewed"><t t-esc="len(product.fetch_active_review2(product.id,0,product.get_limit()))"/></span> /
+											<span id="total_product_reviews"><t t-esc="len(total_reviews)"/></span>
+										</span>
+										</div>
+										<div class="col-md-12" id="all-review">
+											<t t-value="product.fetch_active_review2(product.id,0,product.get_limit())" t-set="review_ids"/>
+											<t t-call="wk_review.wk_review_template"/>
+										</div>
+									</div>
+	              </li>
+	              <input type="hidden" name="limit" t-att-value="product.get_limit()" id="limit"/>
+	              <input type="hidden" name="product_id" t-att-value="product.id" id="product_id"/>
+	              <t t-set="total_viewed" t-value="len(product.fetch_active_review2(product.id,0,product.get_limit()))"/>
+	              <t t-if="total_viewed &lt; len(total_reviews)">
+	              	<div class="row">
+	                	<div class="col-md-12 col-sm-12 col-xs-12">
+	                		<button id="morebtn" class="btn btn-load-more btn-lg btn-block load-more">Load More...</button>
+	                	</div>
+	              	</div>
+	              </t>
+	          	</ul>
+	          	<t t-set="is_user_public" t-value="website.env.user == request.website.user_id"/>
+	          	<t t-set="can_comment" t-value="sha_in or token or not is_user_public"/>
+	            <div id= "write-review" class="row css_editable_mode_hidden" t-if="can_comment">
+	             	<form t-attf-action="/shop/review/#{(request.httprequest.path).replace('/shop/product/','')}" method="post" class="form-horizontal mt32 col-md-12" enctype="multipart/form-data">
+									<div class="col-md-6 col-sm-12 col-xs-12 pull-left mb32">
+										<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+										<input type="hidden" id="product_tmp_id" name="product_tmp_id" t-attf-value="#{product_tmp_id or product.id}" />
+										<span id="submit-msg" class="add-all-review"><p style="font-family: 'Open Sans 600'; font-size:24px; color:#000000;"><u>Add Your Review</u></p></span>
+										<div id="errordiv" class="input-text" style="color:red;font-size:1.5em"></div>
+
+										<div id="star_div" style="color:#FFA000;">
+											<span class="fa fa-thumbs-up fa-2x thumb"></span>
+											<input required="required" type="hidden" name="stars" id="valstar" data-show-clear="false" class="rating form-control hide" value="" data-min="0" data-max="5" data-step="1" data-size="sm" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa"/>
+										</div>
+										<div  class="input-text">
+											<p class="textbox-label">Your Name<sup><i class="fa fa-asterisk fa-icon-smaller" style="color:red"></i></sup></p>
+										    <input id="contact_name" type="text" class="form-control" name="contact_name" t-attf-value="#{contact_name or user_id.name}" required="required" placeholder="enter your nick name"/>
+										</div>
+										<div class="input-text">
+											<p class="textbox-label">Your Email<sup><i class="fa fa-asterisk fa-icon-smaller" style="color:red"></i></sup></p>
+										    <input id="email" type="email" class="form-control" name="email" t-attf-value="#{email or user_id.email}" required="required" placeholder="enter your email"/>
+										</div>
+										<div class="input-text">
+											<p class="textbox-label">Write Review Title<sup><i class="fa fa-asterisk fa-icon-smaller" style="color:red"></i></sup></p>
+										    <input id="title" type="text" class="form-control" name="title" t-attf-value="#{title or ''}" maxlength="200" required="required" placeholder="Write review title"/>
+										</div>
+										<div class="input-text">
+											<p class="textbox-label">Write Your Review<sup><i class="fa fa-asterisk fa-icon-smaller" style="color:red"></i></sup></p>
+											<textarea id="summary" rows="3" name="review" class="form-control" required="required" placeholder="Write Your review..."/>
+										</div>
+										<button id="btnsave" class="btn btn-primary btn-lg add-button-label">Add Review</button>
+									</div>
+	              </form>
+	          	</div>
+	          	<div class="row css_editable_mode_hidden" t-if="not can_comment">
+	              <h3>Write your review</h3>
+	              <p>You must be <a t-attf-href="/web/login?redirect=#{quote_plus(request.httprequest.url + '#write-review')}">logged in</a> to post a review.</p>
+	            </div>
+	        	</div>
+	        </div>
+	      </section>
+				<div id="login-modal" class="modal bd-example-modal-sm hide fade" tabindex="-1" role="dialog">
+				  <div class="modal-dialog modal-sm" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title">Sign In</h5>
+				        <button type="button" class="close fa fa-times" data-dismiss="modal" aria-label="Close"/>
+				      </div>
+				      <div class="modal-body">
+				        <p>In order to continue, you must sign in.</p>
+				      </div>
+				      <div class="modal-footer">
+								<a class="btn btn-primary" t-attf-href="/web/login?redirect=#{quote_plus(request.httprequest.url + '#reviewId')}">Sign In</a>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+	  	</xpath>
+		</template>
+		<template id="product_review" inherit_id="website_sale.products_item" active="True" customize_show="True" name="Product Review">
+      <xpath expr="//section//div[hasclass('product_price')]" position="after" >
+      	<div class="tot-rating" data-toggle="popover" style="width:250px;">
+      		<input type='hidden'  name="review_id" t-att-value="product.avg_review()" id="wk_rating_star"/>
+      		<input type='hidden' name="user_reviews" t-att-value="len(product.user_review)"/>
+      		<t t-set="user_reviews" t-value="len(product.user_review)"/>
+      		<t t-set="val" t-value="product.avg_review()"/>
+		 			<t t-if="val != 0" >
+				    	<input id="input-5a" class="rating form-control d-none"  t-attf-value="#{product.avg_review()}" data-show-clear="false" data-show-caption="false" data-min="0" data-max="5" data-step="0.1" data-readonly="true" data-size="xxs" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa"/>
+				    	<span>(<t t-esc="user_reviews"/> Ratings)</span>
+					</t>
+				</div>
+			</xpath>
+  	</template>
+
+  	<template id="wk_review_template">
+			<t t-foreach="review_ids" t-as="message">
+				<t t-if="message.rating >= 1">
+					<div class="review_div">
+						<div class="row" style="margin-bottom: 20px;">
+							<input type="hidden" name="review_id" t-att-value="message.id" id="review_id"/>
+							<t t-set="vote" t-value="product.fetch_user_vote(message.id)"/>
+							<t t-set="likes" t-value="message.likes"/>
+							<t t-set="dislikes" t-value="message.dislikes"/>
+							<t t-set="total_votes" t-value="message.total_votes"/>
+							<div class="col-xs-12 col-sm-2" style="padding-top:15px !important;padding-bottom:15px !important;">
+								<div class="">
+									<div class="col-sm-12 d-none d-sm-block review_img" style="margin-left:13%">
+										<img t-attf-src="/wk_review/user.review/#{message.id}/avatar/#{message.partner_id.id}" style="width: 100%; margin-right: 10px;"/>
+									</div>
+									<div class="col-xs-8 d-block d-sm-none" style="margin-left:0px;padding-right:0px !important;padding-left:0px !important; margin-top:0px;">
+										<div class="col-xs-3 review_img-mobile" ><img t-attf-src="/wk_review/user.review/#{message.id}/avatar/#{message.partner_id.id}" style="width: 100%; margin-right: 10px;"/></div>
+										<div class="col-xs-5">
+											<div class="row review-by-mobile">Reviewed by</div>
+											<div class="row review-by-name-mobile"><t t-esc="message.customer"/></div>
+										</div>
+									</div>
+									<div class="col-xs-4 col-sm-12 d-block d-sm-none review-time-ago-mobile">
+										<div class="row">
+											<div class="col-xs-12">
+												<span class="fa fa-clock-o"/>
+												<abbr class="timeago review-time-ago-mobile" t-att-title="product.get_review_current_time(message.id)"></abbr>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row d-none d-sm-block">
+									<div class="col-sm-12 review-by">Reviewed by</div>
+									<div class="col-sm-12 review-by-name"><t t-esc="message.customer"/></div>
+								</div>
+							</div>
+							<div class="col-md-10 col-xs-12 col-sm-10">
+								<div class="col-md-12 review-box">
+									<div style="padding: 15px 0px 0px 15px;">
+										<div class="row">
+											<span class="col-md-2 col-xs-4 rating-tag" style="padding-right:0px !important;">
+												Rating:  	<span class="user-rating"><t t-esc="message.rating"/>/5</span>
+											</span>
+											<div class="col-md-2 col-xs-8" style="padding-right:0px !important;">
+												<input
+													id="star-readonly"
+													class="rating form-control d-none"
+													t-attf-value="#{message.rating}"
+													data-show-clear="false"
+													data-show-caption="false"
+													data-min="0"
+													data-max="5"
+													data-step="0.1"
+													data-readonly="true"
+													data-size="xs"
+													data-symbol="&#xf005;"
+													data-glyphicon="false"
+													data-rating-class="rating-fa"/>
+											</div>
+											<div class="col-md-6 d-none d-sm-block" style="padding-right:0px !important;padding-left:0px !important; margin-top:6px;">
+												<span class="fa fa-clock-o"/>
+												<abbr class="timeago review-time-ago" t-att-title="product.get_review_current_time(message.id)"></abbr>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12 col-xs-12 review-title" style="padding-right:0px !important;"><t t-esc="message.title" /></div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12 col-xs-12 review-comment" style="padding-right:0px !important;"><t t-esc="message.msg" /></div>
+										</div>
+									</div>
+									<div class="row review-bottom">
+										<div class="col-sm-12 col-xs-12" style="padding-top:10px;padding-bottom:15px; display:inline-block;">
+											<t t-if="vote[0] == False">
+												<div class="sprite TopLeft" style="display: inline-block;">
+												</div>
+												<div class="bubble" style="display: inline-block;">
+													<span id="review_likes"><t t-esc="likes"/></span>
+												</div>
+											</t>
+											<t t-if="vote[0] == True">
+												<div class="sprite BottomLeft">
+												</div>
+												<div class="bubble" style="display: inline-block;">
+													<span id="review_likes"><t t-esc="likes"/></span>
+												</div>
+											</t>
+											<t t-if="vote[1] == False">
+												<div class="sprite TopRight">
+												</div>
+												<div class="bubble" style="display: inline-block;">
+													<span id="review_dislikes"><t t-esc="dislikes"/></span>
+												</div>
+											</t>
+											<t t-if="vote[1] == True">
+												<div class="sprite BottomRight">
+												</div>
+												<div class="bubble" style="display: inline-block;">
+													<span id="review_dislikes"><t t-esc="dislikes"/></span>
+												</div>
+											</t>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</t>
+			</t>
+        	<script>
+        		$(".for-js-rating").rating();
+			    $("abbr.timeago").timeago();
+        	</script>
+		</template>
+	</data>
+</odoo>

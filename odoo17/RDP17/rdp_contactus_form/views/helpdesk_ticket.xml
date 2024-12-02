@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="helpdesk_ticket_inherit_form" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.inherit.form</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <group>
+                    <group>
+                        <field name="partner_name"/>
+                        <field name="customer_mobile"/>
+                        <field name="partner_email"/>
+                        <field name="serial_no"/>
+                        <field name="product_id"/>
+                        <field name="sub_complaint_type"/>
+                        <field name="purchase_date"/>
+                        <field name="landmark"/>
+                        <field name="helpdesk_ticket_type"/>
+<!--                        <field name="contact_device_no"/>-->
+                    </group>
+                    <group>
+                        <field name="color"/>
+                        <field name="product_purchase"/>
+                        <field name="invoice_number"/>
+                        <field name="order_id"/>
+                        <field name="upload_inv" widget="binary" filename="document_name"/>
+                        <field name="document_name" invisible="True"/>
+                        <field name="street" placeholder="Street..." class="o_address_street"/>
+                        <field name="city" placeholder="City" class="o_address_city"/>
+                        <field name="state" class="o_address_state" placeholder="State"/>
+                        <field name="pincode" placeholder="ZIP" class="o_address_zip"/>
+                        <field name="country" placeholder="Country" class="o_address_country"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+    </data>
+</odoo>
+

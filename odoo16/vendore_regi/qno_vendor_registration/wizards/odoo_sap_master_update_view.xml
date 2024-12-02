@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_odoo_sap_master_update_from" model="ir.ui.view">
+        <field name="name">odoo.sap.master.update.form.view</field>
+        <field name="model">odoo.sap.master.update</field>
+        <field name="arch" type="xml">
+            <form string="Odoo SAP Master Update">
+                <group>
+                    <field name="type"/>
+                </group>
+                <footer>
+                    <button name="action_update_sap" string="Confirm"
+                            type="object" default_focus="1" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_odoo_sap_master_update" model="ir.actions.act_window">
+        <field name="name">Update Master From SAP</field>
+        <field name="res_model">odoo.sap.master.update</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

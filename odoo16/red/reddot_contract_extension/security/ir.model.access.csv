@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_contract_report_template,access_contract.report.template,model_contract_report_template,base.group_user,1,0,0,0
+access_exception_remark_wizard,access_exception.remark.wizard,model_exception_remark_wizard,base.group_user,1,1,1,1
+access_accept_contract_wizard,access_accept.contract.wizard,model_accept_contract_wizard,base.group_user,1,1,1,1
+access_renew_contract_wizard,access_renew.contract.wizard,model_renew_contract_wizard,base.group_user,1,1,1,1
+access_do_not_renew_contract_wizard,access_do.not.renew.contract.wizard,model_do_not_renew_contract_wizard,base.group_user,1,1,1,1
+
+
+access_contract_report_template_managers,access_contract_report_template_managers,model_contract_report_template,hr.group_hr_manager,1,1,1,1
+access_contract_report_template_users,access_contract_report_template_users,model_contract_report_template,hr.group_hr_user,1,0,0,0
+

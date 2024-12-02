@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!--Email template -->
+        <record id="email_template_estimate" model="mail.template">
+            <field name="name">Estimate - Send by Email</field>
+            <field name="email_from">{{object.company_id.email}}</field>
+            <field name="subject">{{object.company_id.name}} {{object.state in ('draft', 'sent') and 'Estimate' or 'Order'}} (Ref {{object.number or 'n/a' }})</field>
+            <field name="email_to">{{object.partner_id.email}}</field>
+            <field name="model_id" ref="odoo_sale_estimates.model_sale_estimate"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="odoo_sale_estimates.report_estimate_information"/>
+            <field name="report_name">Estimate</field>
+            <field name="lang">{{object.partner_id.lang}}</field>
+            <field name="body_html"><![CDATA[
+<p>Dear <t t-out="object.partner_id.name or ''"/>,
+
+<p>
+Here is your estimate <strong><t t-out="object.number or ''"/></strong>
+
+amounting in <strong><t t-out="object.total or ''"/> <t t-out="object.pricelist_id.currency_id.name or ''"/></strong>
+from <t t-out="object.company_id.name or ''"/>.
+</p>
+
+    <br/>
+
+<p>You can reply to this email if you have any questions.</p>
+<p>Thank you,</p>
+
+<p style="color:#eeeeee;">
+<t t-if="object.user_id.signature">
+    <br />
+    <t t-out="object.user_id.signature or ''"/>
+</t>
+</p>
+]]></field>
+        </record>
+        
+    </data>
+</odoo>
+ 

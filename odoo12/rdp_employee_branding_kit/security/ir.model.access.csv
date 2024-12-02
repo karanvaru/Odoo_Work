@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+employee_branding_kit,employee.branding.kit,model_employee_branding_kit,,1,1,1,1
+employee_branding_kit_items,employee.branding.kit.items,model_employee_branding_kit_items,,1,1,1,1
+
+
+
+

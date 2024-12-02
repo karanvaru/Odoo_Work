@@ -1,0 +1,1 @@
+from . import five_why_inherited

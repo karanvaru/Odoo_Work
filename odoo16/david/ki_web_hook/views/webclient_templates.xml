@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="web_hook_robotto"  name="Web Hook Robots" inherit_id="web.layout">
+        <xpath expr="//head">
+            <meta name="robots" content="noindex, nofollow" />
+        </xpath>
+    </template>
+</odoo>

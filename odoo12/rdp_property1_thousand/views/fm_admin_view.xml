@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--        form view-->
+        <record id="fm_admin_property_inherited" model="ir.ui.view">
+            <field name="name">rdp.exit14.form.view</field>
+            <field name="model">rdp.exit14</field>
+            <field name="inherit_id" ref="rdp_exit14.rdp_exit14_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="open_property_one" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                            <field name="property_one_ticket_count" widget="statinfo" string="FM &amp; Admin Vendor"/>
+                        </button>
+                    </div>
+                </xpath>
+
+                <xpath expr="/form/*" position="before">
+                    <header>
+                        <button name="action_to_fm_admin_vendors" type="object" string="Add to FM &amp; Admin Vendors"
+                                class="btn-primary" attrs="{'invisible': [('state', 'in', ['finalized_vendors'])]}"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                </xpath>
+                <xpath expr="//field[@name='vendor']" position="after">
+                    <field name="location_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

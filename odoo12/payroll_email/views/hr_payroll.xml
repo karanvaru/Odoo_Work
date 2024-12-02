@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_payslip_my_form_inherit" model="ir.ui.view">
+            <field name="name">hr.payslip.form.inherit</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+		
+        <xpath expr="//field[@name='number']" position="after">
+		    <!-- <field name="partner_id"/> -->
+             <field name="flag" invisible="True"/>
+		</xpath>
+        <xpath expr="//button[@name='action_payslip_done']" position="before">
+		    <button string="Send By Email" name="action_my_payslip_sent" type="object" attrs="{'invisible':[('flag','=',True)]}"  class="oe_highlight"/>
+		</xpath>
+            </field>
+        </record>
+        </data>
+        </odoo>

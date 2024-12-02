@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--Tree View ============================================= Record Type -->
+    <record id="record_type_view_tree" model="ir.ui.view">
+        <field name="name">record.type.view.tree</field>
+        <field name="model">record.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Form View ============================================= Record Type -->
+    <record id="record_type_view_form" model="ir.ui.view">
+        <field name="name">record.type.view.form</field>
+        <field name="model">record.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+
+        </field>
+    </record>
+
+    <!--Action ============================================= Record Type -->
+    <record id="action_record_type" model="ir.actions.act_window">
+        <field name="name">Record Type</field>
+        <field name="res_model">record.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="submenu_record_type" name="Record Type" parent="submenu_custom_general"
+              action="action_record_type" sequence="1"/>
+
+
+</odoo>

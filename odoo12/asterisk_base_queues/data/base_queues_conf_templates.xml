@@ -1,0 +1,92 @@
+<odoo>
+<!-- Queue(queuename,[options,[URL,[announceoverride,[timeout,[AGI,[macro,[gosub,[rule,[position]]]]]]]]]) -->
+<template id="asterisk_base_queues.extension">
+<t t-set="options" t-value="''"/>
+<t t-if="rec.continue_on_hangup">
+    <t t-set="options" t-value="options + 'c'"/>
+</t>
+<t t-set="options" t-value="options + rec.options"/>
+same => n,Answer()
+same => n,Queue(<t t-esc="rec.name"/>,<t t-esc="options"/>,,,<t t-esc="rec.timeout"/>)
+<t t-if="rec.continue_on_hangup and rec.continue_exten">
+    same => n,GotoIf($["${QUEUESTATUS}" = "CONTINUE"]?continue)
+</t>
+<t t-if="rec.timeout_exten">
+    same => n,GotoIf($["${QUEUESTATUS}" = "TIMEOUT"]?timeout)
+</t>
+<t t-if="rec.maxlen > 0 and rec.full_exten">    
+    same => n,GotoIf($["${QUEUESTATUS}" = "FULL"]?full)
+</t>
+<t t-if="rec.joinempty != 'yes' and rec.join_empty_exten">
+    same => n,GotoIf($["${QUEUESTATUS}" = "JOINEMPTY"]?join_empty)
+</t>
+<t t-if="rec.joinempty != 'yes' and rec.join_unavail_exten">
+    same => n,GotoIf($["${QUEUESTATUS}" = "JOINUNAVAIL"]?join_unavail)
+</t>
+<t t-if="rec.leavewhenempty and rec.leave_empty_exten">    
+    same => n,GotoIf($["${QUEUESTATUS}" = "LEAVEEMPTY"]?leave_empty)
+</t>
+<t t-if="rec.leavewhenempty and rec.leave_unavail_exten">
+    same => n,GotoIf($["${QUEUESTATUS}" = "LEAVEUNAVAIL"]?leave_unavail)
+</t>
+same => n,Playtones(busy)
+same => n,Wait(11)
+same => n,Hangup()
+<t t-if="rec.continue_on_hangup and rec.continue_exten">
+    same => n(continue),Verbose(QUEUESTATUS: CONTINUE)
+    same => n,Wait(1); Loop protection
+    same => n,Goto(<t t-esc="rec.continue_exten.number"/>,1)
+</t>
+<t t-if="rec.timeout_exten">
+    same => n(timeout),Verbose(QUEUESTATUS: TIMEOUT)
+    same => n,Wait(1); Loop protection
+    same => n,Goto(odoo-extensions,<t t-esc="rec.timeout_exten.number"/>,1)
+</t>
+<t t-if="rec.maxlen > 0 and rec.full_exten">
+    same => n(full),Verbose(QUEUESTATUS: FULL)
+    same => n,Wait(1); Loop protection
+    same => n,Goto(odoo-extensions,<t t-esc="rec.full_exten.number"/>,1)
+</t>
+<t t-if="rec.joinempty != 'yes' and rec.join_empty_exten">
+    same => n(join_empty),Verbose(QUEUESTATUS: JOINEMPTY)
+    same => n,Wait(1); Loop protection
+    same => n,Goto(odoo-extensions,<t t-esc="rec.join_empty_exten.number"/>,1)
+</t>
+<t t-if="rec.joinempty != 'yes' and rec.join_unavail_exten">
+    same => n(join_unavail),Verbose(QUEUESTATUS: JOINUNAVAIL)
+    same => n,Wait(1); Loop protection
+    same => n,Goto(odoo-extensions,<t t-esc="rec.join_unavail_exten.number"/>,1)
+</t>
+<t t-if="rec.leavewhenempty and rec.leave_empty_exten">
+    same => n(leave_empty),Verbose(QUEUESTATUS: LEAVEEMPTY)
+    same => n,Wait(1); Loop protection
+    same => n,Goto(odoo-extensions,<t t-esc="rec.leave_empty_exten.number"/>,1)
+</t>
+<t t-if="rec.leavewhenempty and rec.leave_unavail_exten">
+    same => n(leave_unavail),Verbose(QUEUESTATUS: LEAVEUNAVAIL)
+    same => n,Wait(1); Loop protection
+    same => n,Goto(odoo-extensions,<t t-esc="rec.leave_unavail_exten.number"/>,1)
+</t>
+</template>
+
+<template id="asterisk_base_queues.queue">;
+[<t t-esc="rec.name"/>]
+strategy=<t t-esc="rec.strategy"/>
+<t t-if="rec.announce_holdtime">
+announce-holdtime=<t t-esc="rec.announce_holdtime"/>
+<t t-if="rec.announce_frequency">announce-frequency=<t t-esc="rec.announce_frequency"/></t>
+</t>
+ringinuse=<t t-if="rec.ringinuse">yes</t><t t-else="">no</t>
+musicclass=<t t-esc="rec.musicclass"/>
+maxlen=<t t-esc="rec.maxlen"/>
+servicelevel=<t t-esc="rec.servicelevel"/>
+timeout=<t t-esc="rec.ring_timeout"/>
+reportholdtime=<t t-if="rec.reportholdtime">yes</t><t t-else="">no</t>
+leavewhenempty=<t t-if="rec.leavewhenempty">yes</t><t t-else="">no</t>
+joinempty=<t t-esc="rec.joinempty"/>
+; MEMBERS
+<t t-foreach="static_members" t-as="member">
+member => <t t-esc="member"/>
+</t>
+</template>
+</odoo>

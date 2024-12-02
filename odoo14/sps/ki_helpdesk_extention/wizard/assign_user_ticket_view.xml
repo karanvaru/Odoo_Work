@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="helpdesk_ticket_user_assign_view" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.user.assign.view.form</field>
+            <field name="model">helpdesk.ticket.assign.user.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="wizard_user_id"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_assign" string="Assign" type="object" default_focus="1"
+                                class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_user_assign" model="ir.actions.act_window">
+            <field name="name">Assign User</field>
+            <field name="res_model">helpdesk.ticket.assign.user.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- Return Reason Tags -->
+    <record id="type_damaged" model="return.reason">
+        <field name="name">Damaged</field>
+    </record>
+    <record id="type_over_ordered" model="return.reason">
+        <field name="name">Over ordered</field>
+    </record>
+    <record id="type_no_longer_needed" model="return.reason">
+        <field name="name">No Longer Needed</field>
+    </record>
+    <record id="type_order_error" model="return.reason">
+        <field name="name">Order Error</field>
+    </record>
+    <record id="type_replace" model="return.reason">
+        <field name="name">Replace</field>
+    </record>
+    <record id="type_refund" model="return.reason">
+        <field name="name">Refund</field>
+    </record>
+    <record id="type_credit" model="return.reason">
+        <field name="name">Credit</field>
+    </record>
+
+    <!-- RMA return type -->
+    <record id="return_type_credit" model="return.type">
+        <field name="name">Credit</field>
+        <field name="return_purpose">credit</field>
+    </record>
+    <record id="return_type_replace" model="return.type">
+        <field name="name">Replace</field>
+        <field name="return_purpose">replace</field>
+    </record>
+    <record id="return_type_repair" model="return.type">
+        <field name="name">Repair</field>
+        <field name="return_purpose">repair</field>
+    </record>
+
+    <record id="stock.picking_type_in" model="stock.picking.type">
+        <field name="use_existing_lots" eval="True"/>
+    </record>
+</odoo>

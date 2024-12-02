@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="bills_approvals_tree" model="ir.ui.view">
+            <field name="name">Budget Approvals Bills Submition</field>
+            <field name="model">bills.approvals</field>
+            <field name="arch" type="xml">
+                <tree string="Budget Approvals Bills Submition">
+                 <field name='name'/>
+                </tree>
+            </field>
+        </record>
+        <record id="bills_approvals_form_view" model="ir.ui.view">
+            <field name="name">bills.approvals.form</field>
+            <field name="model">bills.approvals</field>
+               <field name="arch" type="xml">
+                <form string="Budget Approvals Bills Submition">
+<!--                    <header>-->
+<!--                        <button name="action_applied" string="APPLY" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['applied','live','closed'])]}"/>-->
+<!--                        <button name="action_live" string="Live" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['live','new','closed','expired'])]}"/>-->
+<!--                        <button name="action_expired" string="Expired" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['applied','new','closed','expired'])]}"/>-->
+<!--                        <button name="action_applied" string="cancel" type="object"/>-->
+
+<!--                        <field name="state" widget="statusbar" options="{'clickable': '1'}"/>-->
+<!--                    </header>-->
+                    <sheet>
+
+                        <div>
+                            <h1> <field name='name' readonly="1"/> </h1>
+                        </div>
+
+
+
+                         <group>
+                        <group>
+
+
+                        </group>
+
+                         <group>
+
+
+                        </group>
+                         </group>
+
+                        <notebook>
+      <page string="Description">
+        <group>
+
+        </group>
+      </page>
+
+
+
+
+    </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids" widget="mail_activity" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+<!--        <record id="sourcing_engineering_form" model="ir.actions.act_window">-->
+<!--            <field name="name">Sourcing and Engineering</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">source.eng</field>-->
+<!--            <field name="view_type">form</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+<!--        <menuitem id="sourcing_engineering_menu" name='Sourcing and Engineering' action="sourcing_engineering_form"/>-->
+    </data>
+</odoo>

@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+        <template id="sale_order_vehicle_details" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//div[hasclass('page')]//table" position="before">
+                <div class="row">
+                    <div class="col-3">
+                        <strong>
+                            <span>Vehicle Number:</span>
+                        </strong>
+                        <br/>
+                        <span t-field="doc.vehicle_number"/>
+                    </div>
+                    <div class="col-3">
+                        <strong>
+                            <span>MFG Year:</span>
+                        </strong>
+                        <br/>
+                        <span t-field="doc.vehicle_manufacturing_year"/>
+                    </div>
+                    <div class="col-3">
+                        <strong>
+                            <span>Make:</span>
+                        </strong>
+                        <br/>
+                        <span t-field="doc.vehicle_make"/>
+                    </div>
+                    <div class="col-3">
+                        <strong>
+                            <span>Model:</span>
+                        </strong>
+                        <br/>
+                        <span t-field="doc.vehicle_model"/>
+                    </div>
+                </div>
+                <br></br>
+                <div class="row">
+                    <div class="col-3">
+                        <strong>
+                            <span>IDV Value:</span>
+                        </strong>
+                        <br/>
+                        <span t-field="doc.idv_value"/>
+                    </div>
+                    <div class="col-3">
+                        <strong>
+                            <span>OD Amount:</span>
+                        </strong>
+                        <br/>
+                        <span t-field="doc.od_amount"/>
+                    </div>
+                    <div class="col-3">
+                        <strong>
+                            <span>Addon Amount:</span>
+                        </strong>
+                        <br/>
+                        <span t-field="doc.addon_amount"/>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

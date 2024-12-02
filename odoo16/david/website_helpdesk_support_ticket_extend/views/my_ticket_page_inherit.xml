@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="view_display_ticket_inherit"
+              inherit_id="website_helpdesk_support_ticket.display_ticket"
+              name="Display Support Ticket">
+        <xpath expr="//t//t//t[@t-set='card_body']" position="replace">
+            <t t-set="card_body">
+                <div class="row" name="div_ass_cust">
+                    <!--                        <div class="col-12 col-md-6 mb-1">-->
+                    <!--                            <strong>Assigned to :</strong> <span t-field="ticket.user_id"/>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="col-12 col-md-6" t-if="ticket.partner_id">-->
+                    <!--                            <strong>Customer:</strong> <span t-field="ticket.partner_id"/>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="row" name="div_email_phn">-->
+                    <!--                        <div class="col-12 col-md-6 mb-1">-->
+                    <!--                            <strong>Email :</strong> <span t-field="ticket.email"/>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="col-12 col-md-6">-->
+                    <!--                            <strong>Phone :</strong> <span t-field="ticket.phone"/>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="row" name="div_supp_team">-->
+                    <!--                        <div class="col-12 col-md-6 mb-1">-->
+                    <!--                            <strong>Support Team :</strong> <span t-field="ticket.team_id"/>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="col-12 col-md-6" >-->
+                    <!--                            <strong>Team Leader :</strong> <span t-field="ticket.team_leader_id"/>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="row" name="dept_ana">-->
+                    <!--                        <div class="col-12 col-md-6 mb-1">-->
+                    <!--                            <strong>Department  :</strong> <span t-field="ticket.department_id"/>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="col-12 col-md-6" >-->
+                    <!--                            <strong>Analytic Account  :</strong> <span t-field="ticket.analytic_account_id"/>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="row" name="proj_pri">-->
+                    <!--                        <div class="col-12 col-md-6 mb-1">-->
+                    <!--                            <strong>Project:</strong> <span t-field="ticket.project_id"/>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="col-12 col-md-6">-->
+                    <!--                            <strong>Priority:</strong> <span t-field="ticket.priority"/>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="row" name="crtdt_cldt">-->
+                    <!--                        <div class="col-12 col-md-6 mb-1">-->
+                    <!--                            <strong>Create Date:</strong> <span t-field="ticket.request_date" t-options='{"widget": "date"}'/>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="col-12 col-md-6">-->
+                    <!--                            <strong>Close Date:</strong> <span t-field="ticket.close_date" t-options='{"widget": "date"}'/>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="row" name="tcktcls_hrs">-->
+                    <!--                        <div class="col-12 col-md-6 mb-1">-->
+                    <!--                            <strong>Is Ticket Closed?:</strong> <span t-field="ticket.is_close"/>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="col-12 col-md-6">-->
+                    <!--                            <strong>Total Hours Spent:</strong> <span t-field="ticket.total_spend_hours"/>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="row" id="description">-->
+                    <!--                        <div t-if="ticket.description" t-attf-class="col-12 col-lg-7 mb-4 mb-md-0}}">-->
+                    <!--                            <hr class="mb-1"/>-->
+                    <!--                            <strong class="d-block mb-2">Description</strong>-->
+                    <!--                            <div class="py-1 px-2 bg-100 small" t-field="ticket.description"/>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <div t-if="ticket.user_id" class="col-12 col-md-6 mb-2 mb-md-0">
+                        <h6>
+                            <strong>Assigned to</strong>
+                        </h6>
+                        <div class="row">
+                            <div class="col flex-grow-0 pr-3">
+                                <img t-if="ticket.user_id.sudo().image_1024"
+                                     class="rounded-circle mt-1 o_portal_contact_img"
+                                     t-att-src="image_data_uri(ticket.user_id.image_1024)" alt="Contact"/>
+                                <img t-else="" class="rounded-circle mt-1 o_portal_contact_img"
+                                     src="/web/static/src/img/user_menu_avatar.png" alt="Contact"/>
+                            </div>
+                            <div class="col pl-sm-0">
+                                <address t-field="ticket.user_id"
+                                         t-options='{"widget": "contact", "fields": ["name", "email", "phone"]}'/>
+                            </div>
+                        </div>
+                    </div>
+                    <div t-if="ticket.partner_id" class="col-12 col-md-6 mb-2 mb-md-0">
+                        <h6>
+                            <strong>Customer</strong>
+                        </h6>
+                        <div class="row">
+                            <div class="col flex-grow-0 pr-3">
+                                <img t-if="ticket.partner_id.image_1024"
+                                     class="rounded-circle mt-1 o_portal_contact_img"
+                                     t-att-src="image_data_uri(ticket.partner_id.image_1024)" alt="Contact"/>
+                                <img t-else="" class="rounded-circle mt-1 o_portal_contact_img"
+                                     src="/web/static/src/img/user_menu_avatar.png" alt="Contact"/>
+                            </div>
+                            <div class="col pl-sm-0">
+                                <address t-field="ticket.partner_id"
+                                         t-options='{"widget": "contact", "fields": ["name", "email", "phone"]}'/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="mb-3"/>
+                <div class="row" name="div_email_phn">
+                    <div class="col-md-2 mb-1">
+                        <strong>Your Email</strong>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <span t-field="ticket.email"/>
+                    </div>
+                    <div class="col-md-2 mb-1">
+                        <strong>Your Phone</strong>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <span t-field="ticket.phone"/>
+                    </div>
+                </div>
+                <div class="row" name="div_supp_team">
+                    <div class="col-md-2 mb-1">
+                        <strong>Support Team</strong>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <span t-field="ticket.team_id"/>
+                    </div>
+                    <div class="col-md-2 mb-1">
+                        <strong>Team Leader</strong>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <span t-field="ticket.team_leader_id"/>
+                    </div>
+                </div>
+                <div class="row" name="dept_ana">
+                    <div class="col-md-2 mb-1">
+                        <strong>Project</strong>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <span t-field="ticket.project_id"/>
+                    </div>
+                    <div class="col-md-2 mb-1">
+                        <strong>Department</strong>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <span t-field="ticket.department_id"/>
+                    </div>
+                    <!--                    <div class="col-md-2 mb-1">-->
+                    <!--                        <strong>Analytic Account</strong>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="col-md-4 mb-1">-->
+                    <!--                        <span t-field="ticket.analytic_account_id"/>-->
+                    <!--                    </div>-->
+                </div>
+                <div class="row" name="proj_pri">
+                    <!--                    <div class="col-md-2 mb-1">-->
+                    <!--                        <strong>Department</strong>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="col-md-4 mb-1">-->
+                    <!--                        <span t-field="ticket.department_id"/>-->
+                    <!--                    </div>-->
+                    <div class="col-md-2 mb-1">
+                        <strong>Priority</strong>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <span t-field="ticket.priority"/>
+                    </div>
+                    <div class="col-md-2 mb-1">
+                        <strong>Created Date</strong>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <span t-field="ticket.request_date" t-options='{"widget": "date"}'/>
+                    </div>
+                </div>
+                <div class="row" name="crtdt_cldt">
+                    <!--                    <div class="col-md-2 mb-1">-->
+                    <!--                        <strong>Created Date</strong>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="col-md-4 mb-1">-->
+                    <!--                        <span t-field="ticket.request_date" t-options='{"widget": "date"}'/>-->
+                    <!--                    </div>-->
+                    <div class="col-md-2 mb-1">
+                        <strong>Total Hours Spent</strong>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <span t-field="ticket.total_spend_hours"/>
+                    </div>
+                    <div class="col-md-2 mb-1">
+                        <strong>Is Ticket Closed ?</strong>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <input type="checkbox" t-att-checked="ticket.is_close"
+                               disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="row" name="tcktcls_hrs">
+                    <!--                    <div class="col-md-2 mb-1">-->
+                    <!--                        <strong>Is Ticket Closed ?</strong>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="col-md-4 mb-1">-->
+                    <!--                        <input type="checkbox" t-att-checked="ticket.is_close"-->
+                    <!--                               disabled="disabled"/>-->
+                    <!--                    </div>-->
+                    <div class="col-md-2 mb-1">
+                        <strong>Closed Date</strong>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <span t-field="ticket.close_date" t-options='{"widget": "date"}'/>
+                    </div>
+                    <div class="col-md-2 mb-1">
+                        <strong>Category</strong>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <span t-field="ticket.category"/>
+                    </div>
+
+                </div>
+                <!--                <div class="row" name="crtdt_cldt">-->
+                <!--                    <div class="col-md-2 mb-1">-->
+                <!--                        <strong>Category</strong>-->
+                <!--                    </div>-->
+                <!--                    <div class="col-md-4 mb-1">-->
+                <!--                        <span t-field="ticket.category"/>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+                <hr class="mb-3"/>
+                <div class="row" id="description">
+                    <div t-if="ticket.description" t-attf-class="col-12 col-lg-12 mb-4 mb-md-0}}">
+                        <strong class="d-block mb-2">Description</strong>
+                        <div class="py-1 px-2 bg-100" t-field="ticket.description"/>
+                    </div>
+                    <section t-if="ticket.custom_signature_helpdesk_support" id="signature" name="Signature">
+                        <div class="row mt-4" name="signature">
+                            <div t-attf-class="#{'col-5' if report_type != 'html' else 'col-sm-7 col-md-4'} ms-auto text-center">
+                                <h5>Signature</h5>
+                                <img t-att-src="image_data_uri(ticket.custom_signature_helpdesk_support)"
+                                     style="max-height: 6rem; max-width: 100%;"/>
+                                <p t-field="ticket.custom_helpdesk_sign_by"/>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+                <div role="dialog" class="modal fade" id="helpdesk_modalaccept">
+                    <div class="modal-dialog">
+                        <form id="accept" method="POST"
+                              t-att-data-ticket-id="ticket.id" t-att-data-token="ticket.access_token"
+                              class="js_accept_json modal-content js_website_submit_form">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <header class="modal-header">
+                                <h4 class="modal-title">Validate Order</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </header>
+                            <main class="modal-body" id="sign-dialog">
+                                <p>
+                                    <span>By signing this proposal, I agree to the following terms:</span>
+                                    <ul>
+                                        <li>
+                                            <span>Accepted on the behalf of:</span>
+                                            <b t-field="ticket.partner_id"/>
+                                        </li>
+                                        <li>
+                                            <span>Ticket :</span>
+                                            <b data-id="ticket" t-field="ticket.name"/>
+                                        </li>
+                                    </ul>
+                                </p>
+                                <t t-call="portal.signature_form">
+                                    <t t-set="call_url" t-value="ticket.get_portal_url(suffix='/accept')"/>
+                                    <t t-set="default_name" t-value="ticket.partner_id.name"/>
+                                </t>
+                            </main>
+                        </form>
+                    </div>
+                </div>
+                <a role="button" class="btn btn-primary mb8"
+                   data-bs-toggle="modal" data-bs-target="#helpdesk_modalaccept" href="#">
+                    <i class="fa fa-check"/>
+                    <t>Sign </t>
+                </a>
+            </t>
+
+
+        </xpath>
+    </template>
+
+</odoo>

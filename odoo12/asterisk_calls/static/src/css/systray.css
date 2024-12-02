@@ -1,0 +1,19 @@
+.o_calls_systray_dropdown {
+    margin-left: 100px;
+    margin-right: -100px;
+    width: 70vw;    
+}
+
+.o_calls_systray_dropdown .row {
+    margin-right: 0px;
+}
+
+.o_calls_systray_dropdown table {
+    width: 100%;
+    margin: 5px;
+}
+
+.o_calls_systray_dropdown table th {
+    border-bottom: 1px solid #ced4da;    
+    text-align: center;
+}

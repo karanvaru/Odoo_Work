@@ -1,0 +1,78 @@
+<odoo>
+    <template id="contract_pdf_reports">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row mt32 mb32">
+                            <div class="col-auto col-5 mw-100 mb-2">
+                                <t t-set="address">
+                                    <strong>Customer Address:</strong>
+                                    <p class="m-0" t-field="o.partner_id"
+                                       t-options="{'widget': 'contact', 'fields':['address', 'name'],'no_marker': True}"/>
+                                </t>
+                                <div class="col-auto col-5 mw-100 mb-2">
+                                    <strong>Delivery Customer:</strong>
+                                    <p class="m-0" t-field="o.partner_shipping_id"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div class="col-auto col-5 mw-100 mb-2">
+                                <strong>Start Date:</strong>
+                                <p class="m-0" t-field="o.date_start"/>
+                            </div>
+                            <div class="col-auto col-5 mw-100 mb-2">
+                                <strong>Contract Status:</strong>
+                                <p class="m-0" t-field="o.state"/>
+                            </div>
+                        </div>
+                        <t t-if="o.contract_line_fixed_ids">
+                            <table class="table table-sm o_main_table" name="details">
+                                <thead>
+                                    <tr>
+                                        <th name="product_name" class="text-left">
+                                            <span>Product</span>
+                                        </th>
+                                        <th name="product_number" class="text-left">
+                                            <span>Number</span>
+                                        </th>
+                                        <th name="barcode" class="text-left">
+                                            <span>Barcode</span>
+                                        </th>
+                                        <th name="product_category" class="text-left">
+                                            <span>Category</span>
+                                        </th>
+                                        <th name="location" class="text-left">
+                                            <span>Location</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <t t-foreach="o.contract_line_fixed_ids" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <span t-field="line.product_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.default_code"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.barcode"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.categ_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.location"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

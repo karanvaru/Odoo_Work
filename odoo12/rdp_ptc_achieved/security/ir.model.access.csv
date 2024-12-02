@@ -1,0 +1,4 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_ptc_achieved,ptc.achieved,model_ptc_achieved,,1,1,1,1
+access_ptc_tags,ptc.tags,model_ptc_tags,,1,1,1,1
+

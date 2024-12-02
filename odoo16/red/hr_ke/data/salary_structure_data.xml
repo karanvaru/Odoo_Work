@@ -1,0 +1,9 @@
+<openerp>
+    <data noupdate="1">
+        <record id="ke_structure1" model="hr.payroll.structure">
+            <field name="name">BASIC</field>
+            <field name="type_id">1</field>
+        </record>
+
+    </data>
+</openerp>

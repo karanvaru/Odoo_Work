@@ -1,0 +1,8 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+"access_finance_analysis","finance.analysis","model_finance_analysis","",1,1,1,0
+"access_office_location","office.location","model_office_location","",1,1,1,1
+"access_transaction.category","transaction.category","model_transaction_category","",1,1,1,1
+"access_transaction_sub_category","transaction.sub.category","model_transaction_sub_category","",1,1,1,1
+"access_transaction_category_type","transaction.category.type","model_transaction_category_type","",1,1,1,1
+"access_parent_category_type","parent.category.type","model_parent_category_type","",1,1,1,1
+

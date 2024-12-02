@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_backend" name="Cloud Assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/cloud_base/static/src/js/cloud.js"></script>
+            <script type="text/javascript" src="/cloud_base/static/lib/jstree/jstree.js"></script>
+            <link type="text/css" rel='stylesheet' href="/cloud_base/static/lib/jstree/themes/default/style.css"></link>
+            <script type="text/javascript" src="/cloud_base/static/src/js/jstree_widget.js"></script>
+        </xpath>
+    </template>
+
+</odoo>

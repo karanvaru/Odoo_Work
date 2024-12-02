@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="fnf_completed_conformation_to_employee_email_template" model="mail.template">
+            <field name="name">FNF Completed Conformation To Employee</field>
+            <field name="model_id" ref="hr_exit_process.model_hr_exit"/>
+            <field name="auto_delete">1</field>
+<!--             <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field>-->
+            <field name="email_to">${object.employee_id.work_email}</field>
+            <field name="subject">Completion of F&amp;F and Issue of Relieving Letter.</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>Dear ${object.user_id.name}</p>
+                    <br/><br />
+                    We would like to inform you that your F&amp;F has been settled and a relieving letter has been sent at your personal email id.
+                    <br/><br />
+                    We would like to thank you for your association with us and helping RDP to reach the place which it is in today. Without your support, it would have been not easy. We are closing this exit request.
+                    <br></br>
+                    We wish you all the best for your future.
+                    <br></br>
+                    Thanks &amp; Regards
+                    <br></br>
+                    RDP People Team
+                    <br></br>
+                    Thank you!!!
+                    <br></br>
+                    <a href ="${object.base_url}/web?debug=1#id=${object.id}&amp;action=522&amp;model=hr.exit&amp;view_type=form&amp;menu_id=86"> Click Here</a>
+
+<!--                    <a href ="${object.base_url}/web?debug=1#id=${object.id}&amp;action=2585&amp;model=hr.exit&amp;view_type=form&amp;menu_id=1296" > Click Here</a>-->
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

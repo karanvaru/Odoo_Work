@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="helpdesk_ticket_assign_for_team" model="mail.template">
+            <field name="name">Assign New Ticket</field>
+            <field name="model_id" ref="model_helpdesk_support"/>
+            <field name="email_from">{{(object.company_id.email)}}</field>
+            <field name="email_to">{{(object.team_id.leader_id.email)}}</field>
+            <field name="lang">{{object.env.context.get("lang")}}</field>
+            <field name="subject">New Ticket Assignment</field>
+            <field name="body_html" type="html">
+                <div style="line-height: 28px;">
+                    <strong>
+                        Dear
+                        <t t-out="object.team_id.name"/>
+                        ,
+                        <br/>
+                        <strong>New Ticket</strong>
+                        <td>
+                            <t t-set="ticket_access_token" t-value="object.get_portal_url()"/>
+
+                            <a t-attf-href="/my/ticket/#{object.id}?{{ keep_query(access_token=object.access_token) }}">
+                                <strong t-field="object.name"/>
+                            </a>
+
+<!--                            <a t-attf-href="/my/ticket/#{object.id}?{{ keep_query(access_token=object.access_token) }}">-->
+<!--                                <strong t-field="object.name"/>-->
+<!--                            </a>-->
+                        </td>
+                        Has Been Assigned To The Team.
+                        <br/>
+                        <div>Thank you...</div>
+                    </strong>
+                </div>
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_assign_for_user" model="mail.template">
+            <field name="name">Assign New Ticket For User</field>
+            <field name="model_id" ref="model_helpdesk_support"/>
+            <field name="email_from">{{(object.company_id.email)}}</field>
+            <field name="email_to">{{(object.partner_id.email)}}</field>
+            <field name="lang">{{object.env.context.get("lang")}}</field>
+            <field name="subject">New Ticket Assignment</field>
+            <field name="body_html" type="html">
+                <div style="line-height: 28px;">
+                    Dear
+                    <b>
+                        <t t-out="object.partner_id.name"/>
+                    </b>
+                    ,
+                    <br/>
+                    I am
+                    <b>
+                        <t t-out="object.user_id.name"/>
+                    </b>
+                    and I am assigned to your case. We will do our best to resolve your Ticket ASAP.
+
+                    <br/>
+                    <div>Thank you...</div>
+                </div>
+            </field>
+        </record>
+
+    </data>
+</odoo>

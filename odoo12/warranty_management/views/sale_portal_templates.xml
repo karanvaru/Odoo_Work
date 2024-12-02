@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+
+	<template id="assets_frontend_warranty" inherit_id="website.assets_frontend" name="Assets Frontend Review">
+		<xpath expr="." position="inside">
+			<script type="text/javascript" src="/warranty_management/static/src/js/warranty_register.js"></script>
+			<link rel='stylesheet' href="/warranty_management/static/src/scss/warranty.scss"></link>
+		</xpath>
+	</template>
+
+	<template id="portal_order_page_warranty" name="Orders Followup" inherit_id="sale.sale_order_portal_content">
+		<xpath expr="//table[@id='sales_order_table']//thead//tr//th[1]" position="after">
+			<t t-set="warranty_exist" t-value="sale_order.check_warranty()"/>
+			<t t-if="warranty_exist">
+				<th>Warranty</th>
+			</t>
+		</xpath>
+		<xpath expr="//td[@id='product_name']" position="after">
+			<t t-set="warranty" t-value="line.get_warranty_details()[0]"/>
+			<t t-if="warranty['wrnty'] == 1">
+				<td>
+					<t t-set="w_url" t-value="'/my/warranty/%s?%s' % (line.id, keep_query())"/>
+					<a id="wrnty_dw_more" class="wk_line warranty_dwnld"
+						t-att-href="w_url">
+						<input type='hidden' class="ord_line" name="ord_line_id" 
+							t-att-value="int(line.id)" />
+						<t t-if="warranty['line_name'] == 'regsiter'">
+							<i><span>Register</span></i>
+						</t>
+						<t t-if="warranty['line_name'] == 'warranty'">
+							<i><span>Warranty</span></i>
+						</t>
+					</a>
+				</td>
+			</t>
+		</xpath>
+	</template>
+
+
+	<template id="warranty_reg_form" name="Product Registration">
+		<t t-call="website.layout">
+			<div class="container wk_container">
+				<div class="panel panel-default wk_panel">
+					<t t-set="additional_title">Register Your Product</t>
+					<t t-set="no_footer">1</t>
+					<t t-if="submit_msg == 'yes'">
+						<br/>
+						<div class="oe_signup_form" style="max-width:80% !important">
+							<h1>Thank You!</h1>
+							<div class="alert alert-info" style="padding:5px 0px 0px 15px !important">
+								<span style="font-size:medium">
+									<h3>Your have registered you product successfully!</h3>
+									<span>
+										Please note the warranty reference number of the product for future references
+										<t t-esc="wanty_ref"/>
+									</span>
+								</span>
+							</div>
+						</div>
+					</t>
+					<t t-if="reg_msg">
+						<div class="oe_signup_form" style="max-width:80% !important">
+							<h1>Message!</h1>
+							<div class="alert alert-info" style="padding:0px 0px 12px 15px !important">
+								<span style="font-size:medium">
+									<h3><t t-esc="reg_msg"/></h3>
+								</span>
+							</div>
+						</div>
+					</t>
+					<t t-if="submit_msg == 'no' and not reg_msg">
+						<div class="req_header">
+							<div class="row" style="margin:0px;">
+								<div class="col-md-6">
+									<b style="font-size:25px;">WARRANTY REGISTRATION</b>
+								</div>
+								<div class="col-md-6">
+									<form class="oe_website_sale" name="/regsiter/prouct" method="post">
+										<input  type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+										<input  type="hidden" name="submitted" value="1" />
+										<a class="btn btn-primary pull-right a-submit" href="#">
+											<span>Register </span>
+										</a>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="page">
+							<table class="table table-striped warranty_rep req_header">
+								<tbody class="sale_tbody">
+									<tr>
+										<td><b>Customer:</b></td>
+										<td><span t-field='wrnty_obj.partner_id'/></td>
+										<td><b>Sale Order:</b></td>
+										<td><span t-field='wrnty_obj.order_id'/></td>
+									</tr>
+									<tr>
+										<td><b>Product:</b></td>
+										<td><span t-field='wrnty_obj.product_id'/></td>
+										<td><b>Quantity:</b></td>
+										<td><span t-field='wrnty_obj.prod_qty'/></td>
+									</tr>
+									<tr>
+										<td><b>Warranty Start:</b></td>
+										<td>
+											<span t-field='wrnty_obj.warranty_start_date' 
+												t-options="{&quot;format&quot;: &quot;MM/dd/yyyy&quot;}"/>
+										</td>
+										<td><b>Warranty End:</b></td>
+										<td>
+											<span t-field='wrnty_obj.warranty_end_date'/>
+										</td>
+									</tr>
+									<tr t-if="wrnty_obj.lot_id">
+										<td><b>Serial Number:</b></td>
+										<td><span t-field='wrnty_obj.lot_id'/></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</t>
+				</div>
+			</div>
+		</t>
+	</template>
+
+	<template id="wk_warranty_reg_modal" name="Register Warranty">
+		<div id="rma_return_model" class="modal fade" tabindex="-1" role="dialog" >
+			<div class="modal-dialog modal-lg" style="max-width:600px; !important">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">
+							<strong style="margin-left: 13px;">Register Warranty</strong>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></h4>
+					</div>
+					<div>
+						<div class="form-group col-md-6 wk_test">
+							<label class="col-md-4">Order:</label>
+							<div class="col-md-8">
+								<input name="order" type="hidden" class="form-control"
+										id="warranty_order" t-att-value="orderline.order_id.name"
+										t-att-readonly=" 'readonly'"/>
+								<span t-field="orderline.order_id.name" />
+							</div>
+						</div>
+						<div class="form-group col-md-6 wk_test">
+							<label class="col-md-8">Total Quantity:</label>
+							<div class="col-md-4">
+								<input name="product_qty" type="hidden" class="form-control"
+										id="product_qty" t-att-value="orderline.product_uom_qty"
+										t-att-readonly=" 'readonly'"/>
+								<span t-field="orderline.product_uom_qty" />
+							</div>
+						</div>
+					</div>
+					<div class="modal-body wk_reg_table">
+						<form class="form-horizontal" role="dialog" action="/register/warranty/" method="post">
+							<!-- Hidden Field -->
+							<input type='hidden' class=""
+									name="order_id" t-att-value="orderline.order_id.id" />
+							<input type='hidden' class=""
+									name="product_id" t-att-value="orderline.product_id.id" />
+							<input type='hidden' class=""
+									name="partner_id" t-att-value="orderline.order_id.partner_id.id" />
+							<input type='hidden' id="ol_id" name="ol_id" t-att-value="orderline.id" />
+
+							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+							<table class="table">
+								<tbody class="sale_tbody">
+									<tr>
+										<td class="col-xs-2"  >
+											<b>Product:</b>
+										</td>
+										<td class="col-xs-2"  >
+											<span t-field='orderline.product_id.name'/>
+										</td>
+										<td class="col-xs-2"  >
+											<b>Serial No<sup style="color:red">*</sup>:</b>
+										</td>
+										<td class="col-xs-2"   id="lot-box">
+											<input id="validlot_" name="validlot_"
+												   type="hidden" value="value" />
+											<input name="lot_id" type="text"
+													class="form-control input-sm"
+												    id="wrnty_lot"/>
+										</td>
+									</tr>
+								</tbody>
+								<div class="clearfix"/>
+							</table>
+							<div class="modal-footer" style="padding:6px !important">
+								<span class="fa fa-exclamation-triangle"
+										style='float:left; color:red;display:none'
+										id="error-invalid-serial"> Please enter valid serial number.
+								</span>
+								<span class="fa fa-exclamation-triangle"
+										style='float:left; color:red;display:none'
+										id="error-enter-serial"> Please enter serial number.
+								</span>
+								<button type="button" class="btn btn-sm btn-danger"
+										data-dismiss="modal" style="padding:6px !important">
+									<i class="fa fa-fw fa-times"/>Cancel
+								</button>
+								<a class="btn btn-sm btn-primary fa fa-check"
+									style="padding:6px !important" id="wrnty_reg_submit">
+									Register
+								</a>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<template id="wk_warranty_reg_more_modal" name="Register Warranty">
+		<div id="rma_return_model" class="modal fade" tabindex="-1" role="dialog" >
+			<div class="modal-dialog modal-lg" style="max-width:600px; !important">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">
+							<strong style="margin-left: 13px;">Register Warranty</strong>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></h4>
+					</div>
+					<div>
+						<div class="form-group col-md-6 wk_test">
+							<label class="col-md-4">Order:</label>
+							<div class="col-md-8">
+								<input name="order" type="hidden" class="form-control"
+										id="warranty_order" t-att-value="orderline.order_id.name"
+										t-att-readonly=" 'readonly'"/>
+								<span t-field="orderline.order_id.name" />
+							</div>
+						</div>
+						<div class="form-group col-md-6 wk_test">
+							<label class="col-md-8">Total Quantity:</label>
+							<div class="col-md-4">
+								<input name="product_qty" type="hidden" class="form-control"
+										id="product_qty" t-att-value="orderline.product_uom_qty"
+										t-att-readonly=" 'readonly'"/>
+								<span t-field="orderline.product_uom_qty" />
+							</div>
+						</div>
+					</div>
+					<div class="modal-body wk_reg_table">
+						<form class="form-horizontal" role="dialog" action="/register/warranty/" method="post">
+							<!-- Hidden Field -->
+							<input type='hidden' class=""
+									name="order_id" t-att-value="orderline.order_id.id" />
+							<input type='hidden' class=""
+									name="product_id" t-att-value="orderline.product_id.id" />
+							<input type='hidden' class=""
+									name="partner_id" t-att-value="orderline.order_id.partner_id.id" />
+							<input type='hidden' id="ol_id" name="ol_id" t-att-value="orderline.id" />
+
+							<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+							<table class="table">
+								<tbody class="sale_tbody">
+									<t t-set="wrntyDict" t-value="orderline.get_wrnty_reg_info()"/>
+									<t t-foreach="wrntyDict['serial']" t-as="serial">
+										<tr>
+											<td class="col-xs-2" >
+												<b>Product:</b>
+											</td>
+											<td class="col-xs-2" >
+												<span t-field='orderline.product_id.name'/>
+											</td>
+											<td class="col-xs-2" >
+												<b>Serial No:</b>
+											</td>
+											<td class="col-xs-2" >
+												<span t-esc='serial'/>
+											</td>
+											<td class="col-xs-1">
+											</td>
+										</tr>
+									</t>
+									<t t-foreach="wrntyDict['left']" t-as="qty">
+										<t t-set="lot_id_name" t-value="'lot_%s' %(qty)" />
+										<t t-set="valid_lot_id_name" t-value="'validlot_%s' %(qty)" />
+										<tr>
+											<td >
+												<b>Product:</b>
+											</td>
+											<td >
+												<span t-field='orderline.product_id.name'/>
+											</td>
+											<td >
+												<b>Serial No<sup style="color:red">*</sup>:</b>
+											</td>
+											<td  id="lot-box">
+												<input t-att-id="valid_lot_id_name"
+													t-att-name="valid_lot_id_name"
+													type="hidden" value="value" />
+												<input  t-att-name="lot_id_name" type="text"
+														class="form-control input-sm enter_lot"
+														id="serial_label"/>
+											</td>
+											<td>
+												<a class="btn btn-sm wk_remove btn-primary fa fa-trash"
+													id="trash">
+												</a>
+											</td>
+										</tr>
+									</t>
+								</tbody>
+								<div class="clearfix"/>
+							</table>
+							<div class="modal-footer" style="padding:6px !important">
+								<span class="fa fa-exclamation-triangle"
+										style='float:left; color:red;display:none'
+										id="error-invalid-serial"> Please enter valid serial number.
+								</span>
+								<button type="button" class="btn btn-sm btn-danger"
+										data-dismiss="modal" style="padding:6px !important">
+									<i class="fa fa-fw fa-times"/>Cancel
+								</button>
+								<a class="btn btn-sm btn-primary fa fa-check"
+									style="padding:6px !important" id="wrnty_reg_more_submit">
+									Register
+								</a>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<template id="wk_warranty_dwnld_modal" name="Register Warranty">
+		<div id="rma_return_model" class="modal fade" tabindex="-1" role="dialog" >
+			<div class="modal-dialog modal-lg" style="max-width:600px; !important">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">
+							<strong style="margin-left: 13px;">Download Warranty</strong>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></h4>
+					</div>
+					<div>
+						<div class="form-group col-md-6 wk_test">
+							<label class="col-md-4">Order:</label>
+							<div class="col-md-8">
+								<input name="order" type="hidden" class="form-control"
+										id="warranty_order" t-att-value="orderline.order_id.name"
+										t-att-readonly=" 'readonly'"/>
+								<span t-field="orderline.order_id.name" />
+							</div>
+						</div>
+						<div class="form-group col-md-6 wk_test">
+							<label class="col-md-8">Total Quantity:</label>
+							<div class="col-md-4">
+								<input name="product_qty" type="hidden" class="form-control"
+										id="product_qty" t-att-value="orderline.product_uom_qty"
+										t-att-readonly=" 'readonly'"/>
+								<span t-field="orderline.product_uom_qty" />
+							</div>
+						</div>
+					</div>
+					<div class="modal-body wk_reg_table">
+						<t t-set="wrntyDict" t-value="orderline.get_warranty_details()[0]"/>
+						<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+						<table class="table">
+							<tbody class="sale_tbody">
+								<t t-foreach="wrntyDict['serial']" t-as="serial">
+									<tr>
+										<t t-set="wrntyId" t-value="serial['wrnt_id']"/>
+										<t t-set="warranty_url"
+										   t-value="'/my/warranty/pdf/%s?%s' % (wrntyId, keep_query())"/>
+										<td class="col-xs-2" >
+											<b>Serial No:</b>
+										</td>
+										<td class="col-xs-2" >
+											<span t-esc="serial['lot_num']" />
+										</td>
+										<td class="col-xs-2" >
+											<b>Download:</b>
+										</td>
+										<td class="col-xs-2" >
+											<a class="btn btn-xs btn-primary" t-att-href="warranty_url">
+												<i class="fa fa-download"/> Warranty
+											</a>
+										</td>
+									</tr>
+								</t>
+							</tbody>
+							<div class="clearfix"/>
+						</table>
+						<div class="modal-footer" style="padding:6px !important">
+							<button type="button" class="btn btn-sm btn-danger"
+									data-dismiss="modal" style="padding:6px !important">
+								<i class="fa fa-fw fa-times"/>Cancel
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+
+</odoo>

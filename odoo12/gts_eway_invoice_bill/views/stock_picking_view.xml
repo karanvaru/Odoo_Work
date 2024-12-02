@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_picking_form_inherit_eway">
+        <field name="name">stock.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']//tree//field[@name='quantity_done']"
+                   position="after">
+                <field name="product_price"
+                       attrs="{'column_invisible': [('parent.generate_ewaybill', '!=', True)]}"/>
+                <field name="tax_id" widget="many2many_tags"
+                       attrs="{'column_invisible': [('parent.generate_ewaybill', '!=', True)]}"/>
+                <field name="cess_non_advol"
+                       attrs="{'column_invisible': [('parent.generate_ewaybill', '!=', True)]}"/>
+                <field name="discount"
+                       attrs="{'column_invisible': [('parent.generate_ewaybill', '!=', True)]}"/>
+                <field name="sub_total"
+                       attrs="{'column_invisible': [('parent.generate_ewaybill', '!=', True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="generate_ewaybill"/>
+                <field name="sub_supply_type_domain" invisible="1"/>
+            </xpath>
+            <xpath expr="//header" position="after">
+                <field name="logs_details" readonly="1" style="color: red;"/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="set_status_to_draft" string="Reset To Draft" type="object" attrs="{'invisible': [('state', 'not in', ('assigned', 'done'))]}"/>
+                <button name="generate_eway" string="Generate Eway" type="object"
+                        groups="gts_eway_invoice_bill.group_ebill_manager"
+                        attrs="{'invisible': ['|', ('generate_ewaybill', '!=', True), '&amp;', ('bill_status', '=', 'generate'), ('ewaybill_no', '!=', False)]}"/>
+            </xpath>
+            <xpath expr="//page[last()]" position="after">
+                <page string="E-Way Bill Details" attrs="{'invisible': [('generate_ewaybill', '=', False)]}">
+                    <group string="PART - A">
+                        <group>
+                            <field name="document_type" attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                            <field name="doc_date" attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                            <field name="transaction_type"
+                                   attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="sub_supply_type_code" invisible="1"/>
+                            <field name="supply_type" attrs="{'required': [('generate_ewaybill', '=', True)]}"
+                                   widget="radio" options="{'horizontal': true}"/>
+                            <field name="sub_supply_type_id" options="{'no_create': True, 'no_open': True}"
+                                   attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                            <field name="invoice_no" attrs="{'required': [('generate_ewaybill', '=', True)]}" domain="[('origin', '=', origin)]" options='{"no_open": True, "no_create": True}'/>
+                        </group>
+                        <group string="Bill From">
+                            <field name="from_name" attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                            <field name="vat" placeholder="GSTIN" class="o_address_country"
+                                   attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                        </group>
+                        <group string="Dispatch From">
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"
+                                       attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"
+                                       attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                                <field name="city" placeholder="City" class="o_address_city"
+                                       attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                                <field name="state_id" class="o_address_state" placeholder="State"
+                                       options="{'no_create': True, 'no_open': True}"
+                                       attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"
+                                       attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                            </div>
+                        </group>
+                        <group string="Bill To">
+                            <field name="to_name" attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                            <field name="to_vat" placeholder="Enter Consignee GSTIN or URP for Unregistered Person" class="o_address_country"
+                                   attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                        </group>
+                        <group string="Ship To">
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="to_street" placeholder="Street..." class="o_address_street"
+                                       attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                                <field name="to_street2" placeholder="Street 2..." class="o_address_street"
+                                       attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                                <field name="to_city" placeholder="City" class="o_address_city"
+                                       attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                                <field name="to_state_id" class="o_address_state" placeholder="State"
+                                       options="{'no_create': True, 'no_open': True}"
+                                       attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                                <field name="to_zip" placeholder="ZIP" class="o_address_zip"
+                                       attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                            </div>
+                        </group>
+
+                        <group string="Transporter and Distance Details">
+                            <field name="transporter_id"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   domain="[('transporter', '=', True)]"/>
+                            <field name="trans_id" attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+
+                        </group>
+
+                        <group string="&#160;">
+                            <field name="transportation_distance"
+                                   attrs="{'required': [('generate_ewaybill', '=', True)]}"/>
+                        </group>
+
+                        <group string="&#160;">
+                            <field name="generate_eway_part_b"/>
+                        </group>
+                        <group string="&#160;" >
+<!--                            <field name="trans_id" attrs="{'required': [('generate_ewaybill', '=', True)]}"/>-->
+                        </group>
+
+                        <group string="PART - B" attrs="{'invisible': [('generate_eway_part_b', '!=', True)]}">
+                            <field name="transportation_mode"
+                                   attrs="{'required': [('generate_ewaybill', '=', True), ('generate_eway_part_b', '=', True)]}"/>
+                            <field name="bill_status" invisible="1"/>
+                            <field name="sub_type_desc"
+                                   attrs="{'required': [('generate_ewaybill', '=', True), ('sub_supply_type_code', '=', '8'), ('generate_eway_part_b', '=', True)]}"/>
+                        </group>
+                        <group string="&#160;" attrs="{'invisible': [('generate_eway_part_b', '!=', True)]}">
+                            <field name="transporter_doc_no"
+                                   attrs="{'required': [('generate_ewaybill', '=', True),('transportation_mode', '!=', '1'), ('generate_eway_part_b', '=', True)]}"/>
+                            <field name="transportation_doc_date"
+                                   attrs="{'required': [('generate_ewaybill', '=', True),('transportation_mode', '!=', '1'), ('generate_eway_part_b', '=', True)]}"/>
+                            <field name="vehicle_type"/>
+                            <field name="vehicle_no"
+                                   attrs="{'required': ['&amp;', ('generate_eway_part_b', '=', True), '|',('transportation_mode', '=', '1'), ('trans_id', '=', '')], 'readonly': [('ewaybill_no', 'not in', ['', False])]}"/>
+                        </group>
+                        <div style="padding-left:570px">
+                            <button name="%(action_view_update_vehicle)d" string="Update Vehicle No.(Part B)"
+                                        type="action"
+                                        attrs="{'invisible': [('ewaybill_no', '=', False)]}"
+                                        class="btn-success" icon="fa-car" groups="gts_eway_invoice_bill.group_ebill_manager"/>
+                        </div>
+                    </group>
+                    <group>
+                        <group string="E-Way Bill Details" attrs="{'invisible': [('ewaybill_no', '=', False)]}">
+                            <field name="ewaybill_no" readonly="1" force_save="1"/>
+                            <field name="eway_bill_date" readonly="1" force_save="1"/>
+                            <field name="valid_ebill_date" readonly="1" force_save="1"/>
+                            <div>
+                                <br/><button name="%(action_cancel_eway_bill)d" string="Cancel EWay" type="action"
+                                    class="oe_highlight"
+                                    attrs="{'invisible': ['|', ('generate_ewaybill', '!=', True), ('ewaybill_no', '=', False)]}"/><br/><br/>
+                                <button name="%(action_extend_eway_validity)d" string="Extend EWay" type="action"
+                                        class="oe_highlight"
+                                        attrs="{'invisible': ['|', ('generate_ewaybill', '!=', True), ('ewaybill_no', '=', False)]}"/>
+                            </div>
+                            <div>
+                                <br/><button name="print_eway_bill" string="Print EWay" type="object" class="oe_highlight"
+                                        attrs="{'invisible': ['|', ('generate_ewaybill', '!=', True), ('ewaybill_no', '=', False)]}"/><br/><br/>
+                                <button name="print_eway_bill_details" string="Print Detailed EWay" type="object"
+                                        class="oe_highlight"
+                                        attrs="{'invisible': ['|', ('generate_ewaybill', '!=', True), ('ewaybill_no', '=', False)]}"/>
+                            </div>
+                        </group>
+                        <group string="E-Way Bill Cancellation Details" attrs="{'invisible': [('cancel_date', '=', False)]}">
+                            <field name="cancel_date" readonly="1" force_save="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//button[@name='do_unreserve']" postition='attributes'>
+                <attribute name="invisible">['|', '|', '|', ('picking_type_code', '=', 'incoming'), ('is_locked', '=',
+                    False), '&amp;', ('state', 'not in', ('assigned', 'partially_available')), ('move_type', '!=',
+                    'one'), '&amp;', ('state', 'not in', ('assigned', 'partially_available', 'confirmed')),
+                    ('move_type', '=', 'one')]
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="vpicktree_inherit_eway" model="ir.ui.view">
+        <field name="name">stock.picking.tree.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="ewaybill_no" invisible="1"/>
+                <field name="generate_ewaybill"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_picking_internal_search_inherit_eway" model="ir.ui.view">
+        <field name="name">stock.picking.internal.search.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <filter name="draft" position="after">
+                <filter name="eway_orders" string="Eway Orders" domain="[('generate_ewaybill', '=', True)]"
+                        help="Eway Orders"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><data noupdate="1">
+  <record id="default_server_queue_config"
+          model="asterisk_base_queues.settings_template">
+    <field name="servers" eval="[(4, ref('asterisk_base.default_server'))]"/>
+  </record>
+</data></odoo>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="refill_request_tree_view" model="ir.ui.view">
+        <field name="name">refill.request.view.tree</field>
+        <field name="model">refill.request</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="state=='cancel'" decoration-success="state=='done'"
+                  decoration-danger="state=='draft'">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="date"/>
+                <field name="user_id"/>
+                <field name="ticket_id" optional="hide"/>
+                <field name="product_register_id" optional="hide"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="refill_request_form_view" model="ir.ui.view">
+        <field name="name">refill.request.view.form</field>
+        <field name="model">refill.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm"
+                            states="draft" class="btn-primary"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            states="draft" confirm="Are you sure?"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="name" readonly="1"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="product_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   domain="[('categ_id.type', '=', 'cartridge')]"/>
+                            <field name="ticket_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="user_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="company_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+
+                    </group>
+                    <notebook>
+                        <page string="Add Parts">
+                            <group>
+                                <group>
+                                    <label for="note" string="Comment"/>
+                                        <field name="note" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <group>
+                                    <field name="refill_ids" nolabel="1"  attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                        <tree editable="bottom" edit="false">
+                                            <field name="product_part_id" domain="[('categ_id.type', '=', 'parts')]"/>
+                                            <!--                                    <field name="product_part_id" domain="[('categ_id.type', '=', 'parts')]"/>-->
+                                            <field name="quantity"/>
+                                            <field name="comments"/>
+                                            <field name="line_date" invisible="1"/>
+                                        </tree>
+                                    </field>
+                                        </group>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

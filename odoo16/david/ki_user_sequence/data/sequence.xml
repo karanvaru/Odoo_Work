@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequences for res.users/-->
+        <record id="ki_seq_res_users" model="ir.sequence">
+            <field name="name">Res Users</field>
+            <field name="code">res.users.sequence</field>
+            <field name="prefix">USER/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

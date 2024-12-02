@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_joining_date_employee_form_inherit" model="ir.ui.view">
+            <field name="name">employee.inherited.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='work_phone']" position="after">
+                    <field name="work_office"/>
+                    <field name="desk_number"/>
+                    <field name="joining_date"/>
+                    <field name="intercom_number"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="search_view_joining_date_search_inherit" model="ir.ui.view">
+            <field name="name">search.view.joining.date.search.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='group_job']" position="after">
+                    <filter name="gender" string="Gender" domain="[]"
+                            context="{'group_by':'gender'}"/>
+                    <filter name="joining_date" string="Joining Date" domain="[]"
+                            context="{'group_by':'joining_date'}"/>
+                    <filter name="work_office" string="Work Office" domain="[]"
+                            context="{'group_by':'work_office'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="tree_view_joining_date_tree_inherit" model="ir.ui.view">
+            <field name="name">tree.view.joining.date.tree.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='job_id']" position="after">
+                    <field name="joining_date"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

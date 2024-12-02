@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_start_ticket_timer_form" model="ir.ui.view">
+        <field name="name">start.ticket.timer.form</field>
+        <field name="model">start.ticket.timer</field>
+        <field name="arch" type="xml">
+            <form>
+	            <h3 style="color: #2e86c1"><b>Ticket timer is already running. Do you want to pause it?</b></h3>
+                <footer>
+                    <button name="pause_timer" string="Yes" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_start_ticket_timer" model="ir.actions.act_window">
+        <field name="name">start Timer</field>
+        <field name="res_model">start.ticket.timer</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_start_ticket_timer_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

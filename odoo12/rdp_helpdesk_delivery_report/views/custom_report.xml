@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="customer_rating_view_form" model="ir.ui.view">
+        <field name="name">product.details.form.inherit</field>
+        <field name="model">product.details</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='open_customer_tickets']" position="before">
+                 <button class="oe_stat_button" name="PSPR Main" icon="fa fa-wrench" type="object" >
+                            <field name="pspr_ticket" string="PSPR Main1" />
+                 </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

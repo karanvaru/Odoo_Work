@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+    <data>
+        <record id="wk_website_terms_and conditions_config" model="ir.ui.view">
+            <field name="name">Addons Setting</field>
+            <field name="model">webkul.website.addons</field>
+            <field name="inherit_id" ref="website_webkul_addons.config_webkul_website_addons_form"  />
+            <field name="arch" type="xml">
+                <xpath expr="//td[@name='module_website_estimated_delivery']" position="replace">
+                    <td>
+                        <button type="action" name="website_estimated_delivery.action_estimated_delivery_conf" string="Configuration" class="oe_link"></button>
+                     </td>
+                </xpath>  
+            </field>
+        </record>
+    </data>
+</odoo>

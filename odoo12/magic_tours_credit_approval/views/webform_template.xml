@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="menu_credit_approval_form" model="website.menu">
+        <field name="name">Credit Approval</field>
+        <field name="url">/credit_approval</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">55</field>
+    </record>
+
+    <template id="credit_approval" name="Credit Approval">
+             <t t-call="website.layout">
+             <script src="/static/src/js/choosen.jquery.min.js" />
+             <script src="/static/src/css/choosen.min.css" />
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <section class="s_text_block pt40 pb40 o_colored_level " data-snippet="s_text_block">
+                            <div class="container s_allow_columns">
+                                <div class="row">
+                                    <div class="col-lg-8 mt-4 mt-lg-0">
+                                        <h2>
+                                           Credit Approval Form
+                                        </h2>
+                                        <section class="s_website_form" data-vcss="001" data-snippet="s_website_form">
+                                            <div class="container">
+                                                <form id="form" action="/credit/creation/" method="post" enctype="multipart/form-data" class="o_mark_required" data-mark="*" data-model_name="mail.mail" data-success-mode="redirect" data-success-page="/contactus-thank-you" data-pre-fill="true">
+                                                    <div class="s_website_form_rows row s_col_no_bgcolor">
+                                                        <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required" data-type="char" data-name="Field">
+                                                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                                                <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="name">
+                                                                    <span class="s_website_form_label_content">Name</span>
+                                                                    <span class="s_website_form_mark"> *</span>
+                                                                </label>
+                                                                <div class="col-sm">
+                                                                    <input id="name" type="text" class="form-control s_website_form_input" name="name" required="" data-fill-with="name"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                       
+                                                        <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom" data-type="char" data-name="Field">
+                                                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                                                <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="credit_amount">
+                                                                    <span class="s_website_form_label_content">Credit Amount</span>
+                                                                </label>
+                                                                <div class="col-sm">
+                                                                    <input id="credit_amount" type="text" class="form-control s_website_form_input" name="credit_amount" data-name="Field"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required" data-type="text" data-name="Field">
+                                                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                                                <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="description">
+                                                                    <span class="s_website_form_label_content">Description</span>
+                                                                    <span class="s_website_form_mark"> *</span>
+                                                                </label>
+                                                                <div class="col-sm">
+                                                                    <textarea id="description" class="form-control s_website_form_input" name="description" required=""></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <!-- <div class="mb-0 py-2 col-12 s_website_form_submit" data-name="Submit Button">
+                                                            <div style="width: 200px;" class="s_website_form_label"/>
+                                                            <a href="#" role="button" class="btn btn-primary btn-lg s_website_form_send">Submit</a>
+                                                            <span id="s_website_form_result"></span>
+                                                        </div> -->
+                                                        <div class="clearfix oe_login_buttons">
+                                                            <button type="submit" class="btn btn-primary pull-left">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </section>
+                                    </div>
+                            </div>
+                            </div>
+                        </section>
+                           
+
+                    </div>
+                </div>
+            </t> 
+      
+    </template>
+
+    <record id="credit_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/credit-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">magic_tours_credit_approval.credit_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="magic_tours_credit_approval.credit_thanks">
+                <t t-call="website.layout">
+                  <div id="wrap">
+                    <div class="container">
+                        <h1>Thank You!</h1>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <a href="/my/home" type="button" class="btn btn-primary float-end mb32 ">
+                                    Go to My Account Page
+                                    <span class="fa fa-long-arrow-right" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+    
+</odoo>

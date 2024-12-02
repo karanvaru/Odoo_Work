@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Applicant Relation -->
+
+        <record id="app_relation_father" model="applicant.relation">
+            <field name="name">Father</field>
+        </record>
+        <record id="app_relation_mother" model="applicant.relation">
+            <field name="name">Mother</field>
+        </record>
+        <record id="app_relation_wife" model="applicant.relation">
+            <field name="name">Wife</field>
+        </record>
+		<record id="app_relation_husband" model="applicant.relation">
+            <field name="name">Husband</field>
+        </record>
+       
+    </data>
+</odoo>

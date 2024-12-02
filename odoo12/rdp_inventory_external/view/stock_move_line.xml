@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+
+
+     <record model="ir.ui.view" id="view_move_line_tree">
+        <field name="name">stock.move.line</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="open_days" attrs="{'invisible' : [('state', '=', 'done')]}"/>
+            </field>
+            <!-- <field name="date"/> -->
+        </field>
+    </record>
+
+    <record id="action_job_position" model="ir.actions.act_window">
+        <field name="name">stock move line</field>
+        <field name="res_model">stock.move.line</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="view_move_line_tree"/>
+    </record>
+
+
+    <menuitem parent="stock.menu_stock_warehouse_mgmt"
+              id="menu_stock_picking_line"
+              name="stock move line"
+              action="action_job_position" sequence="3"/>
+
+
+</odoo>
+
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="create_application_form" model="ir.ui.view">
+         <field name="name">create.application.wizard</field>
+         <field name="model">create.application</field>
+         <field name="arch" type="xml">
+            <form string="Create Application">
+                <group>
+                    <field name="reason"/>
+
+                </group>
+                <footer>
+                    <button name="action_submit" string="Save" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+         </field>
+     </record>
+
+    <record id="create_application_wizard" model="ir.actions.act_window">
+        <field name="name">Create Application</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.application</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="create_application_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

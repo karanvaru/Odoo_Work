@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="view_stock_picking_inherited_form_view" model="ir.ui.view">
+            <field name="name">stock.picking.inherited.view</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="scheduled_date" position="attributes">
+                    <attribute name="attrs">{'readonly':['|', ['id','=', False],['state', 'not in', ['draft']]]}
+                    </attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

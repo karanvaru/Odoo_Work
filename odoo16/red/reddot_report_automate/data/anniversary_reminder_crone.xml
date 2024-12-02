@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+
+        <record id="actions_send_reminder_for_anniversary" model="ir.cron">
+            <field name="name">Reminder For Employee Anniversary</field>
+            <field eval="True" name="active"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="state">code</field>
+            <field name="reddot_specific" eval="True"/>
+            <field name="code">model.action_send_anniversary_reminder()</field>
+            <field name="priority" eval="5"/>
+        </record>
+
+
+        <record id="actions_send_reminder_for_birthday" model="ir.cron">
+            <field name="name">Reminder For Employee Birthday</field>
+            <field eval="True" name="active"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="reddot_specific" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">model.action_send_birthday_reminder()</field>
+            <field name="priority" eval="5"/>
+        </record>
+
+
+    </data>
+</odoo>

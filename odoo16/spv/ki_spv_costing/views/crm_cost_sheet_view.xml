@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="crm_costing_sheet_tree_view" model="ir.ui.view">
+        <field name="name">crm.costing.sheet.tree</field>
+        <field name="model">crm.cost.sheet</field>
+        <field name="arch" type="xml">
+            <tree string="Crm Costing Sheet">
+                <field name="name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="user_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="company_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="distributor_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="crm_costing_sheet_form_view" model="ir.ui.view">
+        <field name="name">crm.costing.sheet.form</field>
+        <field name="model">crm.cost.sheet</field>
+        <field name="arch" type="xml">
+            <form string="Crm Costing Sheet">
+                <header>
+                    <button name="action_submit_button"
+                            type="object"
+                            string="Submit"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_approve_button"
+                            type="object"
+                            string="Approve"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'submit')]}"/>
+                    <button name="action_reject_button"
+                            type="object"
+                            string="Reject"
+                            attrs="{'invisible': [('state', '!=', 'submit')]}"/>
+                    <button name="action_cancel_button"
+                            type="object"
+                            string="Cancel"
+                            attrs="{'invisible': [('state', '=', 'submit')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" widget="res_partner_many2one"
+                                   context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                                   options='{"always_reload": True}'/>
+                            <field name="distributor_id" domain="[('custom_partner_type', '=', 'distributor')]"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="panel_distributor_id" domain="[('is_panel_distributor', '=', True)]"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="panel_rate" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <label for="capacity" string="Capacity"/>
+                            <div class="o_row">
+                                <field name="capacity"/>
+                                <span class="text-muted">KW</span>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="date" readonly="1"/>
+                            <field name="company_id" readonly="1"/>
+                            <field name="user_id" readonly="1"/>
+                            <field name="template_id"/>
+                            <label for="interest_calculation_percentage"/>
+                            <div class="d-flex flex-row align-items-start">
+                                <field name="interest_calculation_percentage" class="w-auto"/>
+                                <span>%</span>
+                            </div>
+                            <label for="profit_per_kw_percentage"/>
+                            <div class="d-flex flex-row align-items-start">
+                                <field name="profit_per_kw_percentage" class="w-auto"/>
+                                <span>%</span>
+                            </div>
+                            <label for="gst_per_kw_on_costing_percentage"/>
+                            <div class="d-flex flex-row align-items-start">
+                                <field name="gst_per_kw_on_costing_percentage" class="w-auto"/>
+                                <span>%</span>
+                            </div>
+                        </group>
+                        <group/>
+                    </group>
+                    <notebook>
+                        <page string="Line">
+                            <field name="line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree editable="bottom">
+                                    <field name="product_id" required="1"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="price_unit"/>
+                                    <field name="tax_ids" widget="many2many_tags"/>
+                                    <field name="total_tax" invisible="1"/>
+                                    <field name="subtotal_without_tax"/>
+                                    <field name="subtotal"/>
+                                    <button name="action_open_cost_sheet_template_wizard" type="object" icon="fa-list"/>
+                                </tree>
+                            </field>
+
+<!--                            <group name="note_group" col="6" class="mt-2 mt-md-0">-->
+<!--                                <group colspan="4">-->
+<!--                                    <field name="per_kw_cost_wo_gst" colspan="2"/>-->
+<!--                                    <field name="interest_calculation" colspan="2"/>-->
+<!--                                    <field name="profit_per_kw" colspan="2"/>-->
+<!--                                    <field name="gst_per_kw_on_costing" colspan="2"/>-->
+<!--                                    <field name="final_price_per_kw_with_gst" colspan="2"/>-->
+<!--                                    <field name="total_amount_with_gst" colspan="2"/>-->
+<!--                                </group>-->
+<!--                                <group class="oe_subtotal_footer oe_right" colspan="2">-->
+<!--                                    <field name="total_cost_without_tax" readonly="1"/>-->
+<!--                                    <field name="tax_amount" readonly="1"/>-->
+<!--                                    <field name="total_amount" readonly="1"/>-->
+<!--                                </group>-->
+<!--                                <div class="clearfix"/>-->
+<!--                            </group>-->
+                            <!--===============================================================================================================-->
+
+                            <group name="note_group" col="6" class="mt-2 mt-md-0">
+                                <group class="oe_subtotal_footer oe_right" colspan="2">
+                                    <field name="total_cost_without_tax" readonly="1"/>
+                                    <field name="tax_amount" readonly="1"/>
+                                </group>
+                                <div class="clearfix"/>
+                            </group>
+                            <group name="note_group" col="6" class="mt-2 mt-md-0">
+                                <group class="oe_subtotal_footer oe_right" colspan="2">
+                                    <field name="total_amount" readonly="1"/>
+                                </group>
+                                <div class="clearfix"/>
+                            </group>
+                            <group name="note_group" col="6" class="mt-2 mt-md-0">
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="per_kw_cost_wo_gst" readonly="1"/>
+                                    <field name="interest_calculation" readonly="1"/>
+                                    <field name="profit_per_kw" readonly="1"/>
+                                    <field name="gst_per_kw_on_costing" readonly="1"/>
+                                    <field name="final_price_per_kw_with_gst" readonly="1"/>
+                                    <field name="total_amount_with_gst" readonly="1"/>
+                                    <field name="total_subsidy" readonly="1"/>
+                                    <field name="total_amount_after_subsidy" readonly="1"/>
+                                </group>
+                                <div class="clearfix"/>
+                            </group>
+
+                            <!--====================================================================================================================                            -->
+                        </page>
+                        <page string="Panel Cost">
+                            <field name="crm_panel_cost_line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree editable="bottom">
+                                    <field name="no_of_module"/>
+                                    <field name="no_of_structure"/>
+                                    <field name="structure_type"/>
+                                    <field name="height_of_structure"/>
+                                    <field name="total_foundation"/>
+                                    <field name="height_in_mm"/>
+                                    <field name="degree"/>
+                                    <field name="rafter_length"/>
+                                    <field name="no_of_legs"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_crm_costing_sheet_menu" model="ir.actions.act_window">
+        <field name="name">CRM Costing Sheet</field>
+        <field name="res_model">crm.cost.sheet</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Costing Sheet
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="crm_costing_sheet_menu"
+              name="Costing Sheet"
+              action="action_crm_costing_sheet_menu"
+              parent="crm.crm_menu_root"/>
+</odoo>

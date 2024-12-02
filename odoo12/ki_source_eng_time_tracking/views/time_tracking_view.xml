@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_time_tracking_search_source_eng" model="ir.ui.view">
+		<field name="name">time.tracking.search.source.eng</field>
+		<field name="model">time.tracking.users</field>
+		<field name="inherit_id"
+			ref="ki_base_time_tracking.view_time_tracking_search" />
+		<field name="arch" type="xml">
+			<xpath expr="//separator[@name='filter_section']"
+				position="after">
+				<filter string="Source and Engineering" name="tracking_source_eng"
+					domain="[('seng_id','!=', False)]"
+					help="Tracking for Source and Engineering" />
+			</xpath>
+		</field>
+	</record>
+</odoo>
+

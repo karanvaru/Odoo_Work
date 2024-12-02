@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_account_report_tax_payable" model="ir.actions.client">
+        <field name="name">GSTR-3</field>
+        <field name="tag">account_report</field>
+        <field name="context" eval="{'model': 'action_l10n_in_report_accountaccount.financial.html.report', 'id': ref('l10n_in_reports.total_tax_payable_l10n_in_report')}" />
+    </record>
+
+    <record id="action_l10n_in_report_account" model="ir.actions.client">
+        <field name="name">GSTR-1 Sales Return</field>
+        <field name="tag">account_report</field>
+        <field name="context" eval="{'model': 'l10n.in.report.account'}" />
+    </record>
+
+    <menuitem id="menu_l10n_in_report_account" name="GSTR-1 Sales Return" action="action_l10n_in_report_account" parent="l10n_in.account_reports_in_statements_menu" sequence="1"/>
+    
+</odoo>

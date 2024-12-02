@@ -1,0 +1,15 @@
+<odoo><data noupdate="1">
+
+    <record id="user_asterisk" model="res.users">
+        <field name="login">asterisk</field>
+        <field name="name">Asterisk</field>
+        <field name="password">asterisk</field>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/>
+    </record>
+
+    <record id="remote_agent" model="remote_agent.agent">
+        <field name="system_name">asterisk</field>
+        <field name="user" ref="asterisk_common.user_asterisk"/>        
+    </record>
+
+</data></odoo>

@@ -1,0 +1,337 @@
+<odoo>
+    <data>
+        <record id="cost_estimation_tree" model="ir.ui.view">
+            <field name="name">cost.estimation.tree</field>
+            <field name="model">cost.estimation</field>
+            <field name="arch" type="xml">
+                <tree string="Cost Estimation" decoration-danger="state =='cancelled'"
+                      decoration-success="state=='approved'" create="false" delete="false" duplicate="false">
+                    <field name="seq"/>
+                    <field name="customer"/>
+                    <field name="opportunity"/>
+                    <field name="price_list"/>
+                    <field name="fx" invisible="1"/>
+                    <field name="estimate_date"/>
+                    <field name="t_margin"/>
+                    <field name="t_margin_percentage"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="cost_estimation_form" model="ir.ui.view">
+            <field name="name">cost.estimation.form</field>
+            <field name="model">cost.estimation</field>
+            <field name="arch" type="xml">
+                <form string="Cost Estimation" duplicate="false" create="false" delete="false">
+                    <header>
+                        <button name="button_compute" string="Compute" type="object" class="oe_highlight"
+                                states="draft"
+                                groups="cost_estimation.group_cost_est_user,cost_estimation.group_cost_est_1st_app,cost_estimation.group_cost_est_2nd_app"/>
+                        <button name="submit" string="Submit" type="object" class="oe_highlight" states="draft"
+                                groups="cost_estimation.group_cost_est_user,cost_estimation.group_cost_est_1st_app,cost_estimation.group_cost_est_2nd_app"/>
+                        <button string="Set Markup" class="oe_highlight" type="object" name="set_markup_value"
+                                attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <button name="approve_1" string="Approve" type="object" class="oe_highlight"
+                                states="first_approval"
+                                groups="cost_estimation.group_cost_est_1st_app"/>
+                        <button name="reject_1" string="Reject" type="object" class="oe_highlight"
+                                states="first_approval"
+                                groups="cost_estimation.group_cost_est_1st_app"/>
+                        <button name="approve_2" string="Approve" type="object" class="oe_highlight"
+                                states="second_approval"
+                                groups="cost_estimation.group_cost_est_2nd_app"/>
+                        <button name="reject_2" string="Reject" type="object" class="oe_highlight"
+                                states="second_approval"
+                                groups="cost_estimation.group_cost_est_2nd_app"/>
+
+                        <button name="create_quotation" string="Create Quotation" type="object" class="oe_highlight"
+                                states="approved"
+                                groups="cost_estimation.group_cost_est_user,cost_estimation.group_cost_est_1st_app,cost_estimation.group_cost_est_2nd_app"/>
+                        <button name="cancel" style="background-color:red" string="Cancel" type="object"
+                                class="oe_highlight" states="approved"
+                                groups="cost_estimation.group_cost_est_1st_app,cost_estimation.group_cost_est_2nd_app"/>
+
+                        <!--                        <button name="set_draft" string="Set To Draft" type="object" class="oe_highlight" />-->
+                        <button name="set_draft" string="Set To Draft" type="object" class="oe_highlight"
+                                states="rejected"
+                                groups="cost_estimation.group_cost_est_user,cost_estimation.group_cost_est_1st_app,cost_estimation.group_cost_est_2nd_app"/>
+                        <button name="set_template_id_record" string="Set Template" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'not in', ('draft'))]}"
+                               />
+
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,first_approval,second_approval,approved"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box"
+                             attrs="{'invisible': [('quotations_count', '=', 0)]}">
+                            <button type="object"
+                                    name="action_view_quotation"
+                                    class="oe_stat_button"
+                                    icon="fa-shopping-cart">
+                                <field name="quotations_count" widget="statinfo" string="Quotations"/>
+
+                            </button>
+
+                        </div>
+
+                        <div class="oe_title">
+                            <h1>
+                                <field name="seq"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="customer"/>
+                                <field name="opportunity"/>
+                                <field name="sales_team"/>
+                                <field name="sales_person"/>
+                                <field name="price_list" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="fx" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="computed" invisible="1"/>
+                                <field name="lead_section_ids" widget="many2many_tags" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="estimate_date"/>
+                                <field name="company_id"/>
+                                <field name="sale_order" attrs="{'invisible': [('sale_order', '=', False)]}"/>
+                                <field name="t_margin"/>
+                                <field name="t_margin_percentage"/>
+                                <field name="include_taxes"/>
+                                <field name="opportunity_product_ids" invisible="1" widget="many2many_tags"/>
+                                <field name="saleable_product_id" attrs="{'readonly': [('state', '!=', 'draft')]}"  invisible="1" domain="[('id', 'in', opportunity_product_ids)]"/>
+                                <field name="saleable_product_line_id" attrs="{'readonly': [('state', '!=', 'draft')]}" domain="[('cost_estimation_id', '=', id), ('display_type', '=', False)]"/>
+                                <field name="template_id" attrs="{'readonly': [('state', '!=', 'draft')]}" domain="[('product_id', '=', saleable_product_id)]"/>
+                            </group>
+                        </group>
+                            <notebook>
+                                <page string="Cost Estimation">
+                                    <field name="cost_estimation_line" attrs="{'readonly': [('state', '!=', 'draft')]}"  mode="tree"   widget="section_and_note_one2many">
+                                        <tree editable="bottom">
+                                        <control>
+                                            <create name="add_line_control" string="Add a line"/>
+                                            <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                            <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                                        </control>
+                                            <field name="sequence" widget="handle"/>
+                                            <field name="sequence_float"/>
+                                            <field name="display_type" invisible="1"/>
+                                            <field name="salable_product"
+                                                   readonly="False"
+                                                   invisible="True"
+                                                   attrs="{'readonly': [('parent.state', '!=', 'draft')]}"
+                                                   options="{'no_quick_create': True, 'no_create_edit' : True,'no_open': True}"/>
+                                                   
+                                            <field name="salable_product_id"
+                                                   readonly="False"
+                                                   attrs="{'readonly': [('parent.state', '!=', 'draft')]}"
+                                                   options="{'no_quick_create': True, 'no_create_edit' : True,'no_open': True}"/>
+                                            <field name="cost_template_id" optional="hide" readonly="1"/>
+                                            <field name="crm_product_line_id" invisible="1"/>
+                                            <field name="sp_desc" readonly="True" force_save="True"/>
+                                            <field name="sp_quant"   attrs="{'readonly': [('parent.state', '!=', 'draft')]}"/>
+                                            <field name="cost_item" attrs="{'readonly': [('parent.state', '!=', 'draft')], 'required': [('display_type', '=', False)]}"
+                                                    domain="[('cost_ok', '=', True)]"
+                                                   options="{'no_quick_create': True, 'no_create_edit' : True}"
+                                                   />
+                                            <field name="cost_item_uom_id" optional="hide"/>
+                                            <field name="name" string="CI Description" widget="section_and_note_text" attrs="{'readonly': [('parent.state', '!=', 'draft')]}"/>
+                                            <field name="cost_item_description" invisible="True" attrs="{'readonly': [('parent.state', '!=', 'draft')]}"/>
+                                            <field name="cost_item_type" force_save="1" readonly="True" />
+                                            <field name="cost_item_quant_sp" attrs="{'readonly': [('parent.state', '!=', 'draft')]}"/>
+                                            <field name="cost_item_cost_currency" attrs="{'readonly': [('parent.state', '!=', 'draft')]}"/>
+                                            <field name="fx" invisible="1"/>
+                                            <field name="cost_item_unit_cost" force_save="1" optional="hide" readonly="True"/>
+                                            <field name="cost_item_cost_sp"/>
+
+                                            <field name="total_cost_item_quantity" optional="hide"/>
+                                            <field name="total_cost_item_cost"/>
+                                            <field name="taxes" widget="many2many_tags"
+                                                   options="{'no_quick_create': True, 'no_create_edit' : True}"
+                                                   optional="hide"/>
+                                            <field name="tax_value"/>
+                                            <field name="cost_total_include_taxes"/>
+                                            <field name="markup_perc" readonly="1" force_save="1"/>
+                                            <field name="markup_value" readonly="0"/>
+                                            <field name="selling_price" sum="selling_price"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="products">
+                                    <field name="products_line" attrs="{'readonly': [('state', '!=', 'draft')]}"  widget="section_and_note_one2many">
+                                        <tree editable="bottom" create="false">
+	                                        <control>
+	                                            <create name="add_line_control" string="Add a line"/>
+	                                            <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
+	                                            <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+	                                        </control>
+                                            <field name="sequence" widget="handle"/>
+                                            <field name="sequence_float"/>
+                                            <field name="display_type" invisible="1"/>
+                                            <field name="salable_product_id"
+                                                   options="{'no_quick_create': True, 'no_create_edit' : True,'no_open': True}"/>
+                                            <field name="salable_product"
+                                                    invisible="1"
+                                                   options="{'no_quick_create': True, 'no_create_edit' : True,'no_open': True}"/>
+                                            <field name="name" string="Description" widget="section_and_note_text"/>
+                                            <field name="sp_desc"/>
+                                            <field name="cost_item_description"/>
+                                            <field name="sp_quant"/>
+                                            <field name="unit_of_measure"/>
+                                            <field name="unit_cost"/>
+                                            <field name="taxes" widget="many2many_tags"
+                                                   options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                            <field name="total_cost"
+                                                   attrs="{'column_invisible': [('parent.include_taxes', '=', True)]}"/>
+                                            <field name="cost_total_include_taxes"
+                                                   attrs="{'column_invisible': [('parent.include_taxes', '=', False)]}"/>
+                                            <field name="margin"/>
+                                            <field name="markup_value"/>
+                                            <field name="unit_price"/>
+                                            <field name="subtotal"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Notes">
+                                    <group>
+                                        <field name="notes"/>
+                                    </group>
+                                </page>
+                                <page string="CI summary">
+                                    <field name="ci_summary_ids">
+                                        <tree create="0">
+                                            <field name="cost_item"/>
+                                            <field name="ci_description"/>
+                                            <field name="total_quantity"/>
+                                            <field name="total_cost"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        <group name="note_group" col="6">
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="total_cost_item">
+                                <field name="total_material_cost" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="total_labour_cost" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="total_overhead_cost" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="total_subcontractor_cost" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <field name="total_selling_price" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}" invisible="True"/>
+                                <field name="total_product_line_tax" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                    <label for="total_cost"/>
+                                </div>
+                                <field name="total_cost" nolabel="1" class="oe_subtotal_footer_separator"
+                                       widget="monetary"/>
+                                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                    <label for="total_unit_price"/>
+                                </div>
+                                <field name="total_unit_price" nolabel="1" class="oe_subtotal_footer_separator"
+                                       widget="monetary"/>
+                            </group>
+                            <div class="oe_clear"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+
+            </field>
+        </record>
+        <record id="cost_estimation_template_tree_view" model="ir.ui.view">
+            <field name="name">cost.estimation.template.tree.view</field>
+            <field name="model">cost.estimation.template</field>
+            <field name="arch" type="xml">
+                <tree string="Cost Estimation Template">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="cost_estimation_template_form_view" model="ir.ui.view">
+            <field name="name">cost.estimation.template.form.view</field>
+            <field name="model">cost.estimation.template</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page string="Lines">
+                                <field name="template_line_ids" widget="section_and_note_one2many">
+                                    <tree editable="bottom">
+	                                    <control>
+                                            <create name="add_line_control" string="Add a line"/>
+	                                        <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
+	                                        <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+	                                    </control>
+	                                    <field name="display_type" invisible="1"/>
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="sequence_float"/>
+                                        <field name="cost_items_id" domain="[('cost_ok', '=', True)]" attrs="{'required': [('display_type', '=', False)]}"/>
+                                        <field name="name" widget="section_and_note_text" />
+                                        <field name="ci_description_id" invisible="1"/>
+                                        <field name="cost_item_type"/>
+                                        <field name="quantity"/>
+                                        <field name="product_uom_id" invisible="True"/>
+                                        <field name="product_uom_categ_id" invisible="True"/>
+                                        <field name="uom_id" domain="[('category_id', '=', product_uom_categ_id)]" 
+                                            attrs="{'required': [('display_type', '=', False)]}"/>
+                                        <field name="budgetary_position"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_cost_estimation_template" model="ir.actions.act_window">
+            <field name="name">Cost Estimation Template</field>
+            <field name="res_model">cost.estimation.template</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_cost_estimation" model="ir.actions.act_window">
+            <field name="name">Cost Estimation</field>
+            <field name="res_model">cost.estimation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="cost_estimation_form_action" model="ir.actions.act_window">
+            <field name="name">New Estimation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cost.estimation</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="cost_estimation_form"/>
+        </record>
+        <menuitem id="cost_estimation_menu"
+                  parent="crm.crm_menu_root"
+                  action="action_cost_estimation"
+                  sequence="24"/>
+        <menuitem id="cost_estimation_template_menu"
+                  parent="crm.crm_menu_config"
+                  action="action_cost_estimation_template"
+                  sequence="100"/>
+
+        <record id="seq_cost_estimation" model="ir.sequence">
+            <field name="name">seq</field>
+            <field name="code">cost.estimation</field>
+            <field name="prefix">COE/</field>
+            <field name="padding">4</field>
+            <field name="implementation">no_gap</field>
+        </record>
+
+
+    </data>
+</odoo>
+
+

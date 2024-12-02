@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<function model="account.tax.group" name="write">
+		<value model="account.tax.group" eval="obj().search([]).ids" />
+		<value eval="{'preceding_subtotal': 'Subtotal'}" />
+	</function>
+
+</odoo>

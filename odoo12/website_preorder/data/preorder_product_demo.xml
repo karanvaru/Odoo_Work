@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="1">
+        <record id="product.product_product_9" model="product.product">
+            <field name="is_preorder_type" eval="True"/>
+            <field name="pre_order_date" eval="(DateTime.today() + relativedelta(months=1)).strftime('%Y-%m-%d')"/>
+            <field name="website_published" eval="True"/>
+            <field name="wk_override_pre_order_default" eval="True"/>
+            <field name="max_order_qty" >2.0</field>
+            <field name="min_order_qty" >1.0</field>
+            <field name="minimum_qty" >25.0</field>
+        </record>
+
+        <record id="pre_order_product_product_1" model="product.product">
+            <field name="name">Emporio Armani Watch</field>
+            <field name="categ_id" ref="product.product_category_5"/>
+            <field name="standard_price">500.0</field>
+            <field name="list_price">1127.0</field>
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">Armani</field>
+            <field name="image" type="base64" file="website_preorder/static/src/img/watch.png"/>
+            <field name="is_preorder_type" eval="True"/>
+            <field name="pre_order_date" eval="(DateTime.today() + relativedelta(months=1)).strftime('%Y-%m-%d')"/>
+            <field name="wk_override_pre_order_default" eval="False"/>
+            <field name="website_published" eval="True"/>
+
+        </record>
+        <record id="pre_order_product_product_2" model="product.product">
+            <field name="name">L Babel Times Black </field>
+            <field name="categ_id" ref="product.product_category_5"/>
+            <field name="standard_price">2000.0</field>
+            <field name="list_price">2925.0</field>
+            <field name="type">product</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="default_code">Babel (Black)</field>
+            <field name="image" type="base64" file="website_preorder/static/src/img/9.png"/>
+            <field name="is_preorder_type" eval="True"/>
+            <field name="pre_order_date" eval="(DateTime.today() + relativedelta(months=1)).strftime('%Y-%m-%d')"/>
+            <field name="wk_override_pre_order_default" eval="True"/>
+            <field name="payment_type">percent</field>
+            <field name="percentage">60</field>
+            <field name="max_order_qty" >2.0</field>
+            <field name="min_order_qty" >1.0</field>
+            <field name="website_published" eval="True"/>
+        </record>
+    </data>
+</odoo>

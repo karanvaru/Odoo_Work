@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+  <data>
+
+
+
+
+    <template id="assets_frontend_preorder" inherit_id="website.assets_frontend" name="Assets Frontend Stock">
+      <xpath expr="." position="inside">
+        <link rel='stylesheet' href='/website_stock/static/src/css/website_stock.css'/>
+        <link rel='stylesheet' href='/website_preorder/static/src/css/website_preorder.css'/>
+        <script type="text/javascript" src='/website_preorder/static/src/js/website_preorder_validation.js'></script>
+      </xpath>
+    </template>
+
+    <template id="assets_frontend_preorder_inherit" name="assets Frontend Inherit" inherit_id="website_stock.assets_frontend_stock">
+        <xpath expr="//script[@src='/website_stock/static/src/js/website_stock_main.js']" position="replace">
+            <script type="text/javascript" src="/website_preorder/static/src/js/website_preorder_extension.js"></script>
+        </xpath>
+    </template>
+
+
+    <template id="website_preorder_show" inherit_id="website_sale.product" active="True" customize_show="True" name="Show Pre-Order">
+      <xpath expr="//section//div//a[@id='add_to_cart']" position="replace">
+        <a id="add_to_cart" class="btn btn-primary btn-lg mt8 js_check_product a-submit wk_test" href="#">Add to Cart</a>
+        <t t-set="config_preorder_setting" t-value="website.get_pre_order(product)"/>
+        <span id="preorder" t-att-data-preorder="config_preorder_setting"/>
+        <span id="preorder_product" t-att-data-preorder_product="product.is_preorder_type"/>
+        <span id="max_qty_order" t-att-data-max_qty_order="product.max_order_qty"/>
+        <span id="minimum_qty" t-att-data-minimum_qty="product.minimum_qty"/>
+      </xpath>
+    </template>
+    <template id="product_price" inherit_id="website_stock.product_stock">
+        <xpath expr="//div[hasclass('stock_info_div')]" position="replace">
+            <div class="stock_info_div" t-att-id="'%s' % product.id" t-att-value="'%s' % product_quantity" t-att-allow="'%s' %product.wk_order_allow" style="display:none;">
+                <t t-set="product_obj" t-value="product" />
+                <div id="website-stock-div">
+                    <t t-if="product_quantity > 0 and config_setting.get('wk_display_qty') and product.type != 'service'">
+                        <b><span t-esc="product_quantity"/></b>&#032;<span t-esc="product.sudo().uom_id.name" />
+                    </t>
+                    <div>
+                        <t t-call="website_stock.show_stock_msg" />
+                    </div>
+                </div>
+                <div id="pre_order_stock_div" style="display:none;">
+                    <t t-if="website.get_pre_order(product_obj)">
+                    <div>
+                        <span class="stock-status mt8" style="background-color: purple;color: white;">Available For Preorder!!!</span>
+                    </div>
+                    </t>
+                    <t t-if="website.get_maximum_order_quantity_message(product) != False " >
+                        <div  class="product_maximum_qty">Min
+                            <span t-esc="product.min_order_qty"/> and max
+                            <span t-esc="product.max_order_qty"/>
+                            <span t-esc="product.sudo().uom_id.name"/> are allowed for pre-order. </div>
+                    </t>
+                    <t t-if="website.get_preorder_product_price_message(product, config_preorder_setting) != False " >
+                      <div  class="product_preorder_price" t-value="website.get_preorder_product_price_message(product, config_preorder_setting)">Pay
+                        <span t-esc="website.get_preorder_product_price_message(product, config_preorder_setting)"  t-options='{ "widget": "monetary",
+                      "display_currency": website.get_current_pricelist().currency_id,"from_currency": website.currency_id}'/> (<span t-esc="product.percentage"/>%) to confirm Pre-Order.Pay the rest once pre-order is confirmed.
+                      </div>
+                    </t>
+                    <t t-if="website.get_custom_message(product,config_preorder_setting) != False " >
+                        <div>
+                            <span class="product_preorder_custom_message" t-value="website.get_custom_message(product,config_preorder_setting)" t-esc="website.get_custom_message(product,config_preorder_setting)"/>
+                        </div>
+                    </t>
+                    <t t-if="website.get_avaliable_date(product) != False " >
+                      <div  class="product_preorder_date_message" t-value="website.get_avaliable_date(product)">Available Upto
+                        <span t-esc="website.get_avaliable_date(product)"/>
+                      </div>
+                    </t>
+                    <t t-if="website.get_pre_order(product_obj)">
+                      <input name="preorder_type" t-att-value="product.is_preorder_type" type="hidden"/>
+                      <input name="max_qty_order" t-att-value="product.max_order_qty" type="hidden"/>
+                      <div style="margin-top:8px;">
+                          <a id="add_to_cart_preorder" class="btn btn-primary btn-lg mt8 wk_hidden_stock js_check_product a-submit wk_test" href="#">
+                            <span t-esc="website.get_preorder_button_text()"/>
+                          </a>
+                      </div>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template inherit_id="website_sale.cart_popover" name="Cart Popover" id="preorder_cart_popover">
+      <xpath expr="//div[hasclass('text-center')]//a[hasclass('btn', 'btn-primary')]" position="replace">
+        <a t-if="website_sale_order.state != 'sent'" class="btn btn-primary" href="/shop/cart">
+         View Cart (
+          <t t-esc="website_sale_order.cart_quantity"/> items)
+
+        </a>
+        <a t-if="website_sale_order.state == 'sent'" class="btn btn-primary" href="/shop/payment">
+         View Cart (
+          <t t-esc="website_sale_order.cart_quantity"/> items)
+
+        </a>
+      </xpath>
+    </template>
+    <template inherit_id="sale.portal_my_quotations" name="Quotations" id="preorder_quotation">
+      <xpath expr="//t[@t-if='quotations']" position="replace">
+        <t t-if="quotations" t-call="portal.portal_table">
+          <thead>
+            <tr class="active">
+              <th>Quotation #</th>
+              <th>Valid Until</th>
+              <th></th>
+              <th></th>
+              <th>Remaining Amount</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <t t-foreach="quotations" t-as="quotation">
+            <tr t-att-class="'hidden to_hide' if quotation.state!='sent' and quotation_index &gt; 4 else ''">
+              <td>
+                <a t-att-href="'/my/orders/'+str(quotation.id)">
+                  <t t-esc="quotation.name"/>
+                </a>
+              </td>
+              <td>
+                <span t-field="quotation.validity_date"/>
+              </td>
+              <td>
+                <t t-if="quotation.state == 'cancel'">
+                  <span class="label label-default">
+                    <i class="fa fa-fw fa-remove"/> Cancelled
+                  </span>
+                </t>
+                <t t-if="quotation.validity_date and quotation.validity_date &lt; date">
+                  <span class="label label-default">
+                    <i class="fa fa-fw fa-clock-o"/> Expired
+                  </span>
+                </t>
+              </td>
+              <td>
+                <span t-if="quotation.is_preorder" class="badge badge-success badge-pill">
+                  <i class="fa fa-fw fa-check "/> <t t-if="quotation.preorder_payment_state == 'partial'"> Partial Pre-order</t><t t-if="quotation.preorder_payment_state == 'complete'"> Complete Pre-order </t>
+                </span>
+              </td>
+              <td>
+                <t t-if="quotation.full_amount and quotation.full_amount - quotation.amount_untaxed &gt; 0">
+                  <span class="badge badge-secondary badge-pill" t-esc="quotation.full_amount - quotation.amount_untaxed" t-options='{"widget": "monetary", "display_currency": quotation.pricelist_id.currency_id}'> Amount left</span>
+                </t>
+              </td>
+              <td>
+                <span t-esc="quotation.amount_total" t-options='{"widget": "monetary", "display_currency": quotation.pricelist_id.currency_id}'/>
+              </td>
+            </tr>
+          </t>
+          <tr t-att-class="'hidden' if len(quotations) &lt; 5 else ''">
+            <td colspan="6">
+              <a href="" class="o_my_show_more btn btn-xs btn-default">
+                <span>Show more</span>
+                <span class="hidden">Show less</span>
+              </a>
+            </td>
+          </tr>
+        </t>
+      </xpath>
+    </template>
+
+
+
+    <template inherit_id="sale.sale_order_portal_content" id="pre_orders_portal_order_page" name="Sales Order">
+      <xpath expr="//div[@id='introduction']" position="replace">
+        <div id="introduction" t-attf-class="pb-2 pt-3 #{'card-header bg-white' if report_type == 'html' else ''}">
+          <div class="row">
+            <h3 class="col-md-3 my-0">
+              <span t-field="sale_order.type_name"></span>
+              <em t-esc="sale_order.name"/>
+            </h3>
+            <div class="col-md-9">
+              <div class="row">
+            <div class="col-md-8" style="text-align: center;">
+              <t t-if="website.get_warning_message(config_preorder_setting) != False and sale_order.is_preorder and sale_order.state in ['draft','sent']" >
+                <div  class="alert alert-warning product_preorder_warning_message" t-value="website.get_warning_message(config_preorder_setting)">
+                  <i class="fa fa-exclamation-triangle">
+                    <span style="font-weight:bold;" t-esc="website.get_warning_message(config_preorder_setting)"/>
+                  </i>
+                </div>
+              </t>
+          </div>
+          <div class="col-md-4">
+              <form target="_self" action="/shop/redirect/cart/update" method="post" class="pull-right">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="preorder_id" t-att-value="sale_order.id"/>
+                <button t-if="sale_order.preorder_payment_state == 'partial' and sale_order.preorder_notify" id="pre_order_confirm_button" name="preorder_confirm" type="submit" class="btn btn-success" style="margin-top:5px;" >Complete your payment</button>
+              </form>
+          </div>
+        </div>
+            </div>
+          </div>
+        </div>
+      </xpath>
+      <xpath expr="//div[@id='informations']" position="replace">
+        <div id="informations">
+           <t t-if="error or warning" t-call="sale.portal_order_error"/>
+              <t t-if="success and (not error and not warning)" t-call="sale.portal_order_success"/>
+              <div class="row mb8">
+                  <div class="col-md-6">
+                      <strong>Date:</strong>
+                      <span t-field="sale_order.create_date" t-field-options='{"widget": "date"}'/>
+                  </div>
+                  <div class="col-md-6">
+                      <t t-if="sale_order.is_preorder">
+                          <strong>Pre-Order Payment Status:</strong>
+                          <span t-field="sale_order.preorder_payment_state"/>
+                      </t>
+                  </div>
+              </div>
+              <div class='row'>
+                <div class="col-md-6">
+                  <div>
+                    <strong>Invoicing Address</strong>
+                  </div>
+                  <div>
+                    <address t-field="sale_order.partner_invoice_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                  </div>
+                  <t t-if="invoices">
+                    <div>
+                      <strong>Invoices</strong>
+                    </div>
+                    <div>
+                      <t t-foreach="invoices" t-as="i">
+                        <t t-set="report_url" t-value="'/my/invoices/pdf/%s?%s' % (i.id, 'access_token=%s' % i.access_token if access_token else '')"/>
+                        <div>
+                          <a t-att-href="report_url"><span class="fa fa-download"/></a>
+                          <a t-att-href="report_url"><span t-esc="i.number"/></a>
+                          <span class="text-muted" t-field="i.date_invoice"/>
+                          <t t-if="i.state == 'paid'">
+                            <span class="label label-success orders_label_text_align"><i class="fa fa-fw fa-check"/> Paid</span>
+                          </t>
+                          <t t-if="i.state != 'paid'">
+                            <span class="label label-info orders_label_text_align"><i class="fa fa-fw fa-clock-o"/> Waiting</span>
+                          </t>
+                        </div>
+                      </t>
+                    </div>
+                  </t>
+                </div>
+                <div id="shipping_address" class="col-md-6" groups="sale.group_delivery_invoice_address">
+                  <div>
+                    <strong>Shipping Address</strong>
+                  </div>
+                  <div>
+                    <address t-field="sale_order.partner_shipping_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </xpath>
+      <xpath expr="//section[@id='details']" position="replace">
+            <section id="details" style="page-break-inside: auto;" class="mt32">
+              <h3 id="details">Details</h3>
+              <t t-set="display_discount" t-value="True in [line.discount > 0 for line in sale_order.order_line]"/>
+              <table class="table table-sm" id="sales_order_table">
+                <thead class="bg-100">
+                  <tr>
+                    <t t-set="colspan" t-value="5"/>
+                    <th>Products</th>
+                    <th t-attf-class="text-right {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}">Unit Price</th>
+                    <th class="text-right">Pre-order price</th>
+                    <th class="text-right">Quantity</th>
+                    <th class="text-right" >Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody class="sale_tbody">
+                  <t t-set="current_subtotal" t-value="0"/>
+                  <t t-foreach="sale_order.order_line" t-as="ol">
+                    <t t-set="current_subtotal" t-value="current_subtotal + ol.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                    <t t-set="current_subtotal" t-value="current_subtotal + ol.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                      <tr t-att-class="'bg-200 font-weight-bold' if ol.display_type == 'line_section' else 'font-italic' if ol.display_type == 'line_note' else ''">
+                        <td class="text-left">
+                          <div class="col-md-12 row">
+                            <div class="col-md-4"><img t-att-src="'/web/image/product.product/%s/image_small/48x48' % ol.product_id.id"/></div>
+                            <span class="col-md-8" t-esc="ol.product_id.name"/>
+                          </div>
+                        </td>
+                        <td t-attf-class="text-right {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}">
+                          <div
+                              t-field="ol.price_unit"
+                              t-options='{"widget": "monetary", "display_currency": sale_order.pricelist_id.currency_id}'
+                              t-att-style="ol.discount and 'text-decoration: line-through' or None"
+                              t-att-class="(ol.discount and 'text-danger' or '') + ' text-right'"
+                          />
+                          <div t-if="ol.discount">
+                              <t t-esc="(1-line.discount / 100.0) * ol.price_unit" t-options='{"widget": "monetary", "display_currency": sale_order.pricelist_id.currency_id}'/>
+                          </div>
+                        </td>
+                        <td class="text-right">
+                          <span t-field="ol.preorder_amount" t-field-options='{"widget": "monetary", "display_currency": "sale_order.pricelist_id.currency_id"}'/>
+                        </td>
+                        <td class="text-right">
+                          <div id="quote_qty">
+                            <span t-field="ol.product_uom_qty"/>
+                            <span t-field="ol.product_uom" groups="uom.group_uom"/>
+                          </div>
+                        </td>
+                        <td class="text-right">
+                          <span t-field="ol.price_subtotal" t-field-options='{"widget": "monetary", "display_currency": "sale_order.pricelist_id.currency_id"}'/>
+                        </td>
+                      </tr>
+                  </t>
+                </tbody>
+              </table>
+            </section>
+            <hr/>
+
+            <div class="row">
+                <div class="col-md-6">
+                  <div>
+                    <strong>Contact</strong>
+                  </div>
+                  <div t-field="sale_order.user_id.partner_id" t-options='{"widget": "contact", "fields": ["email", "phone"]}'/>
+                  <br/>
+                </div>
+                <div class="col-md-6">
+                  <div class="row mb4">
+                      <div class="col-md-9 col-xs-8 text-right">
+                        <strong>Subtotal</strong>
+                      </div>
+                      <div class="col-md-3 col-xs-4 text-right">
+                        <strong>
+                            <span t-field="sale_order.amount_untaxed" t-options='{"widget": "monetary", "display_currency": sale_order.pricelist_id.currency_id}'/>
+                        </strong>
+                      </div>
+                  </div>
+                  <div class="row mb4">
+                    <t t-set="tax_groups" t-value="sale_order.amount_by_group"/>
+                    <t t-foreach="tax_groups" t-as="amount_by_group">
+                        <t t-if="len(tax_groups) == 1 and sale_order.amount_untaxed == amount_by_group[2]">
+                            <div class="col-md-9 col-xs-8 text-right"><span t-esc="amount_by_group[0]"/></div>
+                            <div class="col-md-3 col-xs-4 text-right">
+                                <span t-esc="amount_by_group[1]"
+                                    t-options='{"widget": "monetary", "display_currency": sale_order.pricelist_id.currency_id}'/>
+                            </div>
+                        </t>
+                        <t t-else ="">
+                            <div class="col-md-9 col-xs-8 text-right">
+                                <span t-esc="amount_by_group[0]"/>
+                                <span>&amp;nbsp;<span>on</span>&amp;nbsp;<t t-esc="amount_by_group[2]" t-options='{"widget": "monetary", "display_currency": sale_order.pricelist_id.currency_id}'/></span>
+                            </div>
+                            <div class="col-md-3 col-xs-4 text-right">
+                                <span t-esc="amount_by_group[1]"
+                                    t-options='{"widget": "monetary", "display_currency": sale_order.pricelist_id.currency_id}'/>
+                            </div>
+                        </t>
+                    </t>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-9 col-xs-8 text-right">
+                      <strong>Total</strong>
+                    </div>
+                    <div class="col-md-3 col-xs-4 text-right">
+                      <strong><span t-field="sale_order.amount_total" t-options='{"widget": "monetary", "display_currency": sale_order.pricelist_id.currency_id}'/></strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+      </xpath>
+      <!-- <xpath expr="//section[@id='details']" position="after">
+      </xpath> -->
+    </template>
+
+    <template id="pre_order_stock_panel_22" inherit_id="website_stock.stock_panel"  name="Show preorder Information" active="True" customize_show="True">
+
+      <xpath expr="//div[@itemscope='itemscope']" position="attributes">
+          <attribute name="t-att-data-publish">'on' if (product.product_variant_ids and website.get_pre_order(product.product_variant_ids[0])) else ('off' if product.product_variant_ids and not product_quantity &gt; 0 and product.product_variant_ids[0].wk_order_allow != 'allow' else 'on')</attribute>
+      </xpath>
+
+        <xpath expr="//div[hasclass('stock-panel', 'pull-right')]" position="replace">
+            <div class="stock-panel pull-right">
+                <t t-if="product.product_variant_ids">
+                    <t t-set="product_obj" t-value="product.product_variant_ids[0]" />
+                    <t t-if="website.get_product_preorder_type(product_obj)">
+                        <span class="stock-status mt8" style="background-color: purple;color: white;">Available For Preorder!!!</span>
+                    </t>
+                    <t t-if="not website.get_product_preorder_type(product_obj)">
+                        <t t-call="website_stock.show_stock_msg" />
+                    </t>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="preorder_cart_line_validate_lines" inherit_id="website_stock.cart_line_validate_lines">
+        <xpath expr="//table//tbody//a[hasclass('js_delete_product', 'no-decoration')]" position="attributes">
+            <attribute name="t-if">not line.order_id.preorder_payment_state == 'partial'</attribute>
+        </xpath>
+        <xpath expr="//table/tbody/t/tr/t[2]" position="replace">
+            <t t-if="not line.order_id.preorder_payment_state == 'partial'">
+                <t t-if="not validate_value">
+                    <td class="text-center td-qty" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id">
+                        <a href="#" class="remove-cart-line"><i class="fa fa-trash-o fa-2x"></i></a>
+                        <div class="cart-line-error-md hidden-xs">
+                            <i class="fa fa-exclamation-triangle"></i>&#032;Product Not Available
+                        </div>
+                        <div class="cart-line-error-xs hidden-md hidden-sm hidden-md hidden-lg">
+                            <i class="fa fa-exclamation-triangle"></i>&#032;Product Not Available
+                        </div>
+                    </td>
+                </t>
+            </t>
+        </xpath>
+        <xpath expr="//table/tbody/t/tr/t[3]" position="replace">
+            <t t-if="line.order_id.preorder_payment_state == 'partial'">
+                <td class="text-center td-qty">
+                    <div t-if="not line.linked_line_id" class="css_quantity input-group oe_website_spinner">
+                        <div class="input-group-prepend">
+                            <a t-attf-href="#" class="btn btn-link js_add_cart_json d-none d-md-inline-block" aria-label="Remove one" title="Remove one">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                        </div>
+                        <input type="text" class="form-control quantity" readonly="1" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id" t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty" />
+                        <div class="input-group-append">
+                            <a t-attf-href="#" class="btn btn-link float_left js_add_cart_json d-none d-md-inline-block" aria-label="Add one" title="Add one">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <t t-if="line.linked_line_id">
+                        <span class="text-muted" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id" t-esc="int(line.product_uom_qty)"/>
+                    </t>
+                    <!-- <div class="input-group oe_website_spinner">
+                        <a t-attf-href="#" class="mb8 input-group-addon js_add_cart_json" data-no-instant="" style="cursor:default;text-decoration:none;pointer-events:none;">
+                            <i class="fa fa-minus"></i>
+                        </a>
+                        <input type="text" class=" text-center form-control" t-att-data-line-id="line.id" readonly="1" t-att-data-product-id="line.product_id.id" t-att-value="int(line.product_uom_qty)" />
+                        <a t-attf-href="#" class="mb8 input-group-addon float_left js_add_cart_json" data-no-instant="" style="cursor:default;text-decoration:none;pointer-events:none;">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div> -->
+                </td>
+            </t>
+            <t t-if="not line.order_id.preorder_payment_state == 'partial'">
+                <t t-if="validate_value">
+                    <td class="text-center td-qty">
+                        <div t-if="not line.linked_line_id" class="css_quantity input-group oe_website_spinner">
+                            <div class="input-group-prepend">
+                                <a t-attf-href="#" class="btn btn-link js_add_cart_json d-none d-md-inline-block" aria-label="Remove one" title="Remove one">
+                                    <i class="fa fa-minus"></i>
+                                </a>
+                            </div>
+                            <input type="text" class="js_quantity form-control quantity" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id" t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty" />
+                            <div class="input-group-append">
+                                <a t-attf-href="#" class="btn btn-link float_left js_add_cart_json d-none d-md-inline-block" aria-label="Add one" title="Add one">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <t t-if="line.linked_line_id">
+                            <span class="js_quantity text-muted" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id" t-esc="int(line.product_uom_qty)"/>
+                        </t>
+                    </td>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="preorder_cart" inherit_id="website_sale.cart_lines">
+        <xpath expr="//table/tbody/t/tr" position="inside">
+            <tr t-if="website.get_pre_order(line.product_id)" class="pre-order-alert" style="display:none;">
+                <td colspan="4">
+                    <t t-set="preorder_product" t-value="line.product_id.id"/>
+                    <span id="preorder_product_id" t-att-data-preorder_product_id="preorder_product"/>
+                    <t t-set="product_quantity" t-value="website.get_pre_order_stock_qty(line.product_id)" />
+                    <input type="hidden" name="stock_value_qty" t-att-value="product_quantity"/>
+                    <t t-set="preorder_min_qty" t-value="website.get_preorder_min_qty(line.product_id)"/>
+                    <span id="min_qty_order" t-att-data-min_qty_order="preorder_min_qty"/>
+                    <t t-set="preorder_uom" t-value="line.product_id.uom_id.name"/>
+                    <span id="product_uom_name" t-att-data-product_uom_name="preorder_uom"/>
+                    <div class="col-sm-12 preorder_alert alert alert-danger fa fa-exclamation-triangle">
+                        Sorry, but you will have to add minimum <t t-esc="preorder_min_qty"/> <t t-esc="preorder_uom"/> of this product in your cart.
+                    </div>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+    <template id="preorder_quantity" inherit_id="website_stock.stock_panel">
+      <xpath expr="//span[hasclass('stock-quantity')]" position="attributes">
+        <attribute name="t-att-style">'display:none;' if website.get_pre_order(product) else ''</attribute>
+      </xpath>
+    </template>
+
+    <template id="suggested_products_list_view" inherit_id="website_sale.suggested_products_list">
+      <xpath expr="//table[hasclass('js_cart_lines', 'table', 'table-striped', 'table-sm')][last()]" position="attributes">
+        <attribute name="t-att-style">'display:none;' if website_sale_order.is_preorder else ''</attribute>
+      </xpath>
+      <xpath expr="//h5[hasclass('text-muted', 'js_cart_lines')]" position="attributes">
+          <attribute name="t-att-style">'display:none;' if website_sale_order.is_preorder else ''</attribute>
+      </xpath>
+    </template>
+  </data>
+</odoo>

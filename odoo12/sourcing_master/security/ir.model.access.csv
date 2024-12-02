@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+sourcing_master_user,sourcing.master,model_sourcing_master,,1,1,1,1
+vendor_nature_user,vendor.nature,model_vendor_nature,,1,1,1,1
+vendor_components_user,vendor.components,model_vendor_components,,1,1,1,1
+component_vendor_user,component.vendor,model_component_vendor,,1,1,1,1
+quality_grade_user,quality.grade,model_quality_grade,,1,1,1,1
+vendor_operations_user,vendor.operations,model_vendor_operations,,1,1,1,1
+sourcing_qiqo_user,sourcing.qiqo,model_sourcing_qiqo,,1,1,1,1
+standardization_type_user,standardization.type,model_standardization_type,,1,1,1,1
+

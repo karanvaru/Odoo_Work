@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<data>
+		<record id="regenerea_valuation_wizard_form" model="ir.ui.view">
+			<field name="name">regenerea.valuation.wizard.form</field>
+			<field name="model">stock.valuation.generate.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Regenerea Valuation">
+					<group>
+						<group>
+							<field name="start_date" />
+							<field name="company_id" />
+							<field name ="picking_type_id" domain="[('warehouse_id.company_id', '=', company_id)]"/>
+<!--							<field name ="is_move_sync"/>-->
+<!--							<field name ="is_mrp_move_sync"/>-->
+<!--							<field name ="is_delivery_move_sync"/>-->
+						</group>
+						<group>
+							<field name="end_date" />
+<!--							<field name="product_categ_id" widget="many2many_tags"/>-->
+						</group>
+
+					</group>
+					<footer>
+						<button name="regenerea_valuation_wizard_action_button"
+							string="Process" type="object" class="btn-primary" />
+						<button string="Cancel" special="cancel"
+							class="btn-secondary" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="regenerea_valuation_wizard_action"
+			model="ir.actions.act_window">
+			<field name="name">Regenerate valuation entries for missing transfers</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">stock.valuation.generate.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="regenerea_valuation_wizard_form" />
+			<field name="target">new</field>
+		</record>
+
+		<!-- <menuitem id="regenerea_valuation" name="Regenerate Valuation"
+			parent="stock.menu_stock_warehouse_mgmt"
+			action="regenerea_valuation_wizard_action" /> -->
+
+	</data>
+</odoo>

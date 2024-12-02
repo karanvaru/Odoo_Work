@@ -1,0 +1,24 @@
+<odoo>
+    <data noupdate="1">
+
+        <record id="commission_structure_record_rule" model="ir.rule">
+            <field name="name">Commission: Commission Structure</field>
+            <field name="model_id" ref="model_commission_structure"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('reddot_commission.group_manager_commission'))]"/>
+        </record>
+
+        <record id="commission_structure_user_record_rules" model="ir.rule">
+            <field name="name">Commission: Commission User</field>
+            <field name="model_id" ref="model_commission_structure"/>
+            <field name="domain_force">['|','|','|',
+            ('user_id.employee_id','child_of',user.employee_id.ids),
+            ('employee_manager_id','child_of',user.employee_id.ids),
+            ('department_manager_id','child_of',user.employee_id.ids),
+            ('company_ceo_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+
+    </data>
+</odoo>

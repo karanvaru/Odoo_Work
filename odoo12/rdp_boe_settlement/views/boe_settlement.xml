@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="boe_settlement_tree_view" model="ir.ui.view">
+            <field name="name">boe.settlement.tree.view</field>
+            <field name="model">boe.settlement</field>
+            <field name="arch" type="xml">
+                <tree string="BOE SETTLEMENT">
+                    <field name="create_date"/>
+                    <field name="name"/>
+                    <field name="edpms_no"/>
+                    <field name="number"/>
+                    <field name="bill_date"/>
+                    <field name="partner_id"/>
+                    <field name="bill_of_entry_no"/>
+                    <field name="amount_untaxed"/>
+                    <field name="amount_tax"/>
+                    <field name="amount_total"/>
+                    <field name="state"/>
+                    <field name="open_days"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="boe_settlement_form_view" model="ir.ui.view">
+            <field name="name">boe.settlement.form.view</field>
+            <field name="model">boe.settlement</field>
+            <field name="arch" type="xml">
+                <form string="BOE SETTLEMENT">
+                    <header>
+                        <button name="action_to_submit" type="object" string="Submit"
+                                attrs="{'invisible': [('state', 'in', ['pending_from_checker','approved_by_checker', 'pending_from_bank', 'approved_by_bank', 'closed', 'cancelled'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_approval" type="object" string="Approval"
+                                attrs="{'invisible': [('state', 'in', ['approved_by_checker', 'pending_from_bank', 'approved_by_bank', 'closed', 'cancelled', 'new'])]}"
+                                class="btn-primary"/>
+                        <button name="action_submit_to_bank" type="object" string="Submit To Bank"
+                                attrs="{'invisible': [('state', 'in', ['pending_from_checker','pending_from_bank', 'approved_by_bank', 'closed', 'cancelled','new'])]}"
+                                class="btn-primary"/>
+                        <button name="action_bank_approval" type="object" string="Bank Approval"
+                                attrs="{'invisible': [('state', 'in', ['pending_from_checker', 'approved_by_checker', 'approved_by_bank', 'closed', 'cancelled','new'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_closed" type="object" string="Closed"
+                                attrs="{'invisible': [('state', 'in', ['pending_from_checker','approved_by_checker', 'pending_from_bank', 'closed', 'cancelled', 'new'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_cancelled" type="object" string="Cancelled"
+                                attrs="{'invisible': [('state', 'in', ['approved_by_bank', 'pending_from_checker','approved_by_checker', 'pending_from_bank', 'closed', 'cancelled'])]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="number"
+                                       attrs="{'readonly': [('state', 'in', ['new', 'approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])]}"/>
+                                <field name="partner_id"
+                                       attrs="{'readonly': [('state', 'in', ['new', 'approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])]}"/>
+
+                                <field name='bill_date'
+                                       attrs="{'readonly': [('state', 'in', ['new', 'approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])]}"/>
+                                <br></br>
+                                <field name="amount_untaxed" widget="monetary"
+                                       attrs="{'readonly': [('state', 'in', ['new', 'approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])]}"/>
+                                <field name="currency_id" invisible="1"/>
+
+                                <field name="amount_tax" widget="monetary"
+                                       attrs="{'readonly': [('state', 'in', ['new', 'approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])]}"/>
+                                <field name="amount_total" widget="monetary"
+                                       attrs="{'readonly': [('state', 'in', ['new', 'approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])]}"/>
+                            </group>
+                            <group>
+                                <field name="bill_of_entry_no"
+                                       attrs="{'readonly': [('state', 'in', ['approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])],'required': [('state', 'in', 'pending_from_checker')]}"/>
+                                <field name="edpms_no"
+                                       attrs="{'readonly': [('state', 'in', ['approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])],'required': [('state', 'in', 'pending_from_checker')]}"/>
+                                <field name="invoice_value_usd"
+                                       attrs="{'readonly': [('state', 'in', ['approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])],'required': [('state', 'in', 'pending_from_checker')]}"/>
+                                <field name="boe_value_usd"
+                                       attrs="{'readonly': [('state', 'in', ['approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])],'required': [('state', 'in', 'pending_from_checker')]}"/>
+                                <field name="balance_value_usd"/>
+                            </group>
+                        </group>
+                        <group>
+                        </group>
+                        <notebook>
+                            <page string="Documents">
+                                <group>
+                                    <group>
+                                        <field name="proforma_invoice_document"  filename="file_name_one"
+                                               attrs="{'readonly': [('state', 'in', ['approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])],'required': [('state', 'in', 'pending_from_checker')]}"/>
+                                        <field name="file_name_one" invisible="1"/>
+                                        <field name="edpms_document"  filename="file_name_two"
+                                               attrs="{'readonly': [('state', 'in', ['approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])],'required': [('state', 'in', 'pending_from_checker')]}"/>
+                                        <field name="file_name_two" invisible="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="boe_document"  filename="file_name"
+                                               attrs="{'readonly': [('state', 'in', ['approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])],'required': [('state', 'in', 'pending_from_checker')]}"/>
+                                        <field name="file_name" invisible="1"/>
+                                        <field name="transporter_document" filename="file_name_three"
+                                               attrs="{'readonly': [('state', 'in', ['approved_by_checker','pending_from_bank','approved_by_bank','closed','cancelled'])],'required': [('state', 'in', 'pending_from_checker')]}"/>
+                                        <field name="file_name_three" invisible="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Internal Notes">
+                                <group>
+                                    <field name="description"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--        search view-->
+        <record id="boe_settlement_search_view" model="ir.ui.view">
+            <field name="name">boe.settlement.search.view</field>
+            <field name="model">boe.settlement</field>
+            <field name="arch" type="xml">
+                <search string="BOE SETTLEMENT">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="number"/>
+                    <field name="edpms_no"/>
+
+                    <!-- filters -->
+
+                    <filter name="new" string="New" domain="[('state','=','new')]"/>
+                    <filter name="pending_from_checker" string="Pending From Checker"
+                            domain="[('state', '=', 'pending_from_checker')]"/>
+                    <filter name="approved_by_checker" string="Approved By Checker"
+                            domain="[('state', '=', 'approved_by_checker')]"/>
+                    <filter name="pending_from_bank" string="Pending From Bank"
+                            domain="[('state', '=', 'pending_from_bank')]"/>
+                    <filter name="approved_by_bank" string="Approved By Bank"
+                            domain="[('state', '=', 'approved_by_bank')]"/>
+                    <filter name="closed" string="Closed" domain="[('state', '=', 'closed')]"/>
+                    <filter name="cancelled" string="Cancelled" domain="[('state', '=', 'cancelled')]"/>
+
+
+                    <!-- group by-->
+                    <group expand="0" string="Group By">
+                        <filter name="partner_id" string="Vendor" domain="[]"
+                                context="{'group_by':'partner_id'}"/>
+                        <filter name="state" string="Status" domain="[]"
+                                context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="boe_settlement_action_view" model="ir.actions.act_window">
+            <field name="name">BOE Settlement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">boe.settlement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_boe_settlement" name="BOE Settlement"
+                  action="boe_settlement_action_view" parent="studio_customization.rdp_finance_ea0121fa-f8f1-449a-bc70-1aa0fc07a21d"/>
+    </data>
+</odoo>
+

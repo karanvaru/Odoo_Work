@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="p9_paperformat" model="report.paperformat">
+            <field name="name">P9 A4 Paperformat</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">1</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+
+        <record id="action_employee_p9_report" model="ir.actions.report">
+            <field name="name">Employee P9</field>
+            <field name="model">hr.payslip</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hr_ke.employee_p9_report</field>
+            <field name="report_file">hr_ke.employee_p9_report</field>
+            <field name="binding_model_id" ref="hr_payroll.model_hr_payslip"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" eval="p9_paperformat"/>
+        </record>
+               
+        <record id="action_multi_employee_p9_report" model="ir.actions.report">
+            <field name="name">Multi Employee P9</field>
+            <field name="model">hr.payslip</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hr_ke.multi_employee_p9_report</field>
+            <field name="report_file">hr_ke.employee_p9_report</field>
+            <field name="binding_model_id" ref="hr_payroll.model_hr_payslip"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" eval="p9_paperformat"/>
+        </record>
+    </data>
+</odoo>

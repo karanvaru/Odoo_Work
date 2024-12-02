@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- =================
+	   		Book mark links 
+	     ===================== -->
+    <template id="sh_auto_part_vehicle_bookmark_links" inherit_id="website_sale.product" name="Bookmark links" priority="12">
+        <xpath expr="//section[@id='product_detail']" position="inside">
+            <section class="auto_bookmark_links">
+                <div>
+                	<t t-if="is_view_active('sh_auto_part_vehicle.sh_detail_page_oem_tmpl') and product.vehicle_oem_lines.filtered(lambda l: l.is_visible_website)">
+                    	<a t-if="product.vehicle_oem_lines" href="#sh_auto_oem_section" class="js_cls_auto_parts_links mx-2 d-inline-block">OEM Details</a>
+                    </t>
+                    <t t-if="is_view_active('sh_auto_part_vehicle.sh_detail_page_specification_tmpl')">
+                    	<a t-if="product.specification_lines" href="#sh_auto_specification_section" class="js_cls_auto_parts_links mx-2 d-inline-block">Specifications Details</a>
+	                </t>
+	               	<t t-if="is_view_active('sh_auto_part_vehicle.sh_supported_vehicles_tabs')">
+	                    <a t-if="vehicles" href="#sh_supported_products_section" class="js_cls_auto_parts_links mx-2 d-inline-block">Compatible Vehicles </a>
+	                </t>
+	                <t t-if="is_view_active('sh_auto_part_vehicle.sh_alternate_vehicles_box_layout')">
+	                    <a t-if="product.alternative_product_ids" href="#sh_alternate_products_section" class="js_cls_auto_parts_links mx-2 d-inline-block">Alternate Products</a>
+	                </t>
+	                <t t-if="is_view_active('sh_auto_part_vehicle.sh_optional_vehicles')">
+	                    <a t-if="product.optional_product_ids" href="#sh_optional_products_section" class="js_cls_auto_parts_links mx-2 d-inline-block">Optional Products</a>
+	                </t>
+                </div>
+            </section>
+        </xpath>
+    </template>
+
+    <!-- =============
+			Vehicle OEM
+		===============-->
+    <template id="sh_detail_page_oem_tmpl" inherit_id="website_sale.product" active="True" customize_show="True" name="OEM Details" priority="14">
+        <xpath expr="//section[@id='product_detail']" position="inside">
+            <section t-if="product.vehicle_oem_lines.filtered(lambda l: l.is_visible_website)" id="sh_auto_oem_section">
+                <div class="sh_oem_section">
+                    <div class="container">
+                        <h3>OEM Details</h3>
+                        <div class="row mb-4">
+                            <t t-foreach="product.vehicle_oem_lines" t-as="line">
+                                <div class="col-lg-4 col-md-6 col-sm-12" t-if="line.sudo().is_visible_website">
+                                    <div class="section">
+                                        <span class="oem_name" t-esc="line.sudo().supplier_id.name"></span><br />
+                                        <i class="fa fa-hashtag mr-1"></i><span class="oem_code" t-esc="line.sudo().name"></span>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+
+    <!-- ======================
+			Vehicle Specification
+		===========================-->
+    <template id="sh_detail_page_specification_tmpl" inherit_id="website_sale.product" active="True" customize_show="True" name="Specification Details" priority="14">
+        <xpath expr="//section[@id='product_detail']" position="inside">
+            <section t-if="product.specification_lines" id="sh_auto_specification_section">
+                <div class="sh_specification_section">
+                    <div class="container">
+                        <h3>Specifications</h3>
+
+                        <div class="row mb-4">
+                            <t t-foreach="product.specification_lines" t-as="line">
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="section">
+                                        <span class="spec_name" t-esc="line.sudo().name"></span>
+                                        <span class="spec_value" t-esc="line.sudo().value"></span>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+
+    <!-- ================
+		Product Details
+	===================== -->
+
+    <template id="sh_supported_vehicles_tabs" inherit_id="website_sale.product" active="True" customize_show="True" name="Supported Vehicles" priority="15">
+        <xpath expr="//section[@id='product_detail']" position="inside">
+            <section class="sh_supported_products_sec" t-if="vehicles and not sh_is_common_product" id="sh_supported_products_section">
+                <div class="container">
+                    <h3 t-if="vehicles" class="mb16">Compatible Vehicles</h3>
+                    <t t-set="make_ids" t-value='vehicles.mapped("make_id")' />
+                    <ul class="nav nav-tabs" role="tablist">
+                        <t t-set="count" t-value="1" />
+                        <t t-foreach="make_ids" t-as="make_id">
+                            <li t-if="make_id" t-attf-class="#{'active' if count == 1 else ''}">
+                                <a t-attf-href="#make_filter_#{make_id.id}" data-bs-toggle="tab">
+                                    <span t-esc="make_id.name"></span>
+                                </a>
+                            </li>
+                            <t t-set="count" t-value="count + 1" />
+                        </t>
+                    </ul>
+
+                    <div class="tab-content">
+                        <t t-set="count" t-value="1" />
+                        <t t-foreach="make_ids" t-as="make_id">
+                            <div t-attf-id="make_filter_#{make_id.id}" t-attf-class="tab-pane fade #{'active show' if count == 1 else ''}" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table sh_supported_products">
+                                        <thead>
+                                            <tr>
+                                                <th>Image</th>
+                                                <th class="hide_in_desktop_name">Particulars</th>
+                                                <th class="hide_in_mobile">Model</th>
+                                                <th class="hide_in_mobile">Engine</th>
+                                                <th class="hide_in_mobile text-center">Year</th>
+                                                <th class="hide_in_mobile text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="vehicles.filtered(lambda id: id.make_id == make_id)" t-as="vehicle">
+                                                <tr>
+                                                    <td style="padding-left: 0.6rem;">
+                                                        <span class="varinat_image_main" style="text-decoration: none; width: 85px; height: auto; display: inline-block;">
+                                                            <img
+                                                                t-attf-src="/web/image/motorcycle.motorcycle/#{vehicle.id}/vehicle_image"
+                                                                class="img img-fluid"
+                                                                style="text-decoration: none; width: 100%; height: 100%; display: inline-block; object-fit: cover;"
+                                                                t-att-alt="vehicle.name"
+                                                            />
+                                                        </span>
+                                                    </td>
+                                                    <td style="white-space: nowrap; position: relative;">
+                                                        <span class="hide_in_mobile">
+                                                            <t t-if="vehicle.mmodel_id" t-esc="vehicle.mmodel_id.name" />
+                                                        </span>
+
+                                                        <!-- Mobile view -->
+                                                        <div class="hide_on_desktop">
+                                                            <div t-if="vehicle.mmodel_id">
+                                                                <strong>Model : </strong>
+                                                                <span>
+                                                                    <t t-if="vehicle.mmodel_id" t-esc="vehicle.mmodel_id.name" />
+                                                                </span>
+                                                            </div>
+
+                                                            <div t-if="vehicle.engine" style="white-space: normal;">
+                                                                <strong>Engine : </strong>
+                                                                <t t-if="vehicle.engine" t-foreach="vehicle.engine" t-as="engine_id">
+                                                                    <span class="engine_box d-inline-block"> <span t-esc="engine_id.name" /><span class="separater">,</span> </span>
+                                                                </t>
+                                                            </div>
+
+                                                            <div t-if="vehicle.year_id">
+                                                                <strong>Year : </strong>
+                                                                <span><t t-if="vehicle.year_id" t-esc="vehicle.year_id.name" /></span>
+                                                                <span> - <t t-if="vehicle.end_year_id" t-esc="vehicle.end_year_id.name" /></span>
+                                                            </div>
+                                                            <div>
+                                                                <a
+                                                                    t-attf-href="/shop?type=#{vehicle.type_id.id}&amp;make=#{vehicle.make_id.id}&amp;model=#{vehicle.mmodel_id.id}&amp;year=#{vehicle.year_id.name}"
+                                                                    role="button"
+                                                                    class="btn btn-primary cls_vehicle_btn"
+                                                                >
+                                                                    Select
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="engine_td hide_in_mobile" style="width: 50%;">
+                                                        <t t-if="vehicle.engine" t-foreach="vehicle.engine" t-as="engine_id">
+                                                            <span class="engine_box d-inline-block"> <span t-esc="engine_id.name" /><span class="separater">,</span> </span>
+                                                        </t>
+                                                    </td>
+                                                    <td class="hide_in_mobile text-center">
+                                                        <span><t t-if="vehicle.year_id" t-esc="vehicle.year_id.name" /></span>
+                                                        <span> - <t t-if="vehicle.end_year_id" t-esc="vehicle.end_year_id.name" /></span>
+                                                    </td>
+                                                    <td class="hide_in_mobile text-center">
+                                                        <a
+                                                            t-attf-href="/shop?type=#{vehicle.type_id.id}&amp;make=#{vehicle.make_id.id}&amp;model=#{vehicle.mmodel_id.id}&amp;year=#{vehicle.year_id.name}"
+                                                            role="button"
+                                                            class="btn btn-primary"
+                                                        >
+                                                            Select
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <t t-set="count" t-value="count + 1" />
+                        </t>
+                    </div>
+                </div>
+            </section>
+            <section t-if='sh_is_common_product'>
+            	<div class="alert alert-success text-center">
+                    <strong>Compatible with all vehicles</strong>
+                </div>
+            </section>
+        </xpath>
+    </template>
+
+    <!-- =====================
+		Alternative Products
+	========================= -->
+
+    <template id="sh_alternate_vehicles_box_layout" inherit_id="website_sale.product" active="True" customize_show="True"  name="Alternate Products" priority="18">
+        <xpath expr="//section[@id='product_detail']" position="inside">
+            <section class="sh_alternative_products_sec" t-if="product.alternative_product_ids" id="sh_alternate_products_section">
+                <div class="container">
+                    <h3 style="font-size: 32px;">Alternate Products</h3>
+                    <div class="row">
+                        <t t-if="product.alternative_product_ids" t-foreach="product.alternative_product_ids" t-as="alternate">
+                            <t t-if="alternate.product_variant_ids" t-foreach="alternate.product_variant_ids" t-as="variant">
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <t t-set="virtual_available" t-value="variant.with_context(warehouse=request.website._get_warehouse_available()).sudo().virtual_available"/>
+                                    <div class="main">
+                                        <div class="img_sec">
+                                            <div>
+                                                <a t-if="variant" style="text-decoration: none;" t-att-href="variant.website_url" t-att-title="variant.name">
+                                                    <span t-if="variant.image_1920" class="varinat_image_main">
+                                                        <span t-field="variant.image_1920" t-options="{'widget': 'image'}" />
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="info_sec">
+                                            <div class="action_btns">
+                                                
+                                                <!-- Add to cart -->
+												<button type="button" role="button" class="btn btn-secondary js_add_cart sh_js_add_cart ml-auto" title="Add to Cart" t-att-product-product-id='variant.id'>
+						                            <i class="fa fa-fw fa-shopping-cart"></i>
+						                        </button>
+                                                
+                                                <!-- Wishlist -->
+                                                <t t-set="in_wish" t-value="variant._is_in_wishlist()" />
+                                                <t t-if="is_view_active('website_sale_wishlist.product_add_to_wishlist')">
+                                                    <button
+                                                        t-if="variant"
+                                                        type="button"
+                                                        role="button"
+                                                        class="btn btn-secondary o_add_wishlist"
+                                                        t-att-disabled="in_wish or None"
+                                                        t-att-data-other-btn="true"
+                                                        title="Add to Wishlist"
+                                                        t-att-data-product-template-id="variant.product_tmpl_id.id"
+                                                        t-att-data-product-product-id="variant.id"
+                                                        data-action="o_wishlist"
+                                                    >
+                                                        <span class="fa fa-heart" role="img" aria-label="Add to wishlist"></span>
+                                                    </button>
+                                                </t>
+
+                                                <!-- Compare -->
+                                                <t t-if="is_view_active('website_sale_comparison.add_to_compare')">
+                                                    <button
+                                                        t-if="variant"
+                                                        type="button"
+                                                        role="button"
+                                                        class="d-none d-md-inline-block btn btn-secondary o_add_compare"
+                                                        title="Compare"
+                                                        aria-label="Compare"
+                                                        t-att-data-product-product-id="variant.id"
+                                                        data-action="o_comparelist"
+                                                    >
+                                                        <span class="fa fa-exchange"></span>
+                                                    </button>
+                                                </t>
+                                            </div>
+                                            <div>
+                                                <div class="name">
+                                                    <a t-if="variant" style="text-decoration: none;" t-att-href="variant.website_url">
+                                                        <span t-esc="variant.name"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="price">
+                                                    <t t-set="combination_info" t-value="variant._get_combination_info_variant()" />
+                                                    <div class="product_price d-inline-block">
+                                                        <span class="mr-1" t-if="combination_info['price']" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}" />
+                                                        <del
+                                                            t-attf-class="text-danger  {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
+                                                            style="white-space: nowrap;"
+                                                            t-esc="combination_info['list_price']"
+                                                            t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+                                                        />
+
+                                                        <span itemprop="price" style="display: none;" t-esc="combination_info['price']" />
+                                                        <span itemprop="priceCurrency" style="display: none;" t-esc="website.currency_id.name" />
+                                                    </div>
+                                                    <a t-if="variant.motorcycle_ids" class="vehicle_icon js_cls_button_open_model" role="button" t-att-data-product-product-id="variant.id" title="Compitible Products">
+                                                        <i class="fa fa-motorcycle"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="part" t-attf-style='#{"justify-content: space-between;" if variant.brand else ""}'>
+                                                    <span t-field="variant.brand.name"></span>
+                                                    <span t-field="variant.default_code"></span>
+                                                </div>
+                                                <div t-if="variant.made_in" class="mt-1">
+                                                    <strong>Origin : </strong>
+                                                    <span> <span t-field="variant.made_in"></span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <t t-if='variant.sudo().qty_available &gt; 0 and variant.type == "product"'>
+                                        <span class="badge badge-success stock_state" style="font-size: 12px;">In Stock</span>
+                                    </t>
+                                    <t t-if='variant.sudo().qty_available &lt;= 0 and variant.type == "product"'>
+                                        <span class="badge badge-danger stock_state" style="font-size: 12px;">Out of stock</span>
+                                    </t> -->
+                                    <t t-if='virtual_available &gt; 0 and variant.type == "product"' >
+                                        <span class="badge badge-success stock_state" style="font-size: 12px;">In Stock</span>
+                                    </t>
+                                    <t t-if='virtual_available &lt;= 0 and variant.type == "product"' >
+                                        <span class="badge badge-danger stock_state" style="font-size: 12px;">Out of stock</span>
+                                    </t>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+
+    <!-- =====================
+		Optional Products
+	========================= -->
+
+    <template id="sh_optional_vehicles" inherit_id="website_sale.product" active="True" customize_show="True" name="Optional Products" priority="25">
+        <xpath expr="//section[@id='product_detail']" position="inside">
+            <section class="sh_optional_products_sec" t-if="product.optional_product_ids" id="sh_optional_products_section">
+               
+                <div class="container">
+                    <h3 style="font-size: 32px;">Optional Products</h3>
+                    <div class="row">
+                        <t t-if="product.optional_product_ids" t-foreach="product.optional_product_ids" t-as="optional">
+                            <t t-if="optional.product_variant_ids" t-foreach="optional.product_variant_ids" t-as="variant">
+                                <t t-set="virtual_available" t-value="variant.with_context(warehouse=request.website._get_warehouse_available()).sudo().virtual_available"/>
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="main">
+                                        <div class="img_sec">
+                                            <div>
+                                                <a t-if="variant" style="text-decoration: none;" t-att-href="variant.website_url" t-att-title="variant.name">
+                                                    <span t-if="variant.image_1920" class="varinat_image_main">
+                                                        <span t-field="variant.image_1920" t-options="{'widget': 'image'}" />
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="info_sec">
+                                            <div class="action_btns">
+                                                
+                                                <!-- Add to cart -->
+												<button type="button" role="button" class="btn btn-secondary js_add_cart sh_js_add_cart ml-auto" title="Add to Cart" t-att-product-product-id='variant.id'>
+						                            <i class="fa fa-fw fa-shopping-cart"></i>
+						                        </button>
+
+												<!-- Wishlist -->
+                                                <t t-set="in_wish" t-value="variant._is_in_wishlist()" />
+                                                <t t-if="is_view_active('website_sale_wishlist.product_add_to_wishlist')">
+                                                    <button
+                                                        t-if="variant"
+                                                        type="button"
+                                                        role="button"
+                                                        class="btn btn-secondary o_add_wishlist"
+                                                        t-att-disabled="in_wish or None"
+                                                        t-att-data-other-btn="true"
+                                                        title="Add to Wishlist"
+                                                        t-att-data-product-template-id="variant.product_tmpl_id.id"
+                                                        t-att-data-product-product-id="variant.id"
+                                                        data-action="o_wishlist"
+                                                    >
+                                                        <span class="fa fa-heart" role="img" aria-label="Add to wishlist"></span>
+                                                    </button>
+                                                </t>
+
+												<!-- Compare -->
+                                                <t t-if="is_view_active('website_sale_comparison.add_to_compare')">
+                                                    <button
+                                                        t-if="variant"
+                                                        type="button"
+                                                        role="button"
+                                                        class="d-none d-md-inline-block btn btn-secondary o_add_compare"
+                                                        title="Compare"
+                                                        aria-label="Compare"
+                                                        t-att-data-product-product-id="variant.id"
+                                                        data-action="o_comparelist"
+                                                    >
+                                                        <span class="fa fa-exchange"></span>
+                                                    </button>
+                                                </t>
+                                            </div>
+                                            <div>
+                                                <div class="name">
+                                                    <a t-if="variant" style="text-decoration: none;" t-att-href="variant.website_url">
+                                                        <span t-esc="variant.name"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="price">
+                                                    <t t-set="combination_info" t-value="variant._get_combination_info_variant()" />
+                                                    <div class="product_price d-inline-block">
+                                                        <span class="mr-1" t-if="combination_info['price']" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}" />
+                                                        <del
+                                                            t-attf-class="text-danger  {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
+                                                            style="white-space: nowrap;"
+                                                            t-esc="combination_info['list_price']"
+                                                            t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+                                                        />
+
+                                                        <span itemprop="price" style="display: none;" t-esc="combination_info['price']" />
+                                                        <span itemprop="priceCurrency" style="display: none;" t-esc="website.currency_id.name" />
+                                                    </div>
+                                                    <a t-if="variant.motorcycle_ids" class="vehicle_icon js_cls_button_open_model" role="button" t-att-data-product-product-id="variant.id" title="Compitible Products">
+                                                        <i class="fa fa-motorcycle"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="part" t-attf-style='#{"justify-content: space-between;" if variant.brand else ""}'>
+                                                    <span t-field="variant.brand.name"></span>
+                                                    <span t-field="variant.default_code"></span>
+                                                </div>
+                                                <div t-if="variant.made_in" class="mt-1">
+                                                    <strong>Origin : </strong>
+                                                    <span> <span t-field="variant.made_in"></span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <t t-if='virtual_available &gt; 0 and variant.type == "product"' >
+                                        <span class="badge badge-success stock_state" style="font-size: 12px;">In Stock</span>
+                                    </t>
+                                    <t t-if='virtual_available &lt;= 0 and variant.type == "product"' >
+                                        <span class="badge badge-danger stock_state" style="font-size: 12px;">Out of stock</span>
+                                    </t>
+
+
+                                    <!-- <t t-if='variant.sudo().qty_available &gt; 0 and variant.type == "product"'>
+                                        <span class="badge badge-success stock_state" style="font-size: 12px;">In Stock</span>
+                                    </t>
+                                    <t t-if='variant.sudo().qty_available &lt;= 0 and variant.type == "product"'>
+                                        <span class="badge badge-danger stock_state" style="font-size: 12px;">Out of stock</span>
+                                    </t> -->
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+     <!--
+        <record id="hr_timesheet_sheet_form_inherit_helpdesk_support" model="ir.ui.view">
+            <field name="name">hr_timesheet_sheet.sheet</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form" />
+            <field name="arch" type="xml">
+               <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='date']" position="after">
+                    <field name="support_request_id"/>
+                    <field name="billable"/>
+                    <field name="time_in" widget="float_time"/>
+                    <field name="time_out" widget="float_time"/>
+               </xpath>
+            </field>
+        </record>
+        -->
+        <record id="hr_timesheet_line_tree_inherit_helpdesk_support" model="ir.ui.view">
+            <field name="name">account.analytic.line.tree</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='task_id']" position="after">
+                    <field name="support_request_id"/>
+                    <field name="billable"/>
+                    <field name="time_in" widget="float_time"/>
+                    <field name="time_out" widget="float_time"/>
+               </xpath>
+            </field>
+        </record>
+        
+     </data>
+</odoo>

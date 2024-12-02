@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_estimate_excel,access.estimate.excel,model_estimate_excel,base.group_user,1,1,1,1
+access_estimate_excel_line,access.estimate.excel.line,model_estimate_excel_line,base.group_user,1,1,1,1

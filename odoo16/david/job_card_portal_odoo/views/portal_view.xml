@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_layout_jobcard" name="Portal layout: Job Card" inherit_id="portal.portal_breadcrumbs" priority="50">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'job_card_custom' or jobcard_id" t-attf-class="breadcrumb-item #{'active' if not job_card_custom else ''}">
+                <a t-if="jobcard_id" t-attf-href="/my/jobcards?{{ keep_query() }}">Job Cards</a>
+                <t t-else="">Job Cards</t>
+            </li>
+            <li t-if="jobcard_id" class="breadcrumb-item active text-truncate">
+              <span t-field="jobcard_id.name"/>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_jobcard_custom" name="Show Job Cards" customize_show="True"  inherit_id="portal.portal_my_home" priority="50">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+              <t t-set="title">Job Cards</t>
+              <t t-set="url" t-value="'/my/jobcards'"/>
+              <t t-set="placeholder_count" t-value="'job_card_count_custom'"/> 
+            </t>
+        </xpath>
+    </template>
+    <template id="portal_my_jobcards" name="Jobcard Details">
+      <t t-call="portal.portal_layout">
+        <t t-set="breadcrumbs_searchbar" t-value="True"/>
+        <t t-call="portal.portal_searchbar">
+            <t t-set="title">Jobcards</t>
+        </t> 
+        <t t-if="not total_jobcard_custom">
+            <div class="alert alert-warning mt8" role="alert">
+                There are no jobcards.
+            </div>
+        </t> 
+        <t t-if="total_jobcard_custom" t-call="portal.portal_table">
+            <thead style="font-size: 0.8rem">
+                <tr>
+                    <th>Number</th>
+                    <th>Title</th>
+                    <th>Assignees</th>
+                    <th>Stage</th>
+                </tr>
+            </thead>
+            <tbody style="font-size: 0.8rem">
+                <t t-foreach="total_jobcard_custom" t-as="jobcard">
+                  <tr>
+                    <td><a t-attf-href="/my/jobcard/#{jobcard.id}?{{ keep_query() }}">
+                      <span t-esc="jobcard.number"/>
+                    </a></td>
+                    <td><span t-field="jobcard.name"/></td>
+                    <td><span t-field="jobcard.user_ids"/></td>
+                    <td><span t-field="jobcard.stage_id.name"/></td>
+                  </tr>
+                </t>
+            </tbody>
+        </t>  
+      </t>
+    </template>
+    <template id="portal_my_jobcard_form" name="My Jobcard" inherit_id="portal.portal_sidebar" primary="True">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <div class="row mt16 o_jobcard_portal_sidebar">
+                <t t-call="portal.portal_record_sidebar">
+                    <t t-set="classes" t-value="'col-lg-3 d-print-none'"/>
+
+                    <t t-set="entries">
+                        <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+                            <li id="task-nav" class="list-group-item ps-0 flex-grow-1 d-flex align-items-center" t-ignore="true" role="complementary">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item" id="nav-header">
+                                        <a class="nav-link ps-3" href="#card_header" style="max-width: 200px;">
+                                            Jobcard
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" id="nav-link">
+                                        <a class="nav-link ps-3" href="#cost_sheet">
+                                            Cost Sheet
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" id="nav-chat">
+                                        <a class="nav-link ps-3" href="#jobcard_chat">
+                                            History
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li t-if="jobcard_id.user_ids or jobcard_id.partner_id" class="list-group-item flex-grow-1">
+                                <div class="col-12 col-md-12 pb-2" t-if="jobcard_id.user_ids">
+                                    <strong>Assignees</strong>
+                                    <t t-foreach="jobcard_id.user_ids" t-as="user">
+                                        <div class="d-flex mb-3 flex-nowrap">
+                                            <img class="rounded-circle mt-1 o_portal_contact_img" t-att-src="image_data_uri(user.avatar_1024)" alt="Contact"/>
+                                            <div class="ms-2">
+                                                <div t-esc="user" t-options='{"widget": "contact", "fields": ["name"]}'/>
+                                                <a t-attf-href="tel:{{user.phone}}" t-if="user.phone"><div t-esc="user" t-options='{"widget": "contact", "fields": ["phone"]}'/></a>
+                                                <a t-if="user.email" class="text-break" t-attf-href="mailto:{{user.email}}">
+                                                    <div t-out="user" t-options='{"widget": "contact", "fields": ["email"]}'/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                                <div class="col-12 col-md-12 pb-2" t-if="jobcard_id.partner_id">
+                                    <strong>Customer</strong>
+                                    <div class="d-flex flex-nowrap">
+                                        <img class="rounded-circle mt-1 o_portal_contact_img" t-att-src="image_data_uri(jobcard_id.partner_id.avatar_1024)" alt="Contact"/>
+                                        <div class="ms-2">
+                                            <div t-field="jobcard_id.partner_id" t-options='{"widget": "contact", "fields": ["name"]}'/>
+                                            <a t-attf-href="tel:{{jobcard_id.partner_id.phone}}" t-if="jobcard_id.partner_id.phone"><div t-field="jobcard_id.partner_id" t-options='{"widget": "contact", "fields": ["phone"]}'/></a>
+                                            <a t-if="jobcard_id.partner_id.email" class="text-break" t-attf-href="mailto:{{jobcard_id.partner_id.email}}">
+                                                <div t-field="jobcard_id.partner_id" t-options='{"widget": "contact", "fields": ["email"]}'/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </t>
+                </t>
+                <div id="jobcard_content" class="col-lg-9 justify-content-end">
+                    <div id="card" class="card">
+                        <div id="card_header" class="card-header bg-white" data-anchor="true">
+                            <div class="row g-0">
+                                <div class="col-12">
+                                    <h5 class="d-flex mb-1 mb-md-0 row">
+                                        <div class="col-9">
+                                            <span t-field="jobcard_id.number" class="text-truncate"/>
+                                        </div>
+                                        <div class="col-3 text-end">
+                                            <small class="text-end">Stage:</small>
+                                            <span t-field="jobcard_id.stage_id.name" class=" badge rounded-pill text-bg-info" title="Current stage of this task"/>
+                                        </div>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="card_body" class="card-body">
+                            <div>
+                                <h5><span style="font-weight:normal;" t-field="jobcard_id.name"></span></h5>
+                            </div>
+                            <br/>
+                            <div class="row mb-4 container">
+                                <div class="col-12 col-md-6">
+
+                                    <div><strong>Project:</strong> <t t-esc="jobcard_id.project_id.name"/></div>
+
+                                    <div><strong>Starting Date:</strong> <span t-field="jobcard_id.date_assign" t-options='{"widget": "datetime"}'/></div>
+                                    <div><strong>Ending Date:</strong> <span t-field="jobcard_id.date_end" t-options='{"widget": "datetime"}'/></div>
+                                    <div><strong>Analytic Account:</strong> <span t-field="jobcard_id.analytic_account_id"/></div>
+                                    <div t-if="jobcard_id.milestone_id and jobcard_id.allow_milestones"><strong>Milestone:</strong> <span t-field="jobcard_id.milestone_id.name"/></div>
+                                </div>
+                                <div class="col-12 col-md-6" name="portal_my_task_second_column">
+                                    <div><strong>Quality Checklist :</strong> <t t-esc="', '.join(jobcard_id.quality_checklist_id.mapped('name'))"/></div>
+                                    <div><strong>Workshop Staff :</strong> <span t-esc="jobcard_id.workshop_staff_id.name"/></div>
+                                    <div><strong>Deadline :</strong> <span t-field="jobcard_id.date_deadline"/></div>
+                                </div>
+                            </div>
+
+                            <div class="row" t-if="jobcard_id.description">
+                                <div t-if="not is_html_empty(jobcard_id.description)" t-attf-class="col-12 col-lg-12 mb-4 mb-md-0 ">
+                                    <hr class="mb-1"/>
+                                    <div class="d-flex my-2">
+                                        <strong>Description</strong>
+                                    </div>
+                                    <div class="py-1 px-2 bg-100 small" t-field="jobcard_id.description"/>
+                                </div>
+                            </div>
+                            <div class="container" t-if="jobcard_id.job_cost_sheet_ids">
+                                <hr class="mt-4 mb-1"/>
+                                <h5 id="cost_sheet" class="mt-2 mb-2" data-anchor="true">Cost Sheet</h5>
+                                <table class="table table-sm">
+                                    <thead class="bg-100">
+                                      <tr>
+                                        <th>Type</th>
+                                        <th>Product</th>
+                                        <th>Description</th>
+                                        <th>Account</th>
+                                        <th>Analytic Account</th>
+                                        <th>Quantity</th>
+                                        <th>UoM</th>
+                                        <th>Unit Price</th>
+                                        <th>Discount</th>
+                                        <th>Taxes</th>
+                                        <th>Amount</th>
+                                      </tr>
+                                    </thead>
+                                    <tr t-foreach="jobcard_id.job_cost_sheet_ids" t-as="sheet">
+                                        <td><t t-esc="sheet.cost_type"/></td>
+                                        <td><t t-esc="sheet.product_id.name"/></td>
+                                        <td><t t-esc="sheet.name"/></td>
+                                        <td><t t-esc="sheet.account_id.name"/></td>
+                                        <td><t t-esc="sheet.account_analytic_id.name"/></td>
+                                        <td><t t-esc="sheet.quantity"/></td>
+                                        <td><t t-esc="sheet.uom_id.name"/></td>
+                                        <td><t t-esc="sheet.price_unit"/></td>
+                                        <td><t t-esc="sheet.discount"/></td>
+                                        <td><t t-esc="sheet.invoice_line_tax_ids.name"/></td>
+                                        <td><t t-esc="sheet.price_subtotal"/></td>
+                                    </tr>
+                                </table>
+                                <div class="text-end">
+                                    <strong>Untaxed Amount :</strong>
+                                    <span t-esc="jobcard_id.cost_sheet_amount_untaxed"/>
+                                </div>
+                                <div class="text-end">
+                                    <strong>Taxed Amount :</strong>
+                                    <span t-esc="jobcard_id.cost_sheet_amount_tax"/>
+                                </div>
+                                <div class="text-end">
+                                    <strong>Total :</strong>
+                                    <span t-esc="jobcard_id.cost_sheet_amount_total"/>
+                                </div>
+                            </div>
+                             <br/><br/>
+                             <div class="text-end" t-if="jobcard_id.custom_signature_job_card">
+                                <strong class="mt-4">Signature : </strong>
+                                <img align="right" t-att-src="image_data_uri(jobcard_id.custom_signature_job_card)" style="max-height: 4cm; max-width: 4cm; border-black;"/>
+                            </div>
+                            <div class="float-end" t-if=" not jobcard_id.custom_signature_job_card">
+                                <a role="button" class="btn btn-primary" id="job_card_signature" data-bs-toggle="modal" data-bs-target="#modal_signature" href="#">
+                                    <i class="fa fa-check"/>Accept &amp; Sign
+                                </a>
+                            </div>
+                            <div role="dialog" class="modal fade" id="modal_signature">
+                                <div class="modal-dialog">
+                                    <form id="accept" method="POST" t-att-data-jobcard-id="jobcard_id.id" t-att-data-token="jobcard_id.access_token" class="js_accept_json modal-content js_website_submit_form">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                            <header class="modal-header">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </header>
+                                            <main class="modal-body" id="sign-dialog">
+                                                <t t-call="portal.signature_form">
+                                                    <t t-set="call_url" t-value="'/my/jobcards/%s/accept'%(jobcard_id.id)"/>
+                                                    <t t-set="default_name" t-value="jobcard_id.partner_id.name"/>
+                                                </t>
+                                            </main>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt32" id="jobcard_chat" data-anchor="true">
+                        <h4><strong>Message and communication history</strong></h4>
+                        <t t-call="portal.message_thread">
+                            <t t-set="token" t-value="jobcard_id.access_token"/>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
+
+
+    

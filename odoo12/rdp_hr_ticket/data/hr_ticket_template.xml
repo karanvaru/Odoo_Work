@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="0">
+        <record id="hr_Ticket_app_employee_notification" model="mail.template">
+            <field name="name">One New HR Ticket is Created</field>
+            <field name="subject">Ticket ${object.name} has been raised</field>
+            <field name="email_to">${object.employee_name_id.work_email}</field>
+            <field name="model_id" ref="rdp_hr_ticket.model_hr_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.spoc_id.name},</p>
+                <p>This email is to inform you that a ticket with the following details has been raised:</p>
+                <p>Ticket Number: ${object.name}</p>
+                <p>Raised by: ${object.employee_name_id.name}</p>
+                <p>Description: Please take the necessary actions to resolve this issue at the earliest.</p>
+
+                <p>Thanks & Regards <br>
+                RDP People Team
+                </p>
+                ]]>
+            </field>
+        </record>
+        <record id="hr_Ticket_app_spoc_notification" model="mail.template">
+            <field name="name">Response is submitted from HR Ticket App.</field>
+            <field name="subject">HR Ticket Response</field>
+            <field name="email_to">${object.spoc_id.work_email}</field>
+            <field name="model_id" ref="rdp_hr_ticket.model_hr_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.employee_name_id.name},</p>
+                <p>Thank you for submitting your HR ticket. We have received your request and have provided the following response:</p>
+
+                <p>Thanks & Regards<br>
+                RDP People Team
+                </p>
+                ]]>
+            </field>
+        </record>
+        <record id="automated_response_to_the_employee_who_raised_ticket" model="mail.template">
+            <field name="name">Automated Response to the employee who raised the ticket</field>
+            <field name="subject">Automated Response to the employee who raised the ticket</field>
+            <field name="email_to">${object.employee_name_id.work_email}</field>
+            <field name="model_id" ref="rdp_hr_ticket.model_hr_ticket"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Dear <b>${object.employee_name_id.name}</p>
+                <p>Thank you for contacting us about your recent ticket. We are pleased to inform you that your ticket
+                has been successfully closed.</p>
+                <p>If you have any further concerns or questions, please do not hesitate to reach out to us.
+                We are always here to help.</p>
+
+                <p>Thanks & Regards<br>
+                RDP People Team
+                </p>
+                ]]>
+            </field>
+        </record>
+    </data>
+</odoo>

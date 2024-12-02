@@ -1,0 +1,190 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* invoice_from_picking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-02 06:53+0000\n"
+"PO-Revision-Date: 2021-12-02 06:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: invoice_from_picking
+#: model_terms:ir.ui.view,arch_db:invoice_from_picking.view_stock_invoice_onshipping_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: invoice_from_picking
+#: model_terms:ir.ui.view,arch_db:invoice_from_picking.view_stock_invoice_onshipping_form
+msgid "Create"
+msgstr "Crear"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields.selection,name:invoice_from_picking.selection__stock_invoice_onshipping__journal_type__sale
+msgid "Create Customer Invoice"
+msgstr "Crear factura de cliente"
+
+#. module: invoice_from_picking
+#: model:ir.actions.act_window,name:invoice_from_picking.bi_action_stock_invoice
+msgid "Create Draft Invoices"
+msgstr "Crear borradores de facturas"
+
+#. module: invoice_from_picking
+#: model_terms:ir.ui.view,arch_db:invoice_from_picking.view_picking_inherit_bi_id
+msgid "Create Invoice"
+msgstr "Crear factura"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields.selection,name:invoice_from_picking.selection__stock_invoice_onshipping__journal_type__purchase
+msgid "Create Supplier Invoice"
+msgstr "Crear factura de proveedor"
+
+#. module: invoice_from_picking
+#: model_terms:ir.ui.view,arch_db:invoice_from_picking.view_stock_invoice_onshipping_form
+msgid "Create invoice"
+msgstr "Crear factura"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_invoice_onshipping__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_invoice_onshipping__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: invoice_from_picking
+#: model:ir.actions.act_window,name:invoice_from_picking.action_invoice_from_picking_add_menu_delivery_invoice
+#: model:ir.ui.menu,name:invoice_from_picking.menu_invoice_from_picking_add_menu_delivery_invoice
+msgid "Deliveries to Invoice"
+msgstr "Entregas a Factura"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_invoice_onshipping__journal_id
+msgid "Destination Journal"
+msgstr "Diario de destino"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_invoice_onshipping__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_invoice_onshipping__group
+msgid "Group by partner"
+msgstr "Agrupar por socio"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_invoice_onshipping__id
+msgid "ID"
+msgstr "IDENTIFICACIÓN"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_picking__invoice_id
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_picking__invoice_state
+msgid "Invoice Control"
+msgstr "Control de facturas"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_invoice_onshipping__invoice_date
+msgid "Invoice Date"
+msgstr "Fecha de la factura"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields.selection,name:invoice_from_picking.selection__stock_picking__invoice_state__invoiced
+msgid "Invoiced"
+msgstr "Facturada"
+
+#. module: invoice_from_picking
+#: model:ir.ui.menu,name:invoice_from_picking.menu_purchase_invoice
+msgid "Invoicing"
+msgstr "Facturación"
+
+#. module: invoice_from_picking
+#: model:ir.model,name:invoice_from_picking.model_account_move
+msgid "Journal Entries"
+msgstr "Entradas de diario"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_invoice_onshipping__journal_type
+msgid "Journal Type"
+msgstr "Tipo de revista"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_invoice_onshipping____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_invoice_onshipping__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por última vez por"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_stock_invoice_onshipping__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización en"
+
+#. module: invoice_from_picking
+#: code:addons/invoice_from_picking/wizard/stock_invoice_onshipping.py:0
+#, python-format
+msgid "No invoice created or invoice is  alrady created !"
+msgstr "¡No se ha creado ninguna factura o ya se ha creado una factura!"
+
+#. module: invoice_from_picking
+#: model:ir.actions.act_window,name:invoice_from_picking.incoming_picking_list_to_invoice_bi
+#: model:ir.ui.menu,name:invoice_from_picking.menu_action_picking_list_to_invoice_incoming_bi
+msgid "On Incoming Shipments"
+msgstr "Sobre envíos entrantes"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields,field_description:invoice_from_picking.field_account_move__picking_ids
+#: model_terms:ir.ui.view,arch_db:invoice_from_picking.invoice_form_inherit_bi_add_field_picking_many2many
+msgid "Picking References"
+msgstr "Elegir referencias"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields.selection,name:invoice_from_picking.selection__stock_invoice_onshipping__journal_type__purchase_refund
+msgid "Refund Purchase"
+msgstr "Reembolso de compra"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields.selection,name:invoice_from_picking.selection__stock_invoice_onshipping__journal_type__sale_refund
+msgid "Refund Sale"
+msgstr "Venta de reembolso"
+
+#. module: invoice_from_picking
+#: model:ir.model,name:invoice_from_picking.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de stock"
+
+#. module: invoice_from_picking
+#: model:ir.model.fields.selection,name:invoice_from_picking.selection__stock_picking__invoice_state__2binvoiced
+msgid "To Be Invoiced"
+msgstr "Ser facturada"
+
+#. module: invoice_from_picking
+#: model:ir.model,name:invoice_from_picking.model_stock_picking
+msgid "Transfer"
+msgstr "Transferir"
+
+#. module: invoice_from_picking
+#: model_terms:ir.ui.view,arch_db:invoice_from_picking.view_stock_invoice_onshipping_form
+msgid "or"
+msgstr "o"
+
+#. module: invoice_from_picking
+#: model:ir.model,name:invoice_from_picking.model_stock_invoice_onshipping
+msgid "stock.invoice.onshipping"
+msgstr ""

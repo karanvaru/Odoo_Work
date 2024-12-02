@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record id="inherit_purchase_order_lines" model="ir.ui.view">
+                <field name="name">reddot.purchase_purchase_order_form</field>
+                <field name="model">purchase.order</field>
+                <field name="inherit_id" ref="purchase.purchase_order_form"/>
+                <field name="arch" type="xml">
+                      <xpath expr="//field[@name='price_unit']" position="after">
+                           <field name="rebate_per_unit" attrs="{'readonly': [('qty_invoiced', '!=', 0)]}"/>
+                           <field name="selling_price" attrs="{'readonly': [('qty_invoiced', '!=', 0)]}"/>
+                      </xpath>
+                      <xpath expr="//field[@name='price_subtotal']" position="after">
+                           <field name="total_selling_price" attrs="{'readonly': True}"/>
+                           <field name="margin" />
+                      </xpath>
+<!--                     <xpath expr="//field[@name='tax_totals']" position="after">-->
+<!--                          <field name="total_cost_after_rebate" widget="monetary" colspan="2" readonly="1"/>-->
+<!--                     </xpath>-->
+                </field>
+        </record>
+          <record id="rdd_view_backorder_confirmation" model="ir.ui.view">
+            <field name="name">rdd_stock_backorder_confirmation</field>
+            <field name="inherit_id" ref="stock.view_backorder_confirmation"/>
+            <field name="model">stock.backorder.confirmation</field>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='process_cancel_backorder']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+          </record>
+    </data>
+</odoo>

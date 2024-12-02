@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!-- Form View -->
+    <record id="audit_check_list_form" model="ir.ui.view">
+        <field name="name">audit.check.list.form</field>
+        <field name="model">audit.checklist</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Audit Check List">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>   
+                    <group> 
+                        <field name="groups_ids" widget="many2many_tags"/>
+                        <field name="reset" />
+                    </group>
+                </group>  
+                <group>
+                    <field name="journal_type"/>
+                    <field name="journal_ids" widget="many2many_tags" readonly="0"/>
+                </group> 
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids" widget="mail_activity"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+            </form>
+        </field>
+    </record>
+
+<!-- Tree View -->
+    <record id="audit_check_list_tree" model="ir.ui.view">
+        <field name="name">audit.check.list.tree</field>
+        <field name="model">audit.checklist</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Audit Check List">
+                <field name="name"/>
+                <field name="journal_ids"/>
+                <field name="reset" />
+            </tree>
+        </field>
+    </record>
+
+<!-- Action -->
+        <record id="audit_check_list_action" model="ir.actions.act_window">
+            <field name="name">Audit Checklist</field>
+            <field name="res_model">audit.checklist</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="audit_check_list_tree" />
+        </record>
+
+<!-- Menu -->
+<!-- Menu CheckList-->
+        <menuitem id="menu_check_list_root" name="Check List"
+        parent="rdp_account.menu_accounting_forms_root" sequence='3'/>
+
+<!-- Menu Audit CheckList-->
+        <menuitem id="menu_audit_check_list" name="Audit Check List"
+        parent="rdp_account.menu_check_list_root" action="audit_check_list_action" sequence='1'/>
+
+    </data>
+</odoo>

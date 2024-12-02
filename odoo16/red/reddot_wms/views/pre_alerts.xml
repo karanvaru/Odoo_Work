@@ -1,0 +1,148 @@
+<odoo>
+    <record id="wizard_plan_freight_form" model="ir.ui.view">
+        <field name="name">wizard.pre.alert.form</field>
+        <field name="model">wizard.pre.alert</field>
+        <field name="arch" type="xml">
+            <form string="Create a pre alert">
+                <sheet>
+                    <strong style="color: red;">
+                        <field
+                            name="warning"
+                            attrs="{'invisible': [('warning', '=', False)]}" />
+                    </strong>
+                    <group>
+                          <field name="shipper_id"/>
+                           <field name="type"/>
+                           <field name="agent_id"/>
+                           <field name="company_id"/>
+                    </group>
+                    <group>
+                        <field name="transport_type"/>
+                        <field name="loading_port_id"/>
+                        <field name="discharging_port_id"/>
+
+                        <field name="delivery_method"/>
+                        <field name="forwarding_agent"/>
+
+                    </group>
+                     <group
+                        name="pickings"
+                        string="Transfers">
+
+                        <field
+                            name="picking_ids"
+                            context="{'tree_view_ref': 'reddot_wms.stock_picking_limited_view_tree'}" />
+
+                    </group>
+<!--                    <group-->
+<!--                        name="moves"-->
+<!--                        attrs="{'invisible': [('move_line_ids', '=', [])]}"-->
+<!--                        string="Products">-->
+<!--                        <field name="move_line_ids" context="{'tree_view_ref': 'reddot_wms.stock_picking_limited_view_tree'}" >-->
+<!--                            <tree editable="bottom">-->
+<!--                                <field name="product_id"  readonly="1"/>-->
+<!--                                <field name="company_id"/>-->
+<!--                                <field name="product_uom_id"  readonly="1"/>-->
+<!--                                <field name="product_uom_category_id"  readonly="1"/>-->
+<!--                                <field name="product_uom_qty" readonly="1"/>-->
+<!--                                <field name="qty_done"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                    </group>-->
+
+                    <group
+                        name="moves" invisible="1"
+                        string="Moves">
+                        <field name="move_ids" />
+                    </group>
+                    <group
+                        name="shipment"
+                        attrs="{'invisible': [('picking_ids', '=', []), ('move_ids', '=', [])]}">
+<!--                        <field name="shipment_advice_id" />-->
+                    </group>
+                    <footer>
+<!--                        <button string="Show Detailed Operations" type="object" name="action_show_detailed_operations" class="btn-primary"/>-->
+                        <button
+                            name="action_plan"
+                            type="object"
+                            string="Submit"
+                            class="btn-primary"
+                            attrs="{'invisible': [('picking_ids', '=', []), ('move_ids', '=', [])]}"
+                        />
+                        <button special="cancel" string="Cancel" class="btn-default" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="wizard_pre_alert_picking_action" model="ir.actions.act_window">
+        <field name="name">Confirm Prealert</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.pre.alert</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{
+            'default_record_ids': active_ids,
+        }
+        </field>
+        <field name="groups_id" eval="[(4,ref('stock.group_stock_user'))]" />
+        <field name="binding_model_id" ref="stock.model_stock_picking" />
+        <field name="binding_view_types">tree,form</field>
+    </record>
+    <record id="view_wizard_show_detailed_operations_form" model="ir.ui.view">
+            <field name="name">wizard.show.detailed.operations.form</field>
+            <field name="model">detailed.operations.line</field>
+            <field name="arch" type="xml">
+                <form string="Show Detailed Operations">
+<!--                    <field name="picking_ids" widget="many2many_tags" options="{'no_create': True}"/>-->
+                    <tree string="Detailed Operations" editable="bottom">
+                        <field name="product_id"/>
+                        <field name="demand_quantity"/>
+                        <field name="done_quantity"/>
+                    </tree>
+                    <footer>
+<!--                        <button string="Show Detailed Operations" type="object" name="action_show_detailed_operations" class="btn-primary"/>-->
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+    </record>
+
+    <record id="action_wizard_show_detailed_operations" model="ir.actions.act_window">
+        <field name="name">Show Detailed Operations</field>
+        <field name="res_model">wizard.pre.alert</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_wizard_show_detailed_operations_form"/>
+        <field name="target">new</field>
+</record>
+
+    <record id="custom_clear_wizard_view_form" model="ir.ui.view">
+        <field name="name">custom.clear.wizard.form</field>
+        <field name="model">custom.clear.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Customs">
+                <field name="operation_ids">
+                    <tree editable="bottom">
+                        <field name="product_id"/>
+                        <field name="company_id"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="update_done_quantity" string="Clear this" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+<!--  <record id="inherit_stock_view_move_line_form" model="ir.ui.view">-->
+<!--        <field name="name">inherit.stock.view_move_line_form</field>-->
+<!--        <field name="model">stock.move.line</field>-->
+<!--        <field name="inherit_id" ref="stock.view_move_line_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='qty_done']" position="after">-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+</odoo>

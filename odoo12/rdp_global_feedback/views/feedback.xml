@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <!--        form view-->
+    <record id="feedback_app_view_form" model="ir.ui.view">
+        <field name="name">global.feedback.form</field>
+        <field name="model">global.feedback</field>
+        <field name="arch" type="xml">
+            <form string="Global Feedback App">
+                <header>
+                     <button name="action_to_work_in_progress" type="object" string="WIP" attrs="{'invisible': [('state', 'in', ['wip','improved','future','cancel'])]}" class="btn-primary"/>
+                    <button name="action_to_improved" type="object" string="IMPROVE" attrs="{'invisible': [('state', 'in', ['new','improved','cancel','future'])]}" class="btn-primary"/>
+                    <button name="action_to_future" type="object" string="FUTURE" attrs="{'invisible': [('state', 'in', ['new','future','wip','cancel'])]}" class="btn-primary"/>
+                    <button name="action_to_cancel" type="object" string="CANCEL" attrs="{'invisible': [('state', 'in', ['cancel'])]}"/>
+                    <button name="action_to_new" type="object" string="SET TO NEW" attrs="{'invisible': [('state', 'in', ['new'])]}"/>
+                     <field name="state" widget="statusbar" readonly="1"/>
+                 </header>
+                <sheet>
+                <div class="oe_button_box" name="button_box">
+                        <!-- <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                        </button> -->
+                    </div>
+                     
+                    <!-- <div style="float:right; margin-top:-20px; margin-right:-20px;">  <field name="rating_image" widget="image" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}" readonly="1"/></div> -->
+                     
+                    <div style="float:left">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                      <group>
+                          <group string="Customer Form">
+                              <field name="feedback" invisible="1"/>
+                              <!-- <field name="customer_name" invisible="1"/> -->
+                               <field name="subject" readonly="1"/>
+                              <field name="first_name" readonly="1"/>
+                             <field name="last_name" readonly="1"/>
+                              <field name="company_name" readonly="1"/>
+                               <field name="email" readonly="1"/>
+                                <field name="mobile" readonly="1"/>
+                                <field name="improve_area" readonly="1"/>
+                                <!-- <field name="subject"/> -->
+                                <!-- <field name="rating_text" />
+                                <field name="rating_image" widget="image" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}" readonly="1"/> -->
+                               
+
+                          </group>
+                           <group string="Internal Fields">
+                               <field name="department"/>
+                                <field name="category"/>
+                                <field name="sub_category"/>
+                               <field name="scope"/>
+                               <field  name="tag_ids" widget="many2many_tags"/>
+                          </group>
+                          <!-- <group>
+                                <div colspan="2" class="text-center">
+                                    <field name="rating_image" widget="image"/>
+                                    <div class="mt4 text-left">
+                                        <strong><field name="rating_text"/></strong>
+                                    </div>
+                                </div>
+                            </group> -->
+                      </group>
+                    <notebook>
+                        
+                        <page string = "Improvements Suggested">
+                            <group>
+                                <field name ="improvement_suggested" readonly="1"/>
+                            </group>
+
+                        </page>
+                        <page string = "Internal Notes">
+                            <group>
+                                <field name ="notes" />
+                            </group>
+
+                        </page>
+                    </notebook>
+
+                 </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view -->
+    <record id="feedback_app_tree_view" model="ir.ui.view">
+        <field name="name">global.feedback.tree</field>
+        <field name="model">global.feedback</field>
+        <field name="arch" type="xml">
+            <tree string="Global Feedback App">
+                  <field  name="name"/>
+                  <!-- <field name="customer_name"/> -->
+                  <field name="subject"/>
+                     <!-- <field name="first_name"/>
+                     <field name="last_name"/> -->
+                     <field name="company_name"/>
+                   <field  name="department"/>
+                   <field name="category"/>
+                   <field name="sub_category"/>
+                   <field name="tag_ids" widget="many2many_tags"/>
+                   <field name="scope"/>
+                   <field  name="open_days"/>
+                <field name="closed_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+<!--        search view-->
+        <record id="feedback_app_search_view" model="ir.ui.view">
+        <field name="name">global.feedback.search</field>
+        <field name="model">global.feedback</field>
+        <field name="arch" type="xml">
+            <search string="Global Feedback App">
+                <field  name="name"/>
+                   <field  name="department"/>
+                   <!-- <field  name="customer_name"/> -->
+                   <field  name="company_name"/>
+                   <field  name="email"/>
+                   <field name="tag_ids"/>
+<!--                    filters-->
+                <filter name="new" string="New" domain="[('state','=','new')]"/>
+                <filter name="wip" string="Wip" domain="[('state','=','wip')]"/>
+                <filter name="arrested" string="Arrested" domain="[('state','=','arrested')]"/>
+                <filter name="cancel" string="Cancel" domain="[('state', '=', 'cancel')]"/>
+
+
+
+<!--                    group by-->
+                <group expand="0" string="Group By">
+                    <filter name="department" string="Department" domain="[]" context="{'group_by':'department'}"/>
+                    <filter name="state" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                    <filter name="company_name" string="Company Name" domain="[]" context="{'group_by':'company_name'}"/>
+                    <!-- <filter name="customer_name" string="Customer Name" domain="[]" context="{'group_by':'customer_name'}"/> -->
+                    <filter name="category" string="Category" domain="[]" context="{'group_by':'category'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--  action -->
+    <record id="feedback_app_action_view" model="ir.actions.act_window">
+        <field name="name">Global Feedback</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">global.feedback</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+        <!-- <menuitem id="menu_global_feedback_app" name="Global Feedback"  action="feedback_app_action_view"/> -->
+        <menuitem id="menu_global_feedback_app" name="Global Feedback"  action="feedback_app_action_view"/>
+         
+         <record id="website_config_setting" model="ir.ui.view">
+            <field name="name">Google reCaptcha Settings</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <div id="google_maps_setting" position="after">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <strong>Add reCaptcha for Feedback</strong>
+                            <div class="row mt16">
+                                <label class="col-lg-5 o_light_label" for="recaptcha_sitekey"/>
+                                <field name="recaptcha_sitekey" placeholder="Site Key"/>
+                                <label class="col-lg-5 o_light_label" for="recaptcha_secretkey"/>
+                                <field name="recaptcha_secretkey" placeholder="Secret Key"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+ 
+</data>
+</odoo>

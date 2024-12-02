@@ -1,0 +1,233 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_picking_form_inherit_1">
+            <field name="name">view.stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="ready_to_pack" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                    <attribute name="string">Prepare Packing</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='action_assign']" position="attributes">
+                    <attribute name="string">Reserve Stock</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_validate'][1]" position="attributes">
+                    <attribute name="string">Done</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_validate'][2]" position="attributes">
+                    <attribute name="string">Done</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="show_mark_as_todo" invisible="1"/>
+                    <field name="show_mark_as_in" invisible="1"/>
+                    <field name="show_check_availability" invisible="1"/>
+                    <field name="show_validate_in" invisible="1"/>
+                    <field name="show_check_availability_in" invisible="1"/>
+                </xpath>
+                <xpath expr="//form/header" position="inside">
+                    <button name="action_confirm_new"
+                            attrs="{'invisible': [('show_mark_as_in', '=', False)]}"
+                            string="Mark as Todo" type="object" class="oe_highlight" groups="base.group_user"
+                            data-hotkey="x"/>
+                    <button name="action_assign_new" attrs="{'invisible': [('show_check_availability_in', '=', False)]}"
+                            string="Check Availability" type="object" class="oe_highlight" groups="base.group_user"/>
+                    <button name="ready_to_ship" string="Ready To Ship" type="object"
+                            attrs="{'invisible': ['|',('picking_type_code', '!=', 'outgoing'),('state', '!=', 'confirmed')]}"/>
+                    <button name="button_validate_new"
+                            attrs="{'invisible': ['|', ('state', 'in', ('waiting','confirmed')), ('show_validate_in', '=', False)]}"
+                            string="Validate" type="object" class="oe_highlight" groups="stock.group_stock_user"
+                            data-hotkey="v"/>
+                </xpath>
+                <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom_qty']"
+                       position="after">
+                    <field name="qty_on_hand"
+                           attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'outgoing')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='quantity_done']"
+                       position="after">
+                    <button name="pick_qty" string="Picked" type="object"
+                            attrs="{'invisible': [('parent.picking_type_code', '!=', 'outgoing')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='picking_type_id']" position="after">
+                    <field name="carrier_id"/>
+                    <field name="carrier_tracking_ref"/>
+                    <label for="shipping_weight" string="Weight for shipping"/>
+                    <div>
+                        <field name="shipping_weight" class="oe_inline"/>
+                        <field name="weight_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_stock_vpicktree_inherit">
+            <field name="name">view.stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='products_availability']" position="attributes">
+                    <attribute name="optional">show</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="ready_to_pack" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="stock_picking_search_form" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="ready_to_pack"/>
+                    <field name="products_availability"/>
+                    <separator/>
+                    <filter name="ready_to_pack" string="Not Pack"
+                            domain="[('ready_to_pack', '=', False)]"/>
+                    <filter name="ready_to_pack" string="Pack"
+                            domain="[('ready_to_pack', '=', True)]"/>
+                    <separator/>
+                    <filter name="products_availability" string="Availability"
+                            domain="[('products_availability', '=', 'Available')]"/>
+                    <filter name="products_availability" string="Not Availability"
+                            domain="[('products_availability', '=', 'Not Available')]"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_picking_form_inherit_1_1">
+            <field name="name">view.stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='carrier_data']//field[@name='carrier_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//group[@name='carrier_data']//field[@name='carrier_tracking_ref']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//group[@name='carrier_data']//field[@name='shipping_weight']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//label[@for='carrier_tracking_ref']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//group[@name='carrier_data']//field[@name='shipping_weight']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//group[@name='carrier_data']//label[@for='shipping_weight']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//group[@name='carrier_data']//field[@name='weight_uom_name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_picking_tree_draft" model="ir.actions.act_window">
+            <field name="name">Draft Transfers</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,kanban,form,calendar</field>
+            <field name="domain"></field>
+            <field name="context">{'contact_display': 'partner_address', 'search_default_draft': 1}</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No transfer found. Let's create one!
+                </p>
+                <p>
+                    Transfers allow you to move products from one location to another.
+                </p>
+            </field>
+        </record>
+        <record id="action_picking_tree_ready" model="ir.actions.act_window">
+            <field name="name">ready Transfers</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,kanban,form,calendar</field>
+            <field name="domain"></field>
+            <field name="context">{'contact_display': 'partner_address', 'search_default_ready': 1}</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No transfer found. Let's create one!
+                </p>
+                <p>
+                    Transfers allow you to move products from one location to another.
+                </p>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="stock_picking_type_kanban_view_extened">
+            <field name="name">stock.picking.type.kanban.view.extened</field>
+            <field name="inherit_id" ref="stock.stock_picking_type_kanban"/>
+            <field name="model">stock.picking.type</field>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='stock_picking']" position="inside">
+                    <div t-if="record.count_picking_draft.raw_value > 0" class="row">
+                        <div class="col-12">
+                            <a name="get_action_picking_tree_draft" type="object">
+                                <field name="count_picking_draft"/>
+                                Draft
+                            </a>
+                        </div>
+                    </div>
+                    <div t-if="record.count_picking_draft.raw_value > 0" class="row">
+                        <div class="col-12">
+                            <a name="get_action_picking_tree_ready" type="object">
+                                <field name="count_picking_ready"/>
+                                Ready
+                            </a>
+                        </div>
+                    </div>
+                </xpath>
+                <xpath expr='//button[@name="get_action_picking_tree_ready"]'
+                       position="after">
+                    <br/>
+                    <br/>
+                    <button class="btn btn-primary" name="get_action_picking_tree_draft"
+                            type="object">
+                        <span t-if="record.code.raw_value =='incoming'">
+                            <t t-esc="record.count_picking_draft.value"/>
+                            To Draft
+                        </span>
+                        <span t-if="record.code.raw_value =='outgoing'">
+                            <t t-esc="record.count_picking_draft.value"/>
+                            To Draft
+                        </span>
+                        <span t-if="record.code.raw_value =='internal'">
+                            <t t-esc="record.count_picking_draft.value"/>
+                            To Draft
+                        </span>
+                    </button>
+                    <br/>
+                    <br/>
+                    <button class="btn btn-primary" name="get_action_picking_tree_waiting"
+                            type="object">
+                        <span t-if="record.code.raw_value =='incoming'">
+                            <t t-esc="record.count_picking_waiting.value"/>
+                            To Waiting
+                        </span>
+                        <span t-if="record.code.raw_value =='outgoing'">
+                            <t t-esc="record.count_picking_waiting.value"/>
+                            To Waiting
+                        </span>
+                        <span t-if="record.code.raw_value =='internal'">
+                            <t t-esc="record.count_picking_waiting.value"/>
+                            To Waiting
+                        </span>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

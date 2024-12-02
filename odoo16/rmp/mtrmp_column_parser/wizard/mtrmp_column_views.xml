@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--document.column.wizard-->
+
+        <record id="document_column_wizard_view_form" model="ir.ui.view">
+            <field name="name">document.column.wizard.form</field>
+            <field name="model">document.column.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Column Wizard">
+                    <sheet>
+                        <div>
+                            <p>API Call for <strong>Document Category</strong>, <strong>Document</strong> and <strong>Document Columns</strong></p>
+                        </div>
+                        <footer>
+                            <button type="object" name="create_all_records" string="Get Records"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="actions_document_column_wizard_view" model="ir.actions.act_window">
+            <field name="name">Column Wizard</field>
+            <field name="res_model">document.column.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="document_column_wizard_view_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="document_column_wizard_menu"
+                  name="Get Details"
+                  parent="mtrmp_column_parser_menu"
+                  action="actions_document_column_wizard_view"
+                  sequence="12"
+        />
+
+
+</odoo>

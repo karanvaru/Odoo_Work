@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="mail_template_contract_report" model="mail.template">
+            <field name="name">Contract Summary</field>
+            <field name="model_id" ref="reddot_report_hr.model_contact_report_wizard"/>
+            <field name="email_to">kajal@reddotdistribution.com</field>
+            <field name="subject">Contract Summary</field>
+<!--            <field name="reddot_specific" eval="True"/>-->
+            <field name="body_html" type="html">
+                <div style="font-size: 13px; margin: 0px; padding: 0px;">
+                    <h2>Hello
+                    </h2>
+                    <p>Please Find The Attached Employee Contract Summary report.</p>
+                    <br/>
+                    Thank You,
+                    <br/>
+                    <t t-out="env.company.name"/>
+
+                </div>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

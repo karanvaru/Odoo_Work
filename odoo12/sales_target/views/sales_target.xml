@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="sales_target_tree" model="ir.ui.view">
+            <field name="name">Sales Target</field>
+            <field name="model">sales.target</field>
+            <field name="arch" type="xml">
+                <tree string="Sales Target">
+                    <field name='name'/>
+                    <field name='sales_person'/>
+                    <field name='start_date'/>
+                    <field name='end_date'/>
+                </tree>
+            </field>
+        </record>
+        <record id="sales_target_form_view" model="ir.ui.view">
+            <field name="name">sales.target.form</field>
+            <field name="model">sales.target</field>
+            <field name="arch" type="xml">
+                <form string="Sales Target">
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name='name' readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="sales_person"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Internal Notes">
+                                <group>
+                                    <field name="notes"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="sales_target_search_view" model="ir.ui.view">
+            <field name="name">Sales.Target.Search</field>
+            <field name="model">sales.target</field>
+            <field name="arch" type="xml">
+                <search>
+                    <group string="Group By">
+                        <filter string="Sales Person" name="sales_person" context="{'group_by':'sales_person'}"/>
+                        <filter string="Start Date" name="start_date" context="{'group_by':'start_date'}"/>
+                        <filter string="End Date" name="end_date" context="{'group_by':'end_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="sales_target_action" model="ir.actions.act_window">
+            <field name="name">Sales Target</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sales.target</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem name="Sales Target" id="menu_sales_target" action="sales_target_action"
+                  parent="studio_customization.rdp_sales_463025d2-e8d8-4046-ba45-db57b012c250"/>
+    </data>
+</odoo>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="mail_template_anniversary_reminders" model="mail.template">
+            <field name="name">Anniversary Reminder</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="email_from">{{object.company_id.email}}</field>
+            <field name="email_to">{{ object.work_email}}</field>
+            <field name="subject">Reminder For Employee Anniversary</field>
+            <field name="reddot_specific" eval="True"/>
+            <field name="body_html" type="html">
+                <div style="font-size: 13px; margin: 0px; padding: 0px;">
+                    <h2>Dear
+                        <b>
+                            <t t-out="object.name"/>
+                        </b>
+                    </h2>
+                    <p>
+                        <h2>
+                            <b>
+                                Wishing You Happy Anniversary.
+                            </b>
+                        </h2>
+
+                    </p>
+                    <!--                    <p>Please find the attached anniversary reminder report.</p>-->
+                    <!--                    <p>Best regards,<br/>Your Company-->
+                    <!--                    </p>-->
+                    <br/>
+                    <br/>
+                    Thank You,
+                    <br/>
+                    <t t-out="object.company_id.name"/>
+
+                </div>
+            </field>
+        </record>
+
+        <record id="mail_template_birthday_reminders" model="mail.template">
+            <field name="name">Birthday Reminder</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="email_from">{{object.company_id.email}}</field>
+            <field name="subject">Reminder For Employee Birthday</field>
+            <field name="email_to">{{ object.work_email}}</field>
+            <field name="reddot_specific" eval="True"/>
+            <field name="body_html" type="html">
+                <div style="font-size: 13px; margin: 0px; padding: 0px;">
+                    <h2>Dear
+                        <b>
+                            <t t-out="object.name"/>
+                        </b>
+                    </h2>
+                    <p>
+                    </p>
+                    <h2>
+                        <b>
+                            Wishing You Happy Birthday.
+                        </b>
+                    </h2>
+                    <br/>
+
+                    <!--                    <p>Please find the attached birthday reminder report.</p>-->
+                    <!--                    <p>Best regards,<br/>Your Company-->
+                    <!--                    </p>-->
+                    <br/>
+
+                    Thank You,
+                    <br/>
+                    <t t-out="object.company_id.name"/>
+
+                </div>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record model='ir.ui.view' id='affiliate_program_inherit_form'>
+			<field name="name">Affiliate Program Form</field>
+			<field name="model">affiliate.program</field>
+			<field name="inherit_id" ref="affiliate_management.affiliate_program_view_form" />
+			<field name="arch"  type="xml">
+          <xpath expr="//group[2]" position="after">
+            <group>
+              <group col="2" string="Affiliate Parent Commission">
+				  <label for="parent_commision" />
+					<div>
+						<field name="parent_commision" class="oe_inline"/>
+						<span >
+							<b>% of sale</b>
+						</span>
+					</div>
+              </group>
+            </group>
+          </xpath>
+			</field>
+		</record>
+
+
+	</data>
+</odoo>

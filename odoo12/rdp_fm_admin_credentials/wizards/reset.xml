@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="reset_credentials_form" model="ir.ui.view">
+         <field name="name">reset.credentials.wizard</field>
+         <field name="model">reset.credentials</field>
+         <field name="arch" type="xml">
+            <form string="Response">
+                <group>
+                    <field name="u_name"/>
+                    <field name="passwd"/>
+               </group>
+                <footer>
+                    <button name="action_submit" string="Save" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+         </field>
+     </record>
+
+    <record id="reset_credentials" model="ir.actions.act_window">
+        <field name="name">Reset Credentials</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">reset.credentials</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="reset_credentials_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

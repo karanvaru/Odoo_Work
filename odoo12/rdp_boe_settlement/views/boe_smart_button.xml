@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--        form view-->
+        <record id="boe_smart_button_view_form" model="ir.ui.view">
+            <field name="name">boe.smart.button.view.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div" position="before">
+                    <!--                <xpath expr="//sheet/div[1]" position="after">-->
+                    <div>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_boe_settlement_button" class="oe_stat_button" type="object"
+                                    icon="fa-briefcase" attrs="{'invisible': [('boe_submit_count_id','==',0)]}">
+                                <field string="BOE" name="boe_submit_count_id" widget="statinfo"/>
+                            </button>
+                        </div>
+                    </div>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="action_to_boe_submit" type="object" string="BOE Submit" class="btn-primary"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+

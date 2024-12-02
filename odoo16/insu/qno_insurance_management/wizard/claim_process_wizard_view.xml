@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_claim_process_wizard_form">
+            <field name="name">view.claim.process.wizard.form</field>
+            <field name="model">claim.process.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="process_date"/>
+                        </group>
+                        <group>
+                            <field name="claim_amount"/>
+                        </group>
+
+                    </group>
+                    <footer>
+                        <button name="action_confirm" class="btn-primary" string="Apply " type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_claim_process_wizard">
+            <field name="name">Claim Process Wizard</field>
+            <field name="res_model">claim.process.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

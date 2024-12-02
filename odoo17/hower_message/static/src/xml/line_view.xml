@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="hower_message.AccountReportLineCustomizable_custom"
+       t-inherit="account_reports.AccountReportLineCustomizable" t-inherit-mode="extension">
+        <xpath expr="//tr[@data-id='line']" position="after">
+            <div class="custom-popup-container">
+                <div class="custom_class_based_on_level"
+                     t-on-mouseenter="onMouseEnter"
+                     t-on-mouseleave="onMouseLeave">
+                     Hover over me
+                    <div class="popup">
+                        <canvas t-ref="canvas" class="w-100"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </t>
+</templates>
+
+
+
+
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<templates id="template" xml:space="preserve">-->
+<!--    <t t-name="hower_message.AccountReportLineCustomizable_custom"-->
+<!--       t-inherit="account_reports.AccountReportLineCustomizable" t-inherit-mode="extension">-->
+<!--            <xpath expr="//tr[@data-id='line']" position="after">-->
+<!--&lt;!&ndash;        <div class="custom-popup-container">&ndash;&gt;-->
+<!--                &lt;!&ndash;            <div class="custom_class_based_on_level">&ndash;&gt;-->
+<!--                &lt;!&ndash;                Hover over me&ndash;&gt;-->
+<!--                &lt;!&ndash;                <div class="popup">&ndash;&gt;-->
+<!--                &lt;!&ndash;&lt;!&ndash;                        <canvas t-ref="chartCanvas" width="400" height="400"></canvas>&ndash;&gt;&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <canvas id="operation_product_purchase" height="500px" width="150px"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    This is the popup content!&ndash;&gt;-->
+<!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--                &lt;!&ndash;        </div>&ndash;&gt;-->
+
+
+<!--                <div class="custom-popup-container">-->
+<!--&lt;!&ndash;                     t-on-mouseover="showChartPopup"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                     t-on-mouseleave="hideChartPopup"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                >&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <div class="custom_class_based_on_level"  t-on-click="_onButtonClicked">&ndash;&gt;-->
+<!--                    <div class="custom_class_based_on_level" t-on-mouseenter="onMouseEnter" t-on-mouseleave="onMouseLeave">-->
+<!--&lt;!&ndash;                        t-on-click="(ev) => this._onButtonClicked(event)">&ndash;&gt;-->
+<!--&lt;!&ndash;                <t t-on-click="(ev) => this._onButtonClicked(event)">&ndash;&gt;-->
+<!--                     Hover over me-->
+<!--&lt;!&ndash;                </t>&ndash;&gt;-->
+
+
+<!--                        <div class="popup">-->
+<!--                     <canvas t-ref="canvas" class="w-100"/>-->
+
+<!--                            &lt;!&ndash;                    <canvas id="operation_product_purchase" height="500" width="150"></canvas>&ndash;&gt;-->
+<!--                </div>-->
+
+<!--                        &lt;!&ndash;                <div class="popup">&ndash;&gt;-->
+<!--                        &lt;!&ndash;                    <canvas id="operation_product_purchase" height="500" width="150"></canvas>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--            </xpath>-->
+<!--    </t>-->
+<!--</templates>-->

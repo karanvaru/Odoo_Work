@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="account_invoice_line_inherit_form_record_type" model="ir.ui.view">
+        <field name="name">account.invoice.line.inherit.form</field>
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="ki_accounting_reports.invoice_line_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='gst_returns_month_id']" position="after">
+                <field name="record_type_id" string="Record Type"/>
+                <field name="record_category_id" string="Record Category"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

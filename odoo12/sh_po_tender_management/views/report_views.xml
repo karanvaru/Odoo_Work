@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	<report 
+            string="Purchase Tender" 
+            id="action_report_purchase_tender" 
+            model="purchase.agreement" 
+            report_type="qweb-pdf"
+            name="sh_po_tender_management.report_purchasetender" 
+            file="sh_po_tender_management.report_purchasetender"
+        />
+        <report 
+            string="Analyze Quatations" 
+            id="action_report_analyze_quotations" 
+            model="purchase.agreement" 
+            report_type="qweb-pdf"
+            name="sh_po_tender_management.report_analyze_quotations" 
+            file="sh_po_tender_management.report_analyze_quotations"
+        />
+  </data>
+</odoo>

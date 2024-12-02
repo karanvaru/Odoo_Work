@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_commission_config_plan_form" model="ir.ui.view">
+            <field name="name">view.commission.config.plan.form</field>
+            <field name="model">commission.config.plan</field>
+            <field name="arch" type="xml">
+                <form string="commission Plan">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="calculation_types" widget="radio" options="{'horizontal': True}"/>
+                                <field name="commission_type" widget="radio" options="{'horizontal': True}"/>
+                            </group>
+                        </group>
+                        <group string="commission percentage">
+                            <field name="plan_line_ids" nolabel="1" colspan="2">
+                                <tree editable="bottom">
+                                    <field name="company_id" attrs="{'column_invisible': [('parent.calculation_types', '!=', 'company_level')]}"/>
+                                    <field name="business_unit_id" attrs="{'column_invisible': [('parent.calculation_types', '!=', 'bu_level')]}"/>
+                                    <field name="bu_group_id" attrs="{'column_invisible': [('parent.calculation_types', '!=', 'bu_group_level')]}"/>
+                                    <field name="country_group_id" attrs="{'column_invisible': [('parent.calculation_types', '!=', 'region_level')]}"/>
+                                    <field name="division_level_id" domain="['|', ('calculation_types', '=', parent.calculation_types), ('calculation_types', '=', False)]"/>
+                                    <field name="division_type"/>
+                                    <field name="commission_division_type"/>
+                                </tree>
+                            </field>
+                        </group>
+
+                        <group>
+                            <field name="plan_commission_target_percentage_sheet_id"/>
+                        </group>
+                        <group string="Commission percentage based on target achieved">
+                            <field name="plan_commission_target_percentage_ids" nolabel="1" colspan="2">
+                                <tree editable="bottom">
+                                    <field name="from_percentage" string="Upto(%)"/>
+                                    <field name="to_percentage" invisible="1"/>
+                                    <field name="commission_percentage"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" colspan="4" widget="mail_thread" nolabel="1"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_commission_config_plan_tree" model="ir.ui.view">
+            <field name="name">view.commission.config.plan.tree</field>
+            <field name="model">commission.config.plan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="calculation_types"/>
+                    <field name="commission_type"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_commission_config_plan" model="ir.actions.act_window">
+            <field name="name">Commission Plan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">commission.config.plan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
+
+

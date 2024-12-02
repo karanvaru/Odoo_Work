@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="al_pos_line_delete.Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('product-price')]" position="inside">
+            <span t-on-click="() => this.ClearButtonFun()" class="ps-2">
+                <i style="margin-left:6px;cursor:pointer;color:red;" id="clear_icon" class="fa fa-trash"/>
+            </span>
+        </xpath>
+    </t>
+</templates>

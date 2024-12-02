@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="crm_case_form_view_oppor" model="ir.ui.view">
+        <field name="name">crm.lead.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Check List" attrs="{'invisible': [('check_list_len', '=', 0)]}">
+                    <field name="checklist_progress"
+                           widget="progressbar"
+                    />
+                    <group>
+                        <field name="check_list_line_ids"
+                               widget="many2many_checkboxes"
+                               domain="[('crm_stage_st_id', '=', stage_id)]"
+                               nolabel="1"
+                               class="oe_inline"
+                        />
+                    </group>
+                    <group string="History">
+                        <field name="check_list_history_ids"
+                               readonly="1"
+                               nolabel="1"
+                        >
+                            <tree decoration-success="done_action in ['done']"
+                                  decoration-danger="done_action in ['reset']"
+                            >
+                                <field name="check_list_id"/>
+                                <field name="done_action"/>
+                                <field name="user_id"/>
+                                <field name="complete_date"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Tech" invisible="1">
+                        <field name="check_list_len"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="crm_case_kanban_view_leads" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.lead</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="checklist_progress"/>
+                <field name="check_list_len"/>
+            </field>
+            <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+                <div title="checklist progress" t-if="record.check_list_len.raw_value">
+                    <field name="checklist_progress"
+                           widget="progressbar"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_kanban" model="ir.ui.view">
+        <field name="name">CRM - Leads Kanban</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_lead_kanban"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="checklist_progress"/>
+                <field name="check_list_len"/>
+            </field>
+            <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+                <div title="checklist progress" t-if="record.check_list_len.raw_value">
+                    <field name="checklist_progress"
+                           widget="progressbar"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

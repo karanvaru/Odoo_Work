@@ -1,0 +1,60 @@
+# -*- coding: utf-8 -*-
+from odoo import fields, models, api
+from odoo.exceptions import UserError
+
+class ResourceUtilization(models.Model):
+    _name = "resource.utilization"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _description = 'Resource Utilization'
+
+    @api.multi
+    def _compute_achived_2f(self):
+        for rec in self:
+            pclines = self.env['production.calendar'].search(
+                [('x_studio_prod_sch_date', '=', rec.production_date), ('x_studio_status', '!=', 'cancel')])
+            for record in pclines:
+                if record.x_studio_shop_floor == '2F':
+                    rec.achieved_2f = rec.achieved_2f + record.x_studio_quantity
+
+    @api.multi
+    def _compute_achived_c1(self):
+        for rec in self:
+            pclines1 = self.env['production.calendar'].search(
+                [('x_studio_prod_sch_date', '=', rec.production_date), ('x_studio_status', '!=', 'cancel')])
+            for record in pclines1:
+                if record.x_studio_shop_floor == 'C1':
+                    rec.achieved_c1 = rec.achieved_c1 + record.x_studio_quantity
+
+    @api.onchange('achieved_2f', 'capacity_2f')
+    def _compute_rc_util_2f(self):
+        for record in self:
+            if record.capacity_2f:
+                record.resource_utilization_2f = record.achieved_2f / record.capacity_2f * 100
+
+    @api.onchange('achieved_c1', 'capacity_c1')
+    def _compute_rc_util_c1(self):
+        for record in self:
+            if record.capacity_c1:
+                record.resource_utilization_c1 = record.achieved_c1 / record.capacity_c1 * 100
+
+
+
+    name = fields.Char('Name')
+    production_date = fields.Date(string='Production Date', track_visibility='onchange')
+    achieved_2f = fields.Integer('Achieved Qty in Property 1', compute='_compute_achived_2f', track_visibility='onchange')
+    capacity_2f = fields.Integer('Capacity Qty of Property 1', required=True,track_visibility='onchange')
+    achieved_c1 = fields.Integer('Achieved Property 1',  compute='_compute_achived_c1',track_visibility='onchange')
+    capacity_c1 = fields.Integer('Capacity Property 1', required=True,track_visibility='onchange')
+    resource_utilization_2f= fields.Float('Resource Utilization 2F',  compute='_compute_rc_util_2f',store=True,track_visibility='onchange')
+    resource_utilization_c1 = fields.Float('Resource Utilization C1',  compute='_compute_rc_util_c1', store=True,track_visibility='onchange')
+
+    # @api.model
+    # def create(self, vals):
+    #     vals.update({
+    #         'name': self.env['ir.sequence'].next_by_code('resource.utilization'),
+    #     })
+    #     return super(ResourceUtilization, self).create(vals)
+    #
+
+
+

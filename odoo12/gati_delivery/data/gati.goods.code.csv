@@ -1,0 +1,139 @@
+id,name,code
+gati_goods_code_01,ELECTRICAL INSTRUMENTS,101
+gati_goods_code_02,ELECTRICAL PARTS,102
+gati_goods_code_03,COMPUTER MONITOR,201
+gati_goods_code_04,COMPUTER KEY BOARD,202
+gati_goods_code_05,COMPUTER PROCESSING UNIT(CPU),203
+gati_goods_code_06,PRINTER,204
+gati_goods_code_07,COMPUTER PERIPHERALS,205
+gati_goods_code_08,ELECTRONIC EQUIPMENTS,206
+gati_goods_code_09,ELECTRONIC PARTS,207
+gati_goods_code_10,MACHINE TOOLS,301
+gati_goods_code_11,AUTOMOBILE PARTS,302
+gati_goods_code_12,HEAVY MACHINERY,303
+gati_goods_code_13,INDUSTRIAL MACHINERY,304
+gati_goods_code_14,INDUSTRIAL MACHINE PARTS,305
+gati_goods_code_15,RAW METAL PIECES /STEEL,306
+gati_goods_code_16,MISCELLEANOUS ENGINEERING GOODS,307
+gati_goods_code_17,TEXTILE MACHINERY,308
+gati_goods_code_18,HOUSE HOLD GOODS,401
+gati_goods_code_19,FOOD ITEMS,402
+gati_goods_code_20,WATCHES,403
+gati_goods_code_21,COSMETICS,404
+gati_goods_code_22,GLASSWARES,405
+gati_goods_code_23,PLASTICS GOODS,406
+gati_goods_code_24,GIFT ARTICLES,407
+gati_goods_code_25,SPORTS GOODS,408
+gati_goods_code_26,FILM ROLL/CAMERA/TAPE,409
+gati_goods_code_27,READY MADE GARMENTS,410
+gati_goods_code_28,PAINTINGS,411
+gati_goods_code_29,HANDICRAFT ITMES,410
+gati_goods_code_30,TELEVISION /VCR /VCP,451
+gati_goods_code_31,REFERIGERATOR,452
+gati_goods_code_32,AUDIO EQUIPMENTS,453
+gati_goods_code_33,WASHING MACHINES,454
+gati_goods_code_34,AIR CONDITIONER / COOLERS,455
+gati_goods_code_35,COTTON GOODS,501
+gati_goods_code_36,CLOTH,502
+gati_goods_code_37,RAW SILK,503
+gati_goods_code_38,HANDLOOM GOODS,504
+gati_goods_code_39,SILK SAREES,505
+gati_goods_code_40,COTTON SAREES,506
+gati_goods_code_41,SAREES,507
+gati_goods_code_42,BOOKS,601
+gati_goods_code_43,MAGZINES,602
+gati_goods_code_44,STATIONARY ITEMS,603
+gati_goods_code_45,DIARIES,604
+gati_goods_code_46,ADVERTISEMENT MATERIALS,605
+gati_goods_code_47,COMPUTER STATIONARY,606
+gati_goods_code_48,MISC PRINTED MATERIALS,607
+gati_goods_code_49,EMERGENCY / LIFE SAVING DRUGS,701
+gati_goods_code_50,HOMEO / AYURVEDIC,702
+gati_goods_code_51,MEDICAL EQUIPMENTS / DEVICES,703
+gati_goods_code_52,PHYSICIAN SAMPLES,704
+gati_goods_code_53,PHARMA DRUGS,705
+gati_goods_code_54,PHARMA BULK DRUGS,706
+gati_goods_code_55,SOLID CHEMICALS,801
+gati_goods_code_56,LIQUID CHEMICALS,802
+gati_goods_code_57,PAINTS,803
+gati_goods_code_58,ADHESIVES,804
+gati_goods_code_59,SCIENTIFIC BALANCES & INSTRUMENTS,805
+gati_goods_code_60,AGRICULTURAL PRODUCE,901
+gati_goods_code_61,RUBBER GOODS,902
+gati_goods_code_62,SEEDS,903
+gati_goods_code_63,BIOLOGICAL GOODS,904
+gati_goods_code_64,BIOLOGICAL EQUIPMENTS,905
+gati_goods_code_65,2 KG SUVIDHA BOX,2
+gati_goods_code_66,5 KG SUVIDHA BOX,5
+gati_goods_code_67,DOCUMENTS,DOCS
+gati_goods_code_68,NON DOCS,NDOCS
+gati_goods_code_69,INVALID,NON DOCS
+gati_goods_code_70,NON DOCUMENTS,NDOX
+gati_goods_code_71,WIRES & CABLES,103
+gati_goods_code_72,LAPTOP,208
+gati_goods_code_73,AIR,1254
+gati_goods_code_74,SURFACE,1255
+gati_goods_code_75,"H, GOODS",HAR
+gati_goods_code_76,NONDOX(BULK),NDOXB
+gati_goods_code_77,DOCKS(BULK),DOCB
+gati_goods_code_78,SILVER ORNAMENTS,906
+gati_goods_code_79,JEWELLERY ITEMS,SJW
+gati_goods_code_80,WAREHOUSING,999
+gati_goods_code_81,STOCK TRANSFER,STK
+gati_goods_code_82,RAJA SIZE (WITHOUT DISCOUNT),R00
+gati_goods_code_83,RAJA SIZE ( DISCOUNT RS. 25/-),R25
+gati_goods_code_84,RAJA SIZE ( DISCOUNT RS. 50/-),R50
+gati_goods_code_85,MAHARAJA SIZE (WITHOUT DISCOUNT),M00
+gati_goods_code_86,MAHARAJA SIZE ( DISCOUNT RS. 25/-),M25
+gati_goods_code_87,MAHARAJA SIZE ( DISCOUNT RS. 50/-),M50
+gati_goods_code_88,DRL(HYD) MAHARAJA MANGO BOX,DRL
+gati_goods_code_89,VACCINE / PERISHABLE DRUGS,707
+gati_goods_code_90,ZIPP MINIMAX,ZMM
+gati_goods_code_91,ZIPP MAX,ZM
+gati_goods_code_92,HALF KG ZIPP BOX,HKZB
+gati_goods_code_93,1KG ZIPP BOX,1 ZB
+gati_goods_code_94,5KG ZIPP BOX,5 ZB
+gati_goods_code_95,10KG ZIPP BOX,10 ZB
+gati_goods_code_96,25KG ZIPP BOX,25 ZB
+gati_goods_code_97,TRI TUBE,T TUBE
+gati_goods_code_98,2KG ZIPP BOX,2 ZB
+gati_goods_code_99,NON DOCS (BULK),NDXB
+gati_goods_code_100,ONE KG ZIPP BOX,1ZB
+gati_goods_code_101,5KG ZIPP-BOX,5ZB
+gati_goods_code_102,SURGICAL EQUIPMENTS / INSTRUMENS,708
+gati_goods_code_103,MISC. PHARMA ITEMS,709
+gati_goods_code_104,INDIAN AIRLINES,IA
+gati_goods_code_105,JETAIEWAYS,9W
+gati_goods_code_106,SAHARA AIRLINES,S2
+gati_goods_code_107,LUFTHANSA AIR LINES,LH
+gati_goods_code_108,2 KG ZIPP BOX,2ZB
+gati_goods_code_109,IMITATION JEWELLERY,111
+gati_goods_code_110,AIR INDIA,IX
+gati_goods_code_111,SINGAPORE AIRLINES,SQ
+gati_goods_code_112,RAKI,RAKI
+gati_goods_code_113,AIR CRAFT PART,11
+gati_goods_code_114,ARTIFICIAL JEWELLERY,12
+gati_goods_code_115,ART WORK/PAINTING,13
+gati_goods_code_116,AUTO PARTS,14
+gati_goods_code_117,CARPETS,15
+gati_goods_code_118,CHEMICALS(NONHAZARDOUS),16
+gati_goods_code_119,CHERRIES,17
+gati_goods_code_120,COMPANY STOCK,18
+gati_goods_code_121,COMPUTER/PRINTER,19
+gati_goods_code_122,COSMETICS,20
+gati_goods_code_123,CUT FLOWERS,21
+gati_goods_code_124,CO LOADERS,22
+gati_goods_code_125,DRUGS/PHARMA,23
+gati_goods_code_126,ELECTRONICS,24
+gati_goods_code_127,ELECTRICAL APPLIANCES,25
+gati_goods_code_128,FINISHED LEATHER,26
+gati_goods_code_129,FISH SEEDS,27
+gati_goods_code_130,FLOWER BULB,28
+gati_goods_code_131,FOOD STUFF,29
+gati_goods_code_132,GLASS/GLASSWARE,30
+gati_goods_code_133,LIVE ANIMAL,31
+gati_goods_code_134,MACHINERY/MECHANICAL ITEMS,32
+gati_goods_code_135,MISC MANUFACTURED APP,33
+gati_goods_code_136,MUSICAL INSTRUMENT,34
+gati_goods_code_137,HOME THEATER,HT01
+gati_goods_code_138,EWAYBILL EXEMPTED GOODS,EWBE

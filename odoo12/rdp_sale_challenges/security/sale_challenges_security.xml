@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_challenge_manager" model="res.groups">
+    <field name="name">Sale Challenges for Mangers</field>
+
+
+    </record>
+    <record id="sale_challenge_employees" model="res.groups">
+    <field name="name">Sale Challenges for Employee</field>
+<!--    <field name="model_id" ref="model_rdp_sale_challenges"/>-->
+<!--    <field name="domain_force">[('related_to','=',user.id)]</field>-->
+<!--    <field name="groups" eval="[(4,ref('base.group_user'))]"/>-->
+    </record>
+</odoo>

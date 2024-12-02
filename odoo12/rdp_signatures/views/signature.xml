@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="employee_signature_inherited_tree_view" model="ir.ui.view">
+            <field name="name">Signature.Inherited</field>
+            <field name="model">sign.request</field>
+            <field name="inherit_id" ref="sign.sign_request_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='reference']" position="after">
+                    <field name="signer"/>
+                </xpath>
+                <xpath expr="//field[@name='signer']" position="after">
+                    <field name="signer_company_2"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

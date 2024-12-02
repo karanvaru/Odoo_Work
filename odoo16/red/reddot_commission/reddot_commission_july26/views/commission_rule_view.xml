@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_action_commission_rule_from">
+            <field name="name">commission.rule.from</field>
+            <field name="model">commission.rule</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <!--                                <field name="employee_ids" widget="many2many_tags"/>-->
+                                <field name="period_type"/>
+                                <field name="date_start"/>
+                            </group>
+                            <group>
+                                <!--                                <field name="department_ids" widget="many2many_tags"/>-->
+                                <field name="term_condition_id"/>
+                                <field name="date_end"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="employee" string="Employees">
+                                <field name="employee_ids"/>
+                            </page>
+                            <page name="department" string="Departments">
+                                <field name="department_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" colspan="4" widget="mail_thread" nolabel="1"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_action_commission_rule_tree">
+            <field name="name">commission.rule.tree</field>
+            <field name="model">commission.rule</field>
+            <field name="arch" type="xml">
+                <tree string="Commission Rule">
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_commission_rule" model="ir.actions.act_window">
+            <field name="name">Commission Rule</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">commission.rule</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

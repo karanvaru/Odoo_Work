@@ -1,0 +1,24 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+	<data>
+			 <record model="refer.and.earn.faq" id="refer_and_earn_faq_1" >
+                  <field name="faq_question">How and when can I claim my reward?</field>
+                  <field name="faq_answer">The reward is a refund on your credit card after your friend has completed their stay. A few days after your friend has checked out of their booked accommodation, an email is sent to you on claiming your reward. To receive your reward, you need to have a Booking.com account or sign up for one. Then all you need to do is register your credit card details on your account. If you have registered more than one credit card, simply let us know which card we should send your reward to with our tickbox option. If you have already supplied your credit card details on your account and have clicked our tickbox option, we will send the reward automatically and no further action is required. You should receive your reward within seven working days after giving us your card details (unless your friend has not checked out).</field>
+             </record>
+
+            <record model="refer.and.earn.faq" id="refer_and_earn_faq_2" >
+                  <field name="faq_question">How does my friend receive their reward?</field>
+                  <field name="faq_answer">Your friend receives their reward after their stay. After they have checked out, we will send them an email on how to claim their reward. To receive their reward, they need to have a Booking.com account or sign up for one.</field>
+            </record>
+
+			<record model="refer.and.earn.faq" id="refer_and_earn_faq_3" >
+                  <field name="faq_question">Can I use the reward as a discount for a future booking?</field>
+                  <field name="faq_answer">No, the reward can’t be redeemed against a future booking. The reward is only given as a refund on your credit card after your friend has booked and completed their stay.</field>
+ 
+            </record>
+
+
+	</data>
+</odoo>

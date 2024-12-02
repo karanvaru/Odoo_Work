@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="sales_review_tree" model="ir.ui.view">
+            <field name="name">Sales Review</field>
+            <field name="model">sales.review</field>
+            <field name="arch" type="xml">
+                <tree string="Sales Review">
+                 <field name='name'/>
+                </tree>
+            </field>
+        </record>
+        <record id="sales_review_form_view" model="ir.ui.view">
+            <field name="name">sales.review.form</field>
+            <field name="model">sales.review</field>
+               <field name="arch" type="xml">
+                <form string="Sales Review">
+
+                    <sheet>
+                        <div>
+                            <h1> <field name='name' readonly="1"/> </h1>
+                        </div>
+
+
+
+                         <group>
+<!--                             Left Side -->
+                        <group>
+                           <field name="review_date" widget="date" required="1"/>
+                            <field name="review_by" required="1" widget="many2one" domain="[('is_int_user','=',True)]"/>
+                            <field name="review_to" required="1" widget="many2one" domain="[('is_int_user','=',True)]"/>
+                        </group>
+<!--                             Right Side-->
+                         <group>
+                              <field name="currency"/>
+                             <field name="mtd" required="1"/>
+                             <field name="ytd" required="1"/>
+
+                        </group>
+
+                         </group>
+
+
+                        <group>
+                            <group string="Commitment">
+                             <field name="today_revenue_c"/>
+                                <field name="new_partner_add"/>
+                                <field name="meeting_schedule_with" />
+                            </group>
+                            <group string="Delivery">
+                                <field name="today_revenue_d"/>
+                            </group>
+
+                        </group>
+
+                        <group>
+                            <field name="manager_review_inputs"/>
+                        </group>
+
+
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids" widget="mail_activity" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

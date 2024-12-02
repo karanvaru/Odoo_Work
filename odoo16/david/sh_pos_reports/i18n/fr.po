@@ -1,0 +1,1379 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_pos_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.1alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-10 10:08+0000\n"
+"PO-Revision-Date: 2021-09-10 10:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_pos_reports
+#: model:ir.actions.report,print_report_name:sh_pos_reports.sh_cus_pos_analysis_action
+msgid "'Customer Point of Sale Analysis'"
+msgstr "Analyse du point de vente client '"
+
+#. module: sh_pos_reports
+#: model:ir.actions.report,print_report_name:sh_pos_reports.sh_payment_pos_report_action
+msgid "'POS Payment Report'"
+msgstr "Rapport de paiement POS '"
+
+#. module: sh_pos_reports
+#: model:ir.actions.report,print_report_name:sh_pos_reports.sh_pos_report_user_report
+msgid "'POS Report By POS User'"
+msgstr "POS RAPPORT D'UTILISATEUR POS '"
+
+#. module: sh_pos_reports
+#: model:ir.actions.report,print_report_name:sh_pos_reports.sh_pos_inv_summary_action
+msgid "'Point Of Sale Invoice Summary'"
+msgstr "Résumé de la facture de point de vente '"
+
+#. module: sh_pos_reports
+#: model:ir.actions.report,print_report_name:sh_pos_reports.sh_pos_product_indent_action
+msgid "'Point Of Sale Product Indent'"
+msgstr "Indent de produit de point de vente '"
+
+#. module: sh_pos_reports
+#: model:ir.actions.report,print_report_name:sh_pos_reports.sh_pos_by_category_action
+msgid "'Point of Sale By Product Category'"
+msgstr "Point de vente par catégorie de produits '"
+
+#. module: sh_pos_reports
+#: model:ir.actions.report,print_report_name:sh_pos_reports.sh_pos_product_profit_action
+msgid "'Point of Sale Product Profit'"
+msgstr "Point de vente Product Product '"
+
+#. module: sh_pos_reports
+#: model:ir.actions.report,print_report_name:sh_pos_reports.sh_tc_pos_top_customers_report_action
+msgid "'Top Customers'"
+msgstr "Top clients '"
+
+#. module: sh_pos_reports
+#: model:ir.actions.report,print_report_name:sh_pos_reports.sh_top_pos_product_report_action
+msgid "'Top POS Products'"
+msgstr "Top produits POS '"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+msgid "<b>End Date : </b>"
+msgstr "<B> Date de fin: </ B>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+msgid "<b>Friday</b>"
+msgstr "<b> vendredi </ b>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+msgid "<b>Monday</b>"
+msgstr "<b> lundi </ b>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+msgid "<b>Product Name</b>"
+msgstr "<B> Nom du produit </ B>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+msgid "<b>Saturday</b>"
+msgstr "<b> samedi </ b>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+msgid "<b>Start Date : </b>"
+msgstr "<B> Date de début: </ B>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+msgid "<b>Sunday</b>"
+msgstr "<b> dimanche </ b>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+msgid "<b>Thursday</b>"
+msgstr "<b> jeudi </ b>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_user_report_doc
+msgid "<b>Total</b>"
+msgstr "<B> Total </ B>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+msgid "<b>Tuesday</b>"
+msgstr "<b> mardi </ b>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+msgid "<b>Wednesday</b>"
+msgstr "<b> mercredi </ b>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tc_pos_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_doc
+msgid ""
+"<br/>\n"
+"                                <strong>Compare To Date :</strong>"
+msgstr ""
+"<br/>\n"
+"                                <strong>Comparez à ce jour:</strong>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tc_pos_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_doc
+msgid ""
+"<br/>\n"
+"                                <strong>To Date :</strong>"
+msgstr ""
+"<br/>\n"
+"                                <strong>À ce jour :</strong>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tc_pos_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_doc
+msgid ""
+"<br/>\n"
+"                        <strong>To Date :</strong>"
+msgstr ""
+"<br/>\n"
+"                        <strong>À ce jour :</strong>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+msgid "<span>POS Order - Product Sold Day Wise </span>"
+msgstr "<SPAN> ORDRE POS - Produit vendu jour sage </ span>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_user_report_doc
+msgid "<span>POS User :</span>"
+msgstr "<SPAN> UTILISATEUR POS: </ SPAN>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_payment_pos_report_doc
+msgid "<span>User :</span>"
+msgstr "<span> utilisateur: </ span>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tc_pos_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_doc
+msgid "<strong>#</strong>"
+msgstr "<strong> # </ fort>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tc_pos_doc
+msgid "<strong>Compare Customer</strong>"
+msgstr "<strong> comparer le client </ strong>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tc_pos_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_doc
+msgid "<strong>Compare From Date :</strong>"
+msgstr "<strong> comparer à partir de la date: </ strong>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_doc
+msgid "<strong>Compare Product</strong>"
+msgstr "<strong> comparer le produit </ strong>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tc_pos_doc
+msgid "<strong>Customer</strong>"
+msgstr "<strong> client </ fort>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tc_pos_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_doc
+msgid "<strong>From Date :</strong>"
+msgstr "<fort> de la date: </ strong>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tc_pos_doc
+msgid "<strong>POS Amount</strong>"
+msgstr "<Strong> Montant POS </ FORT>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_doc
+msgid "<strong>Product</strong>"
+msgstr "<fort> produit </ fort>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_doc
+msgid "<strong>Qty Sold</strong>"
+msgstr "<strong> Qté Vendu </ Strong>"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_indent_doc
+msgid "<strong>Total</strong>"
+msgstr "<fort> total </ fort>"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_analysis_wizard__sh_status__all
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_payment_report_wizard__state__all
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_product_indent_wizard__sh_status__all
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_report_user_wizard__state__all
+msgid "All"
+msgstr "Tous"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_user_report_doc
+msgid "Amount Due"
+msgstr "Montant dû"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_user_report_doc
+msgid "Amount Invoiced"
+msgstr "Montant facturé"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_doc
+msgid "Amount Paid"
+msgstr "Le montant payé"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+msgid "Balance"
+msgstr "Équilibre"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_tc_pos_top_customer_wizard__type__basic
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_tsp_top_pos_product_wizard__type__basic
+msgid "Basic"
+msgstr "De base"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_inv_summary_wizard__sh_status__both
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_payment_report_wizard__filter_invoice_data__all
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_product_profit_wizard__report_by__both
+msgid "Both"
+msgstr "Les deux"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_customer_pos_analysis_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_payment_pos_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_report_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_order_wizard_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_indent_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_report_user_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_tc_top_customer_wizard_form
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tsp_top_pos_product_wizard_form_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_wizard__sh_category_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__sh_category_ids
+msgid "Categories"
+msgstr "Catégories"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.pos_payment_report_xls_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.pos_top_customer_xls_report_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.pos_xls_report_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_customer_pos_analysis_xls_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_xls_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_xls_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_indent_xls_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_xls_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.top_pos_xls_report_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.xls_pos_report_by_pos_person_view
+msgid "Close"
+msgstr "proche"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_report__company_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__company_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_wizard__company_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard__company_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__company_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__company_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__company_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard__company_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__company_ids
+msgid "Companies"
+msgstr "Entreprises"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__company_ids
+msgid "Company"
+msgstr "Société"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_tc_pos_top_customer_wizard__type__compare
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_tsp_top_pos_product_wizard__type__compare
+msgid "Compare"
+msgstr "Comparer"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__date_compare_from
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__date_compare_from
+msgid "Compare From Date"
+msgstr "Comparer à la date"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__date_compare_to
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__date_compare_to
+msgid "Compare To Date"
+msgstr "Comprendre à ce jour"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_line__sh_product_cost
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_doc
+msgid "Cost"
+msgstr "Coût"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_excel_extended__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_invioce_payment_report_xls__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_report__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_report_user_xls__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_xls__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_xls__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_xls__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_xls__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_xls__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_top_customer_excel_extended__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_top_pos_excel_extended__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product__create_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_excel_extended__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_invioce_payment_report_xls__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_report__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_report_user_xls__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_xls__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_wizard__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_xls__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_xls__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_xls__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_xls__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_top_customer_excel_extended__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_top_pos_excel_extended__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product__create_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__create_date
+msgid "Created on"
+msgstr "Créé sur"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__currency_id
+msgid "Currency"
+msgstr "Monnaie"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_user_report_doc
+msgid "Customer"
+msgstr "Client"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_report_sh_pos_reports_sh_cus_pos_analysis_doc
+msgid "Customer POS Analysis report abstract model"
+msgstr "Rapport d'analyse du client de la clientèle"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.action_cust_pos_analysis_xls
+#: model:ir.actions.act_window,name:sh_pos_reports.action_customer_pos_analysis
+#: model:ir.actions.report,name:sh_pos_reports.sh_cus_pos_analysis_action
+#: model:ir.ui.menu,name:sh_pos_reports.sh_customer_pos_analysis_menuitem
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_customer_pos_analysis_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_customer_pos_analysis_xls_view
+msgid "Customer Point of Sale Analysis"
+msgstr "Analyse du point de vente client"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__sh_partner_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard__sh_partner_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__sh_partner_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__sh_partner_ids
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_product_profit_wizard__report_by__customer
+msgid "Customers"
+msgstr "Les clients"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_doc
+msgid "Date"
+msgstr "Date"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_pos_excel_extended
+msgid "Day Pos Wise Excel Extended"
+msgstr "Jour Pos Wise Excel Extended"
+
+#. module: sh_pos_reports
+#: model:ir.actions.report,name:sh_pos_reports.action_report_pos_order_day_wise_report
+msgid "Day Wise POS Order"
+msgstr "Jour sage postal ordre"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_order_day_wise
+#: model:ir.ui.menu,name:sh_pos_reports.pos_order_day_wise_report
+msgid "Day Wise POS Report"
+msgstr "Signaler un jour sage"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+msgid "Disc.(%)"
+msgstr "Disque.(%)"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_line__discount
+msgid "Discount (%)"
+msgstr "Remise (%)"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_line__sh_discount_amount
+msgid "Discount Amount"
+msgstr "Quantité de réduction"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_excel_extended__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_invioce_payment_report_xls__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_report__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_report_user_xls__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_xls__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_wizard__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_xls__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_xls__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_xls__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_xls__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_top_customer_excel_extended__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_top_pos_excel_extended__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product__display_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__display_name
+msgid "Display Name"
+msgstr "Afficher un nom"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_report_user_wizard__state__done
+msgid "Done"
+msgstr "Terminé"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_excel_extended__excel_file
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_invioce_payment_report_xls__excel_file
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_report_user_xls__excel_file
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_xls__excel_file
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_xls__excel_file
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_xls__excel_file
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_xls__excel_file
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_xls__excel_file
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_top_customer_excel_extended__excel_file
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_top_pos_excel_extended__excel_file
+msgid "Download report Excel"
+msgstr "Télécharger le rapport Excel"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_analysis_wizard__sh_status__draft
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_product_indent_wizard__sh_status__draft
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_report__end_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__sh_end_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_wizard__sh_end_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard__sh_end_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__date_end
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__sh_end_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__sh_end_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard__date_end
+msgid "End Date"
+msgstr "Date de fin"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_top_customer_excel_extended
+#: model:ir.model,name:sh_pos_reports.model_sh_top_pos_excel_extended
+msgid "Excel Extended"
+msgstr "Excel étendu"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_excel_extended__file_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_invioce_payment_report_xls__file_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_report_user_xls__file_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_xls__file_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_xls__file_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_xls__file_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_xls__file_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_xls__file_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_top_customer_excel_extended__file_name
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_top_pos_excel_extended__file_name
+msgid "Excel File"
+msgstr "Fichier Excel"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tsp_top_pos_product_wizard_form_view
+msgid "Filter"
+msgstr "Filtre"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__date_from
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__date_from
+msgid "From Date"
+msgstr "Partir de la date"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_excel_extended__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_invioce_payment_report_xls__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_report__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_report_user_xls__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_xls__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_wizard__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_xls__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_xls__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_xls__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_xls__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_top_customer_excel_extended__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_top_pos_excel_extended__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product__id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__id
+msgid "ID"
+msgstr "identifiant"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_doc
+msgid "Invoice Date"
+msgstr "Date de facturation"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_doc
+msgid "Invoice Number"
+msgstr "Numéro de facture"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_pos_invioce_payment_report_xls
+msgid "Invoice Payment Xls Report"
+msgstr "Paiement de la facture XLS Signaler"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_analysis_wizard__sh_status__invoiced
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_product_indent_wizard__sh_status__invoiced
+msgid "Invoiced"
+msgstr "Facturé"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_excel_extended____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_invioce_payment_report_xls____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_report____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_report_user_xls____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_xls____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_wizard____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_xls____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_xls____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_xls____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_xls____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_top_customer_excel_extended____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_top_pos_excel_extended____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product____last_update
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification sur"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_excel_extended__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_invioce_payment_report_xls__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_report__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_report_user_xls__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_xls__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_xls__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_xls__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_xls__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_xls__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_top_customer_excel_extended__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_top_pos_excel_extended__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product__write_uid
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_excel_extended__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_invioce_payment_report_xls__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_report__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_report_user_xls__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_xls__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_wizard__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_xls__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_xls__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_xls__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_xls__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_top_customer_excel_extended__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_top_pos_excel_extended__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product__write_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tc_pos_doc
+msgid "Lost Customers"
+msgstr "Clients perdus"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_doc
+msgid "Lost Products"
+msgstr "Produits perdus"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_line__sh_margin
+msgid "Margin "
+msgstr "Marge"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_doc
+msgid "Margin(%)"
+msgstr "Marge(%)"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_payment_pos_report_doc
+msgid "Name"
+msgstr "Nom"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tc_pos_doc
+msgid "New Customers"
+msgstr "nouveaux clients"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_doc
+msgid "New Products"
+msgstr "Nouveaux produits"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__no_of_top_item
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__no_of_top_item
+msgid "No of Items"
+msgstr "Nombre d'articles"
+
+#. module: sh_pos_reports
+#: code:addons/sh_pos_reports/sh_top_pos_product/wizard/top_pos_wizard.py:0
+#, python-format
+msgid "No of items must be positive. or not zero"
+msgstr "Nombre d'articles doivent être positifs. ou pas zéro"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_doc
+msgid "Number"
+msgstr "Nombre"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_inv_summary_wizard__sh_status__open
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_payment_report_wizard__state__open
+msgid "Open"
+msgstr "Ouvert"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_line__order_date
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_user_report_doc
+msgid "Order Date"
+msgstr "Date de commande"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_user_report_doc
+msgid "Order Number"
+msgstr "Numéro de commande"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_order_line_search_view
+msgid "Order:"
+msgstr "Commander:"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_analysis_wizard
+msgid "POS Analysis Wizard"
+msgstr "Assistant d'analyse de point de vente"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_analysis_xls
+msgid "POS Analysis Xls Report"
+msgstr "Analyse de la POS Rapport XLS"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_report__config_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__config_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard__config_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__config_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__config_ids
+msgid "POS Configuration"
+msgstr "Configuration de POS"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_excel_form
+msgid "POS Day wise Excel Report"
+msgstr "Rapport d'Excel Wise POS Day"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_inv_summary_wizard
+msgid "POS Invoice Summary Wizard"
+msgstr "Assistant Résumé de la facture POS"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_inv_summary_xls
+msgid "POS Invoice Summary Xls Report"
+msgstr "Sommaire de la facture Sommaire XLS XLS"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_report_sh_pos_reports_sh_pos_inv_summary_doc
+msgid "POS Invoice Summary report abstract model"
+msgstr "Rapport de résumé de la facture POS"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_analysis_wizard__report_by__order
+msgid "POS Order"
+msgstr "Ordre postal"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.pos_xls_report_view
+msgid "POS Order Day Wise Xlsx"
+msgstr "Jour de commande jour sage xlsx"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_pos_order_report
+msgid "POS Order Report"
+msgstr "Rapport d'ordre de point de vente"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.sh_payment_pos_report_wizard_action
+#: model:ir.actions.report,name:sh_pos_reports.sh_payment_pos_report_action
+#: model:ir.ui.menu,name:sh_pos_reports.sh_payment_pos_report_wizard_menuitem
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.pos_payment_report_xls_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_payment_pos_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_payment_pos_report_wizard_form
+msgid "POS Payment Report"
+msgstr "Rapport de paiement POS"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_payment_report
+msgid "POS Payment Report Excel"
+msgstr "Rapport de paiement POS Excel"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__filter_invoice_data
+msgid "POS Payments Include"
+msgstr "Les paiements du point de vente incluent"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_order_line_pivot_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_order_line_search_view
+msgid "POS Product Profitability"
+msgstr "Poste de rentabilité du produit"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.sh_action_pos_order_line_pivot
+#: model:ir.ui.menu,name:sh_pos_reports.menu_pos_order_line_pivot
+#: model:res.groups,name:sh_pos_reports.sh_pos_profitablity_report_groups
+msgid "POS Profitability Report"
+msgstr "Rapport de rentabilité du point de vente"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.sh_pos_report_user_action
+#: model:ir.actions.report,name:sh_pos_reports.sh_pos_report_user_report
+#: model:ir.ui.menu,name:sh_pos_reports.sh_pos_report_user_menuitem
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_report_user_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_user_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.xls_pos_report_by_pos_person_view
+msgid "POS Report By POS User"
+msgstr "POS RAPPORT D'UTILISATEUR POS"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_report_by_pos_person_excel_form
+msgid "POS Report By POS User Excel"
+msgstr "Signaler POS par POS UTILISATEUR Excel"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard__user_ids
+msgid "POS User"
+msgstr "POS UTILISATEUR"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_line__price_subtotal
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_order_line_pivot_view
+msgid "POS Value"
+msgstr "Valeur de point de vente"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_report_sh_pos_reports_sh_payment_pos_report_doc
+msgid "POS payment report abstract model"
+msgstr "Rapport de paiement POS Modèle abstrait"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_analysis_wizard__sh_status__paid
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_inv_summary_wizard__sh_status__paid
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_payment_report_wizard__state__paid
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_product_indent_wizard__sh_status__paid
+msgid "Paid"
+msgstr "Payé"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_payment_pos_report_doc
+msgid "Payment Method"
+msgstr "Mode de paiement"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_inv_summary
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_inv_summary_xls
+#: model:ir.actions.report,name:sh_pos_reports.sh_pos_inv_summary_action
+#: model:ir.ui.menu,name:sh_pos_reports.sh_pos_inv_summary_menuitem
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_report_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_xls_view
+msgid "Point Of Sale Invoice Summary"
+msgstr "Résumé de la facture de point de vente"
+
+#. module: sh_pos_reports
+#: model:ir.actions.report,name:sh_pos_reports.sh_pos_product_indent_action
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_indent_doc
+msgid "Point Of Sale Product Indent"
+msgstr "Indent de produit de point de vente"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_product_profit
+#: model:ir.ui.menu,name:sh_pos_reports.sh_pos_product_profit_menuitem
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_wizard
+msgid "Point Of Sale Product Profit"
+msgstr "Point de vente Product Product"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_by_category
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_by_category_xls
+#: model:ir.actions.report,name:sh_pos_reports.sh_pos_by_category_action
+#: model:ir.ui.menu,name:sh_pos_reports.sh_pos_by_category_menuitem
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_xls_view
+msgid "Point of Sale By Product Category"
+msgstr "Point de vente par catégorie de produits"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_pos_order_line
+msgid "Point of Sale Order Lines"
+msgstr "Lignes de commande de point de vente"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_product_indent
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_product_indent_xls
+#: model:ir.ui.menu,name:sh_pos_reports.sh_pos_product_indent_menuitem
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_indent_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_indent_xls_view
+msgid "Point of Sale Product Indent"
+msgstr "Indent de produit de point de vente"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_product_indent_wizard
+msgid "Point of Sale Product Indent Wizard"
+msgstr "Assistant de tiret du produit de point de vente"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_product_indent_xls
+msgid "Point of Sale Product Indent Xls Report"
+msgstr "Point de vente Produit Report XLS"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_product_profit_xls
+#: model:ir.actions.report,name:sh_pos_reports.sh_pos_product_profit_action
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_xls_view
+msgid "Point of Sale Product Profit"
+msgstr "Point de vente Product Product"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_product_profit_wizard
+msgid "Point of Sale Product Profit Wizard"
+msgstr "Point de vente Assistant de profit du produit"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_product_profit_xls
+msgid "Point of Sale Product Profit Xls Report"
+msgstr "Rapport XLS du produit de point de vente"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_report_sh_pos_reports_sh_pos_product_profit_doc
+msgid "Point of Sale Product Profit report abstract model"
+msgstr "POINT DE VENTE DE PRODUIT DE PROCÉDURE DE PRODUITS Abstrait"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_report_sh_pos_reports_sh_pos_by_category_doc
+msgid "Point of Sale by category report abstract model"
+msgstr "Point de vente par catégorie Signaler un modèle abstrait"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_report_sh_pos_reports_sh_pos_product_indent_doc
+msgid "Point of Sale product indent report abstract model"
+msgstr "POINT DE VENTE DU PRODUIT SPECTEUR DE PRODUIT RAPPORT Modèle abstrait"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_category_wizard
+msgid "Point of sale By Category Wizard"
+msgstr "Point de vente par magicien de catégorie"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_category_xls
+msgid "Point of sale by Category Xls Report"
+msgstr "Point de vente par catégorie XLS Signaler"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_pos_report_user_xls
+msgid "Pos Report User Xls"
+msgstr "POS Signaler l'utilisateur XLS"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_analysis_wizard__sh_status__done
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_product_indent_wizard__sh_status__done
+msgid "Posted"
+msgstr "Posté"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_doc
+msgid "Price"
+msgstr "Prix"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_customer_pos_analysis_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_payment_pos_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_report_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_indent_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_report_user_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_tc_top_customer_wizard_form
+msgid "Print"
+msgstr "Imprimer"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_customer_pos_analysis_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_payment_pos_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_report_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_indent_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_report_user_wizard_form_view
+msgid "Print In XLS"
+msgstr "Imprimer en XLS"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tsp_top_pos_product_wizard_form_view
+msgid "Print Report"
+msgstr "Rapport d'impression"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_order_wizard_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_tc_top_customer_wizard_form
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tsp_top_pos_product_wizard_form_view
+msgid "Print Xls"
+msgstr "Imprimer xls"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product__product_id
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_indent_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_product_filter
+msgid "Product"
+msgstr "Produit"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__sh_product_ids
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__sh_product_ids
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_analysis_wizard__report_by__product
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_product_profit_wizard__report_by__product
+msgid "Products"
+msgstr "Des produits"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_line__sh_profit
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_doc
+msgid "Profit"
+msgstr "Profit"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_line__sh_profitability
+msgid "Profitability"
+msgstr "Rentabilité"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_doc
+msgid "Qty"
+msgstr "Quantité"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product__qty
+msgid "Qty Sold"
+msgstr "Qté vendu"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_indent_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_doc
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_payment_pos_report_doc
+msgid "Refund"
+msgstr "Remboursement"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_order_wizard_view
+msgid "Report"
+msgstr "Signaler"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__report_by
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__report_by
+msgid "Report Print By"
+msgstr "Signaler Imprimer par"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__type
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__type
+msgid "Report Type"
+msgstr "Type de rapport"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.action_pos_top_customer_excel_form
+msgid "Reports Excel"
+msgstr "Rapports Excel"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_line__sh_return_qty
+msgid "Return Quantity"
+msgstr "Nombre de retour"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_line__sh_return_rate
+msgid "Return Rate"
+msgstr "Taux de retour"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_doc
+msgid "Sale Price"
+msgstr "Prix ​​de vente"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+msgid "Sales Amount"
+msgstr "Montant des ventes"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+msgid "Salesperson"
+msgstr "Vendeur"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_product_filter
+msgid "Search Student"
+msgstr "Recherche étudiante"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__sh_session_id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_wizard__sh_session_id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard__sh_session_id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__sh_session_id
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__sh_session_id
+msgid "Session"
+msgstr "Session"
+
+#. module: sh_pos_reports
+#: model:res.groups,name:sh_pos_reports.sh_payment_pos_report_group
+msgid "Show User Field In POS Payment Report"
+msgstr "Afficher le champ utilisateur dans le rapport de paiement POS"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_report__start_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__sh_start_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_category_wizard__sh_start_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard__sh_start_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__date_start
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__sh_start_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_profit_wizard__sh_start_date
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard__date_start
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_analysis_wizard__sh_status
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_inv_summary_wizard__sh_status
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__state
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_product_indent_wizard__sh_status
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_report_user_wizard__state
+msgid "Status"
+msgstr "Statut"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_doc
+msgid "Subtotal"
+msgstr "Total"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_doc
+msgid "Tax"
+msgstr "Impôt"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_line__sh_tax_amount
+msgid "Tax Amount"
+msgstr "Montant de la taxe"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_pos_order_line__sh_tax_percentage
+msgid "Tax Percentage"
+msgstr "Pourcentage de taxe"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_cus_pos_analysis_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_payment_pos_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_indent_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_user_report_doc
+msgid "To"
+msgstr "À"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__date_to
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__date_to
+msgid "To Date"
+msgstr "À ce jour"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.sh_tc_pos_top_customer_wizard_action
+#: model:ir.actions.report,name:sh_pos_reports.sh_tc_pos_top_customers_report_action
+#: model:ir.model,name:sh_pos_reports.model_sh_tc_pos_top_customer_wizard
+#: model:ir.ui.menu,name:sh_pos_reports.sh_tc_pos_top_customer_wizard_menuitem
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_tc_top_customer_wizard_form
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tc_pos_doc
+msgid "Top Customers"
+msgstr "Top clients"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.pos_top_customer_xls_report_view
+msgid "Top Customers Xlsx"
+msgstr "Top clients XLSX"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.sh_tsp_top_pos_product_model_tree_action
+#: model:ir.actions.act_window,name:sh_pos_reports.sh_tsp_top_pos_product_wizard_action
+#: model:ir.actions.report,name:sh_pos_reports.sh_top_pos_product_report_action
+#: model:ir.ui.menu,name:sh_pos_reports.sh_tsp_top_pos_products_main
+#: model:ir.ui.menu,name:sh_pos_reports.sh_tsp_view_top_pos_products
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_tsp_top_pos_product_wizard_form_view
+msgid "Top POS Products"
+msgstr "Top POS Produits"
+
+#. module: sh_pos_reports
+#: model:ir.actions.act_window,name:sh_pos_reports.action_top_pos_excel_form
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.top_pos_xls_report_view
+msgid "Top POS Products Xlsx"
+msgstr "TOP PRODUITS XLSX"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_tsp_top_pos_product_wizard
+msgid "Top pos product Transient model to just filter products"
+msgstr "TOP POS Produit Modèle transitoire pour simplement filtrer des produits"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_tsp_top_pos_product
+msgid ""
+"Top pos product persistence model to  used in snippet or any other places"
+msgstr ""
+"Modèle de persistance du produit POS de POS à utiliser dans l'extrait ou dans tout autre lieu"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.rpt_pos_order_day_wise
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_payment_pos_report_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_doc
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_user_report_doc
+msgid "Total"
+msgstr "Le total"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tc_pos_top_customer_wizard__amount_total
+msgid "Total POS Amount"
+msgstr "Montant total du point de vente"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_tsp_top_pos_product_wizard__qty
+msgid "Total Qty. Sold"
+msgstr "Quantité totale. Vendu"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_top_pos_product_model_tree
+msgid "Total Sold Qty"
+msgstr "Qté totale vendue"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_doc
+msgid "UOM"
+msgstr "Uom"
+
+#. module: sh_pos_reports
+#: model:ir.ui.menu,name:sh_pos_reports.sh_tsp_update_top_pos_products
+msgid "Update Top POS Products"
+msgstr "Mise à jour Top Products de POS"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields,field_description:sh_pos_reports.field_sh_pos_payment_report_wizard__user_ids
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_payment_report_wizard__filter_invoice_data__with_invoice
+msgid "With Invoice"
+msgstr "Avec facture"
+
+#. module: sh_pos_reports
+#: model:ir.model.fields.selection,name:sh_pos_reports.selection__sh_pos_payment_report_wizard__filter_invoice_data__wo_invoice
+msgid "Without Invoice"
+msgstr "Sans facture"
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.pos_top_customer_xls_report_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.pos_xls_report_view
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.top_pos_xls_report_view
+msgid "Xls Report"
+msgstr "Signaler XLS"
+
+#. module: sh_pos_reports
+#: code:addons/sh_pos_reports/sh_top_pos_customer/wizard/pos_customer_wizard.py:0
+#: code:addons/sh_pos_reports/sh_top_pos_product/wizard/top_pos_wizard.py:0
+#, python-format
+msgid "compare from date must be less than compare to date."
+msgstr "Comparer à partir de la date doit être inférieur à celui de la comparaison à ce jour."
+
+#. module: sh_pos_reports
+#: code:addons/sh_pos_reports/sh_top_pos_customer/wizard/pos_customer_wizard.py:0
+#: code:addons/sh_pos_reports/sh_top_pos_product/wizard/top_pos_wizard.py:0
+#, python-format
+msgid "from date must be less than to date."
+msgstr "à partir de la date doit être inférieur à ce jour."
+
+#. module: sh_pos_reports
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_customer_pos_analysis_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_by_category_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_inv_summary_report_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_indent_wizard
+#: model_terms:ir.ui.view,arch_db:sh_pos_reports.sh_pos_product_profit_wizard
+msgid "or"
+msgstr "ou"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_payment_report_wizard
+msgid "pos payment report wizard Model"
+msgstr "Rapport de paiement POS Modèle d'assistant"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_report_sh_pos_reports_sh_user_report_doc
+msgid "pos person report abstract model"
+msgstr "Poste Person Signaler un modèle abstrait"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_sh_pos_report_user_wizard
+msgid "sh pos report user wizard model"
+msgstr "SH POS Signaler le modèle Wizard utilisateur"
+
+#. module: sh_pos_reports
+#: code:addons/sh_pos_reports/sh_customer_pos_analysis/wizard/customer_pos_analysis_wizard.py:0
+#: code:addons/sh_pos_reports/sh_day_wise_pos/wizard/pos_order_day_wise_wizard.py:0
+#: code:addons/sh_pos_reports/sh_payment_pos_report/wizard/payment_report_wozard.py:0
+#: code:addons/sh_pos_reports/sh_pos_by_category/wizard/pos_category_by_wizard.py:0
+#: code:addons/sh_pos_reports/sh_pos_invoice_summary/wizard/pos_inv_summary_wizard.py:0
+#: code:addons/sh_pos_reports/sh_pos_product_profit/wizard/pos_product_profit_wizard.py:0
+#: code:addons/sh_pos_reports/sh_pos_report_user/wizard/report_user_wizard.py:0
+#: code:addons/sh_pos_reports/sh_product_pos_indent/wizard/pos_product_indent_wizard.py:0
+#, python-format
+msgid "start date must be less than end date."
+msgstr "La date de début doit être inférieure à la date de fin."
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_report_sh_pos_reports_sh_tc_pos_doc
+msgid "top customers report abstract model"
+msgstr "Top clients Signaler un modèle abstrait"
+
+#. module: sh_pos_reports
+#: model:ir.model,name:sh_pos_reports.model_report_sh_pos_reports_sh_top_pos_product_doc
+msgid "top pos product report abstract model"
+msgstr "Top Signaler le produit POS Résumé Modèle"

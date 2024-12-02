@@ -1,0 +1,14 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+employee_pip,disciplinary,model_employee_pip,base.group_user,1,1,0,0
+employee_appeal,disciplinary,model_employee_appeal,base.group_user,1,1,1,1
+employee_severity,disciplinary,model_disciplinary_severity,base.group_user,1,1,1,1
+employee_type,disciplinary,model_disciplinary_type,base.group_user,1,1,1,1
+employee_disciplinary,disciplinary,model_employee_disciplinary,base.group_user,1,1,0,0
+employee_hr,disciplinary,model_employee_disciplinary,group_manager,1,1,1,1
+employee_hr_pip,disciplinary,model_employee_pip,group_manager,1,1,1,1
+employee_ceo,disciplinary,model_employee_disciplinary,group_ceo,1,1,1,1
+employee_ceo_pip,disciplinary,model_employee_pip,group_ceo,1,1,1,1
+employee_ceo_ceo,disciplinary,model_employee_disciplinary,group_ceo_ceo,1,1,1,1
+employee_ceo_ceo_pip,disciplinary,model_employee_pip,group_ceo_ceo,1,1,1,1
+employee_ceo_ceo,disciplinary,model_employee_disciplinary,base.group_system,1,1,1,1
+employee_ceo_ceo_pip,disciplinary,model_employee_pip,base.group_system,1,1,1,1

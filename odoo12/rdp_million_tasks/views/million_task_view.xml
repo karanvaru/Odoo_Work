@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--        form view-->
+        <record id="million_tasks_view_form" model="ir.ui.view">
+            <field name="name">million.tasks.form</field>
+            <field name="model">million.tasks</field>
+            <field name="arch" type="xml">
+                <form string="Million Tasks">
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="tasks"/>
+                                <field name="category"/>
+                                <field name="parent"/>
+                            </group>
+                            <group>
+                                <field name="job_position"/>
+                                <field name="department_id"/>
+                                <field name="parent_department_id"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Internal Notes">
+                                <group>
+                                    <field name="notes"/>
+                                </group>
+                            </page>
+                            <page name="raci" string="RACI">
+                                <group>
+                                    <group>
+                                        <field name="responsible_id"/>
+                                        <field name="accountable_id"/>
+                                        <field name="consulted_id"/>
+                                        <field name="informed_id"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- tree view -->
+        <record id="million_tasks_tree_view" model="ir.ui.view">
+            <field name="name">million.tasks.tree</field>
+            <field name="model">million.tasks</field>
+            <field name="arch" type="xml">
+                <tree string="Million Tasks">
+                    <field name="name" readonly="1"/>
+                    <field name="tasks"/>
+                    <field name="category"/>
+                    <field name="job_position"/>
+                </tree>
+            </field>
+        </record>
+        <record id="million_tasks_filter" model="ir.ui.view">
+            <field name="name">million.tasks.filter</field>
+            <field name="model">million.tasks</field>
+            <field name="arch" type="xml">
+                <search string="Search Tasks">
+                    <field name="name"/>
+                    <field name="tasks"/>
+                    <field name="job_position"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter name="category" string="Category" domain="[]" context="{'group_by':'category'}"/>
+                        <filter name="tasks" string="Tasks" domain="[]" context="{'group_by':'tasks'}"/>
+                        <filter name="job_position" string="Job Position" domain="[]"
+                                context="{'group_by':'job_position'}"/>
+
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <!--  action -->
+        <record id="million_tasks_action_view" model="ir.actions.act_window">
+            <field name="name">Million Tasks</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">million.tasks</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!--        <field name="context">{}</field>-->
+        </record>
+
+        <!--            <menuitem id="menu_million_tasks" name="Million Tasks" parent="crm.crm_menu_root"/>-->
+        <menuitem id="sub_menu_million_tasks" name="Million Tasks" action="million_tasks_action_view"
+                  parent="studio_customization.rdp_hr_be0a9c7c-e86e-4fa6-bcf4-cc0b199dedc8"/>
+
+    </data>
+</odoo>

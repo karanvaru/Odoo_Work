@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="vendor_registration_template">
+            <t t-call="website.layout">
+                <div id="wrap" class="o_portal_wrap">
+                    <section style="text-align: center; padding: 60px 20px;">
+                        <div class="container">
+                            <h1 style="font-weight: 500 !important; letter-spacing: -1px;">Vendor Registration</h1>
+                            <p style="font-size: 16px;">Apply below to be considered for potential business with RDP.</p>
+                        </div>
+                    </section>
+                    <section class="bg-light py-5" style="margin-top: -20px; background-color: #FFFFFF;"> <!-- Adjust margin-top as needed -->
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 text-center">
+                                    <h2 class="mb-4">Choose Registration Type</h2>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/individual_registration" class="btn btn-outline-primary btn-lg mr-3 custom-btn">Individual</a>
+                                        &#160;
+                                        <a href="/company_registration_gst" class="btn btn-outline-primary btn-lg custom-btn">Company</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <record id="inherit_product_template_cost_form" model="ir.ui.view">
+            <field name="name">product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='purchase_ok']" position="after">
+                    <div>
+                        <field name="cost_ok"/>
+                        <label for="cost_ok"/>
+                    </div>
+                </xpath>
+                <!-- <xpath expr="//page[@name='general_information']" position="after">
+                    <page string="Cost Estimation" attrs="{'invisible': [('cost_ok', '=', True)]}">
+                        <field name="cost_estimation" >
+                            <tree editable="bottom">
+                                <field name="product_id" domain="[('cost_ok', '=', True)]"/>
+                                <field name="description"/>
+                                <field name="qty"/>
+                                <field name="uom"/>
+                                <field name="cost_item_type"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath> -->
+                <xpath expr="//field[@name='detailed_type']" position="after">
+                    <field name="cost_item_type" attrs="{'invisible': [('cost_ok', '=', False)], 'required': [('cost_ok','=',True)]}"/>
+                    <field name="estimated_cost"/>
+                </xpath>
+                <xpath expr="//page[@name='general_information']//field[@name='barcode']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="inherit_product_cost_form" model="ir.ui.view">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//label[@for='purchase_ok']" position="after">
+                    <div>
+                        <field name="cost_ok"/>
+                        <label for="cost_ok"/>
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='detailed_type']" position="after">
+                    <field name="estimated_cost"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

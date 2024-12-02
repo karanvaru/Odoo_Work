@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem name="Vendor Registrations"
+              id="menu_main_vendor_registrations"
+              sequence="50"/>
+
+    <menuitem name="Waiting for approval"
+              id="menu_Waiting_for_approval"
+              parent="menu_main_vendor_registrations"
+              action="action_partner_windows"
+              sequence="1"
+    />
+    <menuitem name="Approved Vendors"
+              id="menu_approved_vendors"
+              parent="menu_main_vendor_registrations"
+              action="action_partner_windows_for_approved"
+              sequence="2"
+    />
+
+    <menuitem name="Rejected Vendors"
+              id="menu_rejected_vendors"
+              parent="menu_main_vendor_registrations"
+              action="action_partner_windows_for_rejected"
+              sequence="3"
+    />
+    <menuitem name="Configuration"
+              id="menu_configuration"
+              parent="menu_main_vendor_registrations"
+              sequence="4"
+    />
+
+    <menuitem name="Organization Types"
+              id="menu_organization"
+              parent="menu_configuration"
+              action="action_organization_type"
+              sequence="4"
+    />
+
+    <menuitem name="Business Category"
+              id="menu_business_category"
+              parent="menu_configuration"
+              action="action_business_category"
+              sequence="4"
+    />
+<!--    <menuitem name="SAP Integration Configuration"-->
+<!--              id="menu_sap_configuration"-->
+<!--              parent="menu_configuration"-->
+<!--              action="action_sap_configuration"-->
+<!--              sequence="5"-->
+<!--    />-->
+
+    <menuitem name="BPGroup"
+              id="menu_bpgroup"
+              parent="menu_configuration"
+              action="action_customer_vendor_group"
+              sequence="6"
+    />
+    <menuitem name="BPSalesPerson"
+              id="menu_BPSalesPerson"
+              parent="menu_configuration"
+              action="base.action_res_users"
+              sequence="7"
+    />
+
+    <menuitem name="BPPaymentTerms"
+              id="menu_BPPaymentTerms"
+              parent="menu_configuration"
+              action="account.action_payment_term_form"
+              sequence="8"
+    />
+
+    <menuitem name="Update Masters From SAP"
+              id="menu_update_masters_from_SAP"
+              parent="menu_configuration"
+              action="action_odoo_sap_master_update"
+              sequence="8"
+    />
+
+    <menuitem name="Settings"
+              id="menu_vendor_registration_config_settings"
+              parent="menu_configuration"
+              action="action_vendor_registration_config_settings"
+              sequence="1"
+    />
+
+
+</odoo>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="product_detail_view_form" model="ir.ui.view">
+        <field name="name">product.details.form</field>
+        <field name="model">product.details</field>
+
+        <field name="arch" type="xml">
+            <form string="PSPR Details">
+         <header>
+                     <button name="action_to_part_request" type="object" string="Part request" attrs="{'invisible': [('state', 'in', ['part_request','request_accept','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','purchase_request','repair_started','repaired'])]}" class="btn-primary"/>
+
+                     <button name="action_to_request_accept" type="object" string="request accept" attrs="{'invisible': [('state', 'in', ['draft','request_accept','part_dispatched','part_reached','in_transit','closed','cancel','purchase_request','repair_started','repaired','request_for_part_pickup'])]}" class="btn-primary"/>
+                                                        <!--                      new repair button-->
+                     <button name="action_to_repair_request" type="object" string="Start Repair"  class="btn-primary" attrs="{'invisible':[('state', 'not in', ['part_reached'])]}"/>
+
+                       <button name="action_to_repaired" type="object" string="End Repair"  class="btn-primary" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','purchase_request','repaired'])]}" /> />
+                      <button name="action_to_request_for_part_pickup" type="object" string="Pickup Request" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_for_part_pickup','in_transit','closed','cancel','repair_started'])]}"/>
+                      <button name="action_to_in_transit" type="object" string="Pickup" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_dispatched','part_reached','in_transit','closed','cancel','purchase_request','repair_started'])]}"/>
+
+                     <button name="action_to_partsend" type="object" string=" Part Send" class="btn-primary" attrs="{'invisible': [('state', 'in', ['draft','part_dispatched','part_reached','in_transit','closed','cancel','part_request','repair_started','repaired'])]}"/>
+                     <button name="action_to_part_reached" type="object" string="Receive Confirm" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_reached','request_for_part_pickup','in_transit','closed','cancel','purchase_request','repair_started','repaired'])]}" class="btn-primary"/>
+                     <!--<button name="action_to_request_for_part_pickup" type="object" string="Pickup Request" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_for_part_pickup','in_transit','closed','cancel','repair_started'])]}"/>-->
+                     <button name="action_to_purchase_request" type="object" string=" purchase request" attrs="{'invisible': [('state', 'in', ['draft','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','part_request','purchase_request','repair_started','repaired'])]}"/>
+
+                      <!--<button name="action_to_received_material" type="object" string="received material" attrs="{'invisible': [('state', 'in', ['draft','request_accept','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','part_request','received_material','received_material','repair_started','repaired'])]}" class="btn-primary"/>-->
+
+                    <button name="action_to_part_dispatched" type="object" string="dispatched" attrs="{'invisible': [('state', 'in', ['draft','part_request','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','purchase_request','request_accept','repair_started','repaired'])]}" class="btn-primary"/>
+
+                     <!--<button name="action_to_part_reached" type="object" string="Receive Confirm" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_reached','request_for_part_pickup','in_transit','closed','cancel','purchase_request','repair_started','repaired'])]}" class="btn-primary"/>-->
+
+                      <!--<button name="action_to_request_for_part_pickup" type="object" string="Pickup Request" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_for_part_pickup','in_transit','closed','cancel','repair_started'])]}" class="btn-primary"/>-->
+
+                      <!--<button name="action_to_in_transit" type="object" string="Pickup" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_dispatched','part_reached','in_transit','closed','cancel','purchase_request','repair_started'])]}" class="btn-primary"/>-->
+
+                      <button name="action_to_closed" type="object" string="closed" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_dispatched','part_reached','request_for_part_pickup','closed','cancel','purchase_request','repair_started','repaired'])]}" class="btn-primary"/>
+
+<!--                   <button name="action_to_hold" type="object" string="hold" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_dispatched','part_reached','request_for_part_pickup','in_transit','cancel','closed'])]}"/>-->
+                      <button name="action_to_cancel" type="object" string="cancel" attrs="{'invisible': [('state', 'in', ['draft','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','purchase_request'])]}" />
+                      <button name="action_set_draft" type="object" string="set to draft" attrs="{'invisible': [('state', 'in', ['draft','closed'])]}" />
+<!--                      newly added button-->
+<!--                       <button name="action_to_partsend" type="object" string=" Part Send" attrs="{'invisible': [('state', 'in', ['draft','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','part_request','purchase_request','received_material'])]}" class="btn-primary"/>-->
+                       <field name="state" widget="statusbar" readonly="1"/>
+
+                 </header>
+                <sheet>
+                     <div class="oe_button_box" name="button_box">
+                        <button name="open_inward_screen" class="oe_stat_button" type="object" icon="fa-truck" attrs="{'invisible': [('inward_screen','==',0)]}">
+                          <field string="Picking Orders" name="inward_screen" widget="statinfo" />
+                        </button>
+                         <button name="open_repair_screen" class="oe_stat_button" type="object" icon="fa-wrench" attrs="{'invisible': [('repair_count_id','==',0)]}">
+                          <field string="Repair Orders" name="repair_count_id" widget="statinfo"/>
+                        </button>
+
+                    </div>
+                             <div>
+                                 <h1>
+                                <field name="name" readonly="1"/>
+                                </h1>
+                            </div>
+                    <group>
+                        <group>
+                            <field name="helpdesk_ticket_id" attrs="{'readonly':[('state','not in',['draft'])] }" />
+<!--                            <field  name="customer_id"/>-->
+                            <field name="serial_num"/>
+                            <field  name="model_name"/>
+
+                        </group>
+                        <group>
+<!--                            <field name="pspr_assign_to"/>-->
+<!--                             <field name="pspr_name_seq" readonly="1"/>-->
+<!--                            <field name="pspr_customer"/>-->
+<!--                            <field  name="customer_id"/>-->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Part Request Details">
+                           <field name="part_details_ids"  widget='one2many' editable="bottom" >
+                              <tree editable="bottom" delete='false'>
+
+                                  <field name="part_name"/>
+                                   <field name="part_desc"/>
+                                  <field name="product"/>
+                                  <field name="part_rq_qty" />
+                                   <field name="part_sent_qty" />
+                                 <field name="part_rv_qty" />
+                             </tree>
+                            </field>
+                        </page>
+
+                        <page string="Support Location">
+                           <group>
+                               <group>
+                                   <field  name="customer_id" readonly="1"/>
+                                   <field  name="street" readonly="1"/>
+                                   <field  name="street2" readonly="1"/>
+                                   <field  name="city" readonly="1"/>
+                                   <field  name="pincode" readonly="1"/>
+                                   <field  name="state_name" readonly="1"/>
+                                   <field  name="country" readonly="1"/>
+                               </group>
+                                <group>
+                                    <field  name="contact_person" readonly="1"/>
+                                    <field  name="email" readonly="1"/>
+                                   <field  name="phone" readonly="1"/>
+
+                                   </group>
+                               <group>
+<!--                                   <field  name="customer_id"/>-->
+                               </group>
+                           </group>
+
+
+                        </page>
+
+                    </notebook>
+                </sheet>
+                 <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view -->
+    <record id="product_detail_tree_view" model="ir.ui.view">
+        <field name="name">product.details.tree</field>
+        <field name="model">product.details</field>
+        <field name="arch" type="xml">
+            <tree string="Product details">
+                           <field name="name"/>
+                           <field name="helpdesk_ticket_id"/>
+                            <field  name="customer_id"/>
+                            <field name="serial_num"/>
+                            <field  name="model_name"/>
+                            <field  name="state"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <!--  action -->
+    <record id="product_details_action_view" model="ir.actions.act_window">
+        <field name="name">Product Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.details</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+<!--        <field name="context">{}</field>-->
+    </record>
+
+
+
+</data>
+</odoo>

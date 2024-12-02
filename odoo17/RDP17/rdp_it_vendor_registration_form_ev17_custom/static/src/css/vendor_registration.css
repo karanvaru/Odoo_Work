@@ -1,0 +1,129 @@
+/* Add CSS styles here */
+
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+
+/* Apply Inter font */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Import Sora font */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400&display=swap');
+
+/* Global styles */
+body {
+    font-family: 'Inter'; /* Apply Inter font to the body */
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container styles */
+#wrap {
+    background-color: #ECECEC;
+    padding: 20px;
+}
+
+.o_portal_wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Form block styles */
+.vendor-form-block {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form field styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-top-right-radius: 100%; /* Adjust the value to control roundness of corners */
+}
+
+
+/* Heading styles */
+ h1, h2, h3, h4, h5, h6 {
+    font-weight: 500; 
+    font-family: 'Sora', sans-serif; /* Specify fallback fonts */
+}
+
+/* Button styles */
+
+.custom-btn, .custom-btns, .custom-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px;
+    border: none;
+}
+
+.custom-btn, .custom-btns:focus {
+    box-shadow: none !important;
+    border-color: transparent !important;
+    outline: none !important;
+}
+/* Override other styles with !important */
+
+.custom-btn,
+.custom-btns { 
+    background-color: #3A9E3E !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
+.custom-btn:hover,
+.custom-btns:hover { 
+    background-color: #2F7E2E !important; /* Changed to a slightly darker shade for hover effect */
+    border-color: #2F7E2E !important; /* Changed to match the hover background color */
+}
+.custom-button {
+    background-color: #000000;
+    color: #FFFFFF !important; /* Set text color to white */
+    border: none !important;
+}
+
+.custom-button:hover {
+    background-color: #000000 !important; /* Ensure the color remains the same on hover */
+    color: #FFFFFF !important; /* Set text color to white */
+}
+/* Checkbox styles */
+.checkbox-inline {
+    margin-right: 20px;
+}
+
+.registration-success-title {
+    color: #3A9E3E;
+    font-family: 'Sora';
+}
+
+.registration-success-message {
+    font-family: 'Inter';
+    color: #000000;
+}
+
+.sora-font {
+    font-family: 'Sora';
+}
+
+p {
+    font-family: 'Inter';
+
+}
+

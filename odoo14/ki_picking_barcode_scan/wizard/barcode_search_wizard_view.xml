@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_search_barcode_product_picking_wizard_view" model="ir.ui.view">
+        <field name="name">search.barcode.product.wizard.view</field>
+        <field name="model">search.barcode.product.picking.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="search_by_picking" widget="radio"/>
+                            <field name="picking"/>
+                            <field name="picking_id" invisible="1"/>
+                            <field name="check_picking" invisible="1"/>
+                            <p attrs="{'invisible': [('check_picking', '=', False)]}"
+                               style="color:red;">Picking Not Found.
+                            </p>
+                        </group>
+                        <group>
+                            <field name="search_by_product" widget="radio"/>
+                            <field name="barcode"/>
+                            <field name="check_barcode" invisible="1"/>
+                            <p attrs="{'invisible': [('check_barcode', '=', False)]}"
+                               style="color:red;">Product Not Found.
+                            </p>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="stock_move" string="Stock Move">
+                            <field name="move_ids" force_save="1" readonly="1"/>
+                            <group>
+                                <group>
+
+                                </group>
+                                <group>
+                                    <group>
+                                        <button string="Validate" class="oe_highlight"
+                                                attrs="{'invisible': [('validate_done', '=', True)]}"
+                                                name="validate_button" type="object"/>
+                                        <field name="validate_done" invisible="1"/>
+                                        <p attrs="{'invisible': [('validate_done', '=', False)]}"
+                                           style="color:green;">your picking successfully validated.
+                                        </p>
+                                    </group>
+                                    <group>
+                                        <button string="Next" class="oe_highlight"
+                                                attrs="{'invisible': [('validate_done', '=', False)]}"
+                                                name="next_button" type="object"/>
+                                    </group>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_search_barcode_picking_product_wizard">
+        <field name="name">Search Product Using Barcode</field>
+        <field name="res_model">search.barcode.product.picking.wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_search_barcode_product_picking_wizard_view"/>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem
+            id="menu_search_product_picking_barcode"
+            name="Search Product and picking"
+            action="action_search_barcode_picking_product_wizard"
+            parent="stock.menu_stock_root"
+            sequence="99"
+            groups="stock.group_stock_user"/>
+
+</odoo>

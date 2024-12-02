@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="refer_and_earn_res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">refer.and.earn.res.config.settings.view.form.inherit.website</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="30"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Refer And Earn" string="Refer And Earn" data-key="refer_and_earn" groups="website.group_website_designer">
+
+                      <h2> Refer And Earn Configure</h2>
+                      <div class="row mt16 o_settings_container" id="refer_and_earn_selection_settings">
+                          <div class="col-xs-12 col-md-6 o_setting_box" id="landing-page">
+                              <div class="o_setting_right_pane">
+                                  <label string="Landing Page" for="id"/>
+
+                                  <div>
+                                      <button type="object" name="open_landing_page_content" string="Configure Landing Page" class="oe_inline oe_link"/>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-xs-12 col-md-6 o_setting_box" id="mail-template">
+                              <div class="o_setting_right_pane">
+                                  <label string="Mail Template" for="id"/>
+
+                                  <div>
+                                      <button type="object" name="open_wizard_mail_template" string="Configure Mail Template" class="oe_inline oe_link"/>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                            <div id="verify_commission" class="col-12 col-md-6 o_setting_box">
+                                 <div class="o_setting_right_pane">
+                                     <label string="Commission Type" for="verify_commission"/>
+                                     <div class="text-muted">
+                                        Approved/Referred Commission based On: <br/>
+                                        1)When Refferal customer Signup with Refferal code <br/>
+                                        2)When Refferal customer Signup with Refferal code and after complete first order
+                                     </div>
+                                     <div class="mt8">
+                                      <field name="verify_commission" class="o_light_label" widget="radio"/>
+                                     </div>
+                                     <div>
+                                         <b>*Note :</b> Configure How it works? accordingly to Commission Type
+                                     </div>
+                                 </div>
+                             </div>
+
+
+
+                             <div class="col-12 col-lg-6 o_setting_box" id="referral_points">
+
+                                    <div class="o_setting_left_pane">
+                                        <field name="is_refferal_points_used"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <label string="Referral Points" for="is_refferal_points_used"/>
+                                        <div class="text-muted">
+                                            (select to set the Referral Points)
+                                        </div>
+                                        <div class="content-group" attrs="{'invisible': [('is_refferal_points_used', '=', False)]}">
+                                                <div class="row mt16">
+                                                    <label class="col-lg-3 o_light_label" string="Set Referral Points" for="referral_points"/>
+                                                    <field name="referral_points"/>
+                                                    <div class="text-muted">
+                                                         &#160;&#160;&#160;&#160;(Customer who Signup with the Friend's Referral code.)
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+
+                             </div>
+
+                             <div class="col-xs-12 col-md-6 o_setting_box" id="mail-template">
+                                 <div class="o_setting_right_pane">
+                                     <label string="How it works?" for="id"/>
+
+                                     <div>
+                                         <button type="object" name="open_how_it_work_content" string="Configure How it Works?" class="oe_inline oe_link"/>
+                                     </div>
+                                 </div>
+                             </div>
+
+                             <div class="col-12 col-lg-6 o_setting_box" id="refered_points">
+                                <div class="o_setting_right_pane">
+                                    <label for="refered_points" string="Referred Points"/>
+                                    <div class="text-muted">
+                                        (Customer who's Referral Code is used.)
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="row mt16">
+                                            <label class="col-lg-3 o_light_label" string="Set Referrer Points" for="refered_points"/>
+                                            <field name="refered_points"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-6 o_setting_box" id="refered_points">
+                               <div class="o_setting_right_pane">
+                                   <label for="equivalent_amount" string="Equivalent Amount"/>
+                                   <div class="content-group">
+                                       <div class="row mt16">
+                                           <label class="col-lg-3 o_light_label" string="Set Amount for per Point" for="equivalent_amount"/>
+                                           <field name="equivalent_amount"/>
+                                           <span class="oe_inline" style="padding-top:7px; padding-left:2px;">
+                                                <field name="currency_id" readonly="1" class="oe_inline"/>
+                                            </span>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                      </div>
+
+                      <div style="padding:3%;">
+                              <span>(*) This configuration is related to the company you're logged into.</span>
+                      </div>
+
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+
+
+
+
+        <record id="action_refer_and_earn_configuration" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="refer_and_earn.refer_and_earn_res_config_settings_view_form"/>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'refer_and_earn'}</field>
+        </record>
+</odoo>

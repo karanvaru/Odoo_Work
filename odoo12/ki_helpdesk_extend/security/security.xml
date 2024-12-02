@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record id="group_asc_portal_access" model="res.groups">
+            <field name="name">ASC Portal Access</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_portal'))]"/>
+        </record>
+
+        <record id="helpdesk_portal_ticket_rule_asc_user" model="ir.rule">
+            <field name="name">Tickets: portal users: portal or following ASC User</field>
+            <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
+            <field name="domain_force">[('asp_engineer_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('ki_helpdesk_extend.group_asc_portal_access'))]"/>
+        </record>
+        <record id="helpdesk_portal_ticket_rule_own_user" model="ir.rule">
+            <field name="name">Tickets: portal users: portal or following  Users(own users)</field>
+            <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
+            <field name="domain_force">[('created_by_user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="view_quote_excel_template_form" model="ir.ui.view">
+            <field name="name">quote.excel.template.form</field>
+            <field name="model">quote.excel.template</field>
+            <field name="priority" eval="900"/>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="file" filename="file_char"/>
+                            <field name="file_char" invisible="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Lines">
+                                <field name="line_ids">
+                                    <tree editable="bottom">
+                                        <field name="field_id" required='1'/>
+                                        <field name="cell" required='1'/>
+                                        <field name="sheet_number" required='1'/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_quote_excel_template_tree" model="ir.ui.view">
+            <field name="name">quote.excel.template.tree</field>
+            <field name="model">quote.excel.template</field>
+            <field name="priority" eval="900"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="file_char"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_quote_excel_template" model="ir.actions.act_window">
+            <field name="name">Quote Excel Template</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">quote.excel.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Estimate Excel
+                </p>
+            </field>
+
+        </record>
+
+
+        <menuitem id="menu_action_quote_excel_template" name="Quotation Excel Template"
+                  parent="sale.menu_sale_config"
+                  sequence="99" action="action_quote_excel_template"/>
+
+
+    </data>
+</odoo>
+
+

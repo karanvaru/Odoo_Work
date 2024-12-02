@@ -1,0 +1,158 @@
+<odoo>
+    <data>
+        <!--MII Content Required Tree-->
+        <record id="crm_mii_content_tree_view" model="ir.ui.view">
+            <field name="name">crm.mii.content.tree.view</field>
+            <field name="model">crm.mii.content</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_crm_mii_content_view">
+            <field name="name">MII Content Required</field>
+            <field name="res_model">crm.mii.content</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <!--MII Content Required Tree-->
+        <record id="crm_capture_type_tree_view" model="ir.ui.view">
+            <field name="name">crm.capture.type.tree.view</field>
+            <field name="model">crm.capture.type</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_crm_capture_type_view">
+            <field name="name">BID Capture Type</field>
+            <field name="res_model">crm.capture.type</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <!--MII Content Required Tree-->
+        <record id="crm_category_type_tree_view" model="ir.ui.view">
+            <field name="name">crm.category.type.tree.view</field>
+            <field name="model">crm.category.type</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_crm_category_type_view">
+            <field name="name">Bid Category Type</field>
+            <field name="res_model">crm.category.type</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <!--CRM Product Category-->
+        <record id="crm_product_category_tree_view" model="ir.ui.view">
+            <field name="name">crm.product.category.tree.view</field>
+            <field name="model">crm.product.category</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_crm_product_category">
+            <field name="name">Product Category</field>
+            <field name="res_model">crm.product.category</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <!--BID to RA Enabled-->
+        <record id="crm_bid_ra_tree_view" model="ir.ui.view">
+            <field name="name">crm.bid.ra.tree.view</field>
+            <field name="model">crm.bid.ra</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_bid_to_ra_view">
+            <field name="name">BID To RA</field>
+            <field name="res_model">crm.bid.ra</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <!--BID type-->
+        <record id="crm_bid_type_tree_view" model="ir.ui.view">
+            <field name="name">crm.bid.type.tree.view</field>
+            <field name="model">crm.bid.type</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_bid_type_view">
+            <field name="name">BID Type</field>
+            <field name="res_model">crm.bid.type</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem id="crm_new_bid_menu"
+                  name="BID"
+                  parent="crm.crm_menu_config"
+                  sequence="101"/>
+
+        <menuitem id="crm_product_category"
+                  name="Product Category"
+                  parent="crm_new_bid_menu"
+                  sequence="1"
+                  action="action_crm_product_category"
+        />
+        <menuitem id="crm_content_required_menu"
+                  name="MII Content Required"
+                  parent="crm_new_bid_menu"
+                  sequence="2"
+                  action="action_crm_mii_content_view"
+        />
+        <menuitem id="crm_capture_type_menu"
+                  name="BID Capture Type"
+                  parent="crm_new_bid_menu"
+                  sequence="3"
+                  action="action_crm_capture_type_view"
+        />
+
+        <menuitem id="crm_category_type_menu"
+                  name="Bid Category Type"
+                  parent="crm_new_bid_menu"
+                  sequence="4"
+                  action="action_crm_category_type_view"
+        />
+
+        <menuitem id="crm_bid_to_Ra_menu"
+                  name="Bid To RA"
+                  parent="crm_new_bid_menu"
+                  sequence="5"
+                  action="action_bid_to_ra_view"/>
+
+        <menuitem id="crm_bid_type_menu"
+                  name="Bid Type"
+                  parent="crm_new_bid_menu"
+                  sequence="6"
+                  action="action_bid_type_view"/>
+
+    </data>
+</odoo>

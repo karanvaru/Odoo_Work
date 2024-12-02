@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- product.cat tree view -->
+	<record id="product_cat_view_tree" model="ir.ui.view">
+		<field name="name">product.cat.view.tree</field>
+		<field name="model">product.cat</field>
+		<field name="arch" type="xml">
+			<tree editable="top">
+				<!-- Add your fields here -->
+				<field name="name"/>
+			</tree>
+		</field>
+	</record>
+
+	<!-- product.cat form view -->
+	<record id="product_cat_view_form" model="ir.ui.view">
+		<field name="name">product.cat.view.form</field>
+		<field name="model">product.cat</field>
+		<field name="arch" type="xml">
+			<form string="Product Category">
+				<sheet>
+					<group>
+						<!-- Add your fields here -->
+						<field name="name"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- product.act action window -->
+	<record id="product_act_action" model="ir.actions.act_window">
+		<field name="name">Product Category</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">product.cat</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				<!-- Add Product Categories Here -->
+			</p>
+		</field>
+	</record>
+
+	<menuitem
+		id="product_actions_submenu"
+		name="Reddot Products"	
+		groups="stock.group_stock_manager"
+		parent="stock.menu_stock_config_settings"
+		sequence="30"/>
+
+	<!-- This Menu Item must have a parent and an action -->
+	<menuitem id="product_cat_menu_act" name="Product Category" parent="product_actions_submenu" action="product_act_action" sequence="31"/>
+
+
+
+	<!-- product.model tree view -->
+	<record id="product_model_view_tree" model="ir.ui.view">
+		<field name="name">product.model.view.tree</field>
+		<field name="model">product.model</field>
+		<field name="arch" type="xml">
+			<tree editable="top">
+				<!-- Add your fields here -->
+				<field name="name"/>
+			</tree>
+		</field>
+	</record>
+
+
+	<!-- product.model form view -->
+	<record id="product_model_view_form" model="ir.ui.view">
+		<field name="name">product.model.view.form</field>
+		<field name="model">product.model</field>
+		<field name="arch" type="xml">
+			<form string="Product Model">
+				<sheet>
+					<group>
+						<!-- Add your fields here -->
+						<field name="name"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- product.act action window -->
+	<record id="product_model_action" model="ir.actions.act_window">
+		<field name="name">Product Model</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">product.model</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				<!-- Add Product Models Here -->
+			</p>
+		</field>
+	</record>
+
+	<!-- This Menu Item must have a parent and an action -->
+	<menuitem id="product_model_menu_act" name="Product Model" parent="product_actions_submenu" action="product_model_action" sequence="32"/>
+
+	<!-- product.line tree view -->
+	<record id="product_line_view_tree" model="ir.ui.view">
+		<field name="name">product.line.view.tree</field>
+		<field name="model">product.line</field>
+		<field name="arch" type="xml">
+			<tree editable="top">
+				<!-- Add your fields here -->
+				<field name="name"/>
+			</tree>
+		</field>
+	</record>
+
+
+	<!-- product.line form view -->
+	<record id="product_line_view_form" model="ir.ui.view">
+		<field name="name">product.line.view.form</field>
+		<field name="model">product.line</field>
+		<field name="arch" type="xml">
+			<form string="Product Line">
+				<sheet>
+					<group>
+						<!-- Add your fields here -->
+						<field name="name"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- product.line action window -->
+	<record id="product_line_act_action" model="ir.actions.act_window">
+		<field name="name">Product Line</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">product.line</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				<!-- Add Product Models Here -->
+			</p>
+		</field>
+	</record>
+
+	<!-- This Menu Item must have a parent and an action -->
+	<menuitem id="product_line_menu_act" name="Product Line" parent="product_actions_submenu" action="product_line_act_action" sequence="33"/>
+
+
+	<!-- product.family tree view -->
+	<record id="product_family_view_tree" model="ir.ui.view">
+		<field name="name">product.family.view.tree</field>
+		<field name="model">product.family</field>
+		<field name="arch" type="xml">
+			<tree editable="top">
+				<!-- Add your fields here -->
+				<field name="name"/>
+			</tree>
+		</field>
+	</record>
+
+
+	<!-- product.model form view -->
+	<record id="product_family_view_form" model="ir.ui.view">
+		<field name="name">product.family.view.form</field>
+		<field name="model">product.family</field>
+		<field name="arch" type="xml">
+			<form string="Product Family">
+				<sheet>
+					<group>
+						<!-- Add your fields here -->
+						<field name="name"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- product.act action window -->
+	<record id="product_family_action" model="ir.actions.act_window">
+		<field name="name">Product Family</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">product.family</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				<!-- Add Product Family Here -->
+			</p>
+		</field>
+	</record>
+
+	<!-- This Menu Item must have a parent and an action -->
+	<menuitem id="product_family_menu_act" name="Product Family" parent="product_actions_submenu" action="product_family_action" sequence="34"/>
+
+	<!-- product.group tree view -->
+	<record id="product_group_view_tree" model="ir.ui.view">
+		<field name="name">product.group.view.tree</field>
+		<field name="model">product.group</field>
+		<field name="arch" type="xml">
+			<tree editable="top">
+				<!-- Add your fields here -->
+				<field name="name"/>
+			</tree>
+		</field>
+	</record>
+
+
+	<!-- product.group form view -->
+	<record id="product_group_view_form" model="ir.ui.view">
+		<field name="name">product.group.view.form</field>
+		<field name="model">product.group</field>
+		<field name="arch" type="xml">
+			<form string="Product Group">
+				<sheet>
+					<group>
+						<!-- Add your fields here -->
+						<field name="name"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- product.act action window -->
+	<record id="product_group_action" model="ir.actions.act_window">
+		<field name="name">Product Group</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">product.group</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				<!-- Add Product Group Here -->
+			</p>
+		</field>
+	</record>
+
+	<!-- This Menu Item must have a parent and an action -->
+	<menuitem id="product_group_menu_act" name="Product Group" parent="product_actions_submenu" action="product_group_action" sequence="35"/>
+</odoo>

@@ -1,0 +1,33 @@
+<openerp>
+    <data noupdate="1">
+	<record id="ke_benefit1" model="ke.benefit.type">
+	   <field name="name">FOR FUTURE USE</field>
+           <field name="rule_id" ref="hr_ke.ke_rule31"/>
+	</record>
+
+	<record id="ke_benefit2" model="ke.benefit.type">
+	   <field name="name">Water</field>
+           <field name="rule_id" ref="hr_ke.ke_rule32"/>
+	</record>
+
+	<record id="ke_benefit3" model="ke.benefit.type">
+	   <field name="name">Electricity</field>
+           <field name="rule_id" ref="hr_ke.ke_rule33"/>
+	</record>
+
+	<record id="ke_benefit4" model="ke.benefit.type">
+	   <field name="name">Telephone</field>
+           <field name="rule_id" ref="hr_ke.ke_rule34"/>
+	</record>
+
+	<record id="ke_benefit5" model="ke.benefit.type">
+	   <field name="name">Servants</field>
+           <field name="rule_id" ref="hr_ke.ke_rule35"/>
+	</record>
+
+	<record id="ke_benefit6" model="ke.benefit.type">
+	   <field name="name">Security Services</field>
+           <field name="rule_id" ref="hr_ke.ke_rule36"/>
+	</record>
+    </data>
+</openerp>

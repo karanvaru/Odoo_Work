@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">  
+  		<record id="amazon_stock_adjustment_subtype_ept" model="mail.message.subtype">
+            <field name="name">Stock Adjustment Subtype</field>
+            <field name="res_model">amazon.stock.adjustment.report.history</field>
+            <field name="default" eval="False"/>
+            <field name="description">Stock Adjustment Subtype</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,238 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="payment_settlement_transaction_tree">
+            <field name="name">payment.settlement.transaction</field>
+            <field name="model">payment.settlement.transaction</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Settlement Transaction"
+                      decoration-danger="status == 'not_in_erp'"
+                      decoration-primary="status == 'not_in_settlement'"
+                      decoration-warning="status == 'amount_match_diff'"
+                      decoration-success="status == 'amount_match'">
+                    <field name="shop_id" optional="show"/>
+                    <field name="order_reference" optional="show"/>
+                    <field name="order_id" optional="show"/>
+                    <field name="transaction_id" optional="show"/>
+                    <field name="sale_total_amount" optional="show"/>
+                    <field name="final_settlement_amount" optional="show"/>
+                    <field name="status" optional="show"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="payment_settlement_transaction_form">
+            <field name="name">payment.settlement.transaction.form</field>
+            <field name="model">payment.settlement.transaction</field>
+            <field name="arch" type="xml">
+                <form string="Payment Settlement Transaction form">
+                    <sheet>
+                        <group>
+                            <group id="header_left_group">
+                                <field name="shop_id"/>
+                                <field name="order_reference"/>
+                                <field name="order_id"/>
+                                <field name="sale_total_amount"/>
+                            </group>
+                            <group id="header_right_group">
+                                <field name="transaction_id"/>
+                                <field name="final_settlement_amount"/>
+                                <field name="status"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Content">
+                                <field name="line_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="payment_transaction_id" invisible="1"/>
+                                        <field name="type_id" optional="show"/>
+                                        <field name="order_reference" optional="show"/>
+                                        <field name="order_id" optional="show"/>
+                                        <field name="transaction_id" optional="show"/>
+                                        <field name="value" optional="show"/>
+                                        <field name="amount" optional="show"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <!-- Attachment preview -->
+                    <div class="o_attachment_preview"/>
+                    <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+        <record id="actions_payment_settlement_transaction" model="ir.actions.act_window">
+            <field name="name">Payment Settlement Transaction</field>
+            <field name="res_model">payment.settlement.transaction</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record id="view_payment_settlement_transaction_lines_pivot" model="ir.ui.view">
+            <field name="name">payment.settlement.transaction.lines.pivot</field>
+            <field name="model">payment.settlement.transaction.lines</field>
+            <field name="arch" type="xml">
+                <pivot string="Payment Settlement Transaction" sample="1">
+                    <field name="type_id" type="col"/>
+                    <field name="order_reference" type="row"/>
+                </pivot>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="payment_settlement_transaction_lines_tree">
+            <field name="name">payment.settlement.transaction.lines.tree</field>
+            <field name="model">payment.settlement.transaction.lines</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Settlement Transaction Lines">
+                    <field name="type_id" optional="show"/>
+                    <field name="order_reference" optional="show"/>
+                    <field name="order_id" optional="show"/>
+                    <field name="transaction_id" optional="show"/>
+                    <field name="value" optional="show"/>
+                    <field name="amount" optional="show"/>
+                </tree>
+            </field>
+        </record>
+        <record id="payment_settlement_transaction_lines_search" model="ir.ui.view">
+            <field name="name">payment.settlement.transaction.lines.search</field>
+            <field name="model">payment.settlement.transaction.lines</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="type_id"/>
+                    <field name="order_reference"/>
+                    <field name="order_id"/>
+                    <field name="transaction_id"/>
+                    <field name="value"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Type" name="group_type" context="{'group_by':'type_id'}"/>
+                        <filter string="Order Reference" name="group_order_reference"
+                                context="{'group_by':'order_reference'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="actions_payment_settlement_transaction_lines" model="ir.actions.act_window">
+            <field name="name">Payment Settlement Transaction Lines</field>
+            <field name="res_model">payment.settlement.transaction.lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,pivot</field>
+        </record>
+
+        <menuitem id="payment_settlement_transaction_lines_menu"
+                  name="Payment Settlement Transaction"
+                  action="actions_payment_settlement_transaction_lines"
+                  parent="sale.menu_sale_report"
+        />
+
+
+        <record model="ir.ui.view" id="payment_settlement_transaction_flipkart_lines_tree">
+            <field name="name">payment.settlement.transaction.lines.tree</field>
+            <field name="model">flipkart.payment.settlement</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Settlement Transaction Lines" create="False">
+                    <field name="order_id"/>
+                    <field name="order_item_id"/>
+                    <field name="product_id"/>
+                    <field name="total_sale_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="actions_payment_flipkart_settlement_transaction_lines"
+                model="ir.actions.act_window">
+            <field name="name">Flipkart Payment Settlement Transaction Lines</field>
+            <field name="res_model">flipkart.payment.settlement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+        <record model="ir.ui.view" id="payment_settlement_transaction_amazon_lines_tree">
+            <field name="name">payment.settlement.transaction.amzon.lines.tree</field>
+            <field name="model">amazon.payment.settlement</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Settlement Transaction Lines" create="False">
+                    <field name="order_id"/>
+                    <field name="product_id"/>
+                    <field name="total"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="actions_payment_amazon_settlement_transaction_lines"
+                model="ir.actions.act_window">
+            <field name="name">Amazon Payment Settlement Transaction Lines</field>
+            <field name="res_model">amazon.payment.settlement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+        <record model="ir.ui.view" id="payment_settlement_transaction_ajio_lines_tree">
+            <field name="name">payment.settlement.transaction.ajio.lines.tree</field>
+            <field name="model">ajio.payment.settlement</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Settlement Transaction Lines" create="False">
+                    <field name="order_id"/>
+                    <field name="awb_no"/>
+                    <field name="value"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="actions_payment_ajio_settlement_transaction_lines"
+                model="ir.actions.act_window">
+            <field name="name">Ajio Payment Settlement Transaction Lines</field>
+            <field name="res_model">ajio.payment.settlement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+        <record model="ir.ui.view" id="payment_settlement_transaction_myntra_lines_tree">
+            <field name="name">payment.settlement.transaction.myntra.lines.tree</field>
+            <field name="model">myntra.payment.settlement</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Settlement Transaction Lines" create="False">
+                    <field name="sale_order_code"/>
+                    <field name="order_date"/>
+<!--                    <field name="value"/>-->
+<!--                    <field name="status"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="actions_payment_myntra_settlement_transaction_lines"
+                model="ir.actions.act_window">
+            <field name="name">Myntra Payment Settlement Transaction Lines</field>
+            <field name="res_model">myntra.payment.settlement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+        <record model="ir.ui.view" id="payment_settlement_transaction_citymall_lines_tree">
+            <field name="name">payment.settlement.transaction.myntra.lines.tree</field>
+            <field name="model">citymall.payment.settlement</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Settlement Transaction Lines" create="False">
+                    <field name="order_code"/>
+                    <field name="order_date"/>
+                    <field name="product_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="actions_payment_citymall_settlement_transaction_lines"
+                model="ir.actions.act_window">
+            <field name="name">Citymall Payment Settlement Transaction Lines</field>
+            <field name="res_model">citymall.payment.settlement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+    </data>
+</odoo>

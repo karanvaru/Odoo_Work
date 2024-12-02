@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="invoice_report_inherit" inherit_id="account.report_invoice_document">
+            <xpath expr="//t[@t-set='address']" position="replace">
+
+                <table style="border: none;">
+                    <tr>
+                        <td styleleft="padding-left: 50px" style="border: none;width: 100%;">
+                            <strong>Buyer</strong>
+                            <address t-field="o.partner_id"
+                                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                            <div t-if="o.partner_id.vat" class="mt16">
+                                <t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>
+                                :
+                                <span t-field="o.partner_id.vat"/>
+                            </div>
+                        </td>
+                        <td t-if='o.qr_image' style="border: none;text-align: right;">
+
+                            <img t-att-src="image_data_uri(o.qr_image)" style="width:150pt; height:150pt;"/>
+                        </td>
+                    </tr>
+                </table>
+            </xpath>
+
+            <xpath expr="//div[@class='row mt32 mb32']" position="inside">
+                <div name="acknowledge" class="col-auto mw-100 mb-2" t-if="o.ackdt_no">
+                    <strong>Acknowledge Date:</strong>
+                    <p class="m-0" t-field="o.ackdt_no"/>
+                </div>
+                <div name="acknowledge" class="col-auto mw-100 mb-2" t-if="o.ack_no">
+                    <strong>Acknowledge No.:</strong>
+                    <p class="m-0" t-field="o.ack_no"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//div[@class='row mt32 mb32']" position="after">
+                <div id="irn_number" class="row mt32 mb32">
+                    <div class="col-auto mw-100 mb-2" t-if="o.irn_no" name="irn_number">
+                        <strong>IRN Number:-</strong>
+                        <span t-field="o.irn_no"/>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="invoice_address_inherit" inherit_id="web.external_layout_boxed">
+            <xpath expr="//div[@class='col-6 text-right mb4']" position="inside">
+                <span class="company_address" t-field="company.partner_id"
+                      t-options='{"widget": "contact", "fields": ["address",], "no_marker": true}'/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

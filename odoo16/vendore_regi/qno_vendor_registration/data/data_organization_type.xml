@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="org_type_sp" model="organization.type">
+            <field name="name">Sole Proprietorship</field>
+        </record>
+
+        <record id="org_type_pf" model="organization.type">
+            <field name="name">Partnership Firm</field>
+        </record>
+
+        <record id="org_type_llp" model="organization.type">
+            <field name="name">Limited Liability Partnership (LLP)</field>
+        </record>
+
+        <record id="org_type_private" model="organization.type">
+            <field name="name">Private Limited Company</field>
+        </record>
+
+        <record id="org_type_public" model="organization.type">
+            <field name="name">Public Limited Company</field>
+        </record>
+
+        <record id="org_type_opc" model="organization.type">
+            <field name="name">One Person Company (OPC)</field>
+        </record>
+
+        <record id="org_type_section_8" model="organization.type">
+            <field name="name">Section 8 Company</field>
+        </record>
+
+        <record id="org_type_huf" model="organization.type">
+            <field name="name">Hindu Undivided Family (HUF)</field>
+        </record>
+
+        <record id="org_type_cooperative" model="organization.type">
+            <field name="name">Cooperative Society</field>
+        </record>
+
+        <record id="org_type_trust" model="organization.type">
+            <field name="name">Trust</field>
+        </record>
+
+        <record id="org_type_ngo" model="organization.type">
+            <field name="name">Non-Governmental Organization (NGO)</field>
+        </record>
+
+    </data>
+</odoo>

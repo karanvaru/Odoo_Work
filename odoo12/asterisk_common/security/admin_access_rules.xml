@@ -1,0 +1,52 @@
+<odoo>
+
+    <record id="kv_cache_asterisk_admin" model="ir.model.access">
+        <field name="name">kv_cache_asterisk_admin</field>
+        <field name="model_id" ref="model_kv_cache_cache"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_admin"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="asterisk_event_admin" model="ir.model.access">
+        <field name="name">asterisk_event_admin</field>
+        <field name="model_id" ref="asterisk_common.model_asterisk_common_event"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_admin"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="asterisk_user_admin" model="ir.model.access">
+        <field name="name">asterisk_user_admin</field>
+        <field name="model_id" ref="asterisk_common.model_asterisk_common_user"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_admin"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="asterisk_user_channel_admin" model="ir.model.access">
+        <field name="name">asterisk_user_channel_admin</field>
+        <field name="model_id" ref="asterisk_common.model_asterisk_common_user_channel"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_admin"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="asterisk_settings_admin" model="ir.model.access">
+        <field name="name">asterisk_settings_admin</field>
+        <field name="model_id" ref="asterisk_common.model_asterisk_common_settings"/>
+        <field name="group_id" ref="asterisk_common.group_asterisk_admin"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+</odoo>

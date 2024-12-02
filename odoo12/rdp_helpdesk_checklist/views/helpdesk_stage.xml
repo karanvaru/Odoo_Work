@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="helpdesk_stage_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.stage.form</field>
+        <field name="model">helpdesk.stage</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_stage_view_form"/>
+        <field name="arch" type="xml">
+            <form position="inside">
+                <notebook>
+                    <page string="Check List">
+                        <field name="default_helpdesk_check_list_ids">
+                            <tree editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="name"/>
+                                <field name="group_ids" widget="many2many_tags"/>
+                                <field name="should_be_reset"/>
+                            </tree>
+                        </field>
+                        <group>
+                            <field name="no_need_for_checklist"/>
+                        </group>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+</odoo>

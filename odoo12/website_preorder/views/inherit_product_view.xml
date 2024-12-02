@@ -1,0 +1,129 @@
+<!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="inherit_view_product_filter">
+            <field name="name">product.template.search</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="is_preorder_type"/>
+                    <filter string="Pre-Order Product" domain="[('is_preorder_type','=',True)]" name="pre_order_filter"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_product_template_preorder_form_view" model="ir.ui.view">
+            <field name="name">product.template.common.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='options']" position="inside">
+                    <div>
+                        <field name="is_preorder_type" groups="website_preorder.website_preorder_group"/>
+                        <label for="is_preorder_type" groups="website_preorder.website_preorder_group"/>
+                    </div>
+                </xpath>
+                 <xpath expr="//page[@name='sales']" position="after" >
+                    <page string="Pre-Order" name="pre-order_configuration" attrs="{'invisible':['|',('sale_ok','=',False),('is_preorder_type','=',False)]}" groups="website_preorder.website_preorder_group">
+                        <group name="pre-order" string="Pre-Order Settings"  attrs="{'invisible': [('is_preorder_type', '=', False)]}" >
+                            <group>
+                                <field name="visible" invisible="1"/>
+                                <label for="pre_order_date" string="Pre-Order Expiry Date" attrs="{'invisible': [('is_preorder_type', '=', False)]}"/>
+                                <div attrs="{'invisible': [('is_preorder_type', '=', False)]}">
+                                    <field name="pre_order_date" attrs="{'required': [('is_preorder_type', '=', True)],'invisible': [('is_preorder_type', '=', False)]}" />
+                                    <span attrs="{'invisible':['|',('visible', '=', False),('pre_order_date','=',False)]}" class="oe_inline">
+                                    Product pre-order date Expired.
+                                    </span>
+                                </div>
+                                <field name="wk_override_pre_order_default"/>
+                                <field name="minimum_qty" attrs="{'readonly':[('wk_override_pre_order_default', '=', False)],'required':[('wk_override_pre_order_default','=',True)]}"/>
+                            </group>
+                            <group>
+                                <field name="payment_type" attrs="{'readonly':[('wk_override_pre_order_default', '=', False)]}"/>
+                                <label for="percentage" string="Percent Payment For Pre-order" attrs="{'invisible':[('payment_type','!=','percent')]}"/>
+                                <div attrs="{'invisible':[('payment_type','!=','percent')]}">
+                                    <field name="percentage" class="oe_inline" attrs="{'required':[('payment_type','=','percent')],'readonly':[('wk_override_pre_order_default', '=', False)]}"/>
+                                    <label for="percentage" string="%"/>
+                                </div>
+                                <field name="min_order_qty" attrs="{'readonly':[('wk_override_pre_order_default', '=', False)],'required':[('wk_override_pre_order_default','=',True)]}" />
+                                <field name="max_order_qty" attrs="{'readonly':[('wk_override_pre_order_default', '=', False)],'required':[('wk_override_pre_order_default','=',True)]}" />
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="inherit_view_sales_order_filter">
+            <field name="name">sale.order.list.select</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="is_preorder"/>
+                    <filter string="Pre-Order" domain="[('is_preorder','=',True)]" name="pre_order_filter"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_view_pre_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group[2]" position="inside">
+                    <field name="preorder_payment_state"  readonly="1" attrs="{'invisible':[('is_preorder','=',False)]}"/>
+                    <field name="preorder_notify" readonly="1" invisible="1"/>
+                    <button type="object" name="send_notification_of_preorder" string="Pre-Order Confirmation Mail" class="oe_highlight" attrs="{'invisible':['|',('is_preorder','=',False),('preorder_notify','=',True)]}"/>
+                </xpath>
+                <xpath expr="//group[@name='sales_person']/field[@name='company_id']" position="after">
+                    <field name="is_preorder" />
+                </xpath>
+                <xpath expr="//tree/field[@name='price_total']" position="after">
+                    <field name="is_preorder" readonly="1"/>
+                </xpath>
+                <xpath expr="//form/group/group[2]" position="after">
+                    <group attrs="{'invisible':[('is_preorder','=',False)]}">
+                        <label string="Pre-Order Quantity"/>
+                        <div>
+                            <field name="pre_order_qty"/>
+                        </div>
+                        <label string="Pre-Order Amount"/>
+                        <div>
+                            <field name="preorder_amount"/>
+                        </div>
+                        <field name="preorder_notify" readonly="1"/>
+                        <field name="is_preorder" invisible="1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_view_pre_order_tree" model="ir.ui.view">
+            <field name="name">sale.order.tree.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="before">
+                    <field name="is_preorder" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_view_pre_order_quotation_tree" model="ir.ui.view">
+            <field name="name">sale.order.tree.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="before">
+                    <field name="is_preorder" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

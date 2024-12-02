@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="helpdesk_ticket_type_form_view">
+            <field name="name">Ticket Type</field>
+            <field name="model">ticket.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                     <group>
+                         <group>
+                                <field name="name"/>
+                         </group>
+                         <group>
+                         </group>
+                     </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="helpdesk_ticket_type_tree_view">
+            <field name="name">Ticket Type</field>
+            <field name="model">ticket.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                     <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="helpdesk_ticket_type_view">
+            <field name="name">Ticket Type</field>
+            <field name="model">ticket.type</field>
+            <field name="arch" type="xml">
+                <search>
+                     <field name="name"/>
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_helpdesk_sla" model="ir.actions.act_window">
+            <field name="name">Ticket Type</field>
+            <field name="res_model">ticket.type</field>
+<!--            <field name="view_type">form</field> odoo13-->
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem name="Ticket Types" id="menu_helpdesk_ticket_type" parent="website_helpdesk_support_ticket.menu_helpdesk_configuration" action="action_helpdesk_sla"/>
+        
+    </data>
+</odoo>

@@ -1,0 +1,1 @@
+from . import m2m_details

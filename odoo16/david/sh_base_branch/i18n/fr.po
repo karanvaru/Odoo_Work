@@ -1,0 +1,429 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_base_branch
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-03 06:30+0000\n"
+"PO-Revision-Date: 2022-02-03 06:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid ""
+"<span class=\"o_form_label o_td_label\" name=\"address_name\">\n"
+"                                <b>Address</b>\n"
+"                            </span>"
+msgstr ""
+"<span class=\"o_form_label o_td_label\" name=\"address_name\">\n"
+"                                <b>Adresse</b>\n"
+"                            </span>"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_needaction
+msgid "Action Needed"
+msgstr "Action nécessaire"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Décoration d'exception d'activité"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_state
+msgid "Activity State"
+msgstr "État d'activité"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icône de type d'activité"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__address
+msgid "Address"
+msgstr "Adresse"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_users__branch_ids
+msgid "Allow Branches"
+msgstr "Permettre aux branches"
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_user_form_view_inherit
+msgid "Allowed Branches"
+msgstr "Branches autorisées"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_attachment_count
+msgid "Attachment Count"
+msgstr "Compte de pièce jointe"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_partner__branch_id
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_users__branch_id
+#: model:ir.module.category,name:sh_base_branch.module_category_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_partner_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_user_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_user_search_view_inherit
+msgid "Branch"
+msgstr "Branche"
+
+#. module: sh_base_branch
+#: code:addons/sh_base_branch/models/sh_branch.py:0
+#, python-format
+msgid ""
+"Branch %(branch_name)s is not in the allowed branches for user %(user_name)s"
+" (%(branch_allowed)s)."
+msgstr ""
+"Branche %(branch_name)s n'est pas dans les branches autorisées pour l'utilisateur %(user_name)s"
+" (%(branch_allowed)s)."
+
+#. module: sh_base_branch
+#: model:ir.actions.act_window,name:sh_base_branch.sh_multi_branch_views_action
+#: model:ir.ui.menu,name:sh_base_branch.sh_multi_branch_views_menu
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "Branches"
+msgstr "Branches"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__city
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "City"
+msgstr "Ville"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: sh_base_branch
+#: model:ir.model,name:sh_base_branch.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__country_id
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "Country"
+msgstr "Pays"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__create_date
+msgid "Created on"
+msgstr "Créé sur"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__display_name
+msgid "Display Name"
+msgstr "Afficher un nom"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__email
+msgid "Email"
+msgstr "E-mail"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__email
+msgid "Email of Invited Person"
+msgstr "Email de personne invitée"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_follower_ids
+msgid "Followers"
+msgstr "Suiveurs"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Suiveurs (partenaires)"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icône géniale de police E.g. FA-Tâches"
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_user_search_view_inherit
+msgid "Group By"
+msgstr "Par groupe"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__has_message
+msgid "Has Message"
+msgstr "A un message"
+
+#. module: sh_base_branch
+#: model:ir.module.category,description:sh_base_branch.module_category_branch
+msgid "Helps you manage the Branch"
+msgstr "Vous aide à gérer la branche"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__id
+msgid "ID"
+msgstr "identifiant"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_exception_icon
+msgid "Icon"
+msgstr "Icône"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icône pour indiquer une activité d'exception."
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_needaction
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si coché, de nouveaux messages nécessitent votre attention."
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_has_error
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si coché, certains messages ont une erreur de livraison."
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_is_follower
+msgid "Is Follower"
+msgstr "Est suivi"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification sur"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Pièce jointe principale"
+
+#. module: sh_base_branch
+#: model:res.groups,name:sh_base_branch.group_branch_manager
+msgid "Manager"
+msgstr "Directeur"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_has_error
+msgid "Message Delivery error"
+msgstr "Erreur de livraison de message"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_ids
+msgid "Messages"
+msgstr "messages"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__mobile
+msgid "Mobile"
+msgstr "Mobile"
+
+#. module: sh_base_branch
+#: model:res.groups,name:sh_base_branch.sh_multi_branch_group
+msgid "Multi Branch"
+msgstr "Branche multiple"
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_user_form_view_inherit
+msgid "Multi Branches"
+msgstr "Multi branches"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Ma date limite d'activité"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Date limite d'activité suivante"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_summary
+msgid "Next Activity Summary"
+msgstr "Résumé de l'activité suivante"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_type_id
+msgid "Next Activity Type"
+msgstr "Type d'activité suivant"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_has_error_counter
+msgid "Number of errors"
+msgstr "Nombre d'erreurs"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Nombre de messages nécessitant une action"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de messages avec erreur de livraison"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Nombre de messages non lus"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__phone
+msgid "Phone No."
+msgstr "Pas de téléphone."
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__mobile
+msgid "Phone number of Invited Person"
+msgstr "Numéro de téléphone de personne invitée"
+
+#. module: sh_base_branch
+#: model:ir.model,name:sh_base_branch.model_res_branch
+msgid "Res Branch"
+msgstr "Branche"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__activity_user_id
+msgid "Responsible User"
+msgstr "Utilisateur responsable"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erreur de livraison SMS"
+
+#. module: sh_base_branch
+#. openerp-web
+#: code:addons/sh_base_branch/static/src/xml/apps.xml:0
+#, python-format
+msgid "Search ..."
+msgstr "Chercher ..."
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__state_id
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "State"
+msgstr "État"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Statut basé sur les activités\n"
+"En retard: La date d'échéance est déjà passée\n"
+"Aujourd'hui: La date d'activité est aujourd'hui\n"
+"Prévu: Activités futures."
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__street
+msgid "Street"
+msgstr "rue"
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "Street 2..."
+msgstr "Rue # 2..."
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "Street..."
+msgstr "Rue..."
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__street2
+msgid "Street2"
+msgstr "Rue # 2"
+
+#. module: sh_base_branch
+#: model:res.groups,comment:sh_base_branch.sh_multi_branch_group
+msgid "This user will be able to use Multi Branch Feature"
+msgstr "Cet utilisateur sera en mesure d'utiliser la fonction multi-branche"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Type de l'activité d'exception sur l'enregistrement."
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_unread
+msgid "Unread Messages"
+msgstr "Non lu"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Messages non lus compteur"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__user_id
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: sh_base_branch
+#: model:ir.model,name:sh_base_branch.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__website_message_ids
+msgid "Website Messages"
+msgstr "Messages de site Web"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,help:sh_base_branch.field_res_branch__website_message_ids
+msgid "Website communication history"
+msgstr "Historique des communications de sites Web"
+
+#. module: sh_base_branch
+#: model_terms:ir.ui.view,arch_db:sh_base_branch.sh_multi_branch_form_view
+msgid "ZIP"
+msgstr "ZIP *: FRANÇAIS"
+
+#. module: sh_base_branch
+#: model:ir.model.fields,field_description:sh_base_branch.field_res_branch__zip
+msgid "Zip"
+msgstr "Zipper"

@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+journal_audit_admin,journal.audit,model_journal_audit,base.group_system,1,1,1,1
+journal_audit_line_admin,journal.audit.line,model_journal_audit_line,base.group_system,1,1,1,1
+audit_reason_line_admin,audit.reason.line,model_audit_reason_line,base.group_system,1,1,1,1
+journal_audit,journal_internal.audit,model_journal_audit,base.group_user,1,1,1,0
+journal_audit_line_inyernal,journal.audit.line,model_journal_audit_line,base.group_user,1,1,1,0
+audit_reason_line_internal,audit.reason.line,model_audit_reason_line,base.group_user,1,1,1,0
+audit_checklist_admin,audit.checklist,model_audit_checklist,base.group_system,1,1,1,1
+audit_checklist_internal,audit.checklist,model_audit_checklist,base.group_user,1,1,1,0
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="open_days_Recruitment_tree" model="ir.ui.view">
+            <field name="name">job Opening</field>
+            <field name="model">job.positions</field>
+            <field name="inherit_id" ref="job_positions.job_position_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='recruiter']" position="after">
+                    <field name="open_days" string="Open Days" attrs="{'invisible' : [('stage', '=', 'cancel')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

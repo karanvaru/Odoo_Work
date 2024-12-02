@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="inherit_hr_employee" model="ir.ui.view">
+            <field name="name">Hr Employee</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook//page[@name='public']//group[2]//field[@name='parent_id']" position="before">
+                    <field name='is_ceo'/>
+                </xpath>
+            </field>
+        </record>
+        <!--       Disciplinary      -->
+        <record id="employee_disciplinary_tree" model="ir.ui.view">
+            <field name="name">Employee Disciplinary Tree</field>
+            <field name="model">employee.disciplinary</field>
+            <field name="arch" type="xml">
+                <tree string="disciplinary tree">
+                    <field name='issuer'/>
+                    <field name='employee'/>
+                    <field name="spoc_id"/>
+                    <field name='name'/>
+                    <field name="delay_days" />
+                    <field name='resolve_date'/>
+                    <field name='state'/>
+                    <field name="open_days" attrs="{'invisible' : [('state', '=', 'resolve')]}"/>
+                </tree>
+            </field>
+        </record>
+        <record id="employee_disciplinary_form_view" model="ir.ui.view">
+            <field name="name">employee.disciplinary.form</field>
+            <field name="model">employee.disciplinary</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="employee disciplinary">
+                    <header>
+                        <button name="button_confirmed" string='Confirm' type="object" class="oe_highlight"
+                                states='submit' groups="disciplinary.group_manager"/>
+                        <button name="button_approve" string='Approve' type="object" class="oe_highlight"
+                                states='confirmed' groups="disciplinary.group_ceo"/>
+                        <button name="button_resolve2" string='Resolve' type="object" class="oe_highlight"
+                                states='confirmed' groups="disciplinary.group_ceo"/>
+<!--                        <button name="button_resolve" string='Resolve' type="object" class="oe_highlight"-->
+<!--                                states='noticed' groups="disciplinary.group_manager"/>-->
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="submit,confirmed,noticed,accept,for_lm,resolve"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_button_box">
+                            <button class="oe_stat_button" name="button_pip" type="object" icon="fa-clipboard">
+                                <field string="PIP" name="pip_count" widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button" name="button_appeal" type="object" icon="fa-clipboard">
+                                <field string="Appeal" name="appeal_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <div>
+                            <field name='name'
+                                   style="overflow-y: hidden;height: 34px;resize: none;width: 382px;background-color: #efeff8;"
+                                   attrs="{'readonly':[('state','!=','submit')]}"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name='type' attrs="{'readonly':[('state','!=','submit')]}"/>
+                                <field name='issuer' attrs="{'readonly':[('state','!=','submit')]}"/>
+                                <field name='issuer_department'/>
+                                <field name="company_id"/>
+                                <field name="spoc_id" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name='employee' domain="['|',('coach_id','=',issuer),('parent_id','=',issuer)]"
+                                       options="{'no_create_edit': True}"
+                                       attrs="{'readonly':[('state','!=','submit')]}"/>
+                                <field name='employee_department'/>
+                                <field name='date' attrs="{'readonly':[('state','!=','submit')]}"/>
+                                <!--                                <field name="date"/>-->
+                                <!--                                <field name="end_date" invisible="True"/>-->
+                                <field name='severity' attrs="{'readonly':[('state','!=','submit')]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name='description' style="background-color: #efeff8;"
+                                   attrs="{'readonly':[('state','!=','submit')]}"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="action_employee_disciplinary_from" model="ir.actions.act_window">
+            <field name="name">Employee Disciplinary</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.disciplinary</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_employee_disciplinary" name='Employee Disciplinary'
+                  action="action_employee_disciplinary_from"/>
+        <!-- Appeal -->
+        <record id="employee_appeal_tree" model="ir.ui.view">
+            <field name="name">Employee Appeal Tree</field>
+            <field name="model">employee.appeal</field>
+            <field name="arch" type="xml">
+                <tree string="appeal tree">
+                    <field name='employee'/>
+                    <field name='name'/>
+                    <field name='state'/>
+                </tree>
+            </field>
+        </record>
+        <record id="employee_appeal_form_view" model="ir.ui.view">
+            <field name="name">employee.appeal.form</field>
+            <field name="model">employee.appeal</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="employee appeal">
+                    <header>
+                        <button name="button_confirmed" string='Confirm' type="object" class="oe_highlight"
+                                states='submit' groups="disciplinary.group_employee"/>
+                        <button name="button_accept" string='Accept' type="object" class="oe_highlight"
+                                states='confirmed' groups="disciplinary.group_ceo"/>
+                        <button name="button_refuse" string='Refuse' type="object" class="oe_highlight"
+                                states='confirmed' groups="disciplinary.group_ceo"/>
+                        <button name="button_upheld" string='Upheld' type="object" class="oe_highlight" states='accept'
+                                groups="disciplinary.group_ceo_ceo"/>
+                        <button name="button_refuse" string='Refuse' type="object" class="oe_highlight" states='accept'
+                                groups="disciplinary.group_ceo_ceo"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="submit,confirmed,accept,upheld,refuse"/>
+                    </header>
+                    <sheet>
+                        <div>
+                            <field name='name'
+                                   style="overflow-y: hidden;height: 34px;resize: none;width: 382px;background-color: #efeff8;"/>
+                        </div>
+                        <group>
+                            <field name='employee'/>
+                            <field name='disciplinary' options="{'no_create_edit': True}"/>
+                            <field name='description' style="background-color: #efeff8;"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="action_employee_appeal_from" model="ir.actions.act_window">
+            <field name="name">Employee Appeal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.appeal</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+        </record>
+        <!-- PIP -->
+        <record id="employee_pip_tree" model="ir.ui.view">
+            <field name="name">Employee PIP Tree</field>
+            <field name="model">employee.pip</field>
+            <field name="arch" type="xml">
+                <tree string="pip tree">
+                    <field name='employee_pip'/>
+                    <field name='name'/>
+                    <field name='state'/>
+                </tree>
+            </field>
+        </record>
+        <record id="employee_pip_form_view" model="ir.ui.view">
+            <field name="name">employee.disciplinary.form</field>
+            <field name="model">employee.pip</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="employee disciplinary">
+                    <header>
+                        <button name="button_confirmed" string='Confirm' type="object" class="oe_highlight"
+                                states='submit' groups="disciplinary.group_manager"/>
+                        <button name="button_accept" string='Accept' type="object" class="oe_highlight"
+                                states='confirmed' groups="disciplinary.group_employee"/>
+                        <button name="button_refuse" string='Refuse' type="object" class="oe_highlight"
+                                states='confirmed' groups="disciplinary.group_employee"/>
+                        <button name="button_done" string='Resolve' type="object" class="oe_highlight" states='accept'
+                                groups="disciplinary.group_ceo"/>
+                        <button name="button_resolve" string='Resolve' type="object" class="oe_highlight"
+                                states='accept' groups="disciplinary.group_manager"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="submit,confirmed,accept,resolve,refuse"/>
+                    </header>
+                    <sheet>
+
+
+                        <div>
+                            <field name='name'
+                                   style="overflow-y: hidden;height: 34px;resize: none;width: 382px;background-color: #efeff8;"
+                                   attrs="{'readonly':[('state','!=','submit')]}"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name='supervisor' attrs="{'readonly':[('state','!=','submit')]}"/>
+                                <field name='employee_pip'
+                                       domain="['|',('coach_id','=',supervisor),('parent_id','=',supervisor)]"
+                                       options="{'no_create_edit': True}"
+                                       attrs="{'readonly':[('state','!=','submit')]}"/>
+                                <field name='disciplinary' options="{'no_create_edit': True}"
+                                       domain="[('employee','=',employee_pip)]"
+                                       attrs="{'readonly':[('state','!=','submit')]}"/>
+                            </group>
+                            <group>
+                                <field name='start_date' attrs="{'readonly':[('state','!=','submit')]}"/>
+                                <field name='end_date' attrs="{'readonly':[('state','!=','submit')]}"/>
+                                <field name='review_date' attrs="{'readonly':[('state','!=','submit')]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name='improvement' style="background-color: #efeff8;"
+                                   attrs="{'readonly':[('state','!=','submit')]}"/>
+                            <field name='result' style="background-color: #efeff8;"
+                                   attrs="{'readonly':[('state','!=','submit')]}"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="action_employee_pip_from" model="ir.actions.act_window">
+            <field name="name">Employee PIP</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.pip</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

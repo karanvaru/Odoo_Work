@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Move View -->
+    <record id="sh_multi_branch_stock_move_form_view_inherit" model="ir.ui.view">
+        <field name="name">stock.move.inherit.form.view.branch</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" groups="sh_base_branch.sh_multi_branch_group" options="{'no_create': True}" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_stock_move_search_view_inherit" model="ir.ui.view">
+        <field name="name">stock.move.search.branch</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//search//group//filter[@name='groupby_picking_id']" position="after">
+                <filter string="Branch" name="branch_id" domain="[]" context="{'group_by': 'branch_id'}" groups="sh_base_branch.sh_multi_branch_group" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_stock_move_tree_view_inherit" model="ir.ui.view">
+        <field name="name">stock.move.inherit.tree.view.branch</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" optional="show" groups="sh_base_branch.sh_multi_branch_group" />
+            </field>
+        </field>
+    </record>
+
+    <!--     Move Line View -->
+    <record id="sh_multi_branch_stock_line_form_view_inherit" model="ir.ui.view">
+        <field name="name">stock.move.line.inherit.form.view.branch</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_form" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" invisible="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_stock_line_search_view_inherit" model="ir.ui.view">
+        <field name="name">stock.move.line.search.branch</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.stock_move_line_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//search//group//filter[@name='groupby_product_id']" position="after">
+                <filter string="Branch" name="branch_id" domain="[]" context="{'group_by': 'branch_id'}" groups="sh_base_branch.sh_multi_branch_group" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_stock_line_tree_view_inherit" model="ir.ui.view">
+        <field name="name">stock.move.line.inherit.tree.view.branch</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" optional="show" groups="sh_base_branch.sh_multi_branch_group" />
+            </field>
+        </field>
+    </record>
+</odoo>

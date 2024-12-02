@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data> 
+        <template id="report_jobcard_custom"  inherit_id="job_card.report_jobcard">
+            <xpath expr="//div[hasclass('page')]" position="inside">
+                <br/>
+                <div t-if="o.custom_signature_job_card" class="text-end">
+                    <strong>Signature :  </strong>
+                    <span t-if="o.custom_signature_job_card">
+                        <img style="width:150px;height:150px;" t-attf-src="data:image/gif;base64, #{o.custom_signature_job_card}"/>
+                    </span>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

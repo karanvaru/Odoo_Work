@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+      <!-- See LICENSE URL <https://store.webkul.com/license.html/> for full copyright and licensing details. -->
+    <record id="wk_inherited_product_template_website_product_tags" model="ir.ui.view">
+      <field name="name">product.template.form.product.tags</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_form_view"/>
+      <field name="arch" type="xml">
+        <field name="list_price" position="after">
+          <field name="product_tag_ids" widget="many2many_tags"  domain="[('website_publish','=',True)]" />
+        </field>
+      </field>
+    </record>
+    <record id="wk_website_product_tags_form_view" model="ir.ui.view">
+      <field name="name">wk.product.tags.form</field>
+      <field name="model">wk.website.product.tags</field>
+      <field name="arch" type="xml">
+        <form string="Product Tags">
+          <sheet>
+            <group>
+              <group>
+                <field name="name"/>
+              </group>
+              <group>
+                <field name="website_publish"/>
+              </group>
+            </group>
+            <group>
+              <field name="product_ids" domain="[('website_published','=',True)]" />
+              <field name="website_style"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="wk_website_product_tags_tree_view" model="ir.ui.view">
+      <field name="name">wk.product.tags.tree</field>
+      <field name="model">wk.website.product.tags</field>
+      <field name="arch" type="xml">
+        <tree string="Product  Tags">
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+    <record id="wk_website_product_tags_action" model="ir.actions.act_window">
+      <field name="name">Product Tags Configuration</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">wk.website.product.tags</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field eval="False" name="view_id"/>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">Click to define a new Tags.
+          </p>
+        <p>Tags are used to browse your products through the
+            touchscreen interface.
+          </p>
+      </field>
+    </record>
+
+    <menuitem
+        id="menu_product_tags_root_menu"
+        parent="website_sale.menu_product_settings"
+        sequence="50"
+        name="Tags"
+        string="Tags"
+        action="wk_website_product_tags_action"
+        />
+  
+  </data>
+</odoo>

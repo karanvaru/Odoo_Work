@@ -1,0 +1,29 @@
+.contact_page
+    {
+        input,select,textarea{
+            display: list-item;
+            list-style: none;
+            width: 100%;
+            line-height: 21px;
+            border-bottom: 1px dashed #ccc;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            outline: none !important;
+            margin-bottom: -8px;
+            text-align:right;
+            min-height: 50px;
+        }
+        .col-lg-4{
+            min-height: 56px;
+        }
+    }
+
+.gibgi
+h1 {
+  Font-size:70px;
+  color: #3A9E3E;
+  font-weight: 500; /* Check if "Sora" supports this weight */
+  font-family: 'Sora', sans-serif; /* Specify fallback fonts */
+}
+

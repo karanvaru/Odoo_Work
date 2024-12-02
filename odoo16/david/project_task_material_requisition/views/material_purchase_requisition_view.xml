@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- explicit material_purchase_requisition_form_view inherit form view definition -->
+    
+    <record model="ir.ui.view"
+        id="material_purchase_requisition_form_inherit_view_project_task">
+        <field name="name">material_purchase_requisition_form_inherit_view_project_task list</field>
+        <field name="model">material.purchase.requisition</field>
+        <field name="inherit_id"
+        ref="material_purchase_requisitions.material_purchase_requisition_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='analytic_account_id']"
+                position="after">
+                <field name="custom_project_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="custom_task_id"
+                    domain="[('project_id','=',custom_project_id)]" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view"
+        id="material_purchase_requisition_search_view_inherit_projecttask">
+        <field name="name">material.purchase.requisition.search.inherit.projecttask</field>
+        <field name="model">material.purchase.requisition</field>
+        <field name="inherit_id"
+        ref="material_purchase_requisitions.material_purchase_requisition_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='state']"
+                position="inside">
+                <field name="custom_project_id"/>
+                <field name="custom_task_id"/>
+            </xpath>
+            <xpath expr="//search/group"
+                position="inside">
+                   <filter string="Project" name="custom_project_id" context="{'group_by':'custom_project_id'}"/>
+                   <filter string="Task" name="custom_task_id" context="{'group_by':'custom_task_id'}"/>
+            </xpath>
+        </field>
+    </record>
+    
+  </data>
+</odoo>

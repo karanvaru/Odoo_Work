@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+check_list_user,check.list,model_check_list,,1,1,1,1
+responsible_by_user,responsible.by,model_responsible_by,,1,1,1,1
+cancel_reason_user,cancel.reason,model_cancel_reason,,1,1,1,1
+

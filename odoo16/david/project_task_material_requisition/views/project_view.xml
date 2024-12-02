@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    
+    <record model="ir.ui.view" id="edit_project_inherit_mpr">
+        <field name="name">project.project.inherit.form.mpr</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" icon="fa-book"
+                        name="show_mpr_project_action" string="Material Requisition"/>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_task_form2_mpr">
+        <field name="name">project.task.inherit.form.mpr</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" icon="fa-book"
+                        name="show_mpr_task_action" string="Material Requisition"/>
+            </xpath>
+        </field>
+    </record>
+
+  </data>
+</odoo>

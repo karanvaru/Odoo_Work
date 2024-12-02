@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_inherit_toc" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.default.note</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="note_template_id"
+                       options="{'no_create': True}"
+                       domain="['|', ('partner_ids', '=', False),('partner_ids', 'in', partner_id)]"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="context">{'default_note_template_id': note_template_id}</attribute>
+            </xpath>
+<!--            <xpath expr="//form//notebook//page[@name='order_lines']//form//field[@name='name']" position="attributes">-->
+<!--                <attribute name="widget">html</attribute>-->
+<!--                <attribute name="type">html</attribute>-->
+<!--            </xpath>-->
+            <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="after">
+<!--                <field name="product_note" optional="hide"/>-->
+                <field name="product_note"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

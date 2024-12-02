@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pos_order_refund_report_tree" model="ir.ui.view">
+        <field name="name">pos.order.refund.report.tree</field>
+        <field name="model">pos.order</field>
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <tree string="POS Refund Reports" create="0" sample="1" duplicate="0">
+                <field name="currency_id" column_invisible="True"/>
+                <field name="pos_reference" string="Receipt No. Refund"/>
+                <field name="account_move" string="Invoice Num Refund"/>
+                <field name="name" string="Order Ref Refund"/>
+                <field name="date_order" string="Date/Time Refund"/>
+                <field name="config_id" string="Point of sale Refund"/>
+                <field name="partner_id" string="Customer Refund"/>
+                <field name="user_id" string="Sales Person Refund"/>
+                <field name="source_order_id" column_invisible="True"/>
+                <field name="total_qty" optional="show" string="Total Qty Refund"/>
+                <field name="amount_paid" sum="Amount Paid" widget="monetary" decoration-bf="1"  string="Amount Paid Refund"/>
+
+                <field name="source_pos_reference"/>
+                <field name="source_account_move"/>
+                <field name="source_name"/>
+                <field name="source_date_order" />
+                <field name="source_config_id"/>
+                <field name="source_partner_id"/>
+                <field name="source_user_id" string="Sales Person"/>
+                <field name="source_total_qty" optional="show"/>
+                <field name="source_amount_paid" sum="Amount Paid" widget="monetary" decoration-bf="1"/>
+                <field name="total_diff" sum="Amount Paid" widget="monetary" decoration-bf="1"/>
+                
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pos_order_refund_report_filter" model="ir.ui.view">
+        <field name="name">pos.order.list.refund.report.select</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <search string="Search Refund Reports">
+                <field name="name"/>
+                <field name="pos_reference"/>
+                <field name="date_order"/>
+                <field name="tracking_number"/>
+                <field name="user_id"/>
+                <field name="partner_id"/>
+                <field name="session_id"/>
+                <field name="config_id"/>
+                <separator/>
+                <filter string="Order Date" name="order_date" date="date_order"/>
+                <group expand="0" string="Group By">
+                    <filter string="Session" name="session" domain="[]" context="{'group_by': 'session_id'}"/>
+                    <filter string="User" name="user_id" domain="[]" context="{'group_by': 'user_id'}"/>
+                    <filter string="Point of Sale" name="config_id" domain="[]" context="{'group_by': 'config_id'}"/>
+                    <filter string="Customer" name="customer" domain="[]" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Status" name="status" domain="[]" context="{'group_by': 'state'}"/>
+                    <filter string="Order Date" name="order_month" domain="[]" context="{'group_by': 'date_order'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_view_pos_order_refund_report" model="ir.actions.act_window">
+        <field name="name">Refund Reports</field>
+        <field name="res_model">pos.order</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[('amount_total', '&lt;', 0)]</field>
+        <field name="search_view_id" eval="view_pos_order_refund_report_filter"/> <!-- Force empty -->
+        <field name="view_id" ref="view_pos_order_refund_report_tree"/>
+    </record>
+
+    <menuitem id="menu_view_pos_order_refund_report"
+        name="Refund Reports"
+        parent="point_of_sale.menu_point_rep"
+        action="action_view_pos_order_refund_report"
+        sequence="10"/>
+
+</odoo>

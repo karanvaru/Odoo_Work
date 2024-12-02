@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="rdp_presales_tree" model="ir.ui.view">
+            <field name="name">Presales</field>
+            <field name="model">rdp.presales</field>
+            <field name="arch" type="xml">
+                <tree string="rdp presales">
+                 <field name='name'/>
+                </tree>
+            </field>
+        </record>
+        <record id="rdp_presales_view" model="ir.ui.view">
+            <field name="name">rdp.presales.form</field>
+            <field name="model">rdp.presales</field>
+               <field name="arch" type="xml">
+                <form string="rdp presales">
+                    <header></header>
+                    <sheet>
+<!-- <div class="oe_button_box">-->
+<!--                            <button class="oe_stat_button" name="button_pip" type="object" icon="fa-clipboard">-->
+<!--                                <field string="PIP" name="pip_count" widget="statinfo" />-->
+<!--                            </button>-->
+<!--                            <button class="oe_stat_button" name="button_appeal" type="object" icon="fa-clipboard">-->
+<!--                                <field string="Appeal" name="appeal_count" widget="statinfo" />-->
+<!--                            </button>-->
+<!--                        </div>-->
+                        <div>
+                            <field name='name'/>
+                        </div>
+                        <group>
+                            <group>
+
+<!--                                <field name='issuer_department' />-->
+                            </group>
+                            <group>
+<!--                                <field name='employee' domain="['|',('coach_id','=',issuer),('parent_id','=',issuer)]" options="{'no_create_edit': True}" attrs="{'readonly':[('state','!=','submit')]}" />-->
+<!--                                <field name='employee_department' />-->
+<!--                                <field name='date' attrs="{'readonly':[('state','!=','submit')]}" />-->
+<!--                                <field name='severity' attrs="{'readonly':[('state','!=','submit')]}" />-->
+                            </group>
+                        </group>
+                        <group>
+<!--                            <field name='description' style="background-color: #efeff8;" attrs="{'readonly':[('state','!=','submit')]}" />-->
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids" widget="mail_activity" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="rdp_presales_form" model="ir.actions.act_window">
+            <field name="name">Presales</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rdp.presales</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+<!--        <menuitem id="menu_rdp_presales" name='Presales' action="rdp_presales_form" />-->
+    </data>
+</odoo>

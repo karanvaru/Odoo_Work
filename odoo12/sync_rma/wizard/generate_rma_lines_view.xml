@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- RMA line wiz form view -->
+    <record id="rma_line_wiz_view" model="ir.ui.view">
+        <field name="name">rma.line.wiz.form</field>
+        <field name="model">rma.line.wiz</field>
+        <field name="arch" type="xml">
+            <form string="RMA Issue">
+                <p class="oe_grey">
+                    Please select products for create RMA lines.
+                </p>
+                <field name="move_line_ids" nolabel="1" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"/>
+                <field name="sale_id" invisible="1"/>
+                <footer>
+                    <button name="generate_rma_lines" type="object" string='Generate Lines' class="btn-primary" />
+                    <button string="Close" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- RMA line wiz action -->
+    <record id="action_rma_line_wiz_view" model="ir.actions.act_window">
+        <field name="name">RMA Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">rma.line.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="rma_line_wiz_view"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

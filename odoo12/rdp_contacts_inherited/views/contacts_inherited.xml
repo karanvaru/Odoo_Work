@@ -1,0 +1,74 @@
+<odoo>
+    <data>
+        <record id="contacts_inherited_form_view" model="ir.ui.view">
+            <field name="name">contacts.form.view.inherited</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name ='sales_purchases']" position="after">
+                    <page string="DRT KYC" name="drt_kyc">
+                        <group>
+                            <group string="GeM/Govt Business Involvement" name="business_involvement">
+                                <field name="gem_revenue_percent_of_total_revenue"/>
+                                <field name="govt_revenue_percent_of_total_revenue"/>
+                                <field name="brands_working_for_grm_and_govt_id"/>
+                                <field name="last_two_years_avg_revenue_in_gem"/>
+                                <field name="last_two_years_avg_revenue_in_govt"/>
+                                <field name="top_three_pet_accounts"/>
+                            </group>
+
+                            <group string="Financial Execution Capacity(FEC)" name="financial_execution_capacity">
+                                <field name="associated_supply_chain_id"/>
+                                <field name="approx"/>
+                                <field name="connects_with_fff"/>
+                                <field name="cash_rich"/>
+                            </group>
+                            <group string="5 Points Why You Need To Work With This Partner.">
+                                <field name="five_point_validation_by_rm"/>
+                                <field name="five_point_validation_by_zm"/>
+                                <field name="five_point_validation_by_drt"/>
+                                <field name="five_point_validation_by_crh"/>
+                                <field name="five_point_validation_by_vp"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="GeM KYC" name="gem_kyc">
+                        <group>
+                            <group>
+                                <field name="partner_annual_turn_over"/>
+                                <field name="relationship_last_fy"/>
+                                <field name="relationship_ptc"/>
+                                <field name="code_status"/>
+                                <field name="code_active_categories" widget="many2many_tags"/>
+                                <field  name="r_ptc_performance" />
+                                <field name="gem_kyc_tags_ids" widget="many2many_tags"/>
+                                <field name="partner_geography"/>
+                                <field name="additional_notes"/>
+                            </group>
+                            <group>
+                                <field name="golden_path"/>
+                                <field name="partner_type"/>
+                                <field name="gen_partner_onboarding"/>
+                                <field name="brands_working_with_id" invisible="1"/>
+                                <field name="working_brand_ids" widget="many2many_tags"
+                                       options="{'color_field': 'color'}"/>
+                                <field name="pet_account_one_id" options="{'no_create': True}"/>
+                                <field name="pet_account_two_id" options="{'no_create': True}"/>
+                                <field name="pet_account_three_id" options="{'no_create': True}"/>
+                                <field name="low_hanging_fruit"/>
+                                <field name="supply_chain_finance_id" invisible="1"/>
+                                <field name="supply_chain_finance_ids" widget="many2many_tags"/>
+                                <field name="total_scf_value"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name ='category_id']" position="after">
+                    <field name="otd_ots_priority" attrs="{'readonly': [('is_contacts_otd_ots_manager', '=', False)]}"/>
+                    <field name="is_contacts_otd_ots_manager" invisible="1"/>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

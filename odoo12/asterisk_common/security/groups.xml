@@ -1,0 +1,38 @@
+<odoo>
+
+    <record id="module_asterisk_category"  model="ir.module.category">
+        <field name="name">Asterisk</field>
+        <field name="sequence">20</field>
+        <field name="description">Asterisk Security</field>
+    </record>
+
+    <record model="res.groups" id="group_asterisk_user">
+        <field name="name">User</field>
+        <field name="category_id" ref="asterisk_common.module_asterisk_category"/>
+    </record>
+
+    <record model="res.groups" id="group_asterisk_admin">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="asterisk_common.module_asterisk_category"/>
+        <field name="implied_ids" eval="[(4, ref('asterisk_common.group_asterisk_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+
+    <record model="res.groups" id="group_asterisk_agent">
+        <field name="name">Agent</field>
+        <field name="users" eval="[(4, ref('asterisk_common.user_asterisk'))]"/>
+        <field name="category_id" ref="asterisk_common.module_asterisk_category"/>
+    </record>
+
+    <record model="res.groups" id="group_asterisk_supervisor">
+        <field name="name">Supervisor</field>
+        <field name="implied_ids" eval="[(4, ref('asterisk_common.group_asterisk_user'))]"/>
+        <field name="category_id" ref="asterisk_common.module_asterisk_category"/>
+    </record>
+
+    <record model="res.groups" id="group_asterisk_guru">
+        <field name="name">Guru</field>
+        <field name="category_id" ref="asterisk_common.module_asterisk_category"/>
+    </record>
+
+</odoo>

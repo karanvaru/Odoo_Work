@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+finance_audit_user,finance.audit,model_finance_audit,,1,1,1,0
+financial_user,financial.year,model_financial_year,,1,1,1,0

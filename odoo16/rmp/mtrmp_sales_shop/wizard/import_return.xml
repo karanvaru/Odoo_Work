@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="import_return_wizard_view">
+            <field name="name">import.return.wizard.form</field>
+            <field name="model">import.return.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="file_name"/>
+                        </group>
+                        <group>
+                            <field name="samples_file_name" invisible="1"/>
+                            <field name="samples_file" filename="samples_file_name" readonly="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="import_return" string="Import" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_import_return_wizard">
+            <field name="name">Import Return</field>
+            <field name="res_model">import.return.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

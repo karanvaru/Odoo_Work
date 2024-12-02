@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    
+    
+    <!-- <report
+            string="Cost Sheet" 
+            id="action_report_jobcard_costsheet"
+            model="project.task"
+            report_type="qweb-pdf"
+            name="job_card.report_jobcard_costsheet" 
+            file="job_card.report_jobcard_costsheet"
+        /> -->
+
+    <record id="action_report_jobcard_costsheet" model="ir.actions.report">
+            <field name="name">Cost Sheet</field>
+            <field name="model">project.task</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">job_card.report_jobcard_costsheet</field>
+            <field name="report_file">job_card.report_jobcard_costsheet</field>
+            <field name="binding_model_id" ref="project.model_project_task"/>
+            <field name="binding_type">report</field>
+    </record>
+    
+    <template id="report_jobcard_costsheet">
+       <t t-foreach="docs" t-as="o">
+         <t t-call="web.internal_layout">
+             <t t-call="web.html_container">
+               <div class="page">
+                    <h2 class="text-center">
+                        Cost Sheet
+                    </h2>
+                    <h2 class="text-center">
+                        <span t-field="o.number"/>
+                    </h2>
+                    <div id="informations" class="row mt32 mb32">
+<!--                        <div class="col-auto mw-100 mb-2" t-if="o.date_start" name="starting_date">-->
+<!--                            <strong>Starting Date:</strong>-->
+<!--                            <p class="m-0" t-field="o.date_start"/>-->
+<!--                        </div>-->
+                        <div class="col-auto mw-100 mb-2" t-if="o.date_assign" name="starting_date">
+                            <strong>Starting Date:</strong>
+                            <p class="m-0" t-field="o.date_assign"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2" t-if="o.date_end" name="date_end">
+                            <strong>Ending Date:</strong>
+                            <p class="m-0" t-field="o.date_end"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2" t-if="o.project_id" name="project_id">
+                            <strong>Project:</strong>
+                            <p class="m-0" t-field="o.project_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2" t-if="o.partner_id" name="partner_id">
+                            <strong>Customer:</strong>
+                            <p class="m-0" t-field="o.partner_id"/>
+                        </div>
+                    </div>
+                    <p><h3>Cost Sheet</h3></p>
+                    <table class="table table-bordered" style="border: 2px solid black;">
+                        <tr style="border: 2px solid black;">
+                            <td>
+                                <strong>Type</strong>
+                            </td>
+                            <td>
+                                <strong>Product</strong>
+                            </td>
+                            <td>
+                                <strong>Description</strong>
+                            </td>
+                            <td>
+                                <strong>Account</strong>
+                            </td>
+                            <td>
+                                <strong>Analytic Account</strong>
+                            </td>
+                            <td>
+                                <strong>Analytic Tags</strong>
+                            </td>
+                            <td>
+                                <strong>Qty</strong>
+                            </td>
+                            <td>
+                                <strong>Unit Price</strong>
+                            </td>
+                            <td>
+                                <strong>Discount</strong>
+                            </td>
+                            <td>
+                                <strong>Taxes</strong>
+                            </td>
+                            <td>
+                                <strong>Amount</strong>
+                            </td>
+                        </tr>
+                        <t t-foreach="o.job_cost_sheet_ids" t-as="cost_sheet">
+                            <tr style="border: 2px solid black;">
+                                <td>
+                                    <span t-field="cost_sheet.cost_type"/>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.product_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.account_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.account_analytic_id"/>
+                                </td>
+                                <td>
+<!--                                    <t t-foreach="cost_sheet.analytic_tag_ids" t-as="tag">-->
+<!--                                        <span t-field="tag.name"/>-->
+<!--                                    </t>-->
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.quantity"/>
+                                    <span t-field="cost_sheet.uom_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.price_unit"/>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.discount"/>
+                                </td>
+                                <td>
+                                    <t t-foreach="cost_sheet.invoice_line_tax_ids" t-as="tax">
+                                        <span t-field="tax.name"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.price_subtotal"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td colspan="10" class="text-right">
+                                <strong>Untaxed Amount</strong>
+                            </td>
+                            <td>
+                                <span t-field="o.cost_sheet_amount_untaxed"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="10" class="text-right">
+                                <strong>Taxed Amount</strong>
+                            </td>
+                            <td>
+                                <span t-field="o.cost_sheet_amount_tax"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="10" class="text-right">
+                                <strong>Total</strong>
+                            </td>
+                            <td>
+                                <span t-field="o.cost_sheet_amount_total"/>
+                            </td>
+                        </tr>
+                    </table>
+               </div>
+               </t>
+         </t>
+       </t>
+    </template>
+
+</odoo>

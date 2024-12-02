@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="printer_management_main"
+              name="Printer Management"
+              sequence="1"/>
+
+    <menuitem id="printer_management_documents"
+              name="Documents"
+              parent="printer_management_main"
+              sequence="10"/>
+    <menuitem id="documents_contract"
+              name="Contract"
+              action="action_contract"
+              parent="printer_management_documents"
+              sequence="10"/>
+
+
+    <menuitem id="printer_management_master"
+              name="Master Data"
+              parent="printer_management_main"
+              sequence="15"/>
+    <menuitem id="master_customer"
+              name="Customer"
+              action="account.res_partner_action_customer"
+              parent="printer_management_master"
+              sequence="10"/>
+    <menuitem id="master_vendor"
+              name="Vendors"
+              action="account.res_partner_action_supplier"
+              parent="printer_management_master"
+              sequence="15"/>
+    <menuitem id="master_product"
+              name="Products"
+              action="sale.product_template_action"
+              parent="printer_management_master"
+              sequence="20"/>
+
+    <menuitem id="printer_management_config"
+              name="Configuration"
+              parent="printer_management_main"
+              sequence="20"/>
+    <menuitem id="master_product_1"
+              name="Products"
+              action="sale.product_template_action"
+              parent="printer_management_config"
+              sequence="20"/>
+</odoo>

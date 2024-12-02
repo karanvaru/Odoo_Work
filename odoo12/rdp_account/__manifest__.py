@@ -1,0 +1,26 @@
+    #Developed by RDP-Dayanithi
+{
+    'name': 'Transaction Audit',
+    'version': '12.0.1.6',
+    'author': 'RDP',
+    'company': 'RDP Workstations',
+    'website': 'http://www.rdp.in',
+    'category': 'Accounting',
+    'summary': 'Accounting Journal Audit ',
+    'description': """ Accounting Journal Audit """,
+    'depends': ['account','purchase','base','hr_expense','mail','portal','sale','account_accountant'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/security.xml',
+        'data/account_data.xml',
+        'data/rec_check_status.xml',
+        'wizard/reason.xml',
+        'views/transaction_audit.xml',
+        'views/audit_checklist.xml',
+        'views/account.xml',
+    ],
+    # 'images': [''],
+    'license': 'LGPL-3',
+    'installable': True,
+    'auto_install': False,
+}

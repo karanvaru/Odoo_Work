@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle 
+ -->
+<odoo>
+    
+
+	<record id="view_employee_loan_type_form" model="ir.ui.view">
+		<field name="name">view.employee.loan.type.form</field>
+		<field name="model">employee.loan.type</field>
+		<field name="arch" type="xml">
+			<form string="Employee Loan Type">
+				<sheet>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="Enter Loan Name"/>
+                            <field name="currency_id"/>
+<!--                            <field name="loan_limit" widget="monetary"/>-->
+                            <field name="loan_term" t-att-class="'required-field'"/>
+                        </group>
+                        <group>
+                            <field name="company_id" placeholder="Select Company" required="1" t-att-class="'required-field'"/>
+                            <field name="company_loan_limit" widget="monetary"/>
+                            <field name="company_loan_term"/>
+                        </group>
+                        <group>
+                            <field name="multiplier"/>
+                            <field name="is_apply_interest"/>
+                            <field name="interest_rate" attrs="{'invisible':[('is_apply_interest','!=',True)]}"/>
+                            <field name="interest_type" attrs="{'invisible':[('is_apply_interest','!=',True)]}"/>
+                            <field name="is_apply_service_charge"/>
+                            <field name="service_charge" type="float" attrs="{'invisible':[('is_apply_service_charge','!=',True)]}"/>
+                        </group>
+                    </group>
+                    <group>
+                    	<group>
+<!--                            <field name="allow_loan_on_probation" type="boolean" widget="boolean_toggle"/>-->
+                           <field name="allow_multiple_loans" type="boolean" widget="boolean_toggle"/>
+                    	</group>
+                    	<group>
+                            <field name="loan_account"/>
+                    		<field name="interest_account"/>
+                    		<field name="journal_id"/>
+                    	</group>
+                    </group>
+                    <notebook>
+                            <page string="Terms and Conditions">
+                                <field name="terms_and_conditions" />
+                            <!-- Add the new field for user input -->
+                                <field name="terms_and_conditions_input" placeholder="Enter Terms and Conditions"/>
+
+                                <button string="Save" type="object" name="save_terms_and_conditions" class="btn-primary"/>
+<!--                                <button string="Clear" type="object" name="clear_last_term" class="btn-secondary"/>-->
+                            </page>
+                        </notebook>
+
+				</sheet>
+			</form>
+		</field>
+	</record>
+    <record id="view_employee_loan_type_tree" model="ir.ui.view">
+        <field name="name">view.employee.loan.ty[e.tree</field>
+        <field name="model">employee.loan.type</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Loan Type">
+                <field name="name"/>
+<!--                <field name="loan_limit"/>-->
+                <field name="loan_term"/>
+                <field name="interest_rate"/>
+                <field name="interest_type"/>
+                <field name="service_charge"/>
+            </tree>
+        </field>
+    </record>
+    
+    
+    <record model="ir.actions.act_window" id="action_employee_loan_type">
+        <field name="name">Employee Loan Type</field>
+        <field name="res_model">employee.loan.type</field>
+        <!--<field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem name="Loan Type" id="menu_employee_loan_type" parent="menu_main_employee_loan"
+              action="action_employee_loan_type"
+              groups="hr.group_hr_user"/>
+
+</odoo>

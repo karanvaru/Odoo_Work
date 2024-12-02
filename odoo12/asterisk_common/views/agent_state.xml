@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id='remote_agent_agent_state_action' model='ir.actions.act_window'>
+            <field name='name'>Agent States</field>
+            <field name='res_model'>remote_agent.agent_state</field>
+             <field name="view_mode">tree,graph</field>
+        </record>
+            
+        <menuitem id="remote_agent_agent_state_menu" parent='remote_agent_top_menu'
+            groups="asterisk_common.group_asterisk_admin"
+            name='States' action='remote_agent_agent_state_action'/>
+
+        <record id='remote_agent_agent_state_list' model='ir.ui.view'>
+            <field name='name'>remote_agent.agent_state.list</field>
+            <field name='model'>remote_agent.agent_state</field>
+            <field name='type'>tree</field>
+            <field name='arch' type='xml'>
+                <tree create="false" edit="false">
+                    <field name="create_date"/>
+                    <field name='agent' invisible="context.get('hide_agent')"/>
+                    <field name='state'/>
+                    <field name='note'/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id='remote_agent_agent_state_search' model='ir.ui.view'>
+            <field name='name'>remote_agent.agent_state.search</field>
+            <field name='model'>remote_agent.agent_state</field>
+            <field name='type'>search</field>
+            <field name='arch' type='xml'>
+                <search>
+                    <field name='agent'/>
+                    <filter name="online" string="Online"
+                        domain="[('state', '=', 'online')]"/>
+                    <filter name="offline" string="Offline"
+                        domain="[('state', '=', 'offline')]"/>
+                    <filter name="by_state" string="State"
+                        context="{'group_by': 'state'}"/>
+                    <filter name="by_agent" string="Agent"
+                        context="{'group_by': 'agent'}"/>
+                    <filter name="by_created" string="Created"
+                        context="{'group_by': 'create_date'}"/>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

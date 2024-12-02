@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="reddot_external_layout_extension">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+        <t t-if="not company">
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+
+        <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_report_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}"
+             t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});"
+             t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+             t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <div class="pt-5">
+                <t t-call="web.address_layout"/>
+            </div>
+            <t t-out="0"/>
+        </div>
+        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+            <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;"
+                         alt="Logo"/>
+                </div>
+                <div class="col-9 text-end" style="margin-top:22px;" t-field="company.report_header" name="moto"/>
+            </div>
+            <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div>
+        </div>
+
+        <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+            <div class="row">
+                <div class="col-6">
+                    <span>Consultant Initial Here:</span>
+                    <span t-esc="''.join(i[0] for i in o.employee_id.name.split(' ')).upper()"/>
+                </div>
+                <div class="col-6" style="text-align:right;">
+                    <span>Company Signatory Initial Here: MRB</span>
+                </div>
+
+            </div>
+        </div>
+    </template>
+
+    <template id="hr_contract_report_print">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="reddot_contract_extension.reddot_external_layout_extension">
+                    <div class="page">
+                        <div class="row"
+                             style="height: 50vh; display: flex; align-items: center; justify-content: center; padding-top: 100px;">
+                            <div style="text-align: center;">
+                                <img t-if="o.company_id.logo"
+                                     t-att-src="image_data_uri(o.company_id.logo)"
+                                     style="max-height: 300px; max-width: 100%; display: block; margin: 0 auto;"
+                                     alt="Company Logo"/>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 100px;">
+                            <div class="col-12 text-center">
+                                <h3 style="font-weight: bold; text-transform: uppercase; letter-spacing: 2px; line-height: 2;">
+                                    CONTRACT OF EMPLOYEMENT
+                                </h3>
+
+                                <h3 style="margin: 60px 0 20px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; line-height: 2;">
+                                    BETWEEN
+                                </h3>
+                                <h3 style="font-weight: bold; text-transform: uppercase; letter-spacing: 2px; line-height: 2;">
+                                    <span t-field="o.company_id.name"/>
+                                </h3>
+
+                                <h3 style="margin: 60px 0 20px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; line-height: 2;">
+                                    AND
+                                </h3>
+                                <h3 style="font-weight: bold; text-transform: uppercase; letter-spacing: 2px; line-height: 2;">
+                                    <span t-field="o.employee_id.name"/>
+                                </h3>
+
+                                <h3 style="margin-top: 300px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; line-height: 2;">
+                                    <span t-field="o.sequence"/>
+                                </h3>
+                            </div>
+                        </div>
+
+
+                        <p style="page-break-after: always;"></p>
+                        <div class="row">
+                            <div class="col-6">
+
+                                <span t-field="o.employee_id.name"/>
+                                <br></br>
+                                <span t-field="o.employee_id.address_id.street"/>
+                                <br></br>
+                                <span t-field="o.employee_id.address_id.state_id.name"/>
+                                <br></br>
+                                <span t-field="o.employee_id.address_id.country_id.name"/>
+                                <br></br>
+                                Cell :
+                                <span t-field="o.employee_id.work_phone"/>
+                                <br></br>
+                                Email :
+                                <span t-field="o.employee_id.work_email"/>
+                                <br></br>
+                            </div>
+                            <div class="col-6" style="text-align:right;">
+                                <b>
+                                    <span t-esc="o.sequence"/>
+                                    <br></br>
+                                    <span t-esc="o.date_start.strftime('%d %B %Y')"/>
+                                </b>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-top: 50px;">
+                            <div class="col-12">
+                                <p t-field="o.report_description"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+
+            </t>
+
+        </t>
+    </template>
+    <record id="custom_contract_report_paper_format" model="report.paperformat">
+        <field name="name">Contract Report Paper Format</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">100</field>
+    </record>
+
+
+    <record id="action_print_contract_report" model="ir.actions.report">
+        <field name="name">Print PDF</field>
+        <field name="model">hr.contract</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">reddot_contract_extension.hr_contract_report_print</field>
+        <field name="report_file">reddot_contract_extension.hr_contract_report_print</field>
+        <field name="binding_model_id" ref="hr_contract.model_hr_contract"/>
+        <field name="paperformat_id" ref="reddot_contract_extension.custom_contract_report_paper_format"/>
+        <field name="binding_type">report</field>
+
+    </record>
+
+
+</odoo>

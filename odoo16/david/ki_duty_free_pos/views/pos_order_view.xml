@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <record id="pos_order_inherit_form_view_er_no" model="ir.ui.view">
+            <field name="name">pos.order.form.view.inherit.er.no</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//field[@name='user_id']" position="after">-->
+<!--                    <field name="ed_no" readonly="True"/>-->
+<!--                    <field name="ship_flight" readonly="True"/>-->
+<!--                    <field name="departure_date" readonly="True"/>-->
+<!--                </xpath>-->
+
+                <xpath expr="//page[last()]" position="after">
+                        <page string="Duty Free Info">
+                            <group>
+                                <field name="ed_no"/>
+                                <field name="ship_flight"/>
+                                <field name="staying_at"/>
+                                <field name="departure_date"/>
+<!--                                <field name="third_schedule"/>-->
+                            </group>
+                        </page>
+                    </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

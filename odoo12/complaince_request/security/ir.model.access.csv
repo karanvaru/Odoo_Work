@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+complaince_request_details,complaince.request,model_complaince_request,,1,1,1,1
+type_id_user,type.id,model_type_id,,1,1,1,1

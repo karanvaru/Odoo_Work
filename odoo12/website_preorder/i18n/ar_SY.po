@@ -1,0 +1,599 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* website_preorder
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-11 07:49+0000\n"
+"PO-Revision-Date: 2016-11-11 07:49+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_preorder
+#: model:mail.template,body_html:website_preorder.pre_order_email_template_edi_sale
+msgid "\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Hello ${object.partner_id.name},</p>\n"
+"    <p style=\"border-left: 0px solid #8e0000; margin-left: 30px;\">\n"
+"   Thank you for placing the preorder. Please\n"
+"    </p>\n"
+"    <p>\n"
+"      Your product is back in stock now, please complete your oredr before it goes.\n"
+"    </p>\n"
+"    <br/>\n"
+"    <p>If you have any question, do not hesitate to contact us.</p>\n"
+"    <p>Thank you for choosing ${object.company_id.name or 'us'}!</p>\n"
+"    <br/>\n"
+"    <br/>\n"
+"    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"            ${object.company_id.partner_id.sudo().with_context(show_address=True, html_format=True).name_get()[0][1] | safe}\n"
+"        </span>\n"
+"        % if object.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n"
+"                Phone:&nbsp; ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Web :&nbsp;<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"            "
+msgstr "\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Hello ${object.partner_id.name},</p>\n"
+"    <p style=\"border-left: 0px solid #8e0000; margin-left: 30px;\">\n"
+"   Thank you for placing the preorder. Please\n"
+"    </p>\n"
+"    <p>\n"
+"      Your product is back in stock now, please complete your oredr before it goes.\n"
+"    </p>\n"
+"    <br/>\n"
+"    <p>If you have any question, do not hesitate to contact us.</p>\n"
+"    <p>Thank you for choosing ${object.company_id.name or 'us'}!</p>\n"
+"    <br/>\n"
+"    <br/>\n"
+"    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id.name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"            ${object.company_id.partner_id.sudo().with_context(show_address=True, html_format=True).name_get()[0][1] | safe}\n"
+"        </span>\n"
+"        % if object.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; \">\n"
+"                Phone:&nbsp; ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Web :&nbsp;<a href=\"${object.company_id.website}\">${object.company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"            "
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.preorder_quotation
+msgid "<i class=\"fa fa-fw fa-check \"/> Pre-order"
+msgstr "<i class=\"fa fa-fw fa-check \"/> Pre-order"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.inherit_product_template_preorder_form_view
+msgid "<span attrs=\"{'invisible':[('visible', '=', False)]}\" class=\"oe_inline\">\n"
+"                    Product pre-order date Expired. \n"
+"                    </span>"
+msgstr "<span attrs=\"{'invisible':[('visible', '=', False)]}\" class=\"oe_inline\">\n"
+"                    Product pre-order date Expired. \n"
+"                    </span>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.preorder_quotation
+msgid "<span class=\"label label-default\"><i class=\"fa fa-fw fa-clock-o\"/> Expired</span>"
+msgstr "<span class=\"label label-default\"><i class=\"fa fa-fw fa-clock-o\"/> Expired</span>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.preorder_quotation
+msgid "<span class=\"label label-default\"><i class=\"fa fa-fw fa-remove\"/> Cancelled</span>"
+msgstr "<span class=\"label label-default\"><i class=\"fa fa-fw fa-remove\"/> Cancelled</span>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<span class=\"label label-info orders_label_text_align\"><i class=\"fa fa-fw fa-clock-o\"/> Waiting</span>"
+msgstr "<span class=\"label label-info orders_label_text_align\"><i class=\"fa fa-fw fa-clock-o\"/> Waiting</span>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<span class=\"label label-success orders_label_text_align\"><i class=\"fa fa-fw fa-check\"/> Paid</span>"
+msgstr "<span class=\"label label-success orders_label_text_align\"><i class=\"fa fa-fw fa-check\"/> Paid</span>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_order_stock_panel
+msgid "<span class=\"preorder-avaliable-status\">Avaliable For Preorder</span>"
+msgstr "<span class=\"preorder-avaliable-status\">توضيح الطرق المختلفة للطلب المسبق</span>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.preorder_quotation
+msgid "<span>Show more</span><span class=\"hidden\">Show less</span>"
+msgstr "<span>Show more</span><span class=\"hidden\">Show less</span>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<strong>Contact</strong>"
+msgstr "<strong>Contact</strong>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<strong>Date:</strong>"
+msgstr "<strong>تاريخ:</strong>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<strong>Invoices</strong>"
+msgstr "<strong>Invoices</strong>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<strong>Invoicing Address</strong>"
+msgstr "<strong>Invoicing Address</strong>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<strong>Pre-order price</strong>"
+msgstr "<strong>Pre-order price</strong>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<strong>Product</strong>"
+msgstr "<strong>Product</strong>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<strong>Quantity</strong>"
+msgstr "<strong>Quantity</strong>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<strong>Shipping Address</strong>"
+msgstr "<strong>Shipping Address</strong>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>الإجمالي الفرعي</strong>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<strong>Total:</strong>"
+msgstr "<strong>Total:</strong>"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "<strong>Unit Price</strong>"
+msgstr "<strong>Unit Price</strong>"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_is_active
+msgid "Active on website"
+msgstr "Active on website"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_button_text
+msgid "Add To Cart Button Text"
+msgstr "Add To Cart Button Text"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.website_preorder_show
+msgid "Add to Cart"
+msgstr "أضف إلى السلة"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.preorder_quotation
+msgid "Amount left"
+msgstr "Amount left"
+
+#. module: website_preorder
+#: model:ir.model.fields,help:website_preorder.field_website_preorder_config_settings_pre_order_amount_visible
+msgid "Amount to be display in the order of user account."
+msgstr "Amount to be display in the order of user account."
+
+#. module: website_preorder
+#: selection:website.preorder.config.settings,send_email:0
+msgid "Auto"
+msgstr "Auto"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.product_price
+msgid "Availabile Upto"
+msgstr "Availabile حتى"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_product_template_is_preorder_type
+msgid "Available for Pre-order"
+msgstr "متاح للقبل النظام"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_avaliable_date
+msgid "Avaliable Date Visible on Pre-order Product"
+msgstr "Avaliable Date Visible on Pre-order Product"
+
+#. module: website_preorder
+#: selection:website.preorder.config.settings,payment_type:0
+msgid "Complete Payment"
+msgstr "Complete Payment"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.wk_addons_website_stock_config
+msgid "Configuration"
+msgstr "الإعدادات"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_custom_message
+msgid "Custom Message"
+msgstr "Custom Message"
+
+#. module: website_preorder
+#: model:ir.model.fields,help:website_preorder.field_website_preorder_config_settings_custom_message
+msgid "Custom message that is  visible on preorder product"
+msgstr "Custom message that is  visible on preorder product"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_preorder
+msgid "Enable Pre-order"
+msgstr "Enable Pre-order"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_product_template_visible
+msgid "Exipred Text"
+msgstr "Exipred Text"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: website_preorder
+#: model:ir.model.fields,help:website_preorder.field_website_preorder_config_settings_avaliable_date
+msgid "If 'enable' then product avaliablility date message will be display on preorder product."
+msgstr "If 'enable' then product avaliablility date message will be display on preorder product."
+
+#. module: website_preorder
+#: model:ir.model.fields,help:website_preorder.field_website_preorder_config_settings_preorder
+msgid "If its 'enable' then Pre-order is avalible on Shop product."
+msgstr "If its 'enable' then Pre-order is avalible on Shop product."
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.wk_addons_website_stock_config
+msgid "Is Installed ?"
+msgstr "Is Installed ?"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings___last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: website_preorder
+#: selection:website.preorder.config.settings,send_email:0
+msgid "Manual"
+msgstr "Manual"
+
+#. module: website_preorder
+#: code:addons/website_preorder/models/res_config.py:36
+#, python-format
+msgid "Message"
+msgstr "Message"
+
+#. module: website_preorder
+#: model:ir.model.fields,help:website_preorder.field_website_preorder_config_settings_warning_message
+msgid "Message to be display on preorder on the quotes of My account"
+msgstr "Message to be display on preorder on the quotes of My account"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.wk_addons_website_stock_config
+msgid "Module Name"
+msgstr "Module Name"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: website_preorder
+#: model:ir.model.fields,help:website_preorder.field_website_preorder_config_settings_send_email
+msgid "Notify the customer when product is back in stock, In that we also have two option First is Auto, mail will send automatic to notify the customer and other is Manual in which mail will send manually to notifiy the customer."
+msgstr "Notify the customer when product is back in stock, In that we also have two option First is Auto, mail will send automatic to notify the customer and other is Manual in which mail will send manually to notifiy the customer."
+
+#. module: website_preorder
+#: code:addons/website_preorder/controller/main.py:38
+#, python-format
+msgid "Oops, This product is not avaliable for Preorder."
+msgstr "عفوا، هذا المنتج غير متوافرة للطلب المسبق."
+
+#. module: website_preorder
+#: code:addons/website_preorder/controller/main.py:35
+#, python-format
+msgid "Oops, currently this product is not avaliable for Preorder"
+msgstr "عفوا، حاليا هذا المنتج غير متوافرة للطلب المسبق"
+
+#. module: website_preorder
+#: code:addons/website_preorder/controller/main.py:27
+#, python-format
+msgid "Oops, you can not add Preorder Product."
+msgstr "عفوا، لا يمكنك إضافة ما قبل الطلب المنتج."
+
+#. module: website_preorder
+#: code:addons/website_preorder/controller/main.py:23
+#, python-format
+msgid "Oops, you can not add other Product with Preorder Product."
+msgstr "عفوا، لا يمكنك إضافة المنتج الآخر مع ما قبل الطلب المنتج."
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_sale_order_is_paid
+msgid "Order Fully Paid"
+msgstr "Order Fully Paid"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.wk_addons_website_stock_config
+msgid "Orders"
+msgstr "Orders"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_sale_order_fully_paid
+msgid "Paid"
+msgstr "Paid"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.product_price
+msgid "Pay"
+msgstr "دفع"
+
+#. module: website_preorder
+#: selection:website.preorder.config.settings,payment_type:0
+msgid "Percent Payment"
+msgstr "Percent Payment"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_percentage
+#: model:ir.ui.view,arch_db:website_preorder.view_wk_website_preorder_config_settings
+msgid "Percent Payment For Pre-order"
+msgstr "Percent Payment For Pre-order"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_sale_order_is_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_sale_order_line_is_preorder
+#: model:ir.ui.view,arch_db:website_preorder.inherit_view_sales_order_filter
+msgid "Pre-Order"
+msgstr "Pre-Order"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_sale_order_full_amount
+#: model:ir.model.fields,field_description:website_preorder.field_sale_order_line_preorder_amount
+#: model:ir.model.fields,field_description:website_preorder.field_sale_order_preorder_amount
+msgid "Pre-Order Amount"
+msgstr "Pre-Order Amount"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.inherit_product_template_preorder_form_view
+msgid "Pre-Order Date"
+msgstr "Pre-Order Date"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.inherit_view_product_filter
+msgid "Pre-Order Product"
+msgstr "Pre-Order Product"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.view_wk_website_preorder_config_settings
+msgid "Pre-order Configuration"
+msgstr "Pre-order Configuration"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "Pre-order Confirm"
+msgstr "Pre-order Confirm"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_product_template_pre_order_date
+msgid "Pre-order Date"
+msgstr "Pre-order Date"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_preorder_email_tempalte
+msgid "Pre-order Email Template"
+msgstr "Pre-order Email Template"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_payment_type
+msgid "Pre-order Payment Method"
+msgstr "Pre-order Payment Method"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_pre_order_amount_visible
+msgid "Pre-ordering Amount Visible on Website"
+msgstr "Pre-ordering Amount Visible on Website"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.inherit_view_product_filter
+msgid "Product"
+msgstr "المنتج"
+
+#. module: website_preorder
+#: model:ir.model,name:website_preorder.model_product_template
+msgid "Product Template"
+msgstr "قالب المنتج"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.preorder_quotation
+msgid "Quotation #"
+msgstr "Quotation #"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.preorder_quotation
+msgid "Remaining Amount"
+msgstr "Remaining Amount"
+
+#. module: website_preorder
+#: model:ir.model,name:website_preorder.model_sale_order
+msgid "Sales Order"
+msgstr "أمر البيع"
+
+#. module: website_preorder
+#: model:ir.model,name:website_preorder.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "بند أمر البيع"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_send_email
+msgid "Send Email"
+msgstr "إرسال بريد إلكتروني"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.wk_addons_website_stock_config
+msgid "Serial No."
+msgstr "Serial No."
+
+#. module: website_preorder
+#: model:ir.actions.server,name:website_preorder.preorder_action_mail_send
+msgid "Stock Avaliable Mail"
+msgstr "Stock Avaliable Mail"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "Taxes:"
+msgstr "الضرائب:"
+
+#. module: website_preorder
+#: model:ir.model.fields,help:website_preorder.field_website_preorder_config_settings_button_text
+msgid "Text that is Visible on the button for Pre-order"
+msgstr "Text that is Visible on the button for Pre-order"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.preorder_quotation
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.pre_orders_followup
+msgid "Untaxed Amount:"
+msgstr "Untaxed Amount:"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.preorder_quotation
+msgid "Valid Until"
+msgstr "صالحة حتى"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.preorder_cart_popover
+msgid "View Cart ("
+msgstr "View Cart ("
+
+#. module: website_preorder
+#. openerp-web
+#: code:addons/website_preorder/static/src/js/website_preorder_validation.js:33
+#: code:addons/website_preorder/static/src/js/website_preorder_validation.js:77
+#: code:addons/website_preorder/static/src/js/website_preorder_validation.js:125
+#: code:addons/website_preorder/static/src/js/website_preorder_validation.js:162
+#, python-format
+msgid "WARNING"
+msgstr "تحذير"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_website_preorder_config_settings_warning_message
+msgid "Warning Message"
+msgstr "Warning Message"
+
+#. module: website_preorder
+#: model:ir.model.fields,help:website_preorder.field_website_preorder_config_settings_payment_type
+msgid "We have two option for Payment. First is Complete Payment, in which customer will pay full amount at the time of preorder. and  other is percent Payment, in which customer will pay a particular amount based on percent at the time of preorder."
+msgstr "We have two option for Payment. First is Complete Payment, in which customer will pay full amount at the time of preorder. and  other is percent Payment, in which customer will pay a particular amount based on percent at the time of preorder."
+
+#. module: website_preorder
+#: model:ir.model,name:website_preorder.model_website
+msgid "Website"
+msgstr "الموقع"
+
+#. module: website_preorder
+#: model:ir.model.fields,field_description:website_preorder.field_webkul_website_addons_module_website_preorder
+msgid "Website Pre-Order"
+msgstr "Website Pre-Order"
+
+#. module: website_preorder
+#: model:ir.actions.act_window,name:website_preorder.action_website_preorder_configuration
+msgid "Website Pre-order Configuration"
+msgstr "Website Pre-order Configuration"
+
+#. module: website_preorder
+#: code:addons/website_preorder/controller/main.py:30
+#, python-format
+msgid "You are Trying to Add More Than Available Quantity of Product."
+msgstr "كنت في محاولة لإضافة أكثر من الكمية المتاحة من المنتج."
+
+#. module: website_preorder
+#: model:mail.template,subject:website_preorder.pre_order_email_template_edi_sale
+msgid "Your product back in stock (Ref ${object.name or 'n/a' }) "
+msgstr "المنتج بالمخزون ثانية (Ref ${object.name or 'n/a' }) "
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.preorder_cart_popover
+msgid "items)"
+msgstr "items)"
+
+#. module: website_preorder
+#: model:ir.ui.view,arch_db:website_preorder.product_price
+msgid "to Preorder."
+msgstr "إلى ما قبل الطلب"
+
+#. module: website_preorder
+#: model:ir.model,name:website_preorder.model_webkul_website_addons
+msgid "webkul.website.addons"
+msgstr "webkul.website.addons"
+
+#. module: website_preorder
+#: model:ir.model,name:website_preorder.model_website_preorder_config_settings
+msgid "website.preorder.config.settings"
+msgstr "website.preorder.config.settings"
+

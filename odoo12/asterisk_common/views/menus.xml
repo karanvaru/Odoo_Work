@@ -1,0 +1,22 @@
+<odoo>
+
+  <menuitem id="asterisk_top_menu" name="PBX"
+        groups="asterisk_common.group_asterisk_user,asterisk_common.group_asterisk_admin"
+        sequence="7" web_icon='asterisk_common,static/description/menu_icon.png'/>
+
+  <menuitem id="asterisk_apps_menu" name="Applications"
+        parent="asterisk_top_menu" sequence="100"/>
+
+  <menuitem id="asterisk_reports_menu" name="Reports"
+        sequence="300" parent="asterisk_top_menu"/>
+
+  <menuitem id="asterisk_settings_menu" name="Settings"
+        sequence="400" parent="asterisk_top_menu"/>
+
+  <menuitem id="asterisk_support_menu" name="Support"
+        sequence="500" parent="asterisk_top_menu"/>
+
+  <menuitem id="asterisk_board_menu" parent="base.menu_board_root" name="PBX"
+            sequence="200"/>
+
+</odoo>

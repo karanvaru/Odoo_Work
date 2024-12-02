@@ -1,0 +1,78 @@
+<odoo>
+    <template id="thanks_mail_send_inherit" inherit_id="website_helpdesk_support_ticket.thanks_mail_send">
+        <xpath expr="." position="replace">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure" id="oe_structure_website_form_contact_us_thanks_1"/>
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="col-lg-7 col-xl-6 mr-lg-auto oe_structure">
+                                <section class="pt40 s_text_block pb40 o_colored_level o_cc o_cc1"
+                                         data-snippet="s_text_block" data-name="Text">
+                                    <div class="container">
+                                        <span class="d-block fa fa-4x fa-thumbs-up mx-auto rounded-circle bg-primary"/>
+                                        <br/>
+                                        <h1 class="text-center">Thank You!</h1>
+                                        <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                                            <hr class="mx-auto border-top w-50 border-dark text-center"/>
+                                        </div>
+                                        <h5 class="text-center">
+                                            <span class="fa fa-check-circle"/>
+                                            <span>We have received your support ticket request.</span>
+                                        </h5>
+                                        <p class="text-center">Your ticket number is
+                                            <t t-esc="support.name"/>.
+                                            Please note it for future reference and
+                                            keep it handy in case you need to follow up on this issue.
+                                            In a short while, you'll receive a follow-up email or call from our
+                                            support team regarding your query. Please keep an eye on your inbox and
+                                            respond to that email for further communication.
+                                            We'll do our best to assist you as quickly and efficiently as
+                                            possible.
+                                        </p>
+
+                                        <p class="text-center">
+                                            <t t-set="ticket_access_token" t-value="support.get_portal_url()"/>
+                                            <a t-attf-href="/my/ticket/#{support.id}?{{ keep_query(access_token=support.access_token) }}"
+                                               class="btn btn-primary mb32">
+                                                <span class="hidden-xs">View Ticket</span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </section>
+                            </div>
+                            <!-- <div class="col-lg-4">
+                                <t t-call="website.company_description"/>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="oe_structure" id="oe_structure_website_form_contact_us_thanks_2"/>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-md-8">
+                        <p class="container">
+                            <t t-set="ticket_access_token" t-value="support.get_portal_url()"/>
+                            <a t-attf-href="/my/ticket/#{support.id}?{{ keep_query(access_token=support.access_token) }}" class="btn btn-primary pull-right mb32"><span class="hidden-xs">View Ticket</span></a>
+                        </p>
+                    </div>
+                </div> -->
+            </t>
+
+        </xpath>
+    </template>
+    <template id="portal_my_menu_ticket" name="Portal layout : sales menu entries"
+              inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="." position="replace">
+            <ol t-if="page_name != 'home'" class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1">
+                <t t-if="page_name != 'ticket_page'" class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1">
+                    <li class="breadcrumb-item ms-1">
+                        <a href="/my/home" aria-label="Home" title="Home">
+                            <i class="fa fa-home"/>
+                        </a>
+                    </li>
+                </t>
+                <li t-if="page_name == 'my_details'" class="breadcrumb-item">Details</li>
+            </ol>
+        </xpath>
+    </template>
+</odoo>

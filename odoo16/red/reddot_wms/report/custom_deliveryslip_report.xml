@@ -1,0 +1,18 @@
+<odoo>
+    <template id="report_deliveryslip_inherit" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[@class='page']" position="inside">
+            <div class="row mt-4">
+                <div t-if="o.rdd_project_id" class="col-auto col-3 mw-100 mb-2">
+                    <strong>RDD Project:</strong>
+                    <p t-field="o.rdd_project_id" class="m-0"/>
+                </div>
+                <div t-if="o.business_type" class="col-auto col-3 mw-100 mb-2">
+                    <strong>Business Type:</strong>
+                    <p>
+                        <t t-esc="dict(o._fields['business_type'].selection).get(o.business_type)"/>
+                    </p>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

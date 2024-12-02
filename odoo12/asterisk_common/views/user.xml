@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="asterisk_user_action" model="ir.actions.act_window">
+    <field name="name">User</field>
+    <field name="res_model">asterisk_common.user</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem action="asterisk_user_action" id="asterisk_user_menu" name="Users"
+    groups="group_asterisk_admin"
+    parent="asterisk_apps_menu" sequence="210"/>
+
+  <record id="asterisk_user_list" model="ir.ui.view">
+    <field name="name">asterisk_common.user.list</field>
+    <field name="model">asterisk_common.user</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree>        
+        <field name="exten"/>
+        <field name="user"/>
+        <field name="agent"/>
+        <field name="channels" widget="many2many_tags"/>
+        <field name="is_primary_system" widget="boolean_toggle"/>        
+      </tree>
+    </field>
+  </record>
+
+  <record id="asterisk_user_form" model="ir.ui.view">
+    <field name="name">asterisk_common.user.form</field>
+    <field name="model">asterisk_common.user</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+        </header>
+        <sheet>
+          <div class="oe_button_box" name="button_box"/>
+          <div name="title" class="oe_title">
+            <h1>
+              <label class="oe_edit_only" for="user"/>
+              <field name="user" placeholder="Select Odoo user..." required="1"/>
+            </h1>
+            <h2 class="o_row row no-gutters d-flex">
+              <div class="col">
+                <div class="o_row">
+                  <label class="oe_edit_only" for="exten"/>
+                  <field class="oe_inline" name="exten" placeholder="Extension number..." required="1"/>
+                  <span class="oe_grey p-2">at</span>
+                </div>
+              </div>
+              <div class="col">
+                <div name="agent" class="o_row d-flex">
+                  <label class="oe_edit_only" for="agent"/>
+                  <field name="agent" placeholder="Select Asterisk..." options="{'no_create': '1'}"/>
+                </div>
+              </div>
+            </h2>
+            <label for="is_primary_system"/>
+            <field name="is_primary_system" widget="boolean_toggle"/>                      
+          </div>          
+          <field invisible="1" name="id"/>
+          <notebook>
+            <page name="common" string="Common">
+              <group>
+                <group col="1">
+                  <field name="channels" select="0" mode="tree"
+                    domain="[('asterisk_user', '=', active_id)]"
+                    context="{'default_asterisk_user': active_id}">
+                    <tree name="channels" editable="bottom"> 
+                      <field name="channel" placeholder="Example: SIP/101"/>
+                      <field name="originate_context"/>
+                      <field name="originate_enabled" widget="boolean_toggle"/>
+                    </tree>
+                    <form>
+                      <sheet>
+                        <group>
+                          <group>
+                            <field name="agent"/>
+                            <field name="channel"/>
+                          </group>
+                          <group>
+                            <field name="originate_context"/>
+                            <field name="originate_enabled"/>
+                          </group>
+                        </group>
+                      </sheet>
+                    </form>
+                  </field>
+                </group>
+                <group>
+                  <field name="lang"/>
+                  <field name="originate_vars"/>
+                </group>
+              </group>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="asterisk_user_search" model="ir.ui.view">
+    <field name="name">asterisk_common.user.search</field>
+    <field name="model">asterisk_common.user</field>
+    <field name="type">search</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="exten"/>
+        <field name="user"/>
+        <field name="channels"/>        
+      </search>
+    </field>
+  </record>
+</odoo>

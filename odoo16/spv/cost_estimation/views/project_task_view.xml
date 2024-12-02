@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_task_form2_inherit" model="ir.ui.view">
+		<field name="name">view_task_form2.inherit</field>
+		<field name="model">project.task</field>
+		<field name="inherit_id" ref="project.view_task_form2"/>
+		<field name="arch" type="xml">
+<!--			<xpath expr="//header/button[@name='action_assign_to_me']" position="after">-->
+<!--				<button name="action_request_materials" string="Request Materials" type="object" class="oe_highlight"/>-->
+<!--			</xpath>-->
+<!--			<div name="button_box" position="inside">-->
+<!--                <button name="action_material_request" string="Material Request" type="object" class="oe_stat_button" icon="fa-star">-->
+<!--                </button>-->
+<!--            </div>-->
+
+			<xpath expr="//notebook" position="inside">
+				<page name="cost_items" string="Cost Items">
+					<field name="cost_items_ids" >
+						<tree create="false" delete="false">
+                            <field name="cost_item" domain="[('cost_ok', '=', True)]"
+                                   options="{'no_quick_create': True, 'no_create_edit' : True}" readonly="True"/>
+							<field name="budgetary_position_id" readonly="True" optional="show"/>
+                            <field name="total_cost_item_quantity" readonly="True" string="Quantity"/>
+                            <field name="cost_item_unit_cost" readonly="True" string="CI Cost"/>
+                            <field name="cost_total_include_taxes" readonly="True" string="Total Estimatied Cost"/>
+<!--                            <field name="cost_total_include_taxes" readonly="True" string="Total"/> -->
+
+                            <field name="practical_amount" readonly="True" string="Total Actual Cost"/>
+                        </tree>
+                    </field>
+				</page>
+<!--				<page string="Components">-->
+<!--					<field name="components_ids" >-->
+<!--						<tree editable="bottom">-->
+<!--                            <field name="cost_items_id" />-->
+<!--                            <field name="item_description_id" />-->
+<!--                            <field name="estimated_quantity" />-->
+<!--                            <field name="actual_quantity" />-->
+<!--                        </tree>-->
+<!--                    </field>-->
+<!--				</page>-->
+			</xpath>
+		</field>
+	</record>
+</odoo>

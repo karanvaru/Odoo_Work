@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_commission_close_period_tree" model="ir.ui.view">
+            <field name="name">commission.close.period.tree</field>
+            <field name="model">commission.close.period</field>
+            <field name="arch" type="xml">
+                <tree string="Commission Closing Period" editable="top">
+                    <field name="number_of_days"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_commission_close_period" model="ir.actions.act_window">
+            <field name="name">Commission Closing Period</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">commission.close.period</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+    </data>
+</odoo>

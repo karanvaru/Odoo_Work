@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="dx_wizard_form" model="ir.ui.view">
+        <field name="name">wizard.dx.wizard</field>
+        <field name="model">wizard.dx</field>
+        <field name="arch" type="xml">
+            <form string="Wizard Application">
+                <!--                    <h1>Congratulations</h1>-->
+                <sheet>
+                    <group>
+                        <field name="created_date" readonly="1"/>
+                        <field name="created_by"/>
+                        <field name="reason"/>
+                    </group>
+                    <footer>
+                        <button name="button_cancel" type="object" string="Save" class="btn_primary"/>
+
+                        <!--                    <button string="Cancel" class="btn-secondary" special="cancel"/>-->
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="dx_wizard_wizard" model="ir.actions.act_window">
+        <field name="name">Cancel Dx</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.dx</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="dx_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="service_template">
+        <t t-call="web.external_layout">
+            <t t-call="web.html_container">
+                <div class="row mt32">
+                    <br></br>
+                    <div style="margin-bottom:30px; text-align:center;margin-left:32%;margin-top:2%;">
+                        <h2>Service Request Report</h2>
+                    </div>
+                    <div style="margin-top:10%; margin-left:-55%;">
+                        <strong>Date From:</strong>
+                        <p t-esc="start_date"/>
+                    </div>
+                    <div style="margin-top:10%; margin-left:15%;">
+                        <strong>Date To:</strong>
+                        <p t-esc="end_date"/>
+                    </div>
+                </div>
+                <table class="table table-condensed" style="margin-top:5%;;width:100%;line-height:2;text-align:center;">
+                    <thead>
+                        <th>Serv No</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Request date</th>
+                        <th>Return date</th>
+                        <th>Technician</th>
+                        <th>Status</th>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="values" t-as="doc">
+                            <td align="left">
+                                <span t-esc="doc['code']"></span>
+                            </td>
+                            <td align="left">
+                                <span t-esc="doc['customer_name']"></span>
+                            </td>
+                            <td align="left">
+                                <span t-esc="doc['product_name']"></span>
+                            </td>
+
+                            <td align="left">
+                                <span t-esc="doc['date_assign']"></span>
+                            </td>
+                            <td align="left">
+                                <span t-esc="doc['date_return']"></span>
+                            </td>
+                            <td align="left">
+                                <span t-esc="doc['technician']"></span>
+                            </td>
+                            <td align="left">
+                                <span t-esc="doc['status']"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+        </t>
+    </template>
+
+    <template id="parts_template">
+        <t t-call="web.external_layout">
+            <t t-call="web.html_container">
+                <div class="row mt32">
+                    <br></br>
+                    <div style="margin-bottom:30px; text-align:center;margin-left:32%;margin-top:2%;">
+                        <h2>Parts Usage Report</h2>
+                    </div>
+                    <div style="margin-top:10%; margin-left:-55%;">
+                        <strong>Date From:</strong>
+                        <p t-esc="start_date"/>
+                    </div>
+                    <div  style="margin-top:10%; margin-left:15%;">
+                        <strong>Date To:</strong>
+                        <p t-esc="end_date"/>
+                    </div>
+                </div>
+                <div>
+                    <table class="table table-condensed" style="margin-top:5%;;width:100%;line-height:2;text-align:center;">
+                        <thead>
+                            <th style="text-align: center;">Serv No</th>
+                            <th style="text-align: center;">Technician</th>
+                            <th style="text-align: center;">Used Date</th>
+                            <th style="text-align: center;">Used Quantity</th>
+                            <th style="text-align: center;">Qty Invoiced</th>
+                            <th style="text-align: center;">Qty Stock Move</th>
+                            <th style="text-align: center;">Price</th>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="values" t-as="doc">
+                                <tr style="height:25px; font-size:16px; font-weight:bold; text-align:left;">
+                                    <td colspan="5">
+                                        <t t-esc="doc['product_name']"/>
+                                        (
+                                        <t t-esc="doc['part_brand']"/>
+                                        <t t-esc="doc['part_model']"/>
+                                        <t t-esc="doc['part_colour']"/>)
+                                    </td>
+                                </tr>
+                                <t t-foreach="used" t-as="use">
+                                    <t t-if="doc['id'] == use['product_id']">
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                <span t-esc="use['serv_id']"></span>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span t-esc="use['technician']"></span>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span t-esc="use['create_date']"></span>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span t-esc="use['qty_used']"></span>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span t-esc="use['qty']"></span>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span t-esc="use['qty_stock_move']"></span>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <span t-esc="use['price']" ></span>
+                                                <span t-esc="use['symbol']"></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="complaint_template">
+        <t t-call="web.external_layout">
+            <t t-call="web.html_container">
+                <div class="row mt32">
+                    <br></br>
+                    <div style="margin-bottom:30px; text-align:center;margin-left:32%;margin-top:2%;">
+                        <h2>Complaint Type Report</h2>
+                    </div>
+                    <div style="margin-top:10%; margin-left:-55%;">
+                        <strong>Date From:</strong>
+                        <p t-esc="start_date"/>
+                    </div>
+                    <div  style="margin-top:10%; margin-left:15%;">
+                        <strong>Date To:</strong>
+                        <p t-esc="end_date"/>
+                    </div>
+                </div>
+                <div>
+                    <table class="table table-condensed" style="margin-top:5%;;width:100%;line-height:2;text-align:center;">
+                        <thead>
+                            <th style="text-align: center;">Serv No</th>
+                            <th style="text-align: center;">Technician</th>
+                            <th style="text-align: center;">Brand</th>
+                            <th style="text-align: center;">Model</th>
+                            <th style="text-align: center;">Date Request</th>
+                        </thead>
+                        <tbody>
+                             <t t-foreach="values" t-as="doc">
+                                <t t-if="doc['print'] == 1">
+                                    <tr style="height:25px; font-size:16px; font-weight:bold; text-align:left;">
+                                        <td colspan="5">
+                                            <t t-esc="doc['complaint_type']"/>
+                                            -
+                                            <t t-esc="doc['description']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-foreach="complaints" t-as="comp">
+                                    <t t-if="doc['complaint_type'] == comp['complaint_type']">
+                                        <t t-if="doc['description'] == comp['description']">
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <span t-esc="comp['serv_no']"></span>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <span t-esc="comp['technician']"></span>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <span t-esc="comp['brand']"></span>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <span t-esc="comp['model']"></span>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <span t-esc="comp['date']"></span>
+                                                </td>
+
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+    <template id="mobile_service_shop.mobile_service_ticket_template">
+        <t t-call="web.external_layout">
+            <t t-call="web.html_container">
+                <div style="margin-bottom:30px; text-align:center;margin-left:-8%;margin-top:2%;">
+                        <h2>Service Ticket</h2>
+                </div>
+                <div class="page">
+<!--                    <br/>-->
+<!--                    <div style="margin-bottom:30px; text-align:center;margin-left:28%;margin-top:2%;">-->
+<!--                        <h2>Service Ticket</h2>-->
+<!--                    </div>-->
+
+                    <div class="col-xs-6" style="margin-top:0%; margin-left:2%;">
+                        <table style="width:100%;">
+                            <tbody style="line-height:2">
+                                <tr>
+                                    <td><strong>Ref no</strong></td><td style="padding-left:15%;">:</td>
+                                    <td style="padding-left:2%;"><strong><span style="font-size:16px; font-weight:2px;" t-esc="sev_id"/></strong></td>
+                                </tr>
+                                <tr>
+                                    <td> <strong>Customer name</strong></td><td style="padding-left:15%;">:</td>
+                                    <td style="padding-left:2%;"><span t-esc="customer_name"/></td>
+                                </tr>
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                    <div class="col-xs-6" style="margin-top:0; margin-left:2%;">-->
+<!--                        <table style="width:100%;">-->
+<!--                            <tbody style="line-height:2">-->
+                                <tr>
+                                    <td><strong>Requested date</strong></td><td style="padding-left:15%;">:</td>
+                                    <td style="padding-left:2%;"> <span t-esc="date_request"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Return date</strong></td><td style="padding-left:15%;">:</td>
+                                    <td style="padding-left:2%;"><span t-esc="date_return"/></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-xs-12" style="margin-top:20%;margin-left:5%;text-align:center;"><h4>Device details</h4></div>
+                    <table style="margin-top:5%;margin-left:5%;width:90%;border:1px solid black;line-height:2;text-align:center;">
+                        <thead style="background-color:#c9cacc;font-size:15px;">
+                            <tr>
+                                <td>Sl no.</td>
+                                <td>Device brand</td>
+                                <td>Model name</td>
+                                <td>IMEI</td>
+                                <td>Complaints</td>
+                                <td>Image of Device</td>
+                                <td>Description</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><t t-esc="mobile_brand"/></td>
+                                <td><t t-esc="model_name"/></td>
+                                <td><t t-esc="imei_no"/></td>
+                                <td><t t-esc="complaint_types"/></td>
+                                <td t-if="real_phone_image">
+                                    <img style="height:50px; width:auto; padding:5px;"
+                                         t-att-src="'data:image/png;base64,%s' %real_phone_image"/>
+                                </td>
+                                <td t-else=""/>
+                                <td><t t-esc="complaint_description"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top:10px;">
+                    <t t-if="warranty==True">
+                        <span>The device is in warranty range !!</span>
+                    </t>
+                </div>
+                <div style="margin-top:30px;">
+                    <h5><strong>Terms and Conditions</strong></h5>
+                    <t t-foreach="terms" t-as="term">
+                        <span><t t-esc="term.terms_conditions"/><br/></span>
+                    </t>
+                </div>
+                <div style="margin-top:200px;">
+                    <span>Keep this ticket safely for future reference.</span><br/>
+                   <span>Issue Date :</span> <t t-esc="date_today"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

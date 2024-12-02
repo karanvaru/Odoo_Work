@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_inherit_rental_request" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.rental</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_confirm']" position="after">
+                <button name="action_submit_rental_order_custom" string="Reserve" class="btn-primary" type="object" attrs="{'invisible': ['|',('is_custom_rental_quote', '=', False), '|', ('is_custom_rental_so_submitted', '=', True), ('state', '=', 'cancel')]}"/>
+                <button name="action_unreserve_rental_order_custom" string="Un-Reserve" type="object" attrs="{'invisible': ['|',('is_custom_rental_quote', '=', False), '|', ('is_custom_rental_so_submitted', '=', False), ('state', 'not in', ['draft', 'sent'])]}"/>
+            </xpath>
+
+            <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
+                <field name="custom_start_datetime" attrs="{'column_invisible': [('parent.is_custom_rental_quote', '!=', True)], 'readonly': [('parent.is_custom_rental_so_submitted', '=', True)]}"/>
+                <field name="custom_end_datetime" attrs="{'column_invisible': [('parent.is_custom_rental_quote', '!=', True)], 'readonly': [('parent.is_custom_rental_so_submitted', '=', True)]}"/>
+                <field name="custom_rent_days" attrs="{'column_invisible': [('parent.is_custom_rental_quote', '!=', True)], 'readonly': [('parent.is_custom_rental_so_submitted', '=', True)]}"/>
+                <field name="custom_rent_hours" widget="float_time" attrs="{'column_invisible': [('parent.is_custom_rental_quote', '!=', True)], 'readonly': [('parent.is_custom_rental_so_submitted', '=', True)]}"/>
+            </xpath>
+
+            <xpath expr="//notebook/page/field/form/group/group/div" position="after">
+                <field name="custom_start_datetime"/>
+                <field name="custom_end_datetime"/>
+                <field name="custom_rent_hours" widget="float_time"/>
+                <field name="custom_rent_days"/>
+            </xpath>
+
+            <xpath expr="//page[last()]" position="after">
+                <page name="custom_rental_info" string="Rental Information" attrs="{'invisible': [('is_custom_rental_quote', '=', False)]}">
+                    <group>
+                        <group name="rental_info_grp">
+                            <field name="custom_force_reserv_rental_order"/>
+                            <field name="is_custom_rental_quote"/>
+                            <field name="is_custom_rental_so_submitted"/>
+                            <field name="custom_rental_drop_options_id"/>
+                        </group>
+                    </group>
+                    <group name="rental_submit_comment" string="Rental Customer Comment">
+                        <field name="rental_submit_custom_comment" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="action_custom_rental_quotations" model="ir.actions.act_window">
+        <field name="name">Rental Quotations</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_custom_rental_quote', '=', True)]</field>
+        <field name="context">{'default_is_custom_rental_quote': True}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to Rental Quotations
+          </p>
+        </field>
+    </record>
+
+    <record id="action_custom_rental_sale_order" model="ir.actions.act_window">
+        <field name="name">Rental Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_custom_rental_quote', '=', True), ('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
+        <field name="context">{'default_is_custom_rental_quote': True}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to Rental Quotations
+          </p>
+        </field>
+    </record>
+    
+    <record id="action_custom_rental_reserved_orders" model="ir.actions.act_window">
+        <field name="name">Reserved Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_custom_rental_quote', '=', True), ('is_custom_rental_so_submitted', '=', True)]</field>
+        <field name="context">{'default_is_custom_rental_quote': True}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to Rental Quotations
+          </p>
+        </field>
+    </record>
+
+</odoo>

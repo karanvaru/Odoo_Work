@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="0">
+        <record id="hr_self_appraisal_app_employee_notification" model="mail.template">
+            <field name="name">New Ticket Notification</field>
+            <field name="subject">New Ticket Notification</field>
+            <field name="email_to">${object.spoc_id.work_email}</field>
+            <field name="model_id" ref="rdp_employee_appraisal_inherited.model_employee_appraisal"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.spoc_id.name},</p>
+                <p>A new ticket has been raised and assigned to you for review and resolution. Please find the details of the ticket below:</p>
+                <p>Ticket Number: ${object.name}</p>
+
+                <p>Description:A new ticket has been raised and assigned to you for review and resolution.
+                Please find the details of the ticket below:</p>
+                <p>Raised by: ${object.employee_name.name}</p>
+
+                <p>Thanks & Regards <br>
+                RDP People Team
+                </p>
+                ]]>
+            </field>
+        </record>
+
+        <record id="Here_is_a_template_for_an_automated_email_that_can_be_sent_to_an_employee" model="mail.template">
+            <field name="name">Self Appraisal Response Received</field>
+            <field name="subject">Self Appraisal Response Received</field>
+            <field name="email_to">${object.employee_name.login}</field>
+            <field name="model_id" ref="rdp_employee_appraisal_inherited.model_employee_appraisal"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.employee_name.name},</p>
+                <p>We have received your response to the self appraisal that you submitted through our app.
+                 We appreciate your time and effort in completing this process.</p>
+                <p>We will review your response and provide feedback as necessary. If you have any questions or concerns,
+                 please do not hesitate to reach out to us.</p>
+                 <p>Thank you for your continued dedication to our organization.</p>
+
+
+
+                <p>Thanks & Regards <br>
+                RDP People Team
+                </p>
+                ]]>
+            </field>
+        </record>
+
+        <record id="notification_after_ticket_closed" model="mail.template">
+            <field name="name">Self Appraisal Response Received</field>
+            <field name="subject">Ticket ${object.name} - Closed</field>
+            <field name="email_to">${object.employee_name.login}</field>
+            <field name="model_id" ref="rdp_employee_appraisal_inherited.model_employee_appraisal"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.employee_name.name},</p>
+                <p>We wanted to inform you that your ticket has been successfully closed.
+                We appreciate your patience and understanding while the issue was being resolved.</p>
+                <p>If you have any further concerns, please don't hesitate to reach out to us.</p>
+                <p>Thank you for bringing this matter to our attention.</p>
+
+                <p>Thanks & Regards <br>
+                RDP People Team
+                </p>
+                ]]>
+            </field>
+        </record>
+
+    </data>
+</odoo>

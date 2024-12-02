@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="custom_view_product_category_vendor_show" model="ir.ui.view">
+            <field name="name">product.category.form.inherit.show_vendor</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='first']" position="after">
+					<group name="vendor_category" string="Vendor Registration Form">
+						<field name="custom_display_on_vendor_registration"/>
+					</group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

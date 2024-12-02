@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+
+        <template id="wwm_sidebar" name="Sidebar">
+            <t t-call="portal.portal_layout">
+                <body data-spy="scroll" data-target=".navspy" data-offset="50">
+                    <div class="container o_portal_sidebar"></div>
+                    <div class="oe_structure mb32" id="oe_structure_portal_sidebar_1"/>
+                </body>
+            </t>
+        </template>
+
+
+        <template id="wwm_page" name="Warranty" inherit_id="warranty_management.wwm_sidebar" primary="True">
+            <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+                <div class="row mt16 o_portal_sale_sidebar">
+                    <div id="quote_content" class="col-12 col-lg justify-content-end">
+                        <div t-attf-class="card #{'pb-5' if report_type == 'html' else ''}">
+                            <div t-call="warranty_management.warraty_followup"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+
+
+
+    <template id="warraty_followup" name="Warranty">
+        <div id="introduction" t-attf-class="pb-2 pt-3 #{'card-header bg-white' if report_type == 'html' else ''}">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h4>
+                        <span>Order :</span>
+                        <a t-attf-href="/my/orders/#{ol.order_id.id}?#{keep_query()}">
+                            <t t-esc="ol.order_id.name"/>
+                        </a>
+                    </h4>
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="">
+                        <span>Total Quantity: </span>
+                        <span t-esc="total_qty"/>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div t-attf-class="#{'card-body' if report_type == 'html' else ''}">
+            <div id="informations">
+                <div class='row'>
+                    <div class="col-lg-12">
+                        <div>
+                            <strong>Order Date:</strong>
+                            <span t-field="order.create_date"
+                                  t-options="{&quot;format&quot;: &quot;MM/dd/yyyy&quot;}"/>
+                        </div>
+                        <br/>
+                        <br/>
+                    </div>
+                    <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                                <tr class="active">
+                                    <th>Reference</th>
+                                    <th>Serial/Lot Number</th>
+                                    <th>Product</th>
+                                    <th>Warranty Status</th>
+                                    <th></th>
+                                    <th class="text-right">Download</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <t t-set="wntyDict" t-value="ol.get_warranty_details()[0]"/>
+                                <t t-foreach="wntyDict['serial']" t-as="serial">
+                                    <t t-set="wrntyId" t-value="serial['wrnt_id']"/>
+                                    <t t-set="warranty_url"
+                                        t-value="'/my/warranty/pdf/%s?%s' % (wrntyId, keep_query())"/>    
+                                    <tr>
+                                        <td>
+                                            <b><span t-esc="serial['ref']"/></b>
+                                        </td>
+                                        <td>
+                                            <span t-esc="serial['lot_num']"/>
+                                        </td>
+                                        <td>
+                                            <span t-field='ol.product_id.name'/>
+                                        </td>
+                                        <td>
+                                            <b>Expire on: </b><span t-esc="serial['exp_date']"/>
+                                        </td>
+                                        <td>
+                                            <t t-if="serial['crnt_state'] == 'draft'">
+                                                <t t-set="w_url" 
+                                                   t-value="'/register/now/%s?%s' % (wrntyId,keep_query())"/>
+                                                <a class="btn btn-xs btn-primary" t-att-href="w_url">
+                                                    <i class="fa fa-registered"/> Regsiter now
+                                                </a>
+                                            </t>
+                                            <t t-if="serial['is_renew'] == 'Yes' and serial['crnt_state'] != 'draft'">
+                                                <t t-set="w_url" 
+                                                   t-value="'/my/warranty/renew/%s?%s' % (wrntyId,keep_query())"/>
+                                                <a class="btn btn-xs btn-primary" t-att-href="w_url">
+                                                    <i class="fa fa-refresh"/> Renew
+                                                </a>
+                                            </t>
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-if="serial['crnt_state'] not in ['draft', 'cancel', 'expired']">
+                                                <a class="btn btn-xs btn-primary" t-att-href="warranty_url">
+                                                    <i class="fa fa-download"/> Warranty
+                                                </a>
+                                            </t>
+                                            <t t-if="serial['crnt_state'] == 'expired'">
+                                                    <b>Expired</b>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+</odoo>

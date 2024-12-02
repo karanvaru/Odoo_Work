@@ -1,0 +1,796 @@
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA with Replace, Repair & Refund</h2>
+        <h4 class="oe_slogan" style="color:#875A7B;">Return Merchandise Authorization with Replace, Repair & Refund</h4>
+    </div>
+    <div class="oe_row">
+        <div class="oe_span12" style="font-size: large;">
+            <div class="row">
+                <div class="col-md-9">
+                    <p>
+                        RMA is a powerful tool for managing the request process of replace, repair or refund within the workflow. With multiple workflow option the module can function from the sale order.
+                    </p>
+                    <p>
+                        Through the sale order, the goods can be replaced, repaired or money can be refunded, if the goods are wrongly delivered or the customer receives damaged/defective goods. It provides an overview of the sales order with the sales order line, wherein a particular line (product) can be selected for exchange, repair or refund process.
+                    </p>
+                    <p>
+                        This module also helps to exchange, repair or do the refund process for the service industries (repair service) directly through sale order. For e.g. In a service centre if a product comes for repair, the system check for product warranty and if it is not in warranty a RMA repair invoice is generated. In addition this module also handles the warranty for the spare parts used in repairing job. If the repaired product comes in for rework wherein the spare part used are to be replaced, which can be handled easily.
+                    </p>
+                    <p>
+                        The RMA solution efficiently manages various operational in Odoo such as creating return receipt, delivery order, credit note, adjusting stock levels etc.
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <div class="box_data" style="background-color:#F0F4F7;color: #875A7B">
+                        <h4 style="text-align: center;padding-top: 15px;">This module is compatible with</h4>
+                        <ul style="padding: 20px;">
+                            <li class="Community" style="list-style: none;margin-bottom: 15px;">
+                                <span style="margin-right: 10px;"><img src="tick.svg" style="width: 25px;height: 25px;"/></span>
+                                <span>Community</span>
+                            </li>
+                            <li class="Enterprise" style="list-style: none;margin-bottom: 15px;">
+                                <span style="margin-right: 10px;"><img src="tick.svg" style="width: 25px;height: 25px;"/></span>
+                                <span>Enterprise</span>
+                            </li>
+                            <li class="odoo_sh" style="list-style: none;margin-bottom: 15px;">
+                                <span style="margin-right: 10px;"><img src="tick.svg" style="width: 25px;height: 25px;"/></span>
+                                <span>Odoo.sh</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">Key Features</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <ul>
+                <div>
+                    <i class="fa fa-check" style="color: #cd2d47;font-size: 15px;"></i> Create predefined return reasons and set return type.
+                </div>
+                <div>
+                    <i class="fa fa-check" style="color: #cd2d47;font-size: 15px;"></i> The manager can approve or reject RMA request through Return Material Authorization Lines.
+                </div>
+                <div>
+                    <i class="fa fa-check" style="color: #cd2d47;font-size: 15px;"></i> With appropriate action, the product can be returned, replaced or repaired.
+                </div>
+                <div>
+                    <i class="fa fa-check" style="color: #cd2d47;font-size: 15px;"></i> Automatic inventory management on product return & replace.
+                </div>
+                <div>
+                    <i class="fa fa-check" style="color: #cd2d47;font-size: 15px;"></i> Delivery order, credit note and sales order are created automatically based on the selected action (return, replace, repair).
+                </div>
+                <div>
+                    <i class="fa fa-check" style="color: #cd2d47;font-size: 15px;"></i> Customer can view Delivery order/Credit note/Sales order from the website.
+                </div>
+                <div>
+                    <i class="fa fa-check" style="color: #cd2d47;font-size: 15px;"></i> RMA details can be printed or they can be shared with customer through email.
+                </div>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">Configuration</h2>
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA Return Type</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                To configure RMA return type, go to <strong>Sales/After-Sales Service/RMA Return Type.</strong>
+            </p>
+            <p>
+                User can create the predefined return type for product return with its suitable return action to be taken.
+            </p>
+        </div>
+        <center>
+            <img src="1.1_RMA_return_type.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA Reaturn Reason</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                To configure RMA return reason, go to <strong>Sales/After-Sales Service/RMA Return Reasons.</strong>
+            </p>
+            <p>
+                For product return user can create the predefined return reason. It is important to set the maximum number of Return reason to avoid errors during RMA validations.
+            </p>
+        </div>
+        <center>
+            <img src="2.1_RMA_Return_Reason.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA details with Sales order</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                Check all RMA details and select related sales order and generate its RMA lines by clicking on 'Generate Lines' button.
+            </p>
+            <p>
+                <b><u>Fields Description</u></b>
+            </p>
+            <table>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>Subject: </b>
+                    </td>
+                    <td>
+                        Write the subject line related to the product damaged or product return.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>Responsible: </b>
+                    </td>
+                    <td>
+                        Mention the user who is authorised to handle the RMA.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>Date & Priority: </b>
+                    </td>
+                    <td>
+                        Set the creation date of RMA. Set its priority by selecting 1, 2 or 3 stars- Low, High or Urgent.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>Source & Destination Locations: </b>
+                    </td>
+                    <td>
+                        Select source and destination locations for inventory management.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>Return Lines : </b>
+                    </td>
+                    <td>
+                        When user selects Sales Order, the product details are fetched automatically in RMA lines. Enter the return quantity against delivered quantity, select reason for return and select return type.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>RMA Note: </b>
+                    </td>
+                    <td>
+                        Mention special note or any other inputs which are related to the product return.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>Customer Info : </b>
+                    </td>
+                    <td>
+                        Define customer name, email, mobile and phone number.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <center>
+            <img src="4 1_RMA_edited1.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA Lines</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                Click on "Add a Line" link for adding sales order lines for defactive products or the products to be replaced.
+            </p>
+            <p>
+                After selecting lines click on "Generate Lines" button for generating RMA lines.
+            </p>
+        </div>
+        <center>
+            <img src="5 2_RMA_line_edited.png" width="85%" class="mt8">
+        </center>
+        <div class="oe_span12" style="font-size: large;">
+            <br/>
+            <p>
+                After generating lines, add return quantity against delivered quantity in quantity field and select reason and return type for the returned product.
+            </p>
+            <p>
+                The RMA details can be shared to the customer on email, on his approval the RMA gets confirm.
+            </p>
+            <p>
+                <b><u>Fields Description</u></b>
+            </p>
+            <table>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>Product: </b>
+                    </td>
+                    <td>
+                        Product which are need to be replaced or repaired.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>Serial No: </b>
+                    </td>
+                    <td>
+                        Select product serial number to identify actual product.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>Delivered Qty: </b>
+                    </td>
+                    <td>
+                        Delivered quantity is fetched automatically from the sales order.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>Return Qty: </b>
+                    </td>
+                    <td>
+                        Add product quantity to be return.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>Return Type: </b>
+                    </td>
+                    <td>
+                        Select return type from action to be peformed.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left" style="vertical-align: text-top;" width="200px">
+                    <b>Reason: </b>
+                    </td>
+                    <td>
+                        Select valuable reason for return product.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <center>
+            <img src="6 1_RMA_line_edited1.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA Incoming Shipment</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                After RMA confirmation, two buttons will be visible, "Generate Receipt" and "Reject".
+            </p>
+            <p>
+                The receipt can be generated by click on "Generate Receipt" button. Once the receipt is validated, the user can select associated action related to "RMA reason".
+            </p>
+            <p>
+                The incoming shipment is automatically generated for all RMA lines, the actions are performed and the products are received in our location.
+            </p>
+        </div>
+        <center>
+            <img src="rma_8_edited.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA Reject</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                On rejecting an RMA, rejection notes can be entered for future reference.
+            </p>
+        </div>
+        <center>
+            <img src="9_rma_edited.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA Scenarios</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                The most common scenario of RMA. Replace, Repair & Credit (Refund).<br/>
+                1. Replace: To create (replacement) product sales order<br/>
+                2. Repair: To create repair order<br/>
+                3. Credit(Refund): To create credit note.
+            </p>
+        </div>
+        <center>
+            <img src="10 1_RMA_operation_edited.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">Replace Process</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                Click on "Create Replacement SO" for creating replacement order.
+            </p>
+            <p>
+                When the product is same, the system will generate a sales order for the same returned product with delivery order for the new replaced product.
+            </p>
+        </div>
+        <center>
+            <img src="rma_11_edited.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">Repair Process</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                For creating repair order click on "Create Repair Order" button. the system will generate repair order for the product to be repaired and delivery order will be made after the repair work is done.
+            </p>
+        </div>
+        <center>
+            <img src="rma_12_edited.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">Credit Process</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                For creating credit note, click on "Generate Credit Memo" button. The system will generate credit note with all the details for the returned product.
+            </p>
+        </div>
+        <center>
+            <img src="rma_13_edited.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA Status</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                Check RMA status lines with reason.
+            </p>
+        </div>
+        <center>
+            <img src="14 1_RMA_edited.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">Print RMA PDF</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                Print RMA information in PDF format.
+            </p>
+            <center>
+                <img src="rma_29_edited.png" width="85%" class="mt8">
+            </center>
+        </div>
+    </div>
+</section>
+
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA Details without Sales Order</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                If required the details can be updated and create new RMA lines with product information.
+            </p>
+        </div>
+        <center>
+            <img src="25 1_RMA_edited.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA incoming shipment</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                On confirmed RMA, a receipt is generated through 'Generate Receipt' button. Once the receipt is validated, the incoming shipment is generated automatically. After validating the incoming shipment, the products are received in the desired location.
+            </p>
+        </div>
+        <center>
+            <img src="rma_26_edited.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">Repair Process without Sales Order</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                For creating a new repair order, click on 'Create Repair Order' button. The system will generate a new repair order for the product to be repaired and delivery order will be made after the repair work is done.
+            </p>
+        </div>
+        <center>
+            <img src="rma_27_edited.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA Status</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                Check RMA status lines with reason.
+            </p>
+        </div>
+        <center>
+            <img src="28 1_RMA_edited.png" width="85%" class="mt8">
+        </center>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">Print RMA PDF</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                Print RMA information in PDF format.
+            </p>
+            <center>
+                <img src="rma_30_edited.png" width="85%" class="mt8">
+            </center>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:#875A7B;">RMA Analysis Report</h2>
+        <div class="oe_span12" style="font-size: large;">
+            <p>
+                Go to <strong>Sales / Reporting / RMA.</strong>
+            </p>
+            <p>
+                Generate RMA report with in-depth analysis through the pivot and graph view.
+            </p>
+            <center>
+                <img src="rma_31.png" width="85%" class="mt8">
+            </center>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+             <h2 class="oe_slogan"><a href="http://www.synconics.com/" style="color: #000000 !important;">Suggested Products</a></h2>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="row" style="display: flex;justify-content: center;align-items: center;flex-wrap: wrap;">
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk/" target="_blank"><img src="suggested_product/sync_helpdesk.png" height="100" width="100"></a></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk/" target="_blank"><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Ticket Management</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_website/" target="_blank"><img src="suggested_product/sync_helpdesk_website.png" height="100" width="100"></a></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_website/" target="_blank"><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Customer Portal</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_sla/" target="_blank"><img src="suggested_product/sync_helpdesk_sla.png" height="100" width="100"></a></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_sla/" target="_blank"><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - SLA Management</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_timesheet/" target="_blank"><img src="suggested_product/sync_helpdesk_timesheet.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_timesheet/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Helpdesk - Ticket Timesheet</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_timesheet_invoice/" target="_blank"><img src="suggested_product/sync_helpdesk_timesheet_invoice.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_timesheet_invoice/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Helpdesk - Ticket Timesheet Invoice</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_intake/" target="_blank"><img src="suggested_product/sync_helpdesk_intake.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_intake/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Ticket Intake Form</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_outtake/" target="_blank"><img src="suggested_product/sync_helpdesk_outtake.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_outtake/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Ticket Out-take Form</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_dashboard/" target="_blank"><img src="suggested_product/sync_helpdesk_dashboard.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_dashboard/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Dashboard</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_livechat/" target="_blank"><img src="suggested_product/sync_helpdesk_livechat.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_livechat/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Live Chat Support</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_contract/" target="_blank"><img src="suggested_product/sync_helpdesk_contract.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_contract/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Contract Management</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_contract_renew/" target="_blank"><img src="suggested_product/sync_helpdesk_contract_renew.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_contract_renew/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Contract Renewal</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_contract_invoice/" target="_blank"><img src="suggested_product/sync_helpdesk_contract_invoice.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_contract_invoice/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Paid Contract</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_lead/" target="_blank"><img src="suggested_product/sync_helpdesk_lead.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_lead/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Ticket From Lead</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_rma_warranty/" target="_blank"><img src="suggested_product/sync_helpdesk_rma_warranty.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_rma_warranty/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">RMA Warranty</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_refurbs/" target="_blank"><img src="suggested_product/sync_helpdesk_refurbs.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_refurbs/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Refurbishing</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_rework/" target="_blank"><img src="suggested_product/sync_helpdesk_rework.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_rework/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Ticket Rework</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_sale_quote/" target="_blank"><img src="suggested_product/sync_helpdesk_sale_quote.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_sale_quote/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Estimation</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_appointment/" target="_blank"><img src="suggested_product/sync_helpdesk_appointment.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_appointment/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Appointments</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_automation/" target="_blank"><img src="suggested_product/sync_helpdesk_automation.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_automation/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Ticket Automation</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_escalation/" target="_blank"><img src="suggested_product/sync_helpdesk_escalation.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_escalation/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Ticket Escalation</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_subtickets/" target="_blank"><img src="suggested_product/sync_helpdesk_subtickets.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_subtickets/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Sub Tickets</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_merge_ticket/" target="_blank"><img src="suggested_product/sync_helpdesk_merge_ticket.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_merge_ticket/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Ticket Merging</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_sequence/" target="_blank"><img src="suggested_product/sync_helpdesk_sequence.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_sequence/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Ticket Number Sequence</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_ticket_recurring/" target="_blank"><img src="suggested_product/sync_helpdesk_ticket_recurring.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_ticket_recurring/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Recurring Service Ticket</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_survey/" target="_blank"><img src="suggested_product/sync_helpdesk_survey.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_survey/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Customer Feedback</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_knowledge_base/" target="_blank"><img src="suggested_product/sync_helpdesk_knowledge_base.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_knowledge_base/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Forum/Knowledge Base</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_website_slides/" target="_blank"><img src="suggested_product/sync_helpdesk_website_slides.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_website_slides/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Website Slider(Videos, Presentations & Documents)</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_contract_sla/" target="_blank"><img src="suggested_product/sync_helpdesk_contract_sla.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_contract_sla/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Contract SLA</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_recurring_appointment/" target="_blank"><img src="suggested_product/sync_helpdesk_recurring_appointment.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_recurring_appointment/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Appointment Scheduling</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_unassign/" target="_blank"><img src="suggested_product/sync_helpdesk_unassign.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_unassign/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Ticket Unassigning</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_sms/" target="_blank"><img src="suggested_product/sync_helpdesk_sms.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_sms/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Ticket SMS</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_intake_timesheet/" target="_blank"><img src="suggested_product/sync_helpdesk_intake_timesheet.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_intake_timesheet/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Helpdesk - Website Timesheet View on Ticket Intake Form</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_sale_commission/" target="_blank"><img src="suggested_product/sale_commission.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_sale_commission/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Sales Commission</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sales_warranty/" target="_blank"><img src="suggested_product/sales_warranty.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sales_warranty/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Warranty Management</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/website_purchase_quote/" target="_blank"><img src="suggested_product/website_purchase_quote.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/website_purchase_quote/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Repair Service - Vendor Portal</h4></a></center>
+        </div>
+
+        <div class="col-md-2">
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_merge_timesheet/" target="_blank"><img src="suggested_product/sync_helpdesk_merge_timesheet.png" height="100" width="100"></center>
+            <center><a href="https://apps.odoo.com/apps/modules/12.0/sync_helpdesk_merge_timesheet/" target="_blank"  ><h4 style="margin-top:15px;color: #2D7BB8;">Helpdesk - Ticket Timesheet Merging</h4></a></center>
+        </div>
+
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced" style="width: 100%;">
+        <div class="oe_span12" style="width: 100%;">
+            <h2 class="oe_slogan">Free Support</h2>
+        </div>
+        <div class="oe_span12" style="width: 100%;">
+            <span>1) One month free bug support period will be offered pertaining to any one server used, testing or live.</span><br/>
+            <span>2) If an error appears in our app due to other custom modules installed in your system, we will charge for our efforts to resolve those errors. </span><br/>
+            <span>3) Please refer the document for configuration. If you need our support for configuration, please request our paid support. </span><br/>
+            <span>4) Please note that you are not allowed to distribute or resell this module after purchase. </span><br/>
+            <span>5) This module is tested and working on Odoo vanilla with Ubuntu OS. </span><br/>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan"><a href="https://support.synconics.com/helpdesk/support-1/submit" style="color: #000000 !important;"> Get Help & Support</a></h2>
+        </div>
+        <div class="oe_slogan oe_spaced text-center">
+            <a class="btn btn-success mt8" title="Get Help !" style="background-color: rgb(31, 16, 140); color: rgb(255, 255, 255) !important; position: relative; overflow: hidden;" href="https://support.synconics.com/helpdesk/support-1/submit"><span class="o_ripple" style="height: 61px; width: 61px; top: -12.9688px; left: -8.76562px;"></span> Help & Support </a>&nbsp;&nbsp;
+            <a class="btn btn-success mt8" title="Request New Features now !" style="background-color: rgb(31, 16, 140); color: rgb(255, 255, 255) !important; position: relative; overflow: hidden;" href="http://www.synconics.com/opensource-erp-implementation-odoo-partner-india-gujarat-ahmedabad-expert-company-contact-us/"> Request New Features </a>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_slogan oe_spaced">
+            <span style="font-size: 20px">Checkout Other Apps Developed By Synconics Technologies <a href="https://apps.odoo.com/apps/modules/browse?search=synconics">Click Here</a></span>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12" style="float: none;">
+            <h2 class="oe_slogan"><a href="http://www.synconics.com/" style="color: #000000 !important;"> Our Services</a></h2>
+        </div>
+        <div class="oe_menu" style="display: flex;justify-content: center;align-items: center;flex-wrap: wrap;">
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/odoo-opensource-erp-onpremise-cloudhosting-installation-expert/">Odoo ERP Installation</a>
+            </li>
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/odoo-opensource-erp-version-legacy-system-migration-upgradation-expert/">Odoo ERP Migration</a>
+            </li>
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/organizational-digital-stratagy-legacy-system-transformation-modernisation/">Digital Stratagy</a>
+            </li>
+
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/odoo-opensource-erp-module-configuration-setting-expert/">Odoo ERP configuration</a>
+            </li>
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/odoo-opensource-erp-onsite-onpremise-remote-working-monthly-projectwise-dedicated-functional-technical-expert-resources/">Odoo ERP Staffing</a>
+            </li>
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/organizational-business-process-reengineering-digital-transformation-system-application-technology-selection/">Digital Technology Selection</a>
+            </li>
+
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/odoo-opensource-erp-module-customization-expert/">Odoo ERP Customization</a>
+            </li>
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/odoo-opensource-erp-onpremise-remote-functional-training-by-expert-trainers/">Odoo Functional Training</a>
+            </li>
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/organisational-digital-transformation-system-application-technology-selection-implementation/">Digital Transformation Implementation</a>
+            </li>
+
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/odoo-opensource-erp-new-module-product-development-expert/">Odoo ERP New Module Development</a>
+            </li>
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/odoo-opensource-erp-onpremise-remote-technical-training-by-expert-trainers/">Odoo ERP Technical Training</a>
+            </li>
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/organizational-business-process-reengineering-digital-transformation-legacy-system-application-technology-migration-modernisation/">Legacy Modernization</a>
+            </li>
+
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/odoo-opensource-erp-integration-e-commerce-payment-gateway-document-management-shipping-accounting/">Odoo ERP Integrations</a>
+            </li>
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/odoo-opensource-erp-expert-support-services/">Odoo ERP Support</a>
+            </li>
+            <li class="oe_flex_li" style="flex: 0 0 30%;text-align: left;">
+                <a href="http://www.synconics.com/organizational-business-process-reengineering-digital-transformation/">Organizational Transformation</a>
+            </li>
+
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced text-center">
+        <div class="oe_span12">
+            <span style="font-size: 20px;text-align: right;"><h2 class="oe_slogan"><a href="http://www.synconics.com/" style="color: #000000 !important;"> Our Contact Details</a></h2></span>
+            <span class="o_ripple" style="background-color: rgb(31, 16, 140); color: rgb(255, 255, 255) !important; position: relative; overflow: hidden;height: 61px; width: 61px; top: -12.9688px; font-size: 18px;text-align: right;padding: 6px 12px;border-radius: 4px;border: 1px solid transparent;border-color: #4cae4c;z-index:1;">
+                     E-mail :
+                    <a href="http://www.synconics.com/opensource-erp-implementation-odoo-partner-india-gujarat-ahmedabad-expert-company-contact-us/" style="color: rgb(255, 255, 255) !important;">contact@synconics.com</a> |
+                    Skype : synconics.technologies  |
+                    Mobile : +91-942-686-4274
+
+            </span>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <span style="font-size: 20px">For product demo, please generate a ticket and mention your preferred time and date. Please make sure the demo timing you mentioned are as per Indian Standard Time (IST), between 10:30 AM to 7:00 PM (IST), Monday to Friday.</span>
+        </div>
+    </div>
+</section>

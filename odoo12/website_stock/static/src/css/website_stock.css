@@ -1,0 +1,63 @@
+.stock-status {
+    color: #fff;
+    font-weight: 700;
+    line-height: 18px;
+    display: inline-block;
+    padding: 3px 8px 4px;
+    border-radius: 2px;
+}
+
+.not-active {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.8;
+}
+
+.stock-panel {
+    z-index: 5;
+    position: relative;
+    margin-right: 10px;
+    opacity: 0.75;
+}
+
+.js_product .popover-title,
+.oe_cart .popover-title {
+    color: white;
+    font-size: 20px;
+    text-align: center !important;
+    background-color: #D50000;
+}
+
+.js_product .popover-content,
+.oe_cart .popover-content {
+    color: #D50000;
+    font-style: italic;
+}
+
+.cart-line-error-md {
+    color: red;
+    font-weight: 900;
+    font-size: 20px;
+    position: absolute;
+    left: 35%;
+    margin-top: -0.5em;
+}
+
+.cart-line-error-xs {
+    color: red;
+    font-weight: 900;
+    font-size: 20px;
+    position: absolute;
+    left: 12%;
+}
+
+.remove-cart-line:hover {
+    color: red
+}
+
+.stock-quantity {
+    margin: 0 3px;
+}
+
+/* Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) */
+/*  Responsible Developer:- Sunny Kumar Yadav */

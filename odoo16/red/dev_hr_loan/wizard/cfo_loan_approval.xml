@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_cfo_approval_wizard_form" model="ir.ui.view">
+        <field name="name">cfo.approval.wizard.form</field>
+        <field name="model">cfo.approval.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Chief Financial Officer Approval">
+                <group>
+                    <field name="reason"/>
+                </group>
+                <footer>
+                    <button string="Approve Request" class="btn-primary" name="approve_request" type="object"/>
+                    <button string="Cancel" class="btn-default" name="cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Loan Approval Wizard -->
+    <record id="action_cfo_approval_wizard" model="ir.actions.act_window">
+        <field name="name">Chief Financial Officer Approval</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cfo.approval.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_cfo_approval_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

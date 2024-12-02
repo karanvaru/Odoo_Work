@@ -1,0 +1,202 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+
+  <template id="myReferEarn" name="myRefer-Earn">
+      <t t-call="website.layout">
+        <div class="container-fluid">
+        <div class='row refer_banner align-items-center' style="background-image: url('/refer_and_earn/static/src/img/Earning-Via-Referring-Hero-Banner.png'); height:300px; background-size:cover; background-repeat:no-repeat;">
+            <div class="col">
+              <div class="row">
+              <div class="col-md-6 text-center">
+              <div style="font-size:40px;color:white;">
+                <b>Refer And Earn</b>
+                <div style="font-size: 60%; color: #e8f741;">
+                  <b>Earning via Referring</b>
+                </div>
+                <div style="font-size:17px; font-style:normal; color:white" >
+                  Refer Us! to your Friend &amp; Earn Reward
+                </div>
+              </div>
+              <div style="font-size: 173%; color: white ;font-weight: bold;">
+               Invite your friend and earn <t t-esc="currency_id.symbol"/><t t-esc="int(refered_points*equivalent_amount)"/> for each referral
+              </div>
+            </div>
+            <div class="form-inline ml-auto mr-auto">
+              <table style="background-color: currentColor;">
+                <tr>
+                  <th rowspan="2" class="table-custom" style="padding: 5px;text-align: center;">
+                    <center>
+                      <div class="slice-left"></div>
+                    </center>
+                  </th>
+                  <td class="table-custom" style="color:#45f641;padding: 5px;text-align: center;">
+                    <b>
+                      SIGNED UP
+                    </b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table-custom" style="color:#FFFFFF;padding: 5px;text-align: center;">
+                    <t t-esc="referralCount[0]"/> friends
+                  </td>
+                </tr>
+              </table>
+
+              <table style="background-color: currentColor;">
+                <tr>
+                  <th class="table-custom" rowspan="2" style="padding: 5px;text-align: center;">
+                    <center>
+                      <div class="slice-right"></div>
+                    </center>
+                  </th>
+                  <td class="table-custom" style="color:#fff339; padding: 5px;text-align: center;">
+                    <b>
+                     &#160;&#160;EARNED&#160;&#160;&#160;
+
+                    </b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table-custom" style="color:#FFFFFF;padding: 5px;text-align: center;">
+                    <t t-esc="currency_id.symbol"/>
+                      <t t-esc="refral_earning[0]"/>
+                  </td>
+                </tr>
+              </table>
+          </div>
+        </div>
+            </div>
+
+        </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8" style="border: 1px solid #f6f3f3;padding :2%">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="referral_code" style="padding-top:7%;font-weight:bold;">Referral Code : </label>
+            </div>
+                <form class="form-inline col-md-9">
+                      <!-- <div class="col-md-3">
+                        <label for="referral_code" style="padding-top:7%;">Referral Code : </label>
+                      </div> -->
+                      <!-- <div class="col-md-2"> -->
+                        <input type="referral_code" class="form-control mr-3" id="referral_code" t-att-value="referral_code" readonly="1"/>
+                      <!-- </div> -->
+                      <!-- <div class="col-md-2"> -->
+                        <button type="copy" id="copy_referral" class="btn btn-primary mt-2 mb-2">Copy To Clipboard</button>
+                      <!-- </div> -->
+                </form>
+          </div>
+
+           <div class="row">
+              <div class="col-md-3">
+                <label  style="padding-top:14%;font-weight:bold;">Share With Friends : </label>
+              </div>
+              <div class="circle" style="text-align: center;">
+                <!-- <a t-attf-href="mailto:?subject=Referral Link to Earn Rewards ({{currency_id.symbol}}{{int(referral_points*equivalent_amount)}}) - {{request.env['website'].search([])[0].name}}&amp;body=Hi %0A%0aI’d like to introduce you to ‘{{request.env['website'].search([])[0].name}}'  .
+                Join it with my Referral Code ‘{{referral_code}}’ (or) Referral link to earn Rewards
+                '{{currency_id.symbol}}{{int(referral_points*equivalent_amount)}}'.%0A%0A
+                Referral Link:%0A%0A{{signup_link}}%0A%0A%0A%0AThanks%0A{{request.env.user.partner_id.name}}"> -->
+                  <div style="padding-top: 10px;">
+                    <a t-attf-href="mailto:?subject={{request.env.user.partner_id.compute_mail_context(mail_subject)}}&amp;body={{request.env.user.partner_id.compute_mail_context(mail_body)}}">
+                      <img class="avatar" src="/refer_and_earn/static/src/img/mail.png"></img>
+                    </a>
+                  </div>
+              </div>
+           </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-8" style="border: 1px solid #f6f3f3;">
+          <div class="row">
+              <div class="col-md-3">
+                <label  style="padding-top:7%;font-weight:bold;">Your Referred Stats : </label>
+                <input type="hidden" name="matrix" id="matrix" t-att-value="matrix"/>
+              </div>
+          </div>
+          <div class="row" id="donutchart" style="width: 100%; height: 375px"></div>
+            <div class="row">
+              <div>
+               <b style="color:#337ab7;"> Approved : </b> Amount has been credited successfully as per your request.<br/>
+               <b style="color:#ec971f;"> Pending :</b> Request for amount credit is under process.<br/>
+               <b style="color:red;"> Rejected :</b> Request for the referral commission has been canceled by Admin. <br/>
+                <b style="color:#3c763d;">Error : </b> System has reported some technical issues while approving your request.<br/>
+                <b style="color:#b733ad;">Cancel :</b> Request has been canceled due to incorrect referral credentials. <br/>
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+        <div class="row justify-content-center">
+          <div class="col-md-8" style="padding :2%;background-color: #f6f3f3;">
+
+            <div class="row">
+              <div class="col-md-3 p-2">
+                Earned Amount :
+                <span >
+                   <t t-esc="currency_id.symbol"/>
+                    <t t-esc="refral_earning[0]"/>
+                </span>
+              </div>
+              <div class="col-md-3 ml-auto p-2" >
+                Signed Up : <span><t t-esc="referralCount[0]"/> friends</span>
+              </div>
+            </div>
+
+           <br/>
+           <br/>
+
+            <div class="row justify-content-center">
+              <div class="col-md-4">
+                <center>
+                 <a href="http:/my/stats/" class="btn btn-primary" style="width: 140px;height: 37px;">Detailed View &#160; &gt;&gt;</a>
+                 <div  style="font-size: 12px;color: #999595;">
+                <center >
+                  Click on the above button to view reward Stats
+                 </center>
+              </div>
+               </center>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        </div>
+
+<script>
+
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var mat = $('#matrix').val().split("-");
+        var data = google.visualization.arrayToDataTable([
+          ['State', 'total state types'],
+          ['Approved',  parseInt(mat[4])],
+          ['Pending',     parseInt(mat[0])],
+          ['Error',     parseInt(mat[1])],
+          ['Rejected',  parseInt(mat[2])],
+          ['Cancel',    parseInt(mat[3])],
+          ['No Referral Stat',  parseInt(mat[5])],
+        ]);
+        var mat = $('#matrix').val().split("-");
+        var options = {
+          title:' ',
+          pieHole: 0.4,
+          colors : ['#337ab7','#ec971f','#3c763d','red','#b733ad','grey'],
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+
+
+
+</script>
+
+      </t>
+
+  </template>
+
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="import_payment_settlement_view">
+            <field name="name">import.payment.settlement.form</field>
+            <field name="model">import.payment.settlement</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="file_name"/>
+                        </group>
+
+                    </group>
+                    <footer>
+                        <button name="import_payment_settlement" string="Import Payment Settlement" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_import_payment_settlement_wizard">
+            <field name="name">Import Payment Settlement</field>
+            <field name="res_model">import.payment.settlement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

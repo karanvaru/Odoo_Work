@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record model="ir.ui.view" id="hr_applicant_view_search_bis_inherit">
+        <field name="name">Jobs - Recruitment - Search</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_search_bis"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='ongoing']" position="before">
+                <filter string="Paid" name="paid" domain="[('payment_status', '=', 'paid')]"/>
+                <filter string="Unpaid" name="unpaid" domain="[('payment_status', '=', 'unpaid')]"/>
+                <separator/>
+            </xpath>
+        </field>
+	</record>
+
+    <record model="ir.ui.view" id="hr_applicant_inherit_view_form">
+        <field name="name">Jobs - Recruitment</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="job_portal_kanak.hr_applicant_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form//sheet//div[hasclass('oe_title')]" position="before">
+                <widget name="web_ribbon" title="Paid" bg_color="text-bg-success"
+                        invisible="payment_status != 'paid'"/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="mark_as_paid" string="Mark As Paid" type="object"
+                        class="oe_highlight"
+                        invisible="payment_status == 'paid'"/>
+            </xpath>
+            <xpath expr="//sheet//field[@name='kanban_state']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//sheet//field[@name='applicant_number']" position="after">
+	            <field name="recruitment_agent_id"/>
+            </xpath>
+            <xpath expr="//sheet//field[@name='access_token']" position="after">
+                <field name="age"/>
+                <field name="citizenship"/>
+                <field name="country_of_nationality"/>
+            </xpath>
+            <xpath expr="//field[@name='address1']" position="attributes">
+                <attribute name="string">Apt ./House</attribute>
+            </xpath>
+            <xpath expr="//field[@name='address2']" position="attributes">
+                <attribute name="string">Street</attribute>
+            </xpath>
+            <xpath expr="//field[@name='city']" position="attributes">
+                <attribute name="string">City</attribute>
+            </xpath>
+            <xpath expr="//field[@name='state_id']" position="attributes">
+                <attribute name="string">State/Parish</attribute>
+            </xpath>
+            <xpath expr="//field[@name='zipcode']" position="attributes">
+                <attribute name="string">Zip/Postal Code</attribute>
+            </xpath>
+            <xpath expr="//field[@name='department_id']" position="attributes">
+                <attribute name="groups">base.group_multi_company</attribute>
+            </xpath>
+
+
+            <xpath expr="//field[@name='job_id']" position="attributes">
+                <attribute name="groups">base.group_multi_company</attribute>
+            </xpath>
+            <xpath expr="//field[@name='stage_id']" position="attributes">
+                <attribute name="groups">base.group_multi_company</attribute>
+            </xpath>
+            <xpath expr="//notebook/page//field[@name='personal_detail_ids']//field[@name='branch']"
+                   position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//notebook/page//field[@name='certificate_detail_ids']//field[@name='branch']"
+                   position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//notebook/page//field[@name='personal_detail_ids']//field[@name='organization']"
+                   position="attributes">
+                <attribute name="string">Institute</attribute>
+            </xpath>
+
+            <xpath expr="//notebook/page//field[@name='certificate_detail_ids']//field[@name='organization']"
+                   position="attributes">
+                <attribute name="string">Institute</attribute>
+            </xpath>
+            <xpath expr="//notebook" position="replace">
+                <notebook>
+                    <page string="Academics">
+                        <field name="personal_detail_ids">
+                            <tree editable="bottom">
+                                <field name="course_name"/>
+                                <field name="branch"/>
+                                <field name="organization"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="marks"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Certifications">
+                        <field name="certificate_detail_ids">
+                            <tree editable="bottom">
+                                <field name="course_name"/>
+                                <field name="branch"/>
+                                <field name="organization"/>
+                                <field name="certificate_des"/>
+                                <field name="attachment_ids" widget="many2many_binary"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <field name="course_name"/>
+                                    <field name="branch"/>
+                                    <field name="organization"/>
+                                    <field name="certificate_des"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                    <page string="Work History">
+                        <field name="professional_detail_ids">
+                            <tree editable="bottom">
+                                <field name="organization"/>
+                                <field name="department"/>
+                                <field name="organization"/>
+                                <field name="work_des"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="work_exp"/>
+                                <field name="projects"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Trades Assessment Questionnaire" name="trades_assessment_questionnaire">
+                        <div class="row">
+                            <div class="col">
+                                <label for="most_work_experience">In what trade do you have the most work experience:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="most_work_experience"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="number_years_in_trade">Number years in this trade:</label>
+                            </div>
+                            <div class="col">
+                                <field name="number_years_in_trade"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="hours_work_per_day">How many hours worked in this trade per day:</label>
+                            </div>
+                            <div class="col">
+                                <field name="hours_work_per_day"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="days_work_per_week">How many days worked in this trade per week:</label>
+                            </div>
+                            <div class="col">
+                                <field name="days_work_per_week"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="weeks_per_month">How many weeks worked in this trade per month:</label>
+                            </div>
+                            <div class="col">
+                                <field name="weeks_per_month"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="month_per_year">How many months worked in this trade per year:</label>
+                            </div>
+                            <div class="col">
+                                <field name="month_per_year"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="year_per_5_10_year">How many years worked in this trade in the last 5 to 10
+                                    years:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="year_per_5_10_year"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="is_training">Do you have any training in this trade:</label>
+                            </div>
+                            <div class="col">
+                                <field name="is_training" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="is_other_trade_skill">Are you skilled in any other trades:</label>
+                            </div>
+                            <div class="col">
+                                <field name="is_other_trade_skill" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="describe_detail">Describe in detail ALL the tasks performed on a daily basis
+                                    within
+                                    this trade (Maximum words 500)-:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="describe_detail"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="varify_experience">Who can verify your work experience under this trade:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="varify_experience" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="is_complete_high_school">Have you completed high school:</label>
+                            </div>
+                            <div class="col">
+                                <field name="is_complete_high_school" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="complete_high_school_year">How many years did you complete in high school:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="complete_high_school_year" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="is_criminal_offence">Have you ever been arrested or charged for any criminal
+                                    offence?:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="is_criminal_offence" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="is_applied_visa">Have you ever applied for a Canadian or US visa:</label>
+                            </div>
+                            <div class="col">
+                                <field name="is_applied_visa" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="travelled_by_plane">Have you ever travelled by plane to any country outside
+                                    your
+                                    home country?:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="travelled_by_plane" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="is_denied_visa">Have you ever been denied a visa?:</label>
+                            </div>
+                            <div class="col">
+                                <field name="is_denied_visa" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                    </page>
+                    <page string="Trades Assessment Report" name="trades_assessment_report">
+                        <div class="row">
+                            <div class="col">
+                                <label for="education_level">Education level:</label>
+                            </div>
+                            <div class="col">
+                                <field name="education_level" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="trade_applied">Trade applied under:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="trade_applied"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="report_no_year">Number years in this Trade:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="report_no_year"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="report_hour_per_day">How many hours worked in this trade per day:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="report_hour_per_day"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="report_day_per_week">How many days worked in this trade per week:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="report_day_per_week"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="report_week_per_month">How many weeks worked in this trade per month:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="report_week_per_month"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="report_month_per_year">How many months worked in this trade per year:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="report_month_per_year"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="year_work5_10">How many years worked in this trade in the last 5 to 10
+                                    years:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="year_work5_10" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="report_is_training">Training in this trade:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="report_is_training" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="report_is_skill">Skilled in any other trades:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="report_is_skill" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col">
+                                <h4>
+                                    <b>FOR OFFICIAL USE (Notes For Recommendation)</b>
+                                </h4>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col">
+                                <label for="is_red_seal">Does the Applicant trade tasks meet the NOC Code and Red Seal
+                                    task
+                                    description:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="is_red_seal" widget="radio" options="{'horizontal': true}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="is_applicant_eligible">Is the applicant eligible to proceed to RED SEAL
+                                    Trades
+                                    Qualifier and Training?:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <field name="is_applicant_eligible"/>
+                            </div>
+                        </div>
+                    </page>
+                    <page string="Additional Recommendations" name="additional_recommendations">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="recommendations">recommendations:
+                                </label>
+                            </div>
+
+                            <div class="col-12">
+                                <field name="recommendations"/>
+                            </div>
+                        </div>
+                    </page>
+                    <page string="Application Summary">
+                        <field name="description" placeholder="Feedback.."/>
+                    </page>
+
+                    <page string="Document Uploads"
+                          name="additional_recommendations">
+                        <field name="application_document_ids">
+                            <tree editable="bottom">
+                                <field name="document_type_id"/>
+                                <field name="document" widget="binary" filename="document_name" string="File"/>
+                                <field name="document_name" column_invisible="True"/>
+                            </tree>
+                        </field>
+                        <group>
+                            <field name="payment_status" invisible="1"/>
+                        </group>
+                    </page>
+
+
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <record id="wk_addons_website_stock_config" model="ir.ui.view">
+            <field name="name">Addons Setting</field>
+            <field name="model">webkul.website.addons</field>
+            <field name="inherit_id" ref="website_webkul_addons.config_webkul_website_addons_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/div" position="after">
+                     <center><u><separator string="Orders"/></u></center>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width:15%;">Serial No.</th>
+                                <th style="width:45%;">Module Name</th>
+                                <th style="width:20%;">Is Installed ?</th>
+                                <th style="width:20%;">Configuration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="website_preorder_module">
+                                <td>1</td>
+                                <td><label for="module_website_preorder"/></td>
+                                <td><field name="module_website_preorder"/></td>
+                                <td ><button type="object" name="get_pre_order_configuration_setting" string="Configuration" class="oe_link"></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

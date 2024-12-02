@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_edit_project_from_inherit" model="ir.ui.view">
+        <field name="name">Project Project Inherit Form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[last()]" position="after">
+                <page string="Billing Employee Rate" name="employee_billing_rate">
+                    <field name="project_employee_rate_ids">
+                        <tree editable="bottom">
+                            <field name="employee_id"/>
+                            <field name="hourly_rate"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_start_timing" model="ir.actions.server">
+            <field name="name">Start Timer</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="binding_model_id" ref="crm.model_crm_lead"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_start()
+            </field>
+        </record>
+    </data>
+</odoo>

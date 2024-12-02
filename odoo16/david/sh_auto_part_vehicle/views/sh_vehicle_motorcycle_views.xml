@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- menuitem -->
+    <!-- Motorcycle menuitem root -->
+    <menuitem
+            id="sh_motorcycle_menuitem_root"
+            sequence="1"
+            name="Auto Parts"
+            groups="sh_auto_part_vehicle.group_sh_motorcycle_user,sh_auto_part_vehicle.group_sh_motorcycle_manager"
+            web_icon="sh_motorcycle_backend,static/src/img/menu_icon.png"
+    />
+
+    <menuitem id="sh_motorcycle_menuitem_config" sequence="3" name="Configurations" parent="sh_motorcycle_menuitem_root"
+              groups="sh_auto_part_vehicle.group_sh_motorcycle_manager"/>
+    <!-- form view -->
+    <record id="sh_motorcycle_motorcycle_form" model="ir.ui.view">
+        <field name="name">sh.motorcycle.motorcycle</field>
+        <field name="model">motorcycle.motorcycle</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle">
+                <sheet>
+                    <field name="vehicle_image" widget='image' class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Motorcycle Name"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="mmodel_id"/>
+                            <div class="o_row o_td_label">
+                                <label for="year_id" string="Range of years"/>
+                            </div>
+                            <div class="o_row">
+                                <field name="year_id"/>
+                                <label for="end_year_id" string="->"/>
+                                <field name="end_year_id"/>
+
+                            </div>
+
+                            <!-- <field name="transmission_ids" widget="many2many_tags" /> -->
+                        </group>
+                        <group>
+                            <field name="type_id"/>
+                            <field name="make_id"/>
+                            <!-- <field name="garde" widget="many2many_tags" />
+                            <field name="engine" widget="many2many_tags" />
+                            <field name="p_type_ids" widget="many2many_tags" /> -->
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <field name="product_ids">
+                        <tree editable="bottom">
+                            <field name="default_code"/>
+                            <field name="name"/>
+                            <!-- <field name="product_template_attribute_value_ids" widget="many2many_tags" groups="product.group_product_variant" /> -->
+                            <field name="lst_price"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="sh_motorcycle_motorcycle_tree" model="ir.ui.view">
+        <field name="name">sh_motorcycle_motorcycle</field>
+        <field name="model">motorcycle.motorcycle</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="type_id"/>
+                <field name="make_id"/>
+                <field name="mmodel_id"/>
+                <field name="year_id"/>
+                <field name="end_year_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- search view -->
+    <record id="sh_motorcycle_motorcycle_search" model="ir.ui.view">
+        <field name="name">sh.motorcycle.motorcycle.search</field>
+        <field name="model">motorcycle.motorcycle</field>
+        <field name="arch" type="xml">
+            <search string="Auto Parts">
+                <field name="name" string="Auto Parts"
+                       filter_domain="['|','|','|','|','|',('end_year_id','ilike',self),('type_id','ilike',self),('make_id','ilike',self)('mmodel_id','ilike',self),('year_id','ilike',self)]"/>
+                <field name="type_id"/>
+                <field name="make_id"/>
+                <field name="mmodel_id"/>
+                <!-- <field name="garde" />
+                <field name="engine" /> -->
+                <field name="year_id"/>
+                <field name="end_year_id"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="group_make_id" string="Make" domain="[]" context="{'group_by':'make_id'}"/>
+                    <filter name="group_type_id" string="Type" domain="[]" context="{'group_by':'type_id'}"/>
+                    <filter name="group_mmodel_id" string="Model" domain="[]" context="{'group_by':'mmodel_id'}"/>
+                    <!-- <filter name="group_garde" string="Garde" domain="[]" context="{'group_by':'garde'}" />
+                    <filter name="group_engine" string="Engine" domain="[]" context="{'group_by':'engine'}" /> -->
+                    <filter name="group_year_id" string="Start year" domain="[]" context="{'group_by':'year_id'}"/>
+                    <filter name="group_end_year_id" string="End year" domain="[]"
+                            context="{'group_by':'end_year_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- MenuAction -->
+    <record id="sh_motorcycle_motorcycle_action" model="ir.actions.act_window">
+        <field name="name">Vehicle</field>
+        <field name="res_model">motorcycle.motorcycle</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem
+            id="sh_motorcycle_menuitem_sub"
+            sequence="1"
+            name="Vehicle"
+            parent="sh_motorcycle_menuitem_root"
+            action="sh_motorcycle_motorcycle_action"
+            groups="sh_auto_part_vehicle.group_sh_motorcycle_user,sh_auto_part_vehicle.group_sh_motorcycle_manager"
+    />
+    <menuitem
+            id="sh_motorcycle_products_main_menu"
+            sequence="2"
+            name="Products"
+            parent="sh_motorcycle_menuitem_root"
+    />
+    <menuitem
+            id="sh_motorcycle_products_menu"
+            sequence="1"
+            name="Products"
+            parent="sh_motorcycle_products_main_menu"
+            action='product.product_template_action'
+    />
+    <menuitem
+            id="sh_motorcycle_products_variants_menu"
+            sequence="2"
+            name="Product Variants"
+            parent="sh_motorcycle_products_main_menu"
+            action='product.product_normal_action_sell'
+    />
+
+</odoo>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="menu_top_parent_commissions"
+                  name="Commissions"
+                  sequence="10"/>
+
+        <menuitem id="menu_sub_parent_commissions"
+                  parent="menu_top_parent_commissions"
+                  name="Commissions"
+                  sequence="10"/>
+
+        <menuitem id="menu_action_commission_history"
+                  action="action_commission_history"
+                  parent="menu_sub_parent_commissions"
+                  name="Commission Sheets"
+                  sequence="1"/>
+
+        <menuitem id="menu_action_commission_history_line"
+                  action="action_commission_history_line"
+                  parent="menu_sub_parent_commissions"
+                  name="Commissions Lines"
+                  sequence="2"/>
+
+        <menuitem id="menu_generate_commssion"
+                  parent="menu_top_parent_commissions"
+                  action="generate_commission_wizard_action"
+                  name="Generate Commissions"
+                  sequence="10"/>
+
+        <menuitem id="menu_action_commission_configuration"
+                  parent="menu_top_parent_commissions"
+                  name="Configuration"
+                  groups="reddot_commission.ki_group_commission_manager"
+                  sequence="40"/>
+
+<!--        <menuitem id="menu_action_commission_rule"-->
+<!--                  action="action_commission_rule"-->
+<!--                  parent="menu_action_commission_configuration"-->
+<!--                  name="Commission Rules"-->
+<!--                  sequence="3"/>-->
+
+        <menuitem id="menu_action_commission_target"
+                  action="action_commission_target_percentage_sheet"
+                  parent="menu_action_commission_configuration"
+                  name="Thresold"
+                  sequence="3"/>
+
+        <menuitem id="menu_action_commission_config_plan"
+                  action="action_commission_config_plan"
+                  parent="menu_action_commission_configuration"
+                  name="Commission Plan"
+                  sequence="4"/>
+
+        <menuitem id="menu_action_commission_term_condition"
+                  action="action_commission_term_condition"
+                  parent="menu_action_commission_configuration"
+                  name="Term And Condition"
+                  sequence="5"/>
+    </data>
+</odoo>

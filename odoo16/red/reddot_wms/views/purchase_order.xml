@@ -1,0 +1,144 @@
+<odoo>
+    <data>
+        <record id="purchase_purchase_order_form_reddot" model="ir.ui.view">
+            <field name="name">reddot.purchase_purchase_order_form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_approve']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='print_quotation']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_rfq_send']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="replace">
+                    <field name="state" widget="statusbar" statusbar_visible="draft,to approve,purchase" readonly="1"/>
+                </xpath>
+                <xpath expr="//span[@class='o_form_label']" position="replace">
+                    <span class="o_form_label" attrs="{'invisible': [('state','not in',('draft','sent'))]}">Purchase
+                        Requests
+                    </span>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_ref']" position="after">
+                    <field name="actual_vendor" attrs="{'readonly': [('state', 'in', ['purchase', 'done', 'cancel'])]}"
+                           widget="res_partner_many2one"
+                           context="{'res_partner_search_mode': 'supplier', 'show_vat': True}"
+                           placeholder="Name, TIN, Email, or Reference"/>
+                    <field name="supplier_reference"
+                           placeholder="Invoice number as shared by the vendor e.g. Invoice no. 9005068275-B"/>
+                    <field name="order_type" attrs="{'readonly': [('state', 'in', ['purchase', 'done', 'cancel'])]}"/>
+                    <field name="rdd_project_id"
+                           attrs="{'readonly': [('state', 'in', ['purchase', 'done', 'cancel'])]}"/>
+                </xpath>
+                <xpath expr="//field[@name='incoterm_id']" position="replace">
+                    <field name="incoterm_id" string="CBN"/>
+                </xpath>
+                <xpath expr="//field[@name='incoterm_location']" position="replace">
+                    <field name="incoterm_location" string="CBN Location"/>
+                </xpath>
+                <xpath expr="//field[@name='picking_type_id']" position="before">
+                    <field name="proforma_invoices" widget="many2many_attachment_preview"/>
+                </xpath>
+                <xpath expr="//group[@class='oe_subtotal_footer oe_right']" position="inside">
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="custom_total_cost" widget='monetary' colspan="2" readonly="1"
+                               style="font-weight: bold"/>
+                        <field name="total_selling_price" widget='monetary' colspan="2" readonly="1"
+                               style="font-weight: bold"/>
+                        <field name="margin_total" colspan="2" readonly="1" style="font-weight: bold"/>
+                    </group>
+                </xpath>
+            </field>
+            <!--ADD PO Type eg runrate btb and Bespoke -->
+            <!--            In Stock on every wh/location, show CBM from lwh-->
+        </record>
+      
+        <record model="ir.actions.act_window" id="purchase.action_rfq_form">
+            <field name="name">Purchase Requests</field>
+        </record>
+        <record id="purchase_order_sales_order" model="ir.ui.view">
+            <field name="name">purchase.order.link.sale.order</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_sale_order"
+                            type="object"
+                            class="oe_stat_button">
+                        <img src="/reddot_wms/static/src/img/shopping_cart_icon.svg" alt="Shopping Cart"
+                             style="height: 16px; margin-right: 5px;"/>
+                        <span>Sales Order</span>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase_order_extend_fields" model="ir.ui.view">
+            <field name="name">purchase.order.extend.fields</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='fiscal_position_id']" position="after">
+                    <field name="ship_to"/>
+                    <field name="bill_to"/>
+                    <field name="sold_to"/>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="sale_order_id"/>
+                </xpath>
+            </field>
+        </record>
+
+         <record id="purchase_order_extend_fields" model="ir.ui.view">
+            <field name="name">purchase.order.extend.fields</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='fiscal_position_id']" position="after">
+                    <field name="ship_to"/>
+                    <field name="bill_to"/>
+                    <field name="sold_to"/>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="sale_order_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="name">Purchase Requests</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+            <field name="view_id" ref="purchase.purchase_order_kpis_tree"/>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="context">{'quotation_only': True}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Purchase request found. Let's create one!
+                </p>
+                <p>
+                </p>
+            </field>
+        </record>
+        <record model="ir.ui.menu" id="purchase.menu_purchase_rfq">
+            <field name="name">Purchase Requests</field>
+        </record>
+        <record id="redd_view_partner_form" model="ir.ui.view">
+            <field name="name">reddot.view_partner_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <label for="freight_forwarder"/>
+                    <field name="freight_forwarder"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

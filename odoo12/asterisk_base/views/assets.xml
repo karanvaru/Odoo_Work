@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+  <template id="assets_backend" name="asterisk_base assets" inherit_id="web.assets_backend">
+    <xpath expr="." position="inside">
+      <script type="text/javascript" src="/asterisk_base/static/src/js/console.js"/>
+      <script type="text/javascript" src="/asterisk_base/static/src/js/asterisk_conf.js"/>
+      <script type="text/javascript" src="/asterisk_base/static/src/js/buttons.js"/>
+      <link rel="stylesheet" href="/asterisk_base/static/src/css/codemirror.css"/>      
+    </xpath>
+  </template>
+
+
+</odoo>

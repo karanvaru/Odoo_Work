@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_fedex_configuration" model="ir.ui.view">
+		<field name="name">Fedex Configuration</field>
+		<field name="model">shipping.instance.ept</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="shipping_integration_ept.view_shipping_integration" />
+		<field name="arch" type="xml">
+			<xpath expr="//notebook/page[@name='credential']/group"
+				position="inside">
+			    <group attrs="{'invisible': [('provider', '!=', 'fedex_ept')]}">
+			    	<field name="use_address_validation_service" />
+					<field name="fedex_key"
+						attrs="{'invisible':[('provider','!=','fedex_ept')],'required':[('provider','=','fedex_ept')]}" />
+					<field name="fedex_password"
+						attrs="{'invisible':[('provider','!=','fedex_ept')],'required':[('provider','=','fedex_ept')]}" password="True"/>
+					<field name="fedex_account_number"
+						attrs="{'invisible':[('provider','!=','fedex_ept')],'required':[('provider','=','fedex_ept')]}" />
+					<field name="fedex_meter_number"
+						attrs="{'invisible':[('provider','!=','fedex_ept')],'required':[('provider','=','fedex_ept')]}" />
+					<field name="fedex_integration_id"
+						attrs="{'invisible':[('provider','!=','fedex_ept')],'required':[('provider','=','fedex_ept')]}" />
+                </group>
+			</xpath>
+		</field>
+	</record>
+</odoo>

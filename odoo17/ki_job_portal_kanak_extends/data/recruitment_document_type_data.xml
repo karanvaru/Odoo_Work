@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record forcecreate="True" id="document_type_resume" model="recruitment.document.type">
+            <field name="name">Resume</field>
+            <field name="is_default">True</field>
+            <field name="is_required">True</field>
+        </record>
+
+        <record forcecreate="True" id="document_type_trades_certificate" model="recruitment.document.type">
+            <field name="name">Trades Certificate</field>
+            <field name="is_default">True</field>
+        </record>
+
+        <record forcecreate="True" id="document_type_high_school_certificate" model="recruitment.document.type">
+            <field name="name">High School Certificate</field>
+            <field name="is_default">True</field>
+        </record>
+        <record forcecreate="True" id="document_type_high_school_transcript" model="recruitment.document.type">
+            <field name="name">High School Transcript</field>
+            <field name="is_default">True</field>
+        </record>
+
+        <record forcecreate="True" id="document_type_vocational_training_transcript" model="recruitment.document.type">
+            <field name="name">Vocational Training Transcript</field>
+            <field name="is_default">True</field>
+        </record>
+
+        <record forcecreate="True" id="document_type_college_training_transcript" model="recruitment.document.type">
+            <field name="name">College Training Transcript</field>
+            <field name="is_default">True</field>
+        </record>
+
+        <record forcecreate="True" id="document_type_employment_letter_reference" model="recruitment.document.type">
+            <field name="name">Employment Letter of Reference</field>
+            <field name="is_default">True</field>
+        </record>
+
+        <record forcecreate="True" id="document_type_customer_client_letter_reference"
+                model="recruitment.document.type">
+            <field name="name">Customer/Client Letter of Reference</field>
+            <field name="is_default">True</field>
+        </record>
+
+        <record forcecreate="True" id="document_type_birth_certificate_passport" model="recruitment.document.type">
+            <field name="name">Birth Certificate and Passport</field>
+            <field name="is_default">True</field>
+        </record>
+
+    </data>
+</odoo>

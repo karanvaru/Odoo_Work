@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="repair_inherit_form_view" model="ir.ui.view">
+        <field name="name">repair.order.inherit.form</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_button_box')]" position="after">
+                    <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px;">
+                        Open Days:
+                        <span style="font-size:16px">
+                            <field name="x_studio_open_days"/>
+                        </span>
+                    </div>
+                    <div style=" float: left; padding: 5px 12px 2px; background-color:#33c76b; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-left:5px;margin-bottom:10px;">
+                        Effort:
+                        <span style="font-size:16px">
+                            <field name="effort"/>
+                        </span>
+                        Min
+                    </div>
+                    <div style=" float: left; padding: 5px 12px 2px; background-color:#00a09d; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-left:5px;margin-bottom:10px;">
+                        Activities:
+                        <span style="font-size:16px">
+                            <field name="activities"/>
+                        </span>
+                    </div>
+                    <div style="clear:both"/>
+                </xpath>
+
+            </field>
+    </record>
+
+    </data>
+</odoo>

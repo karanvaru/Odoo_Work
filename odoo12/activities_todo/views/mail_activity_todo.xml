@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="mail_activity_todo_view_form_article" model="ir.ui.view">
+        <field name="name">mail.activity.todo.form</field>
+        <field name="model">mail.activity.todo</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <form js_class="todo_readonly_form">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_done"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-check"
+                                attrs="{'invisible': [('current_activity_id', '=', False)]}"
+                        >
+                            Mark Done
+                        </button>
+                        <button name="%(activities_todo.do_with_feedback_action)d"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-comments"
+                                attrs="{'invisible': [('current_activity_id', '=', False)]}"
+                                context="{'default_todo_id': active_id, 'default_activity_id': current_activity_id}"
+                        >
+                            With Feedback
+                        </button>
+                        <button name="%(activities_todo.create_new_activity_action)d"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-clock-o"
+                                attrs="{'invisible': [('current_activity_id', '=', False)]}"
+                                context="{'default_todo_id': active_id, 'default_activity_id': current_activity_id}"
+                        >
+                            New Activity
+                        </button>
+                        <button name="action_previous"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-chevron-left"
+                                attrs="{'invisible': [('current_activity_id', '=', False)]}"
+                        >
+                            Previous
+                        </button>
+                        <button name="action_skip"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-chevron-right"
+                                attrs="{'invisible': [('current_activity_id', '=', False)]}"
+                        >
+                            Skip
+                        </button>
+                        <button name="action_cancel"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-times"
+                                attrs="{'invisible': [('current_activity_id', '=', False)]}"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                    <field name="progress"
+                           widget="progressbar"
+                           nolabel="1"
+                    />
+                    <div class="oe_title">
+                        <h1 attrs="{'invisible': [('current_activity_id', '=', False)]}">
+                            <field name="summary" readonly="1"/>
+                        </h1>
+                        <h1 attrs="{'invisible': [('current_activity_id', '!=', False)]}">
+                            Good job! All planned activities are done!
+                        </h1>
+                    </div>
+                    <group attrs="{'invisible': [('current_activity_id', '=', False)]}">
+                        <field name="activity_type_id"
+                               readonly="1"
+                               options="{'no_open': 1}"
+                        />
+                        <field name="date_deadline" readonly="1"/>
+                        <field name="res_reference" readonly="1"/>
+                    </group>
+                    <field name="note"
+                           readonly="1"
+                           attrs="{'invisible': [('current_activity_id', '=', False)]}"
+                    />
+                    <group invisible="1">
+                        <field name="current_activity_id"/>
+                        <field name="activities"/>
+                        <field name="current_number"/>
+                        <field name="done_number"/>
+                        <field name="total_number"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="mail_activity_todo_action" model="ir.actions.act_window">
+         <field name="name">Activities To-Do</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">mail.activity.todo</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">form</field>
+         <field name="target">current</field>
+    </record>
+
+
+</odoo>

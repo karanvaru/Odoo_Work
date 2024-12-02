@@ -1,0 +1,90 @@
+<odoo>
+    <data>
+        <record id="import_products_confirmations_emails" model="mail.template">
+            <field name="name">Import Product Confirmation Email</field>
+            <field name="model_id" ref="mtrmp_sales_shop.model_sales_shop_operation"/>
+            <field name="subject">{{object.shop_id.name or 'n/a'}} Import Shop Product</field>
+            <field name="email_to">{{",".join([e for e in object.shop_id.user_ids.mapped("email") if e])}}</field>
+            <field name="body_html" type="html">
+                <div>
+                    Hello
+                    <br/>
+                    upload_date: <t t-out="datetime.datetime.today() or ''"></t>,
+                    <br/>
+                    success_count:
+                    <t t-out="object.success_count or ''"/>
+                    <br/>
+                    fail_count:
+                    <t t-out="object.failed_count or ''"/>
+                    <br/>
+                    fail_orders:
+                    <t t-out="object.failed_order or ''"/>
+                    <br/>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        <record id="import_sale_order_confirmation_email" model="mail.template">
+            <field name="name">Import Sale Order Confirmation Email</field>
+            <field name="model_id" ref="mtrmp_sales_shop.model_sales_shop_operation"/>
+            <field name="subject">{{object.shop_id.name or 'n/a'}} Import Sale Order</field>
+             <field name="email_to">{{",".join([e for e in object.shop_id.user_ids.mapped("email") if e])}}</field>
+            <field name="body_html" type="html">
+                <div>
+                   Hello
+                    <br/>
+                    upload_date: <t t-out="datetime.datetime.today() or ''"></t>,
+                    <br/>
+                    success_count:
+                    <t t-out="object.success_count or ''"/>
+                    <br/>
+                    fail_count:
+                    <t t-out="object.failed_count or ''"/>
+                    <br/>
+                    fail_orders:
+                    <t t-out="object.failed_order or ''"/>
+                    <br/>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        <record id="import_awb_wizard_confirmation_email" model="mail.template">
+            <field name="name">Import AWB Confirmation Email</field>
+            <field name="model_id" ref="mtrmp_sales_shop.model_sales_shop_operation"/>
+            <field name="subject">{{object.shop_id.name or 'n/a'}} Import AWB Number</field>
+             <field name="email_to">{{",".join([e for e in object.shop_id.user_ids.mapped("email") if e])}}</field>
+            <field name="body_html" type="html">
+                <div>
+                   Hello
+                    <br/>
+                    upload_date: <t t-out="datetime.datetime.today() or ''"></t>,
+                    <br/>
+                    success_count:
+                    <t t-out="object.success_count or ''"/>
+                    <br/>
+                    fail_count:
+                    <t t-out="object.failed_count or ''"/>
+                    <br/>
+                    fail_orders:
+                    <t t-out="object.failed_order or ''"/>
+                    <br/>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="import_issue_email_temp" model="mail.template">
+            <field name="name">Import Product Issue Email</field>
+            <field name="model_id" ref="mtrmp_sales_shop.model_sales_shop_operation"/>
+            <field name="subject">{{object.shop_id.name or 'n/a'}} Import Product Issue</field>
+            <field name="email_to">{{",".join([e for e in object.shop_id.user_ids.mapped("email") if e])}}</field>
+            <field name="body_html" type="html">
+                <div>
+                        <t t-out="ctx.get('message') or ''"/>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>
+

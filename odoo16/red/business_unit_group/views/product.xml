@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- product.template inherit form view -->
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.inherit.view.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            <xpath expr="//field[@name='uom_po_id']" position="after">
+                <field name="bu_id" />
+            </xpath>
+        </field>
+    </record>
+
+
+    <!-- product.category inherit form view -->
+    <record id="product_category_form_view" model="ir.ui.view">
+        <field name="name">product.category.inherit.view.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            <group name="first" position="after">
+                <group name="business_unit">
+                    <group string="Business Unit" >
+                        <field name="bu_id"/>
+                    </group>
+                </group>
+            </group>
+            
+        </field>
+    </record>
+
+    <!-- hr.employee inherit form view -->
+    <record id="view_employee_form" model="ir.ui.view">
+        <field name="name">hr.employee.inherit.view.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            <xpath expr="//field[@name='work_location_id']" position="after">
+                <field name="bu_ids" widget="many2many_tags"/>
+            </xpath>
+            
+        </field>
+    </record>
+
+</odoo>

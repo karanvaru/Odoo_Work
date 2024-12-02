@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="uom_mapping_bag" model="uom.mapping">
+        <field name="code">BAG</field>
+        <field name="name">BAGS</field>
+    </record>
+
+    <record id="uom_mapping_bal" model="uom.mapping">
+        <field name="code">BAL</field>
+        <field name="name">BALE</field>
+    </record>
+
+    <record id="uom_mapping_bdl" model="uom.mapping">
+        <field name="code">BDL</field>
+        <field name="name">BUNDLES</field>
+    </record>
+
+    <record id="uom_mapping_bkl" model="uom.mapping">
+        <field name="code">BKL</field>
+        <field name="name">BUCKLES</field>
+    </record>
+
+    <record id="uom_mapping_bou" model="uom.mapping">
+        <field name="code">BOU</field>
+        <field name="name">BILLION OF UNITS</field>
+    </record>
+
+    <record id="uom_mapping_box" model="uom.mapping">
+        <field name="code">BOX</field>
+        <field name="name">BOX</field>
+    </record>
+
+    <record id="uom_mapping_btl" model="uom.mapping">
+        <field name="code">BTL</field>
+        <field name="name">BOTTLES</field>
+    </record>
+
+    <record id="uom_mapping_bun" model="uom.mapping">
+        <field name="code">BUN</field>
+        <field name="name">BUNCHES</field>
+    </record>
+
+    <record id="uom_mapping_can" model="uom.mapping">
+        <field name="code">CAN</field>
+        <field name="name">CANS</field>
+    </record>
+
+    <record id="uom_mapping_cbm" model="uom.mapping">
+        <field name="code">CBM</field>
+        <field name="name">CUBIC METERS</field>
+    </record>
+
+    <record id="uom_mapping_ccm" model="uom.mapping">
+        <field name="code">CCM</field>
+        <field name="name">CUBIC CENTIMETERS</field>
+    </record>
+
+    <record id="uom_mapping_cms" model="uom.mapping">
+        <field name="code">CMS</field>
+        <field name="name">CENTI METERS</field>
+    </record>
+
+    <record id="uom_mapping_ctn" model="uom.mapping">
+        <field name="code">CTN</field>
+        <field name="name">CARTONS</field>
+    </record>
+
+    <record id="uom_mapping_doz" model="uom.mapping">
+        <field name="code">DOZ</field>
+        <field name="name">DOZENS</field>
+    </record>
+
+    <record id="uom_mapping_drm" model="uom.mapping">
+        <field name="code">DRM</field>
+        <field name="name">DRUMS</field>
+    </record>
+
+    <record id="uom_mapping_ggk" model="uom.mapping">
+        <field name="code">GGK</field>
+        <field name="name">GREAT GROSS</field>
+    </record>
+
+    <record id="uom_mapping_gms" model="uom.mapping">
+        <field name="code">GMS</field>
+        <field name="name">GRAMMES</field>
+    </record>
+
+    <record id="uom_mapping_grs" model="uom.mapping">
+        <field name="code">GRS</field>
+        <field name="name">GROSS</field>
+    </record>
+
+    <record id="uom_mapping_gyd" model="uom.mapping">
+        <field name="code">GYD</field>
+        <field name="name">GROSS YARDS</field>
+    </record>
+
+    <record id="uom_mapping_kgs" model="uom.mapping">
+        <field name="code">KGS</field>
+        <field name="name">KILOGRAMS</field>
+    </record>
+
+    <record id="uom_mapping_bdl" model="uom.mapping">
+        <field name="code">BDL</field>
+        <field name="name">BUNDLES</field>
+    </record>
+
+    <record id="uom_mapping_klr" model="uom.mapping">
+        <field name="code">KLR</field>
+        <field name="name">KILOLITRE</field>
+    </record>
+
+    <record id="uom_mapping_kme" model="uom.mapping">
+        <field name="code">KME</field>
+        <field name="name">KILOMETRE</field>
+    </record>
+
+    <record id="uom_mapping_ltr" model="uom.mapping">
+        <field name="code">LTR</field>
+        <field name="name">LITRES</field>
+    </record>
+
+    <record id="uom_mapping_mtr" model="uom.mapping">
+        <field name="code">MTR</field>
+        <field name="name">METERS</field>
+    </record>
+
+    <record id="uom_mapping_mlt" model="uom.mapping">
+        <field name="code">MLT</field>
+        <field name="name">MILILITRE</field>
+    </record>
+
+    <record id="uom_mapping_mts" model="uom.mapping">
+        <field name="code">MTS</field>
+        <field name="name">METRIC TON</field>
+    </record>
+
+    <record id="uom_mapping_nos" model="uom.mapping">
+        <field name="code">NOS</field>
+        <field name="name">NUMBERS</field>
+    </record>
+
+    <record id="uom_mapping_oth" model="uom.mapping">
+        <field name="code">OTH</field>
+        <field name="name">OTHERS</field>
+    </record>
+
+    <record id="uom_mapping_pac" model="uom.mapping">
+        <field name="code">PAC</field>
+        <field name="name">PACKS</field>
+    </record>
+
+    <record id="uom_mapping_pcs" model="uom.mapping">
+        <field name="code">PCS</field>
+        <field name="name">PIECES</field>
+    </record>
+
+    <record id="uom_mapping_prs" model="uom.mapping">
+        <field name="code">PRS</field>
+        <field name="name">PAIRS</field>
+    </record>
+
+    <record id="uom_mapping_qtl" model="uom.mapping">
+        <field name="code">QTL</field>
+        <field name="name">QUINTAL</field>
+    </record>
+
+    <record id="uom_mapping_rol" model="uom.mapping">
+        <field name="code">ROL</field>
+        <field name="name">ROLLS</field>
+    </record>
+
+    <record id="uom_mapping_set" model="uom.mapping">
+        <field name="code">SET</field>
+        <field name="name">SETS</field>
+    </record>
+
+    <record id="uom_mapping_sqf" model="uom.mapping">
+        <field name="code">SQF</field>
+        <field name="name">SQUARE FEET</field>
+    </record>
+
+    <record id="uom_mapping_sqm" model="uom.mapping">
+        <field name="code">SQM</field>
+        <field name="name">SQUARE METERS</field>
+    </record>
+
+    <record id="uom_mapping_sqy" model="uom.mapping">
+        <field name="code">SQY</field>
+        <field name="name">SQUARE YARDS</field>
+    </record>
+
+    <record id="uom_mapping_tbs" model="uom.mapping">
+        <field name="code">TBS</field>
+        <field name="name">TABLETS</field>
+    </record>
+
+    <record id="uom_mapping_tgm" model="uom.mapping">
+        <field name="code">TGM</field>
+        <field name="name">TEN GROSS</field>
+    </record>
+
+    <record id="uom_mapping_thd" model="uom.mapping">
+        <field name="code">THD</field>
+        <field name="name">THOUSANDS</field>
+    </record>
+
+    <record id="uom_mapping_ton" model="uom.mapping">
+        <field name="code">TON</field>
+        <field name="name">TONNES</field>
+    </record>
+
+    <record id="uom_mapping_tub" model="uom.mapping">
+        <field name="code">TUB</field>
+        <field name="name">TUBES</field>
+    </record>
+
+    <record id="uom_mapping_klr" model="uom.mapping">
+        <field name="code">KLR</field>
+        <field name="name">KILOLITRE</field>
+    </record>
+
+    <record id="uom_mapping_ugs" model="uom.mapping">
+        <field name="code">UGS</field>
+        <field name="name">US GALLONS</field>
+    </record>
+
+    <record id="uom_mapping_unt" model="uom.mapping">
+        <field name="code">UNT</field>
+        <field name="name">UNITS</field>
+    </record>
+
+    <record id="uom_mapping_yds" model="uom.mapping">
+        <field name="code">YDS</field>
+        <field name="name">YARDS</field>
+    </record>
+
+</odoo>

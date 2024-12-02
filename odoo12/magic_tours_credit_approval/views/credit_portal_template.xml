@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_home_credit"  inherit_id="portal.portal_my_home" customize_show="True" >
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Credits</t>
+                <t t-set="url" t-value="'/my/credits'"/>
+                <t t-set="placeholder_count" t-value="'credit_count'"/>
+            </t>
+        </xpath>
+    </template>
+    <template id="portal_breadcrumbs" inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'credit_list_view'" class="breadcrumb-item">Credits</li>
+            <li t-if="page_name == 'credit_form_view_portal'" class="breadcrumb-item">
+                <a href="/my/credits">Credits</a> 
+            </li>
+        </xpath>
+    </template>
+
+
+    <template id="credit_list_view_portal">
+        <t t-call="portal.portal_layout" >
+            <t t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Credit Amount</th>
+                            <th class="text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <t t-foreach="credits" t-as="credit">
+                        <tr>
+                            <td class="text-center">
+                                <a t-attf-href="/my/credit/#{credit.id}">
+                                    <t t-out="credit.id" />
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <t t-out="credit.credit_amount" />
+                            </td>
+                            <td class="text-center">
+                                <t t-out="credit.state" />
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+                
+            </t>
+        </t>
+    </template>
+
+    <template id="credit_form_view_portal" inherit_id="portal.portal_sidebar">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <t t-if="page_name == 'credit_form_view_portal'">
+                <section style="background-color: #eee;">
+                  <div class="container py-5">
+                    <div class="row">
+                      <div class="col-lg-8">
+                        <div class="card mb-4">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <p class="mb-0">Name</p>
+                              </div>
+                              <div class="col-sm-9">
+                                <p class="text-muted mb-0"><t t-out="credit.name"/></p>
+                              </div>
+                            </div>
+                            <hr/>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <p class="mb-0">Amount</p>
+                              </div>
+                              <div class="col-sm-9">
+                                <p class="text-muted mb-0"><t t-out="credit.credit_amount"/></p>
+                              </div>
+                            </div>
+                            <hr/>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <p class="mb-0">Status</p>
+                              </div>
+                              <div class="col-sm-9">
+                                <p class="text-muted mb-0"><t t-out="credit.state"/></p>
+                              </div>
+                            </div>
+                            <hr/>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <p class="mb-0">Description</p>
+                              </div>
+                              <div class="col-sm-9">
+                                <p class="text-muted mb-0"><t t-out="credit.description"/></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="container py-5">
+                        <h1>Chatter Feature</h1>
+                        <t t-call="portal.message_thread">
+                            <t t-set="object" t-value="credit" />
+                        </t>
+                    </div>
+                </section>
+            </t>
+        </xpath>
+    </template>
+
+
+</odoo>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="1">
+
+        <!-- RMA sale order demo data -->
+        <record id="rma_sale_order_1" model="sale.order">
+            <field name="partner_id" ref="base.res_partner_2"/>
+            <field name="partner_invoice_id" ref="base.res_partner_2"/>
+            <field name="partner_shipping_id" ref="base.res_partner_2"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="team_id" ref="sales_team.crm_team_1"/>
+            <field name="date_order" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+        </record>
+
+        <!-- RMA sale order line demo data -->
+        <record id="rma_sale_order_line_1" model="sale.order.line">
+            <field name="order_id" ref="rma.rma_sale_order_1"/>
+            <field name="name">iPad Retina Display</field>
+            <field name="product_id" ref="product.product_product_4"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">750.00</field>
+        </record>
+
+        <record id="rma_sale_order_line_2" model="sale.order.line">
+            <field name="order_id" ref="rma.rma_sale_order_1"/>
+            <field name="name">ipod</field>
+            <field name="product_id" ref="product.product_product_11"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">16.50</field>
+        </record>
+
+        <record id="rma_sale_order_line_3" model="sale.order.line">
+            <field name="order_id" ref="rma.rma_sale_order_1"/>
+            <field name="name">iPad Mini</field>
+            <field name="product_id" ref="product.product_product_6"/>
+            <field name="product_uom_qty">1</field>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
+            <field name="price_unit">320.0</field>
+        </record>
+
+        <!-- Confirm some Sale Orders-->
+        <function model="sale.order" name="action_confirm" eval="[[ref('rma.rma_sale_order_1')]]"/>
+
+        <!-- RMA DEMO RECORDS -->
+        <record id="rma_demo_1" model="rma.rma">
+            <field name="order_id" ref="sale.sale_order_7"/>
+            <field name="orderline_id" ref="sale.sale_order_line_18"/>
+            <field name="product_id" ref="product.product_product_7"/>
+            <field name="partner_id" ref="base.res_partner_3"/>
+            <field name="refund_qty">1.0</field>
+            <field name="return_request_type">refund</field>
+            <field name="reason_id" ref="rma.defected_product"/>
+            <field name="i_agree">True</field>
+        </record>
+
+        <record id="rma_demo_2" model="rma.rma">
+            <field name="order_id" ref="sale.sale_order_6"/>
+            <field name="orderline_id" ref="sale.sale_order_line_15"/>
+            <field name="product_id" ref="product.product_product_6"/>
+            <field name="partner_id" ref="base.res_partner_18"/>
+            <field name="refund_qty">1.0</field>
+            <field name="return_request_type">exchange</field>
+            <field name="stage_id" ref="rma.rma_agreement"/>
+            <field name="reason_id" ref="rma.defected_product"/>
+            <field name="i_agree">True</field>
+        </record>
+
+        <record id="rma_demo_3" model="rma.rma">
+            <field name="order_id" ref="rma.rma_sale_order_1"/>
+            <field name="orderline_id" ref="rma.rma_sale_order_line_1"/>
+            <field name="product_id" ref="product.product_product_4"/>
+            <field name="partner_id" ref="base.res_partner_2"/>
+            <field name="refund_qty">1.0</field>
+            <field name="return_request_type">exchange</field>
+            <field name="reason_id" ref="rma.wrong_product"/>
+            <field name="i_agree">True</field>
+        </record>
+
+        <record id="rma_demo_4" model="rma.rma">
+            <field name="order_id" ref="rma.rma_sale_order_1"/>
+            <field name="orderline_id" ref="rma.rma_sale_order_line_3"/>
+            <field name="product_id" ref="product.product_product_6"/>
+            <field name="partner_id" ref="base.res_partner_2"/>
+            <field name="refund_qty">1.0</field>
+            <field name="return_request_type">refund</field>
+            <field name="reason_id" ref="rma.defected_product"/>
+            <field name="i_agree">True</field>
+        </record>
+
+        <record id="rma_demo_5" model="rma.rma">
+            <field name="order_id" ref="rma.rma_sale_order_1"/>
+            <field name="orderline_id" ref="rma.rma_sale_order_line_2"/>
+            <field name="product_id" ref="product.product_product_11"/>
+            <field name="partner_id" ref="base.res_partner_2"/>
+            <field name="refund_qty">1.0</field>
+            <field name="return_request_type">refund</field>
+            <field name="stage_id" ref="rma.rma_agreement"/>
+            <field name="reason_id" ref="rma.defected_product"/>
+            <field name="i_agree">True</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_recruiting_agent_tree" model="ir.ui.view">
+            <field name="name">recruiting.agent.tree</field>
+            <field name="model">recruiting.agent</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_recruiting_agent" model="ir.actions.act_window">
+            <field name="name">Recruitment Agents</field>
+            <field name="res_model">recruiting.agent</field>
+            <field name="view_mode">tree</field>
+            <field name="target">current</field>
+        </record>
+
+    </data>
+</odoo>

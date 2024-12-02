@@ -1,0 +1,130 @@
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+
+<!-- =======Dayan=======================RMA1 Part360================================================== -->
+<!-- RMA1 Report Form View -->
+    <record id="part360_rma_report1_form_view" model="ir.ui.view">
+        <field name="name">product.details.form.report1.part360</field>
+        <field name="model">product.details</field>
+        <field name="arch" type="xml">
+            <form string="Part Send Pickup Request">
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="helpdesk_ticket_id"/>
+                    <field name="customer_id"/>
+                    <field name="serial_num"/>
+                    <field name="state"/>
+                </group>
+                <group>
+                    <field name="draft_open_days"/>
+                    <field name="part_request_open_days"/>
+                    <field name="request_accepted_open_days"/>
+                    <field name="dispatched_open_days" />
+                    <field name="part_reached_open_days"/>
+                </group>
+            </group>    
+            </form>
+        </field>
+    </record>
+
+
+<!-- RMA1 Report Tree View -->
+    <record id="part360_rma_report1_tree_view" model="ir.ui.view">
+        <field name="name">part360.rma.report1.tree</field>
+        <field name="model">product.details</field>
+        <!-- <field name="type">tree</field> -->
+        <field name="arch" type="xml">
+            <tree string="Part Send Pickup Request"  decoration-info="state == 'draft'">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="state"/>
+                <field name="draft_open_days"/>
+                <field name="part_request_open_days"/>
+                <field name="request_accepted_open_days"/>
+                <field name="dispatched_open_days" />
+                <field name="part_reached_open_days"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA1 -->
+    <record id="part360_rma_report1_action" model="ir.actions.act_window">
+        <field name="name">RMA1 Report</field>
+        <field name="res_model">product.details</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','in',['draft','part_request','request_accept','part_dispatched','part_reached'])]</field>
+        <field name="view_id" ref="part360_rma_report1_tree_view" />
+    </record>
+
+<!-- =======Dayan=======================RMA3 Part360================================================== -->
+<!-- RMA3 Report Form View -->
+    <record id="part360_rma_report3_form_view" model="ir.ui.view">
+        <field name="name">product.details.form.report3.part360</field>
+        <field name="model">product.details</field>
+        <field name="arch" type="xml">
+            <form string="Part Send Pickup Request">
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="helpdesk_ticket_id"/>
+                    <field name="customer_id"/>
+                    <field name="serial_num"/>
+                    <field name="state"/>
+                </group>
+                <group>
+                    <field name="pickup_initiated_open_days"/>
+                    <field name="return_picked_open_days"/>
+                </group>
+            </group>    
+            </form>
+        </field>
+    </record>
+
+
+
+<!-- RMA3 Report Tree View -->
+    <record id="part360_rma_report3_tree_view" model="ir.ui.view">
+        <field name="name">part360.rma.report3.tree</field>
+        <field name="model">product.details</field>
+        <!-- <field name="type">tree</field> -->
+        <field name="arch" type="xml">
+            <tree string="Part Send Pickup Request">
+                <field name="name"/>
+                <field name="helpdesk_ticket_id"/>
+                <field name="customer_id"/>
+                <field name="serial_num"/>
+                <field name="state"/>
+                <field name="pickup_initiated_open_days"/>
+                <field name="return_picked_open_days"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Action RMA3 -->
+    <record id="part360_rma_report3_action" model="ir.actions.act_window">
+        <field name="name">RMA3 Report</field>
+        <field name="res_model">product.details</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','in',['request_for_part_pickup','in_transit'])]</field>
+        <field name="view_id" ref="part360_rma_report3_tree_view" />
+    </record>
+
+
+<!-- ===========Dayan=====================Menu==================================  -->
+<!-- Menu-->
+    <menuitem id="menu_pspr_reports_root" name="PSPR(Part Send Pickup Request)" parent="rdp_part360.menu_part360_Report_base"/>
+    
+        <menuitem id="menu_rma1_reports" name="RMA1 Report" parent="rdp_part360.menu_pspr_reports_root" action="part360_rma_report1_action" sequence='1'/>
+        
+        <menuitem id="menu_rma3_reports" name="RMA3 Report" parent="rdp_part360.menu_pspr_reports_root" action="part360_rma_report3_action" sequence='3'/>
+ 
+  </data>
+</odoo> -->

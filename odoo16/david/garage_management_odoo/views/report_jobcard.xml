@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data> 
+        <template id="report_jobcard_inherit_garage_management"  inherit_id="job_card.report_jobcard">
+            <xpath expr="//table[hasclass('borderless')]" position="after">
+                <p style="page-break-before:always;"> </p>
+                <p><h3>Vehicle Details</h3></p>
+                <table class="table table-bordered mt-5">
+                    <thead>
+                        <tr>
+                            <th colspan="4" style="font-size:1.17em;"><b>Vehicle Basic Info</b></th>
+                        </tr>
+
+                        <tr>
+                            <td><b>Vehicle Brand :</b></td>
+                            <td><span t-field="o.brand"/></td>
+                            <td><b>Registration Number:</b></td>
+                            <td><span t-field="o.register_no"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Model Name:</b></td>
+                            <td><span t-field="o.model_name"/></td>
+                            <td><b>Vehicle Identification Number:</b></td>
+                            <td><span t-field="o.vin"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Vehicle Type:</b></td>
+                            <td>
+                                <span t-field="o.type_id"/>
+                            </td>
+                            <td><b>Engine:</b></td>
+                            <td><span t-field="o.engine"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Fuel Type:</b></td>
+                            <td><span t-field="o.fuel_type"/></td>
+                            <td><b>No. of Gears:</b></td>
+                            <td><span t-field="o.gear_nos"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Vehicle Color:</b></td>
+                            <td><span t-field="o.vehicle_color"/></td>
+                            <td><b>Vehicle Manufacturing year:</b></td>
+                            <td><span t-field="o.year"/></td>
+                        </tr>
+                        <tr>
+                            <th colspan="4" style="font-size:1.17em;"><b>Extra Info</b></th>
+                        </tr>
+                        <tr>
+                            <td><b>Odometer Reading:</b></td>
+                            <td><span t-field="o.odometer"/></td>
+                            <td><b>Repair Category:</b></td>
+                            <td><span t-field="o.repair_category"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Fuel Level:</b></td>
+                            <td><span t-field="o.fuel_level"/></td>
+                            <td><b>Payment Type:</b></td>
+                            <td><span t-field="o.pay_type"/></td>
+                        </tr>
+                        <tr>
+                            <td><b>Average KM/Day:</b></td>
+                            <td><span t-field="o.average_km"/></td>
+                            <td><b>Is Insurance Claim:</b></td>
+                            <td><span t-field="o.is_insurance"/></td>
+                        </tr>
+                        <tr>
+                            <th colspan="4" style="font-size:1.17em;"><b>Vehicle Servicing Details</b></th>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><b>Service Details : </b>
+                            <span style="margin-left:4px;" t-field="o.detail"/></td>
+                        </tr>
+                        <tr>
+                            <th colspan="4" style="font-size:1.17em;"><b>Images</b></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span t-if="o.image1">
+                                    <img style="width:300px;height:300px;" t-attf-src="data:image/gif;base64, #{o.image1}"/>
+                                </span>
+                            </td>
+                            <td t-if="o.image2">
+                                <span>
+                                    <img style="width:300px;height:300px;" t-attf-src="data:image/gif;base64, #{o.image2}"/>
+                                </span>
+                            </td>
+                            <td t-if="o.image3">
+                                <span>
+                                    <img style="width:300px;height:300px;" t-attf-src="data:image/gif;base64, #{o.image3}"/>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td t-if="o.image4">
+                                <span>
+                                    <img style="width:300px;height:300px;" t-attf-src="data:image/gif;base64, #{o.image4}"/>
+                                </span>
+                            </td>
+                            <td t-if="o.image5">
+                                <span>
+                                    <img style="width:300px;height:300px;" t-attf-src="data:image/gif;base64, #{o.image5}"/>
+                                </span>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </xpath>
+        </template>
+    </data>
+</odoo>

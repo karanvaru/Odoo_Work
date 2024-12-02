@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="seq_beid" model="ir.sequence">
+            <field name="name">BEID Sequence</field>
+            <field name="code">bill.of.exchange.sequence</field>
+            <field name="prefix">BE</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

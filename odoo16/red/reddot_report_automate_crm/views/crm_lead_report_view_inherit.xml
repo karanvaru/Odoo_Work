@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_crm_lead_tree_reporting_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.view.form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_tree_reporting"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="partner_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_crm_lead_search_reporting_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.view.search</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_opportunity_report_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search/group/filter[@name='salesperson']" position="before">
+                    <filter string="Customer" name="customer" context="{'group_by':'partner_id'}"/>
+                </xpath>
+                <xpath expr="//search/group/filter[@name='city']" position="after">
+                    <filter string="State" name="state_id" context="{'group_by':'state_id'}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="crm.crm_opportunity_report_action_lead" model="ir.actions.act_window">
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                           (0, 0, {'view_mode': 'tree', 'view_id': ref('crm.crm_lead_view_tree_reporting')}),
+                          (0, 0, {'view_mode': 'graph', 'view_id': ref('crm.crm_opportunity_report_view_graph_lead')}),
+                          (0, 0, {'view_mode': 'pivot', 'view_id': ref('crm.crm_opportunity_report_view_pivot_lead')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('crm.crm_lead_view_form')}),
+
+                         ]"/>
+        </record>
+
+
+    </data>
+</odoo>
+

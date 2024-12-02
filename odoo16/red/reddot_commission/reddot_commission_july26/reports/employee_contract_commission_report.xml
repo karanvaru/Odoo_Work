@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="employee_contract_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="row">
+                                <h4>
+                                    <b>Commission Plan :</b>
+                                    <span t-esc="o.commission_config_plan_id.name"/>
+                                </h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>
+                                        <b>Employee :</b>
+                                        <span t-esc="o.employee_id.name"/>
+                                    </h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>
+                                        <b>Department :</b>
+                                        <span t-esc="o.department_id.display_name"/>
+                                    </h5>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>
+                                        <b>Calculation Type :</b>
+                                        <span t-esc="o.set_calculation_type_value().get(o.calculation_types)"/>
+                                    </h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5>
+                                        <b>Commission Type :</b>
+                                        <span t-esc="o.set_commission_type_value().get(o.commission_type)"/>
+                                        <!--                                        <span t-esc="o.commission_type"/>-->
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <h6 class="mb16 mt32">COMMISSION PERCENTAGE</h6>
+
+                            <t t-if="o.calculation_types == 'bu_level'">
+                                <table class="table table-bordered mt16">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                <span>Business Unit</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Commission Amount</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Division Of Commission Percentage</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Target Amount</span>
+                                            </th>
+                                            <!--                                            <th class="text-center">-->
+                                            <!--                                                <span>Commission (%)</span>-->
+                                            <!--                                            </th>-->
+
+                                            <th class="text-center">
+                                                <span>Division Level</span>
+                                            </th>
+<!--                                            <th class="text-center">-->
+<!--                                                <span>Division Of Target</span>-->
+<!--                                            </th>-->
+                                            <th class="text-center">
+                                                <span>Description</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="o.hr_contract_commission_config_line_ids" t-as="bu">
+                                            <tr class="text-center">
+                                                <td>
+                                                    <span t-field="bu.business_unit_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="bu.commission_amount"/>
+                                                </td>
+                                                <td>
+                                                    <t t-if="bu.commission_division_type">
+                                                        <span t-field="bu.commission_division_type"/>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <span t-field="bu.target_amount"/>
+                                                </td>
+                                                <!--                                                <td>-->
+                                                <!--                                                    <span t-field="bu.commission_percentage"/>-->
+                                                <!--                                                </td>-->
+                                                <td>
+                                                    <t t-if="bu.division_level">
+                                                        <span t-field="bu.division_level"/>
+                                                    </t>
+                                                </td>
+
+<!--                                                <td>-->
+<!--                                                    <t t-if="bu.division_type">-->
+<!--                                                        <span t-field="bu.division_type"/>-->
+<!--                                                    </t>-->
+<!--                                                </td>-->
+
+                                                <td>
+                                                    <span t-field="bu.description"/>
+                                                </td>
+
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                            <t t-if="o.calculation_types == 'company_level'">
+                                <table class="table table-bordered mt16">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                <span>Company</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Commission Amount</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Division Of Commission Percentage</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Target Amount</span>
+                                            </th>
+                                            <!--                                            <th class="text-center">-->
+                                            <!--                                                <span>Commission (%)</span>-->
+                                            <!--                                            </th>-->
+
+                                            <th class="text-center">
+                                                <span>Division Level</span>
+                                            </th>
+<!--                                            <th class="text-center">-->
+<!--                                                <span>Division Of Target</span>-->
+<!--                                            </th>-->
+                                            <th class="text-center">
+                                                <span>Description</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="o.hr_contract_commission_config_line_ids"
+                                           t-as="co">
+                                            <tr class="text-center">
+                                                <td>
+                                                    <span t-field="co.company_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="co.commission_amount"/>
+                                                </td>
+                                                <td>
+                                                    <t t-if="co.commission_division_type">
+                                                        <span t-field="co.commission_division_type"/>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <span t-field="co.target_amount"/>
+                                                </td>
+                                                <!--                                                <td>-->
+                                                <!--                                                    <span t-field="co.commission_percentage"/>-->
+                                                <!--                                                </td>-->
+                                                <td>
+                                                    <t t-if="co.division_level">
+                                                        <span t-field="co.division_level"/>
+                                                    </t>
+                                                </td>
+
+<!--                                                <td>-->
+<!--                                                    <t t-if="co.division_type">-->
+<!--                                                        <span t-field="co.division_type"/>-->
+<!--                                                    </t>-->
+<!--                                                </td>-->
+
+                                                <td>
+                                                    <span t-field="co.description"/>
+                                                </td>
+
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+
+                            <t t-if="o.calculation_types == 'region_level'">
+                                <table class="table table-bordered mt16">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                <span>Country Group</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Commission Amount</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Division Of Commission Percentage</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Target Amount</span>
+                                            </th>
+<!--                                            <th class="text-center">-->
+<!--                                                <span>Commission (%)</span>-->
+<!--                                            </th>-->
+
+                                            <th class="text-center">
+                                                <span>Division Level</span>
+                                            </th>
+<!--                                            <th class="text-center">-->
+<!--                                                <span>Division Of Target</span>-->
+<!--                                            </th>-->
+                                            <th class="text-center">
+                                                <span>Description</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="o.hr_contract_commission_config_line_ids"
+                                           t-as="rl">
+                                            <tr class="text-center">
+                                                <td>
+                                                    <span t-field="rl.country_group_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="rl.commission_amount"/>
+                                                </td>
+                                                <td>
+                                                    <t t-if="rl.commission_division_type">
+                                                        <span t-field="rl.commission_division_type"/>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <span t-field="rl.target_amount"/>
+                                                </td>
+<!--                                                <td>-->
+<!--                                                    <span t-field="rl.commission_percentage"/>-->
+<!--                                                </td>-->
+                                                <td>
+                                                    <t t-if="rl.division_level">
+                                                        <span t-field="rl.division_level"/>
+                                                    </t>
+                                                </td>
+
+<!--                                                <td>-->
+<!--                                                    <t t-if="rl.division_type">-->
+<!--                                                        <span t-field="rl.division_type"/>-->
+<!--                                                    </t>-->
+<!--                                                </td>-->
+
+                                                <td>
+                                                    <span t-field="rl.description"/>
+                                                </td>
+
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+
+                            <t t-if="o.calculation_types == 'bu_group_level'">
+                                <table class="table table-bordered mt16">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                <span>BU Group</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Commission Amount</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Division Of Commission Percentage</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Target Amount</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Commission (%)</span>
+                                            </th>
+
+                                            <th class="text-center">
+                                                <span>Division Level</span>
+                                            </th>
+<!--                                            <th class="text-center">-->
+<!--                                                <span>Division Of Target</span>-->
+<!--                                            </th>-->
+                                            <th class="text-center">
+                                                <span>Description</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="o.hr_contract_commission_config_line_ids"
+                                           t-as="gl">
+                                            <tr class="text-center">
+                                                <td>
+                                                    <span t-field="gl.bu_group_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="gl.commission_amount"/>
+                                                </td>
+                                                <td>
+                                                    <t t-if="gl.commission_division_type">
+                                                        <span t-field="gl.commission_division_type"/>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <span t-field="gl.target_amount"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="gl.commission_percentage"/>
+                                                </td>
+                                                <td>
+                                                    <t t-if="gl.division_level">
+                                                        <span t-field="gl.division_level"/>
+                                                    </t>
+                                                </td>
+
+<!--                                                <td>-->
+<!--                                                    <t t-if="gl.division_type">-->
+<!--                                                        <span t-field="gl.division_type"/>-->
+<!--                                                    </t>-->
+<!--                                                </td>-->
+
+                                                <td>
+                                                    <span t-field="gl.description"/>
+                                                </td>
+
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+
+<!--                            <t t-if="o.calculation_types == 'self'">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-6">-->
+<!--                                        <h5>-->
+<!--                                            <b>Target Amount :</b>-->
+<!--                                            <span t-esc="o.plan_target_amount"/>-->
+<!--                                        </h5>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-6">-->
+<!--                                        <h5>-->
+<!--                                            <b>Commission Amount :</b>-->
+<!--                                            <span t-esc="o.plan_commission_amount"/>-->
+<!--                                        </h5>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </t>-->
+
+                            <t t-if="o.commission_target_percentage_employee_ids">
+                                <h6 class="mb16 mt32">COMMISSION PERCENTAGE BASED ON TARGET ACHIEVED</h6>
+                                <table class="table table-bordered mt16">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                <span>From (%)</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>To (%)</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span>Commission (%)</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="o.commission_target_percentage_employee_ids"
+                                           t-as="target">
+                                            <tr class="text-center">
+                                                <td>
+                                                    <span t-field="target.from_percentage"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="target.to_percentage"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="target.commission_percentage"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                            
+						    <div class="row mt16">
+						        <div class="col">
+						           <h5> <span t-field="o.commission_term_condition_id.description"/></h5>
+						        </div>
+						    </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="paperformat_commission_report" model="report.paperformat">
+            <field name="name">Commission Report</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">300</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">23</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">38</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="action_employee_contract_report" model="ir.actions.report">
+            <field name="name">Commission PDF</field>
+            <field name="model">hr.contract</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">reddot_commission.employee_contract_report_template</field>
+            <field name="report_file">reddot_commission.employee_contract_report_template</field>
+            <field name="binding_model_id" ref="model_hr_contract"/>
+            <field name="print_report_name">'Commission_TC'</field>
+            <field name="paperformat_id" ref="reddot_commission.paperformat_commission_report"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+    </data>
+</odoo>

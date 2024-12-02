@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+            <record id="hr_expense_inherit_form_record_type" model="ir.ui.view">
+                <field name="name">hr.expense.inherit.form</field>
+                <field name="model">hr.expense</field>
+                <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+                <field name="arch" type="xml">
+                                    <xpath expr="//field[@name='bank_details']" position="after">
+                        <field name="record_type_id"
+                               attrs="{'required': [('state', '=', 'approved')], 'readonly': [('state',  'in', ['done','refused'])]}"/>
+                        <field name="record_category_id"
+                               attrs="{'required': [('state', '=', 'approved')], 'readonly': [('state', 'in', ['done','refused'])]}"
+                               domain="[('record_type_ids', 'in', record_type_id)]"/>
+                    </xpath>
+                </field>
+            </record>
+
+            <record id="hr_expense_sheet_inherit_form_record_type" model="ir.ui.view">
+                <field name="name">hr.expense.sheet.inherit.form</field>
+                <field name="model">hr.expense.sheet</field>
+                <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+                <field name="arch" type="xml">
+                                <xpath expr="//field[@name='bank_details']" position="after">
+                        <field name="record_type_id" readonly="1"/>
+                        <field name="record_category_id" readonly="1"/>
+                    </xpath>
+                </field>
+            </record>
+
+
+
+</odoo>

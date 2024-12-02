@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mobile_service_form_inherit" model="ir.ui.view">
+        <field name="name">mobile.service.form.inherit</field>
+        <field name="model">mobile.service</field>
+        <field name="inherit_id" ref="mobile_service_shop.mobile_service_request_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_request']" position="before">
+                <field name="product_id" placeholder="Product name" options="{'no_create':True, 'no_edit':True}"
+                       attrs="{'readonly': [('service_state','not in',('draft'))]}"/>
+                <field name="stock_lot_id"/>
+            </xpath>
+            <!--            <xpath expr="//field[@name='model_name']" position="attributes">-->
+            <!--                <attribute name="invisible">1</attribute>-->
+            <!--            </xpath>-->
+            <!--            <xpath expr="//field[@name='model_name']" position="after">-->
+            <!--                <field name="product_id" placeholder="Model name" options="{'no_create':True, 'no_edit':True}"-->
+            <!--                       attrs="{'readonly': [('service_state','not in',('draft'))]}"/>-->
+            <!--            </xpath>-->
+            <xpath expr="//label[@for='re_repair']" position="attributes">
+                <attribute name="string">Repair</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_mobile_service_request_form_inherit" model="ir.ui.view">
+        <field name="name">mobile.service.form.inherit</field>
+        <field name="model">mobile.service</field>
+        <field name="inherit_id" ref="mobile_service_shop_pro.mobile_service_request_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='real_phone_image']" position="attributes">
+                <attribute name="string">Device Image</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

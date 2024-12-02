@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="manufacturing_inherited_tree_view" model="ir.ui.view">
+            <field name="name">mrp.production.inherit.tree</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="open_days"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

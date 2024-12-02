@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <t
+        t-name="PartnerDetailsEdit"
+        t-inherit="point_of_sale.PartnerDetailsEdit"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath expr="//select[@name='country_id']/.." position="after">
+            <div class="partner-detail partner-detail-pos-comment">
+                <span class="label">ED No/Passport No.</span>
+                <input
+                    class="detail"
+                    name="customer_passport_number"
+                    t-model="changes.customer_passport_number"
+                    t-on-change="captureChange"
+                    placeholder="Passport No."
+                />
+            </div>
+        </xpath>
+    </t>
+
+</templates>

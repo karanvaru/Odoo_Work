@@ -1,0 +1,8 @@
+<odoo>
+    <data noupdate="1">
+        <record id="spy_caller_partner" model="res.partner">
+            <field name="name">Spy Caller</field>
+            <field name="phone">+1234567890</field>
+        </record>
+    </data>
+</odoo>

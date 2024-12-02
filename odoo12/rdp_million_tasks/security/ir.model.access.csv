@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_million_tasks_manager,million.tasks,model_million_tasks,hr.group_hr_manager,1,1,1,0
+access_million_tasks_user,million.tasks,model_million_tasks,base.group_user,1,0,0,0
+m_tasks_user,m.tasks,model_m_tasks,,1,1,1,0
+c_category_user,c.category,model_c_category,,1,1,1,0

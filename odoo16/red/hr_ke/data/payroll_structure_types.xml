@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="salary_structure_type" model="hr.payroll.structure.type">
+            <field name="name">Kenyan Payroll Structure Type</field>
+            <field name="country_id" ref="base.ke"/>
+            <field name="wage_type">monthly</field>
+            <field name="default_schedule_pay">monthly</field>
+            <field name="default_resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="default_work_entry_type_id" ref="hr_work_entry.work_entry_type_attendance"/>
+        </record>
+    </data>
+</odoo>

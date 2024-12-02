@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_saleorder_document_inherit_rental_request_custom" inherit_id="sale.report_saleorder_document">
+       <xpath expr="//table[@name='invoice_line_table']/thead/tr//th[@name='th_description']" position="after">
+<!--        <xpath expr="//table[hasclass('o_main_table')]//th[@name='th_description']" position="after">-->
+            <th name="custom_rental_start_date" t-if="doc.is_custom_rental_quote">Rental Start Date</th>
+            <th name="custom_rental_end_date" t-if="doc.is_custom_rental_quote">Rental End Date</th>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//td[@name='td_name']" position="after">
+            <td name="custom_rental_start_date_td" t-if="doc.is_custom_rental_quote">
+                <span t-field="line.custom_start_datetime"/>
+            </td>
+            <td name="custom_rental_end_date_td" t-if="doc.is_custom_rental_quote">
+                <span t-field="line.custom_end_datetime"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

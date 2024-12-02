@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data noupdate="0">
+        <record id="group_sh_barcode_scanner_multi_barcode" model="res.groups">
+            <field name="name">Multi Barcodes</field>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
+            <field name="comment">This user will be able to scan multi barcode for product in sale, purchase, inventory, invoice etc.</field>
+        </record>
+    </data>
+</odoo>

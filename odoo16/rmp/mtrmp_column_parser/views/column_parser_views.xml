@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <data>
+
+        <!--mtrmp.document.category-->
+
+        <record id="mtrmp_document_category_view_tree" model="ir.ui.view">
+            <field name="name">mtrmp.document.category.tree</field>
+            <field name="model">mtrmp.document.category</field>
+            <field name="arch" type="xml">
+                <tree string="Document Category">
+                    <field name="name"/>
+                    <field name="category_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mtrmp_document_category_view_form" model="ir.ui.view">
+            <field name="name">mtrmp.document.category.form</field>
+            <field name="model">mtrmp.document.category</field>
+            <field name="arch" type="xml">
+                <form string="Document Category Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="category_id"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Documents">
+                                <field name="document_ids">
+
+                                </field>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="actions_mtrmp_document_category_view" model="ir.actions.act_window">
+            <field name="name">Document Category</field>
+            <field name="res_model">mtrmp.document.category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="mtrmp_column_parser_menu" parent="sale.menu_sale_config"
+                  name="Column Parser" sequence="1000"/>
+
+        <menuitem id="mtrmp_document_category_menu"
+                  name="Document Category"
+                  parent="mtrmp_column_parser_menu"
+                  action="actions_mtrmp_document_category_view"
+                  sequence="12"
+        />
+
+        <!--mtrmp.document-->
+
+        <record id="mtrmp_document_view_tree" model="ir.ui.view">
+            <field name="name">mtrmp.document.tree</field>
+            <field name="model">mtrmp.document</field>
+            <field name="arch" type="xml">
+                <tree string="Document Tree">
+                    <field name="name"/>
+                    <field name="category_id"/>
+                    <field name="document_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mtrmp_document_view_form" model="ir.ui.view">
+            <field name="name">mtrmp.document.form</field>
+            <field name="model">mtrmp.document</field>
+            <field name="arch" type="xml">
+                <form string="Document Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="document_type"/>
+                            </group>
+                            <group>
+                                <field name="document_id"/>
+                                <field name="category_id"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Columns">
+                                <field name="column_ids">
+                                    <tree editable="top" create="False">
+                                        <field name="name" readonly="1"/>
+                                        <field name="sale_order_confirmation_fields"
+                                               attrs="{'column_invisible': [('parent.document_type', '!=', 'sale_order')]}"/>
+                                        <field name="delivery_order_confirmation_fields"
+                                               attrs="{'column_invisible': [('parent.document_type', '!=', 'delivery_confirmation')]}"/>
+                                         <field name="return_confirmation_fields"
+                                               attrs="{'column_invisible': [('parent.document_type', '!=', 'return_confirmation')]}"/>
+                                        <field name="payment_settlement_fields"
+                                               attrs="{'column_invisible': [('parent.document_type', '!=', 'payment_settlement')]}"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="actions_mtrmp_document_view" model="ir.actions.act_window">
+            <field name="name">Document</field>
+            <field name="res_model">mtrmp.document</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="mtrmp_document_menu"
+                  name="Document"
+                  parent="mtrmp_column_parser_menu"
+                  action="actions_mtrmp_document_view"
+                  sequence="11"
+        />
+
+
+    </data>
+
+</odoo>

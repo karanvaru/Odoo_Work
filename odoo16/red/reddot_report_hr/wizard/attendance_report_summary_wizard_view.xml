@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_attendance_report_wizard_summary_from">
+            <field name="name">attendance.report.summary.wizard.view</field>
+            <field name="model">attendance.report.summary.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Export Report">
+                    <group>
+                        <group>
+                            <field name="Start_date"/>
+                            <field name="employee_ids" widget="many2many_tags"/>
+                            <field name="department_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                            <field name="company_ids" widget="many2many_tags"/>
+                            <field name="report_type" widget="radio"/>
+                        </group>
+                    </group>
+                    <footer>
+<!--                        <button name="print_report" string="Print" type="object"/>-->
+                          <button name="print_report" class='btn btn-primary' string="Export" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_attendance_report_wizard_summary">
+            <field name="name">Attendances Report Summary</field>
+            <field name="res_model">attendance.report.summary.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+                id="menu_hr_attendance_report_wizard_summary"
+                name="Attendance Summary"
+                sequence="70"
+                action="actions_attendance_report_wizard_summary"
+                parent="hr.hr_menu_hr_reports"
+        />
+    </data>
+</odoo>

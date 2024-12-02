@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shipping_partner_form" model="ir.ui.view">
+        <field name="name">Gati Configuration</field>
+        <field name="model">shipping.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base_shipping_partner.view_shipping_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="gati_test_connection" string="Test Connection" type="object"
+                        class="oe_highlight" attrs="{'invisible': [('provider_company', '!=', 'gati_ts')]}"/>
+                <button name="generate_docket_or_packet_number" string="Generate Docket/Packet Number" type="object"
+                        class="oe_highlight" attrs="{'invisible': [('provider_company', '!=', 'gati_ts')]}"/>
+            </xpath>
+            <xpath expr="//sheet//div[@name='button_box']" position="inside">
+                <button type="object" name="action_view_docket_numbers" class="oe_stat_button" icon="fa-bars">
+                    <span class="o_stat_text">Docket Numbers</span>
+                </button>
+                <button type="object" name="action_view_packet_numbers" class="oe_stat_button" icon="fa-bars">
+                    <span class="o_stat_text">Packet Numbers</span>
+                </button>
+            </xpath>
+            <xpath expr="//notebook/page[@name='api_credential']/group"
+                   position="inside">
+                <group attrs="{'invisible': [('provider_company', '!=', 'gati_ts')]}"
+                       name="gati_configurations">
+                    <field name="gati_customer_code"
+                           attrs="{'invisible':[('provider_company','!=','gati_ts')],'required':[('provider_company','=','gati_ts')]}"/>
+                    <field name="gati_token"
+                           attrs="{'invisible':[('provider_company','!=','gati_ts')],'required':[('provider_company','=','gati_ts')]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

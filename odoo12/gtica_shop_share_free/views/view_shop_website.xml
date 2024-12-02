@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="product_share" name="Share Links Product" inherit_id="website_sale.product">
+        <xpath expr="//p[hasclass('text-muted')]" position="after">
+            <h6 class="text-uppercase border-top font-weight-bold" style="padding-top: 1rem !important;">Share this product</h6>
+            <p>
+                <t t-set="share_url" t-value="product._compute_share_url()"/>
+                <a  t-att-href="share_url['facebook']" target="_blank" class="btn btn-sm btn-link"><i class="fa fa-3x fa-facebook-square"/></a>
+                <a  t-att-href="share_url['twitter']" target="_blank" class="btn btn-sm btn-link"><i class="fa fa-3x fa-twitter-square"/></a>
+                <a  t-att-href="share_url['linkedin']" target="_blank" class="btn btn-sm btn-link"><i class="fa fa-3x fa-linkedin-square"/></a>
+                <a  t-att-href="share_url['tumblr']" target="_blank" class="btn btn-sm btn-link"><i class="fa fa-3x fa-tumblr-square"/></a>
+                <a  t-att-href="share_url['pinterest']" target="_blank" class="btn btn-sm btn-link"><i class="fa fa-3x fa-pinterest-square"/></a>
+            </p>
+        </xpath>
+    </template>
+</odoo>

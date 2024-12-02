@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shipping_partner_form" model="ir.ui.view">
+        <field name="name">Blue Dart Configuration</field>
+        <field name="model">shipping.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base_shipping_partner.view_shipping_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="before">
+                <header>
+                    <button name="blue_dart_test_connection" string="Test Connection" invisible="1" type="object"
+                            class="oe_highlight"/>
+                </header>
+            </xpath>
+            <xpath expr="//notebook/page[@name='api_credential']/group"
+                   position="inside">
+                <group attrs="{'invisible': [('provider_company', '!=', 'bluedart_ts')]}"
+                       name="bluedart_configurations">
+                    <field name="bd_user_name"
+                           attrs="{'invisible':[('provider_company','!=','bluedart_ts')],'required':[('provider_company','=','bluedart_ts')]}"/>
+                    <field name="bd_password"
+                           attrs="{'invisible':[('provider_company','!=','bluedart_ts')],'required':[('provider_company','=','bluedart_ts')]}"/>
+                    <field name="bd_licence_key"
+                           attrs="{'invisible':[('provider_company','!=','bluedart_ts')],'required':[('provider_company','=','bluedart_ts')]}"/>
+                    <field name="bd_customer_code"
+                           attrs="{'invisible':[('provider_company','!=','bluedart_ts')],'required':[('provider_company','=','bluedart_ts')]}"/>
+                    <field name="bd_area"
+                           attrs="{'invisible':[('provider_company','!=','bluedart_ts')],'required':[('provider_company','=','bluedart_ts')]}"/>
+                </group>
+                <group>
+                    <div class="content-group" title="Pickup after this delay.">
+                        <div class="row mt16">
+                            <div class="col-12">
+                                <label for="cart_abandoned_delay" string="Pickup after delay" class="o_light_label"/>
+                                <field class="col-2" name="bd_pickup_after"
+                                       attrs="{'required':[('provider_company','=','bluedart_ts')]}"/> hour(s).
+                            </div>
+                        </div>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_all_search,access_all_search_config,model_exclude_objects,all_search.group_allow_search,1,1,1,1
+access_new_fields,access_new_fields,model_new_fields,all_search.group_allow_search,1,1,1,1

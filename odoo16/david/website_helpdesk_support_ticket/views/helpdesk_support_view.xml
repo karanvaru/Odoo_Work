@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="helpdesk_support_form_view">
+            <field name="name">Helpdesk form</field>
+            <field name="model">helpdesk.support</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+<!--                        <field name="state" widget="statusbar" clickable="True"-->
+<!--                            options="{'fold_field': 'fold'}"/>-->
+                            <!-- <field name="stage_id" widget="statusbar" clickable="1" 
+                            options="{'fold_field': 'fold'}"
+                            domain="['|', ('team_id', '=', team_id), ('team_id', '=', False)]"
+                            attrs="{'invisible': [('active', '=', False)]}"/> -->
+                            <field name="stage_id" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}" 
+                            domain="['|', ('team_id', '=', team_id), ('team_id', '=', False)]"
+                            attrs="{'invisible': [('active', '=', False)]}"/>
+                            <field name="stage_type" invisible="1"/>
+                            <field name="active" invisible="1"/> <!-- odoo13-->
+                            <field name="analytic_account_id" invisible="1"/>
+<!--                            <button name="action_create_invoice" string="Create Invoice" groups="website_helpdesk_support_ticket.group_helpdesk_manager" type="object" class="oe_highlight" attrs="{'invisible': [('stage_type', '=','closed')]}"/>-->
+<!--                            <button name="action_create_task" string="Create Task" groups="website_helpdesk_support_ticket.group_helpdesk_manager" type="object" class="oe_highlight" attrs="{'invisible': [('stage_type', '=','closed')]}"/>-->
+                        <button name="set_to_close" string="Set To Close" attrs="{'invisible':[('is_close','=',True)]}" groups="website_helpdesk_support_ticket.group_helpdesk_manager" type="object" class="oe_highlight"/>
+                        <button name="set_to_reopen" string="Re Open" attrs="{'invisible':[('is_close','=',False)]}" groups="website_helpdesk_support_ticket.group_helpdesk_manager" type="object" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                    <div class="oe_button_box" name="button_box">
+<!--                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive"> odoo13-->
+<!--                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>-->
+<!--                        </button>-->
+                        <button class="oe_stat_button"
+                                type="object" 
+                                name="action_create_invoice" 
+                                string="Create Invoice" 
+                                icon="fa-pencil-square-o" 
+                                groups="website_helpdesk_support_ticket.group_helpdesk_manager"
+                                style="background-color: #32CD32;"
+                        />
+<!--                        <button class="oe_stat_button"-->
+<!--                                 type="object" -->
+<!--                                 name="action_create_task" -->
+<!--                                 string="Create Task" -->
+<!--                                 icon="fa-pencil-square-o" -->
+<!--                                 groups="website_helpdesk_support_ticket.group_helpdesk_manager"/>-->
+                         <button class="oe_stat_button"
+                                 type="object" 
+                                 name="action_create_task" 
+                                 string="Create Task" 
+                                 icon="fa-pencil-square-o" 
+                                 groups="website_helpdesk_support_ticket.group_helpdesk_manager" 
+                                 attrs="{'invisible': [('stage_type', '=','closed')]}"
+                                 style="background-color: #32CD32;"/>
+                        <button class="oe_stat_button" type="object"
+                                name="show_task" string="Tasks" icon="fa-pencil-square"
+                                attrs="{'invisible': [('is_task_created', '=',False)]}"/>
+                        <button class="oe_stat_button" type="object" name="show_invoice" 
+                                attrs="{'invisible':[('is_invoice_created','=',False)]}" string="Invoice"
+                                icon="fa-pencil-square"/>
+<!--                                icon="fa-fa-briefcase" odoo13-->
+                        <!-- <button class="oe_stat_button" type="object"
+                                name="show_analytic_account" string="Analytic Account" icon="fa-book" groups="analytic.group_analytic_accounting"
+                                attrs="{'invisible': [('analytic_account_id', '=',False)]}"/> -->
+                        <button class="oe_stat_button" type="object"
+                                name="show_analytic_account" string="Analytic Account" icon="fa-book"  attrs="{'invisible': [('analytic_account_id', '=',False)]}"/>
+                    </div>
+                    <div class="oe_title">
+                        <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/><br/>
+                            <field name="subject" readonly="0"  attrs="{'readonly': [('stage_type', '=', 'closed')]}"  placeholder="Helpdesk Support Subject"/>
+                            <field name="is_invoice_created" invisible="1"/>
+                            <field name="is_task_created" invisible="1"/>
+                        </h1>
+                    </div>
+                    </div>
+                            <group>
+                                <group>
+                                    <field name="type_ticket_id"  attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                    <field name="subject_type_id"  attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                    <field name="user_id" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                    <field name="email" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                    <field name="custome_client_user_id" invisible="1"/>
+                                    <field name="company_id" groups="base.group_multi_company"/>
+                                    <field name="custom_project_task_ids" 
+                                    widget='many2many_tags'
+                                    readonly='True'/>
+                                </group>
+                                <group>
+                                    <field name="partner_id" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                    <field name='custom_customer_name' attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                    <field name="phone" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                    <field name="allow_user_ids" widget="many2many_tags" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                </group>
+                             </group>
+                        
+                        <group>
+<!--                            <group>-->
+<!--                                <field name="team_id"/>-->
+<!--                                <field name="project_id" filter_domain = "[('partner_id', 'child_of', [partner.commercial_partner_id.id])]"/>-->
+<!--                                <field name="department_id" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>-->
+<!--                            </group>-->
+                        
+                            <group>
+<!--                                <field name="team_leader_id"/>-->
+<!--                                <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>-->
+<!--                                <field name="priority" />-->
+                            
+                                <field name="team_id" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                <field name="project_id" filter_domain = "[('partner_id', 'child_of', [partner.commercial_partner_id.id])]" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                <field name="department_id" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                            </group>
+                        
+                            <group>
+                                <field name="team_leader_id" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                <field name="analytic_account_id" attrs="{'readonly': [('stage_type', '=', 'closed')]}" groups="analytic.group_analytic_accounting"/>
+                                <field name="priority" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                <field name="category" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                            </group>
+                        </group>
+                    <group>
+                        <group>
+                            <field name="request_date" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                            <field name="is_close" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                        </group> 
+                        <group>
+<!--                            <field name="close_date"/>-->
+<!--                            <field name="total_spend_hours" widget="float_time"/>-->
+                                <field name="close_date" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                <field name="total_spend_hours" widget="float_time" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                <p style="color:grey;" colspan="2">To view current status of Customer Prepaid/Postpaid Support Hours/Package please click Analytic Account Button.</p>
+                                <field name="total_consumed_hours" widget="float_time" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                <field name="total_purchase_hours" widget="float_time" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                <field name="remaining_hours" widget="float_time" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                                <field name="balanced_remaining_hours" widget="float_time" attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                         </group>
+                    </group>  
+                        <notebook>
+                        <page name="description" string="Description">
+                            <field name="description" placeholder="Add an internal note..." attrs="{'readonly': [('stage_type', '=', 'closed')]}"/>
+                        </page>
+                        <page name="timesheets" string="Timesheets" groups="base.group_user">
+                            <field name="timesheet_line_ids" context = "{'default_account_id' :analytic_account_id}" nolabel="1">
+                        
+                            <!-- <field name="timesheet_line_ids" attrs="{'readonly': [('stage_type', '=', 'closed')]}" context = "{'default_account_id' :analytic_account_id}" nolabel="1"/> -->
+                                <tree editable="bottom">
+                                    <field name="date"/>
+                                    <field name="user_id" />
+                                    <!-- <field name="account_id" invisible="1"/> -->
+                                    <field name="project_id" required="1"/>
+                                    <field name="task_id" />
+<!--                                    <field name="support_request_id"/-->
+                                    <field name="name"/>
+                                    <field name="billable"/>
+                                    <field name="time_in" widget="float_time"/>
+                                    <field name="time_out" widget="float_time"/>
+                                    <field name="unit_amount" widget="float_time" string="Hours" sum="Hours"/>
+                                    <!-- <field name="company_id" invisible="1" groups="base.group_multi_company"/>  -->
+                                    <field name="company_id" invisible="1"/> 
+                                    <!--odoo13-->
+<!--                                    <field invisible="1" name="user_id" required="1"/-->
+                                </tree>
+                            </field>
+                        </page> 
+                        <page name="invoice_line" string="Add Invoice Lines" >
+<!--                            <field name="invoice_line_ids" context = "{'default_analytic_account_id' :analytic_account_id}" nolabel="1" groups="website_helpdesk_support_ticket.group_helpdesk_manager">-->
+                        
+                            <field name="invoice_line_ids" attrs="{'readonly': [('stage_type', '=', 'closed')]}" context = "{'default_analytic_account_id' :analytic_account_id}" nolabel="1" groups="website_helpdesk_support_ticket.group_helpdesk_manager">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="quantity"/>
+                                    <field name="price_unit"/>
+                                    <field name="product_uom"/>
+                                    <!-- <field name="analytic_account_id" options="{'no_open': True, 'no_create': True}" groups="analytic.group_analytic_accounting"/> -->
+                                    <field name="analytic_account_id" options="{'no_open': True, 'no_create': True}"/>
+                                    <field name="is_invoice"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="general_information" string="General Information">
+                            <group>
+                                <group>
+<!--                                    <field name="invoice_id" attrs="{'readonly': [('is_invoice_created', '=',True)]}"/>-->
+                                    <field name="invoice_id" attrs="{'readonly': ['|' ,('stage_type', '=', 'closed'),('is_invoice_created', '=',True)]}"/>
+                                    <field name="task_id" invisible="1"/>
+<!--                                    <field name="journal_id" attrs="{'readonly': [('is_invoice_created', '=',True)]}"/>-->
+                                    
+                                    <field name="journal_id" attrs="{'readonly': ['|' ,('stage_type', '=', 'closed'), ('is_invoice_created', '=',True)]}"/>
+<!--                                    <field name="task_id"/>-->
+                                    
+                                </group>
+                             </group>
+                        </page>
+                        <page name="customer_rating" string="Customer Rating">
+                            <group>
+                                <group>
+                                    <field name="rating" widget="radio"/>
+                                    <field name="comment"/>
+                                </group>
+                             </group>
+                        </page>
+                    </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="helpdesk_support_tree_view">
+            <field name="name">Helpdesk tree</field>
+            <field name="model">helpdesk.support</field>
+            <field name="arch" type="xml">
+                <tree>
+                     <field name="name"/>
+                     <field name="subject"/>
+                     <field name="type_ticket_id" />
+                     <field name="user_id"/>
+                     <field name="partner_id"/>
+                     <field name="email"/>
+                     <field name="phone"/>
+                     <field name="category"/>
+                     <field name="priority"/>
+                     <field name="stage_type"/>
+                     <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="helpdesk_support_search_view">
+            <field name="name">Helpdesk search</field>
+            <field name="model">helpdesk.support</field>
+            <field name="arch" type="xml">
+                <search>
+                     <field name="name"/>
+                     <field name="subject"/>
+                     <field name="partner_id"/>
+                     <field name="type_ticket_id" />
+                     <field name="email"/>
+                     <field name="phone"/>
+                     <field name="category"/>
+                     <field name="priority"/>
+                     <field name="remaining_hours"/>
+                     <!--<field name="allow_user_ids"/>-->
+                     <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/>
+                     <group expand="0" string="Group By">
+                        <filter name="group_user_id" string="Assigned To" context="{'group_by':'user_id'}"/>
+                        <filter name="group_partner_id" string="Customer" context="{'group_by':'partner_id'}"/>
+                        <filter name="group_comapny_id" string="Company" context="{'group_by':'company_id'}"/>
+                        <filter name="group_category" string="Category" context="{'group_by':'category'}"/>
+                        <filter name="group_ticket" string="Ticket" context="{'group_by':'name'}"/>
+                        <filter name="group_ticket_type" string="Type of Ticket" context="{'group_by':'type_ticket_id'}"/>
+                        <filter name="group_subject" string="Subject" context="{'group_by':'subject'}"/>
+                        <filter name="group_team" string="Helpdesk Team" context="{'group_by':'team_id'}"/>
+                        <filter name="group_team_leader" string="Team Leader" context="{'group_by':'team_leader_id'}"/>
+                        <filter name="group_stage" string="State" context="{'group_by':'stage_type'}"/>
+                        <filter name="group_request_date" string="Created Date" context="{'group_by':'request_date'}"/>
+                        <filter name="group_close_date" string="Closed Date" context="{'group_by':'close_date'}"/>
+                        <filter name="group_project_id" string="Project" context="{'group_by':'project_id'}"/>
+                        <filter name="group_analytic_account" string="Analytic Account" context="{'group_by':'analytic_account_id'}"/>
+                        <filter name="group_priority" string="Priority" context="{'group_by':'priority'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="view_create_helpdesk_simplified" model="ir.ui.view">
+            <field name="name">helpdesk.support.form.simple</field>
+            <field name="model">helpdesk.support</field>
+            <field name="priority">1000</field>
+            <field name="arch" type="xml">
+                <form string="Create an Opportunity">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="subject" required='True'/>
+                                <field name="user_id"/>
+                                <field name="project_id"/>
+                                <field name="priority" widget="priority"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button string="Create" name="close_dialog" type="object" class="btn-primary"/>
+                            <button string="Discard" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        
+        <record id="create_helpdesk_stage_simplified" model="ir.actions.act_window">
+            <field name="name">Create an Helpdesk Support</field>
+            <field name="res_model">helpdesk.support</field>
+<!--            <field name="view_type">form</field> odoo13-->
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_create_helpdesk_simplified"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="create_helpdesk_stage_simplified_full" model="ir.actions.act_window">
+            <field name="name">Create an Helpdesk Support</field>
+            <field name="res_model">helpdesk.support</field>
+<!--            <field name="view_type">form</field> odoo13-->
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="helpdesk_support_form_view"/>
+            <field name="target">new</field>
+        </record>
+        
+        
+        <record id='helpdesk_view_kanban' model='ir.ui.view'>
+            <field name="name">helpesk kanban</field>
+            <field name="model">helpdesk.support</field>
+            <field name="arch" type="xml">
+                <!-- <kanban default_group_by="stage_id" class="o_kanban_small_column o_opportunity_kanban" on_create="website_helpdesk_support_ticket.create_helpdesk_stage_simplified_full"> -->
+                <kanban default_group_by="stage_id" class="o_kanban_small_column o_opportunity_kanban">
+                    <field name="stage_id" options='{"group_by_tooltip": {"requirements": "Description", "legend_priority": "Use of stars"}}'/>
+                    <field name="color"/>
+                    <field name="priority"/>
+                    <field name="planned_revenue"/>
+                    <field name="kanban_state"/>
+                    <field name="date_action"/>
+                    <field name="name" />
+                    <field name="subject"/>
+                     <field name="partner_id"/>
+                     <field name="email"/>
+                     <field name="phone"/>
+                     <field name="active"/>
+                     <field name="activity_ids"/>
+                     <field name="activity_state"/>
+                     <field name="category"/>
+                     <field name="message_needaction_counter"/>
+                     <field name="priority"/>
+                     <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click">
+                                <div class="o_dropdown_kanban dropdown">
+                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" role='button'>
+                                        <span class="fa fa-bars fa-lg" title="Dropdown"/>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <t t-if="widget.editable"><li><a type="edit">Edit</a></li></t>
+                                        <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+<!--                                        <li t-if="! record.active.value"><a name="action_set_active" type="object">Unarchive</a></li>odoo13-->
+<!--                                        <li t-if="record.active.value"><a name="action_set_unactive" type="object">Archive</a></li>odoo13-->
+                                        <li><a name="toggle_active" type="object"
+                                        attrs="{'invisible' : [('active', '=', True)]}">Unarchive</a></li>
+                                        <li><a name="toggle_active" type="object"
+                                        attrs="{'invisible' : [('active', '=', False)]}">Archive</a></li>
+                                        <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    
+                                        <div class="o_kanban_tags_section">
+                                            <strong><field name="name"/></strong>
+                                        </div>
+                                        <div class="o_kanban_tags_section">
+                                            <field name="subject"/>
+                                        </div>
+                                        <div class="o_kanban_tags_section">
+                                            <field name="user_id"/>
+                                        </div>
+                                        <div class="o_kanban_tags_section">
+                                            <field name="request_date"/>
+                                        </div>
+                                        <div class="oe_kanban_details">
+                                            <strong>
+                                                <field name="stage_type"/> : <field name="priority"/>
+                                            </strong>
+                                        </div>
+                               
+                                    <div class="o_kanban_footer">
+                                        <field name="priority" widget="priority" groups="base.group_user"/>
+                                        <field name="activity_ids" widget="kanban_activity"/>
+                                        <t t-if="record.message_needaction_counter.raw_value">
+                                            <span class='oe_kanban_mail_new' title='Unread Messages'><i class='fa fa-comments'/><t t-raw="record.message_needaction_counter.raw_value"/></span>
+                                        </t>
+                                        <div>
+                                            <!-- <img t-att-src="kanban_image('res.users', 'image_small', record.user_id.raw_value)" t-att-title="record.user_id.value" width="24" height="24" class="oe_kanban_avatar pull-right" alt="user_img"/> -->
+                                            <img t-att-src="kanban_image('res.users', 'image_128', record.user_id.raw_value)" t-att-title="record.user_id.value" width="24" height="24" t-att-alt="record.user_id.value" class="oe_kanban_avatar"/>
+                                        </div>
+                                    </div>
+                               </div>
+                              <div class="oe_clear"></div>     
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
+        <record id="view_helpdesk_pivot" model="ir.ui.view">
+            <field name="name">helpdesk.support.pivot</field>
+            <field name="model">helpdesk.support</field>
+            <field name="arch" type="xml">
+                <pivot string="Helpdesk Support">
+                    <field name="name" type="row"/>
+                    <field name="stage_type" type="col"/>
+                </pivot>
+            </field>
+        </record>
+        
+        <record id="view_helpdesk_graph" model="ir.ui.view">
+            <field name="name">helpdesk.support.graph</field>
+            <field name="model">helpdesk.support</field>
+            <field name="arch" type="xml">
+                <graph string="Helpdesk Support">
+                    <field name="name"/>
+                    <field name="stage_type"/>
+                </graph>
+            </field>
+        </record>
+        
+        <record id="Helpdesk_calendar" model="ir.ui.view">
+            <field name="name">Helpdesk Calendar</field>
+            <field name="model">helpdesk.support</field>
+            <field name="arch" type="xml">
+                <calendar string="helpdesk" color="user_id" date_start="request_date" >
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="stage_id"/>
+                    <field name="partner_id"/>
+                </calendar>
+            </field>
+        </record>
+        
+        <record id="action_helpdesk_support" model="ir.actions.act_window">
+            <field name="name">Helpdesk</field>
+            <field name="res_model">helpdesk.support</field>
+<!--            <field name="view_type">form</field> odoo13-->
+            <field name="view_mode">kanban,tree,calendar,form,pivot,graph,activity</field>
+            <field name="help">Helpdesk Support Tree.</field>
+        </record>
+        
+        <menuitem name="Helpdesk" web_icon="website_helpdesk_support_ticket,static/description/icon.png" id="main_helpdesk_support" groups="website_helpdesk_support_ticket.group_helpdesk_user"/>
+        <menuitem name="Helpdesk" id="menu_helpdesk_support" parent="main_helpdesk_support" sequence="1"/>
+        <menuitem name="Analytic Account" groups="analytic.group_analytic_accounting" id="menu_helpdesk_account" parent="main_helpdesk_support" sequence="2"/>
+        <menuitem name="Analytic Accounts" groups="analytic.group_analytic_accounting" id="menu_item_helpdesk_anlytic_accounts" parent="menu_helpdesk_account" action="analytic.action_account_analytic_account_form"/>
+        
+        <menuitem name="Configuration" id="menu_helpdesk_configuration" parent="main_helpdesk_support" sequence="3" groups="website_helpdesk_support_ticket.group_helpdesk_manager"/>
+        
+        <menuitem name="Stages" id="menu_item_helpdesk_stage_config" parent="menu_helpdesk_configuration" action="helpdesk_stage_config_action"/>
+        <menuitem name="Helpdesk Tickets" id="menu_item_helpdesk_support" parent="menu_helpdesk_support" action="action_helpdesk_support"/>
+        <menuitem name="Reports" id="menu_helpdesk_report" parent="main_helpdesk_support" groups="website_helpdesk_support_ticket.group_helpdesk_manager"/>
+        
+    </data>
+</odoo>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--<template id="website_contact_form">-->
+    <!--    <t t-call="website.layout">-->
+    <!--        <link rel="stylesheet" type="text/css" href="/path/to/your/styles.css"/>-->
+    <!--        <div class="container">-->
+    <!--            <div class="row justify-content-center">-->
+    <!--                <div class="col-md-6">-->
+    <!--                    <div class="card">-->
+    <!--                        <div class="card-body">-->
+    <!--                            <h4 class="card-title registration-success-title" style="color: #3A9E3E;">Complaint Successful!</h4>-->
+    <!--                            <p class="registration-success-message">Your complaint was successful. Thank you for choosing our platform.</p>-->
+    <!--                            <p class="registration-success-message">Your Ticket Number is: <strong t-esc="name"/>. Please keep this Ticket Number for future reference.</p>-->
+    <!--                            <center><button onclick="window.location.href='http://localhost:8083/'" class="btn btn-primary custom-btns">Home</button></center>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </t>-->
+    <!--</template>-->
+    <template id="contactus_thanks" name="Contact Us Thanks Page">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-xl-6 me-lg-auto">
+                        <span class="d-block fa fa-4x fa-thumbs-up mx-auto rounded-circle bg-primary"></span>
+                        <br/>
+                        <h1 class="text-center">Thank You!</h1>
+                        <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                            <hr class="mx-auto border-top w-50 border-dark text-center"/>
+                        </div>
+                        <h5 class="text-center">
+                            <span class="fa fa-check-circle"></span>
+                            <span>Your message has been sent
+                                <b>successfully</b>
+                            </span>
+                            <br></br>
+                            <span>Your Ticket Number is
+                                <strong t-esc="name"></strong>
+                            </span>
+
+                        </h5>
+                        <p class="text-center">We will get back to you shortly.</p>
+                    </div>
+
+                    <!--                    <div class="col-md-12 text-center">-->
+                    <!--                        <h1>Thank You!</h1>-->
+                    <!--                        <p>Your message has been sent successfully. We will get back to you shortly.</p>-->
+                    <!--                        <p>Your Ticket Number is:-->
+                    <!--                            <strong t-esc="name"></strong>-->
+                    <!--                        </p>-->
+                    <!--                        <a href="/home" class="btn btn-primary">Home</a>-->
+                    <!--                    </div>-->
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!--    <template id="error_page_template_id" name="Error Page Template">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <div class="container">-->
+    <!--                <h1>Error Occurred</h1>-->
+    <!--                <p>We are unable to process your request at this time.</p>-->
+    <!--                <a href="/contactus" class="btn btn-primary">Try Again</a>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+
+</odoo>

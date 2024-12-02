@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_leaves_form_inherit" model="ir.ui.view">
+            <field name="name">Hr.Leaves.inherited.form.inherit</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_form_manager"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payslip_status']" position="after">
+                    <field name="spoc_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

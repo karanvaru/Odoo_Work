@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="add_inherit_product_create" inherit_id="helpdesk_mgmt.portal_create_ticket">
+        <xpath expr="//input[@name='subject']" position="after">
+            <div class="form-group" style="margin-top:25px;">
+                <label class="col-md-3 col-sm-4 control-label" for="product">Product</label>
+                <div class="col-md-7 col-sm-8">
+                    <select class="form-control" id="product" name="product" required="True">
+                        <t t-foreach="products" t-as="pro">
+                            <option t-attf-value="#{pro.id}">
+                                <t t-esc="pro.name"/>
+                            </option>
+                        </t>
+                    </select>
+
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//label[@for='category']" position="replace"/>
+        <xpath expr="//select[@name='category']" position="replace"/>
+    </template>
+
+</odoo>

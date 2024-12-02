@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+
+        <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.view.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_title']/div[@name='options']" position="inside">
+                    <div>
+                    <field name="is_warranty"/>  
+                    <label for="is_warranty"/> 
+                </div>
+                </xpath>
+                <notebook position="inside">
+                    <page string="Warranty" attrs="{'invisible' : [('is_warranty', '!=', True)]}">
+                        <group>
+                            <group>
+                                <field name="warranty_type"/>
+                                <field name="warranty_fee" 
+                                    attrs="{'invisible' : [('warranty_type', '!=', 'paid')],
+                                            'required' : [('warranty_type', '=', 'paid')]}"/>
+                                <label for="warranty_period"/>
+                                <div class="oe_inline">
+                                    <field name="warranty_period" class="oe_inline"  style="width:22% !important"
+                                        attrs="{'required' : [('is_warranty', '=', True)]}"/>
+                                    <field name="warranty_unit" class="oe_inline" colspan="2"
+                                        attrs="{'required' : [('is_warranty', '=', True)]}"/>
+                                </div>
+                                <field name="warranty_auto_confirm"/>
+                            </group>
+                            <group>
+                                <field name="allow_renewal"/>
+                                <label for="renewal_period"
+                                    attrs="{'invisible' : [('allow_renewal', '!=', True)],
+                                            'required' : [('allow_renewal', '=', True)]}"/>
+                                <div class="oe_inline"
+                                    attrs="{'invisible' : [('allow_renewal', '!=', True)],
+                                            'required' : [('allow_renewal', '=', True)]}">
+                                    <field name="renewal_period" class="oe_inline"  style="width:22% !important"/>
+                                    <field name="renewal_unit" class="oe_inline" colspan="2" />
+                                </div>
+                                <field name="max_renewal_times"
+                                    attrs="{'invisible' : [('allow_renewal', '!=', True)],
+                                            'required' : [('allow_renewal', '=', True)]}"/>
+                                <field name="renewal_cost" attrs="{'invisible' : [('allow_renewal', '!=', True)]}"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>

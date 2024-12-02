@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="custom_assets_frontend" inherit_id="web_editor.assets_frontend" name="Portal Assets"
+                  priority="15">
+            <xpath expr="//script[last()]" position="after">
+                <script type="text/javascript" src="/vendor_registration_form/static/src/js/portal.js"></script>
+
+            </xpath>
+        </template>
+
+        <template id="custom_portal_create_vendor_request">
+            <div style="background-color:#f6f6f6">
+                <t t-call="website.layout">
+                    <style>
+                        .vendor-form-block { max-width:850px; margin:0 auto 60px; background-color:#FFF;
+                        box-shadow:#b1b0b0 0 0px 10px 0px; padding:30px;}
+                        .vendor-form-block input, .vendor-form-block select {border-radius:unset;}
+                        .vendor-form-block h4 {font-size:18px; font-weight:500!important; margin-bottom:15px;}
+                        .vendor-form-block h4 span{font-weight:300!important;}
+                        .vendor-form-block button {border-radius:unset; font-size:14px; font-weight:500;
+                        letter-spacing:1px; color:#FFF; padding:8px 30px; background-color:#333;
+                        text-transform:uppercase;margin-top:30px;}
+
+                    </style>
+
+                    <div id="wrap" class="o_portal_wrap">
+
+                        <section style="text-align:center; padding:60px 20px;">
+                            <div class="container">
+
+                                <h1 style="font-weight:500 !important; letter-spacing:-1px;">Vendor Registration
+                                </h1>
+                                <p style="font-size:16px;">Apply below to be considered for potential business with
+                                    RDP.
+                                </p>
+
+
+                            </div>
+                        </section>
+
+
+                        <section class="vendor-form-block ">
+                            <div class="container">
+                                <t t-set="additional_title">
+                                    Vendor Registration
+                                </t>
+
+                                <form action="/create/custom_vendor_request" method="post"
+                                      enctype="multipart/form-data">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <div class="row o_membership_details">
+
+                                        <div class="col-lg-12">
+                                            <t t-if="gst_autocomplete">
+                                                <h4>Company
+                                                    <span>info</span>
+                                                </h4>
+                                            </t>
+                                            <t t-else="">
+                                                <h4>Individual
+                                                    <span>info</span>
+                                                </h4>
+                                            </t>
+
+                                            <div class="row">
+                                                <input type="radio" name="vendor_type" value="company" checked="checked"
+                                                       style="display:none"/>
+
+
+                                                <!--  <div t-attf-class="form-group col-xl-6">
+                                                     <img src="" id="slide-image" width="100px" class="img-thumbnail"/>
+                                                     <input type="file" name="vendor_image" id="profile_img" accept="image/*"/>
+                                                 </div> -->
+
+                                                <div t-if="gst_autocomplete" t-attf-class="form-group col-xl-6">
+                                                    <input type="text" name="name" placeholder="Company Name*"
+                                                           t-attf-class="form-control" required="required"
+                                                           t-att-value="gst_autocomplete['name']"/>
+                                                </div>
+                                                <div t-else="" t-attf-class="form-group col-xl-6">
+                                                    <input type="text" name="name" placeholder="Name*"
+                                                           t-attf-class="form-control" required="required"/>
+                                                </div>
+                                                <div t-if="gst_value" t-attf-class="form-group col-xl-6">
+                                                    <input type="text" name="vat" placeholder="GSTIN*"
+                                                           t-att-value="gst_value"
+                                                           t-attf-class="form-control" readonly="1"/>
+                                                </div>
+
+                                                <!--                                                <div t-attf-class="form-group col-xl-6">-->
+                                                <!--                                                    <input type="text" name="vat" placeholder="GSTIN*"-->
+                                                <!--                                                           t-attf-class="form-control" required="required"/>-->
+                                                <!--                                                </div>-->
+                                                <div t-if="gst_autocomplete" t-attf-class="form-group col-xl-6">
+                                                    <input type="email" name="email" placeholder="Email*"
+                                                           t-attf-class="form-control" required="required"/>
+                                                </div>
+                                                <div t-else="" t-attf-class="form-group col-xl-6">
+                                                    <input type="email" name="email" placeholder="Email*"
+                                                           t-attf-class="form-control"/>
+                                                </div>
+                                                <div t-attf-class="form-group  col-xl-6">
+                                                    <input type="tel" name="phone" placeholder="Phone*"
+                                                           t-attf-class="form-control"/>
+                                                </div>
+                                                <div t-attf-class="form-group  col-xl-6">
+                                                    <input type="tel" name="mobile" placeholder="Mobile*"
+                                                           t-attf-class="form-control" required="required"/>
+                                                </div>
+                                                <div t-attf-class="form-group  col-xl-6">
+                                                    <input type="text" name="website_link" placeholder="Website*"
+                                                           t-attf-class="form-control"/>
+                                                </div>
+                                                <div t-if="gst_autocomplete" t-attf-class="form-group  col-xl-6">
+                                                    <input type="text" name="street" placeholder="Street...*"
+                                                           t-attf-class="form-control" required="required"
+                                                           t-att-value="gst_autocomplete['street1']"/>
+                                                </div>
+                                                <div t-else="" t-attf-class="form-group  col-xl-6">
+                                                    <input type="text" name="street" placeholder="Street...*"
+                                                           t-attf-class="form-control"/>
+                                                </div>
+                                                <div t-attf-class="form-group  col-xl-6">
+                                                    <input type="text" name="street2" placeholder="Street 2...*"
+                                                           t-attf-class="form-control"/>
+                                                </div>
+                                                <div t-if="gst_autocomplete" t-attf-class="form-group  col-xl-6">
+                                                    <input type="text" name="city" placeholder="City*"
+                                                           t-attf-class="form-control" required="required"
+                                                           t-att-value="gst_autocomplete['city']"/>
+                                                </div>
+
+                                                <div t-else="" t-attf-class="form-group  col-xl-6">
+                                                    <input type="text" name="city" placeholder="City*"
+                                                           t-attf-class="form-control"/>
+                                                </div>
+                                                <!--                                                <div t-attf-class="form-group col-xl-6">-->
+                                                <!--                                                    <select name="country_id" t-attf-class="form-control"-->
+                                                <!--                                                            required="required">-->
+                                                <!--                                                        <option value="">Country*</option>-->
+                                                <!--                                                        <t t-foreach="countries or []" t-as="country">-->
+                                                <!--                                                            <option t-att-value="country.id">-->
+                                                <!--                                                                <t t-esc="country.name"/>-->
+                                                <!--                                                            </option>-->
+                                                <!--                                                        </t>-->
+                                                <!--                                                    </select>-->
+                                                <!--                                                </div>-->
+                                                <div t-if="gst_autocomplete"
+                                                     t-attf-class="mb-3 #{error and error.get('state_id') and 'o_has_error' or ''} col-xl-6">
+                                                    <!--    <label class="col-form-label label-optional" for="state_id">State / Province</label>-->
+                                                    <select name="state_id"
+                                                            t-attf-class="form-control form-select #{error and error.get('state_id') and 'is-invalid' or ''}"
+                                                            required="required">
+                                                        <option value="">State...</option>
+                                                        <t t-foreach="states or []" t-as="state">
+                                                            <!--                                                    <option t-if="gst_autocomplete" t-att-value="state.id"-->
+                                                            <!--                                                            t-att-selected="state.id == gst_autocomplete['state']">-->
+                                                            <!--&lt;!&ndash;                                                            t-att-selected="state.id == int(state_id) if state_id else state.id == partner.state_id.id">&ndash;&gt;-->
+                                                            <!--                                                        <t t-esc="state.name"/>-->
+                                                            <!--                                                    </option>-->
+                                                            <option t-att-value="state.id"
+                                                                    t-att-selected="state.id == int(state_id) if state_id else state.id == partner.state_id.id">
+                                                                <t t-esc="state.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </select>
+                                                </div>
+                                                <div t-else=""
+                                                     t-attf-class="mb-3 #{error and error.get('state_id') and 'o_has_error' or ''} col-xl-6">
+
+                                                    <select name="state_id"
+                                                            t-attf-class="form-control form-select #{error and error.get('state_id') and 'is-invalid' or ''}"
+                                                    >
+                                                        <option value="">State...</option>
+                                                        <t t-foreach="states or []" t-as="state">
+                                                            <!--                                                    <option t-if="gst_autocomplete" t-att-value="state.id"-->
+                                                            <!--                                                            t-att-selected="state.id == gst_autocomplete['state']">-->
+                                                            <!--&lt;!&ndash;                                                            t-att-selected="state.id == int(state_id) if state_id else state.id == partner.state_id.id">&ndash;&gt;-->
+                                                            <!--                                                        <t t-esc="state.name"/>-->
+                                                            <!--                                                    </option>-->
+                                                            <option t-att-value="state.id"
+                                                                    t-att-selected="state.id == int(state_id) if state_id else state.id == partner.state_id.id">
+                                                                <t t-esc="state.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </select>
+
+                                                </div>
+
+                                                <div t-if="gst_autocomplete"
+                                                     t-attf-class="mb-3 #{error and error.get('country_id') and 'o_has_error' or ''} col-xl-6">
+                                                    <!--    <label class="col-form-label" for="country_id">Country</label>-->
+                                                    <select name="country_id"
+                                                            t-attf-class="form-control form-select #{error and error.get('country_id') and 'is-invalid' or ''}"
+                                                            required="required">
+                                                        <!--            t-att-disabled="None if partner_can_edit_vat else '1'">-->
+                                                        <option value="">Country...</option>
+                                                        <t t-foreach="countries or []" t-as="country">
+                                                            <!--                                                    <option t-if="gst_autocomplete" t-att-value="country.id"-->
+                                                            <!--                                                            t-att-selected="country.id == gst_autocomplete['country']">-->
+                                                            <!--&lt;!&ndash;                                                            t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">&ndash;&gt;-->
+                                                            <!--                                                        <t t-esc="country.name"/>-->
+                                                            <!--                                                    </option>-->
+                                                            <option t-att-value="country.id"
+                                                                    t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">
+                                                                <t t-esc="country.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </select>
+
+                                                </div>
+
+
+                                                <div t-else=""
+                                                     t-attf-class="mb-3 #{error and error.get('country_id') and 'o_has_error' or ''} col-xl-6">
+                                                    <!--    <label class="col-form-label" for="country_id">Country</label>-->
+                                                    <select name="country_id"
+                                                            t-attf-class="form-control form-select #{error and error.get('country_id') and 'is-invalid' or ''}"
+                                                    >
+                                                        <!--            t-att-disabled="None if partner_can_edit_vat else '1'">-->
+                                                        <option value="">Country...</option>
+                                                        <t t-foreach="countries or []" t-as="country">
+                                                            <!--                                                    <option t-if="gst_autocomplete" t-att-value="country.id"-->
+                                                            <!--                                                            t-att-selected="country.id == gst_autocomplete['country']">-->
+                                                            <!--&lt;!&ndash;                                                            t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">&ndash;&gt;-->
+                                                            <!--                                                        <t t-esc="country.name"/>-->
+                                                            <!--                                                    </option>-->
+                                                            <option t-att-value="country.id"
+                                                                    t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">
+                                                                <t t-esc="country.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </select>
+
+                                                </div>
+
+
+                                                <!--                                                <div t-attf-class="form-group col-xl-6">-->
+
+                                                <!--                                                    <select name="state_id" t-attf-class="form-control">-->
+                                                <!--                                                        <option value="">State*</option>-->
+                                                <!--                                                        <t t-foreach="states or []" t-as="state">-->
+                                                <!--                                                            <option t-att-value="state.id"-->
+                                                <!--                                                                    t-att-data-country_id="state.country_id.id">-->
+                                                <!--                                                                <t t-esc="state.name"/>-->
+                                                <!--                                                            </option>-->
+                                                <!--                                                        </t>-->
+                                                <!--                                                    </select>-->
+                                                <!--                                                </div>-->
+
+                                                <div t-if="gst_autocomplete" t-attf-class="form-group  col-xl-6">
+                                                    <input type="text" name="zipcode" placeholder="ZIP/Pincode*"
+                                                           t-attf-class="form-control" required="required"
+                                                           t-att-value="gst_autocomplete['zip']"/>
+                                                </div>
+
+                                                <div t-else="" t-attf-class="form-group  col-xl-6">
+                                                    <input type="text" name="zipcode" placeholder="ZIP/Pincode*"
+                                                           t-attf-class="form-control"/>
+                                                </div>
+
+                                            </div>
+
+
+                                            <h4 style="margin-top:30px;">Business
+                                                <span>info</span>
+                                            </h4>
+                                            <div class="row gem-form-part">
+
+
+                                                <div t-if="gst_autocomplete"
+                                                     class="col-md-6 form-field o_website_form_required_custom">
+                                                    <input type="file"
+                                                           class="form-control inputfile o_website_form_input"
+                                                           name="company_profile" placeholder="Company Profile*"
+                                                           required=""/>
+                                                    <label class="gem-file-upload">Company Profile*</label>
+                                                </div>
+                                                <div t-else=""
+                                                     class="col-md-6 form-field o_website_form_required_custom">
+                                                    <input type="file"
+                                                           class="form-control inputfile o_website_form_input"
+                                                           name="company_profile" placeholder="Company Profile*"
+                                                    />
+                                                    <label class="gem-file-upload">Company Profile*</label>
+                                                </div>
+
+
+                                                <div t-if="gst_autocomplete"
+                                                     class="col-md-6 form-field o_website_form_required_custom">
+                                                    <input type="file"
+                                                           class="form-control inputfile o_website_form_input"
+                                                           name="company_reg"
+                                                           placeholder="Company Registration Certificate*" required=""
+                                                           enctype="multipart/form-data"/>
+                                                    <label class="gem-file-upload">Company Registration Certificate*
+                                                    </label>
+                                                </div>
+                                                <div t-else=""
+                                                     class="col-md-6 form-field o_website_form_required_custom">
+                                                    <input type="file"
+                                                           class="form-control inputfile o_website_form_input"
+                                                           name="company_reg"
+                                                           placeholder="Company Registration Certificate*"
+                                                           enctype="multipart/form-data"/>
+                                                    <label class="gem-file-upload">Company Registration Certificate*
+                                                    </label>
+
+                                                </div>
+                                                <div t-if="gst_autocomplete"
+                                                     class="col-md-6 form-field o_website_form_required_custom">
+                                                    <input type="file"
+                                                           class="form-control inputfile o_website_form_input"
+                                                           name="product_road_map" placeholder="Product Road Map*"
+                                                           required="" enctype="multipart/form-data"/>
+                                                    <label class="gem-file-upload">Product Road Map*</label>
+                                                </div>
+                                                <div t-else=""
+                                                     class="col-md-6 form-field o_website_form_required_custom">
+                                                    <input type="file"
+                                                           class="form-control inputfile o_website_form_input"
+                                                           name="product_road_map" placeholder="Product Road Map*"
+                                                           enctype="multipart/form-data"/>
+                                                    <label class="gem-file-upload">Product Road Map*</label>
+                                                </div>
+                                                <div t-if="gst_autocomplete"
+                                                     class="col-md-6 form-field o_website_form_required_custom">
+                                                    <input type="file"
+                                                           class="form-control inputfile o_website_form_input"
+                                                           name="qc_doc" placeholder="Quality Control Document*"
+                                                           required="" enctype="multipart/form-data"/>
+                                                    <label class="gem-file-upload">Quality Control Document*</label>
+                                                </div>
+                                                <div t-else=""
+                                                     class="col-md-6 form-field o_website_form_required_custom">
+                                                    <input type="file"
+                                                           class="form-control inputfile o_website_form_input"
+                                                           name="qc_doc" placeholder="Quality Control Document*"
+                                                           enctype="multipart/form-data"/>
+                                                    <label class="gem-file-upload">Quality Control Document*</label>
+                                                </div>
+
+                                                <div t-if="gst_autocomplete" t-attf-class="form-group col-xl-6">
+                                                    <input type="date" name="x_studio_established_in"
+                                                           placeholder="Established In*" t-attf-class="form-control"
+                                                           required="required" enctype="multipart/form-data"/>
+                                                </div>
+                                                <div t-else="" t-attf-class="form-group col-xl-6">
+                                                    <input type="date" name="x_studio_established_in"
+                                                           placeholder="Established In*" t-attf-class="form-control"
+                                                           enctype="multipart/form-data"/>
+                                                </div>
+
+
+                                                <div t-attf-class="form-group col-xl-6">
+                                                    <select name="x_studio_company_turnover" t-attf-class="form-control"
+                                                            placeholder="Revenue Category*">
+                                                        <option value="">Revenue Category*</option>
+                                                        <option value="Less than 1 Crore">Less than 1 Crore</option>
+                                                        <option value="1 to 5 Crores">1 to 5 Crores</option>
+                                                        <option value="5 to 25 Crores">5 to 25 Crores</option>
+                                                        <option value="Less than 1 Crore">25 to 100 Crores</option>
+                                                        <option value="Less than 1 Crore">100 to 250 Crores</option>
+                                                        <option value="Less than 1 Crore">250 to 1000 Crores</option>
+                                                        <option value="Less than 1 Crore">1000+ Crores</option>
+
+                                                    </select>
+
+                                                </div>
+
+                                                <div t-if="gst_autocomplete" t-attf-class="form-group col-xl-6">
+
+                                                    <input type="text" name="x_studio_last_2_yr_avg_revenue_in_crores"
+                                                           placeholder="Last 2 Yr Avg Revenue (in Crores)*"
+                                                           t-attf-class="form-control" required="required"/>
+                                                </div>
+                                                <div t-else="" t-attf-class="form-group col-xl-6">
+                                                    <input type="text" name="x_studio_last_2_yr_avg_revenue_in_crores"
+                                                           placeholder="Last 2 Yr Avg Revenue (in Crores)*"
+                                                           t-attf-class="form-control"/>
+
+                                                </div>
+
+
+                                                <div t-if="gst_autocomplete" t-attf-class="form-group col-xl-6">
+
+                                                    <input type="text" name="x_studio_social_contact_skypewechatother"
+                                                           placeholder="Social Contact (Skype/WeChat/other))*"
+                                                           t-attf-class="form-control" required="required"/>
+                                                </div>
+
+                                                <div t-else="" t-attf-class="form-group col-xl-6">
+                                                    <input type="text" name="x_studio_social_contact_skypewechatother"
+                                                           placeholder="Social Contact (Skype/WeChat/other))*"
+                                                           t-attf-class="form-control"/>
+
+
+                                                </div>
+
+                                                <div class="col-md-6 form-field o_website_form_required_custom">
+                                                    <input type="file" name="vendor_image" id="profile_img"
+                                                           accept="image/*"
+                                                           class="form-control inputfile o_website_form_input"/>
+                                                    <label class="gem-file-upload">Company Logo*</label>
+                                                </div>
+
+
+                                                <div t-attf-class="form-group col-xl-6">
+
+                                                    <select name="x_studio_field_C6Cal" t-attf-class="form-control"
+                                                            placeholder="Vendor Type*">
+                                                        <option value="">Vendor Type*</option>
+                                                        <option value="Manufacturer">Manufacturer</option>
+                                                        <option value="Trader">Trader</option>
+                                                        <option value="Manufacturer/Trader">Manufacturer/Trader</option>
+                                                        <option value="Other">Other</option>
+
+
+                                                    </select>
+
+                                                </div>
+
+
+                                                <div t-if="gst_autocomplete" t-attf-class="form-group col-xl-6">
+                                                    <input type="text"
+                                                           placeholder="Major Suppliers of Products/Components*"
+                                                           class="form-control" required="required"
+                                                           name="major_supplier"/>
+                                                </div>
+
+                                                <div t-else="" t-attf-class="form-group col-xl-6">
+                                                    <input type="text"
+                                                           placeholder="Major Suppliers of Products/Components*"
+                                                           class="form-control"
+                                                           name="major_supplier"/>
+
+                                                </div>
+
+                                                <div t-if="gst_autocomplete" t-attf-class="form-group col-xl-6">
+                                                    <input type="text" placeholder="Top 5 Customers For Reference*"
+                                                           class="form-control" required="required"
+                                                           name="x_studio_top_5_customers_for_reference"/>
+                                                </div>
+                                                <div t-else="" t-attf-class="form-group col-xl-6">
+                                                    <input type="text" placeholder="Top 5 Customers For Reference*"
+                                                           class="form-control"
+                                                           name="x_studio_top_5_customers_for_reference"/>
+
+                                                </div>
+
+
+                                                <div t-if="gst_autocomplete" t-attf-class="form-group col-xl-6">
+                                                    <input type="text" placeholder="Services" class="form-control"
+                                                           required="required" name="x_studio_services"/>
+                                                </div>
+                                                <div t-else="" t-attf-class="form-group col-xl-6">
+                                                    <input type="text" placeholder="Services" class="form-control"
+                                                           name="x_studio_services"/>
+
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div t-if="gst_autocomplete" class="col-lg-12">
+
+
+                                                    <h4 style="margin-top:30px;">Primary
+                                                        <span>Contact</span>
+                                                    </h4>
+
+                                                    <div class="row">
+                                                        <div t-attf-class="form-group col-xl-6">
+                                                            <input type="text" name="child1_name" placeholder="Name"
+                                                                   t-attf-class="form-control"/>
+                                                        </div>
+                                                        <div t-attf-class="form-group  col-xl-6">
+                                                            <input type="tel" name="child1_job"
+                                                                   placeholder="Job Position"
+                                                                   t-attf-class="form-control"/>
+                                                        </div>
+                                                        <div t-attf-class="form-group col-xl-6">
+                                                            <input type="email" name="child1_email" placeholder="Email"
+                                                                   t-attf-class="form-control"/>
+                                                        </div>
+                                                        <div t-attf-class="form-group  col-xl-6">
+                                                            <input type="tel" name="child1_phone" placeholder="Phone"
+                                                                   t-attf-class="form-control"/>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <h4 style="margin-top:30px;">Secondary
+                                                        <span>Contact</span>
+                                                    </h4>
+
+                                                    <div class="row">
+                                                        <div t-attf-class="form-group col-xl-6">
+                                                            <input type="text" name="child2_name" placeholder="Name"
+                                                                   t-attf-class="form-control"/>
+                                                        </div>
+                                                        <div t-attf-class="form-group  col-xl-6">
+                                                            <input type="tel" name="child2_job"
+                                                                   placeholder="Job Position"
+                                                                   t-attf-class="form-control"/>
+                                                        </div>
+                                                        <div t-attf-class="form-group col-xl-6">
+                                                            <input type="email" name="child2_email" placeholder="Email"
+                                                                   t-attf-class="form-control"/>
+                                                        </div>
+                                                        <div t-attf-class="form-group  col-xl-6">
+                                                            <input type="tel" name="child2_phone" placeholder="Phone"
+                                                                   t-attf-class="form-control"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <h4 style="margin-top:30px;">Promoter
+                                                        <span>Contact</span>
+                                                    </h4>
+
+                                                    <div class="row">
+                                                        <div t-attf-class="form-group col-xl-6">
+                                                            <input type="text" name="child3_name" placeholder="Name"
+                                                                   t-attf-class="form-control"/>
+                                                        </div>
+                                                        <div t-attf-class="form-group  col-xl-6">
+                                                            <input type="tel" name="child3_job"
+                                                                   placeholder="Job Position"
+                                                                   t-attf-class="form-control"/>
+                                                        </div>
+                                                        <div t-attf-class="form-group col-xl-6">
+                                                            <input type="email" name="child3_email" placeholder="Email"
+                                                                   t-attf-class="form-control"/>
+                                                        </div>
+                                                        <div t-attf-class="form-group  col-xl-6">
+                                                            <input type="tel" name="child3_phone" placeholder="Phone"
+                                                                   t-attf-class="form-control"/>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <t t-if="product_categorys">
+                                                    <div class="col-lg-12">
+                                                        <hr/>
+                                                        <h3>
+                                                            <u>
+                                                                Provider Product Categories
+                                                            </u>
+                                                        </h3>
+                                                        <hr/>
+                                                        <div class="row">
+                                                            <input type="hidden" id="vendor_product_category"
+                                                                   name="selected_vendor_product_category"/>
+                                                            <t t-foreach="product_categorys" t-as="category">
+                                                                <div t-attf-class="form-group col-xl-6">
+                                                                    <label class="checkbox-inline">
+                                                                        <input type="checkbox"
+                                                                               class="vendor_product_category"
+                                                                               name="product_category"
+                                                                               t-att-value="category.id">
+                                                                            <span t-esc="category.name"/>
+                                                                        </input>
+                                                                    </label>
+                                                                    <br/>
+                                                                </div>
+                                                            </t>
+                                                        </div>
+                                                    </div>
+                                                </t>
+
+                                            </div>
+
+                                            <h4 style="margin-top:30px;">Additional
+                                                <span>Comments</span>
+                                            </h4>
+                                            <div class="row">
+
+
+                                                <div t-if="gst_autocomplete" t-attf-class="form-group col-xl-12">
+                                                    <input type="text" placeholder="Other Comments"
+                                                           class="form-control" required="required" name="comment"/>
+                                                </div>
+                                                <div t-else=""  t-attf-class="form-group col-xl-12">
+                                                    <input type="text" placeholder="Other Comments"
+                                                           class="form-control"  name="comment"/>
+
+                                                </div>
+
+
+                                            </div>
+
+
+                                            <div class="clearfix">
+                                                <button type="submit" class="btn btn-primary mb32 ">Submit</button>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </section>
+                        <script>
+
+                            $("[type=file]").on("change", function(){
+
+                            var file = this.files[0].name;
+                            var dflt = $(this).attr("placeholder");
+                            if($(this).val()!=""){
+                            $(this).next().text(file);
+                            } else {
+                            $(this).next().text(dflt);
+                            }
+                            });
+                        </script>
+
+                    </div>
+                </t>
+            </div>
+        </template>
+
+        <template id="custom_vanver_child_successfully_created_message"
+                  name="Vendor Child Successfully Created Message">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <br/>
+                    <br/>
+                    <div class="oe_structure"/>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="alert alert-success">
+                                    <strong>
+                                        We have successfully create a your vendor request.
+                                        <br/>
+                                        <br/>
+                                        Thank you,
+                                        <br/>
+                                    </strong>
+                                </div>
+                                <a href="/" class="btn btn-primary pull-left mb32">
+                                    <span class="fa fa-home"/>
+                                    <span class="hidden-xs">
+                                        Goto Home
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="vendor_registration_templates">
+            <t t-call="website.layout">
+                <div id="wrap" class="o_portal_wrap">
+                    <section style="text-align: center; padding: 60px 20px;">
+                        <div class="container">
+                            <h1 style="font-weight: 500 !important; letter-spacing: -1px;">Vendor Registration
+                            </h1>
+                            <p style="font-size: 16px;">Apply below to be considered for potential business with
+                                RDP.
+                            </p>
+                        </div>
+                    </section>
+                    <section class="bg-light py-5"
+                             style="margin-top: -20px;"> <!-- Adjust margin-top as needed -->
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 text-center">
+                                    <h2 class="mb-4">Choose Registration Type</h2>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/custom_vendor_request/details"
+                                           class="btn btn-outline-primary btn-lg mr-3">Individual
+                                        </a>
+                                        &#160;
+                                        <!--                                        <a href="/company_registration" class="btn btn-outline-primary btn-lg">Company</a>-->
+                                        <a href="/company_registration_gst"
+                                           class="btn btn-outline-primary btn-lg">Company
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+
+        <template id="Vendor_Enquiry_Form_company_gst">
+            <t t-call="website.layout">
+                <div id="wrap" class="o_portal_wrap">
+                    <section style="text-align:center; padding:60px 20px;">
+                        <h1 style="font-weight:500 !important; letter-spacing:-1px;">Vendor Registration</h1>
+                        <p style="font-size:16px;">Apply below to be considered for potential business with RDP.</p>
+                    </section>
+                    <section class="vendor-form-block">
+                        <div class="container">
+                            <t t-set="additional_title">Vendor Registration</t>
+                            <form action="/custom_vendor_request/details" method="post" enctype="multipart/form-data"
+                                  role="form"
+                                  id="vendor_registration_form_gst">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="row o_membership_details">
+                                    <div t-attf-class="form-group col-xl-2"/>
+                                    <div t-attf-class="form-group col-xl-6">
+                                        <input type="text" name="vat" placeholder="GSTIN*"
+                                               t-attf-class="form-control" required="required"
+                                               pattern="([0-9]){2}([A-Z]){5}([0-9]){4}([A-Z]){1}([0-9A-Z]){1}Z([0-9A-Z]){1}"
+                                               title="GST Identification Number is not valid. It should be in this 36AAFCR6499A1Z6 format"/>
+                                    </div>
+                                    <div t-attf-class="form-group col-xl-4">
+                                        <button type="submit" class="btn btn-primary mb32 ">Submit</button>
+                                    </div>
+                                    <div t-attf-class="form-group col-xl-3"/>
+                                    <span t-if="message" style="text-align:center">
+                                        <t t-esc="message"/>
+                                    </span>
+                                </div>
+
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+
+
+        <record id="custom_menu_vendor_request" model="website.menu">
+            <field name="name">Vendor Request</field>
+            <!--        <field name="url">/custom_vendor_request/details</field>-->
+            <field name="url">/vendor_registration_menu</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">20</field>
+        </record>
+
+    </data>
+</odoo>

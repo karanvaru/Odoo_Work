@@ -1,0 +1,112 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+            <h2 class="oe_slogan"><b>HR Recruitment/Employee - Extended</b</h2>
+        <p class="oe_mt32">
+This module add some information gathering tabs on applicant and employee form where HR manager can enter details.<br/>
+HR Applicant and Employee with Education/Medical/Employment/Family Details.<br/>
+This module allow user to pass Employee details, Education details, Family details and
+Medical checklists from applicant to employee when creating employee from applicant.<br/>
+        </p>
+        <p>Menus List:</p>
+        <p>
+            <ul>
+                <li>Recruitment/Configuration/Institutes</li>
+                <li>Recruitment/Configuration/Medical Tests</li>
+                <li>Recruitment/Configuration/Organizations</li>
+                <li>Recruitment/Configuration/Relations</li>
+            </ul>
+        </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan">Configuration Menus</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="ra1.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan">Odoo Job Applicant Form - Education Details</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="ra2.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan">Odoo Job Applicant Form - Past Employment Details</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="ra3.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan">Odoo Job Applicant Form - Family Details</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="ra4.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan">Odoo Job Applicant Form - Medical Checklists</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="ra5.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan">Odoo Applicant - Create Employee Button Extended</h2>
+        <p>When user click on <b>Create Employee</b> button employee is created by Odoo and it will pass the entered data in Education/Family/Medical/Employment from applicant to employee.</p>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="ra6.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan">Emplyoee Created</h2>
+ <p>You can also entered details directly on employee form as well if you have not get during interview process.</p>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="ra7.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container" >
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Contact / Support</h2>
+        <div class="oe_span6">
+            <div class="oe_picture" style="margin: 25px 10%;">
+                <a href="http://www.probuse.com/">
+                    <img src="500X200-sm.png">
+                </a>
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+                If you need any help or want more additional features,<br/> you may contact us through e-mail at <br/>
+                Email:<a href="mailto:contact@probuse.com" target="new">contact@probuse.com</a><br/>
+                Website:<a href="http://www.probuse.com" target="new">www.probuse.com</a><br/>
+                Skype: mustufa_probuse
+            </p>
+        </div>
+    </div>
+</section>

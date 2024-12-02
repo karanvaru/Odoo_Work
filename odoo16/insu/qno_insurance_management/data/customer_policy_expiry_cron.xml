@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="customer_policy_expire_15_daya" model="ir.cron">
+            <field name="name">Policy Expire In 15 Days</field>
+            <field name="model_id" ref="qno_insurance_management.model_insurance_policy"/>
+            <field name="state">code</field>
+            <field name="code">model.customer_policy_expire_15_daya()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+        <record id="customer_policy_expire_7_daya" model="ir.cron">
+            <field name="name">Policy Expire In 7 Days</field>
+            <field name="model_id" ref="qno_insurance_management.model_insurance_policy"/>
+            <field name="state">code</field>
+            <field name="code">model.customer_policy_expire_7_daya()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+        <record id="customer_policy_expire_2_daya" model="ir.cron">
+            <field name="name">Policy Expire In 2 Days</field>
+            <field name="model_id" ref="qno_insurance_management.model_insurance_policy"/>
+            <field name="state">code</field>
+            <field name="code">model.customer_policy_expire_2_daya()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+        <record id="customer_policy_expire_1_daya" model="ir.cron">
+            <field name="name">Policy Expire In 1 Days</field>
+            <field name="model_id" ref="qno_insurance_management.model_insurance_policy"/>
+            <field name="state">code</field>
+            <field name="code">model.customer_policy_expire_1_daya()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+    </data>
+</odoo>

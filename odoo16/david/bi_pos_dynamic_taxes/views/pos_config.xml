@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="custom_bi_pos_hide_cash_control_info_form_view">
+        <field name="name">res.config.setting.form.hide.cah.control.info.view</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='pos_interface_section']" position="after">
+                <h2 name="order">  Dynamic Taxes </h2>
+                <div class="row mt16 o_settings_container" id="dynamic_taxes">
+                    <div class="col-12 col-lg-6 o_setting_box" id="is_dynamic_taxes">
+                        <div class="o_setting_left_pane">
+                            <field name="pos_modify_taxes_line"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="pos_modify_taxes_line"/>
+                            <div class="content-group" attrs="{'invisible' : [('pos_modify_taxes_line', '=', False)]}">
+                                <div style="margin-top: 10px !important;">
+                                    <div class="text-muted" style="font-weight: 600;">
+                                        List Taxes
+                                    </div>
+                                    <field name="pos_taxes_ids"  style="margin-top:8px;"
+                                           widget="many2many_tags" attrs="{'required': [('pos_modify_taxes_line', '=', True)]}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

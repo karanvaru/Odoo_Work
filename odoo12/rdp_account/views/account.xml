@@ -1,0 +1,158 @@
+<odoo>
+    <data>
+
+         <!-- Inherit Audit State in Vendor Bills-->
+        <!-- <record id="account_audit_state_inherited_vendor_form_view" model="ir.ui.view">
+            <field name="name">account.audit.state.vendor.form.inherited</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='number']"  position="before">
+    <style>
+.ribbon { width: 150px; height: 150px; overflow: hidden; position: absolute;}
+.ribbon span { z-index: 1; position: absolute; display: grid; align-items: center; width: 225px;height: 48px;padding: 0 44px;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);color: #fff;font: 700 18px/1 'Lato', sans-serif;text-shadow: 0 1px 1px rgb(0 0 0 / 20%);text-transform: uppercase;text-align: center;overflow: hidden;user-select: none;}
+.ribbon-top-right {margin-top: -24px;right: 16px;} .transform-45 {left: -15px;top: 30px;transform: rotate(45deg) !important;} 
+.ribbon-top-right::after { bottom: 0; right: 0;} 
+.ribbon-top-right::before {top: 0; left: 0;}
+@media (max-width: 1300px) {
+.ribbon-top-right {
+   
+    right: 70px !important;
+}
+}
+  </style>
+     
+      <div class="ribbon ribbon-top-right o_widget" attrs="{'invisible':[('audit_status','!=','draft')]}">
+            <span class="transform-45" style="background-color:rgb(127 129 131) !important"> 
+              <span style="margin-top:5px"> <field name="audit_status"/></span> 
+            </span>
+        </div>
+        
+         
+         <div class="ribbon ribbon-top-right o_widget" attrs="{'invisible':[('audit_status','!=','issue')]}">
+            <span class="bg-danger transform-45"> 
+              <span style="margin-top:5px"> <field name="audit_status"/></span> 
+            </span>
+        </div>
+        
+        <div class="ribbon ribbon-top-right o_widget" attrs="{'invisible':[('audit_status','!=','rectified')]}">
+            <span class="transform-45" style="background-color:#ef7200;"> 
+              <span style="margin-top:5px"> <field name="audit_status"/></span> 
+            </span>
+        </div>
+        
+        <div class="ribbon ribbon-top-right o_widget" attrs="{'invisible':[('audit_status','!=','audited')]}">
+            <span class="bg-success transform-45"> 
+              <span style="margin-top:5px"> <field name="audit_status"/></span> 
+            </span>
+        </div>
+        
+         <div class="ribbon ribbon-top-right o_widget" attrs="{'invisible':[('audit_status','!=','refuse')]}">
+            <span class="transform-45" style="background-color:#222222;"> 
+              <span style="margin-top:5px"> <field name="audit_status"/></span> 
+            </span>
+        </div>
+        </xpath>
+            </field>
+        </record> -->
+
+        <!-- Inherit Audit State in Invoice-->
+        <!-- <record id="account_audit_state_inherited_invoice_form_view" model="ir.ui.view">
+            <field name="name">account.audit.state.invoice.form.inherited</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+               <xpath expr="//field[@name='number']"  position="before">
+    <style>
+.ribbon { width: 150px; height: 150px; overflow: hidden; position: absolute;}
+.ribbon span { z-index: 1; position: absolute; display: grid; align-items: center; width: 225px;height: 48px;padding: 0 44px;box-shadow: 0 5px 10px rgb(0 0 0 / 10%);color: #fff;font: 700 18px/1 'Lato', sans-serif;text-shadow: 0 1px 1px rgb(0 0 0 / 20%);text-transform: uppercase;text-align: center;overflow: hidden;user-select: none;}
+.ribbon-top-right {margin-top: -24px;right: 16px;} .transform-45 {left: -15px;top: 30px;transform: rotate(45deg) !important;} 
+.ribbon-top-right::after { bottom: 0; right: 0;} 
+.ribbon-top-right::before {top: 0; left: 0;}
+@media (max-width: 1300px) {
+.ribbon-top-right {
+   
+    right: 70px !important;
+}
+}
+  </style>
+     
+      <div class="ribbon ribbon-top-right o_widget" attrs="{'invisible':[('audit_status','!=','draft')]}">
+            <span class="transform-45" style="background-color:rgb(127 129 131) !important"> 
+              <span style="margin-top:5px"> <field name="audit_status"/></span> 
+            </span>
+        </div>
+        
+         
+         <div class="ribbon ribbon-top-right o_widget" attrs="{'invisible':[('audit_status','!=','issue')]}">
+            <span class="bg-danger transform-45"> 
+              <span style="margin-top:5px"> <field name="audit_status"/></span> 
+            </span>
+        </div>
+        
+        <div class="ribbon ribbon-top-right o_widget" attrs="{'invisible':[('audit_status','!=','rectified')]}">
+            <span class="transform-45" style="background-color:#ef7200;"> 
+              <span style="margin-top:5px"> <field name="audit_status"/></span> 
+            </span>
+        </div>
+        
+        <div class="ribbon ribbon-top-right o_widget" attrs="{'invisible':[('audit_status','!=','audited')]}">
+            <span class="bg-success transform-45"> 
+              <span style="margin-top:5px"> <field name="audit_status"/></span> 
+            </span>
+        </div>
+        
+         <div class="ribbon ribbon-top-right o_widget" attrs="{'invisible':[('audit_status','!=','refuse')]}">
+            <span class="transform-45" style="background-color:#222222;"> 
+              <span style="margin-top:5px"> <field name="audit_status"/></span> 
+            </span>
+        </div>
+        </xpath>
+            </field>
+        </record> -->
+
+  <!-- ===============================Ref========================================================== -->
+      <!-- Inherit Audit State in Vendor Bills-->
+        <record id="account_audit_state_inherited_vendor_form_view" model="ir.ui.view">
+            <field name="name">account.audit.state.vendor.form.inherited</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_bank_id']" position="after">
+                    <field name="audit_status"/>
+                    <field name="check_box" invisible="1"/>
+                    <field name="check_status" groups="rdp_account.group_check_status_user" attrs="{'invisible': [('check_box', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit Audit State in Invoice-->
+        <record id="account_audit_state_inherited_invoice_form_view" model="ir.ui.view">
+            <field name="name">account.audit.state.invoice.form.inherited</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='team_id']" position="after">
+                    <field name="audit_status"/>
+                </xpath>
+            </field>
+        </record>
+
+<!-- Inherit Journal Entry-->
+      <record id="journal_entry_inherit_form_view" model="ir.ui.view">
+          <field name="name">journal.entry.inherit.form.view</field>
+          <field name="model">account.move</field>
+          <field name="inherit_id" ref="account.view_move_form" />
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='auto_reverse']"  position="after">
+                <field name="invoice_ref"/>
+              </xpath>
+              <xpath expr="//field[@name='company_id']"  position="after">
+                <field name="audit_status"/>
+              </xpath>
+            </field>
+        </record>
+        
+
+    </data>
+</odoo>

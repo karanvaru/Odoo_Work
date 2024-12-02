@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="crm_lead_form_view_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.form.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm_leads_buttons.crm_oppurtunty_inherit_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='gigo_bpr']" position="after">
+                    <page string="Sale Order" name="sale_order">
+                        <group>
+                            <field name="total_sale_amount"/>
+                            <field name="receipt_amount"/>
+                            <field name="differ_amount"/>
+                        </group>
+                    </page>
+                    <page string="Stage wise OP" name="stage_wise_op">
+                        <group>
+                            <group>
+                                <field name="leg_one" readonly='1'/>
+                                <field name="potca" readonly='1'/>
+                                <field name="op_potca_sent" readonly='1'/>
+                                <field name="potca_status" readonly='1'/>
+                            </group>
+                            <group>
+                                <field name="ready_to_ship_open"/>
+                                <field name="ready_to_ship_close"/>
+                                <field name="op_ready_to_ship"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="crm_lead_tree_view_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.tree.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="leg_one"/>
+                    <field name="potca"/>
+                    <field name="op_potca_sent"/>
+                    <field name="ready_to_ship_open"/>
+                    <field name="ready_to_ship_close"/>
+                    <field name="op_ready_to_ship"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit the existing pivot view -->
+        <record id="view_custom_crm_lead_pivot_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.custom.pivot</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_pivot"/>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="total_sale_amount" type="measure"/>
+                    <field name="receipt_amount" type="measure"/>
+                    <field name="differ_amount" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+	    <record id="group_verify_partner" model="res.groups">
+	        <field name="name">Partner Manager</field>
+	    </record>
+	</data>
+</openerp>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="quality_check_form" model="ir.ui.view">
+         <field name="name">qualityaudit.check.wizard</field>
+         <field name="model">qualityaudit.check</field>
+         <field name="arch" type="xml">
+            <form string="Quality Check">
+                <group>
+                    <field name="emp_name"/>
+                    <field name="qa_category_id" invisible="1"/>
+                    <field name="qa_category_ids" widget="many2many_tags"/>
+                    <field name="quality_check_desc" string="Description"/>
+                    <field name="qa_associate_employee_id" />
+                    <field name="wizard_internal_notes" widget="html" string="Internal Notes"/>
+
+
+                </group>
+                <footer>
+                    <button name="action_to_wizard" string="Save" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+         </field>
+     </record>
+
+    <record id="quality_audit_check" model="ir.actions.act_window">
+        <field name="name">Quality Check</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">qualityaudit.check</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="quality_check_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

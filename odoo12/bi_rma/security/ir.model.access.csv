@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+rma_main,rma_main_model,bi_rma.model_rma_main,,1,1,1,1
+rma_change_product,rma_change_product_model,bi_rma.model_rma_change_product,,1,1,1,1
+rma_reason,rma_reason_model,bi_rma.model_rma_reason,,1,1,1,1
+rma_reject_reason,rma_reject_reason_model,bi_rma.model_reject_reason,,1,1,1,1
+rma_create_reject,rma_create_reject_model,bi_rma.model_create_reject,,1,1,1,1
+rma_claim,rma_claim,bi_rma.model_rma_claim,,1,1,1,1
+rma_lines,rma_lines_model,bi_rma.model_rma_lines,,1,1,1,1

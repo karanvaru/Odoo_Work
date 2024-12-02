@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="tempalte" xml:space="preserve">
+
+    <t t-name="ShPosZReport" owl="1">
+        <div class="control-button">
+            <div>
+                Z - Report
+            </div>
+        </div>
+    </t>
+</templates>

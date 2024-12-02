@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    
+    <report 
+        id="rdp_payment_advices_report_xlsx"
+        model="hr.payroll.advice"
+        string="Payment Advices Excel"
+        name="rdp_payroll_reports.payment_advices_report_xlsx"
+        file="RDP Payment Advice"
+        report_type="xlsx"
+    />
+
+    </data>
+</odoo>
+
+    

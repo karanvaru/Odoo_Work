@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="al_pos_amounts.ClosePosPopup" t-inherit="point_of_sale.ClosePosPopup" t-inherit-mode="extension">
+        <xpath expr="//tbody[@t-if='props.other_payment_methods.length > 0']" position="after">
+            <tbody>
+                <tr>
+                    <td>
+                        <span>Total Cash</span>
+                    </td>
+                    <td style="text-align: -webkit-right;">
+                        <input type="number" class="form-control o_website_form_input"
+                        style="width: 50%; border: 0;" name="total_cash"
+                        t-model="state.total_cash"/>
+                        <div style="width: 50%;border-bottom: 1px solid #c7c7c7;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Total Visa</span>
+                    </td>
+                    <td style="text-align: -webkit-right;">
+                        <input type="number" class="form-control o_website_form_input"
+                        style="width: 50%; border: 0;" name="total_visa"
+                        t-model="state.total_visa"/>
+                        <div style="width: 50%;border-bottom: 1px solid #c7c7c7;"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+<!--        JUST A TEMPLATE FOR FUTURE-->
+        <template id="report_customs_declaration">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <h2>UNITED ARAB EMIRATES</h2>
+                        <h3>Federal Customs Authority</h3>
+                        <h4>DUBAI CUSTOMS</h4>
+                        <table>
+                            <tr>
+                                <td>PORT TYPE</td>
+                                <td><t t-esc="o.port_type"/></td>
+                            </tr>
+                            <tr>
+                                <td>CUSTOMS DECLARATION No:</td>
+                                <td><t t-esc="o.customs_declaration_no"/></td>
+                            </tr>
+                            <!-- Add more fields as per your requirement -->
+                        </table>
+                        <!-- Add more sections as per your requirement -->
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

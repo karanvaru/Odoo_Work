@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="update_tax_wizard_form" model="ir.ui.view">
+            <field name="name">update.tax.wizard.form</field>
+            <field name="model">update.tax.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update Tax">
+                    <group>
+                        <group>
+                            <field name="picking_id" invisible="1"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="move_lines">
+                            <tree string="Moves" create="false" delete="false" editable="bottom">
+                                <field name="product_id" readonly="1"
+                                       options="{'no_open':True, 'no_create': True}"/>
+                                <field name="product_uom" readonly="1"
+                                       options="{'no_open':True, 'no_create': True}"/>
+                                <field name="product_price"/>
+                                <field name="tax_id" widget="many2many_tags"/>
+                                <field name="cess_non_advol"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="update_tax" string="Update" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_update_tax_wizard" model="ir.actions.act_window">
+            <field name="name">Update Tax</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">update.tax.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

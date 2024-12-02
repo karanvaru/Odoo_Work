@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="helpdesk_support_inherit_view" model="ir.ui.view">
+        <field name="name">helpdesk.support.inherit.view</field>
+        <field name="model">helpdesk.support</field>
+        <field name="inherit_id" ref="website_helpdesk_support_ticket.helpdesk_support_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']" position="attributes">
+                <attribute name="attrs"/>
+            </xpath>
+
+            <xpath expr="//header//button[@name='set_to_close']" position="attributes">
+                <attribute name="attrs">{'invisible': [('stage_type','!=','pending_review')]}</attribute>
+            </xpath>
+            <xpath expr="//header//button[@name='set_to_close']" position="after">
+                <button type="action" name="%(website_helpdesk_support_ticket_extend.action_create_task)d"
+                        string="Create Task"
+                        class="oe_highlight"
+                        groups="website_helpdesk_support_ticket.group_helpdesk_manager"
+                        attrs="{'invisible':[('is_close','=',True)]}"/>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_button_box')]/button[@name='action_create_task']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="string">Assigned to</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_button_box')]/button[@name='show_task']" position="attributes">
+                <attribute name="icon">fa-list</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page string="Signature" name="signature_on_helpdesk">
+                    <group>
+                        <field name="custom_helpdesk_sign_by"/>
+                        <field name="custom_helpdesk_sign_date"/>
+                        <field name="custom_signature_helpdesk_support" widget="signature"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

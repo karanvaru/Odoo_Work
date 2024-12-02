@@ -1,0 +1,29 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+  <template id="referal_earning_payment"  inherit_id="website_sale.payment">
+     <xpath expr="//*[@id='payment_method']" position="before">
+          <h4>Use Referral Earnings:</h4>
+          <ul class="list-unstyled">
+          	<li>
+                <label>
+                    <input id="use_referal_earning" type="checkbox" name="referal" t-att-checked="website_sale_order.use_re_epoints"/>
+                    <span style="color :green;" >
+                      Use Referral Earnings
+                      <t t-if="website_sale_order.use_re_epoints">
+                        -<t t-esc="website_sale_order.redeemable_points"/> <t t-esc="website_sale_order.currency_id.symbol"/>
+                      </t>
+                    </span>
+                </label>
+                <div>
+                  (Your current balance is <t t-esc="request.env.user.partner_id.referral_earning"/>) 
+                </div>
+           	 </li>
+             
+           </ul>
+       </xpath>
+     
+  </template>
+
+</odoo>

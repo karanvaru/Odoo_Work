@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.cloud.base</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block"
+                     data-string="Cloud Storages"
+                     string="Cloud Storages"
+                     data-key="cloud_base"
+                     name="cloud_base"
+                >
+                    <div class="row mt16 o_settings_container">
+                        <button name="action_sync_to"
+                                string="Sync"
+                                type="object"
+                                class="oe_highlight"
+                                style="margin-left:5px"
+                                attrs="{'invisible': [('cloud_client_state', '!=', 'confirmed')]}"
+                        />
+                        <button name="action_sync_from"
+                                string="Backward Sync"
+                                type="object"
+                                class="oe_highlight"
+                                style="margin-left:5px"
+                                attrs="{'invisible': [('cloud_client_state', '!=', 'confirmed')]}"
+                        />
+                        <button name="%(cloud_base.sync_log_action)d"
+                                type="action"
+                                attrs="{'invisible': [
+                                    '|', ('cloud_client_state', '!=', 'confirmed'), ('sync_logs', '!=', True)
+                                ]}"
+                                style="margin-left:5px"
+                                string="Sync Logs"
+                        />
+                        <button name="action_reset"
+                                type="object"
+                                attrs="{'invisible': [('cloud_client_state', '=', 'draft')]}"
+                                class="oe_link"
+                                confirm="Are you sure? You would not be able to recover that: all files should be then
+                                synced from scratch, while already synced files remain 'url' type"
+                                style="margin-left:5px"
+                                string="Reset"
+                        />
+                        <button name="cancel"
+                                type="object"
+                                string="Cancel"
+                                class="oe_link"
+                        />
+                    </div>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-12 o_setting_box">
+                            <group name="client_specific">
+                                <field name="cloud_client_state" readonly="1"/>
+                            </group>
+                            <group name="cloud_options" string="Options">
+                                <field name="sync_logs"/>
+                            </group>
+                            <group string="Odoo models to sync"/>
+                            <field name="synced_model_ids"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="cloud_config_action" model="ir.actions.act_window">
+        <field name="name">Cloud Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'cloud_base'}</field>
+    </record>
+
+
+</odoo>

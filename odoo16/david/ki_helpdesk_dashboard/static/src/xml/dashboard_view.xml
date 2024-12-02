@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+  <t t-name="HelpDesk_Dashboard">
+    <div class="helpdesk_dashboards">
+      <div class="container-fluid helpdesk_dashboard_main"/>
+    </div>
+  </t>
+    <t t-name="DashBoardHelpDesk">
+    <link rel="stylesheet"
+          href="/ki_helpdesk_dashboard/static/src/css/dashboard.css"/>
+        <div class="row main-section mt-5">
+      <h3 class="section-header" style="font-size: 1.5em; padding-top: 25px; color:#202533;text-align:left;">HelpDesk Dashboard</h3>
+            <div class="col-sm-6 col-md-3-12 col-md-6 col-lg-3 helpdesk inbox_tickets">
+        <div class="dashboard_card" data-toggle="collapse">
+          <div class="dashboard_card-body panel panel-new">
+            <div class="stat-widget-one" style="background-color:white">
+                <div style="background: #4682B4	 !important;" class="stat-icon">
+                <i class="fa fa-inbox"/>
+              </div>
+                <div class="stat-content">
+                <div class="stat-text" style="color:black">New Tickets</div>
+                    <div style="font-size: 18px; font-weight: bold; text-align:center; background-color: white; color: white;height:50%; border-radius:0px;"
+             class="stat-digits" id="inbox_count">
+              </div>
+                </div>
+            </div>
+          </div>
+            <div class="panel-new-collapse collapse">
+            <div id="help_new_tickets"
+                 style="border:none; font-size:8px; padding:0 6px 6px 6px;">
+              <br/>
+                <br/>
+                <p style="border:none; font-size:14px; padding:0 15px 15px 15px;"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="col-sm-6 col-md-3-12 col-md-6 col-lg-3  salon_spa_orders helpdesk inprogress_tickets">
+        <div class="dashboard_card" data-toggle="collapse">
+          <div class="dashboard_card-body panel panel-progress">
+            <div class="stat-widget-one" style="background-color:white">
+                <div style="background: #fa7720 !important;" class="stat-icon">
+                <i class="fa fa-spinner"/>
+              </div>
+                <div class="stat-content">
+                <div class="stat-text" style="color:black">Tickets In Progress</div>
+                    <div style="font-size: 18px; font-weight: bold; text-align:center; background-color: white; color: white;height:50%; border-radius:0px;" class="stat-digits" id="inprogress_count">
+              </div>
+                </div>
+            </div>
+          </div>
+            <div class="panel-progress-collapse collapse">
+            <div id="help_progress_tickets"
+                 style="border:none; font-size:8px; padding:0 8px 8px 8px;">
+              <br/>
+                <br/>
+                <p style="border:none; font-size:14px; padding:0 5px 5px 5px;"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="col-sm-6 col-md-3-12 col-md-6 col-lg-3 helpdesk done_tickets">
+        <div class="dashboard_card" data-toggle="collapse">
+          <div class="dashboard_card-body panel panel-done">
+            <div class="stat-widget-one" style="background-color:white">
+                <div style="background: #00A347 !important;" class="stat-icon">
+                <i class="fa fa-check"/>
+              </div>
+                <div class="stat-content">
+                <div class="stat-text" style="color:black">Closed Tickets</div>
+                    <div style="font-size: 18px; font-weight: bold; text-align:center; background-color: white; color: white;height:50%; border-radius:10px;" class="stat-digits" id="done_count">
+                </div>
+                </div>
+            </div>
+          </div>
+            <div class="panel-done-collapse collapse">
+            <div id="help_done_tickets"
+                 style="border:none; font-size:14px; padding:0 15px 15px 15px;">
+              <br/>
+                <br/>
+                <p style="font-style:italic; font-weight:100;"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="col-sm-6 col-md-3-12 col-md-6 col-lg-3 helpdesk team_card">
+            <div class="dashboard_card" data-toggle="collapse">
+              <div class="dashboard_card-body panel panel-team">
+                <div class="stat-widget-one" style="background-color:white">
+                    <div style="background: #b5354e !important;"  class="stat-icon">
+                    <i class="fa fa-group" id="team_ico"/>
+              </div>
+                    <div class="stat-content">
+                <div class="stat-text" style="color:black; text-align:center;">HelpDesk Teams</div>
+                        <div style="font-size: 16px; font-weight: bold; text-align:center; background-color: white; color: white;height:50%; border-radius:10px;" class="stat-digits" id="team_count">
+              </div>
+                    </div>
+            </div>
+          </div>
+                <div class="panel-team-collapse collapse">
+            <div id="help_teams"
+                 style="border:none; font-size:14px; padding:0 15px 15px 15px;">
+              <br/>
+                <br/>
+                <p style="font-style:italic; font-weight:100;"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+ <t t-foreach="widget.dashboard_dict" t-as="ticket_1">
+      <div style="width:50%;">
+            <div class="dashboard_card" role="separator" data-toggle="collapse">
+              <div class="dashboard_card-body panel panel-team">
+                  <div class="o_kanban_card_header" style="background-color:white">
+
+
+                      <div class="container o_kanban_card_content" t-if="!selection_mode">
+                          <br></br>
+                          <div class="stat-text" style="color:black;background-color:white;"><h3 class="o_primary"><t t-esc="ticket_1['name']"/></h3></div>
+                          <div class="container o_kanban_card_content" t-if="!selection_mode">
+                                <div class="row " style="background-color:white">
+                                    <div class="col o_kanban_primary_left ticket_team" t-att-data-id="ticket_1['team_id']">
+                                        <button class="btn btn-primary o_helpdesk_ticket_btn" type="object" >Tickets</button>
+                                    </div>
+                                    <br></br>
+                                    <div class="col o_kanban_primary_right close_action"  t-att-data-id="ticket_1['team_id']">
+                                        <div class="mb4">
+                                                <a type="object" title="Number of tickets closed in the past 7 days." class="justify-content-between flex-nowrap d-inline-flex w-100">
+                                                <span>Tickets Closed</span>
+                                                <span class="ms-3">
+                                                   <t t-esc="ticket_1['close_count']"/>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                          <div class="row pt-5" style="background-color:white">
+                              <div class="col border-start open_action" style ="text-align:center;"  t-att-data-id="ticket_1['team_id']">
+                                            <span class="stat-digit" style="color:#b5354e;font-weight: 400;">
+                                              <t t-esc="ticket_1['open_count']"/>
+                                            </span><br></br>
+                                  <span class="text-muted" t-att-data-id="ticket_1['team_id']"> <h5 style="width:85px;font-weight: 300;">Open</h5></span>
+                              </div>
+                              <div class="col border-start unassign_action" style ="text-align:center;" t-att-data-id="ticket_1['team_id']">
+                                            <span  style="color:#b5354e;font-weight: 400;">
+                                                <t  t-esc="ticket_1['unassigned_count']"/>
+                                            </span><br></br>
+                                  <span class="text-muted"><h5 style="width:120px;font-weight: 300;">Unassigned</h5></span>
+                                    </div>
+                              <div class="col border-start urgent_action" style ="text-align:center;"  t-att-data-id="ticket_1['team_id']">
+                                            <span  style="color:#b5354e;font-weight: 400;">
+                                               <t t-esc="ticket_1['urgent_count']"/>
+                                            </span><br></br>
+                                  <span class="text-muted"><h5 style="width:85px;font-weight: 300;">Urgent</h5></span>
+                                    </div>
+                              <div class="col border-start fail_action" style ="text-align:center;"  t-att-data-id="ticket_1['team_id']">
+                                        <span  style="color:#b5354e;font-weight: 400;">
+                                            <t t-esc="ticket_1['failed_count']"/>
+                                        </span><br></br>
+                                  <span class="text-muted"><h5 style="width:85px;font-weight: 300;">Failed</h5></span>
+                              </div>
+                          </div>
+                          </div>
+              </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+</t>
+
+
+            <div class="row ticket-section">
+                 <div class="col-12 col-sm-12 col-md-4 ticket_box chart-container card-shadow">
+            <h2 class="tickets_head">Ticket Priority</h2>
+                     <hr/>
+                     <div class="col-xs-12 text-align">
+              <div class="text-color">
+                <div class="line">
+                Very low :
+                <div class="very_low_count" widget="progressbar">
+                <div class="progress-value"></div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+                     <div class="col-xs-12 text-align">
+              <div class="text-color">
+                <div class="line">
+                Low :
+                <div class="low_count" widget="progressbar">
+                <div class="progress-value"></div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+                     <div class="col-xs-12 text-align">
+              <div class="text-color">
+                <div class="line">
+                Normal :
+                <div class="normal_count" widget="progressbar">
+                <div class="progress-value"></div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+                     <div class="col-xs-12 text-align">
+              <div class="text-color">
+                <div class="line">
+                High :
+                <div class="high_count" widget="progressbar">
+                <div class="progress-value"></div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+                     <div class="col-xs-12 text-align">
+              <div class="text-color">
+                <div class="line">
+                Very High :
+                <div class="very_high_count" widget="progressbar">
+                <div class="progress-value"></div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+        </div>
+
+                <div class="col-12 col-sm-12 col-md-4">
+          <div class="leads_month_pie_div half_chart chart-container card-shadow">
+            <h2 class="tickets_head">TICKET STATUS</h2>
+              <hr/>
+              <div class="graph_canvas">
+              <canvas class="ticket_month"/>
+            </div>
+          </div>
+        </div>
+                <div class="col-12 col-sm-12 col-md-4">
+          <div class="team_ticket_div half_chart chart-container card-shadow">
+            <h2 class="tickets_head">Team - Tickets Count Ratio</h2>
+              <hr/>
+              <div class="graph_canvas">
+              <canvas class="team_ticket_count"/>
+            </div>
+
+          </div>
+        </div>
+
+                <div class="col-100 col-sm-100 col-md-20">
+  <div class="leads_month_pie_div half_chart chart-container card-shadow">
+    <h2 class="tickets_head" style ="text-align:center;">ISSUE</h2>
+      <hr/>
+
+      <!-- Add a table to display ticket details -->
+      <table class="table table-bordered m32" style="border:1px solid black;">
+      <thead>
+        <tr style="font-size: 16px; font-weight: bold; text-align:center; background-color: #4682B4; color: white;height:50%"
+            class="custom-tr">
+            <th style="width: 5%; min-width: 5px; text-align:center; font-size: 13px; border-color: black;">Ticket</th>
+            <th style="width: 10%; min-width: 10px; text-align:center; font-size: 13px; border-color: black;">Customer Name</th>
+            <th style="width: 10%; min-width: 10px; text-align:center; font-size: 13px; border-color: black;">Category</th>
+            <th style="width: 20%; min-width: 20px; text-align:center; font-size: 13px; border-color: black;">Assigned to</th>
+            <th style="width: 30%; min-width: 30px; text-align:center; font-size: 13px; border-color: black;">Subject</th>
+            <th style="width: 70%; min-width: 180px; text-align:center; font-size: 13px; border-color: black;">Stage</th>
+        </tr>
+      </thead>
+          <tbody class="ticket-details">
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+
+
+      </div>
+  </t>
+</templates>

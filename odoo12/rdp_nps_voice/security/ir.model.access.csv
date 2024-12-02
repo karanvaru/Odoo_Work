@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_nps_voice,nps.voice,model_nps_voice,base.group_user,1,1,1,1
+access_nps_category,nps.category,model_nps_category,base.group_user,1,1,1,1
+access_nps_problem_category,nps.problem.category,model_nps_problem_category,base.group_user,1,1,1,1
+access_nps_improvement_tasks,nps.improvement.tasks,model_nps_improvement_task,,1,1,1,1

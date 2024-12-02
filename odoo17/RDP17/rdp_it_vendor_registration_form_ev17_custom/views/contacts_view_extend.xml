@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_business_info" model="ir.ui.view">
+        <field name="name">contact.business.info</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page name="business_info" string="Business Info">
+                    <form>
+                        <group>
+                            <group>
+                                <field name="company_profile" filename="company_profile_name"/>
+                                <field name="company_profile_name" invisible="1"/>
+                                <field name="product_road_map" filename="product_road_map_name"/>
+                                <field name="product_road_map_name" invisible="1"/>
+                                <field name="established_in"/>
+                                <field name="last_2_year_avg_revenue"/>
+                                <field name="company_logo" filename="company_logo_name"/>
+                                <field name="company_logo_name" invisible="1"/>
+                                <field name="major_suppliers_of_product_components"/>
+                                <field name="services"/>
+                            </group>
+                            <group>
+                                <field name="company_registration_certificate" filename="company_registration_certificate_name"/>
+                                <field name="company_registration_certificate_name" invisible="1"/>
+                                <field name="quality_control_document" filename="quality_control_document_name"/>
+                                <field name="quality_control_document_name" invisible="1"/>
+                                <field name="revenue_category"/>
+                                <field name="social_contact"/>
+                                <field name="vendor_type"/>
+                                <field name="top_5_customers_for_reference"/>
+                            </group>
+                        </group>
+                    </form>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,636 @@
+id,name,location_desc,country_code,state
+id_CNB1,INCNB1,Car‐Nicobar,IN,Andaman and Nicobar
+id_CRN1,INCRN1,Cornwallis,IN,Andaman and Nicobar
+id_MYB1,INMYB1,Mayabandar,IN,Andaman and Nicobar
+id_ESH1,INESH1,Elphinstone Harbour,IN,Andaman and Nicobar
+id_RGT1,INRGT1,Ranghat Bay,IN,Andaman and Nicobar
+id_MDW1,INMDW1,Meadows,IN,Andaman and Nicobar
+id_NAN1,INNAN1,Nancowrie,IN,Andaman and Nicobar Isl.
+id_IXZ1,INIXZ1,Port Blair,IN,Andaman and Nicobar Isl.
+id_IXZ4,INIXZ4,Port Blair,IN,Andaman and Nicobar Isl.
+id_HYD4,INHYD4,Hyderabad Air Cargo,IN,Andhra Pradesh
+id_BNP1,INBNP1,Bheemunipatnam,IN,Andhra Pradesh
+id_NVP1,INNVP1,Navaspur ,IN,Andhra Pradesh
+id_VTZ1,INVTZ1,Vizac Sea,IN,Andhra Pradesh
+id_SRV1,INSRV1,Surasani ‐ Yanam,IN,Andhra Pradesh
+id_VTZ6,INVTZ6,Visakhapatnam (EPZ/SEZ),IN,Andhra Pradesh
+id_VRU1,INVRU1,Vadarevu,IN,Andhra Pradesh
+id_KAK1,INKAK1,Kakinada,IN,Andhra Pradesh
+id_RPL6,INRPL6,Raddipalem,IN,Andhra Pradesh
+id_KDD6,INKDD6,Karedu,IN,Andhra Pradesh
+id_VTZ4,INVTZ4,Vishakapatnam,IN,Andhra Pradesh
+id_APT6,INAPT6,Anaparthi,IN,Andhra Pradesh
+id_CLX6,INCLX6,Chirala,IN,Andhra Pradesh
+id_SNF6,INSNF6,Hyderabad,IN,Andhra Pradesh
+id_COI6,INCOI6,Kakinada,IN,Andhra Pradesh
+id_MAP1,INMAP1,Masulipatnam,IN,Andhra Pradesh
+id_KRI1,INKRI1,Krishnapatnam,IN,Andhra Pradesh
+id_AKP6,INAKP6,APIICL SEZ/Visakhapatnam,IN,Andhra Pradesh
+id_TNI6,INTNI6,HIPL SEZ/Visakhapatnam,IN,Andhra Pradesh
+id_AKR6,INAKR6,RPCIPL SEZ/Visakhapatnam,IN,Andhra Pradesh
+id_VZM6,INVZM6,DLL SEZ/Visakhapatnam,IN,Andhra Pradesh
+id_AKB6,INAKB6,BIACPL SEZ/Visakhapatnam,IN,Andhra Pradesh
+id_NRP6,INNRP6,AAL‐SEZ/Visakhapatnam,IN,Andhra Pradesh
+id_MOV6,INMOV6,VBTL‐SEZ/Medak,IN,Andhra Pradesh
+id_KVR6,INKVR6,WFPML‐SEZ/KOVVUR,IN,Andhra Pradesh
+id_FMA6,INFMA6,APIICL/Medak District,IN,Andhra Pradesh
+id_FMH6,INFMH6,hgsezl/Ranga Reddy,IN,Andhra Pradesh
+id_COA6,INCOA6,KSPL‐SEZ/KAKINADA,IN,Andhra Pradesh
+id_GLY6,INGLY6,APIICL‐SEZ/MAHABOOBNAGAR,IN,Andhra Pradesh
+id_SPE6,INSPE6,ASDIPL‐SEZ/NELLORE,IN,Andhra Pradesh
+id_COP6,INCOP6,PICPL‐SEZ/KAKINADA,IN,Andhra Pradesh
+id_MDE6,INMDE6,APIICL SEZ/MEDAK,IN,Andhra Pradesh
+id_KOH6,INKOH6,RLL‐SEZ/Medak,IN,Andhra Pradesh
+id_URF6,INURF6,FAB CITY SPV‐SEZ/Srinagar & Raviryal Distt. Ranga Reddy,IN,Andhra Pradesh
+id_MEA6,INMEA6,APIIC‐SEZ/Vill‐Lalgadi Distt.‐Ranga,IN,Andhra Pradesh
+id_DBS6,INDBS6,SANTA‐SEZ/Vill‐Muppireddipally,IN,Andhra Pradesh
+id_URG6,INURG6,GMR HYDRABAD AVIATION‐SEZ/Vill.,IN,Andhra Pradesh
+id_TAS6,INTAS6,Mamidipally SRI CITY PVT.Distt. Ranga Reddy & LTD‐SEZ/Satyavedu & Vardayyapalem,IN,Andhra Pradesh
+id_GNR6,INGNR6,"LIPL‐ICD/Marripalem, Guntur",IN,Andhra Pradesh
+id_FMS6,INFMS6,Stargaze/Rangareddy/SEZ,IN,Andhra Pradesh
+id_FMJ6,INFMJ6,J T/SEZ/Rangareddy,IN,Andhra Pradesh
+id_LPI6,INLPI6,Sundew/SEZ/Rangareddy,IN,Andhra Pradesh
+id_LPD6,INLPD6,DLF/SEZ/Rangareddy,IN,Andhra Pradesh
+id_TMI6,INTMI6,IIFFCO/SEZ/Nellore,IN,Andhra Pradesh
+id_HUR6,INHUR6,Rassi/SEZ/Anantpur,IN,Andhra Pradesh
+id_VZR6,INVZR6,Reddy'r/SEZ/Srikakulam,IN,Andhra Pradesh
+id_CDP6,INCDP6,APIIC/SEZ/Cuddapah,IN,Andhra Pradesh
+id_TMX6,INTMX6,M/s CONTINENTAL MULTIMODAL,IN,Andhra Pradesh
+id_NPGB,INNPGB,Nampong,IN,Arunachal Pradesh
+id_DRGB,INDRGB,Darranga,IN,Assam
+id_GAU4,INGAU4,Gauhati,IN,Assam
+id_GHWB,INGHWB,Gauhati Steamerghat,IN,Assam
+id_DHBB,INDHBB,Dhubri Steamerghat,IN,Assam
+id_GTGB,INGTGB,Gitaldah road,IN,Assam
+id_GKJ2,INGKJ2,Golakganj Raiiway Station,IN,Assam
+id_HTSB,INHTSB,Hatisar,IN,Assam
+id_KGJB,INKGJB,Karimganj Steamerghat and Ferry,IN,Assam
+id_STRB,INSTRB,Sutarkandi,IN,Assam
+id_SLRB,INSLRB,Silcher Steamerghat,IN,Assam
+id_SLR2,INSLR2,Silcher R.M.S. Office,IN,Assam
+id_PHBB,INPHBB,Phulbari,IN,Assam
+id_NMTB,INNMTB,Neamati steamer Ghat,IN,Assam
+id_MNUB,INMNUB,Manu,IN,Assam
+id_MKCB,INMKCB,Manikarchar,IN,Assam
+id_MHN2,INMHN2,Mahisashan Railway Station,IN,Assam
+id_LTBB,INLTBB,Latu Bazar,IN,Assam
+id_ULPB,INULPB,Ultapani,IN,Assam
+id_TJPB,INTJPB,Tezpur Steamerghat ,IN,Assam
+id_KXJ2,INKXJ2,Karimganj Railway Station,IN,Assam
+id_HLD2,INHLD2,Haldibari Railway Station,IN,Assam
+id_GKJB,INGKJB,Golakganj (LCS),IN,Assam
+id_AMG6,INAMG6,Amingaon(Gauhati),IN,Assam
+id_RXL8,INRXL8,Rexaul,IN,Bihar
+id_GALB,INGALB,Galgalia,IN,Bihar
+id_JBNB,INJBNB,Jogbani,IN,Bihar
+id_SNBB,INSNBB,Sonabarsa,IN,Bihar
+id_RXLB,INRXLB,Raxaul,IN,Bihar
+id_KNLB,INKNLB,Kunauli,IN,Bihar
+id_KTRB,INKTRB,Kathihar,IN,Bihar
+id_JAYB,INJAYB,Jayanagar,IN,Bihar
+id_BTMB,INBTMB,Bhithamore(Sursnad),IN,Bihar
+id_BGUB,INBGUB,Bairgania,IN,Bihar
+id_BNRB,INBNRB,Bhimnagar,IN,Bihar
+id_GAY4,INGAY4,Gaya,IN,Bihar
+id_PAT4,INPAT4,Patna,IN,Bihar
+id_RAI6,INRAI6,Raipur,IN,Chhattisgarh
+id_RJN6,INRJN6,M/s LANCO SOLAR PRIVATE LTD. ,IN,Chhattisgarh
+id_DAM1,INDAM1,Daman & Diu,IN,Daman &Diu
+id_SHP1,INSHP1,Sinbhour Port ,IN,Daman and Diu
+id_DEL4,INDEL4,Delhi Air Cargo,IN,Delhi
+id_DLI2,INDLI2,Delhi Railway Station,IN,Delhi
+id_TKD6,INTKD6,Tughlakabad,IN,Delhi
+id_PPG6,INPPG6,Patparganj,IN,Delhi
+id_MRM1,INMRM1,Goa Sea,IN,Goa
+id_TPN1,INTPN1,Talpona,IN,Goa
+id_PPJ1,INPPJ1,Pellet Plant Jetty at Shiroda,IN,Goa
+id_PNJ1,INPNJ1,Panjim,IN,Goa
+id_CHR1,INCHR1,Chapora,IN,Goa
+id_BET1,INBET1,Betul ,IN,Goa
+id_MDG6,INMDG6,Margao,IN,Goa
+id_GOI4,INGOI4,Dabolim,IN,Goa
+id_PAN1,INPAN1,Panaji Port,IN,Goa
+id_SBI6,INSBI6,Sabarmati ICD ,IN,Gujarat
+id_PAV1,INPAV1,Pipavav(Victor) Port ,IN,Gujarat
+id_BED1,INBED1,Bedi(Including Rozi‐Jamnagar),IN,Gujarat
+id_BGW1,INBGW1,Bhagwa,IN,Gujarat
+id_KDN1,INKDN1,Kodinar(Muldwarka),IN,Gujarat
+id_KVI1,INKVI1,Kavi,IN,Gujarat
+id_GHA1,INGHA1,Ghogha,IN,Gujarat
+id_GIN6,INGIN6,Gandhidham,IN,Gujarat
+id_DRK1,INDRK1,Dwarka (Rupen),IN,Gujarat
+id_DHR1,INDHR1,Dholera,IN,Gujarat
+id_CMB1,INCMB1,Cambay,IN,Gujarat
+id_BSR1,INBSR1,Bulsar,IN,Gujarat
+id_BLM1,INBLM1,Bilimora,IN,Gujarat
+id_HZA6,INHZA6,Hazira SEZ / Surat,IN,Gujarat
+id_BHD6,INBHD6,Dahez SEZ,IN,Gujarat
+id_LPJ6,INLPJ6,Reliance SEZ/ Jamnagar,IN,Gujarat
+id_BCO6,INBCO6,Euro Multivision Bhachau SEZ / Kutch,IN,Gujarat
+id_AJE6,INAJE6,Welspun Anjar SEZ / Anjar,IN,Gujarat
+id_JBL6,INJBL6,E‐Complex SEZ / Amreli,IN,Gujarat
+id_KDL6,INKDL6,Kandla SEZ / Gandhidham,IN,Gujarat
+id_VAL6,INVAL6,Valvada ICD,IN,Gujarat
+id_SBH1,INSBH1,Sinbhour,IN,Gujarat
+id_SMR1,INSMR1,Simor,IN,Gujarat
+id_RJP1,INRJP1,Rajpara,IN,Gujarat
+id_ONJ1,INONJ1,Onjal,IN,Gujarat
+id_OMU1,INOMU1,Old Mundra,IN,Gujarat
+id_NVB1,INNVB1,Navabunder,IN,Gujarat
+id_MTW1,INMTW1,Metwad,IN,Gujarat
+id_KTW1,INKTW1,Koteshwar,IN,Gujarat
+id_KTD1,INKTD1,Kotda,IN,Gujarat
+id_UMR1,INUMR1,Umarsadi,IN,Gujarat
+id_TNK1,INTNK1,Tankari,IN,Gujarat
+id_BYT1,INBYT1,Beyt,IN,Gujarat
+id_ADA6,INADA6,Adalaj,IN,Gujarat
+id_BHU1,INBHU1,Bhavanagar,IN,Gujarat
+id_DIV1,INDIV1,Div,IN,Gujarat
+id_IXY1,INIXY1,Kandla,IN,Gujarat
+id_JBD1,INJBD1,Jafrabad,IN,Gujarat
+id_UMB1,INUMB1,Umbergoan,IN,Gujarat
+id_TUN1,INTUN1,Tuna,IN,Gujarat
+id_TJA1,INTJA1,Talaja,IN,Gujarat
+id_SIK1,INSIK1,Sikka,IN,Gujarat
+id_SAL1,INSAL1,Salaya,IN,Gujarat
+id_PIN1,INPIN1,Pindhara,IN,Gujarat
+id_PBD1,INPBD1,Porbandar,IN,Gujarat
+id_OKH1,INOKH1,Okha,IN,Gujarat
+id_NAV1,INNAV1,Navlakhi,IN,Gujarat
+id_RAJ6,INRAJ6,Rajkot,IN,Gujarat
+id_VPI6,INVPI6,Vapi,IN,Gujarat
+id_STV6,INSTV6,Surat (EPZ/SEZ),IN,Gujarat
+id_IXY6,INIXY6,Kandla (EPZ/SEZ),IN,Gujarat
+id_SAC6,INSAC6,Sachin(Surat),IN,Gujarat
+id_KAP6,INKAP6,Kapadra(Surat),IN,Gujarat
+id_BRC6,INBRC6,Baroda,IN,Gujarat
+id_AMD5,INAMD5,Amhedabad,IN,Gujarat
+id_AMD4,INAMD4,Ahmedabad,IN,Gujarat
+id_ALA1,INALA1,ALANGSBY,IN,Gujarat
+id_MDV1,INMDV1,Mandvi,IN,Gujarat
+id_VVA1,INVVA1,Veraval,IN,Gujarat
+id_VSI1,INVSI1,Vansi‐Borsi,IN,Gujarat
+id_VAD1,INVAD1,Vadinar,IN,Gujarat
+id_MUN1,INMUN1,Mundra,IN,Gujarat
+id_MLI1,INMLI1,Maroli,IN,Gujarat
+id_MHA1,INMHA1,Mahuva,IN,Gujarat
+id_MGR1,INMGR1,Mangrol,IN,Gujarat
+id_MDK1,INMDK1,Muldwarka,IN,Gujarat
+id_MDA1,INMDA1,Magdalla,IN,Gujarat
+id_KOK1,INKOK1,Koka,IN,Gujarat
+id_JDA1,INJDA1,Jodia,IN,Gujarat
+id_JAK1,INJAK1,Jakhau,IN,Gujarat
+id_GGA1,INGGA1,Gogha,IN,Gujarat
+id_DAH1,INDAH1,Dahej,IN,Gujarat
+id_BRH1,INBRH1,Broach,IN,Gujarat
+id_AKV6,INAKV6,Ankleshwar,IN,Gujarat
+id_CHN6,INCHN6,Vadodara ‐ Chhani,IN,Gujarat
+id_SAU6,INSAU6,Thar Dry Port ‐ Ahemdabad ICD,IN,Gujarat
+id_UDN6,INUDN6,GHB‐SEZ/SURAT,IN,Gujarat
+id_AJM6,INAJM6,Mundra Port SEZ,IN,Gujarat
+id_SCH6,INSCH6,SAP‐SEZ/SURAT,IN,Gujarat
+id_API6,INAPI6,AAP‐SEZ/AHMEDABAD,IN,Gujarat
+id_GNG6,INGNG6,GIDC‐SEZ/GANDHINAGAR,IN,Gujarat
+id_ADG6,INADG6,GIPL‐SEZ/AHMEDABAD,IN,Gujarat
+id_ADC6,INADC6,CCIPL‐SEZ/AHMEDABAD,IN,Gujarat
+id_ZIP6,INZIP6,ZIPL‐SEZ/AHMEDABAD,IN,Gujarat
+id_GNS6,INGNS6,SREHPL‐SEZ/GANDHINAGAR,IN,Gujarat
+id_ADM6,INADM6,MRPL‐SEZ/AHMEDABAD,IN,Gujarat
+id_ADR6,INADR6,CGRPL‐SEZ/AHMEDABAD,IN,Gujarat
+id_GNT6,INGNT6,TCS‐SEZ/GANDHINAGAR,IN,Gujarat
+id_BHS6,INBHS6,Sterling‐SEZ/Bharuch,IN,Gujarat
+id_VLN6,INVLN6,NG REALTY‐ SEZ/Taluka Bavla Distt.,IN,Gujarat
+id_BRS6,INBRS6,E & C LTD.‐ SEZ /WAGHODIA,IN,Gujarat
+id_BHC6,INBHC6,Jubilant‐Chemical‐SEZ/Vilayat,IN,Gujarat
+id_VLD6,INVLD6,Dishman‐Pharmaceutical‐,IN,Gujarat
+id_HZR6,INHZR6,Surat ICD,IN,Gujarat
+id_BRL6,INBRL6,L and T ltd./SEZ/Vadodara,IN,Gujarat
+id_KBC6,INKBC6,M/s Kribhco Infrastructure Ltd.,IN,Gujarat
+id_HZA1,INHZA1,HAZIRA PORT/SURAT,IN,Gujarat
+id_GNA6,INGNA6,APPL SEZ/Gandhinagar,IN,Gujarat
+id_GNC6,INGNC6,GIFT SEZ/Gandhinagar,IN,Gujarat
+id_KBC6,INKBC6,KRIL ICD / HAZIRA,IN,Gujarat
+id_GAO6,INGAO6,OPGS SEZ / Gandhidham,IN,Gujarat
+id_BDM6,INBDM6,"PANCHI GUJARAN, Sonepat ICD",IN,Haryana
+id_GHR6,INGHR6,Garhi Harsaru ‐ Gurgaon ICD,IN,Haryana
+id_REA6,INREA6,Rewari,IN,Haryana
+id_PTL6,INPTL6,Patli ICD,IN,Haryana
+id_NUR6,INNUR6,Kundli,IN,Haryana
+id_PNP6,INPNP6,Babarpur,IN,Haryana
+id_FBD6,INFBD6,Faridabad,IN,Haryana
+id_BVC6,INBVC6,CONCOR‐ICD/BALLABHGARH,IN,Haryana
+id_BFR6,INBFR6,Piyala/Ballabhgarh ICD,IN,Haryana
+id_CDD6,INCDD6,DCA‐I SEZ/CHANDIGARH,IN,Haryana
+id_CDC6,INCDC6,DCA‐II SEZ/CHANDIGARH,IN,Haryana
+id_PKR6,INPKR6,KRIL ICD/PALI,IN,Haryana
+id_NGSB,INNGSB,Village Namgaya Shipkila,IN,Himachal Pradesh
+id_SXR4,INSXR4,Srinagar,IN,Jammu & Kashmir
+id_BBM6,INBBM6,Bari Brahma,IN,Jammu Kashmir
+id_IXW6,INIXW6,Jamshedpur (ICD),IN,Jharkhand
+id_TAT6,INTAT6,Jamshedpur (ICD),IN,Jharkhand
+id_BLR4,INBLR4,Banglore Air Cargo,IN,Karnataka
+id_BLR5,INBLR5,Bangalore,IN,Karnataka
+id_DRU6,INDRU6,Belgaum ‐ Desur,IN,Karnataka
+id_CDP1,INCDP1,Coondapur (Ganguly),IN,Karnataka
+id_PDD1,INPDD1,Padubidri Minor Port,IN,Karnataka
+id_KRW1,INKRW1,Karwar(including Sardeshivagad),IN,Karnataka
+id_HWR1,INHWR1,Honawar,IN,Karnataka
+id_HGT1,INHGT1,Hangarkatta,IN,Karnataka
+id_BTK1,INBTK1,Bhatkal,IN,Karnataka
+id_BKR1,INBKR1,Belekeri,IN,Karnataka
+id_BDR1,INBDR1,Baindur,IN,Karnataka
+id_NML1,INNML1,Mangalore Sea,IN,Karnataka
+id_BGQ6,INBGQ6,Quest SEZ Belgaum,IN,Karnataka
+id_MAQ6,INMAQ6,Mangalore SEZ,IN,Karnataka
+id_UDI6,INUDI6,Synefra SEZ / Udipi,IN,Karnataka
+id_BNC6,INBNC6,KBITS SEZ / Bangalore,IN,Karnataka
+id_HSP6,INHSP6,KIADBP SEZ / Hassan,IN,Karnataka
+id_HSF6,INHSF6,KIADBFP SEZ / Hassan,IN,Karnataka
+id_HST6,INHST6,KIADBT SEZ / Hassan,IN,Karnataka
+id_SBC6,INSBC6,Biocon SEZ / Bangalore,IN,Karnataka
+id_BLK1,INBLK1,Belekeri,IN,Karnataka
+id_COO1,INCOO1,Coondapur (Ganguly),IN,Karnataka
+id_MAL1,INMAL1,Malpe,IN,Karnataka
+id_HAS6,INHAS6,Hassan (EPZ/SEZ),IN,Karnataka
+id_WFD6,INWFD6,Bangalore,IN,Karnataka
+id_TRI1,INTRI1,Tadri,IN,Karnataka
+id_IXE1,INIXE1,Mangalore,IN,Karnataka
+id_TRV4,INTRV4,Trivendrun Air Cargo,IN,Kerala
+id_ANG1,INANG1,Anijengo,IN,Kerala
+id_BDG1,INBDG1,Badagara,IN,Kerala
+id_KAL1,INKAL1,Kallai,IN,Kerala
+id_KSG1,INKSG1,Kasargod,IN,Kerala
+id_KVL1,INKVL1,Kovalam,IN,Kerala
+id_MHE1,INMHE1,Mahe,IN,Kerala
+id_PNN1,INPNN1,Ponnani,IN,Kerala
+id_CCT6,INCCT6,KINFRAFP SEZ / Kozhikkode,IN,Kerala
+id_TVC6,INTVC6,KINFRAA SEZ / Thiruvananthapuram,IN,Kerala
+id_ERV6,INERV6,Vallarpadom SEZ / Ernakulam,IN,Kerala
+id_ERP6,INERP6,Puthuvypeen SEZ / Ernakulam,IN,Kerala
+id_RKG1,INRKG1,Rajakkamangalam,IN,Kerala
+id_MLP1,INMLP1,Mallipuram,IN,Kerala
+id_LPR1,INLPR1,Leapuram,IN,Kerala
+id_KDP1,INKDP1,Kondiapetnam,IN,Kerala
+id_KND1,INKND1,Kankudy,IN,Kerala
+id_CNN1,INCNN1,Cannanore,IN,Kerala
+id_COK1,INCOK1,Cochin Sea,IN,Kerala
+id_ALF1,INALF1,Allepey,IN,Kerala
+id_COK6,INCOK6,Cochin (EPZ/SEZ),IN,Kerala
+id_ARR6,INARR6,Aroor,IN,Kerala
+id_CCJ4,INCCJ4,Karipur(Calicut),IN,Kerala
+id_MCI1,INMCI1,Minicoy Island,IN,Kerala
+id_TEL1,INTEL1,Tellichery,IN,Kerala
+id_VZJ1,INVZJ1,Vazhinjam,IN,Kerala
+id_COK4,INCOK4,Cochin,IN,Kerala
+id_NEE1,INNEE1,Neendakara,IN,Kerala
+id_CCJ1,INCCJ1,C.H. Kozikode,IN,Kerala
+id_AZK1,INAZK1,Azhikkal,IN,Kerala
+id_KYM6,INKYM6,Kottayam (10.11.09),IN,Kerala
+id_TCR6,INTCR6,Thrissur ICD,IN,Kerala
+id_AGI1,INAGI1,Agatti Island,IN,Lakshadweep
+id_KTI1,INKTI1,Kiltan Island,IN,Lakshadweep
+id_ADI1,INADI1,Androth Island,IN,Lakshadweep
+id_BTR1,INBTR1,Bitra Island,IN,Lakshadweep
+id_CTI1,INCTI1,Chettat Island,IN,Lakshadweep
+id_KVT1,INKVT1,Kavaratti Island,IN,Lakshadweep
+id_KDI1,INKDI1,Kadmat lsland,IN,Lakshadweep
+id_AMI1,INAMI1,Amini IsTand,IN,Lakshadweep
+id_MPR6,INMPR6,Malanpur ICD,IN,Madhya Pradesh
+id_KHD6,INKHD6,Kheda ‐Dhar ICD,IN,Madhya Pradesh
+id_DHA6,INDHA6,Indore‐Dhannad,IN,Madhya Pradesh
+id_MDD6,INMDD6,Mandideep,IN,Madhya Pradesh
+id_IDR4,INIDR4,Indore,IN,Madhya Pradesh
+id_GWL6,INGWL6,Malanpur(Gwalior),IN,Madhya Pradesh
+id_IND6,ININD6,Pithampur,IN,Madhya Pradesh
+id_IDR6,INIDR6,Indore (EPZ/SEZ),IN,Madhya Pradesh
+id_RTM6,INRTM6,RATLAM(CONCOR),IN,Madhya Pradesh
+id_INB6,ININB6,MPAKVN SEZ/Indore,IN,Madhya Pradesh
+id_INI6,ININI6,IIPL SEZ / Indore,IN,Madhya Pradesh
+id_INN6,ININN6,Infosys SEZ / Indore,IN,Madhya Pradesh
+id_INT6,ININT6,TCS SEZ / Indore,IN,Madhya Pradesh
+id_ACH1,INACH1,Achra,IN,Maharashtra
+id_BOM4,INBOM4,Bombay Air Cargo,IN,Maharashtra
+id_NSA1,INNSA1,Nhava Sheva Sea,IN,Maharashtra
+id_VYD1,INVYD1,Vijaydurg,IN,Maharashtra
+id_VNG1,INVNG1,Vengurla,IN,Maharashtra
+id_VSV1,INVSV1,Varsava,IN,Maharashtra
+id_VRD1,INVRD1,Varavda,IN,Maharashtra
+id_UTN1,INUTN1,Uttan,IN,Maharashtra
+id_ULW1,INULW1,Ulwa,IN,Maharashtra
+id_TMP1,INTMP1,Trombay,IN,Maharashtra
+id_TNA1,INTNA1,Thana,IN,Maharashtra
+id_THL1,INTHL1,Thal,IN,Maharashtra
+id_TRP1,INTRP1,Tarapur,IN,Maharashtra
+id_DEG1,INDEG1,Deogad,IN,Maharashtra
+id_DLB6,INDLB6,Daulatabad ICD,IN,Maharashtra
+id_DTW1,INDTW1,Dantiwara,IN,Maharashtra
+id_DHN1,INDHN1,Dahanu,IN,Maharashtra
+id_BRY1,INBRY1,Borya,IN,Maharashtra
+id_BRM1,INBRM1,Borlai ‐ Mandla,IN,Maharashtra
+id_BSL6,INBSL6,Bhusaval ICD,IN,Maharashtra
+id_BWN1,INBWN1,Bhiwandi,IN,Maharashtra
+id_BLP1,INBLP1,Belapur,IN,Maharashtra
+id_KRP1,INKRP1,Kiranpani,IN,Maharashtra
+id_KIW1,INKIW1,Kelwa,IN,Maharashtra
+id_KSH1,INKSH1,Kelshi,IN,Maharashtra
+id_KRN1,INKRN1,Karanja,IN,Maharashtra
+id_KLY1,INKLY1,Kalyan,IN,Maharashtra
+id_JTP1,INJTP1,Jaitapur,IN,Maharashtra
+id_JGD1,INJGD1,Jaigad,IN,Maharashtra
+id_HRN1,INHRN1,Harnai,IN,Maharashtra
+id_DIG1,INDIG1,Dighi Port,IN,Maharashtra
+id_JNR4,INJNR4,Nashik‐Janori ACC,IN,Maharashtra
+id_JNR6,INJNR6,Nashik‐Janori ICD,IN,Maharashtra
+id_TLG6,INTLG6,Pune‐Talegoan ICD,IN,Maharashtra
+id_MWA6,INMWA6,ICD Maliwada,IN,Maharashtra
+id_PVL6,INPVL6,Panvel,IN,Maharashtra
+id_SWD1,INSWD1,Shriwardhan,IN,Maharashtra
+id_STP1,INSTP1,Satpati,IN,Maharashtra
+id_RJR1,INRJR1,Rajpuri,IN,Maharashtra
+id_PRG1,INPRG1,Purangad,IN,Maharashtra
+id_PSH1,INPSH1,Palshet,IN,Maharashtra
+id_NVT1,INNVT1,Nivti,IN,Maharashtra
+id_NWP1,INNWP1,Newapur,IN,Maharashtra
+id_NDG1,INNDG1,Nandgaon,IN,Maharashtra
+id_MRD1,INMRD1,Murad,IN,Maharashtra
+id_GRD6,INGRD6,Mumbai DP‐II,IN,Maharashtra
+id_GRR6,INGRR6,Mumbai ‐DP‐I,IN,Maharashtra
+id_MRA1,INMRA1,Mora,IN,Maharashtra
+id_MRJ6,INMRJ6,Miraj,IN,Maharashtra
+id_MNR1,INMNR1,Manori,IN,Maharashtra
+id_MNW1,INMNW1,Mandwa,IN,Maharashtra
+id_MLW1,INMLW1,Malwan,IN,Maharashtra
+id_KMB1,INKMB1,Kumbharu,IN,Maharashtra
+id_BSN1,INBSN1,Bassein,IN,Maharashtra
+id_BKT1,INBKT1,Bankot,IN,Maharashtra
+id_BND1,INBND1,Bandra,IN,Maharashtra
+id_ANL1,INANL1,Arnala,IN,Maharashtra
+id_ABG1,INABG1,Alibag,IN,Maharashtra
+id_BOM1,INBOM1,Bombay Sea,IN,Maharashtra
+id_DHP1,INDHP1,Dabhol Port,IN,Maharashtra
+id_RED1,INRED1,Redi,IN,Maharashtra
+id_KHP6,INKHP6,Khopta (EPZ/SEZ),IN,Maharashtra
+id_BOM6,INBOM6,Mumbai (EPZ/SEZ),IN,Maharashtra
+id_CCH6,INCCH6,Chinchwad ( ICD),IN,Maharashtra
+id_WAL6,INWAL6,Waluj(Aurangabad),IN,Maharashtra
+id_PMP6,INPMP6,Pimpri,IN,Maharashtra
+id_NSK6,INNSK6,Nasik,IN,Maharashtra
+id_NGP6,INNGP6,Nagpur,IN,Maharashtra
+id_MUL6,INMUL6,Mulund,IN,Maharashtra
+id_JAL6,INJAL6,Jalgaon,IN,Maharashtra
+id_DIG6,INDIG6,Dighi(Pune),IN,Maharashtra
+id_NAG4,INNAG4,Nagpur,IN,Maharashtra
+id_PNQ4,INPNQ4,Pune,IN,Maharashtra
+id_DHU1,INDHU1,Dahanu,IN,Maharashtra
+id_RVD1,INRVD1,Revdanda,IN,Maharashtra
+id_RTC1,INRTC1,Ratnagiri,IN,Maharashtra
+id_RNR1,INRNR1,Ranpar,IN,Maharashtra
+id_PNV6,INPNV6,ARSHIYA‐SEZ/PANVEL,IN,Maharashtra
+id_DMT1,INDMT1,Dharamtar,IN,Maharashtra
+id_BAP6,INBAP6,MultiService‐SEZ/Dronagiri(Distt.Navi Mumbai),IN,Maharashtra
+id_KLM6,INKLM6,MultiService‐SEZ/Kalamboli(Distt.Navi Mumbai),IN,Maharashtra
+id_BAU6,INBAU6,IT/ITES‐A‐SEZ/Ulwe(Distt.Raigad),IN,Maharashtra
+id_BAI6,INBAI6,IT/ITES‐B‐SEZ/Ulwe(Distt.Raigad),IN,Maharashtra
+id_BAG6,INBAG6,Gem & Jwewllwey‐SEZ/Ulwe(Distt.Raigad),IN,Maharashtra
+id_BAM6,INBAM6,Multi Service‐SEZ/Ulwe(Distt. Raigad),IN,Maharashtra
+id_BAT6,INBAT6,IT/ITES‐C SEZ/Ulwe,IN,Maharashtra
+id_NPNQ6,AINPNQ6,"Hadapsar, SEZ, Pune",IN,Maharashtra
+id_MUC6,INMUC6,M/s SUNSTREAM CITY PVT.LTD.(Formerly known as Zeus PVT. LTD,IN,Maharashtra
+id_PSI6,INPSI6,M/s SYNTEL INTERNATIONAL PVT. LTD,IN,Maharashtra
+id_PMT6,INPMT6,M/s MAGARPATTA TOWNSHIP,IN,Maharashtra
+id_PIT6,INPIT6,M/s INFOSYS TECHNOLOGIES LTD.,IN,Maharashtra
+id_PEK6,INPEK6,M/s EON KHARADI INFRASTRUCTURE,IN,Maharashtra
+id_KRM6,INKRM6,M/s MAHARASHTRA AIRPORT,IN,Maharashtra
+id_AIR6,INAIR6,M/s Serene Properties Pvt. Ltd.,IN,Maharashtra
+id_VKH6,INVKH6,HNB SEZ/ MUMBAI,IN,Maharashtra
+id_CHJ6,INCHJ6,WWIL ICD/ WARDHA,IN,Maharashtra
+id_DPC4,INDPC4,"PCCCC, Bandra‐ Kurla Complex,Mumbai",IN,Maharashtra
+id_BNG6,INBNG6,MAHAGAON ICD/THAN,IN,Maharashtra
+id_AIG6,INAIG6,GEPL SEZ/Thane,IN,Maharashtra
+id_AWM6,INAWM6,MIDC SEZ/AURANGABAD (Maharashtra Industrial Development Corporation),IN,Maharashtra
+id_DID6,INDID6,MIDC SEZ/NANDED (Maharashtra Industrial Development Corporation),IN,Maharashtra
+id_PUM6,INPUM6,MIDC SEZ/Pune (Maharashtra Industrial Development Corporation),IN,Maharashtra
+id_KLE6,INKLE6,MIDC SEZ/RAIGAD (Navi Mumbai SEZ Pvt. Ltd.),IN,Maharashtra
+id_STU6,INSTU6,MIDC SEZ/KESURDE (Maharashtra Industrial Development Corporation),IN,Maharashtra
+id_NKI6,INNKI6,IIIL SEZ / SINNAR (Indiabulls Industrial Infrastructure),IN,Maharashtra
+id_STM6,INSTM6,MIDC PHALTAN SEZ / SATARA,IN,Maharashtra
+id_PNU6,INPNU6,MSFPL SEZ / PUNE (Manjri Stud Farm Pvt. Ltd.),IN,Maharashtra
+id_AWW6,INAWW6,WIDL SEZ / AURANGABAD (Wockhardt Corporation),IN,Maharashtra
+id_WRR6,INWRR6,WPCL/CHANDRAPUR,IN,Maharashtra
+id_CCW6,INCCW6,WIPRO/PUNE,IN,Maharashtra
+id_TGN6,INTGN6,KEIPL/PUNE,IN,Maharashtra
+id_PUN6,INPUN6,KBTV/PUNE,IN,Maharashtra
+id_PNE6,INPNE6,NTPL/PUNE,IN,Maharashtra
+id_CCQ6,INCCQ6,QBP/PUNE,IN,Maharashtra
+id_MREB,INMREB,Moreh,IN,Manipur
+id_IMF4,INIMF4,Imphal,IN,Manipur
+id_BGMB,INBGMB,Baghmara,IN,Meghalaya
+id_BRAB,INBRAB,Barsora,IN,Meghalaya
+id_SBZB,INSBZB,Shella Bazar,IN,Meghalaya
+id_RGUB,INRGUB,Ryngku,IN,Meghalaya
+id_MGHB,INMGHB,Mahendraganj,IN,Meghalaya
+id_GHPB,INGHPB,Ghasuapara,IN,Meghalaya
+id_DWKB,INDWKB,Dawki,IN,Meghalaya
+id_DLUB,INDLUB,Dalu,IN,Meghalaya
+id_BOLB,INBOLB,Bolanganj,IN,Meghalaya
+id_BLTB,INBLTB,Balet,IN,Meghalaya
+id_CHPB,INCHPB,Champai,IN,Mizoram
+id_DMRB,INDMRB,Demagir,IN,Nagaland
+id_BBP1,INBBP1,Bahabal Pur,IN,Orissa
+id_PRT1,INPRT1,Paradeep,IN,Orissa
+id_BBI4,INBBI4,Bhubaneswar,IN,Orissa
+id_GPR1,INGPR1,Gopalpur,IN,Orissa
+id_SKD6,INSKD6,Kalinganagar,IN,Orissa
+id_BBS6,INBBS6,OIIDC SEZ/Bhubneshwar,IN,Orissa
+id_CAS6,INCAS6,SAPL SEZ / Ganjam,IN,Orissa
+id_KRK1,INKRK1,Karaikal,IN,Pondicherry
+id_PNY1,INPNY1,Pondicherry,IN,Pondicherry
+id_PNY6,INPNY6,Pondicherry ICD,IN,Pondicherry
+id_LUD6,INLUD6,Ludhiana,IN,Punjab
+id_ASR2,INASR2,Amritsar Railway Station,IN,Punjab
+id_ATT2,INATT2,Attari Railway Station,IN,Punjab
+id_ATRB,INATRB,Attari Road,IN,Punjab
+id_DPR6,INDPR6,DAPPER,IN,Punjab
+id_ATQ4,INATQ4,Rajasansi(Amritsar),IN,Punjab
+id_JUC6,INJUC6,Jalandhar,IN,Punjab
+id_LDH6,INLDH6,Ludhiana,IN,Punjab
+id_ASR6,INASR6,Amritsar,IN,Punjab
+id_BTI6,INBTI6,Bhatinda,IN,Punjab
+id_JAI6,INJAI6,Jaipur ICD,IN,Rajasthan
+id_THA6,INTHA6,Thar Dry Port ‐ Jodhpur ICD,IN,Rajasthan
+id_MNB2,INMNB2,Munabao Railway Station,IN,Rajasthan
+id_KKU6,INKKU6,Kanakpura ‐ Jaipur ICD,IN,Rajasthan
+id_BRN6,INBRN6,Jodhpur‐ Boranda (EPZ/SEZ),IN,Rajasthan
+id_JAI5,INJAI5,Jaipur,IN,Rajasthan
+id_JSZ6,INJSZ6,Jaipur – Sitapur (EPZ/SEZ),IN,Rajasthan
+id_BGK6,INBGK6,Bhagat ki Kothi ‐ Jodhpur ICD,IN,Rajasthan
+id_BMR2,INBMR2,Barmer Railway Station,IN,Rajasthan
+id_JAI4,INJAI4,Jaipur,IN,Rajasthan
+id_BHL6,INBHL6,Bhilwara,IN,Rajasthan
+id_JUX6,INJUX6,Jodhpur,IN,Rajasthan
+id_UDZ6,INUDZ6,Udaipur,IN,Rajasthan
+id_KTT6,INKTT6,Kota,IN,Rajasthan
+id_BWD6,INBWD6,Bhiwadi,IN,Rajasthan
+id_CHMB,INCHMB,Chamurchi,IN,Sikkim
+id_AJJ6,INAJJ6,Arakkonam ‐ Melpakkam ‐ Chennai,IN,Tamil Nadu
+id_IXM6,INIXM6,Madurai ICD,IN,Tamil Nadu
+id_CHE6,INCHE6,Tiruppur ‐ Chettipalayam CFS,IN,Tamil Nadu
+id_KAR6,INKAR6,KARUR,IN,Tamil Nadu
+id_IGU6,INIGU6,Coimbatore ‐ Irugur ICD,IN,Tamil Nadu
+id_MAA6,INMAA6,Chennai (EPZ/SEZ),IN,Tamil Nadu
+id_MAA4,INMAA4,Chennai Air Cargo,IN,Tamil Nadu
+id_TUT1,INTUT1,Tuticorin Sea,IN,Tamil Nadu
+id_TUT6,INTUT6,Tuticorin ICD,IN,Tamil Nadu
+id_MAA1,INMAA1,Chennai Sea,IN,Tamil Nadu
+id_DSK1,INDSK1,Dhanu ‐ Shkodi,IN,Tamil Nadu
+id_KSP1,INKSP1,Kulasekarapatnam,IN,Tamil Nadu
+id_PTN1,INPTN1,Portonovo,IN,Tamil Nadu
+id_TPH1,INTPH1,Thopputhurai,IN,Tamil Nadu
+id_TDE6,INTDE6,Tudiyalur ‐ Coimbatore ICD,IN,Tamil Nadu
+id_TND1,INTND1,Tondi,IN,Tamil Nadu
+id_THO6,INTHO6,Tiruppur ‐ Thottiplayam ICD,IN,Tamil Nadu
+id_RWR1,INRWR1,Rameshwaram,IN,Tamil Nadu
+id_PMB1,INPMB1,Pamban,IN,Tamil Nadu
+id_KKR1,INKKR1,Kilakari,IN,Tamil Nadu
+id_CHL1,INCHL1,Colachel,IN,Tamil Nadu
+id_TRL6,INTRL6,Tiruvallur ICD,IN,Tamil Nadu
+id_ILP6,INILP6,Irungattukottai‐ILP ICD,IN,Tamil Nadu
+id_CDL1,INCDL1,Cuddalore,IN,Tamil Nadu
+id_NPT1,INNPT1,Nagapattinam,IN,Tamil Nadu
+id_TYR1,INTYR1,Tirukkadayyur,IN,Tamil Nadu
+id_VKM1,INVKM1,Valinokkam,IN,Tamil Nadu
+id_SLL6,INSLL6,Singnallur,IN,Tamil Nadu
+id_TUP6,INTUP6,Tirupur,IN,Tamil Nadu
+id_SXT6,INSXT6,Salem,IN,Tamil Nadu
+id_CBE6,INCBE6,Coimbatore,IN,Tamil Nadu
+id_TRZ4,INTRZ4,Tiruchirapalli,IN,Tamil Nadu
+id_CJB4,INCJB4,Coimbatore,IN,Tamil Nadu
+id_VEP1,INVEP1,Veppalodai,IN,Tamil Nadu
+id_RAM1,INRAM1,Rameshwaram,IN,Tamil Nadu
+id_MDP1,INMDP1,Mandapam,IN,Tamil Nadu
+id_CGI6,INCGI6,MWCDL‐IT SEZ/Chengalpattu,IN,Tamil Nadu
+id_CGA6,INCGA6,MWCDL‐Apparel‐sez/Chengalpattu,IN,Tamil Nadu
+id_CGL6,INCGL6,MWCDL‐Auto ANCILLARIES‐SEZ/Chengalpattu,IN,Tamil Nadu
+id_CJN6,INCJN6,NIPL‐SEZ/Sriperumbudur,IN,Tamil Nadu
+id_CJS6,INCJS6,SIPCOT Hi‐Tech‐SEZ/Sriperumbudur,IN,Tamil Nadu
+id_CJO6,INCJO6,SIPCOT Hi‐Tech‐SEZ‐Oragadam/Sriperumbudur,IN,Tamil Nadu
+id_CJF6,INCJF6,FTIL‐SEZ/Sriperumbudur,IN,Tamil Nadu
+id_CBS6,INCBS6,SE&C Ltd‐SEZ/Coimbatore,IN,Tamil Nadu
+id_VTC6,INVTC6,CHEYYAR‐SEZ/Vellore,IN,Tamil Nadu
+id_TEN6,INTEN6,SIPCOT‐Gangaikondan‐SEZ/Tirunelveli,IN,Tamil Nadu
+id_TNC6,INTNC6,CCCL Infrastructure Ltd.,IN,Tamil Nadu
+id_NNN6,INNNN6,AMRL International Tech City Ltd.,IN,Tamil Nadu
+id_TBM6,INTBM6,PHPL‐SEZ/Kancheepuram,IN,Tamil Nadu
+id_UKL6,INUKL6,ETLISL‐SEZ/Erode,IN,Tamil Nadu
+id_PYS6,INPYS6,SIPCOT‐SEZ/Erode,IN,Tamil Nadu
+id_GDP6,INGDP6,FLLPL‐SEZ/Thirruvallur,IN,Tamil Nadu
+id_ENR1,INENR1,Ennore,IN,Tamil Nadu
+id_TVT6,INTVT6,ICD/Tondiarpet Chennai,IN,Tamil Nadu
+id_KAT1,INKAT1,KATTUPALLI,IN,Tamil Nadu
+id_TBT6,INTBT6,TCSL SEZ / SIRUSERI,IN,Tamil Nadu
+id_CSP6,INCSP6,SIPL SEZ / KANCHEEPURAM,IN,Tamil Nadu
+id_CJI6,INCJI6,IG3I SEZ / KANCHEEPURAM,IN,Tamil Nadu
+id_CJD6,INCJD6,DLFC SEZ / KANCHEEPURAM,IN,Tamil Nadu
+id_CEC6,INCEC6,ECTN SEZ / COIMBATORE,IN,Tamil Nadu
+id_CJE6,INCJE6,ECTN SEZ / KANCHEEPURAM,IN,Tamil Nadu
+id_CJA6,INCJA6,AEIP SEZ / KANCHEEPURAM,IN,Tamil Nadu
+id_CSV6,INCSV6,SVPL SEZ / COIMBATORE,IN,Tamil Nadu
+id_CGE6,INCGE6,ETA SEZ / KANCHEEPURAM,IN,Tamil Nadu
+id_CNC6,INCNC6,NCTL SEZ / KANCHEEPURAM,IN,Tamil Nadu
+id_TBC6,INTBC6,CTSI SEZ / SIRUSERI,IN,Tamil Nadu
+id_MAS6,INMAS6,TIPL SEZ / CHENNAI,IN,Tamil Nadu
+id_TLT6,INTLT6,LTSL SEZ / TIRUVALLUR,IN,Tamil Nadu
+id_TBH6,INTBH6,HIRL SEZ / KANCHEEPURAM,IN,Tamil Nadu
+id_CBT6,INCBT6,TDPL SEZ / COIMBATORE,IN,Tamil Nadu
+id_VLR6,INVLR6,SIPC SEZ / VELLORE,IN,Tamil Nadu
+id_CJV6,INCJV6,VTPL SEZ / KANCHEEPURAM,IN,Tamil Nadu
+id_MEC6,INMEC6,ECTN SEZ / MADURAI – I,IN,Tamil Nadu
+id_MDC6,INMDC6,ECTN SEZ / MADURAI – II,IN,Tamil Nadu
+id_SXE6,INSXE6,ECTN SEZ / SALEM,IN,Tamil Nadu
+id_MDR6,INMDR6,RTPL SEZ / MADURAI,IN,Tamil Nadu
+id_CFI6,INCFI6,FIPL SEZ / KANCHEEPURAM,IN,Tamil Nadu
+id_HSI6,INHSI6,SIPC SEZ / KRISHNAGIRI,IN,Tamil Nadu
+id_MAE6,INMAE6,ECTNL SEZ / Gangaikondan,IN,Tamil Nadu
+id_TBS6,INTBS6,HTL SEZ / Sireseri,IN,Tamil Nadu
+id_AGTB,INAGTB,Agartala,IN,Tripura
+id_MHGB,INMHGB,Mahurighat,IN,Tripura
+id_SABB,INSABB,Sabroom,IN,Tripura
+id_SMPB,INSMPB,Srimantapur,IN,Tripura
+id_RGBB,INRGBB,Old Raghna Bazar,IN,Tripura
+id_KWGB,INKWGB,Khowaighat,IN,Tripura
+id_DHLB,INDHLB,Dhalaighat,IN,Tripura
+id_KELB,INKELB,Kel Sahar Subdivision,IN,Tripura
+id_BSAB,INBSAB,Banbasa,IN,Uttar Pradesh
+id_GAIB,INGAIB,Gauriphanta,IN,Uttar Pradesh
+id_RDT6,INRDT6,Kota‐Ravtha Road,IN,Uttar Pradesh
+id_GJIB,INGJIB,Gunji,IN,Uttar Pradesh
+id_JHOB,INJHOB,Jhulaghat (Pithoragarh),IN,Uttar Pradesh
+id_KTGB,INKTGB,Katarniyaghat,IN,Uttar Pradesh
+id_NGRB,INNGRB,Nepalgunj Road,IN,Uttar Pradesh
+id_MBS6,INMBS6,Madhosingh ICD,IN,Uttar Pradesh
+id_LON6,INLON6,ICD Loni,IN,Uttar Pradesh
+id_CPL6,INCPL6,Dadri‐CGML,IN,Uttar Pradesh
+id_BDH6,INBDH6,ICD Badohi,IN,Uttar Pradesh
+id_TTP6,INTTP6,Dadri TTPL,IN,Uttar Pradesh
+id_APL6,INAPL6,Dadri‐ACPL CFS,IN,Uttar Pradesh
+id_TKNB,INTKNB,Tikonia,IN,Uttar Pradesh
+id_SNLB,INSNLB,Sonauli,IN,Uttar Pradesh
+id_KWAB,INKWAB,Khunwa,IN,Uttar Pradesh
+id_KNU6,INKNU6,Kanpur ‐ JRY (ICD ),IN,Uttar Pradesh
+id_JWAB,INJWAB,Jarwa,IN,Uttar Pradesh
+id_SJR6,INSJR6,Greater Noida‐Surajpur,IN,Uttar Pradesh
+id_DLAB,INDLAB,Dharchula,IN,Uttar Pradesh
+id_BNYB,INBNYB,Berhni,IN,Uttar Pradesh
+id_STT6,INSTT6,Dadri ‐ STTPL (CFS),IN,Uttar Pradesh
+id_AGR4,INAGR4,Agra,IN,Uttar Pradesh
+id_DER6,INDER6,Noida‐Dadri (ICD),IN,Uttar Pradesh
+id_MBC6,INMBC6,Moradabad (EPZ/SEZ),IN,Uttar Pradesh
+id_NDA6,INNDA6,Noida (EPZ/SEZ),IN,Uttar Pradesh
+id_SRE6,INSRE6,Saharanpur,IN,Uttar Pradesh
+id_MTC6,INMTC6,Meerut,IN,Uttar Pradesh
+id_MBD6,INMBD6,Pakwara (Moradabad),IN,Uttar Pradesh
+id_CPC6,INCPC6,Kanpur,IN,Uttar Pradesh
+id_BSB6,INBSB6,Varanasi,IN,Uttar Pradesh
+id_BLJ6,INBLJ6,Agra,IN,Uttar Pradesh
+id_VNS4,INVNS4,Varanasi,IN,Uttar Pradesh
+id_PNK6,INPNK6,KLPPL‐ICD/PANKI,IN,Uttar Pradesh
+id_BEK4,INBEK4,Bareilly,IN,Uttar Pradesh
+id_LKO4,INLKO4,Lucknow,IN,Uttar Pradesh
+id_KNU4,INKNU4,Kanpur,IN,Uttar Pradesh
+id_BUL6,INBUL6,ANFTWZ LTD ‐ FTWZ/ BULANDSHAHR,IN,Uttar Pradesh
+id_ALP6,INALP6,"Dadri, Greater Noida",IN,Uttar Pradesh
+id_NOI6,INNOI6,LONI-1 ICD Ghaziabad,IN,Uttar Pradesh
+id_CCU4,INCCU4,Kolkata Air Cargo,IN,West Bengal
+id_GTZB,INGTZB,Getandah,IN,West Bengal
+id_HLIB,INHLIB,Hilli,IN,West Bengal
+id_JIGB,INJIGB,Jaigaon,IN,West Bengal
+id_SNG2,INSNG2,Singabad Railway Station,IN,West Bengal
+id_RNG2,INRNG2,Ranaghat Railway Station,IN,West Bengal
+id_RDP2,INRDP2,Radhikapur Railway Station,IN,West Bengal
+id_PTPB,INPTPB,Petrapole Road,IN,West Bengal
+id_PNTB,INPNTB,Pan itanki (Naxabari),IN,West Bengal
+id_NKNB,INNKNB,Namkhana,IN,West Bengal
+id_LGLB,INLGLB,Lalgola Town,IN,West Bengal
+id_MHDB,INMHDB,Kotawalighat (Mohedipur),IN,West Bengal
+id_JPGB,INJPGB,Jalpaiguri,IN,West Bengal
+id_DUR6,INDUR6,ICD Durgapur,IN,West Bengal
+id_TNGB,INTNGB,Tungi,IN,West Bengal
+id_TTSB,INTTSB,T.T. Shed (Kidcerpore),IN,West Bengal
+id_SKPB,INSKPB,Sukhia Pokhari,IN,West Bengal
+id_STIB,INSTIB,Sitai,IN,West Bengal
+id_HGLB,INHGLB,Hingalganj,IN,West Bengal
+id_GJXB,INGJXB,Ghojadanga,IN,West Bengal
+id_GED2,INGED2,Gede Railway Station,IN,West Bengal
+id_PTP8,INPTP8,Patrapole,IN,West Bengal
+id_CBDB,INCBDB,Changrabandh,IN,West Bengal
+id_FBRB,INFBRB,Fulbari,IN,West Bengal
+id_CCU1,INCCU1,Kolkata Sea,IN,West Bengal
+id_HAL1,INHAL1,Haldia,IN,West Bengal
+id_SLT6,INSLT6,Salt Lake (EPZ/SEZ),IN,West Bengal
+id_FLT6,INFLT6,Falta (EPZ/SEZ),IN,West Bengal
+id_IXB4,INIXB4,Bagdogra,IN,West Bengal
+id_BNT6,INBNT6,TCS SEZ/Kolkata,IN,West Bengal
+id_BXR6,INBXR6,DLF SEZ/Kolkata,IN,West Bengal
+id_BNX6,INBNX6,UNITECH SEZ/Kolkata,IN,West Bengal
+id_BNK6,INBNK6,Kolkata IT Park/Bantala,IN,West Bengal
+id_BNW6,INBNW6,Wipro SEZ/Kolkata,IN,West Bengal

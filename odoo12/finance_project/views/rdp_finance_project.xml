@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="finance_project_tree" model="ir.ui.view">
+            <field name="name">Finance Project</field>
+            <field name="model">finance.project</field>
+            <field name="arch" type="xml">
+               <tree string="Finance Project">
+                   <field name='reference'/>
+                   <field name='name'/>
+                   <field name='description'/>
+                   <field name='requirement_type'/>
+                   <field name='assigned_to'/>
+                   <field name='start_date'/>
+                   <field name='deadline_date'/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="finance_project_view" model="ir.ui.view">
+            <field name="name">finance.project.form</field>
+            <field name="model">finance.project</field>
+            <field name="arch" type="xml">
+                <form string="finance project">
+                    <header>
+          <button name="ff_action_wip" type="object" string="To WIP" class="btn-primary" attrs="{'invisible': [('state', 'in', ['wip','in_progress','hold','close','cancel'])]}"/>
+         <button name="ff_action_in_review" type="object" string="To Review" class="btn-primary" attrs="{'invisible': [('state', 'in', ['draft','in_progress','hold','close','cancel'])]}"/>
+         <button name="ff_action_hold" type="object" string="To Hold" class="btn-primary" attrs="{'invisible': [('state', 'in', ['wip','hold','draft','close','cancel'])]}"/>
+         <button name="ff_action_close" type="object" string="To Closed" class="btn-primary" attrs="{'invisible': [('state', 'in', ['wip','close','draft','hold','cancel'])]}"/>
+         <button name="ff_action_set_to_draft" type="object" string="Set to Draft"/>
+         <button name="ff_action_cancel" type="object" string="Cancel"/>
+         <field name="state" widget="statusbar"/>
+
+
+                    </header>
+                    <sheet>
+                        <div>
+                           <h1> <field name="reference" readonly="1"/></h1>
+                        </div>
+                         <group>
+                              <field name="name"/>
+    <field name="description"/>
+    <field name="stakeholders" widget="many2many_tags"/>
+                        </group>
+
+                        <group>
+                            <group>
+                                 <field name="requirement_type"/>
+    <field name="assigned_by"/>
+    <field name="assigned_to"/>
+
+
+                            </group>
+                            <group>
+    <field name="start_date"/>
+    <field name="deadline_date"/>
+    <field widget="priority" name="x_studio_priority" string="Priority"/>
+
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Detailed Info">
+                                <group><field string="detail_desk"/></group>
+                            </page>
+                            <page string="Revised Reason">
+                                <group>
+                                    <group><field name="revised_date1"/></group>
+                                     <group><field name="reason1"/></group>
+                                </group>
+                                 <hr/>
+                                <group>
+                                    <group><field name="revised_date2"/></group>
+                                     <group><field name="reason2"/></group>
+                                </group>
+                                 <hr/>
+
+                                <group>
+                                    <group><field name="revised_date3"/></group>
+                                     <group><field name="reason3"/></group>
+                                </group>
+                                 <hr/>
+
+                                <group>
+                                    <group><field name="revised_date4"/></group>
+                                     <group><field name="reason4"/></group>
+                                </group>
+                                 <hr/>
+
+                                <group>
+                                    <group><field name="revised_date5"/></group>
+                                     <group><field name="reason5"/></group>
+                                </group>
+                                 <hr/>
+
+
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids" widget="mail_activity" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+<!--        <record id="finance_project_form" model="ir.actions.act_window">-->
+<!--            <field name="name">Finance Project</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">finance.project</field>-->
+<!--            <field name="view_type">form</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+<!--        <menuitem id="menu_finance_project" name='Finance Project' action="finance_project_form" />-->
+    </data>
+</odoo>

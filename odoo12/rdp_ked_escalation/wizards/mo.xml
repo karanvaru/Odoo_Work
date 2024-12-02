@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <record id="view_manufacturing_order_wizard" model="ir.ui.view">
+            <field name="name">manufacturing.order.wizard.form</field>
+            <field name="model">manufacturing.order.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="product_id" required="1"/>
+                            <field name="quantity" required="1"/>
+                            <!-- Add more fields as needed -->
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Create Manufacturing Order" type="object" name="action_create_manufacturing_order" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

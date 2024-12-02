@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_stock_move_line_form_extended" model="ir.ui.view">
+        <field name="name">stock.move.extended</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_form"/>
+        <field name="arch" type="xml">
+            <field name="result_package_id" position="after">
+                <field name="company"/>
+            </field>
+        </field>
+    </record>
+</odoo>

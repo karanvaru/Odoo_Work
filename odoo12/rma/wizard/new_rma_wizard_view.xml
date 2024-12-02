@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+	<data>
+		<record id="rma_wizard_id" model="ir.ui.view">
+			<field name="name">rma.wizard.form</field>
+			<field name="model">rma.wizard</field>
+			<field name="arch" type="xml">
+				<form string="" version="7.0">
+					<group col="4">
+						<field name="partner_id" context="{'search_default_customer':1, 'show_address': 1}"/>
+						<field name="wk_order_id"/>
+						<field name="name"/>
+						<field name="qty_return"/>
+						<field name="return_request_type" required="1"/>
+						<field name="reason_id" required="1"/>
+					</group>
+					<group>
+						<field name="problem" nolabel="1" placeholder="Specify the problem"/>
+					</group>
+				<footer>
+					<button name="create_and_view_rma_button" string="Create and view RMA" type="object" class="oe_highlight"/>
+					<button name="create_rma_button" string="Create RMA" type="object" class="oe_highlight"/>
+					<button string="Cancel" class="oe_link" special="cancel" />
+				</footer>
+			</form>
+		</field>
+		</record>
+
+         <record id="action_rma_wizard_id" model="ir.actions.act_window">
+            <field name="name">Return Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rma.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="rma_wizard_id"/>
+            <field name="target">new</field>
+        </record>
+        <!-- #################################   message wizard    ######################################## -->
+
+        <record id="rma_created_sucessfully_message_id" model="ir.ui.view">
+			<field name="name">rma.message.successful.form</field>
+			<field name="model">rma.message.successful</field>
+			<field name="arch" type="xml">
+				<form string="Message" version="7.0">
+					<group>
+					<font color="blue" size="6">
+					<center><field name="text" readonly="1" nolabel="1"/></center>
+					</font>
+					</group>
+					<footer>
+						<button string="Cancel" class="oe_highlight" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		<record id="actionstock_notify_mail_send" model="ir.actions.act_window">
+			<field name="name">RMA Created Message</field>
+			<field name="res_model">rma.message.successful</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="rma_created_sucessfully_message_id"/>
+			<field name="target">new</field>
+		</record>
+    </data>
+</odoo>

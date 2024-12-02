@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="employee_checklist_action" model="ir.ui.view">
+            <field name="name">Employee check list</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='address_id']" position="after">
+                    <field name="color"/>
+                </xpath>
+                <notebook position="inside">
+                    <page string="Employee Check List" name="employee">
+                        <group>
+                            <group>
+                                <field name="shirt_size"/>
+                                <field name="waist_size"/>
+                                <field name="t_shirt_size"/>
+                            </group>
+                        </group>
+                    </page>
+
+                </notebook>
+
+            </field>
+        </record>
+    </data>
+</odoo>
+

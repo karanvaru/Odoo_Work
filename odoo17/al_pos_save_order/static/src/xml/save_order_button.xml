@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="point_of_sale.SaveOrderButton">
+        <button class="control-button btn btn-light rounded-0 fw-bolder save-order-button"
+                t-on-click="() => this.onClick()">
+            <i class="fa fa-floppy-o" role="img" aria-label="Custom Alert" title="Custom Alert"/>
+            <span> </span>
+            <span>Save Order</span>
+        </button>
+    </t>
+</templates>
+

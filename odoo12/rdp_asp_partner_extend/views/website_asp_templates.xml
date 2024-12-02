@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <template id="custom_assets_frontend" inherit_id="web_editor.assets_frontend" name="Portal Assets" priority="15">
+        <xpath expr="//script[last()]" position="after">
+                <script type="text/javascript" src="/rdp_asp_partner_extend/static/src/js/select2.full.min.js"/>
+            <script type="text/javascript" src="/rdp_asp_partner_extend/static/src/js/portal.js"></script>
+        </xpath>
+    </template>
+     <record id="menu_asp_form" model="website.menu">
+        <field name="name">ASP Registration</field>
+        <field name="url">/aspr</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">55</field>
+    </record>
+
+
+    <template id="aspr" name="ASP Registration">
+      <t name="ASP Registration" t-name="rdp_asp_partner_extend.aspr">
+      <t name="ASP Registration" t-name="rdp_asp_partner_extend.aspr">
+        <div style="background-color:#f6f6f6">
+            <t name="ASP Registration" t-name="rdp_asp_partner_extend.aspr">
+        <div style="background-color:#f6f6f6">
+            <t t-name="website.asp-partner-registration-form">
+  <div style="background-color:#f6f6f6">
+    <t t-call="website.layout">
+      <div id="wrap" class="oe_structure oe_empty">
+       
+      </div>
+      <div class="gem-form-layout">
+        <section class="gem-header-part">
+          <div class="container">
+            <!--<div class="row">-->
+            <!--  <div class="col-6 d-flex flex-row justify-content-start">-->
+            <!--    <img src="/web/image/581162/Make-in-India-Logo-PNG-HD.png" class="gem-logo-image w-50" data-original-title="" title="" aria-describedby="tooltip734741"/>-->
+            <!--  </div>-->
+            <!--  <div class="col-6 d-flex flex-row justify-content-end">-->
+            <!--    <img src="/web/image/581164/GeM-logo.png" class="gem-logo-image w-50" data-original-title="" title="" aria-describedby="tooltip458032"/>-->
+            <!--  </div>-->
+            <!--</div>-->
+            <div class="row">
+              <div class="pop-heading pt24 pb16" style="width:90%; margin:3px auto;">
+                <h1 style="font-weight:bold !important; line-spacing:-1px !important;">Authorized Service Partner</h1>
+                <p class="sub-description">Registration Form(1.0)
+                
+                
+                <!--<span class="mytooltip"><span class="tooltip-item"><i class="fa fa-info-circle m-2"/></span>-->
+                <!--<span class="tooltip-content clearfix">-->
+                <!--<img src="https://rdp.in/web/image/579290/gem-popup-info.jpg" class="tool-image" style=" background-color: #373737; padding: 30px;  min-width: 493px;  margin-top: 30px;  border-radius: 20px;"/></span></span>-->
+                 </p>
+              </div>
+            </div>
+            <div style="color:red">
+              <p>Note: Please fill up all the details &amp;amp; attachments accurately for faster processing, the approval team may deny the approval and second time it'll not allow you to fill the form with same GST number. </p>
+            </div>
+          </div>
+        </section>
+        <section class="gem-form-part">
+          <div class="container">
+            <form action="/create/aspregistration" method="post" class="s_website_form container-fluid mt32" enctype="multipart/form-data" data-model_name="asp.partner" >
+              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+          
+             <!-- ############################################## Company Details ###################################################################### -->
+
+              <div id="myCollapse" class="accordion" role="tablist">
+                <div class="card bg-dark">
+                  <a href="#" role="tab" data-toggle="collapse" aria-expanded="true" class="card-header gem-o o_default_snippet_text" data-parent="#myCollapse" data-target="#myCollapseTab1630068427269">Basic Company Details</a>
+                  <div class="toogle-button"/>
+                </div>
+
+
+                <div class="collapse show" role="tabpanel" id="myCollapseTab1630068427269" style="">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12 form-field o_website_form_required_custom"><input type="text" class="form-control o_website_form_input" name="gst_number" placeholder="Company GST number" /></div>
+
+                      <div class="col-md-6 form-field o_website_form_required_custom"><input type="text" class="form-control o_website_form_input" name="name" placeholder="Company name*" required=""/></div>
+                       <div class="col-md-6 form-field o_website_form_required_custom"><input type="text" class="form-control o_website_form_input" name="year_established" placeholder="Year of established*" required=""/></div>
+                    </div>
+                    <!--<div class="row">-->
+                        
+
+                     
+                    <!--</div>-->
+                   
+                   
+                        <div class="row ">
+                         <div class="col-md-6 form-field o_website_form_required_custom"><input type="text" class="form-control o_website_form_input" name="street" placeholder="Street*" required=""/></div>
+                         <div class="col-md-6 form-field o_website_form_required_custom"><input type="text" class="form-control o_website_form_input" name="street2" placeholder="Street2"/></div>
+                       
+                      </div>
+                       <div class="row">
+                         <div class="col-md-6 form-field o_website_form_required_custom"><input type="text" class="form-control o_website_form_input" name="city" placeholder="City*" required=""/></div>
+                         <div class="col-md-6 form-field o_website_form_required_custom"><input type="text" class="form-control o_website_form_input" name="zip" placeholder="ZIP/Pincode*" required=""/></div>
+                       
+                      </div>
+
+                     <div class="row o_membership_details">
+                     <div class="col-md-6 form-field o_website_form_required_custom">
+                         <select name="country" t-attf-class="form-control" required="required">
+                                                    <option value="">Country*</option>
+                                                    <t t-foreach="countries or []" t-as="ctn">
+                                                        <option t-att-value="ctn.id">
+                                                            <t t-esc="ctn.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                     </div>
+                     <div class="col-md-6 form-field o_website_form_required_custom">
+                         <select name="state" t-attf-class="form-control">
+                                                    <option value="">State*</option>
+                                                    <t t-foreach="states or []" t-as="st">
+                                                        <option t-att-value="st.id" t-att-data-country_id="st.country_id.id">
+                                                            <t t-esc="st.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                     </div>
+                    </div>
+
+                    
+                        <div class="row pt-2">
+                         <div class="col-md-6 form-field o_website_form_required_custom"><input type="text" class="form-control o_website_form_input" name="total_people" placeholder="Total no.of people in company*" required=""/></div>
+                         <div class="col-md-6 form-field o_website_form_required_custom"><input type="text" class="form-control o_website_form_input" name="avg_turn_over" placeholder="Last 2 years avg turnover*" required=""/></div>
+                       
+                      </div>
+                      <div class="row">
+                         <div class="col-md-6 form-field o_website_form_required_custom"><input type="text" class="form-control o_website_form_input" name="company_mail" placeholder="Company email"/></div>
+                         <div class="col-md-6 form-field o_website_form_required_custom"><input type="text" class="form-control o_website_form_input" name="company_mobile" placeholder="Company contact number"/></div>
+                       
+                      </div>
+                    
+                  </div>
+                </div>
+                
+                <!-- ############################################## Business Information  ###################################################################### -->
+                
+                  <div class="card bg-dark">
+                  <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="gem-o card-header o_default_snippet_text collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1630068427272">Business Information - 1</a>
+                </div>
+                <div class="collapse" role="tabpanel" id="myCollapseTab1630068427272" style="">
+                  <div class="card-body ">
+                    <div class="row">
+                   
+                      <div class="col-md-6 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="location_ids" placeholder="Branch locations if any*"/></div>
+                      <div class="col-md-6 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="using_crm_ids" placeholder="List of crm's using* (ex: sap, odoo, zoho, excel, etc.,)" required=""/></div>
+                    </div>
+                      <div class="row pt-2">
+                     
+                       <div class="col-md-6 form-field o_website_form_required_custom">
+                           <select class="o_service_states form-control" multiple="multiple" name="service_states" style="min-width: 100px;"> <!-- multi_selection -->
+                               <t t-foreach="seiviceable_state" t-as="a"><!-- multi_selection -->
+                                   <option t-att-value="a.id"><t t-esc="a.name" /></option><!-- multi_selection -->
+			                   </t><!-- multi_selection -->
+                           </select>
+                           <label>Serviceable State</label>
+                       </div>
+                        <div class="col-md-6 form-field o_website_form_required_custom">
+                            <select class="o_service_dist form-control" multiple="multiple" name="service_dist" style="min-width: 100px;"> <!-- multi_selection -->
+                               <t t-foreach="seiviceable_districts" t-as="a"><!-- multi_selection -->
+                                   <option t-att-value="a.id"><t t-esc="a.name" /></option><!-- multi_selection -->
+			                   </t><!-- multi_selection -->
+                           </select>
+                            <label>Serviceable Districts</label>
+                        </div>
+                       </div>
+                         <div class="row">
+                         
+                              <!-- div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="service_categories" placeholder="Service categories* (ex: onsite, carry in, chiplevel servicing, etc.,)" required=""/></div-->
+                              <div class="col-md-6 pt-2 form-field o_website_form_required_custom">
+			                        <select class="o_service_categories form-control" multiple="multiple" name="service_categories" style="min-width: 100px;"> <!-- multi_selection -->
+			                            <t t-foreach="service_categorys" t-as="a"><!-- multi_selection -->
+			                                <option t-att-value="a.id"><t t-esc="a.name" /></option><!-- multi_selection -->
+			                            </t><!-- multi_selection -->
+			                        </select>
+                                  <label>Service Categories</label><!-- multi_selection -->
+                    </div>
+
+                           <div class="col-md-6 pt-2 form-field o_website_form_required_custom">
+                               <select class="o_service_type form-control" multiple="multiple" name="service_type" style="min-width: 100px;"> <!-- multi_selection -->
+                                   <t t-foreach="service_type" t-as="a"><!-- multi_selection -->
+                                       <option t-att-value="a.id"><t t-esc="a.name" /></option><!-- multi_selection -->
+                                   </t><!-- multi_selection -->
+                               </select>
+                               <label>Serviceable Types</label>
+                           </div>
+                    </div>
+                     <div class="row">
+                              <!--<div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="service_dist" placeholder="Serviceable districts"/></div>-->
+                               <div class="col-md-6 pt-2 form-field o_website_form_required_custom">
+                                   <select class="o_service_product_cat form-control" multiple="multiple" name="service_product_cat" style="min-width: 100px;">
+                                       <t t-foreach="sericeable_product" t-as="a">
+                                           <option t-att-value="a.id"><t t-esc="a.name" /></option>
+                                       </t>
+                                   </select>
+                                   <label>Service Product Categories</label>
+                               </div>
+                                <div class="col-md-6 pt-2 form-field o_website_form_required_custom">
+                                    <select class="o_other_brand form-control" multiple="multiple" name="other_brand" style="min-width: 100px;">
+                                       <t t-foreach="other_brand" t-as="a">
+                                           <option t-att-value="a.id"><t t-esc="a.name" /></option>
+                                       </t>
+                                   </select>
+                                    <label>Other Brands</label>
+<!--                                    <textarea type="textarea" class="form-control o_website_form_input" name="asp_other_brands" placeholder="List of other brands you are serving*" required=""/>-->
+                                    </div>
+                    </div>
+                 
+                     <div class="row">
+                              <!--<div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="List of training certificates your executives are having: (Ex: ITSM)"/></div>-->
+                           
+                                <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="list_of_certificates" placeholder="List of certifications your company is having (ex: ISO 9001:2015 etc.,)"/></div>
+                               <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="list_of_awards" placeholder="Any awards your company has received in service delivery"/></div>
+                                
+                    </div>
+                     <div class="row">
+                              
+                                 <!--<div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="What is the minimum number of calls you are expecting from RDP per month"/></div>-->
+                                <div class="col-md-6 pt-2 form-field o_website_form_required_custom">
+                                    <select class="o_service_delivery form-control" multiple="multiple" name="service_delivery" style="min-width: 100px;">
+                                       <t t-foreach="service_delivery" t-as="a">
+                                           <option t-att-value="a.id"><t t-esc="a.name" /></option>
+                                       </t>
+                                   </select>
+                                    <label>Service Delivery</label>
+<!--                                    <textarea type="textarea" class="form-control o_website_form_input" name="service_delivery_years" placeholder="Number of years in to service delivery"/>-->
+                                </div>
+                                <!--<div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="Any awards your company has received in service delivery"/></div>-->
+                                <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="service_delivery_achivements" placeholder="Your top 5 service delivery achivements"/></div>
+                    </div>
+                   
+                     <div class="row">
+                             
+                                <!--<div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="What is the minimum number of calls you are expecting from RDP per month"/></div>-->
+                                <!--<div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="Number of years in to service delivery"/></div>-->
+                                <!--<div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="What is the tentative cost per onsite call"/></div>-->
+                    </div>
+                    <!-- <div class="row">-->
+                              
+                           
+                    <!--            <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="Do you have a customer feedback mechanism after closing the call* (Yes/No)" required=""/></div>-->
+                    <!--            <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="Can you provide shelf space for working/defective parts* (Yes/No)" required=""/></div>-->
+                                 
+                    <!--</div>-->
+                 
+                    <div class="row pt-2"> 
+                      <div class="col-md-6 form-field o_website_form_required_custom">
+                        <input type="file" class="form-control inputfile o_website_form_input" name="company_profile" placeholder="Attach company profile*" accept="application/pdf" />
+                        <label class="gem-file-upload">Company profile</label>
+                      </div>
+                       <div class="col-md-6 form-field o_website_form_required_custom">
+                        <input type="file" class="form-control inputfile o_website_form_input" name="customer_testmonial" placeholder="Attach any customer testimonials*" accept="application/pdf" />
+                        <label class="gem-file-upload">Attach any customer testimonials</label>
+                      </div>
+                    </div>
+                     <div class="row"> 
+                          <div class="col-md-6 form-field o_website_form_required_custom">
+                            <input type="file" class="form-control inputfile o_website_form_input" name="sla_document" placeholder="Attach your SLA document:" accept="application/pdf" />
+                            <label class="gem-file-upload">Attach your SLA document</label>
+                          </div>
+                           <div class="col-md-6 form-field o_website_form_required_custom">
+                            <input type="file" class="form-control inputfile o_website_form_input" name="escalation_document" placeholder="Attach your escalation document" accept="application/pdf" />
+                            <label class="gem-file-upload">Attach your escalation document</label>
+                          </div>
+                    </div>
+                     <div class="row">
+                             
+                    </div>
+                    
+                  </div>
+                </div>
+                
+                
+              
+                
+                <!--######################################### Other Information ################################################################-->
+                  
+                   <!-- ############################################## Key People Informaion ###################################################################### -->
+              
+                
+                  <div class="card bg-dark">
+                  <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="gem-o card-header o_default_snippet_text collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1630068427277">Business Information - 2</a>
+                </div>
+                <div class="collapse" role="tabpanel" id="myCollapseTab1630068427277">
+                  <div class="card-body">
+                      <div class="row">
+                              
+                           
+                                <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="customer_feedback" placeholder="Do you have a customer feedback mechanism after closing the call* (Yes/No)" required=""/></div>
+                                <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="shelf_place" placeholder="Can you provide shelf space for working/defective parts* (Yes/No)" required=""/></div>
+                                 
+                    </div>
+                     <div class="row">
+                           
+                                <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="ready_to_use_rdp_crm" placeholder="Are you ready to use RDP crm and update end-to-end support ticket status (Yes/No)"/></div>
+                                <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="ready_to_for_weekly_sla_reviews" placeholder="Are you ready for weekly reviews on SLA (Yes/No)"/></div>
+                                 
+                    </div>
+                        <div class="row">
+                                 
+                                  <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="onsite_support_executives" placeholder="Total number of onsite support executives: (ex: 10)"/></div>
+                               
+                                    <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="insite_support_executives" placeholder="Total number of inside support executives (ex: 10)"/></div>
+                        
+                         </div>
+                    
+                        <!--  <div class="row">-->
+                        <!--          <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="How often you train your executives on softskills? (Ex: Every 3 months)"/></div>-->
+                               
+                        <!--            <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="How often you train your execuives on hardskills? (Ex: Every 3 months)"/></div>-->
+                        <!--       <div class="col-md-12 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="List of training certificates your executives are having: (Ex: ITSM)"/></div>-->
+                        <!--</div>-->
+                          <div class="row">
+                              <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="number_of_calls_expecting_from_rdp_per_month" placeholder="What is the minimum number of calls you are expecting from RDP per month"/></div>
+                                  <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="number_of_calls_you_are_attending_per_day" placeholder="Total number of calls you are attending every day"/></div>
+                               
+                                    <!--<div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="What is the maximum number of calls you can attend everyday"/></div>-->
+                        </div>
+                
+                        <!-- <div class="row">-->
+                        <!--          <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="Total number of calls you are attending every day"/></div>-->
+                               
+                        <!--            <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="What is the maximum number of calls you can attend everyday"/></div>-->
+                        <!--</div>-->
+                         <div class="row">
+                                  <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="onsite_calls_every_day" placeholder="What is the maximum number of calls you can attend everyday"/></div>
+                               
+                                     <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="training_certificates" placeholder="List of training certificates your executives are having: (ex: ITSM)"/></div>
+                                 
+                         </div>     
+                    <div class="row">
+                                  <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="training_on_softskills" placeholder="How often you train your executives on softskills? (ex: every 3 months)"/></div>
+                               
+                                    <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="training_on_hardskills" placeholder="How often you train your execuives on hardskills? (ex: every 3 months)"/></div>
+                               <!--<div class="col-md-12 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="List of training certificates your executives are having: (Ex: ITSM)"/></div>-->
+                               <!-- <div class="col-md-6 pt-2 form-field o_website_form_required_custom"><textarea type="textarea" class="form-control o_website_form_input" name="" placeholder="What is the maximum number of calls you can attend everyday"/></div>-->
+                        </div>
+                   
+                   
+                  </div>
+                </div>
+                
+                <div class="card bg-dark">
+                  <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="gem-o card-header o_default_snippet_text collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1630068427277">Key People Contact Information</a>
+                </div>
+                <div class="collapse" role="tabpanel" id="myCollapseTab1630068427277">
+                  <div class="card-body">
+                    <div class="row">
+                          <div class="col-md-4 form-field o_website_form_required_custom">
+                            <input type="text" class="form-control o_website_form_input" name="promoter_name" placeholder="Promoter name*" required=""/>
+                            
+                          </div>
+                          <div class="col-md-4 form-field o_website_form_required_custom">
+                            <input type="text" class="form-control o_website_form_input" name="promoter_email" placeholder="Promoter email*" required=""/>
+                            
+                          </div>
+                           <div class="col-md-4 form-field o_website_form_required_custom">
+                            <input type="text" class="form-control o_website_form_input" name="promoter_mobile" placeholder="Promoter mobile*" required=""/>
+                            
+                          </div>
+                    </div>
+                    <div class="row">
+                          <div class="col-md-4 form-field o_website_form_required_custom">
+                            <input type="text" class="form-control o_website_form_input" name="service_delivery_head_name" placeholder="Support head name*" required=""/>
+                          
+                          </div>
+                          <div class="col-md-4 form-field o_website_form_required_custom">
+                            <input type="text" class="form-control o_website_form_input" name="service_delivery_head_email" placeholder=" Support head email*" required=""/>
+                           
+                          </div>
+                            <div class="col-md-4 form-field o_website_form_required_custom">
+                            <input type="text" class="form-control o_website_form_input" name="service_delivery_head_mobile" placeholder="Support head mobile*" required=""/>
+                           
+                          </div>
+                    </div>
+                       <div class="row">
+                          <div class="col-md-4 form-field o_website_form_required_custom">
+                            <input type="text" class="form-control io_website_form_input" name="senior_technical_person_name" placeholder="Sr.tech person name*" required=""/>
+                          
+                          </div>
+                          <div class="col-md-4 form-field o_website_form_required_custom">
+                            <input type="text" class="form-control o_website_form_input" name="senior_technical_person_email" placeholder="Sr.tech person email*" required=""/>
+                           
+                          </div>
+                            <div class="col-md-4 form-field o_website_form_required_custom">
+                            <input type="text" class="form-control o_website_form_input" name="senior_technical_person_mobile" placeholder="Sr.tech person mobile*" required=""/>
+                           
+                          </div>
+                    </div>
+                   
+                   
+                  </div>
+                </div>
+                
+                
+             
+                
+                 <!-- ##############################################  Comments ###################################################################### -->
+                 
+             
+                
+                <!-- ##############################################  Submit ###################################################################### -->
+                
+                   <div class="clearfix oe_login_buttons">
+                                <button type="submit" class="btn btn-black pull-left">Submit</button>
+                </div>
+                
+                
+                
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+      
+      
+      
+      <script> 
+                        $("[type=file]").on("change", function(){
+
+                        var file = this.files[0].name;
+                        var dflt = $(this).attr("placeholder");
+                        if($(this).val()!=""){
+                        $(this).next().text(file);
+                        } else {
+                        $(this).next().text(dflt);
+                        }
+                        });
+
+          </script>
+    </t>
+  </div>
+</t>
+
+        </div>
+    </t>
+        </div>
+    </t>
+	
+	
+    
+    </t>
+	
+	
+    
+    </template>
+	
+	 <record id="asp_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/asp-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">rdp_asp_partner_extend.asp_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="rdp_asp_partner_extend.asp_thanks">
+                <t t-call="website.layout">
+                  <div id="wrap">
+                    <div class="container">
+                        <h1>Thank You!!!</h1>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="alert alert-success" role="status">
+                                  Successfully You Have Registered As Our ASP Will Get back to you Shortly.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+
+    </data>
+</odoo>

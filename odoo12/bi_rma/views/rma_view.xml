@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- RMA REPORT -->
+        <report 
+            id="rma_report"
+            string="RMA Report"
+            model="rma.main" 
+            report_type="qweb-pdf"
+            file="bi_rma.rma_report_template" 
+            name="bi_rma.rma_report_template" 
+        />
+
+        <template id="rma_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-foreach="docs" t-as="o">
+
+                            <span class="pull-left mt32 mb16"><h1>Return Order #</h1></span>
+                            <sapn class="pull-left mt32 mb16"><h1 t-esc="o.name"/></sapn>
+                            <span style="text-transform: capitalize;" class="pull-left mt32 ml16 mb16"><h1 t-esc="o.state"/></span>
+                            
+                            <table class="table-condensed" border="0" style="width:100%;">
+                                <tr>
+                                    <th>Customer :</th>
+                                    <th>Date : </th>
+                                    <th>Order Referance :</th>
+                                    <th>Shipping Referance :</th>
+                                </tr>
+                                <tr style="padding-top:5px !important;">
+                                    <td><p t-esc="o.partner.name"/></td>
+                                    <td><p t-esc="o.date"/></td>
+                                    <td><p t-esc="o.sale_order.name"/></td>
+                                    <td><p t-esc="o.delivery_order.name"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Return Address :</th>
+                                    <th>Responsible : </th>
+                                </tr>
+                                
+                                <tr>
+                                    <td><p t-esc="o.partner.street"/></td>
+                                    <td><p t-esc="o.responsible.name"/></td>
+                                </tr>
+                            </table>
+                            
+                            <table class="table table-condensed" border="0" style="width:100%;margin-top: 32px">
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Delivery Quantity</th>
+                                    <th>Return Quantity</th>
+                                    <th>Reason</th>
+                                </tr>
+                                <t t-foreach="o.rma_line_ids" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <p t-esc="line.product_id.name"/>        
+                                        </td>
+                                        <td>
+                                            <p t-esc="line.delivery_qty"/>        
+                                        </td>
+                                        <td>
+                                            <p t-esc="line.return_qty"/>        
+                                        </td>
+                                        <td>
+                                            <p style="text-transform: capitalize;" t-esc="line.reason.rma_reason"/>        
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+
+                            <table class="table-condensed" border="0" style="width:100%;">
+                                <tr>
+                                    <th>RMA Notes :</th>
+                                </tr>
+                                <tr>
+                                    <td><p t-esc="o.rma_note"/></td>
+                                </tr>
+                            </table>
+                            
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="rma_report_main_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="bi_rma.rma_report_template" />
+                </t>
+            </t>
+        </template>
+
+        <!-- RMA Order View-->
+        <record id="view_rma_order_tree" model="ir.ui.view">
+            <field name="name">rma.order.tree</field>
+            <field name="model">rma.main</field>
+            <field name="arch" type="xml">
+                <tree string="RMA Orders">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="sale_order"/>
+                    <field name="delivery_order"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Reject RMA -->
+        <record model="ir.ui.view" id="create_rfq_wizard_form">
+            <field name="name">create.reject</field>
+            <field name="model">create.reject</field>
+            <field name="arch" type="xml">
+                <form string="Reject">
+                    <group col="2">
+                         <field name="rma_reason_id" />
+                     </group>
+                    <footer>
+                        <button string="Reject Claim" name="create_reject" type="object" class="btn-primary"/>
+                        OR
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_reject_wizard" model="ir.actions.act_window">
+            <field name="name">Create Reject</field>
+            <field name="res_model">create.reject</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="create_rfq_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <!-- RMA Line Product Change -->
+        <record model="ir.ui.view" id="change_product_wizard">
+            <field name="name">RMA Change Product</field>
+            <field name="model">rma.change.product</field>
+            <field name="arch" type="xml">
+                <form string="Product">
+                    <group col="2">
+                         <field name="rma_prod" />
+                         <field name="diff_product" invisible="1"/>
+                         <field name="prod_change_qty" attrs="{'invisible': [('diff_product', '=', False)]}"/>
+                         <field name="create_invoice" widget="boolean_toggle" attrs="{'invisible': [('diff_product', '=', False)]}"/>
+                    </group>
+                    <footer>
+                        <button string="Save" name="change_prod" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_change_wizard" model="ir.actions.act_window">
+            <field name="name">RMA Change Product</field>
+            <field name="res_model">rma.change.product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="change_product_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <!-- RMA Main -->
+        <record id="view_rma_order_form" model="ir.ui.view">
+            <field name="name">rma.order.form</field>
+            <field name="model">rma.main</field>
+            <field name="arch" type="xml">
+                <form string="RMA Order">
+
+                    <header>
+
+                        <button name="action_approve" string="APPROVE" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['approved','processing','reject','close'])]}"/>
+
+                        <button name="%(action_reject_wizard)d" string="REJECT" type="action" class="btn-primary" attrs="{'invisible': [('state', 'in', ['approved','reject','close'])]}"/>
+                        
+                        <button name="action_move_to_draft" string="SET TO DRAFT" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['processing','draft', 'close'])]}"/>
+
+                        <button name="action_validate" string="VALIDATE" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', 'in', ['approved','draft','close', 'reject']),('is_validate','=',True)]}"/>
+
+                        <button name="action_close" string="CLOSE" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['approved','draft', 'reject','close'])]}"/>
+
+                        <button name="action_send_rma" string="SEND BY MAIL" type="object" class="btn-primary"/>
+                        
+                        <field name="state" widget="statusbar" statusbar_visible="draft,processing,close,approved"/>
+
+                    </header>
+                    
+                    <sheet>
+
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object"
+                                name="action_view_receipt"
+                                class="oe_stat_button"
+                                icon="fa-truck"
+                                attrs="{'invisible': [('in_delivery_count', '=', 0)]}">
+                                <field name="in_delivery_count" widget="statinfo" string="Picking Order"/>
+                            </button>
+
+                            <button type="object"
+                                name="action_view_refund_invoice"
+                                class="oe_stat_button"
+                                icon="fa-money"
+                                attrs="{'invisible': [('refund_inv_count', '=', 0)]}">
+                                <field name="refund_inv_count" widget="statinfo" string="Refund Invoices"/>
+                            </button>
+
+                            <button type="object"
+                                name="action_view_sale_order"
+                                class="oe_stat_button"
+                                icon="fa-dollar"
+                                attrs="{'invisible': [('sale_order_count', '=', 0)]}">
+                                <field name="sale_order_count" widget="statinfo" string="Sale Orders"/>
+                            </button>
+                        
+                        </div>
+
+                        <group>
+                            <div class="oe_title">
+                                <h1>
+                                    <field name="name" nolabel="1" readonly="True"/>
+                                </h1>
+                            </div>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="company_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="sale_order" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="subject" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="sales_channel" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="reject_reason" attrs="{'invisible': [('state', 'in', ['approved','processing','draft', 'close'])],'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="date" widget="datetime" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="deadline" widget="datetime" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="responsible" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="priority" widget='priority' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="is_validate" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="RMA Details">
+                                <group>
+                                    <group>
+                                        <field name="delivery_order" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                        <field name="email" widget="email" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                        <field name="partner" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="phone" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    </group>
+                                </group>
+
+                                <label for="rma_lines" string="RMA Lines" style="font-size:15px;" class="mt16 mb16 text-muted"/>
+                                <field name="rma_line_ids" nolabel="1" attrs="{'readonly': [('state', '=', 'close')]}">
+                                    <tree editable="bottom" create="false">
+                                        
+                                        <field name="product_id"/>
+                                        
+                                        <field name="replaced_with" readonly="1" attrs="{'column_invisible': [('parent.state', 'not in', ['approved','processing','close'])],'invisible': [('action', '!=', 'replace')]}"/>
+
+                                        <field name="replaced_qty" readonly="1" attrs="{'column_invisible': [('parent.state', 'not in', ['approved','processing','close'])],'invisible': [('action', '!=', 'replace')]}"/>
+
+                                        <field name="is_invoice" attrs="{'column_invisible': [('parent.state', 'not in', ['approved','processing','close'])],'invisible': [('action', '!=', 'replace'),('action', '!=', 'refund')]}"/>
+                                        
+                                        <field name="delivery_qty"/>
+                                        
+                                        <field name="return_qty"/>
+                                        
+                                        <field name="reason"/>
+                                        
+                                        <field name="recieved_qty" attrs="{'column_invisible': [('parent.state', 'not in', ['processing'])]}"/>
+                                        
+                                        <field name="action" attrs="{'column_invisible': [('parent.state', 'not in', ['approved','processing'])]}"/>
+                                        
+                                        <field name="show_prod_setting" invisible="1"/>
+                                        
+                                        <button name="%(action_change_wizard)d" string="Replace product" type="action" icon="fa-gear" attrs="{'invisible': [('show_prod_setting', '=', False)],'readonly': [('parent.state', '=', 'close')]}" />
+                                    </tree>
+                                </field>
+
+                                <label for="rma_notes" string="RMA Notes" style="font-size:15px;" class="mt16 mb16 text-muted"/>
+                                <field name="rma_note" nolabel="1"/>
+
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Reject Reason View-->
+        <record id="view_reject_reason_tree" model="ir.ui.view">
+            <field name="name">reject.reason.tree</field>
+            <field name="model">reject.reason</field>
+            <field name="arch" type="xml">
+                <tree string="Reject Reason">
+                    <field name="reject_reason"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_reject_reason_form" model="ir.ui.view">
+            <field name="name">reject.reason.form</field>
+            <field name="model">reject.reason</field>
+            <field name="arch" type="xml">
+                <form string="Reject Reason">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="reject_reason"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_reject_reason" model="ir.actions.act_window">
+            <field name="name">Reject Reasons</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">reject.reason</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- RMA Reason View-->
+        <record id="view_rma_reason_tree" model="ir.ui.view">
+            <field name="name">rma.reason.tree</field>
+            <field name="model">rma.reason</field>
+            <field name="arch" type="xml">
+                <tree string="RMA Reason">
+                    <field name="rma_reason"/>
+                    <field name="reason_action"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_rma_reason_form" model="ir.ui.view">
+            <field name="name">rma.reason.form</field>
+            <field name="model">rma.reason</field>
+            <field name="arch" type="xml">
+                <form string="RMA Reason">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="rma_reason"/>
+                                <field name="reason_action"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_rma_reason" model="ir.actions.act_window">
+            <field name="name">RMA Reasons</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rma.reason</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- RMA Claim View-->
+        <record id="view_rma_claim_tree" model="ir.ui.view">
+            <field name="name">rma.claim.tree</field>
+            <field name="model">rma.claim</field>
+            <field name="arch" type="xml">
+                <tree string="RMA Claim">
+                    <field name="rma_id"/>
+                    <field name="subject"/>
+                    <field name="partner"/>
+                    <field name="responsible"/>
+                    <field name="date"/>
+                    <field name="nxt_act_dt"/>
+                    <field name="nxt_act"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_rma_claim_form" model="ir.ui.view">
+            <field name="name">rma.claim.form</field>
+            <field name="model">rma.claim</field>
+            <field name="arch" type="xml">
+                <form string="RMA Order">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="rma_id"/>
+                                <field name="subject"/>
+                            </group>
+                            <group>
+                                <field name="partner"/>
+                                <field name="responsible"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="date"/>
+                                <field name="nxt_act_dt"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <!-- RMA Order -->
+		<record id="action_rma_order" model="ir.actions.act_window">
+            <field name="name">RMA Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rma.main</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem id="menu_rma_order" name="RMA"
+                sequence="3"/>
+
+        <menuitem id="menu_rma_b2b" name="RMA"
+                parent="menu_rma_order"
+                sequence="1"/>
+        
+        <menuitem id="menu_return_order" name="RMA Order"
+                parent="menu_rma_b2b" action="action_rma_order"
+                sequence="1"/>
+
+        <!-- RMA Reasons -->
+        <record id="view_stock_picking_rma_form" model="ir.ui.view">
+            <field name="name">stock.picking.claim.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                    <button class="oe_stat_button" name="action_rma_claim_view" type="object" icon="fa-comment" attrs="{'invisible': [('picking_type_code','=','incoming')]}">
+                        <field name="claim_count" widget="statinfo" string="Claims"/>
+                    </button>
+                </div>
+            </field>
+        </record>  
+
+        <menuitem id="menu_return_reason" name="RMA Reasons"
+                parent="menu_rma_b2b" action="action_rma_reason"
+                sequence="2"/>
+                                          
+    </data>
+</odoo>

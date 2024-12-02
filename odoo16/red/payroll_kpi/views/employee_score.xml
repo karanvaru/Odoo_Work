@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- employee.score form view -->
+    <record id="employee_score_view_form" model="ir.ui.view">
+        <field name="name">employee.score.view.form</field>
+        <field name="model">employee.score</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button string="Reset to Draft" name="action_reset_draft" type="object" states="rated" class="oe_highlight"/>
+                    <button string="Rate All" name="rate_all" type="object" states="draft,to_rate" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,to_rate,rated,expired" statusbar_colors="{&quot;draft&quot;:&quot;blue&quot;,&quot;to_rate&quot;:&quot;blue&quot;,&quot;rated&quot;:&quot;green&quot;,&quot;expired&quot;:&quot;red&quot;}"/>
+                </header>
+                <sheet>
+                    
+                    <field name="active" invisible="1" />
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}" />
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" placeholder="KPI Name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="month"/>
+                        <field name="department_id" />
+                        <field name="company_id" widget="many2many_tags" groups="base.group_multi_company"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Employee Scores">
+                            <field name="kpi_ids">
+                                <tree>
+                                    <field name="employee_id"/>
+                                    <field name="state" widget="badge"
+                                            decoration-danger="state == 'cancel'"
+                                            decoration-warning="state == 'to_rate'"
+                                            decoration-info="state == 'rated'"/>
+                                    <button name="action_generate" type="object" widget="button_icon" string="Rate"  
+                                            states="to_rate" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- employee.score tree view -->
+    <record id="employee_score_view_tree" model="ir.ui.view">
+        <field name="name">employee.score.view.tree</field>
+        <field name="model">employee.score</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="month"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- employee.score search view -->
+    <record id="employee_score_view_search" model="ir.ui.view">
+        <field name="name">employee.score.view.search</field>
+        <field name="model">employee.score</field>
+        <field name="arch" type="xml">
+            <search string="Search Description">
+                <!-- Add your fields here -->
+                <field name="name" string="Name"/>
+                <field name="department_id" string="Department"/>
+
+                <group expand="0" string="Group By">
+                    
+                    <filter name="group_by_department" string="Group By Department"  context="{'group_by': 'department_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- employee.score action window -->
+    <record id="employee_score_action" model="ir.actions.act_window">
+        <field name="name">Employee KPI Score Card</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.score</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem
+        id="employee_score_menu"
+        name="Employee Monthly KPIs"
+        action="employee_score_action"
+        parent="hr_appraisal.menu_hr_appraisal_root"
+        sequence="30"/>
+</odoo>

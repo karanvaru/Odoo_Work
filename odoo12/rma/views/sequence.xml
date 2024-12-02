@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+<data noupdate="1">
+	<!-- <record id="id_rma_sequence_type" model="ir.sequence.type">
+		<field name="name">RMA_Sequence</field>
+		<field name="code">rma.rma</field>
+	</record> -->
+
+	<record id="id_rma_sequence2" model="ir.sequence">
+		<field name="name">RMA SEQUENCE</field>
+		<field name="code">rma.rma</field>
+		<field name="prefix">RMA</field>
+		<field name="padding">2</field>
+	</record>
+</data>
+</odoo>

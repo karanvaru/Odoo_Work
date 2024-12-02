@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record id="action_stock_picking_generate_valuations" model="ir.actions.server">
+            <field name="name">Regenerate Valuation</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_generate_valuations()</field>
+        </record>
+
+        <record id="action_mrp_generate_valuations" model="ir.actions.server">
+            <field name="name">Regenerate Valuation</field>
+            <field name="model_id" ref="mrp.model_mrp_production"/>
+            <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_generate_valuations()</field>
+        </record>
+
+    </data>
+</odoo>

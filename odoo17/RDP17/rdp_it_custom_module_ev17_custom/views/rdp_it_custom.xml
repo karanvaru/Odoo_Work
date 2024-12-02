@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--Tree View ============================================= Custom Module -->
+
+    <record id="view_rdp_it_custom_tree" model="ir.ui.view">
+        <field name="name">view.rdp.it.custom.tree</field>
+        <field name="model">rdp.it.custom</field>
+        <field name="arch" type="xml">
+            <tree string="Custom Modules">
+
+            </tree>
+        </field>
+    </record>
+
+    <!--Form View ============================================= Custom Module -->
+
+    <record id="view_rdp_it_custom_form" model="ir.ui.view">
+        <field name="name">view.rdp.it.custom.form</field>
+        <field name="model">rdp.it.custom</field>
+        <field name="arch" type="xml">
+            <form string="Custom Modules">
+                <sheet>
+                    <group>
+                        <group>
+
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--Action ============================================= Custom Module -->
+
+    <record id="action_view_rdp_it_custom" model="ir.actions.act_window">
+        <field name="name">Custom Modules</field>
+        <field name="res_model">rdp.it.custom</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>
+
+                Write your Data
+            </p>
+        </field>
+    </record>
+
+    <!--Menu Items ============================================= Custom Module -->
+
+    <menuitem id="menu_rdp_it_custom" 
+        name="Custom Modules"    
+        action="action_view_rdp_it_custom" 
+        web_icon="rdp_it_custom_module_ev17_custom,static/description/icon.png"
+        sequence="1"/>
+    <menuitem id="menu_models" name="Models" parent="menu_rdp_it_custom" action="action_view_rdp_it_custom"
+              sequence="2"/>
+    <menuitem id="menu_modules" name="Modules" parent="menu_rdp_it_custom" action="action_view_rdp_it_custom" sequence="3"/>
+    <menuitem id="menu_configuration" name="Configuration" parent="menu_rdp_it_custom" action="action_view_rdp_it_custom"
+              sequence="4"/>
+</odoo>

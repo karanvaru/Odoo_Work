@@ -1,0 +1,6 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_gate_pass_id,gate_pass_name,model_gate_pass,base.group_user,1,1,1,1
+access_product_details_line_id,product_details_line_name,model_product_details_line,base.group_user,1,1,1,1
+access_vehicle_details_line_id,vehicle_details_line_name,model_vehicle_details_line,base.group_user,1,1,1,1
+access_transport_details_id,transport_details_name,model_transport_details,base.group_user,1,1,1,1
+

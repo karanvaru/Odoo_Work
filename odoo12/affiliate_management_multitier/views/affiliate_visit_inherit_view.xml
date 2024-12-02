@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+
+
+		<record model='ir.ui.view' id='affiliate_visit_inherit_form2'>
+			<field name="name">affiliate.visit.form.inherit</field>
+			<field name="model">affiliate.visit</field>
+			<field name="inherit_id" ref="affiliate_management.affiliate_visit_view_form" />
+			<field name="arch"  type="xml">
+          <xpath expr="//group/field[@name='affiliate_partner_id']"  position="after">
+           <field name="parent_affiliate" attrs="{'invisible':[('parent_affiliate','=',False)]}" />
+          </xpath>
+			</field>
+		</record>
+
+
+        <record model="ir.actions.act_window" id="affiliate_parent_commission_visit_action">
+			<field name="name">Parent Commission Report</field>
+			<field name="res_model">affiliate.visit</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('affiliate_method','=','parentcommission')]</field>
+		</record>
+
+
+        <menuitem name="Muti-tier Commission Report"
+		  id="affiliate_parent_commission_report_visit_menu"
+		  groups='affiliate_management.affiliate_security_user_group'
+		  parent="affiliate_management.affiliate_report_visit_menu"
+		  action="affiliate_parent_commission_visit_action"
+		/>
+
+    </data>
+</odoo>

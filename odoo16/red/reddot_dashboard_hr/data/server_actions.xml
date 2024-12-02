@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record id="actions_send_contact_report" model="ir.actions.server">
+            <field name="name">Send Report</field>
+            <field name="model_id" ref="model_hr_report_configuration"/>
+            <field name="binding_model_id" ref="reddot_dashboard_hr.model_hr_report_configuration"/>
+            <field name="state">code</field>
+            <field name="code">records.action_send_report()</field>
+        </record>
+
+
+        <record id="actions_send_reminder" model="ir.actions.server">
+            <field name="name">Reminders</field>
+            <field name="model_id" ref="model_hr_report_configuration"/>
+            <field name="binding_model_id" ref="reddot_dashboard_hr.model_hr_report_configuration"/>
+            <field name="state">code</field>
+            <field name="code">records.action_send_birthday_reminder()</field>
+        </record>
+
+
+    </data>
+</odoo>

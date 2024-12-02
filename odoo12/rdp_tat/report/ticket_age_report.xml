@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_helpdesk_ticket_age_report_list" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.age.report.list</field>
+            <field name="model">helpdesk.ticket.age.report</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Helpdesk Ticket Lifetime Report" create="false" delete="false">
+                    <field name="name"/>
+                    <field name="stage_id"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="date_in"/>
+                    <field name="date_out"/>
+                    <field name="days"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_helpdesk_ticket_age_report_pivot" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.age.report.pivot</field>
+            <field name="model">helpdesk.ticket.age.report</field>
+            <field name="arch" type="xml">
+                <pivot string="Helpdesk ticket Lifetime Report">
+                    <field name="name" type="row"/>
+                    <field name="stage_id" type="col"/>
+                    <field name="days" type="measure"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="date_in"/>
+                    <field name="date_out"/>
+
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_helpdesk_ticket_age_report_graph" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.age.report.graph</field>
+            <field name="model">helpdesk.ticket.age.report</field>
+            <field name="arch" type="xml">
+                <graph string="Estimated End Date" type="bar">
+                    <field name="stage_id" type="row"/>
+                    <field name="days" type="measure"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="date_in"/>
+                    <field name="date_out"/>
+                </graph>
+            </field>
+        </record>
+
+
+        <record id="view_helpdesk_ticket_age_report_search" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.age.report.search</field>
+            <field name="model">helpdesk.ticket.age.report</field>
+            <field name="arch" type="xml">
+                <search string="Helpdesk Ticket Lifetime Search">
+                    <field name="name"/>
+                    <field name="stage_id"/>
+                    <field name="team_id"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="date_in"/>
+                    <field name="date_out"/>
+                    <field name="days"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Sales Channel" name="Sales_Channel" context="{'group_by':'team_id'}"/>
+                        <filter string="Sales Person" name="Sales_person" context="{'group_by':'user_id'}"/>
+                        <filter string="Customer" name="partner" context="{'group_by':'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_helpdesk_ticket_age_report" model="ir.actions.act_window">
+            <field name="name">Helpdesk ticket Lifetime Report</field>
+            <field name="res_model">helpdesk.ticket.age.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">pivot,tree</field>
+            <field name="context">{}</field>
+            <field name="search_view_id" ref="view_helpdesk_ticket_age_report_search"/>
+        </record>
+
+
+        <menuitem
+            id="menu_action_helpdesk_ticket_age_report"
+            name="Ticket Lifetime Report"
+            parent="helpdesk.helpdesk_ticket_report_menu_main"
+            action="action_helpdesk_ticket_age_report"/>
+
+    </data>
+</odoo>

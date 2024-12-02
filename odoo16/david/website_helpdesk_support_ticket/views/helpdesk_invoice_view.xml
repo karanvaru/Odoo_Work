@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="account_analytic_tree">
+            <field name="name">account.analytic.line List</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr = "//field[@name='company_id']" position="after">
+                    <field name="time_in" widget="float_time"/>
+                    <field name="time_out" widget="float_time"/>
+                    <field name="invoiced_created" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_analytic_line_form_inherit_time_in_out" model="ir.ui.view">
+            <field name="name">account.analytic.line.form</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_line_form" />
+            <field name="arch" type="xml">
+                <xpath expr = "//field[@name='unit_amount']" position="after">
+                    <field name="time_in" widget="float_time"/>
+                    <field name="time_out" widget="float_time"/>
+                    <field name="invoiced_created" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+        
+         <record id="helpdesk_support_ticket_invoice_search" model="ir.ui.view">
+            <field name="name">account.analytic.line.search</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search" />
+            <field name="arch" type="xml">
+                <xpath expr = "//search/group" position="after">
+                    <filter string="Billable Timesheets" name="billable" domain="[('billable','=',1), ('invoiced_created', '=', False)]"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="action_helpdesk_support_ticket_invoice">
+            <field name="name">Timesheet to Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.analytic.line</field>   
+<!--            <field name="view_type">form</field> odoo13-->
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="helpdesk_support_ticket_invoice_search"/>
+            <field name="context">{'search_default_billable' : 1}</field>
+        </record>
+          
+          <menuitem name="Invoicing" 
+                    id="menu_helpdesk_support_ticket_invoice"
+                    parent="website_helpdesk_support_ticket.main_helpdesk_support"
+                    groups="website_helpdesk_support_ticket.group_helpdesk_manager"
+          />
+          <menuitem name="Timesheets to Invoice" 
+                    id="sub_menu_helpdesk_support_ticket_invoice" 
+                    parent="menu_helpdesk_support_ticket_invoice" 
+                    groups="website_helpdesk_support_ticket.group_helpdesk_manager" 
+                    action="action_helpdesk_support_ticket_invoice"
+          />
+      <record model="ir.actions.act_window" id="helpdesk_invoice_action_ts_1">
+            <field name="name">Timesheet to Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.analytic.line</field>   
+<!--            <field name="view_type">form</field> odoo13-->
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="helpdesk_support_ticket_invoice_search"/>
+            <field name="context">{'search_default_billable' : 1}</field>
+        </record>
+          
+          <menuitem name="Invoicing" groups="hr_timesheet.group_hr_timesheet_user" id="menu_timesheet_invoice_52" parent="hr_timesheet.timesheet_menu_root"/>
+          <menuitem name="Timesheet to Invoice" id="menu_helpdesk_timesheet_invoice_53" parent="menu_timesheet_invoice_52" action="helpdesk_invoice_action_ts_1" groups="hr_timesheet.group_hr_timesheet_user"/>
+          
+
+    </data>
+ </odoo>
+ 

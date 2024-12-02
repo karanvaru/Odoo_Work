@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="helpdesk_module_template" model="mail.template">
+            <field name="name">To Dispatch A Component</field>
+            <field name="model_id" ref="model_helpdesk_ticket"/>
+<!--            <field name="email_from">${object.user_id.email_formatted}</field>-->
+            <field name="email_to">${object.partner_email}</field>
+            <field name="subject">We are working to dispatch a Component</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px">
+                        Dear ${object.partner_id.name}
+                        <br> </br>
+                        <br> </br>
+                        Ticket No : ${object.id}
+                        <br> </br>
+<!--                        Serial No : ${object.x_studio_serial_no}-->
+                        <br> </br>
+                        I hope this email finds you well. I wanted to provide you with an update regarding the status of
+                        your requested component.
+                        <br> </br>
+                        <br> </br>
+                        I want to assure you that our team is actively working to fulfill your request and dispatch the
+                        component on a priority. We understand the importance of this component to your needs and are
+                        committed to getting it to you promptly.
+                        <br> </br>
+                        <br> </br>
+                        We are closely monitoring the progress of your order, and once the component is dispatched from
+                        our end, we will promptly notify you. Our goal is to ensure a smooth and seamless delivery
+                        process so that you can make the most of the component's capabilities as soon as possible.
+                        <br> </br>
+                        <br> </br>
+                        We truly appreciate your patience and understanding during this process. Thank you for your
+                        business. We look forward to updating you on the dispatch of your requested component.
+                        <br> </br>
+                        <br> </br>
+                        Best regards,
+                        <br> </br>
+                        <br> </br>
+                        RDP Helpdesk Team.
+                        <br> </br>
+                        1800 419 3399
+                        <br> </br>
+                        <br> </br>
+                        Customer Service Department timings
+                        <br> </br>
+                        (Monday-Saturday,10 AM-6 PM).
+                    </p>
+                </div>
+            </field>
+            <!--            <field name="report_template" ref="report_employee_card"/>-->
+            <!--            <field name="report_name">Employee Card_${(object.name)}</field>-->
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="template_account_move">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div style="width:1030px;height:1310px;margin-left:50px;">
+                        <div class="row" style="margin-top:70px;">
+                            <div class="col-6" style="margin-left:425px;width:555px;">
+                                <div class="row">
+                                    <div class="col-4" style="width:180px;height:40px;">
+                                        <t t-if="o.invoice_date">
+                                            <span t-esc="o.invoice_date.strftime('%d/%m/%Y')"/>
+                                        </t>
+                                    </div>
+                                    <div class="col-2" style="width:125px; height:40px;">
+                                    </div>
+                                    <div style="width:250px; height:40px;">
+                                        <!--                                        <t t-if="o.third_schedule">-->
+                                        <!--                                            <span t-esc="o.third_schedule.strftime('%d/%m/%Y')"/>-->
+                                        <!--                                        </t>-->
+                                    </div>
+                                </div>
+                                <div class="row mt16">
+                                    <div class="col-4" style="width:180px;height:40px;">
+                                        <span t-esc="o.ed_no"/>
+                                    </div>
+                                    <div class="col-4" style="width:170px; height:40px;">
+                                    </div>
+                                    <div class="col-4" style="width:202px;height:40px;">
+                                        <t t-if="o.departure_date">
+                                            <span t-esc="o.departure_date.strftime('%d/%m/%Y')"/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="row mt16" style="height:40px;">
+                                    <span t-esc="o.partner_id.name"/>
+                                </div>
+                                <div class="row" style="height:40px;">
+                                    <span t-esc="o.staying_at"/>
+                                </div>
+                                <div class="row mt16">
+                                    <div class="col-6" style="height:40px;">
+                                        <span t-esc="o.ship_flight"/>
+                                    </div>
+                                    <div style="width:120px;height:40px;">
+                                    </div>
+                                    <div style="height:40px;width:159px;">
+                                    </div>
+                                </div>
+                                <div class="row mt4" style="height:40px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt128">
+                            <div class="col-7" style="margin-left:390px;height:455px;">
+                                <table class="table table-borderless">
+                                    <!--                                    <thead>-->
+                                    <!--                                        <tr>-->
+                                    <!--                                            <th name="th_serial" class="text-start" width="200px;">-->
+                                    <!--                                                <span style="font-size:14px;">SERIAL OR ID NUMBER</span>-->
+                                    <!--                                            </th>-->
+                                    <!--                                            <th name="th_qty" class="text-start" width="19px;">-->
+                                    <!--                                                <span style="font-size:14px;">QTY</span>-->
+                                    <!--                                            </th>-->
+                                    <!--                                            <th name="th_description" class="text-start" width="390px;">-->
+                                    <!--                                                <span style="font-size:14px;">DESCRIPTION</span>-->
+                                    <!--                                            </th>-->
+                                    <!--                                            <th name="th_unit_price" class="text-start" width="45px;">-->
+                                    <!--                                                <span style="font-size:14px;">UNIT PRICE</span>-->
+                                    <!--                                            </th>-->
+                                    <!--                                            <th name="th_total_price" class="text-start" width="82px;">-->
+                                    <!--                                                <span style="font-size:14px;">TOTAL PRICE</span>-->
+                                    <!--                                            </th>-->
+                                    <!--                                        </tr>-->
+                                    <!--                                    </thead>-->
+                                    <tbody class="order_line_tbody">
+                                        <t t-set="unit_price_sum" t-value="0"/>
+                                        <t t-foreach="o.invoice_line_ids" t-as="line">
+                                            <tr>
+                                                <td>
+                                                    <span t-field="line.item_code"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="line.quantity"/>
+                                                </td>
+                                                <td>
+													<span t-field="line.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="line.price_unit"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="line.price_subtotal"/>
+                                                </td>
+                                                <t t-set="unit_price_sum" t-value="unit_price_sum + line.price_unit"/>
+                                            </tr>
+                                        </t>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <span>Total</span>
+                                            </td>
+                                            <td>
+                                                <span t-esc="'{:.2f}'.format(unit_price_sum)"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.amount_untaxed"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mt128">
+                            <div class="col-8">
+                            </div>
+                            <div class="col-3" style="margin-top:100px;">
+                                <t t-if="o.is_duty_free_confirm">
+                                    <span>
+                                        <i class="fa fa-check"/>
+                                    </span>
+                                </t>
+                                <t t-else="">
+                                    <span>
+                                        <i class="fa fa-close"/>
+                                    </span>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_report_account_move_custom" model="ir.actions.report">
+            <field name="name">Duty Free PDF</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ki_duty_free.template_account_move</field>
+            <field name="report_file">ki_duty_free.template_account_move</field>
+            <field name="print_report_name">(object._get_report_base_filename())</field>
+            <field name="paperformat_id" ref="ki_duty_free.paperformat_pdf_statement"/>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

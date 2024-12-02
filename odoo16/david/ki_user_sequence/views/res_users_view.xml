@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_users_form_inherit_seq_number" model="ir.ui.view">
+            <field name="name">res.users.form.inherit.seq_number</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form" />
+            <field name="arch" type="xml">
+                <data>
+
+                    <xpath expr="//div[hasclass('oe_title')]//field[@name='partner_id']" position="after">
+                        <field name="seq_number"/>
+                    </xpath>
+
+                </data>
+            </field>
+        </record>
+
+        <record id="view_users_tree_inherit_seq_number" model="ir.ui.view">
+            <field name="name">res.users.tree.inherit.seq_number</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_tree" />
+            <field name="arch" type="xml">
+                <data>
+
+                    <xpath expr="//field[@name='login']" position="after">
+                        <field name="seq_number"/>
+                    </xpath>
+
+                </data>
+            </field>
+        </record>
+
+    </data>
+</odoo>

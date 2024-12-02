@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="ked_escalation_view_form" model="ir.ui.view">
+        <field name="name">ked.escalation.form</field>
+        <field name="model">ked.escalation</field>
+
+        <field name="arch" type="xml">
+            <form string="KAM Escalation">
+         <header>
+                <button name="action_to_send_warning" type="object" string="Send Notification" attrs="{'invisible': [('state', 'in', ['closed','cancel'])]}" class="btn-primary" groups="rdp_ked_escalation.ked_group_status_manager"/>
+                <button name="action_to_closed" type="object" string="Close" attrs="{'invisible': [('state', 'in', ['cancel','closed'])]}" class="btn-primary" groups="rdp_ked_escalation.ked_group_status_manager"/>
+                <button name="action_to_cancel" type="object" string="Cancel" attrs="{'invisible': [('state', 'in', ['closed','cancel'])]}" groups="rdp_ked_escalation.ked_group_status_manager"/>
+                <field name="state" widget="statusbar" />
+         </header>
+                <sheet>
+
+                 <div class="oe_button_box" name="button_box">
+                 </div>
+                             <div>
+                                 <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px;">Open Days: <span style="font-size:16px"><field name="open_days"/></span> </div>
+                                <div style=" float: left; padding: 5px 12px 2px; background-color:#33c76b; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-left:5px;margin-bottom:10px;">
+                                    Effort: <span style="font-size:16px"><field name="effort"/></span> Min </div>
+                            
+                                
+                                <div style=" float: left; padding: 5px 12px 2px; background-color:#00a09d; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-left:5px;margin-bottom:10px;">
+                                    Activities: <span style="font-size:16px"><field name="activities"/></span></div>
+                                <div style="clear:both"/>
+                                 <h1>
+                                <field name="name" readonly="1"/>
+                                </h1>
+                            </div>
+                    <group>
+                        <group>
+                            <field name="helpdesk_ticket_fed_id" attrs="{'readonly':[('state','not in',['open'])] }" />
+                             <field  name="helpdesk_team_id"/>
+                             <field  name="assigned_to"/>
+                             <field  name="priority" widget="priority"/>
+
+                        </group>
+                        <group>
+                            <!-- <field  name="create_uid" string="Escalation By"/> -->
+                           <field  name="escalation_id" domain="[('is_int_user','=',True),('groups_id.id','=',378)]" string="Escalation By (KAM)"/>
+                            <!-- <field name="designation" /> -->
+                            <field name="emp_mobile" />
+                            <field name="ked_sla_date" required="1" />
+                            <field name="ked_sla_days" />
+                             <field name="ked_sla_days_num" invisible='1'/>
+                           
+                        </group>
+                    </group>
+                    
+                </sheet>
+                 <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- pivot view -->
+    <record id="ked_escalation_pivot" model="ir.ui.view">
+        <field name="name">ked.escalation.pivot</field>
+        <field name="model">ked.escalation</field>
+        <field name="arch" type="xml">
+            <pivot string="KED">
+                <field  name="name"/>
+                  
+            </pivot>
+        </field>
+    </record>
+     <!-- calender view -->
+    <record id="ked_escalation_calendar" model="ir.ui.view">
+        <field name="name">ked.escalation.calendar</field>
+        <field name="model">ked.escalation</field>
+        <field name="arch" type="xml">
+            <calendar string="KED" date_start="create_date" color="name" mode="month" quick_add="True">
+               <field  name="name"/>
+                
+            </calendar>
+        </field>
+    </record>
+        <!-- Gragh view -->
+    <record id="ked_escalation_graph" model="ir.ui.view">
+        <field name="name">ked.escalation.graph</field>
+        <field name="model">ked.escalation</field>
+        <field name="arch" type="xml">
+            <graph string="KED" type="pie">
+                    <field  name="name"/>
+            </graph>
+        </field>
+    </record>
+
+      <!-- gantt view -->
+     
+     <record id="ked_escalation_gantt" model="ir.ui.view">
+        <field name="name">ked.escalation.gantt</field>
+        <field name="model">ked.escalation</field>
+        <field name="arch" type="xml">
+            <gantt date_start="create_date" date_stop="closed_date" string="Default Grant view"></gantt>
+        </field>
+    </record>
+ 
+     <!-- kanban view-->
+    <record id="ked_escalation_kanban" model="ir.ui.view">
+        <field name="name">ked.escalation.kanban</field>
+        <field name="model">ked.escalation</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban">
+                <field  name="name"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill rdp_ked_escalation_ked_escalation_kanban">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                <div class="o_kanban_tags_section"/>
+                                <ul>
+                                    <li>Reference: <field name="name"/></li>
+                                    <li>status : <field name="state"/></li>
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                    <searchpanel>
+                        <field name="name" icon="fa-building"/>
+                        <field name="name" select="multi" icon="fa-tags"/>
+                    </searchpanel>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <!-- tree view -->
+    <record id="ked_escalation_tree_view" model="ir.ui.view">
+        <field name="name">ked.escalation.tree</field>
+        <field name="model">ked.escalation</field>
+        <field name="arch" type="xml">
+            <tree string="KAM Escalation" default_order="priority desc" decoration-danger="ked_sla_days_num &gt; 3">
+                           <field name="name"/>
+                           <field name="helpdesk_ticket_fed_id"/>
+                            <!-- <field  name="customer_id"/>
+                            <field name="helpdesk_model_name" />
+                            <field name="helpdesk_serial_number"/> -->
+                           
+                            <field  name="helpdesk_team_id"/>
+                            <field  name="assigned_to"/>
+                            <field name="escalation_id" string="Escalation By (KAM)"/>
+                            <field  name="priority" widget="priority"/>
+                            <field name="helpdesk_opendays" string="Ticket Opendays"/>
+                            <field name="open_days" string="KED Opendays"/>
+                            <field name ="ked_sla_days" string ="KED SLA Days"/>
+                            <field name ="delay_days" string= "Days Delay" />
+                            <field name="state" />
+                            <field name="activity_date_deadline" string ="NAD"/>
+                            <field name="ked_sla_days_num" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+   
+
+   <record id="ked_escalation_search_view" model="ir.ui.view">
+        <field name="name">ked.escalation.search</field>
+        <field name="model">ked.escalation</field>
+        <field name="arch" type="xml">
+            <search string="KED">
+                 <field name="name"/>
+                    <field name="helpdesk_ticket_fed_id"/>
+                    <field name="helpdesk_team_id"/>
+                <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                <filter name="closed" string="Closed" domain="[('state', '=', 'closed')]"/>
+                <filter name="cancel" string="Cancel" domain="[('state', '=', 'cancel')]"/>
+                <filter name="name" string="Reference"/>
+                
+                
+                <group expand="0" string="Group By">
+                    <filter name="helpdesk_team_id" string="Helpdesk Team" domain="[]" context="{'group_by':'helpdesk_team_id'}"/>
+                    <filter name="create_date" string="Created On" domain="[]" context="{'group_by':'create_date'}"/>
+                    <filter name="assigned_to" string="Assigned To" domain="[]" context="{'group_by':'assigned_to'}"/>
+                    <filter name="escalation_id" string="Escalation By (KAM)" domain="[]" context="{'group_by':'escalation_id'}"/>
+                    <filter name="priority" string="Priority" domain="[]" context="{'group_by':'priority'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--  action -->
+    <record id="ked_escalation_action_view" model="ir.actions.act_window">
+        <field name="name">KAM Escalation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ked.escalation</field>
+       <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,pivot,gantt,graph,calendar,search</field>
+       <field name="context">{}</field>
+       <field name="search_view_id" ref="ked_escalation_search_view"/>
+    </record>
+   
+     <menuitem name="SWIFT"
+		  id="helpdesk_swift_menu"
+          parent="helpdesk.menu_helpdesk_root"
+          sequence="140"
+		/>
+        <menuitem name="KAM Escalation"
+		  id="ked_escalation_menu"
+      	  action='ked_escalation_action_view'
+          parent="helpdesk_swift_menu"
+          
+		/> 
+</data>
+</odoo>

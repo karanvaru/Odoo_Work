@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_detail_view_form" model="ir.ui.view">
+            <field name="name">product.details.form</field>
+            <field name="model">product.details</field>
+
+            <field name="arch" type="xml">
+                <form string="PSPR Details">
+                    <header>
+                        <button name="action_to_part_request" type="object" string="Part request"
+                                attrs="{'invisible': [('state', 'in', ['part_request','request_accept','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','purchase_request','repair_started','repaired','ready_for_pickup','return_received','sent_to_rma_tech'])]}"
+                                class="btn-primary"/>
+
+                        <button name="action_to_request_accept" type="object" string="request accept"
+                                attrs="{'invisible': [('state', 'in', ['draft','request_accept','part_dispatched','part_reached','in_transit','closed','cancel','purchase_request','repair_started','repaired','request_for_part_pickup','ready_for_pickup','return_received','sent_to_rma_tech'])]}"
+                                class="btn-primary"/>
+                        <!--                         -->
+
+                        <!--                      new repair button-->
+                        <button name="action_to_repair_request" type="object" string="Replace Component"
+                                class="btn-primary"
+                                attrs="{'invisible':[('state', 'in', ['draft','part_request','request_accept','purchase_request','part_dispatched','repair_started','request_for_part_pickup','ready_for_pickup','repaired','closed','cancel','return_received','sent_to_rma_tech'])]}"/>
+
+                        <button name="action_to_repaired" type="object" string="Updated in repair app"
+                                class="btn-primary"
+                                attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','purchase_request','repaired','ready_for_pickup','return_received','sent_to_rma_tech'])]}"/>
+
+
+                        <button name="action_to_in_transit" type="object" string="Return Picked"
+                                attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_dispatched','part_reached','in_transit','closed','cancel','purchase_request','repair_started','request_for_part_pickup','repaired','return_received','sent_to_rma_tech'])]}"/>
+
+                        <button name="action_to_partsend" type="object" string="Part Send" class="btn-primary"
+                                attrs="{'invisible': [('state', 'in', ['draft','part_dispatched','part_reached','closed','cancel','part_request','repair_started','repaired','ready_for_pickup','request_for_part_pickup','return_received','sent_to_rma_tech'])]}"/>
+
+
+                        <button name="action_to_request_for_part_pickup" type="object" string="Initiate Pickup"
+                                attrs="{'invisible': [('state', 'in', ['draft','part_request','request_for_part_pickup','in_transit','closed','cancel','repair_started','ready_for_pickup','part_dispatched','return_received','sent_to_rma_tech'])]}"/>
+                        <button name="action_to_part_reached" type="object" string="Receive Confirm"
+                                attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_reached','request_for_part_pickup','in_transit','closed','cancel','purchase_request','repair_started','repaired','ready_for_pickup','return_received','sent_to_rma_tech'])]}"
+                                class="btn-primary"/>
+                        <!--<button name="action_to_request_for_part_pickup" type="object" string="Pickup Request" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_for_part_pickup','in_transit','closed','cancel','repair_started'])]}"/>-->
+                        <!--                        <button name="action_to_purchase_request" type="object" string=" purchase request"-->
+                        <!--                                attrs="{'invisible': [('state', 'in', ['draft','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','part_request','purchase_request','repair_started','repaired','ready_for_pickup','return_received','sent_to_rma_tech'])]}"/>-->
+
+                        <button name="%(action_purchase_request_wizard)d" string="purchase request" type="action"
+                                attrs="{'invisible': [('state', 'in', ['draft','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','part_request','purchase_request','repair_started','repaired','ready_for_pickup','return_received','sent_to_rma_tech'])]}"/>
+
+                        <!--<button name="action_to_received_material" type="object" string="received material" attrs="{'invisible': [('state', 'in', ['draft','request_accept','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','part_request','received_material','received_material','repair_started','repaired'])]}" class="btn-primary"/>-->
+
+                        <button name="action_to_part_dispatched" type="object" string="dispatched"
+                                attrs="{'invisible': [('state', 'in', ['draft','part_request','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','purchase_request','request_accept','repair_started','repaired','ready_for_pickup','return_received','sent_to_rma_tech'])]}"
+                                class="btn-primary"/>
+
+                        <!--<button name="action_to_part_reached" type="object" string="Receive Confirm" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_reached','request_for_part_pickup','in_transit','closed','cancel','purchase_request','repair_started','repaired'])]}" class="btn-primary"/>-->
+
+                        <!--<button name="action_to_request_for_part_pickup" type="object" string="Pickup Request" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_for_part_pickup','in_transit','closed','cancel','repair_started'])]}" class="btn-primary"/>-->
+
+                        <!--<button name="action_to_in_transit" type="object" string="Pickup" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_dispatched','part_reached','in_transit','closed','cancel','purchase_request','repair_started'])]}" class="btn-primary"/>-->
+                        <button name="action_to_sent_to_rma_tech" type="object" string="SENT TO RMA TECH "
+                                attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','purchase_request','part_dispatched','part_reached','repair_started','part_reached','repair_started','repaired','request_for_part_pickup','ready_for_pickup','in_transit','sent_to_rma_tech','closed','cancel'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_closed" type="object" string="closed"
+                                attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_dispatched','part_reached','request_for_part_pickup','closed','cancel','purchase_request','repair_started','ready_for_pickup','in_transit'])]}"
+                                class="btn-primary"/>
+
+                        <!--                   <button name="action_to_hold" type="object" string="hold" attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_dispatched','part_reached','request_for_part_pickup','in_transit','cancel','closed'])]}"/>-->
+                        <!-- newly added buttons by sabitha -->
+                        <button name="action_to_ready_for_pickup" type="object" string="Ready for pickup"
+                                attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_dispatched','part_reached','ready_for_pickup','return_received','closed','cancel','purchase_request','repair_started','repaired','in_transit','sent_to_rma_tech'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_return_received" type="object" string="Return Recieved"
+                                attrs="{'invisible': [('state', 'in', ['draft','part_request','request_accept','part_dispatched','part_reached','request_for_part_pickup','closed','cancel','purchase_request','repair_started','ready_for_pickup','return_received','sent_to_rma_tech'])]}"
+                                class="btn-primary"/>
+
+
+                        <button name="action_to_cancel" type="object" string="cancel"
+                                attrs="{'invisible': [('state', 'in', ['draft','part_dispatched','part_reached','request_for_part_pickup','closed','cancel','purchase_request','return_received','request_accept','repair_started','repaired','ready_for_pickup','return_received','in_transit','sent_to_rma_tech'])]}"/>
+                        <button name="action_set_draft" type="object" string="set to draft"
+                                attrs="{'invisible': [('state', 'in', ['draft','closed','return_received','in_transit','purchase_request','request_accept','part_dispatched','part_reached','repair_started','repaired','request_for_part_pickup','ready_for_pickup','cancel','sent_to_rma_tech'])]}"/>
+                        <!--                      newly added button-->
+                        <!--                       <button name="action_to_partsend" type="object" string=" Part Send" attrs="{'invisible': [('state', 'in', ['draft','part_dispatched','part_reached','request_for_part_pickup','in_transit','closed','cancel','part_request','purchase_request','received_material'])]}" class="btn-primary"/>-->
+                        <!-- 24-7-2023 by sabitha -->
+
+
+                        <field name="state" widget="statusbar" readonly="1"
+                               statusbar_visible="draft,part_request,request_accept,closed" nolabel="1"/>
+
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="open_inward_screen" class="oe_stat_button" type="object" icon="fa-truck"
+                                    attrs="{'invisible': [('inward_screen','==',0)]}">
+                                <field string="Picking Orders" name="inward_screen" widget="statinfo"/>
+                            </button>
+                            <button name="open_repair_screen" class="oe_stat_button" type="object" icon="fa-wrench"
+                                    attrs="{'invisible': [('repair_count_id','==',0)]}">
+                                <field string="Repair Orders" name="repair_count_id" widget="statinfo"/>
+                            </button>
+
+                            <!-- <button name="open_purchase_tender" class="oe_stat_button" type="object" icon="fa-list"
+                                    attrs="{'invisible': [('purchase_tender_count','==',0),('state','not in',['purchase_request'])]}">
+                                <field string="Purchase Tender" name="purchase_tender_count" widget="statinfo"/>
+                            </button> -->
+                            <button name="open_purchase_tender" class="oe_stat_button" type="object" icon="fa-list"
+                                    attrs="{'invisible': [('purchase_tender_count','==',0)]}">
+                                <field string="Purchase Tender" name="purchase_tender_count" widget="statinfo"/>
+                            </button>
+
+
+                        </div>
+                        <div class="oe_title">
+
+
+                            <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px; margin-right:3px;">
+                                Ticket OD:
+                                <span style="font-size:16px">
+                                    <field name="total_opendays"/>
+                                </span>
+                            </div>
+
+                            <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px; margin-right:3px; ">
+                                Part Request OD:
+                                <span style="font-size:16px">
+                                    <field name="part_request_opendays"/>
+                                </span>
+                            </div>
+
+                            <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px; margin-right:3px;">
+                                CCOD:
+                                <span style="font-size:16px">
+                                    <field name="complete_cycle_opendays"/>
+                                </span>
+                            </div>
+                            <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px; margin-right:3px;">
+                                Current Stage OD:
+                                <span style="font-size:16px">
+                                    <field name="current_stage_opendays"/>
+                                </span>
+                            </div>
+                            <div style="clear:both"/>
+
+                        </div>
+                        <div>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="helpdesk_ticket_id" attrs="{'readonly':[('state','not in',['draft'])] }"/>
+                                <field name="helpdesk_state_id"/>
+                                <!-- <field  name="helpdesk_state_id"/>
+                                <field name="helpdesk_team_id"/>
+                                <field name="opendays_count" order="desc" /> -->
+                                <!--                                <field name="model_name"/>-->
+                                <field name="serial_num"/>
+                                <field name="part_value_id"/>
+                                <field name="assigned_id"/>
+                                <!-- commend by Dayan 30.10.2022=========model_name field 87 -->
+                                <!-- <field name="model_name"/> -->
+                                <field name="pspr_open_days" invisible='1'/>
+                            </group>
+                            <group>
+                                <!-- Added by Dayan start ===================== -->
+
+                                <field name="ps_product_id" invisible='1'/>
+                                <field name="draft_days" invisible='1'/>
+                                <field name="part_request_days" invisible='1'/>
+                                <field name="request_accept_days" invisible='1'/>
+                                <field name="purchase_request_days" invisible='1'/>
+                                <field name="part_dispatched_days" invisible='1'/>
+                                <field name="part_reached_days" invisible='1'/>
+                                <field name="repair_started_days" invisible='1'/>
+                                <field name="repaired_days" invisible='1'/>
+                                <field name="request_for_part_pickup_days" invisible='1'/>
+                                <field name="in_transit_days" invisible='1'/>
+                                <field name="closed_days" invisible='1'/>
+                                <field name="cancel_days" invisible='1'/>
+                                <!-- Added by sabitha -->
+                                <field name="category_id"/>
+                                <field name="sub_category_id"/>
+                                <field name="tag_ids" widget="many2many_tags"/>
+                                <field name="no_damage_id"/>
+                                <!-- <field name="damage_date" /> -->
+
+
+                                <!-- <field name ="is_damaged" /><field name="damage_date" nolabel="1"/> -->
+                                <!-- <field name="damage_date" nolabel="1"/> -->
+                                <field name="company_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                <!-- <field name ="is_damaged" />
+                                <field name="damage_date" nolabel="1"/> -->
+                                <field name="total_opendays" invisible='1'/>
+                                <field name="part_request_opendays" invisible='1'/>
+                                <field name="current_stage_opendays" invisible='1'/>
+                                <field name="complete_cycle_opendays" invisible='1'/>
+
+                                <!-- Added by Dayan end ============================== -->
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Internal Notes">
+                                <group>
+                                    <field name="internal_notes" widget="html" string="Notes"/>
+                                </group>
+                            </page>
+                            <page string="Part Request Details">
+                                <field name="part_details_ids" widget='one2many' editable="bottom">
+                                    <tree editable="bottom" delete='false'>
+                                        <field name="part_name"/>
+                                        <field name="part_desc"/>
+                                        <field name="product"
+                                               domain="['|',('company_id','=',False),('company_id', '=', parent.company_id)]"/>
+                                        <field name="part_rq_qty"/>
+                                        <field name="part_sent_qty"/>
+                                        <field name="part_rv_qty"/>
+                                        <field name="uom_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Support Location">
+                                <group>
+                                    <group>
+                                        <field name="customer_id" readonly="1"/>
+                                        <field name="street" readonly="1"/>
+                                        <field name="street2" readonly="1"/>
+                                        <field name="city" readonly="1"/>
+                                        <field name="pincode" readonly="1"/>
+                                        <field name="state_name" readonly="1"/>
+                                        <field name="country" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="contact_person" readonly="1"/>
+                                        <field name="email" readonly="1"/>
+                                        <field name="phone" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <!--<field  name="customer_id"/>-->
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Damage 2.0" attrs="{'invisible':[('no_damage_id','!=',10)]}">
+                                <group>
+                                    <label for="is_damaged"/>
+                                    <div>
+                                        <field name="is_damaged" class="oe_inline"/>
+                                        <field name="damaged_date" class="oe_inline" readonly="1" force_save="1"/>
+                                        <!-- <field name="product_uom" class="oe_inline"/> -->
+                                    </div>
+                                    <field name="damage_category_id" attrs="{'required':[('no_damage_id','=',10)]}"/>
+                                    <!-- <field name="phone" readonly="1"/> -->
+                                </group>
+                            </page>
+                            <page string="Picking Detail">
+                                <group>
+                                    <group string="Request Accept">
+                                        <field name="is_accept" invisible="1"/>
+                                        <field name="stock_picking_type_id"
+                                               attrs="{'readonly':[('is_accept','!=',False)]}"
+                                               domain="[('code', '=', 'internal'),('warehouse_id.company_id', '=', company_id)]"/>
+                                        <field name="location_id"
+                                               attrs="{'readonly':[('is_accept','!=',False)]}"
+                                               domain="['|',('company_id','=',False),('company_id','=',company_id)]"/>
+                                        <field name="dest_location_id"
+                                               attrs="{'readonly':[('is_accept','!=',False)]}"
+                                               domain="['|',('company_id','=',False),('company_id','=',company_id)]"/>
+                                    </group>
+                                    <group string="Repair">
+                                        <field name="is_repair" invisible="1"/>
+                                        <field name="repair_location_id"
+                                               attrs="{'readonly':[('is_repair','!=',False)]}"
+                                               domain="['|',('company_id','=',False),('company_id','=',company_id),('usage','=','internal')]"/>
+                                    </group>
+
+                                </group>
+
+                                <group>
+                                    <group string="Part PickUp">
+                                        <field name="is_part_pickup" invisible="1"/>
+                                        <field name="part_pickup_source_location_id"
+                                               attrs="{'readonly':[('is_part_pickup','!=',False)]}"
+                                               domain="['|',('company_id','=',False),('company_id','=',company_id),('usage','=','internal')]"/>
+
+                                        <field name="part_pickup_dest_location_id"
+                                               attrs="{'readonly':[('is_part_pickup','!=',False)]}"
+                                               domain="['|',('company_id','=',False),('company_id','=',company_id),('usage','=','internal')]"/>
+                                    </group>
+
+                                    <group string="RMA Tech">
+                                        <field name="is_rma_tech" invisible="1"/>
+                                        <field name="rma_source_location_id"
+                                               attrs="{'readonly':[('is_rma_tech','!=',False)]}"
+                                               domain="['|',('company_id','=',False),('company_id','=',company_id),('usage','=','internal')]"/>
+
+                                        <field name="rma_dest_location_id"
+                                               attrs="{'readonly':[('is_rma_tech','!=',False)]}"
+                                               domain="['|',('company_id','=',False),('company_id','=',company_id),('usage','=','internal')]"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree view -->
+        <record id="product_detail_tree_view" model="ir.ui.view">
+            <field name="name">product.details.tree</field>
+            <field name="model">product.details</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Product Details">
+                    <field name="name"/>
+                    <field name="helpdesk_ticket_id"/>
+                    <field name="customer_id"/>
+                    <field name="serial_num"/>
+                    <!--                    <field name="model_name"/>-->
+                    <field name="pspr_open_days" invisible="1"/>
+                    <field name="helpdesk_state_id"/>
+                    <field name="helpdesk_team_id"/>
+                    <!-- <field name="category_id"/>
+                     <field name="sub_category_id"/> -->
+                    <field name="part_request_opendays"/>
+                    <field name="current_stage_opendays"/>
+                    <field name="complete_cycle_opendays"/>
+                    <!-- <field name="opendays_count"/> -->
+                    <!-- <field name="x_studio_open_days"/> -->
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- calender view -->
+        <record id="pspr_calendar_view" model="ir.ui.view">
+            <field name="name">product.details.calendar</field>
+            <field name="model">product.details</field>
+            <field name="arch" type="xml">
+                <calendar string="Part Send Pickup Request" date_start="create_date" color="name" mode="month"
+                          quick_add="True">
+                    <field name="name"/>
+
+                </calendar>
+            </field>
+        </record>
+        <!-- Gragh view -->
+        <record id="ked_escalation_graph" model="ir.ui.view">
+            <field name="name">ked.escalation.graph</field>
+            <field name="model">ked.escalation</field>
+            <field name="arch" type="xml">
+                <graph string="Part Send Pickup Request" type="pie">
+                    <field name="name"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- gantt view -->
+
+        <record id="pspr_gantt_view" model="ir.ui.view">
+            <field name="name">product.details.gantt</field>
+            <field name="model">product.details</field>
+            <field name="arch" type="xml">
+                <gantt date_start="create_date" date_stop="closed_date" string="Default Grant view"></gantt>
+            </field>
+        </record>
+
+        <!-- kanban view-->
+        <record id="pspr_kanban_view" model="ir.ui.view">
+            <field name="name">product.details.kanban</field>
+            <field name="model">product.details</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="name"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill product_sar_pspr_kanban_view">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <div class="o_kanban_tags_section"/>
+                                    <ul>
+                                        <li>Reference:
+                                            <field name="name"/>
+                                        </li>
+                                        <li>status :
+                                            <field name="state"/>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                        <searchpanel>
+                            <field name="name" icon="fa-building"/>
+                            <field name="name" select="multi" icon="fa-tags"/>
+                        </searchpanel>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!-- Pivot View -->
+        <record id="product_detail_pivot_view" model="ir.ui.view">
+            <field name="name">product.details.pivot</field>
+            <field name="model">product.details</field>
+            <field name="arch" type="xml">
+                <pivot string="Part Send Pickup Request" disable_linking="True">
+                    <!-- <field name="date" interval="month" type="row"/>
+                    <field name="price_subtotal" type="measure"/> -->
+                </pivot>
+            </field>
+        </record>
+
+        <record id="pspr_search_view" model="ir.ui.view">
+            <field name="name">product.details.search</field>
+            <field name="model">product.details</field>
+            <field name="arch" type="xml">
+                <search string="Part Send Pickup Request">
+                    <field name="name"/>
+                    <field name="helpdesk_ticket_id"/>
+                    <field name="helpdesk_team_id"/>
+                    <field name="helpdesk_state_id"/>
+                    <field name="customer_id"/>
+                    <field name="state"/>
+                    <!--                    <field name="model_name"/>-->
+                    <field name="serial_num"/>
+                    <field name="category_id"/>
+                    <field name="sub_category_id"/>
+                    <field name="company_id"/>
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                    <filter name="losed" string="Closed" domain="[('state', '=', 'closed')]"/>
+                    <filter name="cancel" string="Cancel" domain="[('state', '=', 'cancel')]"/>
+                    <filter name="name" string="Reference"/>
+
+
+                    <group expand="0" string="Group By">
+                        <filter name="helpdesk_team_id" string="HD Team" domain="[]"
+                                context="{'group_by':'helpdesk_team_id'}"/>
+                        <filter name="helpdesk_state_id" string="HD Status " domain="[]"
+                                context="{'group_by':'helpdesk_state_id'}"/>
+                        <filter name="state" string="Stage" domain="[]" context="{'group_by':'state'}"/>
+                        <filter name="create_date" string="Created On" domain="[]"
+                                context="{'group_by':'create_date'}"/>
+                        <filter name="closed_date" string="Closed On" domain="[]" context="{'group_by':'closed_date'}"/>
+                        <filter name="helpdesk_ticket_id" string="Helpdesk Ticket" domain="[]"
+                                context="{'group_by':'helpdesk_ticket_id'}"/>
+                        <filter name="name" string="Reference" domain="[]" context="{'group_by':'name'}"/>
+                        <filter name="customer_id" string="Customer" domain="[]" context="{'group_by':'customer_id'}"/>
+                        <!--                    <filter name="model_name" string="Model Name" domain="[]" context="{'group_by':'model_name'}"/>-->
+                        <filter name="serial_num" string="Serial Number" domain="[]"
+                                context="{'group_by':'serial_num'}"/>
+                        <filter name="category_id" string="Category" domain="[]" context="{'group_by':'category_id'}"/>
+                        <filter name="sub_category_id" string="Sub Category" domain="[]"
+                                context="{'group_by':'sub_category_id'}"/>
+                        <filter name="part_value_id" string="Part Value" domain="[]"
+                                context="{'group_by':'part_value_id'}"/>
+                        <filter name="no_damage_id" string="No Damage" domain="[]"
+                                context="{'group_by':'no_damage_id'}"/>
+                        <filter name="company_id" string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+                        <filter name="assigned_id" string="Assign To" domain="[]" context="{'group_by':'assigned_id'}"/>
+                        <filter name="damaged_date" string="Damage 2.0" domain="[]"
+                                context="{'group_by':'damaged_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <!-- ====Dayan====22.11.2022=====Created======= Action -->
+        <record id="product_send_request_action" model="ir.actions.act_window">
+            <field name="name">Part Send Pickup Request</field>
+            <field name="res_model">product.details</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot,kanban,gantt,graph,calendar,search</field>
+            <field name="view_id" ref="product_detail_tree_view"/>
+            <field name="context">{}</field>
+            <field name="search_view_id" ref="pspr_search_view"/>
+        </record>
+
+        <!-- Menu Created === 22.11.2022===============Dayan=============== -->
+        <menuitem id="menu_part_send_pickup_request" name="Part Send Pickup Request"
+                  parent="rdp_ked_escalation.helpdesk_swift_menu" action="product_send_request_action" sequence='1'/>
+
+
+        <!-- ==Dayan================Repair Order Source Document ===========Dayan========04.11.2022========================================================  -->
+        <record id="repair_order_inherit_form_view" model="ir.ui.view">
+            <field name="name">repair.order.inherit.form.view</field>
+            <field name="model">repair.order</field>
+            <field name="inherit_id" ref="repair.view_repair_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_method']" position="after">
+                    <field name="source_document"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="helpdesk_ticket_form_inherited" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.inherit.form.view</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="PSPR">
+                        <group>
+                            <field name="pspr_id"/>
+                            <field name="pspr_state"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <record id="helpdesk_ticket_tree_inherited" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.inherit.tree.view</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='stage_id']" position="after">
+                    <field name="pspr_id"/>
+                    <field name="pspr_state"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- <record id="helpdesk_ticket_search_inherited" model="ir.ui.view">
+           <field name="name">helpdesk.ticket.inherit.search.view</field>
+           <field name="model">helpdesk.ticket</field>
+           <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_search" />
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='ticket_type_id']" position="after">
+               <group>
+                   <filter string="PSPR Stage" name="pspr_state" context="{'group_by':'pspr_state'}"/>
+              </group>
+              </xpath>
+           </field>
+       </record> -->
+
+        <!-- Added by Sabitha In Stock Picking Inherited View -->
+        <record id="stcok_inherit_form_view" model="ir.ui.view">
+            <field name="name">stock.picking.inherit.form.view</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='no_of_shipping_boxes']" position="after">
+                    <field name="screen_type"/>
+                    <field name="rma_supplier_id" readonly="1" attrs="{'invisible': [('rma_supplier_id', '=', False)]}"
+                           string="SRMA Source"/>
+                    <field name="pspr_stock_id" readonly="1" attrs="{'invisible': [('pspr_stock_id', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='shipping_weight']" position="after">
+                    <field name="material_value"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

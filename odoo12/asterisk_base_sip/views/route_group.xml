@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="asterisk_base_sip_route_group_list" model="ir.ui.view">
+    <field name="name">asterisk_base_sip_route_group_list</field>
+    <field name="model">asterisk_base_sip.route_group</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="server"/>
+        <field name="note"/>
+        <field name="include_extensions"/>
+        <field name="routes_count"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id='asterisk_base_sip_route_group_form' model='ir.ui.view'>
+    <field name='name'>asterisk_base_sip_route_group.form</field>
+    <field name='model'>asterisk_base_sip.route_group</field>
+    <field name='type'>form</field>
+    <field name='arch' type='xml'>
+      <form>
+        <sheet>
+          <div name="title" class="oe_title">            
+            <h1 class="o_row row no-gutters d-flex">
+              <div class="col">
+                <div class="o_row">
+                  <label class="oe_edit_only" for="name"/>
+                  <field class="oe_inline" name="name" placeholder="Group name..."/>
+                  <span class="oe_grey p-2">at</span>
+                </div>
+              </div>              
+              <div class="col">
+                <div class="o_row">
+                  <label class="oe_edit_only" for="server"/>
+                  <field name="server" placeholder="Select Asterisk server..."
+                    options="{'no_create': '1'}"/>
+                </div>
+              </div>
+            </h1>
+          </div>
+          <group>
+            <group>
+              <field name='note'/>
+              <field name="is_user_default"/>
+              <field name="is_peer_default"/>
+              <field name="is_trunk_default"/>
+            </group>            
+            <group>
+              <field name="id" invisible="1"/>                        
+              <field name="include_extensions"/>
+            </group>
+          </group>
+          <group attrs="{'invisible': [('id','=',False)]}">
+            <group>                            
+              <field name="routes" widget="many2many_tags"
+                domain="[('server', '=', server)]"
+                context="{'default_server': server}"/>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id='asterisk_base_sip_route_group_search' model='ir.ui.view'>
+    <field name='name'>asterisk_base_sip.route_group.search</field>
+    <field name='model'>asterisk_base_sip.route_group</field>
+    <field name='type'>search</field>
+    <field name='arch' type='xml'>
+      <search>
+          <field name='name'/>
+          <field name='server'/>
+          <filter name="by_server" string="By Server" context="{'group_by': 'server'}"/>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="asterisk_base_sip_route_group_action">
+      <field name="name">Route Groups</field>
+      <field name="res_model">asterisk_base_sip.route_group</field>
+      <field name="view_mode">tree,form</field>
+  </record>
+
+    <menuitem name="Routes" id="asterisk_base_sip_route_group_menu"
+              parent="asterisk_base_sip_settings_menu" sequence="180"
+              action="asterisk_base_sip_route_group_action"/>
+
+
+</odoo>

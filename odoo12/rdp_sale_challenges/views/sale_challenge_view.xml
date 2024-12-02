@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <!--        form view-->
+        <record id="sale_challenge_view_form" model="ir.ui.view">
+            <field name="name">sale.challenge.form</field>
+            <field name="model">sale.challenge</field>
+            <field name="arch" type="xml">
+                <form string="Sales Challenges">
+                    <header>
+                        <!-- <button name="%(rdp_sale_challenges.sale_challenge_response)d" type="action" string="Response" class="btn-primary" attrs="{'invisible': [('state', 'in', ['closed','cancelled','draft','submitted'])]}"/> -->
+                        <button name="action_to_submit" type="object" string="WIP" attrs="{'invisible': [('state', 'in', ['closed','cancelled','submitted'])]}" class="btn-primary"/>
+                        <!-- <button name="action_to_approve" type="object" string="Approve" attrs="{'invisible': [('state', 'in', ['closed','cancelled','draft'])]}"
+                        groups="sales_team.group_sale_manager" class="btn-primary"/> -->
+
+                        <!-- <button name="action_to_resolved" type="object" string="Resolved" attrs="{'invisible': [('state', 'in', ['draft','cancelled','resolved','closed'])]}" class="btn-primary"/> -->
+
+                        <button name="action_to_closed" type="object" string="Close" attrs="{'invisible': [('state', 'in', ['draft','cancelled','closed'])]}" class="btn-primary"/>
+
+                        <button name="action_to_cancelled" type="object" string="Cancel" attrs="{'invisible': [('state', 'in', ['closed','cancelled','draft'])]}" class="btn-primary"/>
+                        <button name="action_set_draft" type="object" string="Set to Draft" attrs="{'invisible': [('state', 'in', ['draft','closed'])]}"/>
+
+
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_five_why_ticket" class="oe_stat_button" type="object" icon="fa-hacker-news">
+                                <field string="5Why" name="sales_challenge_five_why_count" widget="statinfo"/>
+                            </button>
+                            <button name="action_scm_kaizen_button" class="oe_stat_button" type="object" icon="fa-search">
+                                <field string="SCM Kaizen" name="scm_kaizen_count_sale_challenges" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <div>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                          <group>
+                                <group>
+                                    <field name="create_uid" string="Created By"/>
+                                    <field name="related_to"  attrs="{'readonly':[('state', 'in', ['closed','cancelled','submitted'])]}"/>
+
+<!--                                    <field name="related_to" options='{"no_create": True, "no_quick_create": True}' attrs="{'readonly':[('state', 'in', ['closed','cancelled','submitted'])]}"/>-->
+                                    <field name="partner_name_id" options='{"no_create": True, "no_quick_create": True}' attrs="{'readonly':[('state', 'in', ['closed','cancelled','submitted'])]}"/>
+                                    <field name="customer_id"  attrs="{'readonly':[('state', 'in', ['closed','cancelled','submitted'])]}"/>
+                                    <field name="sales_channel"/>
+                                    <!-- <field  name="kam" attrs="{'readonly':[('state', 'in', ['closed','cancelled','submitted'])]}"/> -->
+                                </group>
+                                <group>
+                                    <field name="sale_order_id" options='{"no_create": True, "no_quick_create": True}' attrs="{'readonly':[('state', 'in', ['closed','cancelled','submitted'])]}"/>
+                                    <field name="helpdesk_ticket_id" options='{"no_create": True, "no_quick_create": True}' attrs="{'readonly':[('state', 'in', ['closed','cancelled','submitted'])]}"/>
+
+                                    <!-- <field name="category_id"/> -->
+                                    <!-- <field name="scope_id"/> -->
+                                    <!-- <field name="tag_ids"/>  -->
+                                <!-- <field name="tag_ids" widget="many2many_tags"/>  -->
+                                </group>
+                             <group>
+                              <!-- <field name="brief_concern" widget="text" style="width:260%%" attrs="{'readonly':[('state', 'in', ['closed','cancelled','submitted'])]}"/> -->
+                              <field name="brief_concern"  style="width:260%%"/>
+                              <field name="action" widget="text" style="width:260%%" />
+                               </group>
+                          </group>
+                        <notebook>
+                            <page string = "For Office Use Only">
+                                <group>
+                                    <group>
+                                        <field name="scope_id" options='{"no_create": True, "no_quick_create": True}' attrs="{'readonly':[('state', 'in', ['closed','cancelled','submitted'])]}"/>
+                                        <field name="fixed_status" attrs="{'readonly':[('state', 'in', ['closed','cancelled','submitted'])]}"/>
+                                         <field name="is_physical_fixed" attrs="{'readonly':[('state', 'in', ['closed','cancelled','submitted'])]}"/>
+                                        <field name="is_digitally_fixed" attrs="{'readonly':[('state', 'in', ['closed','cancelled','submitted'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name ="tag_ids"/>
+                                        <field name="partner_id" options='{"no_create": True, "no_quick_create": True}'/>
+                                        <field name="current_partner_status"/>
+                                    </group>   
+                                </group>   
+                            </page>
+                            <page string="Department">
+                                <group>
+                                    <field name="hod_quick_comments"/>
+                                </group>
+                            </page>
+                            <page string ="Internal Notes">
+                                <group>
+                                    <field name="note" nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                     <div class="oe_chatter">
+                         <field name="message_follower_ids" widget="mail_followers"/>
+                         <field name="activity_ids" widget="mail_activity"/>
+                         <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                     </div>
+                </form>
+            </field>
+        </record>
+
+<!-- pivot view -->
+    <record id="sale_chalenge_pivot" model="ir.ui.view">
+        <field name="name">sale.challenge.pivot</field>
+        <field name="model">sale.challenge</field>
+        <field name="arch" type="xml">
+            <pivot string="Sales Challenges">
+                <field  name="name"/>
+            </pivot>
+        </field>
+    </record>
+
+     <!-- calender view -->
+    <record id="sale_challenge_calendar" model="ir.ui.view">
+        <field name="name">sale.challenge.calendar</field>
+        <field name="model">sale.challenge</field>
+        <field name="arch" type="xml">
+            <calendar string="Sales Challenges" date_start="create_date" color="name" mode="month" quick_add="True">
+               <field  name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+        <!-- Gragh view -->
+    <record id="sale_challenge_graph" model="ir.ui.view">
+        <field name="name">sale.challenge.graph</field>
+        <field name="model">sale.challenge</field>
+        <field name="arch" type="xml">
+            <graph string="Sales Challenges" type="pie">
+                    <field  name="name"/>
+            </graph>
+        </field>
+    </record>
+
+      <!-- gantt view -->
+     
+     <record id="sale-challenge_gantt" model="ir.ui.view">
+        <field name="name">sale.challenge.gantt</field>
+        <field name="model">sale.challenge</field>
+        <field name="arch" type="xml">
+            <gantt date_start="create_date" date_stop="closed_date" string="Default Grant view"></gantt>
+        </field>
+    </record>
+ 
+
+        <!-- kanban view -->
+           <!-- kanban view-->
+    <record id="sale_challenge_kanaban" model="ir.ui.view">
+        <field name="name">sale.challenge.kanban</field>
+        <field name="model">sale.challenge</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban">
+                <field  name="name"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill rdp_sale_challenge_sale_challenge_kanaban">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                <div class="o_kanban_tags_section"/>
+                                <ul>
+                                    <li>Reference: <field name="name"/></li>
+                                    <li>status : <field name="state"/></li>
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                    <searchpanel>
+                        <field name="name" icon="fa-building"/>
+                        <field name="name" select="multi" icon="fa-tags"/>
+                    </searchpanel>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+        <!-- tree view -->
+        <record id="sale_challenge_tree_view" model="ir.ui.view">
+            <field name="name">sale.challenge.tree</field>
+            <field name="model">sale.challenge</field>
+            <field name="arch" type="xml">
+                <tree string="Sales Challenges">
+                    <field  name="name" />
+                    <field name="related_to" string="Related To"/>
+                    <field name="partner_name_id"/>
+                    <field name="customer_id"/>
+                    <field  name="create_uid" string="KAM"/>
+                    <field  name="partner_id"/>
+                    <field name="state"/>
+                    <field name="open_days"/>
+                    <field name="sales_channel"/>
+                    <field name="closed_date" invisible="1"/>
+                    <field name="scm_kaizen_count_sale_challenges" string="SCM Kaizen"/>
+                    <field name="sales_challenge_five_why_count" string="5 Why"/>
+
+                </tree>
+            </field>
+        </record>
+        <!-- Search View -->
+         <record id="sale_challenge_search_view" model="ir.ui.view">
+        <field name="name">sale.challenge.search</field>
+        <field name="model">sale.challenge</field>
+        <field name="arch" type="xml">
+            <search string="Sales Challenges">
+                 <field name="name"/>
+                    <field name="partner_name_id"/>
+                    <!-- <field name="category_id"/> -->
+                    <field name="scope_id"/>
+                    <field name="related_to"/>
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                    <filter name="submitted" string="WIP" domain="[('state','=','submitted')]"/>
+                    <filter name="closed" string="Closed" domain="[('state', '=', 'closed')]"/>
+                    <filter name="cancel" string="Cancel" domain="[('state', '=', 'cancel')]"/>
+                    <filter name="name" string="Reference"/>
+                
+                
+                <group expand="0" string="Group By">
+                    <filter name="state" string="Stage" domain="[]" context="{'group_by':'state'}"/>
+                    <filter name="create_date" string="Created On" domain="[]" context="{'group_by':'create_date'}"/>
+                    <filter name="partner_name_id" string="Partner" domain="[]" context="{'group_by':'partner_name_id'}"/>
+                    <filter name="customer_id" string="Customer" domain="[]" context="{'group_by':'customer_id'}"/>
+                     <filter name="partner_id" string="Assigned To" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <!-- <filter name="category_id" string="Category" domain="[]" context="{'group_by':'category_id'}"/> -->
+                    <filter name="scope_id" string="Scope" domain="[]" context="{'group_by':'scope_id'}"/>
+                     <filter name="create_uid" string="KAM" domain="[]" context="{'group_by':'create_uid'}"/>
+                    <filter name="related_to" string="Related To" domain="[]" context="{'group_by':'related_to'}"/>
+                </group>
+            </search>
+        </field>
+    </record>  
+
+        <!--  action -->
+        <record id="sale_challenge_action_view" model="ir.actions.act_window">
+            <field name="name">Sales Challenges</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.challenge</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,pivot,gantt,graph,calendar,search</field>
+           <field name="search_view_id" ref="sale_challenge_search_view"/>
+        </record>
+<!--        <menuitem id="menu_custom_sale" name="Sales Challenges"  action="sale_challenge_action_view" />-->
+
+
+            <menuitem id="menu_custom_sale" name="Sales Challenges"  action="sale_challenge_action_view" parent="studio_customization.rdp_sales_463025d2-e8d8-4046-ba45-db57b012c250"/>
+
+    </data>
+</odoo>

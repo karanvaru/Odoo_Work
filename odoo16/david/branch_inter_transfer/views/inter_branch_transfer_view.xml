@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_inter_branch_transfer_form">
+        <field name="name">inter.branch.transfer.form</field>
+        <field name="model">inter.branch.transfer</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+
+                    <button name="action_submit"
+                            type="object"
+                            string="Submit"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+
+                    <button name="action_cancel"
+                            type="object"
+                            string="Cancel"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+
+                    <button name="action_transfer"
+                            type="object"
+                            string="Transfer"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'submit')]}"/>
+
+                    <button name="action_reset_draft"
+                            type="object"
+                            string="Reset To Draft"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=','cancel')]}"/>
+
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"
+                         attrs="{'invisible': [('stock_move_count', '&lt;=', 0)]}">
+                        <button type="object" class="oe_stat_button" name="action_show_stock_move" icon="fa-list">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="stock_move_count"/>
+                                </span>
+                                <span class="o_stat_text">Moves</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="source_branch_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="source_location_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="company_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="destination_branch_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="destination_location_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lines">
+                            <field name="inter_branch_transfer_line_ids"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="uom_id"/>
+                                    <field name="qty"/>
+                                    <field name="price_unit"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_inter_branch_transfer_tree" model="ir.ui.view">
+        <field name="name">inter.branch.transfer.tree</field>
+        <field name="model">inter.branch.transfer</field>
+        <field name="priority">2</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="company_id"/>
+                <field name="date"/>
+                <field name="source_branch_id"/>
+                <field name="destination_branch_id"/>
+                <field name="source_location_id"/>
+                <field name="destination_location_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_inter_branch_transfer_search" model="ir.ui.view">
+        <field name="name">inter.branch.transfer.search</field>
+        <field name="model">inter.branch.transfer</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="0" string="Group By...">
+                    <filter name="user_wise" string="User"
+                            context="{'group_by':'user_id'}"/>
+                    <filter name="company_wise" string="Company"
+                            context="{'group_by':'company_id'}"/>
+                    <filter name="source_branch" string="Source Branch"
+                            context="{'group_by':'source_branch_id'}"/>
+                    <filter name="dest_branch" string="Destination Branch"
+                            context="{'group_by':'destination_branch_id'}"/>
+                    <filter name="source_location" string="Source Location"
+                            context="{'group_by':'source_location_id'}"/>
+                    <filter name="dest_location" string="Destination Location"
+                            context="{'group_by':'destination_location_id'}"/>
+                    <filter name="state_wise" string="State"
+                            context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_inter_branch_transfer" model="ir.actions.act_window">
+        <field name="name">Inter Branch Transfer</field>
+        <field name="res_model">inter.branch.transfer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Generate New Inter Branch Iransfer</p>
+        </field>
+    </record>
+
+    <menuitem
+            action="action_inter_branch_transfer"
+            id="menu_inter_branch_transfer"
+            name="Inter Branch Transfer"
+            parent="stock.menu_stock_root"
+            sequence="5"/>
+
+</odoo>

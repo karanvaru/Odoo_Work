@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="seq_fwid" model="ir.sequence">
+            <field name="name">FWID Sequence</field>
+            <field name="code">five.why.sequence</field>
+            <field name="prefix">FW</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

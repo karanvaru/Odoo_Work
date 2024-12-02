@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem name="Insurance Management"
+              id="menu_main_insurance_management"
+              web_icon="qno_insurance_management,static/description/icon.png"
+              sequence="260"/>
+
+    <menuitem name="Transactions"
+              id="menu_insurance_transactions"
+              parent="menu_main_insurance_management"
+              groups="qno_insurance_management.group_policy_user"
+              sequence="1"
+    />
+
+    <menuitem name="Quotations"
+              id="menu_insurance_transactions_quotations"
+              parent="menu_insurance_transactions"
+              sequence="1"
+              action="action_policy_quotations"
+    />
+
+    <menuitem name="Policies"
+              id="menu_insurance_transactions_policies"
+              parent="menu_insurance_transactions"
+              sequence="2"
+              action="action_view_insurance_policy"
+    />
+
+    <menuitem id="claim_details_menu_action"
+              name="Claims"
+              parent="menu_insurance_transactions"
+              action="claim_details_action"
+              sequence="3"
+    />
+
+
+    <menuitem id="commission_invoice_menu_action"
+              name="Commission Invoices"
+              parent="menu_insurance_transactions"
+              action="action_commission_invoice"
+              sequence="4"
+              groups="qno_insurance_management.group_commission_show"
+    />
+
+
+    <!--    -->
+    <!--    <menuitem name="Policies"-->
+    <!--        id="menu_insurance_transactions_policies"-->
+    <!--        parent="menu_insurance_transactions"-->
+    <!--        sequence="2"-->
+    <!--        action="action_view_insurance_policy"-->
+    <!--        />-->
+
+    <menuitem name="Masters"
+              id="menu_insurance_masters"
+              parent="menu_main_insurance_management"
+              sequence="2"
+              groups="qno_insurance_management.group_policy_user"
+    />
+
+    <menuitem name="Agents"
+              id="menu_insurance_masters_agent"
+              parent="menu_insurance_masters"
+              sequence="2"
+              action="action_insurance_agent"
+    />
+
+    <menuitem name="Customers"
+              id="menu_insurance_masters_customer"
+              parent="menu_insurance_masters"
+              sequence="3"
+              action="action_insurance_customer"
+    />
+
+    <menuitem name="Insurance Companies"
+              id="menu_insurance_masters_insurance_company"
+              parent="menu_insurance_masters"
+              sequence="4"
+              action="action_insurance_insurance_company"
+    />
+
+    <menuitem name="Policy Products"
+              id="menu_insurance_masters_policy_product"
+              parent="menu_insurance_masters"
+              sequence="6"
+              action="action_policy_product"
+    />
+    <menuitem name="Insurance Companies Agent"
+              id="menu_insurance_company_agent"
+              parent="menu_insurance_masters"
+              sequence="5"
+              action="action_insurance_company_agent"
+    />
+
+
+    <menuitem name="Reporting"
+              id="menu_insurance_reporting"
+              parent="menu_main_insurance_management"
+              sequence="2"
+    />
+
+    <menuitem name="Configurations"
+              id="menu_insurance_configurations"
+              parent="menu_main_insurance_management"
+              groups="qno_insurance_management.policy_manager_group"
+              sequence="4"
+    />
+
+    <menuitem name="Policy Categories"
+              id="menu_insurance_configurations_policy_categories"
+              parent="menu_insurance_configurations"
+              sequence="2"
+              action="action_policy_category"
+    />
+
+    <!--    <menuitem name="Stages"-->
+    <!--              id="menu_claim_details_stage"-->
+    <!--              parent="menu_insurance_configurations"-->
+    <!--              sequence="3"-->
+    <!--              action="claim_details_stage_action"-->
+    <!--    />-->
+
+    <menuitem id="menu_insurance_configurations_quotation_templates"
+              name="Quotation Templates"
+              action="sale_management.sale_order_template_action"
+              parent="menu_insurance_configurations"
+              groups="sale_management.group_sale_order_template"
+              sequence="1"/>
+
+    <menuitem id="menu_policy_commission"
+              name="Policy Commission"
+              action="qno_insurance_management.action_view_for_insurance_policy_commission"
+              parent="menu_insurance_transactions"
+              sequence="2"/>
+
+
+</odoo>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="purchase_order_line_wizard_view">
+            <field name="name">purchase.order.line.wizard</field>
+            <field name="model">purchase.order.line.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Job Card Report">
+                    <sheet>
+                        <field name="state" readonly="1" invisible="1"/>
+                        <field name="additional_fee_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                            <tree editable="bottom">
+                                <field name="fee_id"/>
+                                <field name="amount"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                    <footer>
+                        <button string="Save" name="add_additional_fee" type="object" class="oe_highlight"/>
+                        <button string="Cancel" name="cancel" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_wizard_action" model="ir.actions.act_window">
+            <field name="name">Additional Fees Line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.line.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

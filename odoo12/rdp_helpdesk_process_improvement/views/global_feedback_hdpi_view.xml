@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="global_feedback_hpi_inherit_id" model="ir.ui.view">
+            <field name="name">global.feedback.inherited.form</field>
+            <field name="model">global.feedback</field>
+            <field name="inherit_id" ref="rdp_global_feedback.feedback_app_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div" position="before">
+                <div>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="open_hpi_global_feedback_tickets" class="oe_stat_button" type="object" icon="fa-briefcase">
+                            <field string="HDPI" name="global_feedback_ticket_count"
+                                   widget="statinfo"/>
+                        </button>
+                    </div>
+                </div>
+                </xpath>
+<!--                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">-->
+
+<!--                    <button name="open_hpi_kam_escalation_tickets" class="oe_stat_button" type="object" icon="fa-archive">-->
+<!--                        <field string="HPI" name="hpi_kam_escalation_ticket_count" widget="statinfo"/>-->
+<!--                    </button>-->
+<!--                </xpath>-->
+                <xpath expr="//header" position="inside">
+                    <button name="%(rdp_helpdesk_process_improvement.hpi_global_feedback_response)d" type="action" string="HDPI"  class="btn-primary"/>
+                </xpath>
+
+
+            </field>
+        </record>
+    </data>
+</odoo>

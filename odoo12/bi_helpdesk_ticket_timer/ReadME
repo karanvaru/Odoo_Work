@@ -1,0 +1,6 @@
+date 20/07/2022
+version :- 12.0.0.1
+issue solve:-
+    - different user can't active ticket.
+    - timer entreis not generated properly
+    - traceback issue solve.

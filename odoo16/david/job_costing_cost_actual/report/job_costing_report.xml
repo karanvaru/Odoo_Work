@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <template id="report_job_costing_cost" inherit_id="odoo_job_costing_management.report_job_costing">
+            <xpath expr="//div[@t-if='doc.job_overhead_line_ids']" position="after">
+                <div t-if="doc.job_cost_line_ids">
+                    <h3>Direct Materials (Actual Cost)</h3>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr style="page-break-inside:avoid; page-break-after:auto">
+                                <th>Date</th>
+                                <th>Job Type</th>
+                                <th>Product</th>
+                                <th>Description</th>
+                                <!-- <th class="text-right">Total</th>
+                                <th class="text-right">Actual Purchased Cost</th>
+                                <th class="text-right">Actual Invoice Cost</th> -->
+                                <th class="text-end">Total</th>
+                                <th class="text-end">Actual Purchased Cost</th>
+                                <th class="text-end">Actual Invoice Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.job_cost_line_ids" t-as="material_line" style="page-break-inside:avoid; page-break-after:auto">
+                                <td>
+                                    <span t-field="material_line.date"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_line.job_type_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_line.product_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_line.description"/>
+                                </td>
+                                <!-- <td class="text-right"> -->
+                                <td class="text-end">
+                                    <span t-field="material_line.total_cost" t-options='{"widget": "monetary", "display_currency":
+                                        doc.currency_id}'/>
+                                </td>
+                                <!-- <td class="text-right"> -->
+                                <td class="text-end">
+                                    <span t-field="material_line.actual_purchase_cost" t-options='{"widget": "monetary", "display_currency":
+                                        doc.currency_id}'/>
+                                </td>
+                                <!-- <td class="text-right"> -->
+                                <td class="text-end">
+                                    <span t-field="material_line.actual_vendor_cost" t-options='{"widget": "monetary", "display_currency":
+                                        doc.currency_id}'/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div t-if="doc.job_labour_line_ids">
+                    <h3>Direct Labour (Actual Cost)</h3>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr style="page-break-inside:avoid; page-break-after:auto">
+                                <th>Date</th>
+                                <th>Job Type</th>
+                                <th>Product</th>
+                                <th>Description</th>
+                                <!-- <th class="text-right">Hours</th>
+                                <th class="text-right">Total</th>
+                                <th class="text-right">Actual Timesheet Cost</th> -->
+                                <th class="text-end">Hours</th>
+                                <th class="text-end">Total</th>
+                                <th class="text-end">Actual Timesheet Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.job_labour_line_ids" t-as="labor_line" style="page-break-inside:avoid; page-break-after:auto">
+                                <td>
+                                    <span t-field="labor_line.date"/> 
+                                </td>
+                                <td>
+                                    <span t-field="labor_line.job_type_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="labor_line.product_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="labor_line.description"/>
+                                </td>
+                                <!-- <td class="text-right"> -->
+                                <td class="text-end">
+                                    <span t-esc="'%02d:%02d' % (int(str(labor_line.hours).split('.')[0]), int(float(str('%.2f' % labor_line.hours).split('.')[1])/100*60))"/>
+                                </td>
+                                <!-- <td class="text-right"> -->
+                                <td class="text-end">
+                                    <span t-field="labor_line.actual_timesheet_cost" t-options='{"widget": "monetary", "display_currency":
+                                doc.currency_id}'/>
+                                </td>
+                                <!-- <td class="text-right"> -->
+                                <td class="text-end">
+                                    <span t-esc="labor_line.total_cost" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div t-if="doc.job_overhead_line_ids">
+                            <h3>Applied Overhead (Actual Cost)</h3>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr style="page-break-inside:avoid; page-break-after:auto">
+                                        <th>Date</th>
+                                        <th>Job Type</th>
+                                        <th>Product</th>
+                                        <th>Description</th>
+                                        <th>Basis</th>
+                                        <!-- <th class="text-right">Quantity</th>
+                                        <th class="text-right">Total</th>
+                                        <th class="text-right">Actual Purchased Quantity</th>
+                                        <th class="text-right">Actual Invoice Quantity</th> -->
+                                        <th class="text-end">Quantity</th>
+                                        <th class="text-end">Total</th>
+                                        <th class="text-end">Actual Purchased Cost</th>
+                                        <th class="text-end">Actual Invoice Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc.job_overhead_line_ids" t-as="overhead_line" style="page-break-inside:avoid; page-break-after:auto">
+                                        <td>
+                                            <span t-field="overhead_line.date"/> 
+                                        </td>
+                                        <td>
+                                            <span t-field="overhead_line.job_type_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="overhead_line.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="overhead_line.description"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="overhead_line.basis"/>
+                                        </td>
+                                        <!-- <td class="text-right"> -->
+                                        <td class="text-end">
+                                            <span t-field="overhead_line.product_qty"/>
+                                        </td>
+                                        <!-- <td class="text-right"> -->
+                                        <td class="text-end">
+                                            <span t-esc="overhead_line.total_cost" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <!-- <td class="text-right"> -->
+                                        <td class="text-end">
+                                            <span t-field="overhead_line.actual_purchase_cost" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <!-- <td class="text-right"> -->
+                                        <td class="text-end">
+                                            <span t-field="overhead_line.actual_vendor_cost" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

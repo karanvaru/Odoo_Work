@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_after_sale" name="After-Sales Service" parent="sale.sale_menu_root" sequence="4" groups="sync_rma.group_rma_user"/>
+    <menuitem id="menu_rma_issue" action="rma_issue" name="RMA" parent="menu_after_sale" sequence="1" groups="sync_rma.group_rma_user"/>
+    <menuitem id="menu_rma_return_reason" action="rma_return_reason_form" name="RMA Return Reasons" parent="menu_after_sale" sequence="2" groups="sync_rma.group_rma_manager"/>
+    <menuitem id="menu_rma_return_type" action="rma_return_type_form" name="RMA Return Type" parent="menu_after_sale" sequence="3" groups="sync_rma.group_rma_manager"/>
+
+</odoo>

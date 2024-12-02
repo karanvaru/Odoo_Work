@@ -1,0 +1,1118 @@
+<odoo>
+    <template id="Add_field_on_table" inherit_id="job_portal_kanak.apply" name="Apply Job">
+
+        <xpath expr="//form[@id='hr_recruitment_form']//div[@id='applicant_address']//div[hasclass('applicate_address_cl')]//div[hasclass('card-body')]//div[hasclass('container')]//div[hasclass('row')]//input[@name='address1']"
+               position="replace">
+            <input type="text" class="form-control o_website_form_input" name="address1" required=""
+                   placeholder="Apt #/House"/>
+        </xpath>
+
+        <!--        <xpath expr="//form[@id='hr_recruitment_form']//div[@id='application_summary']//div[hasclass('card-header')]"-->
+        <!--               position="replace">-->
+        <!--            <div class="card-header">-->
+        <!--                Application Summary/Short Introduction-->
+        <!--            </div>-->
+        <!--        </xpath>-->
+
+
+        <!--        <xpath expr="//form[@id='hr_recruitment_form']//div[@id='application_summary']//div[hasclass('comman_form_controll')]//div[hasclass('card-body')]//div[hasclass('container')]//div[hasclass('row')]//textarea[@name='description']"-->
+        <!--               position="replace">-->
+        <!--            <textarea type="text" name="description" class="form-control" placeholder="Brief Intoduction Or Question "/>-->
+        <!--        </xpath>-->
+
+        <!--        <xpath expr="//form[@id='hr_recruitment_form']//div[@id='application_summary']" position="attributes">-->
+        <!--            <attribute name="invisible">1</attribute>-->
+        <!--        </xpath>-->
+
+
+        <xpath expr="//form[@id='hr_recruitment_form']//div[@id='academic_details']" position="replace">
+            <div class="tab-pane" role="tabpanel" id="academic_details">
+                <div class="card comman_form_controll">
+                    <div class="card-header">
+                        Academics
+                    </div>
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <t t-set="academics"
+                                   t-value="request.env['job.portal.headers.details'].sudo().search([('section_type','=','academics')],limit=1)"/>
+                                <div class="col-12">
+                                    <t t-if="academics">
+                                        <span t-esc="academics.header"/>
+                                    </t>
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-primary pull-right mb8 add_new_row_for_job"
+                                                data-type="personal">Add
+                                        </button>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Course</th>
+                                                    <!--                                                <th>Branch</th>-->
+                                                    <th>Institute</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
+                                                    <th>Grade/Marks</th>
+                                                    <th style="width: 61px;">#</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="academic_details_info_cl">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-right">
+                                    <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                                    <button type="button" class="btn btn-primary next-step">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//form[@id='hr_recruitment_form']//div[@id='professional_details']" position="replace">
+            <div class="tab-pane" role="tabpanel" id="professional_details">
+                <div class="card comman_form_controll">
+                    <div class="card-header">
+                        Work History
+                    </div>
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <t t-set="work"
+                                   t-value="request.env['job.portal.headers.details'].sudo().search([('section_type','=','work_history')],limit=1)"/>
+                                <div class="col-md-12">
+                                    <t t-if="work">
+                                        <span t-esc="work.header"/>
+                                    </t>
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary pull-right mb8 add_new_row_for_job"
+                                                data-type="professional">Add
+                                        </button>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Job Role</th>
+                                                    <th>Organisation</th>
+                                                    <th>Department</th>
+                                                    <th>Title</th>
+                                                    <th>Year Spent</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
+                                                    <th>Milestones</th>
+                                                    <th style="width: 61px;">#</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="professional_details_info_cl">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-right">
+                                    <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                                    <button type="button" class="btn btn-primary next-step">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//form[@id='hr_recruitment_form']//div[hasclass('tab-content')]//div[@id='application_summary']"
+               position="replace">
+            <div class="tab-pane" role="tabpanel" id="application_summary">
+                <div class="card comman_form_controll">
+                    <div class="card-header">
+                        Application Summary/Short Introduction
+                    </div>
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <t t-set="summary"
+                                   t-value="request.env['job.portal.headers.details'].sudo().search([('section_type','=','applicant_summary')],limit=1)"/>
+                                <t t-if="summary">
+                                    <div class="col-md-12">
+                                        <span t-esc="summary.header"/>
+                                    </div>
+                                </t>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea type="text" name="description" class="form-control"
+                                                  placeholder="Brief Introduction or Question"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-right">
+                                    <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                                    <button type="button" class="btn btn-primary next-step">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//form[@id='hr_recruitment_form']//div[hasclass('tab-content')]//div[@id='applicant_address']"
+               position="replace">
+            <div class="tab-pane" role="tabpanel" id="applicant_address">
+                <div class="card comman_form_controll applicate_address_cl">
+                    <div class="card-header">
+                        Applicant Address
+                    </div>
+                    <div class="card-body">
+                        <div class="container">
+                            <t t-set="detail"
+                               t-value="request.env['job.portal.headers.details'].sudo().search([('section_type','=','applicant_address')],limit=1)"/>
+                            <t t-if="detail">
+                                <div class="col-md-12">
+                                    <span t-esc="detail.header"/>
+                                </div>
+                            </t>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control o_website_form_input" name="address1"
+                                               required="" placeholder="Apt./House No"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control o_website_form_input" name="address2"
+                                               required="" placeholder="Street"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control o_website_form_input" name="city"
+                                               required=""
+                                               placeholder="City"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control o_website_form_input" name="zipcode"
+                                               placeholder="Postal Code/Zip"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group applicant_country_cl">
+                                        <select class="form-control" name="country_id" id="select_country" required="">
+                                            <option value="">Select Country</option>
+                                            <t t-foreach="country_ids" t-as="cid">
+                                                <option t-att-value="cid.id">
+                                                    <t t-esc="cid.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select class="form-control" name="state_id" id="select_state">
+                                            <option value="">Select State</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-right">
+                                    <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                                    <button type="button" class="btn btn-primary next-step">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+
+        <xpath expr="//form[@id='hr_recruitment_form']//div[hasclass('tab-content')]//div[@id='applicate_info']"
+               position="replace">
+            <div class="tab-pane active" role="tabpanel" id="applicate_info">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="submitted" value="1"/>
+                <div class="card comman_form_controll">
+                    <div class="card-header">
+                        Applicant Information
+                    </div>
+                    <div class="card-body">
+                        <div class="container">
+                            <t t-set="detail"
+                               t-value="request.env['job.portal.headers.details'].sudo().search([('section_type','=','applicant')],limit=1)"/>
+                            <t t-if="detail">
+                                <span t-esc="detail.header"/>
+                            </t>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" required="" class="form-control o_website_form_input"
+                                               name="partner_name" placeholder="First Name"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control o_website_form_input" name="middle_name"
+                                               placeholder="Middle Name"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control o_website_form_input" name="last_name"
+                                               placeholder="Last Name"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control o_website_form_input" name="email_from"
+                                               required="" placeholder="Email"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control o_website_form_input"
+                                               name="partner_phone"
+                                               required="" placeholder="Phone"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="input-group date" data-bs-provide="datepicker">
+                                            <input type="text" id="datepicker" class="form-control datepicker"
+                                                   name="birthday" required="required" placeholder="Birthday *"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select class="form-control" name="gender" required="required">
+                                            <option value="">Select Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select class="form-control" name="country_of_birth" required="required">
+                                            <option value="">Country of Birth</option>
+                                            <t t-foreach="country_ids" t-as="cid">
+                                                <option t-att-value="cid.id">
+                                                    <t t-esc="cid.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select class="form-control" name="country_of_nationality" required="required">
+                                            <option value="">Nationality</option>
+                                            <t t-foreach="country_ids" t-as="cid">
+                                                <option t-att-value="cid.id">
+                                                    <t t-esc="cid.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control o_website_form_input" name="citizenship"
+                                               placeholder="Citizenship"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select class="form-control" name="marital" required="required">
+                                            <option value="">Marital Status</option>
+                                            <option value="single">Single</option>
+                                            <option value="married">Married</option>
+                                            <option value="cohabitant">Legal Cohabitant</option>
+                                            <option value="widower">Widower</option>
+                                            <option value="divorced">Divorced</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-right">
+                                    <button type="button" class="btn btn-primary next-step">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//form[@id='hr_recruitment_form']//div[hasclass('tab-content')]//div[@id='certificate_details']"
+               position="replace">
+            <div class="tab-pane" role="tabpanel" id="certificate_details">
+                <div class="card comman_form_controll">
+                    <div class="card-header">
+                        Certifications
+                    </div>
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <t t-set="certifications"
+                                   t-value="request.env['job.portal.headers.details'].sudo().search([('section_type','=','certifications')],limit=1)"/>
+                                <div class="col-12">
+                                    <t t-if="certifications">
+                                        <span t-esc="certifications.header"/>
+                                    </t>
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-primary pull-right mb8 add_new_row_for_job"
+                                                data-type="certificate">Add
+                                        </button>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Course</th>
+                                                    <!--                                                <th>Branch</th>-->
+                                                    <th>Institute</th>
+                                                    <th>Description</th>
+                                                    <th>Upload Certificate</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
+                                                    <th style="width: 61px;">#</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="certificate_details_info_cl">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-right">
+                                    <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                                    <button type="button" class="btn btn-primary next-step">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="apply_pages" inherit_id="job_portal_kanak.apply" name="Apply For Job">
+        <xpath expr="//div[@id='wrap']//div[hasclass('mt-3')]//section[@id='forms']//div[hasclass('wizard')]//div[hasclass('wizard-inner')]//ul"
+               position="replace">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a data-bs-target="#applicate_info" href="#applicate_info" data-bs-toggle="tab"
+                       aria-controls="applicate_info" role="tab" title="Applicate Information">
+                        <span class="round-tab">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </a>
+                </li>
+                <li role="presentation" class="disabled">
+                    <a data-bs-target="#applicant_address" href="#applicant_address" data-bs-toggle="tab"
+                       aria-controls="applicant_address" role="tab" title="Applicant Address">
+                        <span class="round-tab">
+                            <i class="fa fa-address-card"></i>
+                        </span>
+                    </a>
+                </li>
+                <li role="presentation" class="disabled">
+                    <a data-bs-target="#academic_details" href="#academic_details" data-bs-toggle="tab"
+                       aria-controls="academic_details" role="tab" title="Academic Details">
+                        <span class="round-tab">
+                            <i class="fa fa-building"></i>
+                        </span>
+                    </a>
+                </li>
+                <li role="presentation" class="disabled">
+                    <a data-bs-target="#certificate_details" href="#certificate_details" data-bs-toggle="tab"
+                       aria-controls="certificate_details" role="tab" title="Certificate Details">
+                        <span class="round-tab">
+                            <i class="fa fa-graduation-cap"></i>
+                        </span>
+                    </a>
+                </li>
+                <li role="presentation" class="disabled">
+                    <a data-bs-target="#professional_details" href="#professional_details" data-bs-toggle="tab"
+                       aria-controls="professional_details" role="tab" title="Work History">
+                        <span class="round-tab">
+                            <i class="fa fa-briefcase"></i>
+                        </span>
+                    </a>
+                </li>
+                <li role="presentation" class="disabled">
+                    <a data-bs-target="#application_summary" href="#application_summary" data-bs-toggle="tab"
+                       aria-controls="application_summary" role="tab" title="Application Summary/Short Introduction">
+                        <span class="round-tab">
+                            <i class="fa fa-book"></i>
+                        </span>
+                    </a>
+                </li>
+                <li role="experience" class="disabled">
+                    <a data-bs-target="#assessment_question" href="#assessment_question" data-bs-toggle="tab"
+                       aria-controls="assessment_question" role="tab" title="Assessment Question">
+                        <span class="round-tab">
+                            <i class="fa fa-question-circle"></i>
+                        </span>
+                    </a>
+                </li>
+                <li role="presentation" class="disabled">
+                    <a data-bs-target="#applicant_resume" href="#applicant_resume" data-bs-toggle="tab"
+                       aria-controls="applicant_resume" role="tab" title="Upload Resume">
+                        <span class="round-tab">
+                            <i class="fa fa-file"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <!--            <li role="assessment_reports" class="disabled">-->
+            <!--                <a data-bs-target="#assessment_reports" href="#assessment_reports" data-bs-toggle="tab"-->
+            <!--                   aria-controls="assessment_reports" role="tab" title="Trades Assessment">-->
+            <!--                    <span class="round-tab">-->
+            <!--                        <i class="fa fa-pencil"></i>-->
+            <!--                    </span>-->
+            <!--                </a>-->
+            <!--            </li>-->
+        </xpath>
+
+        <xpath expr="//div[@id='wrap']//div[hasclass('mt-3')]//section[@id='forms']//form[@id='hr_recruitment_form']//div[hasclass('tab-content')]//div[@id='applicant_resume']"
+               position="replace">
+            <div class="tab-pane" role="tabpanel" id="applicant_resume">
+                <div class="card comman_form_controll">
+                    <div class="card-header">
+                        Upload Your Resume
+                    </div>
+                    <div class="card-body">
+                        <div class="container resume_upload_file">
+                            <t t-set="document"
+                               t-value="request.env['job.portal.headers.details'].sudo().search([('section_type','=','documents')],limit=1)"/>
+                            <div class="row">
+                                <t t-if="document">
+                                    <div class="col-md-12">
+                                        <span t-esc="document.header"/>
+                                    </div>
+                                </t>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <th>Document Type</th>
+                                    <th>Document</th>
+                                </thead>
+                                <t t-set="logged_partner"
+                                   t-value="request.env['recruitment.document.type'].sudo().search([('is_default','=',True)])"/>
+                                <tbody>
+                                    <t t-foreach="logged_partner" t-as="brand">
+                                        <tr>
+                                            <th>
+                                                <span t-esc="brand.name" t-att-id="brand.id"/>
+                                            </th>
+                                            <t t-if="brand.is_required">
+                                                <th>
+                                                    <div class="brand.name">
+                                                        <input type="file" t-att-id="brand.id" t-att-name="brand.id"
+                                                               accept=".pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                               class="required" required="required"/>
+                                                    </div>
+                                                </th>
+                                            </t>
+                                            <t t-else="">
+                                                <th>
+                                                    <div class="brand.name">
+                                                        <input type="file" t-att-id="brand.id" t-att-name="brand.id"
+                                                               accept=".pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                               class="required"/>
+                                                    </div>
+                                                </th>
+                                            </t>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col form-group" style="font-weight: bold; padding-left: 2.5%;">
+                                    <lable for="agent">Agent/Recruiter :
+                                    </lable>
+                                </div>
+                                <div class="col form-group">
+                                    <t t-set="user"
+                                       t-value="request.env['recruiting.agent'].sudo().search([])"/>
+                                    <select class="form-control" name="agent" id="agent" required="required">
+                                        <!--                                        <option value="0" disabled="" selected="" data-calc="0">Select Agent</option>-->
+                                        <option value="">Select Your Agent</option>
+                                        <t t-foreach="user" t-as="user">
+                                            <option t-att-value="user.id">
+                                                <t t-esc="user.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                <input type="submit" name="submit" class="btn btn-primary mt16 mb16 pull-right"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@id='wrap']//div[hasclass('mt-3')]//section[@id='forms']//form[@id='hr_recruitment_form']//div[hasclass('tab-content')]"
+               position="inside">
+            <div class="tab-pane" role="tabpanel" id="assessment_question">
+                <div class="card comman_form_controll applicate_address_cl">
+                    <div class="card-header">
+                        Trades Assessment Questionnaire
+                    </div>
+                    <div class="card-body">
+                        <div class="container">
+                            <t t-set="questionare"
+                               t-value="request.env['job.portal.headers.details'].sudo().search([('section_type','=','trade_assesment_questionare')],limit=1)"/>
+                            <div class="row">
+                                <t t-if="questionare">
+                                    <div class="col-md-12">
+                                        <span t-esc="questionare.header"/>
+                                    </div>
+                                </t>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="work_experience">In what trade do you have the most work
+                                        experience:
+                                    </lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="text" class="form-control o_website_form_input"
+                                           name="work_experience"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="number_years">Number years in this trade:</lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="text" class="form-control o_website_form_input"
+                                           name="number_years"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="many_hours_per_day">How many hours worked in this trade per day:
+                                    </lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="text" class="form-control o_website_form_input"
+                                           name="many_hours_per_day"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="many_days_per_week">How many days worked in this trade per week:
+                                    </lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="text" class="form-control o_website_form_input"
+                                           name="many_days_per_week"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="many_week_per_month">How many weeks worked in this trade per month:
+                                    </lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="text" class="form-control o_website_form_input"
+                                           name="many_week_per_month"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="many_month_per_year">How many months worked in this trade per year:
+                                    </lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="text" class="form-control o_website_form_input"
+                                           name="many_month_per_year"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="many_years_last_5to10">How many years worked in this trade in the last 5
+                                        to 10 years:
+                                    </lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="text" class="form-control o_website_form_input"
+                                           name="many_years_last_5to10"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="training_trade">Do you have any training in this trade?:</lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="radio" id="training_yes" name="training_trade" value="True"/>
+                                    <label for="training_yes">Yes</label>
+                                    <input type="radio" id="training_no" name="training_trade" value="False"/>
+                                    <label for="training_no">No</label>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="skilled_trade">Are you skilled in any other trades:</lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="radio" id="skilled_yes" name="skilled_trade" value="True"/>
+                                    <label for="skilled_yes">Yes</label>
+
+                                    <input type="radio" id="skilled_no" name="skilled_trade" value="False"/>
+                                    <label for="skilled_no">No</label>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <lable>
+                                        <b>Describe in detail, ALL of the tasks performed on a daily basis within this
+                                            trade (Maximum words
+                                            500)-:
+                                        </b>
+                                    </lable>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control o_website_form_input"
+                                           name="describe_in_detail"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="varify_word">Who can verify your work experience under this
+                                        trade?:
+                                    </lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="radio" id="employer" name="varify_word" value="employer"/>
+                                    <label for="employer">Employer</label>
+                                    <input type="radio" id="supervisor" name="varify_word" value="supervisor"/>
+                                    <label for="supervisor">Supervisor</label>
+                                    <input type="radio" id="customer_clients" name="varify_word"
+                                           value="customer_clients"/>
+                                    <label for="customer_clients">Customer/Clients</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="completed_high_school">Have you completed high school?:</lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="radio" id="complete_yes" name="completed_high_school"
+                                           value="True"/>
+                                    <label for="complete_yes">Yes</label>
+                                    <input type="radio" id="complete_no" name="completed_high_school"
+                                           value="False"/>
+                                    <label for="complete_no">No</label>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="year_complete_high_school">How many years did you complete in high
+                                        school:
+                                    </lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="text" class="form-control o_website_form_input"
+                                           name="year_complete_high_school"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="charged_criminal">Have you ever been arrested or charged for any
+                                        criminal offence?:
+                                    </lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="radio" id="charged_yes" name="charged_criminal" value="True"/>
+                                    <label for="charged_yes">Yes</label>
+
+                                    <input type="radio" id="charged_no" name="charged_criminal" value="False"/>
+                                    <label for="charged_no">No</label>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="applied_for_visa">Have you ever applied for a Canadian or US visa?:
+                                    </lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="radio" id="applied_for_visa_yes" name="applied_for_visa"
+                                           value="True"/>
+                                    <label for="applied_for_visa_yes">Yes</label>
+
+                                    <input type="radio" id="applied_for_visa_no" name="applied_for_visa"
+                                           value="False"/>
+                                    <label for="applied_for_visa_no">No</label>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="outside_country">Have you ever travelled by plane to any country outside
+                                        your home
+                                        country?:
+                                    </lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="radio" id="outside_country_yes" name="outside_country"
+                                           value="True"/>
+                                    <label for="outside_country_yes">Yes</label>
+                                    <input type="radio" id="outside_country_no" name="outside_country"
+                                           value="False"/>
+                                    <label for="outside_country_no">No</label>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col form-group ">
+                                    <lable for="denied_visa">Have you ever been denied a visa?:</lable>
+                                </div>
+                                <div class="col form-group">
+                                    <input type="radio" id="denied_visa_yes" name="denied_visa" value="True"/>
+                                    <label for="denied_visa_yes">Yes</label>
+
+                                    <input type="radio" id="denied_visa_no" name="denied_visa" value="False"/>
+                                    <label for="denied_visa_no">No</label>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-primary next-step">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            <div class="tab-pane" role="tabpanel" id="assessment_reports">-->
+            <!--                <div class="card comman_form_controll applicate_address_cl">-->
+            <!--                    <div class="card-header">-->
+            <!--                        Trades Assessment Report-->
+            <!--                    </div>-->
+            <!--                    <div class="card-body">-->
+            <!--                        <div class="container">-->
+            <!--                            <div class="row">-->
+            <!--                                <div class="row">-->
+            <!--                                    <div class="col form-group ">-->
+            <!--                                        <lable for="education_level">Education level:-->
+            <!--                                        </lable>-->
+            <!--                                    </div>-->
+            <!--                                    <div class="col form-group">-->
+            <!--                                        <input type="radio" id="high_school" name="education_level"-->
+            <!--                                               value="high_school"/>-->
+            <!--                                        <label for="high_school">High School</label>-->
+
+            <!--                                        <input type="radio" id="college" name="education_level" value="college"/>-->
+            <!--                                        <label for="college">College</label>-->
+
+            <!--                                        <input type="radio" id="university" name="education_level"-->
+            <!--                                               value="university"/>-->
+            <!--                                        <label for="university">University</label>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                                <div class="row">-->
+            <!--                                    <div class="col form-group ">-->
+            <!--                                        <lable for="trade_applied">Trade applied under:-->
+            <!--                                        </lable>-->
+            <!--                                    </div>-->
+            <!--                                    <div class="col form-group">-->
+            <!--                                        <input type="text" class="form-control o_website_form_input"-->
+            <!--                                               name="trade_applied"/>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                                <div class="row">-->
+            <!--                                    <div class="col form-group ">-->
+            <!--                                        <lable for="trade_year">Number years in this Trade:-->
+            <!--                                        </lable>-->
+            <!--                                    </div>-->
+            <!--                                    <div class="col form-group">-->
+            <!--                                        <input type="text" class="form-control o_website_form_input"-->
+            <!--                                               name="trade_year"/>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                                <div class="row">-->
+            <!--                                    <div class="col form-group ">-->
+            <!--                                        <lable for="hour_per_day">How many hours worked in this trade per day:-->
+            <!--                                        </lable>-->
+            <!--                                    </div>-->
+            <!--                                    <div class="col form-group">-->
+            <!--                                        <input type="text" class="form-control o_website_form_input"-->
+            <!--                                               name="hour_per_day"/>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                                <div class="row">-->
+            <!--                                    <div class="col form-group ">-->
+            <!--                                        <lable for="day_per_week">How many days worked in this trade per week:-->
+            <!--                                        </lable>-->
+            <!--                                    </div>-->
+            <!--                                    <div class="col form-group">-->
+            <!--                                        <input type="text" class="form-control o_website_form_input"-->
+            <!--                                               name="day_per_week"/>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                                <div class="row">-->
+            <!--                                    <div class="col form-group ">-->
+            <!--                                        <lable for="week_per_month">How many weeks worked in this trade per month:-->
+            <!--                                        </lable>-->
+            <!--                                    </div>-->
+            <!--                                    <div class="col form-group">-->
+            <!--                                        <input type="text" class="form-control o_website_form_input"-->
+            <!--                                               name="week_per_month"/>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                                <div class="row">-->
+            <!--                                    <div class="col form-group ">-->
+            <!--                                        <lable for="month_per_year">How many months worked in this trade per year:-->
+            <!--                                        </lable>-->
+            <!--                                    </div>-->
+            <!--                                    <div class="col form-group">-->
+            <!--                                        <input type="text" class="form-control o_website_form_input"-->
+            <!--                                               name="month_per_year"/>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                                <div class="row">-->
+            <!--                                    <div class="col form-group ">-->
+            <!--                                        <lable for="year_trade_5_10">How many years worked in this trade in the last 5-->
+            <!--                                            to 10-->
+            <!--                                            years:-->
+            <!--                                        </lable>-->
+            <!--                                    </div>-->
+            <!--                                    <div class="col form-group">-->
+            <!--                                        <input type="text" class="form-control o_website_form_input"-->
+            <!--                                               name="year_trade_5_10"/>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                                <div class="row">-->
+            <!--                                    <div class="col form-group ">-->
+            <!--                                        <lable for="is_training">Training in this trade:</lable>-->
+            <!--                                    </div>-->
+            <!--                                    <div class="col form-group">-->
+            <!--                                        <input type="radio" id="training" name="is_training" value="True"/>-->
+            <!--                                        <label for="training">Yes</label>-->
+
+            <!--                                        <input type="radio" id="training_no" name="is_training" value="False"/>-->
+            <!--                                        <label for="training_no">No</label>-->
+            <!--                                        <br/>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                                <div class="row">-->
+            <!--                                    <div class="col form-group ">-->
+            <!--                                        <lable for="trades_skilled">Skilled in any other trades:</lable>-->
+            <!--                                    </div>-->
+            <!--                                    <div class="col form-group">-->
+            <!--                                        <input type="radio" id="skilled" name="trades_skilled" value="True"/>-->
+            <!--                                        <label for="skilled">Yes</label>-->
+
+            <!--                                        <input type="radio" id="skilled_no" name="trades_skilled" value="False"/>-->
+            <!--                                        <label for="skilled_no">No</label>-->
+            <!--                                        <br/>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                                <div class="col-md-12 text-right">-->
+            <!--                                    <button type="button" class="btn btn-primary next-step">Next</button>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+        </xpath>
+    </template>
+    <template id="add_job_inherit" inherit_id="job_portal_kanak.add_job" name="Apply For Jobs">
+        <xpath expr="//div[@id='wrap']//div[hasclass('container')]//div[hasclass('row')]//div[hasclass('add_job_hr_form')]//div[hasclass('card')]//div[hasclass('card-body')]//form//input[@name='no_of_recruitment']"
+               position="attributes">
+            <attribute name="placeholder">No of Recruits</attribute>
+        </xpath>
+    </template>
+
+    <template id="add_certificate_info_inherit" inherit_id="job_portal_kanak.add_certificate_info">
+        <xpath expr="." position="replace">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control o_website_form_input" name="certificate_course_name"
+                               required=""/>
+                    </div>
+                </td>
+                <!--                <td>-->
+                <!--                    <div class="form-group">-->
+                <!--                        <input type="text" class="form-control o_website_form_input" name="certificate_branch"-->
+                <!--                               required=""/>-->
+                <!--                    </div>-->
+                <!--                </td>-->
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control o_website_form_input" name="certificate_organization"
+                               required=""/>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control o_website_form_input"
+                               name="certificate_certificate_des"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input type="file" class="form-control o_website_form_input" name="attachemnt_ids"
+                               data_type_64=""
+                               data_file_name="" data_file_type=""/>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="input-group" data-provide="datepicker">
+                            <input type="date" class="form-control datepicker" name="certificate_start_date"
+                                   required=""/>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="input-group" data-provide="datepicker">
+                            <input type="date" class="form-control datepicker" name="certificate_end_date" required=""/>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary remove_btn_row">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+
+    <template id="add_acadamic_info_inherit" inherit_id="job_portal_kanak.add_acadamic_info">
+        <xpath expr="." position="replace">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control o_website_form_input" name="personal_course_name"
+                               required=""/>
+                    </div>
+                </td>
+                <!--			<td>-->
+                <!--				<div class="form-group">-->
+                <!--	  				<input type="text" class="form-control o_website_form_input" name="personal_branch" required=""/>-->
+                <!--	  			</div>-->
+                <!--			</td>-->
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control o_website_form_input" name="personal_organization"
+                               required=""/>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="input-group" data-provide="datepicker">
+                            <input type="date" class="form-control datepicker" name="personal_start_date" required=""/>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="input-group" data-provide="datepicker">
+                            <input type="date" class="form-control datepicker" name="personal_end_date" required=""/>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control o_website_form_input" name="personal_marks" required=""/>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary remove_btn_row">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+    <template id="add_professional_info_inherit" inherit_id="job_portal_kanak.add_professional_info">
+        <xpath expr="." position="replace">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control o_website_form_input" name="professional_name"
+                               required=""/>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control o_website_form_input" name="professional_organization"
+                               required=""/>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control o_website_form_input" name="professional_department"
+                               required=""/>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control o_website_form_input" name="professional_work_des"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control o_website_form_input" name="professional_work_exp"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="input-group" data-provide="datepicker">
+                            <input type="date" class="form-control datepicker" name="professional_start_date"
+                                   required=""/>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="input-group" data-provide="datepicker">
+                            <input type="date" class="form-control datepicker" name="professional_end_date"
+                                   required=""/>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control o_website_form_input" name="professional_projects"/>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary remove_btn_row">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+
+</odoo>

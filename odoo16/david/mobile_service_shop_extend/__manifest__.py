@@ -1,0 +1,35 @@
+{
+    'name': 'Mobile Service Management Extend',
+    'version': '16.0.1.0.1',
+    'summary': 'Module for managing mobile service shop daily activities.',
+    'category': 'Industries',
+    'author': 'Kiran Infosoft',
+    'company': 'Kiran Infosoft',
+    'depends': ['mobile_service_shop','mobile_service_shop_pro'],
+    'data': [
+        # 'security/security.xml',
+        #      'security/ir.model.access.csv',
+             'views/mobile_service_view.xml',
+             'views/product_template_view.xml',
+        #      'views/terms_and_condition.xml',
+        #      'views/complaint_template.xml',
+        #      'views/complaint_type.xml',
+        #      'views/brand_models.xml',
+        #      'views/brand.xml',
+        #      'wizard/mobile_create_invoice_views.xml',
+        #      'reports/mobile_service_ticket.xml',
+        #      'reports/service_ticket_template.xml',
+        #      'data/mobile_service_data.xml',
+        #      'data/mobile_service_email_template.xml'
+    ],
+    # 'images': ['static/description/banner.png'],
+    # 'assets': {
+    #     'web.assets_backend': [
+    #         'mobile_service_shop/static/src/css/mobile_service.css',
+    #     ],
+    # },
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+    'license': 'LGPL-3',
+}

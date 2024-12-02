@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_estimate_form_view_inherit_field_service_custom" model="ir.ui.view">
+            <field name="name">sale.estimate.inherit.form</field>
+            <field name="model">sale.estimate</field>
+            <field name="inherit_id" ref="odoo_sale_estimates.view_sale_estimate_form"/>
+            <field name="arch" type="xml">
+           <xpath expr ="//field[@name='reference']" position = "after">
+               <field name="custom_field_service"  domain="[('custom_is_field_service', '=', True)]" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}"/>
+            </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

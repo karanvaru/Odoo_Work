@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="contract_barcode_report" model="ir.actions.report">
+        <field name="name">QRcode Report</field>
+        <field name="model">contract.line</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ki_contract_menu.contract_barcode_pdf_reports</field>
+        <field name="report_file">ki_contract_menu.contract_barcode_pdf_reports</field>
+        <field name="binding_model_id" ref="ki_contract_menu.model_contract_contract"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="contract_pdf_report" model="ir.actions.report">
+        <field name="name">PDF Report</field>
+        <field name="model">contract.contract</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ki_contract_menu.contract_pdf_reports</field>
+        <field name="report_file">ki_contract_menu.contract_pdf_reports</field>
+        <field name="binding_model_id" ref="ki_contract_menu.model_contract_contract"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="product_number_report" model="ir.actions.report">
+        <field name="name">PDF Report</field>
+        <field name="model">product.product</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ki_contract_menu.product_number_report_pdf</field>
+        <field name="report_file">ki_contract_menu.product_number_report_pdf</field>
+        <field name="binding_model_id" ref="ki_contract_menu.model_product_product"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="cartridge_number_report" model="ir.actions.report">
+        <field name="name">Cartridge Report</field>
+        <field name="model">product.product</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ki_contract_menu.cartridge_pdf_report</field>
+        <field name="report_file">ki_contract_menu.cartridge_pdf_report</field>
+        <field name="binding_model_id" ref="ki_contract_menu.model_product_product"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

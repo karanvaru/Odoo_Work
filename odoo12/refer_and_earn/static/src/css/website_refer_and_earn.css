@@ -1,0 +1,126 @@
+/* Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) */
+/* See LICENSE file for full copyright and licensing details. */
+.refer_banner{
+
+}
+.re_banner_detail {
+    position: relative;
+    bottom: 220px;
+    width: 100%;
+    height: 100%;
+    right: 100px;
+}
+.re_banner_text {
+    text-align: center;
+    font-style: normal;
+    font-family: arial;
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    left: 20%;
+    top: 2%;
+}
+.re_banner_invite{
+    color: white;
+    position: absolute;
+    left: 141px;
+    top: 164px;
+    font-size: 30px;
+}
+.re_banner_text_1{
+    font-style: normal;
+    font-family: arial;
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    left: 11%;
+    top: 150px;
+    font-weight: bold;
+}
+.re_banner_text_2{
+    position: relative;
+    bottom: 75px;
+
+}
+.commission-val{
+     position: absolute;
+    left: 37%;
+    text-align: center;
+    color: white;
+}
+
+.underline {
+    padding-bottom: 2px;
+    border-bottom: grey 1px solid;
+}
+
+
+
+.table-custom{
+    border: 1px solid #6a6565;
+    border-collapse: collapse;
+}
+
+.signed_count{
+   width:12%;
+   position: absolute;
+    bottom: 87%;
+   right:40%;
+   opacity: 1.5;
+  background: #4a4747;
+}
+
+.earning_count{
+    width:12%;
+    position: absolute;
+    bottom: 87%;
+    right: 25%;
+    opacity: 1.5;
+  background: #4a4747;
+}
+
+
+.homepage_image{
+    width: 200px; height: 165px; background: white;box-shadow: 0px 4px 24px RGBA(0, 0, 0, .3);
+}
+
+.slice-left{
+    background: url(/refer_and_earn/static/src/img/Sprite-Earning-via-referring.png) no-repeat 0 0;
+    width: 34px;
+    height: 36px;
+    display: inline-block;
+}
+.slice-right {
+    background: url(/refer_and_earn/static/src/img/Sprite-Earning-via-referring.png) no-repeat 0 0;
+    width: 35px;
+    height: 36px;
+    background-position-x: -34px;
+}
+.circle {
+    background-color:#fff;
+    border:2px solid #197bad;
+    height:48px;
+    width:48px;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    position: relative;
+    left: 20px;
+    top:5px;
+}
+
+.inside-box{
+
+}
+
+/*loader css*/
+#jquery-loader.blue-with-image-2{
+    border:none;
+    padding-top:35px;
+    background-color: transparent;
+    text-align: center;
+    background-image: url(refer_and_earn/static/loader/images/ajax-loader.gif);
+    background-position: center center;
+    background-repeat: no-repeat;
+
+}

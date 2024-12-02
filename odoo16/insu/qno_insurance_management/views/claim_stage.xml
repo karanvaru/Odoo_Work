@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="claim_details_stage_search" model="ir.ui.view">
+        <field name="name">Stage - Search</field>
+        <field name="model">insurance.claim.details.stage</field>
+        <field name="arch" type="xml">
+            <search string="Stage Search">
+                <field name="name"/>
+                <field name="sequence"/>
+                <field name="default_stage"/>
+            </search>
+        </field>
+    </record>
+
+
+
+    <record id="claim_details_stage_action" model="ir.actions.act_window">
+        <field name="name">Stages</field>
+        <field name="res_model">insurance.claim.details.stage</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+
+
+    <record id="claim_details_stage_tree" model="ir.ui.view">
+        <field name="name">insurance.claim.details.stage.tree</field>
+        <field name="model">insurance.claim.details.stage</field>
+        <field name="arch" type="xml">
+
+            <tree sample="1">
+                <field name="name"/>
+                <field name="sequence" widget="handle"/>
+                <field name="default_stage" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="claim_details_stage_form" model="ir.ui.view">
+        <field name="name">insurance.claim.details.stage.form</field>
+        <field name="model">insurance.claim.details.stage</field>
+        <field name="arch" type="xml">
+            <form sample="1">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="default_stage"/>
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+</odoo>

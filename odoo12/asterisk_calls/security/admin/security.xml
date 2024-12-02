@@ -1,0 +1,36 @@
+<odoo>
+
+    <record id="asterisk_calls_call_admin_rule" model="ir.rule">
+        <field name="name">Asterisk call call admin rule</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>                
+        <field name="model_id" ref="model_asterisk_calls_call"/>
+        <field name="groups" eval="[(4, ref('asterisk_common.group_asterisk_admin'))]"/>
+        <field name="domain_force">[(1,'=', 1)]</field>
+    </record>
+
+    <record id="asterisk_calls_tag_admin_rule" model="ir.rule">
+        <field name="name">Asterisk call admin tag rule</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>                
+        <field name="model_id" ref="model_asterisk_calls_tag"/>
+        <field name="groups" eval="[(4, ref('asterisk_common.group_asterisk_admin'))]"/>
+        <field name="domain_force">[(1,'=', 1)]</field>
+    </record>
+
+    <record id="asterisk_calls_channel_admin_rule" model="ir.rule">
+        <field name="name">Asterisk call channel admin rule</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>                
+        <field name="model_id" ref="model_asterisk_calls_channel"/>
+        <field name="groups" eval="[(4, ref('asterisk_common.group_asterisk_admin'))]"/>
+        <field name="domain_force">[(1,'=', 1)]</field>
+    </record>
+
+</odoo>

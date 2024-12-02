@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <record id="mobile_service_request_form_view" model="ir.ui.view">
+            <field name="name">mobile.service.imei</field>
+            <field name="model">mobile.service</field>
+            <field name="inherit_id" ref="mobile_service_shop.mobile_service_request_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='imei_no']" position="replace"></xpath>
+
+                <xpath expr="//field[@name='brand_name']" position="attributes">
+                    <attribute name='required'>0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='model_name']" position="attributes">
+                    <attribute name='required'>0</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='warranty_number']" position="before">
+                    <field name="manufacturer" style="width:50%;" attrs="{'readonly': [('service_state','not in',('draft'))]}"/>
+                    <field name="device_Name" style="width:50%;" attrs="{'readonly': [('service_state','not in',('draft'))]}"/>
+                </xpath>
+                <xpath expr="//field[@name='date_request']" position="before">
+
+                    <field name="active_api" invisible="1"/>
+                    <field name="imei_no" style="width:100%;" colspan="1" attrs="{'readonly': [('service_state','not in',('draft'))]}"/>
+                    <button string="Get Details"  type="object" name="get_device_details"
+                            style="width: 100px;height: 50px;"
+                            class="oe_highlight"
+                            attrs="{'invisible': ['|', ('service_state','not in',('draft')), ('active_api','=', False)]}"
+                            groups="mobile_service_shop.mobile_service_group_manager"/>
+<!--                    <span attrs="{'invisible': ['|', ('service_state','not in',('draft')), ('active_api','=', False)]}"-->
+<!--                          style="width: 20%;">-->
+<!--                        Enter imei number to get device details.-->
+<!--                    </span>-->
+                </xpath>
+                <xpath expr="//div[hasclass('o_address_format')]" position="after">
+                    <field name="real_phone_image" widget="image" class="oe_avatar"/>
+                    <field name="complaint_visibility_status" attrs="{'invisible': True}"/>
+                </xpath>
+
+                <xpath expr="//page[2]" position="attributes">
+                    <attribute name="attrs">{'invisible': [('complaint_visibility_status', '!=', True)]}</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,105 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_stock_branch
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-03 06:30+0000\n"
+"PO-Revision-Date: 2022-02-03 06:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_stock_branch
+#: model:ir.model.fields,field_description:sh_stock_branch.field_product_pricelist__branch_id
+#: model:ir.model.fields,field_description:sh_stock_branch.field_product_pricelist_item__branch_id
+#: model:ir.model.fields,field_description:sh_stock_branch.field_product_product__branch_id
+#: model:ir.model.fields,field_description:sh_stock_branch.field_product_template__branch_id
+#: model:ir.model.fields,field_description:sh_stock_branch.field_stock_location__branch_id
+#: model:ir.model.fields,field_description:sh_stock_branch.field_stock_move__branch_id
+#: model:ir.model.fields,field_description:sh_stock_branch.field_stock_move_line__branch_id
+#: model:ir.model.fields,field_description:sh_stock_branch.field_stock_picking__branch_id
+#: model:ir.model.fields,field_description:sh_stock_branch.field_stock_quant__branch_id
+#: model:ir.model.fields,field_description:sh_stock_branch.field_stock_scrap__branch_id
+#: model:ir.model.fields,field_description:sh_stock_branch.field_stock_valuation_layer__branch_id
+#: model:ir.model.fields,field_description:sh_stock_branch.field_stock_warehouse__branch_id
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_product_pricelist_item_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_product_pricelist_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_product_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_stock_adjustments_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_stock_line_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_stock_location_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_stock_move_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_stock_picking_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_stock_scrap_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_stock_valuation_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_stock_warehouse_search_view_inherit
+msgid "Branch"
+msgstr ""
+
+#. module: sh_stock_branch
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_product_pricelist_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_stock_location_search_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_stock_branch.sh_multi_branch_stock_warehouse_search_view_inherit
+msgid "Group By"
+msgstr ""
+
+#. module: sh_stock_branch
+#: model:ir.model,name:sh_stock_branch.model_stock_location
+msgid "Inventory Locations"
+msgstr ""
+
+#. module: sh_stock_branch
+#: model:ir.model,name:sh_stock_branch.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: sh_stock_branch
+#: model:ir.model,name:sh_stock_branch.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr ""
+
+#. module: sh_stock_branch
+#: model:ir.model,name:sh_stock_branch.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: sh_stock_branch
+#: model:ir.model,name:sh_stock_branch.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: sh_stock_branch
+#: model:ir.model,name:sh_stock_branch.model_stock_quant
+msgid "Quants"
+msgstr ""
+
+#. module: sh_stock_branch
+#: model:ir.model,name:sh_stock_branch.model_stock_scrap
+msgid "Scrap"
+msgstr ""
+
+#. module: sh_stock_branch
+#: model:ir.model,name:sh_stock_branch.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: sh_stock_branch
+#: model:ir.model,name:sh_stock_branch.model_stock_valuation_layer
+msgid "Stock Valuation Layer"
+msgstr ""
+
+#. module: sh_stock_branch
+#: model:ir.model,name:sh_stock_branch.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: sh_stock_branch
+#: model:ir.model,name:sh_stock_branch.model_stock_warehouse
+msgid "Warehouse"
+msgstr ""

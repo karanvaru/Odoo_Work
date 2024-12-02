@@ -1,0 +1,78 @@
+<odoo>
+    <template id="rdp_home_slider" name="Custom Dynamic Snippet">
+        <section class="s_dynamic_snippet_slider" data-name="Dynamic Snippet" data-edit="true">
+            <style>
+                .btn_class {
+                    border: none;
+                    background: white;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    cursor: pointer;
+                    z-index: 1;
+                    padding: 10px;
+                }
+                .buttons {
+                    position: relative;
+                    height: 100%;
+                    margin-bottom: 30px;
+                }
+                #prevButton {
+                    left: 520px;
+                }
+                #nextButton {
+                    right: 520px;
+                }
+                #snippetCarousel {
+                    position: relative;
+                    overflow: hidden;
+                }
+                /* Responsive Design */
+                @media (min-width: 768px) {
+                    #prevButton {
+                        left: 50px;
+                    }
+                    #nextButton {
+                        right: 50px;
+                    }
+                }
+                @media (min-width: 1024px) {
+                    #prevButton {
+                        left: 520px;
+                    }
+                    #nextButton {
+                        right: 520px;
+                    }
+                }
+                @media (max-width: 767px) {
+                    .btn_class {
+                        padding: 5px;
+                    }
+                    #prevButton {
+                        left: 130px;
+                    }
+                    #nextButton {
+                        right: 130px;
+                    }
+                    i.fa {
+                        font-size: 14px;
+                    }
+                }
+            </style>
+            <div class="container">
+                <div id="snippetCarousel">
+                    <div id="CarouselInnerId">
+                    </div>
+                    <div class="buttons">
+                        <button id="prevButton" class="btn_class">
+                            <i class="fa fa-chevron-left" role="img" aria-label="Previous" title="Previous"></i>
+                        </button>
+                        <button id="nextButton" class="btn_class">
+                            <i class="fa fa-chevron-right" role="img" aria-label="Next" title="Next"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

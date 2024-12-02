@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="amazon_fba_inventory_wizard_form_view" model="ir.ui.view">
+			<field name="name">Amazon Inventory (FBA)</field>
+			<field name="model">amazon.inventory.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Amazon Inventroy">
+					<group>
+						<field name="instance_id" required="1" widget="selection"/>
+						<field name="fba_warehouse_id" readonly="1" />
+					</group>
+					<footer>
+						<button name="import_products_stock" string="Import Stock"
+							type="object" class="oe_highlight" />
+						<button string="Cancel" class="oe_highlight" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		<record id="action_fba_inventory_improt_wizard_ept" model="ir.actions.act_window">
+			<field name="name">Import Inventory (FBA)</field>
+			<field name="res_model">amazon.inventory.wizard</field>
+			<field name="view_type">form</field>
+       		<field name="view_mode">form</field>
+       		<field name="target">new</field>
+       		<field name="view_id" ref="amazon_fba_inventory_wizard_form_view" />
+		</record>
+	</data>
+</odoo>

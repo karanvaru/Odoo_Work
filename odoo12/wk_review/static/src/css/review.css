@@ -1,0 +1,405 @@
+/* Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) */
+/* See LICENSE file for full copyright and licensing details. */
+/* License URL : https://store.webkul.com/license.html/ */
+
+.AVGRating {
+    font-size: 15px;
+    font-weight: bold;
+}
+.RootElement a {
+    color: #2483C7;
+}
+a {
+    color: #2483C7;
+}
+.RootElement a:focus {
+    color: #009EF8;
+}
+.NonZeroCount{
+	font-size:16px;
+}
+.Count{
+	color:#2483C7;
+}
+.Number{
+	font-weight:bold;
+}
+
+.input-box, .input-text{
+    margin: 0 5px 5px 0;
+    text-align: top;
+}
+
+.border{
+    border-bottom: 1px solid;
+}
+/*.view-review{
+    font-family: 'Open Sans', sans-serif !important;
+    font-weight: normal;
+    font-size: 1.5em;
+    margin-right: 10px;
+}*/
+dt {
+  display: block;
+  margin-top: 3px;
+}
+.review-date{
+    color: #795548;
+    margin-top: 3px;
+    font-style: italic;
+}
+
+.oe_product section {
+  overflow: visible !important;
+  /*z-index: 4 !important;*/
+}
+
+/*.oe_product .ribbon-wrapper{
+  z-index: 4;
+}*/
+
+.popover-content {
+    width: 150px;
+    color: #FFA500;
+    font-style: italic;
+}
+
+.review_img {
+    border-radius: 50%;
+    overflow: hidden;
+    border:1px solid;
+    height: 70px;
+    width: 70px;
+    text-align: center;
+    padding: 0px;
+}
+
+.viewed-total{
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.review-box{
+    border-bottom: 1px solid;
+    /*border-top: 1px solid;*/
+    /*border-left: 1px solid;*/
+    /*border-right: 1px solid;*/
+    /*border-radius: 20px;*/
+    color: #B4B4B4;
+
+}
+
+.comment-box{
+    float:right;
+    margin-right:25%;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    height: 30px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top:2px;
+    padding-bottom: 2px;
+}
+.review-popover {
+    font-weight: 700;
+    text-align: center;
+}
+
+/*.review-tex{
+    top-margin:15px;
+    font-size: 1.5em;
+}*/
+
+.review-comment{
+    font-family: 'Arial';
+    font-size: 16px;
+    font-weight: 400;
+    color: #8B8B8B;
+    word-wrap: break-word;
+    overflow: hidden;
+
+}
+.review-title{
+    font-family: 'Arial';
+    font-size: 16px;
+    font-weight: 700;
+    color: #333333;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+
+.thumb {
+color:#0277BD;
+/*position: relative;*/
+margin-top: 6px;
+margin-right: 10px;
+float: left;
+}
+
+.like-dislike-box{
+    padding-top:5px !important;
+    padding-bottom:15px !important;
+}
+
+.add-all-review{
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-size: 24px;
+    color: #000000;
+    padding: 0px;
+}
+.review-time-ago{
+    font-family: 'Arial';
+    font-weight: 400;
+    font-size: 15px;
+    color: #B4B4B4;
+}
+.review-by{
+    font-family: 'Arial';
+    font-weight: 400;
+    font-size: 14px;
+    color: #9A9A9A;
+    /*text-align: center;*/
+    margin-top:8px;
+}
+
+.review-by-name{
+    font-family: 'Arial';
+    font-weight: 400;
+    font-size: 14px;
+    color: #428BCA;
+    /*text-align: center;*/
+}
+
+.user-rating{
+    font-family: 'Arial';
+    font-weight: 700;
+    font-size: 17px;
+    color: #404040;
+}
+
+.rating-tag{
+    font-family: 'Arial';
+    font-weight: 400;
+    font-size: 17px;
+    color: #404040;
+    margin-top: 7px;
+}
+.total-like-dislike{
+    font-family: 'Arial';
+    font-weight: 400;
+    font-size: 14px;
+    color: #9A9A9A;
+
+}
+.textbox-label{
+    font-family: 'Arial';
+    font-weight: 400;
+    font-size: 17px;
+    color: #252525;
+}
+
+.add-button-label{
+    font-family: 'Arial';
+    font-weight: 400;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+.load-more{
+    font-family: 'Arial';
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.btn-load-more {
+   color: #fff;
+   background-color: #9E9E9E;
+   /*border-color: #424242; */
+}
+
+#input-5a.rating{
+    display: -webkit-inline-box;
+}
+
+/*Like Dislike Icons*/
+.sprite {
+        background: url("/wk_review/static/src/img/icon-like-unlike.png") no-repeat 0 0;
+}
+
+.TopLeft {
+    width: 29px;
+    height: 30px;
+    display: inline-block;
+}
+.TopRight {
+    width: 30px;
+    height: 28px;
+    display: inline-block;
+    background-position:-30px 0;
+}
+
+.BottomLeft {
+    width: 28px;
+    height: 30px;
+    display: inline-block;
+    background-position: 0 -30px;
+}
+.BottomRight {
+    width: 29px;
+    height: 30px;
+    display: inline-block;
+    background-position:-30px -30px;
+}
+
+div.TopLeft:hover {
+    background-position: 0 -30px;
+    cursor: pointer;
+}
+
+div.TopRight:hover {
+    background-position:-30px -30px;
+    cursor: pointer;
+    }
+
+div.BottomLeft:hover {
+    background-position: 0 0px;
+    cursor: pointer;
+}
+
+div.BottomRight:hover {
+    background-position:-30px 0;
+    cursor: pointer;
+    }
+.fa-icon-smaller{font-size:0.7em;}
+
+
+
+/*Chat Box For Likes And Dislikes*/
+
+
+
+.bubble
+{
+position: relative;
+width: auto;
+height: auto;
+margin-left: 10px;
+padding: 5px;
+background: #FFFFFF;
+border-bottom: 1px solid;
+border-top: 1px solid;
+border-left: 1px solid;
+border-right: 1px solid;
+-webkit-border-radius: 7px;
+-moz-border-radius: 7px;
+border-radius: 3px;
+top:-10px;
+}
+
+.bubble:after
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 6px 9px 6px 0;
+border-color: transparent #FFFFFF;
+display: block;
+width: 0;
+z-index: 1;
+left: -9px;
+top: 9px;
+}
+
+.bubble:before
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 6px 9px 6px 0;
+border-color: transparent #555555;
+display: block;
+width: 0;
+z-index: 0;
+left: -10px;
+top: 9px;
+}
+
+/*Mobile View CSS*/
+.add-all-review-mobile{
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+}
+
+.viewed-total-mobile{
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+.review-title-mobile{
+    font-family: 'Arial';
+    font-size: 14px;
+    font-weight: 700;
+    color: #333333;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.review-comment{
+    font-family: 'Arial';
+    font-size: 14px;
+    font-weight: 400;
+    color: #8B8B8B;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.review-time-ago-mobile{
+    font-family: 'Arial';
+    font-weight: 400;
+    font-size: 13px;
+    color: #B4B4B4;
+    margin-top: 10px;
+}
+
+.review-by-mobile{
+    font-family: 'Arial';
+    font-weight: 400;
+    font-size: 14px;
+    color: #9A9A9A;
+    /*text-align: center;*/
+    margin-top:10px;
+}
+
+.review-by-name-mobile{
+    font-family: 'Arial';
+    font-weight: 400;
+    font-size: 14px;
+    color: #428BCA;
+    /*text-align: center;*/
+}
+
+.review_img-mobile {
+    border-radius: 50%;
+    overflow: hidden;
+    border:1px solid;
+    height: auto;
+    width: 60px;
+    text-align: center;
+    padding: 0px;
+    margin-right: 10px;
+    margin-left:10%;
+}
+
+.col-md-2{
+  max-width: 100% !important;
+}

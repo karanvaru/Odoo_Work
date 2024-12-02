@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+
+    <record id="hr_expense_sheet_register_payment_wizard_view_form_inherit" model="ir.ui.view">
+        <field name="name">hr.expense.sheet.register.payment.wizard.view.form.inherit</field>
+        <field name="model">hr.expense.sheet.register.payment.wizard</field>
+        <field name="inherit_id" ref="hr_expense.hr_expense_sheet_register_payment_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='communication']" position="after">
+                <field name="finance_analysis" />
+                <field name="is_active" invisible ='1'/> 
+                <field name="office_location_id" options="{'no_create':True,'no_edit':True,'no_quick_create': True}" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                <div style="margin-top:3px"> </div>
+                    <field name="multiple_office_location_ids" style="width:100%" options="{'no_create':True,'no_edit':True,'no_quick_create': True}" widget="many2many_tags" 
+                    attrs="{'invisible': ['|',('finance_analysis', '=', False),('is_active', '=', False)],'required':[('is_active','=',True)]}"/>
+                <field name="transaction_category_id" options="{'no_create':True,'no_edit':True,'no_quick_create': True}" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                <div style="margin-top:3px"> </div>
+                <field name="transaction_sub_category_id" options="{'no_create':True,'no_edit':True,'no_quick_create': True}" style="width:100%" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+                <field name="transaction_category_type_id" domain="[]" options="{'no_create':True,'no_edit':True,'no_quick_create': True}" attrs="{'invisible': [('finance_analysis', '=', False)],'required':[('finance_analysis','!=',False)]}"/>
+            </xpath>
+        </field>
+    </record>
+</data>

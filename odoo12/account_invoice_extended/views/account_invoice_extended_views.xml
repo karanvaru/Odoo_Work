@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_invoice_vendor_inherit_form" model="ir.ui.view">
+                  <field name="name">account.invoice.inherit.supplier.form</field>
+                  <field name="model">account.invoice</field>
+                  <field name="inherit_id" ref="account.invoice_supplier_form" />
+                  <field name="arch" type="xml">
+                        <field name="partner_bank_id" position="attributes">
+                          <attribute name="required">1</attribute>
+                        </field>
+                        <!-- Added By Sabitha -->
+                        <xpath expr="//notebook" position="inside">
+                          <page string="GST Returns" name="gst_returns">
+                            <group>
+                                <group>
+                                    <field name="gst_returns_year_id"/>
+                                    <field name="gst_returns_month_id"/>
+                                </group>
+                                <group>
+                                
+                                </group>
+                            </group>
+                          </page>
+                          <page string="TDS/TCS/PT Returns" name="tds_returns">
+                            <group>
+                                <group>
+                                  <field  name="tax_type_id"/>
+                                  <field  name="account_tds_paid_year_id"/> 
+                                  <field  name="account_tds_paid_month_id"/> 
+                                  <!-- <field  name="invoice_id"/>  -->
+                                   
+                                    
+                                </group>
+                                <group>
+                                  <field  name="bsr_code"/> 
+                                  <field name="challan_number"/>
+                                  <field name="challan_amount"/>
+                                  <field name="tds_certificate_number"/>
+                                    <field name="tds_certificate"/>
+                                    
+                                </group>
+                                
+                            </group>
+                          </page>
+                        </xpath>
+                  </field>
+        </record>
+        <record id="account_invoice_inherit_form" model="ir.ui.view">
+                  <field name="name">account.invoice.inherit.form</field>
+                  <field name="model">account.invoice</field>
+                  <field name="inherit_id" ref="account.invoice_form" />
+                  <field name="arch" type="xml">
+                            <field name="partner_bank_id" position="attributes">
+                              <attribute name="required">1</attribute>
+                            </field>
+                            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='discount']" position="before">
+                              <field name="discount_amount"/>
+                          </xpath>
+                          <xpath expr="//field[@name='amount_untaxed']" position="before">
+                            <field name="total_discount_amount"/>
+                        </xpath>
+                          <!-- Added By sabitha -->
+                          <xpath expr="//notebook" position="inside">
+                              <page string="GST Returns" name="gst_returns">
+                                <group>
+                                    <group>
+                                        <field name="gst_returns_year_id"/>
+                                        <field name="gst_returns_month_id"/>
+                                    </group>
+                                    <group>
+                                    </group>
+                                    
+                                </group>
+                              </page>
+                              <page string="TDS/TCS/PT Returns" name="tds_returns">
+                                <group>
+                                    <group>
+                                      <field  name="tax_type_id"/>
+                                      <field  name="account_tds_paid_year_id"/> 
+                                      <field  name="account_tds_paid_month_id"/> 
+                                      <field  name="pan"/> 
+                                       
+                                        
+                                    </group>
+                                    <group>
+                                      <field  name="bsr_code"/> 
+                                      <field name="challan_number"/>
+                                      <field name="challan_amount"/>
+                                      <field name="tds_certificate_number"/>
+                                      <field name="tds_certificate" widget="attachment" filename="filename"/>
+                                        
+                                    </group>
+                                    
+                                </group>
+                              </page>
+                          </xpath>
+
+                  </field>
+        </record>
+          <record id="account_invoice_inherit_tree" model="ir.ui.view">
+                  <field name="name">account.invoice.inherit.tree</field>
+                  <field name="model">account.invoice</field>
+                  <field name="inherit_id" ref="account.invoice_tree_with_onboarding" />
+                  <field name="arch" type="xml">
+                    <xpath expr="//field[@name='amount_total_signed']" position="before">
+                      <field name="total_discount_amount"/>
+                  </xpath>
+                  </field>
+         </record>
+
+          <record id="account_gst_invoice_inherit_from" model="ir.ui.view">
+                  <field name="name">account.invoice.gst.inherit.form</field>
+                  <field name="model">account.invoice</field>
+                  <field name="inherit_id" ref="account.invoice_supplier_form" />
+                  <field name="arch" type="xml">
+                     <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='discount']" position="before">
+                        <field name="discount_amount"/>
+                    </xpath>
+                    <xpath expr="//field[@name='amount_untaxed']" position="before">
+                      <field name="total_discount_amount"/>
+                  </xpath>
+                  </field> 
+        </record>
+    </data>
+</odoo>

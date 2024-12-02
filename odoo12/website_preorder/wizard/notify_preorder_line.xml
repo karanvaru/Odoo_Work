@@ -1,0 +1,57 @@
+<!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <record id="preorder_line_notify_wizard_form_view" model="ir.ui.view">
+            <field name="name">preorder.notification.wizard.form</field>
+            <field name="model">preorder.notification.wizard</field>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div attrs="{'invisible':[('empty_line','=',True)]}">
+                        <div class="text-center" style="color:#558B2F;font-size: 20px;margin-bottom: 10px;">
+                            <center>Send the Pre-Order Confirmation email for the product(s) whose pre-order can be confirmed.</center>
+                        </div>
+                        <field name="line_ids">
+                            <tree create="false" edit="false">
+                                <field name="product_id" readonly="1"/>
+                                <field name="pre_order_qty"  readonly="1"/>
+                                <field name="available_product_qty" readonly="1"/>
+                            </tree>
+                        </field>
+                        <div class="alert-info text-center" style="padding:5px;">
+                            <center><span class="fa fa-info-circle"/>  Remove the Product(s) from the list whose Pre-order cannot be confirmed.</center>
+                        </div>
+                    </div>
+                    <div attrs="{'invisible':[('empty_line','=',False)]}">
+                        <div class="text-center text-info">
+                            <strong><h2>No product is selected.</h2></strong>
+                        </div>
+                    </div>
+                    <field name="empty_line" invisible="1"/>
+                    <footer>
+                        <button name="send_perorder_stock_mail" type="object" string="Send Notification" class="oe_highlight" attrs="{'invisible':[('empty_line','=',True)]}"/>
+                        <button special="cancel" string="Cancel"  attrs="{'invisible':[('empty_line','=',True)]}"/>
+                        <button special="cancel" string="Ok" class="oe_highlight" attrs="{'invisible':[('empty_line','=',False)]}"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="preorder_line_removal_wizard_form_view" model="ir.ui.view">
+            <field name="name">remove.notification.wizard.form</field>
+            <field name="model">preorder.notification.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="text-center">
+                        <center>No product is selected.</center>
+                    </div>
+                    <footer>
+                        <button special="cancel" string="Ok"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

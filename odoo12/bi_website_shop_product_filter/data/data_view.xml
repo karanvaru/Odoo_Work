@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <data noupdate="0">
+    	<record id="product_group_filter_x" model="group.filter">
+            <field name="name">Other Filters</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,74 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_leave_wizard_report_form">
+            <field name="name">leave.wizard.report.wizard.view</field>
+            <field name="model">leave.wizard.report</field>
+            <field name="arch" type="xml">
+                <form string="Export Report">
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="company_ids" widget="many2many_tags"
+                                   options="{'no_create_edit': True,'no_create': True}"/>
+                            <field name="department_ids" widget="many2many_tags"
+                                   options="{'no_create_edit': True,'no_create': True}"/>
+                            <field name="employee_ids" widget="many2many_tags"
+                                   options="{'no_create_edit': True,'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="holiday_status_id" widget="many2many_tags"
+                                   options="{'no_create_edit': True,'no_create': True}"/>
+<!--                            <field name="holiday_status_id" options="{'no_create_edit': True,'no_create': True}"/>-->
+                            <field name="report_type" widget="radio"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_print_report" class='btn btn-primary' string="Export" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_leave_wizard_report">
+            <field name="name">Leave Report</field>
+            <field name="res_model">leave.wizard.report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="actions_leave_wizard_report_for_anual_report">
+            <field name="name">Leave Report</field>
+            <field name="res_model">leave.wizard.report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="context">{'from_anual_menu':True}</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <menuitem id="menu_leave_wizard_report"
+                  parent="hr.hr_menu_hr_reports"
+                  name="Leave Report"
+                  sequence="60"
+                  action="actions_leave_wizard_report"
+        />
+
+        <menuitem id="menu_leave_wizard_report_on_leaves"
+                  parent="hr_holidays.menu_hr_holidays_report"
+                  name="Leave Report"
+                  sequence="60"
+                  action="actions_leave_wizard_report"
+        />
+
+        <menuitem id="menu_leave_wizard_report_on_annual_report"
+                  parent="hr_holidays.menu_hr_holidays_report"
+                  name="Annual Report"
+                  sequence="70"
+                  action="actions_leave_wizard_report_for_anual_report"
+        />
+
+
+    </data>
+</odoo>

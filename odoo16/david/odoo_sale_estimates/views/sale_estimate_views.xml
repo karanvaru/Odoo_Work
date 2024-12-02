@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_sale_estimate_form" model="ir.ui.view">
+            <field name="name">sale.estimate.form</field>
+            <field name="model">sale.estimate</field>
+            <field name="arch" type="xml">
+                <form string="Sales Order" class="o_sale_order">
+                <header>
+                    <button name="estimate_confirm" type="object" string="Confirm" states="draft,sent" class="btn-primary" groups=" sales_team.group_sale_salesman"/>
+                    <button name="estimate_approve" type="object" string="Approve" states="confirm" class="btn-primary" groups=" sales_team.group_sale_salesman_all_leads"/>
+                    <button name="estimate_reject" type="object" string="Reject" states="confirm" class="btn-primary" groups=" sales_team.group_sale_salesman_all_leads"/>
+                    <button name="estimate_to_quotation" type="object" string="Create Quotation" states="approve" class="btn-primary"/>
+                    <button name="action_estimate_send" type="object" string="Send by Email" states="draft,sent,confirm,approve,quotesend"  class="btn-primary" groups="sales_team.group_sale_salesman"/>
+                    <!--<button name="contract_close" type="object" string="Close" states='claim' class="btn-primary" groups="sales_team.group_sale_manager"/>-->
+                    <button name="reset_todraft" type="object" string="Reset to Draft" states='cancel,approve' class="btn-primary" groups=" sales_team.group_sale_salesman"/>
+                    <button name="estimate_cancel" type="object" string="Cancel" states="draft,sent,reject" class="btn-primary" groups=" sales_team.group_sale_salesman"/>
+                    <field name="state" widget="statusbar" string="confirm"  
+                                    statusbar_visible="draft,sent,confirm,approve,quotesend"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="view_custom_quotation" type="object" class="oe_stat_button" icon="fa-pencil-square" string="Quotation"/>
+                        </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="number" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                           <!--  <field name="partner_id" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options="{&quot;always_reload&quot;: True}" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}"/> -->
+                            <field name="partner_id"  context="{ 'show_address': 1}" options="{&quot;always_reload&quot;: True}" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}"/>
+                            <field name="pricelist_id" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}" groups="product.group_sale_pricelist"/>
+                            <field name="payment_term_id" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}" options="{'no_create': True}"/>
+                            <field name="reference" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}"/>
+                        </group>
+                        <group>
+                            <field name="estimate_date" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}"/>
+                            <field name="company_id" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}" groups="base.group_multi_company"/>
+                            <field name="currency_id" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}" groups="base.group_multi_currency"/>
+                            <field name="source" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}"/>
+                            <field name="user_id" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}"/>
+                            <field name="team_id" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}"/>
+                             <field name="quotation_id" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Estimation Lines">
+                            <field name="estimate_ids" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="product_description"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="product_uom"/>
+                                    <field name="price_unit"/>
+                                    <field name="discount"/>
+                                    <field name="price_subtotal"/>
+                                    <field name="estimate_id" invisible="1"/> 
+                                </tree>
+                            </field>
+                            <!-- <group>
+                                <group class="oe_subtotal_footer oe_right float-end" colspan="4" name="estimate_total">
+                                    <field name="total" widget="monetary"/>
+                                </group>
+                                <field name="description" class="oe_inline" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}" placeholder="Setup default Estimate Content."/>
+                                <div class="oe_clear"/>
+                            </group> -->
+                            <group name="note_group" col="6" class="mt-2 mt-md-0">
+                                <group colspan="4">
+                                    <field  colspan="2" name="description" nolabel="1" placeholder="Setup default Estimate Content..." attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}" />
+                                </group>
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="estimate_total">
+                                    <field name="total" widget="monetary" colspan="2" readonly="1"/>
+                                </group>
+                                <div class="clearfix"/>
+                            </group>
+                        </page>
+                        <page string="Notes">
+                            <field name="note" attrs="{'readonly': [('state', 'in', ['approve','quotesend','cancel','reject'])]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_sale_estimate_tree" model="ir.ui.view">
+            <field name="name">sale.estimate.tree</field>
+            <field name="model">sale.estimate</field>
+            <field name="priority">4</field>
+            <field name="arch" type="xml">
+                <tree string="Estimate">
+                    <field name="number"/>
+                    <field name="partner_id"/>
+                    <field name="estimate_date"/>
+                    <field name="total" widget="monetary"/>
+                    <field name="currency_id" groups="base.group_multi_currency"/>
+                    <field name="user_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_sale_estimate_kanban">
+            <field name="name">sale.estimate.kanban</field>
+            <field name="model">sale.estimate</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" sample="1">
+                    <field name="number"/>
+                    <field name="partner_id"/>
+                    <field name="total" widget="monetary"/>
+                    <field name="estimate_date"/>
+                    <field name="state"/>
+                    <field name="currency_id" groups="base.group_multi_currency"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_record_top mb16">
+                                    <div class="o_kanban_record_headings mt4">
+                                        <strong class="o_kanban_record_title"><span><t t-esc="record.partner_id.value"/></span></strong>
+                                    </div>
+                                    <strong><field name="total" widget="monetary"/></strong>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left text-muted">
+                                        <span><t t-esc="record.number.value"/> <t t-esc="record.estimate_date.value"/></span>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <field name="state" widget="label_selection" options="{'classes': {'draft': 'default', 'cancel': 'default', 'quotesend': 'success'}}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
+        <record id="sale_estimate_search_view" model="ir.ui.view">
+            <field name="name">sale.estimate search</field>
+            <field name="model">sale.estimate</field>
+            <field name="arch" type="xml">
+                <search string="Sale Estimate search" >
+                    <field name="number"/>
+                    <field name="partner_id"/>
+                    <field name="estimate_date"/>
+                    <field name="currency_id" groups="base.group_multi_currency"/>
+                    <field name="user_id"/>
+                    <field name="team_id"/>
+                    <field name="pricelist_id" groups="product.group_sale_pricelist"/>
+                    <field name="payment_term_id"/>
+                    <field name="state"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Customer" name="customer" context="{'group_by':'partner_id'}"/>
+                        <filter string="Currency" name="currency" context="{'group_by':'currency_id'}"/>
+                        <filter string="Estimate Date" name="estimate_date" context="{'group_by':'estimate_date'}"/>
+                        <filter string="Company" name="company" context="{'group_by':'company_id'}"/>
+                        <filter string="State" name="state" context="{'group_by':'state'}"/>
+                        <filter string="Sales Person" name="sales_person" context="{'group_by':'user_id'}"/>
+                        <filter string="Sales Team" name="sales_team" context="{'group_by':'team_id'}"/>
+                        <filter string="Pricelist" name="pricelist" context="{'group_by':'pricelist_id'}"/>
+                        <filter string="Payment Term" name="payment_term" context="{'group_by':'payment_term_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_sale_estimate_calendar" model="ir.ui.view">
+            <field name="name">sale.estimate.calendar</field>
+            <field name="model">sale.estimate</field>
+            <field name="arch" type="xml">
+                <calendar string="Sales Estimates" date_start="estimate_date" color="state" hide_time="true" event_limit="5">
+                    <field name="currency_id" invisible="1"/>
+                    <field name="partner_id" avatar_field="avatar_128"/>
+                    <field name="total" widget="monetary"/>
+                    <field name="state" filters="1" invisible="1"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_sale_estimate_graph">
+            <field name="name">sale.estimate.graph</field>
+            <field name="model">sale.estimate</field>
+            <field name="arch" type="xml">
+                <graph string="Sales Estimates" sample="1">
+                    <field name="partner_id"/>
+                    <field name="total" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_sale_estimate_pivot">
+            <field name="name">sale.estimate.pivot</field>
+            <field name="model">sale.estimate</field>
+            <field name="arch" type="xml">
+                <pivot string="Sales Estimates" sample="1">
+                    <field name="estimate_date" type="row"/>
+                    <field name="total" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_sale_estimate_activity" model="ir.ui.view">
+            <field name="name">sale.estimate.activity</field>
+            <field name="model">sale.estimate</field>
+            <field name="arch" type="xml">
+                <activity string="Sales Estimates">
+                    <templates>
+                        <div t-name="activity-box">
+                            <div>
+                                <field name="number" display="full"/>
+                                <field name="partner_id" muted="1" display="full"/>
+                            </div>
+                        </div>
+                    </templates>
+                </activity>
+            </field>
+        </record>
+       
+        <record id="action_estimate" model="ir.actions.act_window">
+            <field name="name">Estimates</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.estimate</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        </record>
+
+        <menuitem 
+            id="menu_sale_estimate"
+            action="action_estimate" 
+            parent="sale.sale_order_menu"
+            sequence="0"/>
+
+</odoo>

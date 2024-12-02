@@ -1,0 +1,6 @@
+14.0.0.1 (27-5-2021) => Fixed issue while creating invoice from the other user.
+                        Fixed issue got traceback while creating invoice from the diff. SO.
+
+14.0.0.2 (31-5-2021) => Fixed issue got traceback while creating invoice from the diff. SO. with the scenario same product and same qty for two SOL.
+
+=> 14.0.0.3 : Add French, Spanish , Arabic and Dutch translation in module also improved an index.

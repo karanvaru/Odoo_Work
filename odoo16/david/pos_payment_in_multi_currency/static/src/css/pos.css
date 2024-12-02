@@ -1,0 +1,26 @@
+/* Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) */
+/* See LICENSE file for full copyright and licensing details. */
+/* License URL : <https://store.webkul.com/license.html/> */
+select option{
+    width: 150px;
+    height: 30px;
+    font-size: 15px;
+    font-family: sans-serif;
+    border-radius: 5px;
+    background: white;
+    color: #424242;
+}
+.wk_multi_confirm{
+    color:white !important;
+    background-color:#017e84;
+}
+.paymentlines-container{
+    overflow-x: scroll;
+}
+
+.pos .paymentline .col-due{
+    font-size: 20px;
+}
+.amount{
+    display: flex;
+}

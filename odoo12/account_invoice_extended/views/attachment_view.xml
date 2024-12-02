@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_chatter_account_invoice_inherited" model="ir.ui.view">
+            <field name="name">account.invoice.inherit.chatter</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="mail.model_mail_chatter_message"/>
+            <field name="arch" type="xml">
+                <field name="message_ids" position="after">
+                    <field name="tds_certificate" widget="attachment" filename="filename" string="Uploaded File" />
+                </field>
+            </field>
+     
+        </record>
+         
+    </data>
+</odoo>

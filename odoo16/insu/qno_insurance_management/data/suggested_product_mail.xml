@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="customer_suggested_mail_template" model="mail.template">
+            <field name="name">Policy Suggested Product</field>
+            <field name="model_id" ref="model_insurance_policy"/>
+            <field name="email_from">{{object.company_id.email or ''}}</field>
+            <field name="email_to">{{object.partner_id.email or ''}}</field>
+            <field name="subject">Policy Suggested Product</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <h4>
+                            <b>Dear <t t-out="object.partner_id.name"/>,
+                            </b>
+                        </h4>
+                        Your Policy Number Is <b><t t-out="object.name"/> </b> And Your Policy Product<b> <t t-out="object.policy_product_id.name"/></b>.
+                        <br/>
+                        <br/>
+                        <b>Some Suggested Policy </b>
+                        <br/>
+                        <t t-foreach="object.policy_product_id.optional_product_ids" t-as="product">
+                            <t t-out="product.name"/> <br/>
+                        </t>
+
+                        <br/>
+                        <br/>
+                        Thanks
+                        <br/>
+                        <t t-out="object.company_id.name"/>
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

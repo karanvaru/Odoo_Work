@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="ir_config_parameter_hr_kpi_report_recipient_email" model="ir.config_parameter">
+        <field name="key">hr_kpi_report.recipient_email</field>
+        <field name="value">hr@reddotdistribution.com</field> <!-- Default value, change as needed -->
+    </record>
+
+        <record id="send_email_to_manager_template" model="mail.template">
+            <field name="name">KPI Score: To Rate</field>
+            <field name="model_id" ref="payroll_kpi.model_employee_score"/>
+            <field name="email_from">{{ object.employee_id.company_id.email or 'default@example.com' }}</field>
+            <field name="email_to">{{ object.employee_id.work_email }}</field>
+            <field name="subject">KPI Score: To Rate</field>
+            <field name="body_html" type="html">
+
+<p>Hello <t t-out="object.employee_id.name"/>,</p>
+<p>
+    The KPI for Last Month has been Generated.
+</p>
+<p>
+
+    Go to Odoo and Enter your Ratings for Last Month by 10th of the month.
+
+    <p>
+    You can follow the below steps:
+        <li> Click on the below button</li>
+                    
+    <div style="margin: 16px 0px 16px 0px;">
+
+        <a t-att-href="object.kpi_url"
+            style="background-color: #AF141A; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 13px;">Rate KPI Score</a>
+    </div>
+        <li> If you would like to rate all your employees at one go, please click on Rate All</li>
+
+        <li> If you want to rate each employee individually, click on the rate button next to each employee's name </li>
+    </p>
+
+    <p> In Case of any Questions, reach out to HR via email or Whatsapp and we will assist accordingly </p>
+</p>
+<p>Best Regards,<br/>HR Team</p>
+            </field>
+        </record>
+
+        <record id="send_expired_score_template" model="mail.template">
+            <field name="name">KPI Score: Expired</field>
+            <field name="model_id" ref="payroll_kpi.model_employee_score"/>
+            <field name="email_from">{{ object.employee_id.company_id.email or 'default@example.com' }}</field>
+            <field name="email_cc">{{ object.employee_id.parent_id.work_email or 'default@example.com' }}</field>
+            <field name="email_to">{{ object.employee_id.work_email }}</field>
+            <field name="subject">KPI Score: Expired</field>
+            <field name="body_html" type="html">
+<p>Hello <t t-out="object.employee_id.name"/>,</p>
+<p>
+    The KPI for Last Month is Expired.
+</p>
+
+<p>
+    You will No longer be Able to Rate your Employees for last Month
+    Contact HR for Further Details
+</p>
+<p>Best Regards,<br/>HR Team</p>
+
+            </field>
+        </record>
+
+        <record id="send_score_reminder_template" model="mail.template">
+            <field name="name">KPI Score: Reminder</field>
+            <field name="model_id" ref="payroll_kpi.model_employee_score"/>
+            <field name="email_from">{{ object.employee_id.company_id.email or 'default@example.com' }}</field>
+            <field name="email_to">{{ object.employee_id.work_email }}</field>
+            <field name="subject">KPI Score: Reminder</field>
+            <field name="body_html" type="html">
+<p>Hello <t t-out="object.employee_id.name"/>,</p>
+<p>
+    You Have still not submitted your KPI Scores for the Month. </p>
+
+    <p>Kindly Do so Before the 5th.</p>
+    <p>After the 10th You will not be able to submit the KPIs.</p>
+
+   <div style="margin: 16px 0px 16px 0px;">
+        <a t-att-href="object.kpi_url"
+            style="background-color: #AF141A; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 13px;">Rate KPI Score</a>
+    </div>
+    
+
+<p>
+    An escalation will be generated to your supervisor if your submission is not done by 9th.
+</p>
+<p>Best Regards,<br/>HR Team</p>
+            </field>
+        </record>
+
+        <record id="send_second_score_reminder_template" model="mail.template">
+            <field name="name">KPI Score: Reminder 2</field>
+            <field name="model_id" ref="payroll_kpi.model_employee_score"/>
+            <field name="email_from">{{ object.employee_id.company_id.email or 'default@example.com' }}</field>
+            <field name="email_to">{{ object.employee_id.work_email }}</field>
+            <field name="subject">KPI Score: Reminder 2</field>
+            <field name="body_html" type="html">
+<p>Hello <t t-out="object.employee_id.name"/>,</p>
+<p>
+    You Have still not submitted your KPI Scores for the Month. </p>
+
+    <p>Any challenges with the KPI Ratings? Kindly Comply to finish this exercise today</p>
+
+   <p> After the 10th You will not be able to submit the KPIs. </p>
+
+   <div style="margin: 16px 0px 16px 0px;">
+        <a t-att-href="object.kpi_url"
+            style="background-color: #AF141A; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 13px;">Rate KPI Score</a>
+    </div>
+    
+
+
+<p>
+    An escalation will be generated to your supervisor if your submission is not done by 9th.
+
+   <li> I will be reaching out to see if you need assistance. </li>
+
+   <li> In case of any questions, reach out to HR via email or whatsapp and we will assist accordingly </li>
+</p>
+<p>Best Regards,<br/>HR Team</p>
+            </field>
+        </record>
+
+        <record id="kpi_report_template" model="mail.template">
+            <field name="name">KPI: Rated</field>
+            <field name="subject">KPI Rated: {{ object.employee_id.name }}</field>
+            <field name="model_id" ref="payroll_kpi.model_employee_kpi"/>
+            <field name="description">Send Rating to Employees</field>
+            <field name="email_from">{{ object.employee_id.company_id.email or 'default@example.com' }}</field>
+            <field name="email_to">{{ object.employee_id.work_email }}</field>
+            <field name="email_cc">{{ object.employee_id.parent_id.sudo().work_email }}</field>
+            <field name="body_html" type="html">
+
+                <table cellspacing="0" cellpadding="0" width="100%" style="border: 1px solid #ccc; border-collapse: collapse;">
+                    <tr>                                       
+                        <td style="padding:15px; border: 1px solid #ccc;">
+                            <p style="font-size:20px;color:#666666;" align="center">KPI Scores</p>
+                        </td>
+                    </tr>
+                </table>
+
+                <table cellspacing="0" cellpadding="0" width="100%" style="background-color: #EEE; border-collapse: collapse;">
+                    <tr>
+                        <td valign="top" align="center">
+                            <t t-set="kpi_lines" t-value="object.employee_kpi_ids"/>
+                            <table cellspacing="0" cellpadding="0" width="100%" style="margin: 0 auto; width: 570px; border: 1px solid #ccc; border-collapse: collapse;">
+                                <tr>
+                                    <td>
+                                        <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#fff" style="background-color:#fff; border: 1px solid #ccc; border-collapse: collapse;">
+                                            <tr>
+                                                <td style="padding: 15px; border: 1px solid #ccc;">
+                                                    <span style="color:#666666;font-size:13px;">You have been rated by your manager <strong t-out="object.employee_id.sudo().parent_id.name or ''"></strong>.</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <table cellspacing="0" cellpadding="0" width="100%" style="margin-top:30px;color:#666666; border: 1px solid #ccc; border-collapse: collapse;">
+                                            <thead>
+                                                <tr style="color:#3A0008; font-size:12px; border: 1px solid #ccc;">
+                                                    <th style="width:20%;text-align:right; border: 1px solid #ccc;" align="right">Category</th>
+                                                    <th style="width:40%;text-align:right; border: 1px solid #ccc;" align="right">Description</th>
+                                                    <th style="width:10%;text-align:right; border: 1px solid #ccc;" align="right">Score</th>
+                                                    <th style="width:10%;text-align:right; border: 1px solid #ccc;" align="right">Achieved Score</th>
+                                                    <th style="width:20%;text-align:right; border: 1px solid #ccc;" align="right">Manager Remarks</th>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5" style="height:1px;background-color:#AF141A;"></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody t-foreach="kpi_lines" t-as="line">
+                                                <tr style="font-weight:bold; border: 1px solid #ccc;">
+                                                    <td style="padding: 10px 0; border: 1px solid #ccc;" align="right">
+                                                        <t t-out="line['category_id']['name']"></t>
+                                                    </td>
+                                                    <td style="padding: 10px 0; border: 1px solid #ccc;" align="right">
+                                                        <t t-out="line['description'] or ''"></t>
+                                                    </td>
+                                                    <td style="padding: 10px 0; border: 1px solid #ccc;" align="right">
+                                                        <t t-out="line['score'] or ''"></t>
+                                                    </td>
+                                                    <td style="padding: 10px 0; border: 1px solid #ccc;" align="right">
+                                                        <t t-out="line['kpi'] or ''"></t>
+                                                    </td>
+                                                    <td style="padding: 10px 0; border: 1px solid #ccc;" align="right">
+                                                        <t t-out="line['manager_remarks'] or ''"></t>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5" style="height:1px;background-color:#e3e3e3;"></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr style="font-weight:bold; border: 1px solid #ccc; background-color: #f9f9f9;">
+                                                    <td style="border: 1px solid #ccc; text-align:right;">Total</td>
+                                                    <td style="border: 1px solid #ccc;"></td>
+                                                    <td style="border: 1px solid #ccc; text-align:right;">
+                                                        <t t-esc="sum([line['score'] for line in kpi_lines])"></t>
+                                                    </td>
+                                                    <td style="border: 1px solid #ccc; text-align:right;">
+                                                        <t t-esc="sum([line['kpi'] for line in kpi_lines])"></t>
+                                                    </td>
+                                                    <td style="border: 1px solid #ccc;"></td>
+                                                </tr>
+                                </tfoot>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+            </field>
+        </record>
+
+        <record id="send_score_escalation_template" model="mail.template">
+            <field name="name">KPI Score: Escalation</field>
+            <field name="model_id" ref="payroll_kpi.model_employee_score"/>
+            <field name="email_from">{{ object.employee_id.company_id.email or 'default@example.com' }}</field>
+            <field name="email_to">{{ object.employee_id.parent_id.work_email }}</field>
+            <field name="email_cc">{{ object.employee_id.work_email }}</field>
+            <field name="subject">KPI Score: Escalation</field>
+            <field name="body_html" type="html">             
+<p>Hello <t t-out="object.employee_id.parent_id.name"/>,</p>
+<p>
+    Your subordinate <t t-out="object.employee_id.name"/>
+    has still not submitted his KPI Scores for the Month.
+
+    Kindly Followup.
+    After the 10th he will not be able to submit the KPIs.
+    
+</p>
+<p>Best Regards,<br/>HR Team</p>
+            </field>
+        </record>
+    </data>
+</odoo>

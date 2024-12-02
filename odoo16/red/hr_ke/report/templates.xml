@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="p9_top" name="employee_p9_top">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <img src="/hr_ke/static/src/img/kra.png" alt="Logo" style="width:100%; height:150px;" />
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+            <div class="row">
+                <table class="table" style="width: 100% !important;">
+                    <tr>
+                        <td>
+                            <h3 style="font-size: 13px !important">APPENDIX 2A</h3>
+                            <br />
+                            <br />
+                            <h3 style="font-size: 13px !important">
+                                <span>Employer's Name:</span>
+                                <strong>
+                                    <t t-esc="employer['parent_comp']" />
+                                </strong>
+                            </h3>
+                            <h3 style="font-size: 13px !important">
+                                <span>Employee's Main Name:</span>
+                                <strong>
+                                    <t t-esc="names[0] if names else ''" />
+                                </strong>
+                            </h3>
+                            <h3 style="font-size: 13px !important">
+                                <span>Employee's Other Names:</span>
+                                <strong>
+                                    <t t-esc="names[1] if len(names)>1 else ''" />
+                                </strong>
+                            </h3>
+                        </td>
+                        <td>
+                            <p>
+                                <strong>KENYA REVENUE AUTHORITY</strong>
+                            </p>
+                            <p>
+                                <strong>DOMESTIC TAXES DEPARTMENT</strong>
+                            </p>
+                            <p>
+                                <strong>TAX DEDUCTION CARD YEAR
+                                     <span t-esc="year"></span>
+                                </strong>
+                            </p>
+                        </td>
+                        <td>
+                            <br />
+                            <br />
+                            <br />
+                            <h3 style="font-size: 13px !important">
+                                <span>Employer's Pin:</span>
+                                <strong>
+                                    <t t-esc="employer['vat']" />
+                                </strong>
+                            </h3>
+                            <h3 style="font-size: 13px !important">
+                                <span>Employee's Pin:</span>
+                                <strong>
+                                    <t t-esc="employee['vat']" />
+                                </strong>
+                            </h3>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </template>
+
+
+        <template id="p9_body" name="employee_p9_body">
+            <div class="row">
+                <table class="table table-sm o_main_table mx-1" style="border:1px solid #ddd; width:100%;">
+                    <t t-call="hr_ke.p9_table_top_head" />
+                    <tbody>
+                        <t t-foreach="sorted(body)" t-as="o">
+                            <tr>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="ms[o]" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['A']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['B']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['C']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['D']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['E1']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['E2']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['E3']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['F']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['G']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['H']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['J']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['K']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['KI']" />
+                                </td>
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <t t-esc="body[o]['L']" />
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                <b>Totals</b>
+                            </td>
+                            <t t-foreach="totals" t-as="o">
+                                <td style="border:1px solid #ddd; text-align:center; color: #000; vertical-align:top;">
+                                    <b>
+                                        <t t-esc="o" />
+                                    </b>
+                                </td>
+                            </t>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row d-flex justify-content-center p-1">
+                <h3 style="font-size: 13px !important">
+                    <b>TOTAL TAX (COLL.) Kshs.</b>
+                    <span id="total_tax" t-esc="totals[13]"></span>
+                </h3>
+            </div>
+        </template>
+
+
+        <template id="p9_bottom" name="employee_p9_bottom">
+            <div class="row" style="margin-bottom: 60px !important;">
+                <div class="col-6 my-1">
+                    <div class="py-1">
+                        <h5>To be completed by employer at end of year.</h5>
+                        <br />
+                        <span class="d-flex">
+                            <h3 style="font-size: 13px !important">
+                                <b>TOTAL CHARGEBLE PAY (COL. H) Kshs</b>
+                                <span id="total_tax" t-esc="totals[9]"></span>
+                            </h3>
+                        </span>
+
+                    </div>
+                    <div>
+                        <h4>
+                            <u>IMPORTANT</u>
+                        </h4>
+                        <div>
+                            <p class="text-justify py-1">
+                                1. Use P9A   (a) For all liable employees and where director/employee received
+                                <br />
+                                Benefits in addition to cash emoluments
+                            </p>
+                            <p class="text-justify">(b) Where an employee is eligible to deduction on owner occupier interest</p>
+                            <p class="text-justify">2. (a) Deductible interest in respect of any month must npt exceed Kshs, 12,500/=</p>
+                        </div>
+                        <h3 class="font-italic">
+                            <strong>P9A</strong>
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-6 my-2 py-2">
+                    <p>b) Attach</p>
+                    <p>
+                        (i) Photostat copy of interest certificate and statement of account from the
+                        <br />
+                        Financial Instituition
+                    </p>
+                    <p>(ii) The DECLARATION duly signed by the employee</p>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

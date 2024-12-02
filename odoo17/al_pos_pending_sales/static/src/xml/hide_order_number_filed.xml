@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="al_pos_pending_sales.TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension">
+             <xpath expr="//div[contains(@class, 'header-row')]//div[contains(text(), 'Order number')]"
+                    position="attributes">
+           <attribute name="t-att-class">{"d-none": true}</attribute>
+        </xpath>
+
+        <xpath expr="//t[@t-if='!ui.isSmall']//div[@class='order-row']//div[@class='col wide p-2']//div//t[@t-esc='order.trackingNumber']/parent::div/parent::div"
+               position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+
+        <xpath expr="//t[@t-if='!ui.isSmall']//div[@class='buttons d-flex gap-2']//button[@t-if='allowNewOrders']" position="attributes">
+             <attribute name="t-att-class">{"d-none": true}</attribute>
+        </xpath>
+    </t>
+</templates>
+
+

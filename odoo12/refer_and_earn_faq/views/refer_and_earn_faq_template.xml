@@ -1,0 +1,51 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+
+
+<odoo>
+
+       <template id="refer_and_earn_faq" name="Homepage" inherit_id="refer_and_earn.homepage">
+            <xpath expr="//div[@id='footer_banner_1']" position="after">
+
+                  <div class="row align-items-center">
+            			<!-- <div class="col-md-8"> -->
+
+                        <div class="col-md-8" style="margin:15px auto;">
+
+                          <h2> Frequently Asked Question </h2>
+                          <!-- <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p> -->
+                          <div class="card" id="accordion">
+                            <t t-set="i" t-value="1"/>
+                            <t t-foreach="faq" t-as="f">
+                                <div class="list-group-item bg-light">
+                                  <div class="card-heading">
+                                    <h4 class="card-title">
+                                      <a data-toggle="collapse" data-parent="#accordion" t-att-href="'#collapse%d' % i" style="color:black;text-decoration: none;">
+                                       <b>Question :</b> <span t-esc="f.faq_question"/>
+                                      </a>
+                                    </h4>
+                                  </div>
+                                  <div t-att-id="'collapse%d' % i" class="panel-collapse collapse">
+                                    <div class="card-body">
+                                     <b> Answer :</b> <span t-raw="f.faq_answer"/>
+                                    </div>
+                                  </div>
+                                </div>
+                                <t t-set="i" t-value="i+1"/>
+                             </t>
+                          </div>
+                          <t t-if="not faq">
+                            <div>
+                              There is no Frequently Asked Question..
+                            </div>
+                          </t>
+                        </div>
+
+
+           				 <!-- </div> -->
+        			</div>
+
+            </xpath>
+        </template>
+
+</odoo>

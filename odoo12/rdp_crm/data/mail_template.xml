@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="mail_template_for_closed_concern_stage" model="mail.template">
+            <field name="name">Closed Concern Stage Mail Template</field>
+            <field name="model_id" ref="rdp_crm.model_crm_lead"/>
+            <field name="auto_delete">1</field>
+<!--             <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field>-->
+            <field name="email_to">${object.user_id.login}</field>
+            <field name="subject">Closed Concern Stage Mail Template</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>Dear ${object.user_id.name}</p>
+                    <br/><br/>
+                    we are pleased to inform you that your Received concern for the ${object.name}  has been closed. we appreciate your time and patience while we solved your issue.
+                    <br/><br/>
+                    If you need assistance with anything else, please respond to this same email within 2 working days.
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

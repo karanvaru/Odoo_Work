@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="vehicle_type_form_view_custom">
+        <field name="name">vehicle.type.form.view.custom</field>
+        <field name="model">vehicle.type.custom</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle Types">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="vehicle_type_tree_view_custom" model="ir.ui.view">
+        <field name="name">vehicle.type.tree.view.custom</field>
+        <field name="model">vehicle.type.custom</field>
+        <field name="priority">2</field>
+        <field name="arch" type="xml">
+            <tree string="Vehicle Types">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="action_view_vehicle_type_custom" model="ir.actions.act_window">
+        <field name="name">Vehicle Types</field>
+        <field name="res_model">vehicle.type.custom</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem 
+            action="action_view_vehicle_type_custom"
+            id="menu_vehicle_types"
+            parent="job_card.menu_job_card_setting"
+            groups="project.group_project_manager"
+            sequence="2" />
+</odoo>

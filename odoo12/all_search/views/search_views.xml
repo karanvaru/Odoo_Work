@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record model="ir.ui.view" id="all_search_tree">
+        <field name="name">exclude.objects</field>
+        <field name="model">exclude.objects</field>
+        <field name="arch" type="xml">
+            <tree string="Objects to Avoid from Search" editable='bottom'>
+                <field name="model_id"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="new_fields_tree">
+        <field name="name">new.fields</field>
+        <field name="model">new.fields</field>
+        <field name="arch" type="xml">
+            <tree string="New Field master" editable='bottom'>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    
+	<record id="exclude_view_action" model="ir.actions.act_window">
+        <field name="name">Objects to Avoid from Search</field>
+        <field name="res_model">exclude.objects</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record id="fields_view_action" model="ir.actions.act_window">
+        <field name="name">New Field master</field>
+        <field name="res_model">new.fields</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+	<menuitem id="odoo_search_main" sequence="50" name="Easy Search" web_icon="all_search,static/description/icon.png" 
+			groups="all_search.group_allow_search" />
+			
+    <menuitem id="odoo_search_config" parent="odoo_search_main" action = "exclude_view_action"
+              name="Exclude Objects" icon="fa-search" sequence="3" groups="all_search.group_allow_search" />
+              
+    <menuitem id="fields_menu" parent="odoo_search_main" action = "fields_view_action"
+              name="Include Fields" icon="fa-search" sequence="3" groups="all_search.group_allow_search" />
+              
+</odoo>

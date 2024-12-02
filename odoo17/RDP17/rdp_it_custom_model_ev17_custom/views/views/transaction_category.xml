@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--Tree View ============================================= Transaction Category -->
+    <record id="transaction_category_view_tree" model="ir.ui.view">
+        <field name="name">transaction.category.view.tree</field>
+        <field name="model">transaction.category</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--Form View ============================================= Transaction Category -->
+    <record id="transaction_category_view_form" model="ir.ui.view">
+        <field name="name">transaction.category.view.form</field>
+        <field name="model">transaction.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--Action ============================================= Transaction Category -->
+    <record id="action_transaction_category" model="ir.actions.act_window">
+        <field name="name">Transaction Category</field>
+        <field name="res_model">transaction.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="submenu_transaction_category" name="Transaction Category" parent="menu_finance"
+              action="action_transaction_category" sequence="1"/>
+
+
+</odoo>

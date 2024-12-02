@@ -1,0 +1,27 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+ 
+		<!-- <record model="ir.cron" id="transaction_history_scheduler_call">
+            <field name="name">Automated approved transaction history Scheduler</field>
+            <field name="active" eval="True"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'transaction.history'"/>
+            <field name="function" eval="'process_approved_transaction_scheduler'"/>
+            <field name="args" eval="'()'"/>
+        </record> --> 
+
+
+        <!-- set value in ir.values for the show of server action in form  -->
+        <!-- <record model="ir.actions.server" id="transaction_history_server_action">
+            <field name="name">Approved transaction history Server Action</field>
+            <field name="model_id" ref="model_transaction_history"/>
+            <field name="code">
+                              action=model.approveTransactionServerAction()
+            </field>
+        </record> -->
+</odoo>

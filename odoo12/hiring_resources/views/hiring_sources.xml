@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="hiring_sources_tree" model="ir.ui.view">
+            <field name="name">Hiring Sources</field>
+            <field name="model">hiring.sources</field>
+            <field name="arch" type="xml">
+                <tree string="Hiring Sources">
+                    <field name='name'/>
+                    <field name='hiring_sources'/>
+                    <field name='hs_category'  widget="many2many_tags"/>
+                    <field name="hs_status"/>
+                    <field name="department_id"/>
+                    <field name="responsible" />
+                    <field name='total_applications'/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="hiring_sources_form_view" model="ir.ui.view">
+            <field name="name">hiring.sources.form</field>
+            <field name="model">hiring.sources</field>
+            <field name="arch" type="xml">
+                <form string="Hiring Source">
+                    <!--                    <header>-->
+                    <!--                        <button name="action_applied" string="APPLY" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['applied','live','closed'])]}"/>-->
+                    <!--                        <button name="action_live" string="Live" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['live','new','closed','expired'])]}"/>-->
+                    <!--                        <button name="action_expired" string="Expired" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['applied','new','closed','expired'])]}"/>-->
+                    <!--                        <button name="action_applied" string="cancel" type="object"/>-->
+
+                    <!--                        <field name="state" widget="statusbar" options="{'clickable': '1'}"/>-->
+                    <!--                    </header>-->
+                    <sheet>
+
+                        <div>
+                            <h1>
+                                <field name='name' readonly="1"/>
+                            </h1>
+                            <div style="float:right; margin-top:-55px;"><field name="logo" nolabel="1" widget="image" class="oe_avatar" /></div>
+                        </div>
+
+
+                        <group>
+                            <group>
+                                <field name="hiring_sources" widget="many2one" required="1"/>
+                                <field name="hs_status"/>
+                                <!-- <field name="address"/>
+                                <field name="logo" widget="binary"/>
+                                <field name="password"/>
+                                <field name="total_applications"/> -->
+
+                            </group>
+
+                            <group>
+                                <field name="hs_category" required="1"  widget="many2many_tags"/>
+                                <field name="responsible" required="1"/>
+                                <!-- <field name="url"/>
+                                <field name="user_name"/>
+                                <field name="website"/> -->
+
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Internal Notes">
+                                <group>
+                                    <field name="internal_notes"/>
+                                </group>
+                            </page>
+
+
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+            </record>
+            <!--            pivot view-->
+            <record id="hiring_sources_pivot" model="ir.ui.view">
+                <field name="name">hiring.sources.pivot</field>
+                <field name="model">hiring.sources</field>
+                <field name="arch" type="xml">
+                    <pivot string="Hiring Sources">
+                        <field name="name"/>
+                    </pivot>
+                </field>
+            </record>
+            <!--            kanban view-->
+            <record id="hiring_sources_kanban" model="ir.ui.view">
+                <field name="name">hiring.sources.kanban</field>
+                <field name="model">hiring.sources</field>
+                <field name="arch" type="xml">
+                    <kanban class="o_res_partner_kanban">
+                        <field name="name"/>
+                        <field name="state"/>
+                        <templates>
+                            <t t-name="kanban-box">
+                                <div class="oe_kanban_global_click o_kanban_record_has_image_fill hiring_resources_hiring_sources_kanban">
+                                    <div class="oe_kanban_details">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                        <div class="o_kanban_tags_section"/>
+                                        <ul>
+                                            <li>Reference:
+                                                <field name="name"/>
+                                            </li>
+                                            <li>status :
+                                                <field name="state"/>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </t>
+                            <!-- <searchpanel>
+                                <field name="name" icon="fa-building"/>
+                                <field name="name" select="multi" icon="fa-tags"/>
+                            </searchpanel> -->
+                        </templates>
+                    </kanban>
+                </field>
+            </record>
+            <!--            graph view-->
+            <record id="hiring_sources_graph" model="ir.ui.view">
+                <field name="name">hiring.sources.graph</field>
+                <field name="model">hiring.sources</field>
+                <field name="arch" type="xml">
+                    <graph string="Hiring Sources" type="pie">
+                        <field name="name"/>
+                    </graph>
+                </field>
+            </record>
+            <!--            calender view-->
+            <record id="hiring_sources_calendar" model="ir.ui.view">
+                <field name="name">hiring.sources.calendar</field>
+                <field name="model">hiring.sources</field>
+                <field name="arch" type="xml">
+                    <calendar string="Hiring Sources" date_start="create_date" color="name" mode="month"
+                              quick_add="True">
+                        <field name="name"/>
+                    </calendar>
+                </field>
+            </record>
+            <!--            gantt view-->
+            <!-- <record id="hiring_sources_gantt" model="ir.ui.view">
+                <field name="name">hiring.sources.gantt</field>
+                <field name="model">hiring.sources</field>
+                <field name="arch" type="xml">
+                    <gantt date_start="create_date" date_stop="closed_date" string="Default Grant view">
+                    <field name="name"/>
+                    </gantt>
+                </field>
+            </record> -->
+
+        <record id="hiring_resources_action_view" model="ir.actions.act_window">
+            <field name="name">Hiring Sources</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hiring.sources</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot,graph,calendar,kanban</field>
+        </record>
+        <!--        <menuitem id="sourcing_engineering_menu" name='Sourcing and Engineering' action="sourcing_engineering_form"/>-->
+        <menuitem id="hiring_resources_menu" name='Hiring Sources' action="hiring_resources_action_view" parent="studio_customization.recruitment_job_posi_857d059b-f295-4365-afa6-bd776016b900"/>
+    </data>
+</odoo>

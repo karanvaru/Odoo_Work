@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id='sh_auto_part_vehicle_shop_list_layout_tmpl' inherit_id='website_sale.products_item' name='Shop product list layout'>
+		<xpath expr='//div[hasclass("o_wsale_product_information_text")]' position='replace'>
+			
+				<div class="p-2 o_wsale_product_information_text">
+	                <h6 class="o_wsale_products_item_title">
+	                    <a itemprop="name" t-att-href="product_href" t-att-content="product.name" t-field="product.name" />
+	                    <a role="button" t-if="not product.website_published" t-att-href="product_href" class="btn btn-sm btn-danger" title="This product is unpublished.">Unpublished</a>
+	                </h6>
+	            
+		            <div class="product_price d-inline hide_on_list_view" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer">
+		                <del t-attf-class="text-danger mr-2 {{'' if combination_info['has_discounted_price'] else 'd-none'}}" style="white-space: nowrap;" t-esc="combination_info['list_price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}" />
+		                <span t-if="combination_info['price']" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+		                <span itemprop="price" style="display:none;" t-esc="combination_info['price']" />
+		                <span itemprop="priceCurrency" style="display:none;" t-esc="website.currency_id.name" />
+		            </div>
+	                
+					<div class='sh_product_ither_info'>
+						<div>
+							<strong t-if="combination_info['price']">Price : </strong>
+							<div class="product_price d-inline" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer">
+				                <del t-attf-class="text-danger mr-2 {{'' if combination_info['has_discounted_price'] else 'd-none'}}" style="white-space: nowrap;" t-esc="combination_info['list_price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}" />
+				                <span t-if="combination_info['price']" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+				                <span itemprop="price" style="display:none;" t-esc="combination_info['price']" />
+				                <span itemprop="priceCurrency" style="display:none;" t-esc="website.currency_id.name" />
+				            </div>
+			            </div>
+		            
+						<div>
+							<span t-if='product.sudo().product_variant_id.sudo().default_code'>
+								<strong>Part Number : </strong>
+								<span t-esc='product.sudo().product_variant_id.sudo().default_code'></span>
+							</span>
+						</div>
+						
+						<div t-if='product.sudo().product_variant_id.type == "product"'>
+							<strong>Stock Status : </strong>
+							<t t-if='product.sudo().product_variant_id.sudo().qty_available &gt; 0 and product.sudo().product_variant_id.type == "product"' >
+								<span>In Stock</span>
+							</t>
+							<t t-if='product.sudo().product_variant_id.sudo().qty_available &lt;= 0 and product.sudo().product_variant_id.type == "product"' >
+								<span>Out of stock</span>
+							</t>
+						</div>
+						
+						<div>
+							<span t-if='product.sudo().product_variant_id.sudo().brand'>
+								<strong>Brand : </strong>
+								<span t-esc='product.sudo().product_variant_id.sudo().brand.name'></span>
+							</span>
+						</div>
+						
+						<div>
+							<span t-if='product.sudo().product_variant_id.sudo().made_in'>
+								<strong>Made In : </strong>
+								<span t-esc='product.sudo().product_variant_id.sudo().made_in.name'></span>
+							</span>
+						</div>  
+					</div>      
+	            </div>
+		</xpath>
+		
+		<!-- Shop page image high resolution  -->
+<!-- 		<xpath expr='//span[@t-field="image_holder.image_1920"]' position='replace'>
+			<span t-field="image_holder.image_1920" t-options="{'widget': 'image', 'preview_image': 'image_1024' if product_image_big else 'image_1024', 'itemprop': 'image'}" class="d-flex h-100 justify-content-center align-items-center"/>
+		</xpath> -->
+	</template>
+</odoo>

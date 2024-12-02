@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="website_contact_us_template">
+            <t t-call="website.layout">
+                <div class="o_portal_wrap">
+                    <div class="oe_structure"/>
+                    <div class="container mt-2">
+                        <!--                        <div class="row align-items-center">-->
+                        <!--                            <div class="pt20 col-lg-12 pb0" style="text-align: center;">-->
+                        <!--                                <img class="img-fluid o_we_custom_image"-->
+                        <!--                                     src="/static/images/GIBGI.png"/> &lt;!&ndash; Updated src attribute &ndash;&gt;-->
+
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+
+                        <div style="max-width:927px; margin:3% auto;">
+                            <div class="row">
+                                <div class="col-lg-12 support-head">
+                                    <div class="row align-items-center">
+                                        <div class="pt20 col-lg-12 pb0 gibgi"
+                                             style="text-align: center;">
+                                            <h1>GIBGI</h1>
+                                            <h2>Complaint Registration</h2>
+                                        </div>
+                                    </div>
+                                    <br></br>
+                                    <form action="/website_contact_form" method="post" enctype="multipart/form-data"
+                                          role="form" class="contact_page"
+                                          id="contact_us_form" data-success-mode="redirect"
+                                          data-success-page="/contactus-thank-you" data-pre-fill="true">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <div class="container row">
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input type="text" class="form-control o_website_form_input"
+                                                       name="partner_name"
+                                                       required="" placeholder="Contact Name*"/>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input type="text" class="form-control o_website_form_input"
+                                                       name="partner_email"
+                                                       pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                                                       required="" placeholder="Email*"/>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input type="text" class="form-control o_website_form_input"
+                                                       name="contact_mobile" required=""
+                                                       pattern="[1-9]{1}[0-9]{9}"
+                                                       placeholder="Phone Number*"/>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input type="text" class="form-control o_website_form_input"
+                                                       name="contact_order"
+                                                       placeholder="Order ID*"/>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <select class="form-select"
+                                                        name="partner_product">
+                                                    <t t-set="product"
+                                                       t-value="request.env['product.product'].sudo().search([])"/>
+                                                    <option value="0" disabled="" selected="" data-calc="0">
+                                                        Product
+                                                    </option>
+                                                    <t t-foreach="product" t-as="c">
+                                                        <option t-att-value="c.id" t-att-data-id="c.id">
+                                                            <span t-esc="c.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <select class="form-select"
+                                                        name="partner_color">
+                                                    <option value="0" disabled="" selected="" data-calc="0">
+                                                        Color
+                                                    </option>
+                                                    <option value="black">Black</option>
+                                                    <option value="white">White</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <select class="form-select"
+                                                        name="complain_type">
+                                                    <t t-set="type"
+                                                       t-value="request.env['helpdesk.ticket.type'].sudo().search([])"/>
+                                                    <option value="0" disabled="" selected="" data-calc="0">
+                                                        Complaint Type
+                                                    </option>
+                                                    <t t-foreach="type" t-as="c">
+                                                        <option t-att-value="c.id" t-att-data-id="c.id">
+                                                            <span t-esc="c.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <select class="form-select" name="sub_complain_type" required="">
+                                                    <option value="0" disabled="" selected="">Sub Complaint Type
+                                                    </option>
+                                                    <option value="right bud problem">Right Bud Problem</option>
+                                                    <option value="left bud problem">Left Bud Problem</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <select class="form-select"
+                                                        name="product_purchase">
+                                                    <option value="0" disabled="" selected="" data-calc="0">
+                                                        Product Purchase From
+                                                    </option>
+                                                    <option value="ecommerce">Ecommerce</option>
+                                                    <option value="retail">Retail</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+
+                                                <!--        <input type="date" class="form-control o_website_form_input"
+                                                               t-attf-class="form-control"
+                                                               name="partner_date"
+                                                               placeholder="Invoice Date*"
+                                                               enctype="multipart/form-data"
+                                                               required="required"/>-->
+                                                <input
+                                                        placeholder="Invoice Date*"
+                                                        name="partner_date"
+                                                        class="textbox-n form-control o_website_form_input"
+                                                        t-attf-class="form-control"
+                                                        type="text"
+                                                        required="required"
+                                                        onfocus="(this.type='date')"
+                                                        onblur="(this.type='text')"
+                                                        enctype="multipart/form-data"
+                                                        id="date"/>
+                                            </div>
+
+                                            <!--                                            <div class="col-lg-4 form-group form-field o_website_form_custom">-->
+                                            <!--                                                <input type="text" class="form-control o_website_form_input"-->
+                                            <!--                                                       name="partner_work"-->
+                                            <!--                                                       required="" placeholder="i work for"/>-->
+                                            <!--                                            </div>-->
+                                            <!--                                            <input type="hidden" class="form-control o_website_form_input" name="name"-->
+                                            <!--                                                   value="New Support Tickets From Website"/>-->
+                                            <!--                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">-->
+                                            <!--                                                <input type="text" class="form-control o_website_form_input"-->
+                                            <!--                                                       name="contact_device_no"-->
+                                            <!--                                                       placeholder="Device Model Number" required=""/>-->
+                                            <!--                                            </div>-->
+                                            <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                <input type="text" class="form-control o_website_form_input"
+                                                       name="contact_device_serial" placeholder="Serial Number*"
+                                                       required="1"/>
+                                            </div>
+                                            <div class="col-lg-12 form-group form-field">
+                                                <textarea class="form-control o_website_form_input"
+                                                          name="description"
+                                                          placeholder="Problem Description..."/>
+                                            </div>
+                                            <div class="address">
+                                                <div class="row pt40">
+                                                    <h5>
+                                                        <b>Address</b>
+                                                    </h5>
+                                                </div>
+                                                <div class="container row">
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <input type="text" class="form-control o_website_form_input"
+                                                               name="partner_street"
+                                                               placeholder="Street"
+                                                               required=""/>
+                                                    </div>
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <select class="form-select"
+                                                                name="partner_city">
+                                                            <t t-set="city"
+                                                               t-value="request.env['res.city'].sudo().search([])"/>
+                                                            <option value="0" disabled="" selected="" data-calc="0">
+                                                                City
+                                                            </option>
+
+                                                            <t t-foreach="city" t-as="c">
+                                                                <option t-att-value="c.id" t-att-data-id="c.id">
+                                                                    <span t-esc="c.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <select class="form-select"
+                                                                name="partner_state">
+                                                            <t t-set="state"
+                                                               t-value="request.env['res.country.state'].sudo().search([])"/>
+                                                            <option value="0" disabled="" selected="" data-calc="0">
+                                                                State
+                                                            </option>
+
+                                                            <t t-foreach="state" t-as="c">
+                                                                <option t-att-value="c.id" t-att-data-id="c.id">
+                                                                    <span t-esc="c.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <select class="form-select"
+                                                                name="partner_country">
+                                                            <t t-set="country"
+                                                               t-value="request.env['res.country'].sudo().search([])"/>
+                                                            <option value="0" disabled="" selected="" data-calc="0">
+                                                                Country
+                                                            </option>
+
+                                                            <t t-foreach="country" t-as="c">
+                                                                <option t-att-value="c.id" t-att-data-id="c.id">
+                                                                    <span t-field="c.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <input type="text" class="form-control o_website_form_input"
+                                                               name="partner_pincode"
+                                                               placeholder="Pincode*"
+                                                               required="1"/>
+                                                    </div>
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <input type="text" class="form-control o_website_form_input"
+                                                               name="partner_landmark"
+                                                               placeholder="Landmark"
+                                                               required=""/>
+                                                    </div>
+                                                    <div class="col-lg-4 form-group form-field o_website_form_required_custom">
+                                                        <input type="text" class="form-control o_website_form_input"
+                                                               name="partner_invoice_number"
+                                                               placeholder="Invoice Number*"
+                                                               required="1"/>
+                                                    </div>
+                                                    <div class="col-lg-6 form-group form-field o_website_form_required_custom">
+                                                        <input type="file"
+                                                               class="form-control inputfile o_website_form_input"
+                                                               name="partner_invoice"
+                                                               placeholder="Upload Invoice*"
+                                                               required="1"
+                                                               accept="application/pdf"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" id="contact-items-buttons">
+                                                <!--                                                <div class="col-lg-3">-->
+                                                <!--                                                    <a style="color: #FFF;background-color: #ef393f;  padding: 10px 15px; font-size: 13px; display: inline-block;  font-weight: 500;border-radius: 5px;">-->
+                                                <!--                                                        Download SLA Table-->
+                                                <!--                                                    </a>-->
+                                                <!--                                                </div>-->
+                                                <div class="col-lg-3">
+                                                    <a style="color: #FFF;background-color: #ef393f;  padding: 10px 15px; font-size: 13px; display: inline-block;  font-weight: 500;border-radius: 5px;">
+                                                        <i class="fa fa-youtube-play"/>
+                                                        Support Video
+                                                    </a>
+                                                </div>
+                                                <div class="col-lg-6" style="text-align:-moz-right;">
+                                                    <t t-if="website.recaptcha_sitekey">
+                                                        <script type="text/javascript"
+                                                                src="https://www.google.com/recaptcha/api.js"/>
+                                                        <script>function recaptchaCallback() {
+                                                            $('#submit').removeAttr('disabled');
+                                                            console.log("Checkbox checked..!") };
+                                                        </script>
+                                                        <div class="g-recaptcha"
+                                                             t-att-data-sitekey="website.recaptcha_sitekey"
+                                                             data-callback="recaptchaCallback"/>
+                                                        <br/>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="contact-items-buttons">
+                                                <div class="pull-right" style="text-align:end;">
+                                                    <button class="btn btn-lg btn-primary o_website_form_send"
+                                                            data-original-title="" title="" id="submit"
+                                                            aria-describedby="tooltip971133">send
+                                                    </button>
+                                                    <span id="o_website_form_result" class="text-danger ml8"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
+
+
+
+
+

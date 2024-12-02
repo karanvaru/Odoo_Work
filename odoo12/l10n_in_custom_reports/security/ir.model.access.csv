@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_in_account_invoice_report,l10n.in.account.invoice.report.user,model_l10n_in_account_invoice_report,,1,0,0,0
+access_l10n_in_advances_payment_report,l10n.in.account.move.user.report,model_l10n_in_advances_payment_report,,1,0,0,0
+access_l10n_in_advances_payment_adjustment_report,l10n_in.advances.payment.adjustment.report.user,model_l10n_in_advances_payment_adjustment_report,,1,0,0,0
+access_l10n_in_product_hsn_report,l10n.in.product.hsn.report.user,model_l10n_in_product_hsn_report,,1,0,0,0
+access_l10n_in_exempted_report,l10n_in.exempted.report.user,model_l10n_in_exempted_report,,1,0,0,0

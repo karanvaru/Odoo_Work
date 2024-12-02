@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="customer_policy_expire_15_daya_template" model="mail.template">
+            <field name="name">Policy : Expire Reminder Email</field>
+            <field name="model_id" ref="model_insurance_policy"/>
+            <field name="email_from">{{object.company_id.email or ''}}</field>
+            <field name="email_to">{{object.partner_id.email or ''}}</field>
+            <field name="subject">Reminder for {{ object.policy_number }} Expiration</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <h4>
+                            <b>Dear <t t-out="object.partner_id.name"/>,
+                            </b>
+                        </h4>
+                        <br/>
+                        Your Policy
+                        <t t-if="object.policy_product_id">
+                            <b>
+                                <t t-out="object.policy_product_id.name"/>
+                            </b>
+                        </t>
+                        With Policy Number
+                        <b>
+                            <t t-out="object.policy_number"/>
+                        </b>
+                        Is Expire On
+                        <b>
+                            <t t-out="object.end_date.strftime('%d/%m/%Y')"/>
+                        </b>.
+                        <br/>
+                        Please Take Necessary Action On It.
+                        <br/>
+                        <br/>
+                        <b>Policy Details As Below:
+                        </b>
+                        <br/>
+                        Policy Name :
+                        <t t-if="object.policy_product_id">
+                            <t t-out="object.policy_product_id.name"/>
+                        </t>
+                        <br/>
+                        Policy Number :
+                        <t t-out="object.policy_number"/>
+                        <br/>
+                        Net Premimum :
+                        <t t-out="object.net_amount"/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        Thanks
+                        <br/>
+                        <t t-out="object.company_id.name"/>
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

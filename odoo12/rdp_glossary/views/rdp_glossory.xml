@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="rdp_glossory_tree" model="ir.ui.view">
+            <field name="name">RDP Glossory</field>
+            <field name="model">rdp.glossory</field>
+            <field name="arch" type="xml">
+                <tree string="RDP Glossory">
+                 <field name='name'/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="rdp_glossory_form_view" model="ir.ui.view">
+            <field name="name">rdp.glossory.form</field>
+            <field name="model">rdp.glossory</field>
+               <field name="arch" type="xml">
+                <form string="RDP Glossory">
+
+                    <sheet>
+
+                        <div>
+                            <h1> <field name='name' readonly="1"/> </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="s_name" string="Short Name"/>
+
+
+                                <field name="type"/>
+
+
+
+
+                               </group>
+                            <group>
+<field name="department" string="Department" widget="many2many_tags"/>
+                               </group>
+
+                        </group>
+
+                        <group>
+                          <field name="description" string="Description"/>
+                        </group>
+
+<notebook>
+
+    <page string="Internal Notes">
+        <field name="notes" string="Internal Notes"/>
+
+    </page>
+</notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids" widget="mail_activity" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

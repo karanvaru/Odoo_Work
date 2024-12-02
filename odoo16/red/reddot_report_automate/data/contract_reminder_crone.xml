@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="actions_send_contract_terminate_1_month" model="ir.cron">
+            <field name="name">Reminder For Terminate Contract In 1 Month</field>
+            <field eval="True" name="active"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="reddot_specific" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">
+                model.with_context(cron_id=model.env.ref('reddot_report_automate.actions_send_contract_terminate_1_month')).action_send_contract_terminate_1_month_mail()
+            </field>
+            <field name="priority" eval="5"/>
+        </record>
+
+
+        <record id="actions_send_contract_terminate_15_days" model="ir.cron">
+            <field name="name">Reminder For Terminate Contract In 15 Days</field>
+            <field eval="True" name="active"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="reddot_specific" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">
+                model.with_context(cron_id=model.env.ref('reddot_report_automate.actions_send_contract_terminate_15_days')).action_send_contract_terminate_15_days_mail()
+            </field>
+            <field name="priority" eval="5"/>
+        </record>
+
+        <record id="actions_send_contract_terminate_7_days" model="ir.cron">
+            <field name="name">Reminder For Terminate Contract In 7 Days</field>
+            <field eval="True" name="active"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="reddot_specific" eval="True"/>
+            <field name="state">code</field>
+            <field name="code">
+                model.with_context(cron_id=model.env.ref('reddot_report_automate.actions_send_contract_terminate_7_days')).action_send_contract_terminate_7_days_mail()
+            </field>
+
+            <field name="priority" eval="5"/>
+        </record>
+
+    </data>
+</odoo>

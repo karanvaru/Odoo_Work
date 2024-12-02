@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_add_payment_bank_wizard_form">
+            <field name="name">add.payment.bank.wizard</field>
+            <field name="model">add.payment.bank.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="bank_id"/>
+                        </group>
+                        <group>
+                            <field name="payment_method"/>
+                        </group>
+
+
+                    </group>
+                    <footer>
+                        <button name="action_approve" class="btn-primary" string="Apply" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_add_payment_bank_wizard">
+            <field name="name">Add Payment Bank Wizard</field>
+            <field name="res_model">add.payment.bank.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

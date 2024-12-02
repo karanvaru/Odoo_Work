@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report
+                id="report_product"
+                model="product.template"
+                string="Product Report"
+                name="product_extended.report_product_template"
+                file="product_extended.report_product_template"
+                report_type="qweb-pdf"
+        />
+
+    </data>
+</odoo>

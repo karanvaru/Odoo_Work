@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_contract_report_template_tree" model="ir.ui.view">
+            <field name="name">contract.report.template.view.tree</field>
+            <field name="model">contract.report.template</field>
+            <field name="arch" type="xml">
+                <tree string="Contract Report Template">
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="description" invisible="True"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_contract_report_template_form" model="ir.ui.view">
+            <field name="name">contract.report.template.view.form</field>
+            <field name="model">contract.report.template</field>
+            <field name="arch" type="xml">
+                <form string="Contract Report Template">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_contract_report_template" model="ir.actions.act_window">
+            <field name="name">Contract Report Template</field>
+            <field name="res_model">contract.report.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help"></field>
+        </record>
+
+        <menuitem action="action_contract_report_template"
+                  id="menu_payroll_analysis"
+                  name="Contract Template"
+                  sequence="4"
+                  parent="hr.menu_human_resources_configuration"
+        />
+
+    </data>
+</odoo>

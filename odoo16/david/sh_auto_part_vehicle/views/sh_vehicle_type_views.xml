@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree View -->
+
+    <record id="sh_motorcycle_type_tree" model="ir.ui.view">
+        <field name="name">sh.motorcycle.type.tree</field>
+        <field name="model">motorcycle.type</field>
+        <field name="arch" type="xml">
+            <tree editable='bottom'>
+                <field name="name" />
+                <field name="company_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sh_motorcycle_type_action" model="ir.actions.act_window">
+        <field name="name">Type</field>
+        <field name="res_model">motorcycle.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- make menuitem -->
+    <menuitem id="sh_motorcycle_type_menuitem" action="sh_motorcycle_type_action" parent="sh_motorcycle_menuitem_config" sequence="1 " />
+</odoo>

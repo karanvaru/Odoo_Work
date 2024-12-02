@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+<odoo>
+    <data noupdate="1">
+        <record id="base.USD" model="res.currency">
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="base.EUR" model="res.currency">
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="base.INR" model="res.currency">
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="base.GBP" model="res.currency">
+            <field name="active" eval="True"/>
+        </record>
+
+        <record model="pos.config" id="point_of_sale.pos_config_main">
+            <field name="enable_multi_currency" eval="True"></field>
+            <field name="multi_currency_ids" eval="[(6, 0, [ref('base.USD'), ref('base.EUR'), ref('base.GBP'), ref('base.INR')])]"/>
+        </record>
+    </data>
+</odoo>

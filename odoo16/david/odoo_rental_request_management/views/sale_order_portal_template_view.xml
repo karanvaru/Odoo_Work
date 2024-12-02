@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_order_portal_content_inherit_rental" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//table[@id='sales_order_table']//th" option='after'>
+            <th name="rental_start_date_probc" t-if="sale_order.is_custom_rental_quote">Start Datetime</th>
+            <th name="rental_end_date_probc" t-if="sale_order.is_custom_rental_quote">End Datetime</th>
+        </xpath>
+        <xpath expr="//table[@id='sales_order_table']//tbody//td[@id='product_name']" option='after'>
+            <td id="rental_start_date_probc" t-if="sale_order.is_custom_rental_quote"><span t-field="line.custom_start_datetime"/></td>
+            <td id="rental_end_date_probc" t-if="sale_order.is_custom_rental_quote"><span t-field="line.custom_end_datetime"/></td>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!-- Form View -->
+    <record id="rdp_workflows_form_view" model="ir.ui.view">
+        <field name="name">rdp.workflows.form</field>
+        <field name="model">rdp.workflows</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="workflows">
+                <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                        <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                    </button>
+                </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="workflow_id"/>
+                        </group>   
+                        <group> 
+                            <field name="create_date"/>
+                            <field name="created_by" />
+                        </group>
+                    </group>  
+                    <group>
+                        <field name="description"/>
+                        <field name="workflow_video" widget="url"/>
+                        <field name="workflow_doc" widget="url"/>
+                        <field name="workflow_slide" widget="url"/>
+                        <field name="workflow_sheet" widget="url"/>
+                    </group>
+                <notebook>
+                    <page string="Internal Notes" name="internal_notes">
+                        <group>
+                            <field name="internal_notes"/>
+                        </group>
+                    </page>  
+                </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+<!-- Tree View -->
+    <record id="rdp_workflows_tree_view" model="ir.ui.view">
+        <field name="name">rdp.workflows.tree</field>
+        <field name="model">rdp.workflows</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Workflows">
+                <field name="name"/>
+                <field name="workflow_id"/>
+                <field name="create_date"/>
+                <field name="created_by"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Search View -->
+    <record id="rdp_workflows_search_view" model="ir.ui.view">
+        <field name="name">rdp.workflow.Search</field>
+        <field name="model">rdp.workflows</field>
+        <field name="arch" type="xml">
+        <search string="Workflows">
+            <filter string="Active" name="active" domain="[('state','=','active')]"/>
+            <separator/>
+            <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+            <group string="Group By">
+                <filter string="Active" name="state" domain="[('active','=',True)]" context="{'group_by':'state'}"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" context="{'group_by':'state'}"/>
+            </group>
+        </search>
+        </field>
+    </record>
+
+
+<!-- Action -->
+        <record id="rdp_workflows_action" model="ir.actions.act_window">
+            <field name="name">RDP Workflows</field>
+            <field name="res_model">rdp.workflows</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="context">{'search_default_active': '1'}</field> -->
+            <field name="view_id" ref="rdp_workflows_tree_view" />
+        </record>
+
+        <menuitem id="menu_rdp_workflows" name="Workflows"
+        parent="rdp_playbooks.menu_rdp_playbooks_root" action="rdp_workflows_action" sequence='2'/>
+    </data>
+</odoo>

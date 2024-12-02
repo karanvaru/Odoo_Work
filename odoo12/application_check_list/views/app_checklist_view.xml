@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--      <record id="action_application_checklist" model="ir.actions.act_window">-->
+<!--        <field name="name">Application Checklist</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">application.checklist</field>-->
+<!--        <field name="view_type">form</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--        <field name="help" type="html">-->
+<!--            <p class="oe_view_nocontent_create">-->
+<!--                Click to create a New Application Checklist-->
+<!--            </p>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <menuitem id="application_entry_checklist_menu" name="Application Checklist" parent="hr.menu_human_resources_configuration" sequence="3"-->
+<!--              action="action_entry_checklist" groups="hr.group_hr_manager"/>-->
+
+</odoo>

@@ -1,0 +1,19 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_user_review_user,User review access,model_user_review,wk_review.group_review_user,1,0,0,0
+access_product_template_review_user,User product access,model_product_template,wk_review.group_review_user,1,0,0,0
+access_review_like_dislike_review_user,User like/dislike access,model_review_like_dislike,wk_review.group_review_user,1,1,1,0
+
+
+access_user_review_manager,Manager review access,model_user_review,wk_review.group_review_manager,1,1,1,1
+access_product_template_manager,Manager product access,model_product_template,wk_review.group_review_manager,1,1,1,1
+access_review_like_dislike_manager,Manager like/dislike access,model_review_like_dislike,wk_review.group_review_manager,1,1,1,1
+
+
+access_user_review_portal,Portal review access,model_user_review,base.group_portal,1,0,1,0
+access_product_template_portal,Portal product access,model_product_template,base.group_portal,1,1,1,0
+access_review_like_dislike_portal,Portal like/dislike access,model_review_like_dislike,base.group_portal,1,1,1,0
+access_review_like_dislike_user,Portal like/dislike access,model_review_like_dislike,base.group_user,1,1,1,0
+
+access_user_review_public,Public review access,model_user_review,,1,0,0,0
+access_review_like_dislike_public,Pulic like/dislike access,model_review_like_dislike,,1,0,0,0

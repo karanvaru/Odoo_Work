@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="template_quotation_order">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="col">
+                                        <t t-if="doc.partner_shipping_id == doc.partner_invoice_id
+                                                 and doc.partner_invoice_id != doc.partner_id
+                                                 or doc.partner_shipping_id != doc.partner_invoice_id">
+                                            <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing
+                                                and
+                                                shipping address:
+                                            </strong>
+                                            <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing
+                                                address:
+                                            </strong>
+                                            <div t-field="doc.partner_invoice_id"
+                                                 t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                            <div t-if="doc.partner_shipping_id != doc.partner_invoice_id" class="mt8">
+                                                <strong>Shipping address:</strong>
+                                                <div t-field="doc.partner_shipping_id"
+                                                     t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                            </div>
+                                        </t>
+                                    </div>
+                                    <div class="col">
+                                        <div t-field="doc.partner_id"
+                                             t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                                        <p t-if="doc.partner_id.vat"><t
+                                                t-esc="doc.company_id.country_id.vat_label or 'TIN'"/>:
+                                            <span t-field="doc.partner_id.vat"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <h3>
+                                        <span t-if="doc.policy_type == 'vehicle'">Motor</span>
+                                        <span t-if="doc.policy_type =='health'">Health</span>
+                                        <span t-if="doc.policy_type == 'corporate'">SME</span>
+                                        Quotation
+                                        <span t-field="doc.name"/>
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <div class="row pt40">
+                                <div class="col-6">
+                                    <strong>
+                                        <span>Order Date:</span>
+                                    </strong>
+                                    <br/>
+                                    <span t-field="doc.date_order" t-options='{"format": "dd/MM/yyyy"}'/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>
+                                        <span>SalesPerson:</span>
+                                    </strong>
+                                    <br/>
+                                    <span t-field="doc.agent_id"/>
+                                </div>
+                            </div>
+                            <t t-if="doc.policy_type == 'vehicle'">
+                                <div class="row pt32">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:left;">Reg . No</th>
+                                                <th style="text-align:right;">NCB</th>
+                                                <th style="text-align:left;">MFG</th>
+                                                <th style="text-align:left;" colspan="3">Make &amp; Model</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="text-align:left;">
+                                                    <span t-field="doc.vehicle_number"/>
+                                                </td>
+                                                <td style="text-align:right;">
+                                                    <span t-field="doc.ncb_bonus"/>
+                                                </td>
+                                                <td style="text-align:left;">
+                                                    <span t-field="doc.vehicle_manufacturing_year"/>
+                                                </td>
+                                                <td style="text-align:left;">
+                                                    <span t-field="doc.vehicle_make"/>
+                                                </td>
+                                                <td style="text-align:left;">
+                                                    <span t-field="doc.vehicle_model"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </t>
+                            <t t-if="doc.policy_type == 'vehicle'">
+                                <div class="row pt32">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:right;">IDV Value</th>
+                                                <th style="text-align:right;">Addon Amount</th>
+                                                <th style="text-align:right;">OD Amount</th>
+                                            </tr>
+                                            <tbody>
+                                                <tr class="text-center">
+                                                    <td style="text-align:right;">
+                                                        <span t-field="doc.idv_value"/>
+                                                    </td>
+                                                    <td style="text-align:right;">
+                                                        <span t-field="doc.addon_amount"/>
+                                                    </td>
+
+                                                    <td style="text-align:right;">
+                                                        <span t-field="doc.od_amount"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </t>
+                            <t t-if="doc.policy_type != 'health'">
+                                <div class="row pt32">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:left;">Insurance Co.</th>
+                                                <th style="text-align:left;">Description</th>
+                                                <th style="text-align:right;">Net Premium</th>
+                                                <th style="text-align:left;">Taxes</th>
+                                                <th style="text-align:right;">Final Premium</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="doc.order_line" t-as="product">
+                                                <tr class="text-center">
+                                                    <td style="font-size:15px;text-align:left;">
+                                                        <span t-field="product.product_id.name"/>
+                                                    </td>
+                                                    <td style="text-align:left;">
+                                                        <span t-field="product.name"/>
+                                                    </td>
+                                                    <td style="text-align:right;">
+                                                        <span t-field="product.price_unit"/>
+                                                    </td>
+                                                    <td style="text-align:left;">
+                                                        <t t-foreach="product.tax_id" t-as="tax">
+                                                            <span t-esc="tax.name"/>
+                                                        </t>
+                                                    </td>
+                                                    <td style="text-align:right;">
+                                                        <span t-field="product.price_total"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </t>
+                            <t t-if="doc.policy_type == 'health'">
+                                <div class="row pt32">
+                                    <h4>
+                                        Family Members
+                                    </h4>
+                                </div>
+                                <div class="row pt16">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:left;">Name</th>
+                                                <th style="text-align:left;">Date Of Birth</th>
+                                                <th style="text-align:right;">Age</th>
+                                                <th style="text-align:left;">Relation</th>
+                                                <th style="text-align:left;">Gender</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="doc.policy_details_holder" t-as="relative">
+                                                <tr class="text-center">
+                                                    <td style="font-size:15px;text-align:left;">
+                                                        <span t-field="relative.name"/>
+                                                    </td>
+                                                    <td style="text-align:left;">
+                                                        <span t-field="relative.date_of_birth"/>
+                                                    </td>
+                                                    <td style="text-align:right;">
+                                                        <span t-field="relative.age"/>
+                                                    </td>
+                                                    <td style="text-align:left;">
+                                                        <span t-esc="relative.relation_id.name"/>
+                                                    </td>
+                                                    <td style="text-align:left;">
+                                                        <span t-field="relative.gender"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </t>
+
+                            <t t-if="doc.policy_type == 'health'">
+                                <div class="row pt16">
+                                    <h4>
+                                        Comparisions
+                                    </h4>
+                                </div>
+                                <div class="row pt16">
+                                    <t t-set="lines" t-value="doc.get_line_data()"/>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:center;">Sum Insured
+                                                </th>
+                                                <t t-foreach="lines" t-as="o">
+                                                    <th style="text-align:center;" colspan="2">
+                                                        <span t-esc="o.name"/>
+                                                        <br></br>
+                                                    </th>
+                                                </t>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span/>
+                                                    <span/>
+                                                </td>
+                                                <t t-foreach="lines" t-as="l">
+                                                    <span t-esc="n"></span>
+                                                    <td style="text-align:center;">Floater</td>
+                                                    <td style="text-align:center;">Individual</td>
+                                                </t>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="lines[o]" t-as="l">
+                                                <tr class="text-center">
+                                                    <td style="font-size:15px;text-align:left;">
+                                                        <span t-esc="l"/>
+                                                    </td>
+                                                    <t t-foreach="lines" t-as="o">
+                                                        <t t-foreach="lines[o][l]" t-as="n">
+                                                            <td style="font-size:15px;text-align:right;">
+                                                                <span t-esc="lines[o][l][n]"/>
+                                                            </td>
+                                                        </t>
+                                                    </t>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </t>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_quotation_report" model="ir.actions.report">
+            <field name="name">Quotation</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">qno_insurance_management.template_quotation_order</field>
+            <field name="report_file">qno_insurance_management.template_quotation_order</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

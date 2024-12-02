@@ -1,0 +1,35 @@
+<odoo>
+
+        <record model="ir.ui.view" id="helpdesk_form_view_ticket_inherit_view">
+            <field name="name">helpdesk.ticket.inherit</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='description']" position="after">
+                        <notebook>
+                                <page name="helpdesk_age_audit" string="Ticket Age Audit">
+                                    <field name="age_audit" readonly="1">
+                                        <tree>
+                                            <field name="stage_id"/>
+                                            <field name="date_in"/>
+                                            <field name="date_out"/>
+                                            <field name="days"/>
+                                        </tree>
+                                        <form>
+                                            <group colspan="2" col="4">
+                                                <field name="stage_id"/>
+                                                <field name="date_in"/>
+                                                <field name="date_out"/>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </page>
+                        </notebook>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+
+</odoo>

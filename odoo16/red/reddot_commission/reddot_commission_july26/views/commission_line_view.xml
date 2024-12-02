@@ -1,0 +1,108 @@
+<odoo>
+    <data>
+        <record id="view_commission_history_line_form" model="ir.ui.view">
+            <field name="name">view.commission.history.line.form</field>
+            <field name="model">commission.history.line</field>
+            <field name="arch" type="xml">
+                <form string="Commission Line" create="false" delete="false" edit="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="commission_user_id"/>
+                                <field name="responsible_user_id"/>
+                                <field name="company_id" groups="base.group_multi_company"
+                                       options="{'no_create': True}"/>
+                                <field name="currency_id" groups="base.group_multi_currency" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="sale_id"/>
+                                <field name="origin"/>
+                                <field name="create_date"/>
+                                <field name="customer_user_id"/>
+                            </group>
+                        </group>
+                        <group string="Amounts">
+                            <group>
+                                <field name="base_amount" widget="monetary"/>
+                                <field name="percentage"/>
+                                <field name="commission_amount" widget="monetary"/>
+                            </group>
+                            <group>
+                                <field name="date_commission"/>
+                                <field name="sale_order_line_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_commission_history_line_tree" model="ir.ui.view">
+            <field name="name">view.commission.history.line.tree</field>
+            <field name="model">commission.history.line</field>
+            <field name="arch" type="xml">
+                <tree string="Commission Lines" create="false" decoration-danger="state == 'reject'"
+                      decoration-success="state == 'approve'">
+                    <field name="display_name" optional="show"/>
+                    <field name="approval_date" optional="show"/>
+                    <field name="commission_user_id" optional="show"/>
+                    <field name="responsible_user_id" string="Agent" optional="show"/>
+                    <field name="customer_user_id" optional="show"/>
+                    <!--                     <field name="currency_id" column_invisible="True"/> -->
+                    <field name="base_amount" sum="base_amount" widget="monetary" optional="show"/>
+                    <field name="percentage" optional="show"/>
+                    <field name="commission_amount" sum="commission_amount" widget="monetary" optional="show"/>
+                    <field name="approval_date" optional="show"/>
+                    <field name="state" readonly="1" optional="show"/>
+                    <button string="" type="object" class="btn-primary" name="view_source"
+                            icon="fa-folder-open" title="Source"/>
+                    <button type="object" name="approved" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}" icon="fa-check" title="Approve"/>
+                    <button type="object" name="reject" class="btn-secondary"
+                            attrs="{'invisible': [('state', 'not in', ['draft','approve'])]}" icon="fa-close"
+                            title="Reject"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_commission_history_line_filter" model="ir.ui.view">
+            <field name="name">commission.history.line.select</field>
+            <field name="model">commission.history.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Commission Lines">
+                    <field name="name"/>
+                    <field name="commission_user_id"/>
+                    <field name="commission_history_id"/>
+                    <field name="date_commission"/>
+                    <field name="state"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <separator/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Commission Sheet" name="group_by_commission_history_id" domain="[]"
+                                context="{'group_by':'commission_history_id'}"/>
+                        <filter string="Commission User" name="group_by_commission_user_id" domain="[]"
+                                context="{'group_by':'commission_user_id'}"/>
+                        <filter string="Status" name="group_by_status" domain="[]" context="{'group_by': 'state'}"/>
+                        <filter string="Date" name="group_by_date_commission" domain="[]"
+                                context="{'group_by': 'date_commission'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_commission_history_line_pivot">
+            <field name="name">commission.history.line.pivot</field>
+            <field name="model">commission.history.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Commission Sheets Line">
+                    <field name="commission_user_id" type="row"/>
+                    <field name="base_amount" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+        <record id="action_commission_history_line" model="ir.actions.act_window">
+            <field name="name">Commission Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">commission.history.line</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+    </data>
+</odoo>

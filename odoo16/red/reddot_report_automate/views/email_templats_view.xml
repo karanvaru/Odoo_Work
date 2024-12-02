@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record id="view_ir_cron_form_inherit" model="ir.ui.view">
+            <field name="name">view.ir.cron.form.inherit</field>
+            <field name="model">ir.cron</field>
+            <field name="inherit_id" ref="base.ir_cron_view_form"/>
+            <field name="arch" type="xml">
+                <field name="doall" position="after">
+                    <field name="reddot_specific"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

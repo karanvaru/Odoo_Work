@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="rdp_finance_report_action_menu" model="ir.actions.client">
+            <field name="name">Finance Analysis</field>
+            <field name="tag">finance_report</field>
+            <field name="target">current</field>
+        </record>
+
+        
+        <!-- added menu for finance analysis report kp-->
+        <menuitem id="menu_finance_analysis_client_report" name="Reports"
+            parent="rdp_finance_analysis.menu_finance_analysis_main" 
+            sequence="3"/>
+        <menuitem id="menu_finance_analysis_client_report_sub_menu" 
+            name="Finance Analysis Report"
+            parent="rdp_finance_analysis.menu_finance_analysis_client_report" 
+            sequence="1" action = "rdp_finance_report_action_menu"/>
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_order_check_item,access_order_check_item,model_order_check_item,sales_team.group_sale_salesman,1,0,0,0
+access_order_check_item_manager,access_order_check_item_manager,model_order_check_item,sales_team.group_sale_manager,1,1,1,1
+access_order_checklist_history,access_order_checklist_history,model_order_checklist_history,sales_team.group_sale_salesman,1,0,1,0
+access_order_checklist_history_manager,access_order_checklist_history_manager,model_order_checklist_history,sales_team.group_sale_manager,1,1,1,1

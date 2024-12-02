@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+  <!--Configuration view-->
+
+         <record id="fo_visit_type_form_view" model="ir.ui.view">
+            <field name="name">Visit Type</field>
+            <field name="model">visit.type</field>
+            <field name="arch" type="xml">
+                <form string="Visiting Type">
+                    <sheet>
+                        <group>
+                            <field name="visit_type"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+       <record id="fo_visit_type_tree_view" model="ir.ui.view">
+            <field name="name">fo.visit.type.tree.view</field>
+            <field name="model">visit.type</field>
+            <field name="arch" type="xml">
+                <tree string="Visiting Type">
+                    <field name="visit_type"/>
+                </tree>
+            </field>
+        </record>
+
+         <record id="work_office_type_form_view" model="ir.ui.view">
+            <field name="name">Work Office</field>
+            <field name="model">work.office</field>
+            <field name="arch" type="xml">
+                <form string="Work Office">
+                    <sheet>
+                        <group>
+                            <field name="work_office"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="work_office_type_tree_view" model="ir.ui.view">
+            <field name="name">work.office.type.tree.view</field>
+            <field name="model">work.office</field>
+            <field name="arch" type="xml">
+                <tree string="Work Office">
+                    <field name="work_office"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record id="visit_type_action_view" model="ir.actions.act_window">
+            <field name="name">Visit Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">visit.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+         <record id="work_office_action_view" model="ir.actions.act_window">
+            <field name="name">Work Office</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">work.office</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="configuration_menu" name="Configuration" parent="front_office_management.front_office_mgmnt_main"/>
+        <menuitem id="visit_type_menu" name="Visit Type" parent="configuration_menu" action="visit_type_action_view"/>
+        <menuitem id="work_office_menu" name="Visited Office" parent="configuration_menu" action="work_office_action_view"/>
+
+
+    </data>
+</odoo>

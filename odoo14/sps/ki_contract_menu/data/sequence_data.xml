@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_contract_create" model="ir.sequence">
+            <field name="name">Contract Sequence</field>
+            <field name="code">contract.contract</field>
+            <field name="prefix">SPS/CR/%(year)s/%(month)s/</field>
+            <field name="padding">4</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_product_register" model="ir.sequence">
+            <field name="name">Product Register Sequence</field>
+            <field name="code">product.in.out.register</field>
+            <field name="prefix">IN/OUT/%(year)s/%(month)s/</field>
+            <field name="padding">4</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_refill_request" model="ir.sequence">
+            <field name="name">Refill Request Sequence</field>
+            <field name="code">refill.request</field>
+            <field name="prefix">RF/%(year)s/%(month)s/</field>
+            <field name="padding">4</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="contract_expire_cron" model="ir.cron">
+            <field name="name">Contract Expire</field>
+            <field name="model_id" ref="model_contract_contract"/>
+            <field name="code">model._contract_expire_status()</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

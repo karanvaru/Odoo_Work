@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="commission_division_level_all" model="commission.division.level">
+            <field name="division_level">all</field>
+        </record>
+
+        <record id="commission_division_level_bu_level_company_wise" model="commission.division.level">
+            <field name="division_level">company_wise</field>
+            <field name="calculation_types">bu_level</field>
+        </record>
+
+        <record id="commission_division_level_company_level_bu_wise" model="commission.division.level">
+            <field name="division_level">bu_wise</field>
+            <field name="calculation_types">company_level</field>
+        </record>
+
+
+        <record id="commission_division_level_region_level_company_wise" model="commission.division.level">
+            <field name="division_level">company_wise</field>
+            <field name="calculation_types">region_level</field>
+        </record>
+        <record id="commission_division_level_region_level_bu_wise" model="commission.division.level">
+            <field name="division_level">bu_wise</field>
+            <field name="calculation_types">region_level</field>
+        </record>
+        <record id="commission_division_level_region_level_country_wise" model="commission.division.level">
+            <field name="division_level">country_wise</field>
+            <field name="calculation_types">region_level</field>
+        </record>
+
+        <record id="commission_division_level_bu_group_level_company_wise" model="commission.division.level">
+            <field name="division_level">company_wise</field>
+            <field name="calculation_types">bu_group_level</field>
+        </record>
+        <record id="commission_division_level_bu_group_level_bu_wise" model="commission.division.level">
+            <field name="division_level">bu_wise</field>
+            <field name="calculation_types">bu_group_level</field>
+        </record>
+
+
+
+    </data>
+</odoo>

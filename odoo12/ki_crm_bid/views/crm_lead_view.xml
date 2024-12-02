@@ -1,0 +1,186 @@
+<odoo>
+    <data>
+
+        <record id="view_crm_leads_map_master" model="ir.ui.view">
+            <field name="name">view.crm.leads.map</field>
+            <field name="model">crm.lead</field>
+            <field name="arch" type="xml">
+                <map string="Maps" library="geometry" lat="master_latitude" lng="master_longitude" color="orange">
+                    <field name="master_latitude"/>
+                    <field name="master_longitude"/>
+                    <field name="color"/>
+                    <field name="priority"/>
+                    <field name="planned_revenue"/>
+                    <field name="kanban_state"/>
+                    <field name="activity_date_deadline"/>
+                    <field name="user_email"/>
+                    <field name="user_id"/>
+                    <field name="partner_address_email"/>
+                    <field name="message_needaction_counter"/>
+                    <field name="partner_id"/>
+                    <field name="activity_summary"/>
+                    <field name="active"/>
+                    <field name="company_currency"/>
+                    <field name="activity_state"/>
+                    <field name="activity_ids"/>
+                    <progressbar field="activity_state"
+                                 colors='{"planned": "success", "today": "warning", "overdue": "danger"}'
+                                 sum_field="planned_revenue"/>
+                    <templates>
+                        <field name="date_deadline"/>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{kanban_color(record.color.raw_value)}">
+                                <div class="oe_kanban_content">
+                                    <div>
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                    <div>
+                                        <field name="tag_ids" widget="many2many_tags"
+                                               options="{'color_field': 'color'}"/>
+                                    </div>
+                                    <div class="text-muted o_kanban_record_subtitle">
+                                        <t t-if="record.planned_revenue.raw_value">
+                                            <field name="planned_revenue" widget="monetary"
+                                                   options="{'currency_field': 'company_currency'}"/>
+                                            <span t-if="record.partner_id.value">,</span>
+                                        </t>
+                                        <span t-if="record.partner_id.value">
+                                            <t t-esc="record.partner_id.value"/>
+                                        </span>
+                                    </div>
+
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <field name="priority" widget="priority" groups="base.group_user"/>
+                                            <t t-if="record.message_needaction_counter.raw_value">
+                                                <span class='oe_kanban_mail_new' title='Unread Messages'>
+                                                    <i class='fa fa-comments'/>
+                                                    <t t-raw="record.message_needaction_counter.raw_value"/>
+                                                </span>
+                                            </t>
+                                            <field name="activity_ids" widget="kanban_activity"/>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                            <img t-att-src="kanban_image('res.users', 'image_small', record.user_id.raw_value)"
+                                                 t-att-title="record.user_id.value" width="24" height="24"
+                                                 class="oe_kanban_avatar"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"/>
+                            </div>
+                        </t>
+                    </templates>
+                </map>
+            </field>
+        </record>
+
+        <record id="crm_case_tree_view_oppor_master" model="ir.ui.view">
+            <field name="name">crm.lead.tree.opportunity.master</field>
+            <field name="model">crm.lead</field>
+            <field name="arch" type="xml">
+                <tree string="Opportunities" decoration-bf="message_needaction==True"
+                      decoration-muted="probability == 100"
+                      decoration-danger="activity_date_deadline and (activity_date_deadline &lt; current_date)">
+                    <field name="date_deadline" invisible="1"/>
+                    <field name="create_date" invisible="1"/>
+                    <field name="name" string="Opportunity"/>
+                    <field name="user_id"/>
+                    <field name="sales_executive_ids" widget="many2many_tags"/>
+                    <field name="x_studio_quantity" sum="x_studio_quantity"/>
+                    <field name="customer_state_id"/>
+                    <field name="customer_city"/>
+                    <field name="bid_closing_date"/>
+                    <field name="partner_id" string="Customer" invisible="1"/>
+                    <field name="country_id" invisible="1"/>
+                    <field name="activity_date_deadline" invisible="1"/>
+                    <field name="activity_summary" invisible="1"/>
+                    <field name="medium_id" invisible="1"/>
+                    <field name="campaign_id" invisible="1"/>
+                    <field name="source_id" invisible="1"/>
+                    <field name="stage_id" invisible="1"/>
+                    <field name="planned_revenue" sum="Expected Revenues" invisible="1"/>
+                    <field name="probability" avg="Avg. of Probability" invisible="1"/>
+                    <field name="team_id" invisible="1"/>
+                    <field name="referred" invisible="1"/>
+                    <field name="priority" invisible="1"/>
+                    <field name="message_needaction" invisible="1"/>
+                    <field name="probability" invisible="1"/>
+                    <field name="write_date" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="crm_lead_opportunities_tree_view_master">
+            <field name="name">Master Opportunities</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">kanban,tree,graph,pivot,form,map,calendar,activity</field>
+            <field name="domain">[('type','=','opportunity'),('is_master_opportunity','=',True)]</field>
+            <field name="context">{
+                'default_type': 'opportunity',
+                'search_default_assigned_to_me': 1,
+                'default_is_master_opportunity' : True
+                }
+            </field>
+            <field name="search_view_id" ref="crm.view_crm_case_opportunities_filter"/>
+        </record>
+
+        <record id="crm_lead_opportunities_tree_view_view_kanban_master" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="crm.crm_case_kanban_view_leads"/>
+            <field name="act_window_id" ref="crm_lead_opportunities_tree_view_master"/>
+        </record>
+
+        <record id="crm_lead_opportunities_tree_view_view_tree_master" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="crm_case_tree_view_oppor_master"/>
+            <field name="act_window_id" ref="crm_lead_opportunities_tree_view_master"/>
+        </record>
+
+        <record id="crm_lead_opportunities_tree_view_view_calendar_master" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">calendar</field>
+            <field name="view_id" ref="crm.crm_case_calendar_view_leads"/>
+            <field name="act_window_id" ref="crm_lead_opportunities_tree_view_master"/>
+        </record>
+
+        <record id="crm_lead_opportunities_tree_view_view_pivot_master" model="ir.actions.act_window.view">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="crm.crm_lead_view_pivot"/>
+            <field name="act_window_id" ref="crm_lead_opportunities_tree_view_master"/>
+        </record>
+
+        <record id="crm_lead_opportunities_tree_view_view_form_master" model="ir.actions.act_window.view">
+            <field name="sequence" eval="4"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="act_window_id" ref="crm_lead_opportunities_tree_view_master"/>
+        </record>
+
+        <record id="crm_lead_opportunities_tree_view_view_graph_master" model="ir.actions.act_window.view">
+            <field name="sequence" eval="6"/>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="crm.crm_lead_view_graph"/>
+            <field name="act_window_id" ref="crm_lead_opportunities_tree_view_master"/>
+        </record>
+
+        <record id="crm_lead_opportunities_tree_view_view_map_master" model="ir.actions.act_window.view">
+            <field name="sequence" eval="5"/>
+            <field name="view_mode">map</field>
+            <field name="view_id" ref="view_crm_leads_map_master"/>
+            <field name="act_window_id" ref="crm_lead_opportunities_tree_view_master"/>
+        </record>
+
+        <menuitem id="crm_menu_master_oppo"
+                  name="Master Opportunities"
+                  parent="crm_menu_gem"
+                  sequence="2"
+                  action="crm_lead_opportunities_tree_view_master"/>
+
+    </data>
+</odoo>

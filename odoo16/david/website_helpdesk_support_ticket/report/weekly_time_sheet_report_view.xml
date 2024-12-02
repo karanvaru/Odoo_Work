@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <data>
+        <report
+            id="helpdesk_weekly_time_sheet_report"
+            model="weekly.timesheetreport"
+            string="Weekly Timesheet report"
+            report_type="qweb-pdf"
+            name="website_helpdesk_support_ticket.report_weekly"
+            file="website_helpdesk_support_ticket.report_weekly"
+        />
+        
+        <template id="report_weekly">
+            <t t-foreach="docs" t-as="doc">
+               <!-- <t t-call="report.internal_layout"> -->
+                <t t-call="web.internal_layout">
+                    
+                    <div class="page">
+                    <div class="oe_structure"/>
+                    
+                        <div class="text-right"><strong>Printed by :</strong> <span t-esc="doc.env.user.name"/></div>
+                        <div class="text-right" ><strong>Printed on :</strong> <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')"/></div>
+                        
+                        <center><h2>Weekly Timesheet</h2></center>
+                        <center><h2>Timesheet of <span t-esc="doc.employee_id.name"/></h2></center>
+                        <center><h4><span t-esc="doc.start_date"/> to <span t-esc="doc.end_date"/></h4></center>
+                        <table class="table table-bordered table-condensed mb32">
+                            <thead>
+                                <tr>
+                                    <th>Project</th>
+                                    <th class="text-right">Monday (HH:MM)</th>
+                                    <th class="text-right">Tuesday (HH:MM)</th>
+                                    <th class="text-right">Wednesday (HH:MM)</th>
+                                    <th class="text-right">Thursday (HH:MM)</th>
+                                    <th class="text-right">Friday (HH:MM)</th>
+                                    <th class="text-right">Saturday (HH:MM)</th>
+                                    <th class="text-right">Sunday (HH:MM)</th>
+                                    <th class="text-right">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr t-foreach="timesheet_lines" t-as="line">
+                                    <td><strong><span t-field="line.name"/></strong></td>
+                                    <td class="text-right" t-foreach="timesheet_lines[line]" t-as="l" t-border="3px">
+                                        <span t-esc="'%02d:%02d' % (int(str(l).split('.')[0]), int(float(str('%.2f' % l).split('.')[1])/100*60))"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-set="tr_total" t-value="sum(timesheet_lines[line])"/>
+                                        <strong><span t-esc="'%02d:%02d' % (int(str(tr_total).split('.')[0]), int(float(str('%.2f' % tr_total).split('.')[1])/100*60))"/></strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Total</strong>
+                                    </td>
+                                        <td class="text-right" t-foreach="td_total" t-as="total">
+                                        <strong><span t-esc="'%02d:%02d' % (int(str(total).split('.')[0]), int(float(str('%.2f' % total).split('.')[1])/100*60))"/></strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <p>Manager Signature  ____________________________</p>
+                                <p>Date  ____________________________</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <p>Employee Signature  __________________________</p>
+                                <p>Date  ____________________________</p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
+
+

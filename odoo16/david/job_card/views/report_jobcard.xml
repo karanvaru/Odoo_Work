@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    
+    <!-- <report
+            string="Job Card" 
+            id="action_report_jobcard"
+            model="project.task"
+            report_type="qweb-pdf"
+            name="job_card.report_jobcard" 
+            file="job_card.report_jobcard"
+        /> -->
+
+    <record id="action_report_jobcard" model="ir.actions.report">
+            <field name="name">Job Card</field>
+            <field name="model">project.task</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">job_card.report_jobcard</field>
+            <field name="report_file">job_card.report_jobcard</field>
+            <field name="paperformat_id" ref="job_card.paperformat_job_card_report_custom"/>
+            <field name="binding_model_id" ref="project.model_project_task"/>
+            <field name="binding_type">report</field>
+        </record>
+    
+    <template id="report_jobcard">
+       <t t-foreach="docs" t-as="o">
+         <t t-call="web.external_layout">
+             <t t-call="web.html_container">
+               <div class="page">
+                   <style>
+                       .borderless td, .borderless th {
+                            border: none;
+                        }
+                   </style>
+                    <h2 class="text-center">
+                        Job Card
+                    </h2>
+                    <h2 class="text-center">
+                        <span t-field="o.name"/> - <span t-field="o.number"/> - <span t-field="o.stage_id"/>
+                    </h2>
+                    <table class="table table-striped borderless mt-5">
+                        <thead>
+                            <tr>
+                                <td><b>Customer:</b></td>
+                                <td><span t-field="o.partner_id"/></td>
+<!--                                <td><b>Starting Date:</b></td>-->
+<!--                                <td><span t-field="o.date_start"/></td>-->
+                                <td><b>Assigned Date:</b></td>
+                                <td><span t-field="o.date_assign"/></td>
+                            </tr>
+                            <tr>
+                                <td><b>Project:</b></td>
+                                <td><span t-field="o.project_id"/></td>
+                                <td><b>Ending Date:</b></td>
+                                <td><span t-field="o.date_end"/></td>
+                            </tr>
+                            <tr>
+                                <td><b>Assigned to:</b></td>
+                                <td>
+                                    <!-- <span t-field="o.user_id"/> -->
+                                    <span t-field="o.user_ids"/>
+                                </td>
+                                <td><b>Analytic Account:</b></td>
+                                <td><span t-field="o.analytic_account_id"/></td>
+                            </tr>
+                            <tr>
+                                <td><b>Quality Checklist:</b></td>
+                                <td><span t-field="o.quality_checklist_id"/></td>
+                                <td><b>Workshop Staff:</b></td>
+                                <td><span t-field="o.workshop_staff_id"/></td>
+                            </tr>
+                            <tr>
+                                <td><b>Deadline:</b></td>
+                                <td><span t-field="o.date_deadline"/></td>
+                                <td><b>Tags:</b></td>
+                                <td><span t-field="o.tag_ids" widget="many2many_tags"/></td>
+                            </tr>
+                            <tr>
+                                <td><b>Email:</b></td>
+                                <td><span t-field="o.email_from"/></td>
+                                <td><b>Company:</b></td>
+                                <td><span t-field="o.company_id"/></td>
+                            </tr>
+                            <tr>
+                                <td><b>Company:</b></td>
+                                <td><span t-field="o.company_id"/></td>
+                                <td><b>Currency:</b></td>
+                                <td><span t-field="o.custom_currency_id"/></td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <p style="page-break-before:always;"> </p>
+                    <p><h3>Instructions Line</h3></p>
+                    <table class="table table-bordered" style="border: 2px solid black;">
+                        <tr style="border: 2px solid black;">
+                            <!-- <td> -->
+                            <td style="width: 18%">
+                                <strong>Number</strong>
+                            </td>
+                            <!-- <td> -->
+                            <td style="width: 8%">
+                                <strong>Date</strong>
+                            </td>
+                            <!-- <td> -->
+                            <td style="width: 8%">
+                                <strong>User</strong>
+                            </td>
+                            <!-- <td> -->
+                            <td style="width: 8%">
+                                <strong>Instructions</strong>
+                            </td>
+                            <!-- <td> -->
+                            <td style="width: 10%">
+                                <strong>Status</strong>
+                            </td>
+                            <!-- <td> -->
+                            <td style="width: 20%">
+                                <strong>Start Date</strong>
+                            </td>
+                            <!-- <td> -->
+                            <td style="width: 20%">
+                                <strong>End Date</strong>
+                            </td>
+                            <!-- <td> -->
+                            <td style="width: 20%">
+                                <strong>Notes</strong>
+                            </td>
+                        </tr>
+                        <t t-foreach="o.instruction_job_order_ids" t-as="instruction_job">
+                            <tr style="border: 2px solid black;">
+                                <!-- <td> -->
+                                <td style="width: 18%">
+                                    <span t-field="instruction_job.name"/>
+                                </td>
+                                <!-- <td> -->
+                                <td style="width: 8%">
+                                    <span t-field="instruction_job.pick_date"/>
+                                </td>
+                                <!-- <td> -->
+                                <td style="width: 8%">
+                                    <span t-field="instruction_job.user_id"/>
+                                </td>
+                                <!-- <td> -->
+                                <td style="width: 8%">
+                                    <span t-field="instruction_job.description"/>
+                                </td>
+                                <!-- <td> -->
+                                <td style="width: 10%">
+                                    <span t-field="instruction_job.status"/>
+                                </td>
+                                <!-- <td> -->
+                                <td style="width: 20%">
+                                    <span t-field="instruction_job.start_date"/>
+                                </td>
+                                <!-- <td> -->
+                                <td style="width: 20%">
+                                    <span t-field="instruction_job.end_date"/>
+                                </td>
+                                <!-- <td> -->
+                                <td style="width: 20%">
+                                    <span t-field="instruction_job.note"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    <p style="page-break-before:always;"> </p>
+                    <p><h3>Material Requisition</h3></p>
+                    <table class="table table-bordered" style="border: 2px solid black;">
+                        <tr style="border: 2px solid black;">
+                            <td>
+                                <strong>Number</strong>
+                            </td>
+                            <td>
+                                <strong>Employee</strong>
+                            </td>
+                            <td>
+                                <strong>Departmnet</strong>
+                            </td>
+                            <td>
+                                <strong>Requisition Date</strong>
+                            </td>
+                            <td>
+                                <strong>Requisition Deadline</strong>
+                            </td>
+                            <td>
+                                <strong>Company</strong>
+                            </td>
+                            <td>
+                                <strong>State</strong>
+                            </td>
+                        </tr>
+                        <t t-foreach="o.material_requisition_ids" t-as="material_requisition">
+                            <tr style="border: 2px solid black;">
+                                <td>
+                                    <span t-field="material_requisition.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_requisition.employee_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_requisition.department_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_requisition.request_date"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_requisition.date_end"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_requisition.company_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_requisition.state"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    <p style="page-break-before:always;"> </p>
+                    <p><h3>Material Requisition Line</h3></p>
+                    <table class="table table-bordered" style="border: 2px solid black;">
+                        <tr style="border: 2px solid black;">
+                            <td>
+                                <strong>Requisition Action</strong>
+                            </td>
+                            <td>
+                                <strong>Product</strong>
+                            </td>
+                            <td>
+                                <strong>Description</strong>
+                            </td>
+                            <td>
+                                <strong>Quantity</strong>
+                            </td>
+                            <td>
+                                <strong>UOM</strong>
+                            </td>
+                            <td>
+                                <strong>Vendors</strong>
+                            </td>
+                        </tr>
+                        <t t-foreach="o.material_requisition_line_ids" t-as="material_requisition_line">
+                            <tr style="border: 2px solid black;">
+                                <td>
+                                    <span t-field="material_requisition_line.requisition_type"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_requisition_line.product_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_requisition_line.description"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_requisition_line.qty"/>
+                                </td>
+                                <td>
+                                    <span t-field="material_requisition_line.uom"/>
+                                </td>
+                                <td>
+                                    <t t-foreach="material_requisition_line.partner_id" t-as="line">
+                                        <span t-field="line.name"/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    <p style="page-break-before:always;"> </p>
+                    <p><h3>Cost Sheet</h3></p>
+                    <table class="table table-bordered" style="border: 2px solid black;">
+                        <tr style="border: 2px solid black;">
+                            <td>
+                                <strong>Type</strong>
+                            </td>
+                            <td>
+                                <strong>Product</strong>
+                            </td>
+                            <td>
+                                <strong>Description</strong>
+                            </td>
+                            <td>
+                                <strong>Account</strong>
+                            </td>
+                            <td>
+                                <strong>Analytic Account</strong>
+                            </td>
+                            <td>
+                                <strong>Analytic Tags</strong>
+                            </td>
+                            <td>
+                                <strong>Qty</strong>
+                            </td>
+                            <td>
+                                <strong>Unit Price</strong>
+                            </td>
+                            <td>
+                                <strong>Discount</strong>
+                            </td>
+                            <td>
+                                <strong>Taxes</strong>
+                            </td>
+                            <td>
+                                <strong>Amount</strong>
+                            </td>
+                        </tr>
+                        <t t-foreach="o.job_cost_sheet_ids" t-as="cost_sheet">
+                            <tr style="border: 2px solid black;">
+                                <td>
+                                    <span t-field="cost_sheet.cost_type"/>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.product_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.account_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.account_analytic_id"/>
+                                </td>
+                                <td>
+<!--                                    <t t-foreach="cost_sheet.analytic_tag_ids" t-as="tag">-->
+<!--                                        <span t-field="tag.name"/>-->
+<!--                                    </t>-->
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.quantity"/>
+                                    <span t-field="cost_sheet.uom_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.price_unit"/>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.discount"/>
+                                </td>
+                                <td>
+                                    <t t-foreach="cost_sheet.invoice_line_tax_ids" t-as="tax">
+                                        <span t-field="tax.name"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-field="cost_sheet.price_subtotal"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td colspan="10" class="text-right">
+                                <strong>Untaxed Amount</strong>
+                            </td>
+                            <td>
+                                <span t-field="o.cost_sheet_amount_untaxed"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="10" class="text-right">
+                                <strong>Taxed Amount</strong>
+                            </td>
+                            <td>
+                                <span t-field="o.cost_sheet_amount_tax"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="10" class="text-right">
+                                <strong>Total</strong>
+                            </td>
+                            <td>
+                                <span t-field="o.cost_sheet_amount_total"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <p style="page-break-before:always;"> </p>
+                    <p><h3>Job Invoice Line</h3></p>
+                    <table class="table table-bordered" style="border: 2px solid black;">
+                        <tr style="border: 2px solid black;">
+                            <td>
+                                <strong>Product</strong>
+                            </td>
+                            <td>
+                                <strong>Description</strong>
+                            </td>
+                            <td>
+                                <strong>Account</strong>
+                            </td>
+                            <td>
+                                <strong>Analytic Account</strong>
+                            </td>
+                            <td>
+                                <strong>Analytic Tags</strong>
+                            </td>
+                            <td>
+                                <strong>Is Invoice</strong>
+                            </td>
+                            <td>
+                                <strong>Invoice</strong>
+                            </td>
+                            <td>
+                                <strong>Qty</strong>
+                            </td>
+                            <td>
+                                <strong>Unit Price</strong>
+                            </td>
+                            <td>
+                                <strong>Discount</strong>
+                            </td>
+                            <td>
+                                <strong>Taxes</strong>
+                            </td>
+                            <td>
+                                <strong>Amount</strong>
+                            </td>
+                        </tr>
+                        <t t-foreach="o.job_invoice_line_ids" t-as="job_invoice_line">
+                            <tr style="border: 2px solid black;">
+                                <td>
+                                    <span t-field="job_invoice_line.product_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="job_invoice_line.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="job_invoice_line.account_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="job_invoice_line.account_analytic_id"/>
+                                </td>
+                                <td>
+<!--                                    <t t-foreach="job_invoice_line.analytic_tag_ids" t-as="tag">-->
+<!--                                        <span t-field="tag.name"/>-->
+<!--                                    </t>-->
+                                </td>
+                                <td>
+                                    <span t-field="job_invoice_line.is_invoice"/>
+                                </td>
+                                <td>
+                                    <span t-field="job_invoice_line.invoice_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="job_invoice_line.quantity"/>
+                                    <span t-field="job_invoice_line.uom_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="job_invoice_line.price_unit"/>
+                                </td>
+                                <td>
+                                    <span t-field="job_invoice_line.discount"/>
+                                </td>
+                                <td>
+                                    <t t-foreach="job_invoice_line.invoice_line_tax_ids" t-as="tax">
+                                        <span t-field="tax.name"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-field="job_invoice_line.price_subtotal"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td colspan="11" class="text-right">
+                                <strong>Untaxed Amount</strong>
+                            </td>
+                            <td>
+                                <span t-field="o.invoice_amount_untaxed"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="11" class="text-right">
+                                <strong>Taxed Amount</strong>
+                            </td>
+                            <td>
+                                <span t-field="o.invoice_amount_tax"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="11" class="text-right">
+                                <strong>Total</strong>
+                            </td>
+                            <td>
+                                <span t-field="o.invoice_amount_total"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <p style="page-break-before:always;"> </p>
+                    <p><h3>Timesheet</h3></p>
+                    <table class="table table-bordered" style="border: 2px solid black;">
+                        <tr style="border: 2px solid black;">
+                            <td>
+                                <strong>Instruction No</strong>
+                            </td>
+                            <td>
+                                <strong>Instruction</strong>
+                            </td>
+                            <td>
+                                <strong>Leader</strong>
+                            </td>
+                            <td>
+                                <strong>Worker</strong>
+                            </td>
+                            <td>
+                                <strong>Report</strong>
+                            </td>
+                            <td>
+                                <strong>Analytic Account</strong>
+                            </td>
+                            <td>
+                                <strong>Amount</strong>
+                            </td>
+                            <td>
+                                <strong>Date</strong>
+                            </td>
+                            <td>
+                                <strong>Description</strong>
+                            </td>
+                        </tr>
+                        <t t-foreach="o.job_card_daily_report_ids" t-as="daily_line">
+                            <tr style="border: 2px solid black;">
+                                <td>
+                                    <span t-field="daily_line.instruction_job_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="daily_line.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="daily_line.leader_id"/>
+                                </td>
+                                <td>
+                                    <t t-foreach="daily_line.workers_ids" t-as="worker">
+                                        <span t-field="worker.name"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-field="daily_line.note"/>
+                                </td>
+                                <td>
+                                    <span t-field="daily_line.account_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="daily_line.amount"/>
+                                </td>
+                                <td>
+                                    <span t-field="daily_line.date"/>
+                                </td>
+                                <td>
+                                    <span t-field="daily_line.name"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+               </div>
+           </t>
+         </t>
+       </t>
+    </template>
+
+</odoo>

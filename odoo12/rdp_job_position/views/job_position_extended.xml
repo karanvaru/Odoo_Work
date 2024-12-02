@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="hr_job_position_inherit_form" model="ir.ui.view">
+            <field name="name">hr.job.extended</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="studio_customization.odoo_studio_hr_job_f_185228f2-b40f-4808-b58f-458359b6ee5f"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page[@name='studio_page_XeJUh']" position="after">
+                    <page name="managers_responsibility" string="Managers Responsibility">
+                        <field name="managers_responsibility" nolabel="1"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+	</data>
+</odoo>

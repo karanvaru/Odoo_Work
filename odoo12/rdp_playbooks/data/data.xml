@@ -1,0 +1,23 @@
+<odoo>
+	<data noupdate="0">
+
+            <record id="seq_rdp_playbooks" model="ir.sequence">
+            <field name="name">RDP Playbooks</field>
+            <field name="code">rdp.playbooks.sequence</field>
+            <field name="prefix">PB</field>
+            <field name="padding">4</field>
+            <!-- <field name="company_id" eval="False"/> -->
+            </record>
+
+            <record id="seq_rdp_workflows" model="ir.sequence">
+            <field name="name">RDP Workflows</field>
+            <field name="code">rdp.workflows.sequence</field>
+            <field name="prefix">WF</field>
+            <field name="padding">4</field>
+            <!-- <field name="company_id" eval="False"/> -->
+            </record>
+
+
+
+	</data>
+</odoo>

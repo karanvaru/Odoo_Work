@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="asterisk_base_queues.queue_settings">
+[general](+)
+; Queue Settings
+<t t-if="rec.persistentmembers">persistentmembers=<t t-esc="rec.persistentmembers"/></t>
+<t t-if="rec.keepstats">keepstats=<t t-esc="rec.keepstats"/></t>
+<t t-if="rec.autofill">autofill=<t t-esc="rec.autofill"/></t>
+<t t-if="rec.autopause">autopause=<t t-esc="rec.autopause"/></t>
+<t t-if="rec.maxlen">maxlen=<t t-esc="rec.maxlen"/></t>
+<t t-if="rec.setinterfacevar">setinterfacevar=<t t-esc="rec.setinterfacevar"/></t>
+<t t-if="rec.setqueueentryvar">setqueueentryvar=<t t-esc="rec.setqueueentryvar"/></t>
+<t t-if="rec.setqueuevar">setqueuevar=<t t-esc="rec.setqueuevar"/></t>
+<t t-if="rec.monitor_type">monitor_type=<t t-esc="rec.monitor_type"/></t>
+<t t-if="rec.monitor_format">monitor_format=<t t-esc="rec.monitor_format"/></t>
+<t t-if="rec.membermacro">membermacro=<t t-esc="rec.membermacro"/></t>
+<t t-if="rec.updatecdr">updatecdr=<t t-esc="rec.updatecdr"/></t>
+<t t-if="rec.shared_lastcall">shared_lastcall=<t t-esc="rec.shared_lastcall"/></t>
+<t t-if="rec.negative_penalty_invalid">negative_penalty_invalid=<t t-esc="rec.negative_penalty_invalid"/></t>
+<t t-if="rec.shared_lastcall">shared_lastcall=<t t-esc="rec.shared_lastcall"/></t>
+<t t-if="rec.negative_penalty_invalid">negative_penalty_invalid=<t t-esc="rec.negative_penalty_invalid"/></t>
+<t t-if="rec.log_membername_as_agent">log_membername_as_agent=<t t-esc="rec.log_membername_as_agent"/></t>
+<t t-if="rec.default_ring_timeout">default_ring_timeout=<t t-esc="rec.default_ring_timeout"/></t>
+<t t-if="rec.default_queue_timeout">default_queue_timeout=<t t-esc="rec.default_queue_timeout"/></t>
+</template>
+</odoo>

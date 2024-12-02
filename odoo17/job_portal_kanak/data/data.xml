@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="menu_post_job" model="website.menu">
+            <field name="name">Post Job</field>
+            <field name="url">/add/jobs</field>
+            <field name="parent_id" ref="website.main_menu" />
+            <!-- <field name="group_ids" eval="[(6, 0, [ref('hr_recruitment.group_hr_recruitment_manager')])]" /> -->
+            <field name="sequence" type="int">59</field>
+        </record>
+        <record id="menu_job" model="website.menu">
+            <field name="name">Jobs</field>
+            <field name="url">/jobs</field>
+            <field name="parent_id" ref="website.main_menu" />
+            <field name="sequence" type="int">55</field>
+        </record>
+        <record id="seq_hr_applicant" model="ir.sequence">
+            <field name="name">Hr Applicant</field>
+            <field name="code">hr.applicant</field>
+            <field name="prefix">APP/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False" />
+        </record>
+    </data>
+</odoo>

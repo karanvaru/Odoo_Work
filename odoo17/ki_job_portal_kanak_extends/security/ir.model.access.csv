@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_recruitment_document_type,access_recruitment.document.type,model_recruitment_document_type,,1,1,1,1
+access_application_document,access_application.document,model_application_document,,1,1,1,1
+access_job_portal_headers_details,access_job.portal.headers.details,model_job_portal_headers_details,,1,1,1,1
+access_recruiting_agent,access_recruiting.agent,model_recruiting_agent,,1,1,1,1

@@ -1,0 +1,189 @@
+<odoo>
+    <data>
+
+        <record id="complaince_request_form_view" model="ir.ui.view">
+            <field name="name">Complaince Request form view</field>
+            <field name="model">complaince.request</field>
+            <field name="arch" type="xml">
+                <form string="Complaince and Notices">
+                    <header>
+                        <button name="action_to_wip" type="object" string="WIP"
+                                attrs="{'invisible': [('state', 'in', ['wip','hold','closed','cancelled'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_hold" type="object" string="Hold"
+                                attrs="{'invisible': [('state', 'in', ['hold','closed','cancelled','draft'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_resolved" type="object" string="Resolved"
+                                attrs="{'invisible': [('state', 'in', ['resolved','closed','cancelled'])]}"
+                                class="btn-primary"/>
+<!--                        <button name="action_to_closed" type="object" string="Closed"-->
+<!--                                attrs="{'invisible': [('state', 'in', ['closed','cancelled'])]}"-->
+<!--                                class="btn-primary"/>-->
+                        <button name="action_to_cancelled" type="object" string="Cancelled"
+                                attrs="{'invisible': [('state', 'in', ['cancelled','closed'])]}"/>
+                        <button name="action_set_to_draft" type="object" string="Set To Draft"
+                                attrs="{'invisible': [('state', 'in', ['draft','closed'])]}"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="type_id"/>
+                                <field name="department_id"/>
+                                <field name="document_number"/>
+                                <field name="stake_holders_ids" widget="many2many_tags" style="width:260%"/>
+                            </group>
+                            <group>
+                                   <field name="date"/>
+                                   <field name="hearing_date"/>
+                                  <field name="assigned_to_id"/>
+                            </group>
+                            <group>
+                                <field name="subject" widget="char" style="width:260%"/>
+                                <field name="detail_description" widget="html" style="width:260%"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"/>
+                            <field name="activity_ids" widget="mail_activity"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+         <record id="complaince_request_tree_view" model="ir.ui.view">
+            <field name="name">Complaince Request tree view</field>
+            <field name="model">complaince.request</field>
+            <field name="arch" type="xml">
+                <tree string="Complaince Request Details">
+                    <field name="type_id"/>
+                    <field name="subject"/>
+                    <field name="department_id"/>
+                    <field name="document_number"/>
+                    <field name="hearing_date"/>
+                    <field name="open_days"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--        pivot view-->
+        <record id="complaince_notice_pivot_view" model="ir.ui.view">
+            <field name="name">complaince.notice.pivot</field>
+            <field name="model">complaince.request</field>
+            <field name="arch" type="xml">
+                <pivot string="Complaince Notice">
+                    <field  name="reference_no"/>
+<!--                    <field name="test_name"/>-->
+                </pivot>
+            </field>
+        </record>
+
+         <!-- Graph view -->
+    <record id="complaince_notice_graph_view" model="ir.ui.view">
+        <field name="name">complaince.notice.graph</field>
+        <field name="model">complaince.request</field>
+        <field name="arch" type="xml">
+            <graph string="Complaince Notice" type="pie">
+                    <field  name="name"/>
+            </graph>
+        </field>
+    </record>
+
+        <!-- gantt view -->
+
+     <record id="complaince_notice_gantt" model="ir.ui.view">
+        <field name="name">complaince.notice.gantt</field>
+        <field name="model">complaince.request</field>
+        <field name="arch" type="xml">
+            <gantt date_start="create_date" date_stop="closed_date" string="Default Grant view"></gantt>
+        </field>
+    </record>
+
+       <!-- calender view -->
+    <record id="complaince_notice_calendar_view" model="ir.ui.view">
+        <field name="name">complaince.notice.calendar</field>
+        <field name="model">complaince.request</field>
+        <field name="arch" type="xml">
+            <calendar string="Complaince and Notices" date_start="create_date" color="name" mode="month" quick_add="True">
+               <field  name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+<!--        search view-->
+        <record id="complaince_notice_search_view" model="ir.ui.view">
+            <field name="name">complaince.notice.search</field>
+            <field name="model">complaince.request</field>
+            <field name="arch" type="xml">
+                <search string="Complaince and Notices">
+                    <field name="name"/>
+
+                    <!--                    filters-->
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                    <filter name="wip" string="WIP" domain="[('state', '=', 'wip')]"/>
+                    <filter name="hold" string="Hold" domain="[('state', '=', 'hold')]"/>
+                    <filter name="resolved" string="Resolved" domain="[('state', '=', 'resolved')]"/>
+                    <filter name="cancelled" string="Cancelled" domain="[('state', '=', 'cancelled')]"/>
+
+
+                    <!--                    group by-->
+                    <group expand="0" string="Group By">
+                        <filter name="type_id" string="Type" domain="[]" context="{'group_by':'type_id'}"/>
+                        <filter name="subject" string="Subject" domain="[]" context="{'group_by':'subject'}"/>
+                        <filter name="document_number" string="Document Number" domain="[]"
+                                context="{'group_by':'document_number'}"/>
+                        <filter name="hearing_date" string="Hearing Date" domain="[]"
+                                context="{'group_by':'hearing_date'}"/>
+                        <filter name="open_days" string="Open Days" domain="[]" context="{'group_by':'open_days'}"/>
+                        <filter name="state" string="Status " domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+        </field>
+    </record>
+
+
+        <!--        kanban view-->
+        <record id="complaince_notice_kanban_inherit" model="ir.ui.view">
+        <field name="name">complaince.notice.tree</field>
+        <field name="model">complaince.request</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban">
+                <field  name="name"/>
+<!--                <field  name="test_name"/>-->
+                <templates>
+                    <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill complaince_request_complaince_notice_kanban">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title"></strong>
+                                <div class="o_kanban_tags_section"/>
+                                <ul>
+                                    <li>Reference: <field name="name"/></li>
+<!--                                    <li>status : <field name="test_name"/></li>-->
+
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+        <record id="complaince_request_action_view" model="ir.actions.act_window">
+            <field name="name">Complaince and Notices</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">complaince.request</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,pivot,graph,gantt,calendar,kanban,search</field>
+        </record>
+        <menuitem id="complaince_request_menu"
+                  name="Complaince and Notices"
+                  action="complaince_request_action_view"
+                  parent="studio_customization.rdp_finance_ea0121fa-f8f1-449a-bc70-1aa0fc07a21d" />
+    </data>
+</odoo>

@@ -1,0 +1,260 @@
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:olive;"><b>Job Card</h2>
+        <h3 class="oe_slogan" style="color:green;"><b>For Worker / Technician / Users / Machine Operator / All Types of Job Workers</h3>
+       <p style="color:olive;">This app allow you to have job card with all the details related to that job along with instructions to do job. Your Worker / Technician / Users / Machine Operator / All Types of Job Workers can access job card in Odoo and see details and instructions. They can also fill Timesheet in time card tab available on Job card.</p>
+        <h4 style="color:CRIMSON;"><b>Main Features</b></h4>
+        <ul>
+            <li style="color:olive;">Job Card form and list view for your users/operators.</li>
+            <li style="color:olive;">Wokshop Team on Job Card.</li>
+            <li style="color:olive;">Quality Checklists on Job Card.</li>
+            <li style="color:olive;">Instructions on Job Card.</li>
+            <li style="color:olive;">Costsheet on Job Card.</li>
+            <li style="color:olive;">Job Card on Material Requisition.</li>
+            <li style="color:olive;">Material Requisition on Job Card.</li>
+            <li style="color:olive;">Job Invoice Line on Job Card.</li>
+            <li style="color:olive;">Timesheet on Job Card.</li>
+            <li style="color:olive;">Print the pdf report for Job Card and Costsheet on Job Card.</li>
+        </ul>
+        <h4 style="color:CRIMSON;"><b>General Workflow</b></h4>
+        <ul>
+            <li style="color:olive;">Project Manager / Supervisor can Configure the Quality Checklists and Workshop Team and Instruction on Job Card.</li>
+            <li style="color:olive;">Project Manager  / Supervisor can create the Job Card.</li>
+            <li style="color:olive;">Project User / Operator view/add the instruction, costsheet, material requisition, requistion line, job invoice line, timesheet on  Job Card.</li>
+            <li style="color:olive;">Project Manager create the customer invoice from job invoice line on Job Card.</li>
+        </ul>
+        <h4 style="color:CRIMSON;"><b>Menus Available:</b></h4>
+        <ul>
+              <li style="color:olive;">Job Card</li>
+              <ul>
+                  <li style="color:olive;">Job Cards</li>
+                  <li style="color:olive;">Reports</li>
+                  <li style="color:olive;">Configuration</li>
+                  <ul><li style="color:olive;">Quality Checklist</li></ul>
+                  <ul><li style="color:olive;">Workshop Teams</li></ul>
+              </ul>
+         </ul>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+   <h2 class="oe_slogan"><b style="color:CRIMSON;">Workshop Team</b></h2>
+       <p style="color:CRIMSON;">Configure Workshop Team for Job Card.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="3_jc_wteam.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Quality Checklists</b></h2>
+       <p style="color:CRIMSON;">Configure Quality Checklists for Job Card.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="2_jc_qc.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card List View</b></h2>
+       <p style="color:CRIMSON;">List of Job Cards.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="1_jc_list.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card Form</b></h2>
+       <p style="color:CRIMSON;"></p>
+       <div class="oe_demo oe_screenshot">
+           <img src="4_jc_des.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card - Instructions</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="5_jc_instruction.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card - Cost Sheet</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="6_jc_costsheet.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card - Material Requisition</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="7_jc_material.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card - Material Requisition Lines</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="8_jc_mrline.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card - Job Invoice Lines</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="9_jc_invline.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card - Timesheets</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="10_jc_timesheet.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card - Created Invoice from Job Invoice Line Tab</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="11_jc_invoice.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card - Material Requisitions</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="12_jc_mr.png">
+           <img src="13_jc_mrform.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card - Timesheet -Workers</b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="14_jcemp.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card Report - Option With  Daily Report </b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="15_jc_report.png">
+           <img src="16_jc_daily_report.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card Report- Option With Project Report </b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="17_jc_projectreport.png">
+           <img src="17_jc_project_report.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card - Report With Employee </b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="18_jc_employee_report.png">
+           <img src="18_jc_emp_report.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card - Costsheet Report </b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="19_jc_costsheet.png">
+           <img src="19_jc_report.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h2 class="oe_slogan"><b style="color:CRIMSON;">Job Card - Report </b></h2>
+       <div class="oe_demo oe_screenshot">
+           <img src="20_jc_report.png">
+           <img src="21_jc_1.png">
+           <img src="21_jc_2.png">
+           <img src="21_jc_3.png">
+           <img src="21_jc_4.png">
+           <img src="21_jc_5.png">
+           <img src="21_jc_6.png">
+           <img src="21_jc_7.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container" >
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">
+            <strong><font style="color:#2dd280;" class="text-epsilon">Contact / Support<br/></font></strong>
+            <strong><font style="color:crimson" class="text-epsilon">Introducing</font>
+            <font style="color:crimson;" class="text-epsilon">Probuse Consulting Services Pvt. Ltd.</font></strong>
+          </h2>
+       <div class="oe_span6">
+           <div class="mt32 col-md-10">
+           <div class="oe_picture" style="margin: 25px 10%;">
+               <a  target='new' href="http://www.probuse.com/">
+                   <img src="logo.png">
+               </a>
+           </div>
+           <p class="oe_mt32">
+               <font style="color:crimson;">If you need any help or want more additional features, you may contact us through:</font><br/>
+               <font style="color:crimson;">Email: <a href="contact@probuse.com">contact@probuse.com</a> <br/>
+               <font style="color:crimson;">Website: </font><a href="http://www.probuse.com/" target='new'><u>www.probuse.com</u></a> <br/>
+               <font style="color:crimson;">Skype: mustufa_probuse</font><br/>
+           </p>
+           <p>
+                <h2>
+                    <a href="https://www.facebook.com/probusecs" target="new">
+                      <i class="fa fa-facebook-square" style="font-size:38px;"></i>
+                    </a>
+                    <a href="https://twitter.com/mustufa_odoo" target="new">
+                      <i class="fa fa-twitter" style="font-size:38px;"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mustufa-rangwala-odoo-openerp-0a46777/" target="new">
+                      <i class="fa fa-linkedin" style="font-size:38px;"></i>
+                    </a>
+                    <!--<a href="https://www.youtube.com/channel/UCHlyoC4khP44M1cOCJXo2FQ" target="new">
+                      <i class="fa fa-youtube-play" style="font-size:38px;"></i>
+                    </a>-->
+                    <a href="https://plus.google.com/u/0/113284573788891837715/posts" target="new" rel="publisher">
+                      <i class="fa fa-google-plus-square" style="font-size:38px;"></i>
+                    </a>
+              </h2>
+            </p>
+           </div>
+      </div>
+      <div class="mt32 col-md-5">
+           <p style="text-align: justify; ">
+            <font class="text-epsilon" style="color:crimson;">Probuse Consulting Service Pvt Ltd is an Software and Web development specialist which offers complete business application together. We are well experienced to provide a face for your business on the software and Internet level.</font>
+          </p>
+          <p style="text-align: justify;">
+            <font class="text-epsilon" style="color:crimson">Probuse Consulting Service Pvt Ltd is a specialist in Odoo/OpenERP services and could give your business open source hand to drive.</font>
+          </p>
+            <h3 class="o_animate o_anim_bounce_in" style="text-align: left; animation-play-state: paused;">
+                <font style="font-size: 18px;color:#ff8000;" class="text-epsilon"><strong>Our Services</strong></font>
+            </h3>
+            <ul style="list-style-type:square">
+                <a href="http://www.probuse.com/page/odoo-implementation" target="new"><li list-style-type: "*";><p style="text-align: left; color:crimson;">Odoo Implementation</p></a></li>
+                <a href="http://www.probuse.com/page/odoo-support" target="new"><li><p style="text-align: left; color:crimson;">Odoo Support</p></a></li>
+                <a href="http://www.probuse.com/page/odoo-customization" target="new"><li><p style="text-align: left; color:crimson;">Odoo Customization</p></li></a>
+                <a href="http://www.probuse.com/page/odoo-migration" target="new"><li><p style="text-align: left; color:crimson;">Odoo Migration</p></a></li>
+                <a href="http://www.probuse.com/page/odoo-training" target="new"><li><p style="text-align: left; color:crimson;">Odoo Training</p></a></li>
+            </ul>
+           </p>
+       </div>
+   </div>
+</section>

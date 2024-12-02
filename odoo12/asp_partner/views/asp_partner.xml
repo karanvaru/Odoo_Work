@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="asp_partner_tree" model="ir.ui.view">
+            <field name="name">ASP Partner</field>
+            <field name="model">asp.partner</field>
+            <field name="arch" type="xml">
+                <tree string="ASP Partner">
+                 <field name='name'/>
+                 <field name="status"/>
+                   <field name="vendor" string="ASP Name"/>
+                    <field name="service_categories" widget="many2many_tags"/>
+                    <field name="service_product_cat" widget="many2many_tags"/>
+                    <field name="service_states" widget="many2many_tags"/>
+                    <field name="service_dist"  widget="many2many_tags"/>
+                    <field name="spoc"/>
+                    <!-- <field name="is_active"/> -->
+                </tree>
+            </field>
+        </record>
+
+        <record id="asp_partner_form_view" model="ir.ui.view">
+            <field name="name">asp.partner.form</field>
+            <field name="model">asp.partner</field>
+               <field name="arch" type="xml">
+                <form string="ASP Partner">
+                        <header>
+                            
+                                <button name="action_to_inprogress" type="object" string="In Progress" attrs="{'invisible': [('status', 'in', ['onhold','inprogress','active','inactive','cancel','close'])]}" class="btn-primary"/>
+                                <button name="action_to_active" type="object" string="Active" attrs="{'invisible': [('status', 'in', ['draft','active','cancel','close'])]}" class="btn-primary"/>
+                                <button name="action_to_onhold" type="object" string="On Hold" attrs="{'invisible': [('status', 'in', ['draft','inprogress','cancel','close','onhold'])]}" class="btn-primary"/>
+                                <button name="action_to_inactive" type="object" string="In Active" attrs="{'invisible': [('status', 'in', ['draft','inprogress','inactive','cancel','close'])]}" class="btn-primary"/>
+                                <button name="action_to_closed" type="object" string="Close" attrs="{'invisible': [('status', 'in', ['cancel','close'])]}" class="btn-primary"/> 
+                                <!--<button name="action_to_close" type="object" string="Close" attrs="{'invisible': [('status', 'in', ['cancel','close'])]}" class="btn-primary"/>-->
+                                <button name="action_to_cancel" type="object" string="Cancel" attrs="{'invisible': [('status', 'in', ['close','cancel'])]}"/>
+                                <button name="action_set_draft" type="object" string="Set to Draft" attrs="{'invisible': [('status', 'in', ['draft','close'])]}"/> 
+                                
+                                <field name="status" widget="statusbar" />
+
+                 </header>
+                    <sheet>
+
+                        <div>
+                            <h1> <field name='name' readonly="1"/> </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="vendor"/>
+
+                                 <label for="Street" string="Address"/>
+                            <div class="o_address_format">
+
+                                <field name="street" placeholder="Street..." class="o_address_street" />
+                                <field name="street2" placeholder="Street 2..." class="o_address_street" />
+                                <field name="city" placeholder="City" class="o_address_city" />
+<!--                                <field name="state_name" class="o_address_state" placeholder="State"/>-->
+                                <!-- <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>-->
+<!--                                <field name="country" placeholder="Country" class="o_address_country"/>-->
+                            </div>
+                                <field name="asc_portal_access" />
+                                <field name="rma_center" />
+                                <!-- <field name="is_active" /> -->
+
+                               </group>
+                            <group>
+                                <field name="service_product_cat"/>
+                                <field name="service_states"/>
+                                <field name="service_dist"/>
+                                <field name="service_categories"/>
+                                <field name="service_types"/>
+                                <field name="priority" widget="priority"/>
+                                <field name="service_delivery_by"/>
+                                 </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Internal Notes">
+                                <group>  <field name="notes"/></group>
+                            </page>
+                            <page string="SPOC">
+                                <group>
+                                    <group>
+                                        <field name="spoc"/>
+                                    </group>
+                                    <group>
+                                        <field name="md_ceo_director"/>
+                                        <field name="spoc_alternate"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page string="Geolocation">
+                                <group>
+                                    <group>
+
+                                    </group>
+                                    <group>
+
+                                    </group>
+                                </group>
+
+                            </page>
+
+                            <page string="Profile">
+                                <group>
+                                    <group>
+                                        <field name="asp_other_brands"/>
+                                    </group>
+                                    <group>
+                                        <field name="number_of_engineers"/>
+                                        <field name="no_of_years"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+
+
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids" widget="mail_activity" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="asp_search_view" model="ir.ui.view">
+        <field name="name">asp.partner.search</field>
+        <field name="model">asp.partner</field>
+        <field name="arch" type="xml">
+            <search string="ASP">
+                 <field name="name"/>
+                    <!-- <field name="helpdesk_ticket_fed_id"/>
+                    <field name="helpdesk_team_id"/> -->
+                    <!-- <field name="assigned_to"/> -->
+                    <!-- <field name="helpdesk_serial_number"/>
+                    <field name="helpdesk_model_name"/> -->
+                <filter name="draft" string="Draft" domain="[('status','=','draft')]"/>
+                <filter name="inprogress" string="In progress" domain="[('status', '=', 'inprogress')]"/>
+                <filter name="active" string="Active" domain="[('status', '=', 'active')]"/>
+                 <filter name="inactive" string="In Active" domain="[('status', '=', 'inactive')]"/>
+                 <filter name="closed" string="Closed" domain="[('status', '=', 'closed')]"/>
+                <filter name="cancel" string="Cancel" domain="[('status', '=', 'cancel')]"/>
+                <filter name="name" string="Reference"/>
+                
+                
+                <group expand="0" string="Group By">
+                    <filter name="status" string=" ASP Status" domain="[]" context="{'group_by':'status'}"/>
+                    <filter name="regironal_category" string="Service Category" domain="[]" context="{'group_by':'regironal_category'}"/> 
+                    <!-- <filter name="create_date" string="Created On" domain="[]" context="{'group_by':'create_date'}"/> -->
+                    <!-- <filter name="assigned_to" string="Assigned To" domain="[]" context="{'group_by':'assigned_to'}"/> -->
+                    <!-- <filter name="scm_sub_category_id" string="Subcategory" domain="[]" context="{'group_by':'scm_sub_category_id'}"/> -->
+                    <!-- <filter name="priority" string="Priority" domain="[]" context="{'group_by':'priority'}"/> -->
+                </group>
+            </search>
+        </field>
+    </record>
+         <record id="asp_action_view" model="ir.actions.act_window">
+                <field name="name">ASP</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">asp.partner</field>
+               <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="context">{}</field>
+                <field name="search_view_id" ref="asp_search_view"/>
+    </record>
+    </data>
+</odoo>

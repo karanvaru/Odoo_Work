@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_job_view_form" model="ir.ui.view">
+            <field name="name">hr.job.view.form.inherit</field>
+            <field name="model">hr.job</field>
+            <field name="priority" eval="1"/>
+            <field name="inherit_id" ref="hr.view_hr_job_form"/>
+            <field name="arch" type="xml">
+                <!--                <xpath expr="//Form,page[@name='studio_page_Lofm']" position="inside">-->
+                <!--	              		<group name="details">-->
+                <!--              				<field name="description"></field>-->
+                <!--              			</group>-->
+                <!--              </xpath>-->
+                <notebook position="inside">
+                    <page string="Career Path">
+                        <group>
+                        <field name="desc" widget="html"/>
+                        </group>
+                    </page>
+                    <page string="KRAs &amp; KPIs">
+                        <group>
+                        <field name="kras" widget="html"/>
+                        <field name="kpis" widget="html"/>
+                        </group>
+                    </page>
+                    <page string="Knowledge Base">
+                      <group>
+                        <field name="reference_links" widget="html"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>

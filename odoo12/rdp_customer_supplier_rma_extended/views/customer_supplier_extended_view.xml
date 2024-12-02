@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+       <record id="customer_supplier_rma_view_tree" model="ir.ui.view">
+            <field name="name">rma.supplier.tree</field>
+            <field name="model">rma.supplier</field>
+            <field name="inherit_id" ref="bi_customer_supplier_rma.view_rma_supplier_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="before">
+                    <field name="open_days"/>
+                </xpath>
+            </field>
+       </record>
+        <record id="customer_supplier_rma_form_inherited" model="ir.ui.view">
+            <field name="name">rma.supplier.tree</field>
+            <field name="model">rma.supplier</field>
+            <field name="inherit_id" ref="bi_customer_supplier_rma.view_rma_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_title')]" position="inside">
+                    <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px; margin-right:3px;">Ticket OD: <span style="font-size:16px"><field name="open_days"/></span> </div>
+                    <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px; margin-right:3px;">Current Stage OD:<span style="font-size:16px"><field name="current_stage_opendays"/></span> </div>
+                </xpath>
+            </field>
+       </record>
+    </data>
+</odoo>

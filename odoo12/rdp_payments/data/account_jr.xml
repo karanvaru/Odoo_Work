@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="account_payment_method_check_rec" model="account.payment.method">
+        <field name="name">Checks</field>
+        <field name="code">check_printing</field>
+        <field name="payment_type">inbound</field>
+    </record>
+</odoo>

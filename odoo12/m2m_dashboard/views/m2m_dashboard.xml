@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="m2m_dashboard_search_view" model="ir.ui.view">
+            <field name="name">m2m.dashboard.Search</field>
+            <field name="model">m2m.dashboard</field>
+            <field name="arch" type="xml">
+                <search>
+                    <group string="Group By">
+                        <filter string="Drishyam Date" name="drishyam_date" context="{'group_by':'drishyam_date'}"/>
+                        <filter string="Created on" name="create_date" context="{'group_by':'create_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="monday_to_monday_dashboard_tree" model="ir.ui.view">
+            <field name="name">Monday to Monday Dashboard</field>
+            <field name="model">m2m.dashboard</field>
+            <field name="arch" type="xml">
+                <tree string="Monday to Monday Dashboard">
+                    <field name='create_date'/>
+                    <field name='name'/>
+                    <field name='drishyam_date'/>
+                    <field name="drishyam_1" widget="monetary"/>
+                    <field name="drishyam_2" widget="monetary"/>
+                </tree>
+            </field>
+        </record>
+        <record id="sourcing_engineering_view" model="ir.ui.view">
+            <field name="name">m2m.dashboard.form</field>
+            <field name="model">m2m.dashboard</field>
+            <field name="arch" type="xml">
+                <form string="Monday to Monday Dashboard">
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name='name' readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name='drishyam_date'/>
+                            </group>
+                            <group>
+                                <field name="drishyam_1" widget="monetary"/>
+                                <field name="drishyam_2" widget="monetary"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Internal Notes">
+                                <group>
+                                    <field name="notes"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="drishyam_action" model="ir.actions.act_window">
+            <field name="name">Drishyam</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">m2m.dashboard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem name="Drishyam" id="menu_drishyam" action="drishyam_action"
+                  parent="studio_customization.rdp_sales_463025d2-e8d8-4046-ba45-db57b012c250"/>
+
+
+    </data>
+</odoo>

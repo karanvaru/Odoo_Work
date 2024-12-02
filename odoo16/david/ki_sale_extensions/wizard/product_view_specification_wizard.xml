@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_view_specification_wizard_view">
+            <field name="name">product.view.specification.wizard</field>
+            <field name="model">product.view.specification.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Product Specification">
+                    <field name="product_specification_ids" nolabel="1">
+                        <tree>
+                            <field name="name"/>
+                            <field name="value"/>
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_view_specification_wizard_action" model="ir.actions.act_window">
+            <field name="name">Product Specification</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.view.specification.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

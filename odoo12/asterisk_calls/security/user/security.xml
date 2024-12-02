@@ -1,0 +1,69 @@
+<odoo>
+
+    <record id="asterisk_calls_call_user_rule" model="ir.rule">
+        <field name="name">Asterisk call call rule</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>                
+        <field name="model_id" ref="model_asterisk_calls_call"/>
+        <field name="groups" eval="[(4, ref('asterisk_common.group_asterisk_user'))]"/>
+        <field name="domain_force">['|','|',
+            ('src_user','=', user.id),
+            ('partner.user_id', '=', user.id),
+            ('dst_user', '=', user.id)]</field>
+    </record>
+
+    <!-- Library needs refactoring
+    <record id="asterisk_calls_call_library_user_rule" model="ir.rule">
+        <field name="name">Asterisk call call library / partners rule</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>                
+        <field name="model_id" ref="model_asterisk_calls_call"/>
+        <field name="groups" eval="[(4, ref('asterisk_common.group_asterisk_user'))]"/>
+        <field name="domain_force">[('is_private','=', False), '|', 
+                ('in_library','=', True), ('partner','!=',False)]</field>
+    </record>
+
+    <record id="asterisk_calls_call_library_user2_rule" model="ir.rule">
+        <field name="name">Asterisk call call library 2 rule</field>
+        <field name="perm_read" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="0"/>                
+        <field name="model_id" ref="model_asterisk_calls_call"/>
+        <field name="groups" eval="[(4, ref('asterisk_common.group_asterisk_user'))]"/>
+        <field name="domain_force">[('in_library','=', True), '|', 
+                ('src_user','=',user.id),('dst_user','=',user.id)]</field>
+    </record>
+    -->
+
+    <record id="asterisk_calls_tag_user_rule" model="ir.rule">
+        <field name="name">Asterisk call tag user rule</field>
+        <field name="perm_read" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>                
+        <field name="model_id" ref="model_asterisk_calls_tag"/>
+        <field name="groups" eval="[(4, ref('asterisk_common.group_asterisk_user'))]"/>
+        <field name="domain_force">[('create_uid','=',user.id)]</field>
+    </record>
+
+    <record id="asterisk_calls_channel_rule" model="ir.rule">
+        <field name="name">Asterisk call channel rule</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>                
+        <field name="model_id" ref="model_asterisk_calls_channel"/>
+        <field name="groups" eval="[(4, ref('asterisk_common.group_asterisk_user'))]"/>
+        <field name="domain_force">['|', '|',
+            ('src_user','=', user.id),
+            ('partner.user_id', '=', user.id),
+            ('dst_user', '=', user.id),
+            ('is_user_channel','=', True)]</field>
+    </record>
+
+</odoo>

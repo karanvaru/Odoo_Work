@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form_inherit_custom_number_new" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.new</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="customer_vendor_unique_number.view_partner_form_inherit_custom_number"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='customer_vendor_number_custom']" position="replace">
+                <span style="font-weight:bold;">Number</span>
+                <div class="o_row" style="font-weight:bold;">
+                    <span>
+                        <field name="customer_vendor_number_custom" nolabel="1"/>
+                    </span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

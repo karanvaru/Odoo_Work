@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.mobile.service.shop</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="65"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Mobile Service" string="Mobile Service" data-key="mobile_service_shop" groups="mobile_service_shop.mobile_service_group_manager">
+                        <h2>API Settings</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box" title="Add a api token to get device details.">
+                                <div class="o_setting_left_pane">
+                                    <field name="get_api_details"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label string="IMEI device details" for="get_api_details"/>
+                                    <div class="text-muted">
+                                        Get device details from imei number.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box" title="These taxes are set in any new product created.">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <h6>Api token</h6>
+                                    <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." groups="base.group_multi_company"/>
+                                    <div class="text-muted">
+                                        Api token generated from <a href="https://imeidb.xyz/api/">www.imeidb.xyz</a>.
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="row mt16">
+                                            <label string="Token" for="api_key" class="col-md-3 o_light_label"/>
+                                            <field name="api_key" attrs="{'required': [('get_api_details', '=', True)]}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box" title="Show complaints on service tickets">
+                                <div class="o_setting_left_pane">
+                                    <field name="show_complain_types"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label string="Show complaints" for="show_complain_types"/>
+                                    <div class="text-muted">
+                                        Show complaints on service tickets.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_mobile_service_configuration" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'mobile_service_shop'}</field>
+        </record>
+
+        <menuitem id="menu_mobile_service_global_settings" name="Settings"
+                parent="mobile_service_shop.mobile_service_shop_configuration" sequence="0"
+              action="action_mobile_service_configuration"
+              groups="mobile_service_shop.mobile_service_group_manager"/>
+
+    </data>
+</odoo>

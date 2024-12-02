@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	
+	<!-- Attribute Input -->
+    <template id="sh_motorcycle_frontend_attribute_filters" inherit_id="website_sale.products_attributes" name="Display Attribute">
+        <xpath expr="//form[hasclass('js_attributes')]//input" position="before">
+        	    <t t-if="motorcycle_type">
+                    <input type="hidden" t-att-value="motorcycle_type" name="type" />
+                </t>
+
+                <t t-if="motorcycle_make">
+                    <input type="hidden" t-att-value="motorcycle_make" name="make" />
+                </t>
+
+                <t t-if="motorcycle_model">
+                    <input type="hidden" t-att-value="motorcycle_model" name="model" />
+                </t>
+
+                <t t-if="motorcycle_year">
+                    <input type="hidden" t-att-value="motorcycle_year" name="year" />
+                </t>
+
+        </xpath>
+        <xpath expr="//form[hasclass('js_attributes')]" position="attributes">
+            <attribute name="t-if" separator=" " add="True" remove="attributes" value=""></attribute>
+        </xpath>
+    </template>
+
+
+
+
+    <!--=================
+        BRAND
+    ==================-->
+
+	
+	<!-- 
+        LEFT SIDE ATTRIBUTE FILTER
+    -->
+    <template id="sh_motorcycle_frontend_brand_attribute_filters" inherit_id="website_sale.products_attributes" active="False" customize_show="True" name="Left Panel Brands">
+        <xpath expr="//form[hasclass('js_attributes')]" position="inside">
+            <div class="accordion-item order-2 sh_custom_attrs" t-if="sh_shop_product_brands_all">
+                <div class='mt-3'>
+                    <h6 class="mb-3">
+                        <b class="o_products_attributes_title"> Product Brands</b>
+                    </h6>
+                    <div class="mb-3 sh_custom_tag_area" style='max-height: 250px;overflow-y: auto;'>
+                        <div style='position: sticky;top: 0;background:#fff;'>
+                            <input type='text' class='form-control sh_search_term' name='custom_search_input' placeholder='Search...' autocomplete="off" style='margin-bottom: 0.6rem;height: 34px;'/>
+                        </div>
+                        <t t-foreach="sh_shop_product_brands_all" t-as="brand">
+                            <label t-attf-class="sh_search_labels #{'active' if brand.id in sh_shop_product_brands_selected else ''}" style='margin-right: 8px;margin-bottom: 10px;' t-att-data-search-term="brand.name.lower()">
+                                <input class="sh_product_brand_input" type="checkbox" name="brand" t-att-data-sh_brand_id="brand.id" t-att-value="'%s' % (brand.id)" t-att-checked="'checked' if brand.id in sh_shop_product_brands_selected else None" />
+                                <span class="sh_product_brand_title" style='display: flex;flex-direction: row;'>
+                                    <span t-field="brand.name" />
+                                    <span t-attf-class="fa js_cls_sh_shop_product_brands_selected_tag #{'d-block' if brand.id in sh_shop_product_brands_selected else 'd-none'}"></span>
+                                </span>
+                            </label>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- 
+        RIGHT SIDE ATTRIBUTE FILTER IN MOBILE VIEW
+    -->
+    <template id="sh_shop_product_brands_products_attributes_offcanvas" inherit_id="website_sale.o_wsale_offcanvas" name="Right Panel Brands" active='active' customize_show="True">
+        <xpath expr="//form[contains(@t-attf-class, 'js_attributes')]" position="inside">
+            <div class='js_cls_offcanvas_shop_attributes sh_custom_attrs'>
+                <h2 class="accordion-header mb-0">
+                    <button type="button" data-bs-toggle="collapse" class="o_wsale_offcanvas_title accordion-button border-top rounded-0 collapsed" data-status="inactive" data-bs-target="#sh_product_custom_brands_text" aria-expanded="False" aria-controls="product_custom_brands">
+                        <b>Product Brands</b>
+                    </button>
+                </h2>
+                <div class="mb-3 collapse sh_custom_tag_area" id='sh_product_custom_brands_text' style='max-height: 250px;overflow-y: auto;width: 96%;'>
+                    <div class='accordion-body' style='padding-top: 8px;'>
+                        <div style='position: sticky;top: 0;background:#fff;'>
+                            <input type='text' class='form-control sh_search_term' name='custom_search_input' placeholder='Search...' autocomplete="off" style='margin-bottom: 0.6rem;height: 34px;'/>
+                        </div>
+                        <t t-foreach="sh_shop_product_brands_all" t-as="brand">
+                            <label t-attf-class="sh_search_labels #{'active' if brand.id in sh_shop_product_brands_selected else ''}" style='margin-right: 8px;margin-bottom: 10px;' t-att-data-search-term="brand.name.lower()">
+                                <input class="sh_product_brand_input" type="checkbox" name="brand" t-att-data-sh_brand_id="brand.id" t-att-value="'%s' % (brand.id)" t-att-checked="'checked' if brand.id in sh_shop_product_brands_selected else None" />
+                                <span class="sh_product_brand_title" style='display: flex;flex-direction: row;'>
+                                    <span t-field="brand.name" />
+                                    <span t-attf-class="fa js_cls_sh_shop_product_brands_selected_tag #{'d-block' if brand.id in sh_shop_product_brands_selected else 'd-none'}"></span>
+                                </span>
+                            </label>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+   <!--=================
+        BRAND
+    ==================-->
+
+
+
+
+
+
+
+
+    <!--=================
+        COUNTRY
+    ==================-->
+    <!-- 
+        LEFT SIDE ATTRIBUTE FILTER
+    -->
+    <template id="sh_motorcycle_frontend_made_in_attribute_filters" inherit_id="website_sale.products_attributes" active="False" customize_show="True" name="Left Panel Country">
+        <xpath expr="//form[hasclass('js_attributes')]" position="inside">
+            <div class="accordion-item order-2 sh_custom_attrs" t-if="sh_shop_product_made_in_all">
+                <div class='mt-3'>
+                    <h6 class="mb-3">
+                        <b class="o_products_attributes_title"> Made In</b>
+                    </h6>
+                    <div class="mb-3 sh_custom_tag_area" style='max-height: 250px;overflow-y: auto;'>
+                        <div style='position: sticky;top: 0;background:#fff;'>
+                            <input type='text' class='form-control sh_search_term' name='custom_search_input' placeholder='Search...' autocomplete="off" style='margin-bottom: 0.6rem;height: 34px;'/>
+                        </div>
+                        <t t-foreach="sh_shop_product_made_in_all" t-as="made_in">
+                            <label t-attf-class="sh_search_labels #{'active' if made_in.id in sh_shop_product_made_in_selected else ''}" style='margin-right: 8px;margin-bottom: 10px;' t-att-data-search-term="made_in.name.lower()">
+                                <input class="sh_product_made_in_input" type="checkbox" name="made_in" t-att-data-sh_country_id="made_in.id" t-att-value="'%s' % (made_in.id)" t-att-checked="'checked' if made_in.id in sh_shop_product_made_in_selected else None" />
+                                <span class="sh_product_made_in_title" style='display: flex;flex-direction: row;'>
+                                    <span t-field="made_in.name" />
+                                    <span t-attf-class="fa js_cls_sh_shop_product_made_in_selected_tag #{'d-block' if made_in.id in sh_shop_product_made_in_selected else 'd-none'}"></span>
+                                </span>
+                            </label>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- 
+        RIGHT SIDE ATTRIBUTE FILTER IN MOBILE VIEW
+    -->
+    <template id="sh_shop_product_made_in_products_attributes_offcanvas" inherit_id="website_sale.o_wsale_offcanvas" name="Right Panel Country" active='active' customize_show="True">
+        <xpath expr="//form[contains(@t-attf-class, 'js_attributes')]" position="inside">
+            <div class='js_cls_offcanvas_shop_attributes sh_custom_attrs'>
+                <h2 class="accordion-header mb-0">
+                    <button type="button" data-bs-toggle="collapse" class="o_wsale_offcanvas_title accordion-button border-top rounded-0 collapsed" data-status="inactive" data-bs-target="#sh_product_custom_made_in_text" aria-expanded="False" aria-controls="product_custom_made_in">
+                        <b>Made In</b>
+                    </button>
+                </h2>
+                <div class="mb-3 collapse sh_custom_tag_area" id='sh_product_custom_made_in_text' style='max-height: 250px;overflow-y: auto;width: 96%;'>
+                    <div class='accordion-body' style='padding-top: 8px;'>
+                        <div style='position: sticky;top: 0;background:#fff;'>
+                            <input type='text' class='form-control sh_search_term' name='custom_search_input' placeholder='Search...' autocomplete="off" style='margin-bottom: 0.6rem;height: 34px;'/>
+                        </div>
+                        <t t-foreach="sh_shop_product_made_in_all" t-as="made_in">
+                            <label t-attf-class="sh_search_labels #{'active' if made_in.id in sh_shop_product_made_in_selected else ''}" style='margin-right: 8px;margin-bottom: 10px;' t-att-data-search-term="made_in.name.lower()">
+                                <input class="sh_product_made_in_input" type="checkbox" name="made_in" t-att-data-sh_made_in_id="made_in.id" t-att-value="'%s' % (made_in.id)" t-att-checked="'checked' if made_in.id in sh_shop_product_made_in_selected else None" />
+                                <span class="sh_product_made_in_title" style='display: flex;flex-direction: row;'>
+                                    <span t-field="made_in.name" />
+                                    <span t-attf-class="fa js_cls_sh_shop_product_made_in_selected_tag #{'d-block' if made_in.id in sh_shop_product_made_in_selected else 'd-none'}"></span>
+                                </span>
+                            </label>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+
+
+    <!--=================
+        COUNTRY
+    ==================-->
+
+ 
+ 
+ 
+ 
+    <!--=================
+        GEADE
+    ==================-->
+    <!-- 
+        LEFT SIDE ATTRIBUTE FILTER
+    -->
+    <template id="sh_motorcycle_frontend_garde_attribute_filters" inherit_id="website_sale.products_attributes" active="False" customize_show="True" name="Left Panel Grade">
+        <xpath expr="//form[hasclass('js_attributes')]" position="inside">
+            <div class="accordion-item order-2 sh_custom_attrs" t-if="sh_shop_product_garde_all">
+                <div class='mt-3'>
+                    <h6 class="mb-3">
+                        <b class="o_products_attributes_title">Grade</b>
+                    </h6>
+                    <div class="mb-3 sh_custom_tag_area" style='max-height: 250px;overflow-y: auto;'>
+                        <div style='position: sticky;top: 0;background:#fff;'>
+                            <input type='text' class='form-control sh_search_term' name='custom_search_input' placeholder='Search...' autocomplete="off" style='margin-bottom: 0.6rem;height: 34px;'/>
+                        </div>
+                        <t t-foreach="sh_shop_product_garde_all" t-as="garde">
+                            <label t-attf-class="sh_search_labels #{'active' if garde.id in sh_shop_product_garde_selected else ''}" style='margin-right: 8px;margin-bottom: 10px;' t-att-data-search-term="garde.name.lower()">
+                                <input class="sh_product_garde_input" type="checkbox" name="garde" t-att-data-sh_garde_id="garde.id" t-att-value="'%s' % (garde.id)" t-att-checked="'checked' if garde.id in sh_shop_product_garde_selected else None" />
+                                <span class="sh_product_garde_title" style='display: flex;flex-direction: row;'>
+                                    <span t-field="garde.name" />
+                                    <span t-attf-class="fa js_cls_sh_shop_product_garde_selected_tag #{'d-block' if garde.id in sh_shop_product_garde_selected else 'd-none'}"></span>
+                                </span>
+                            </label>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- 
+        RIGHT SIDE ATTRIBUTE FILTER IN MOBILE VIEW
+    -->
+    <template id="sh_shop_product_garde_products_attributes_offcanvas" inherit_id="website_sale.o_wsale_offcanvas" name="Right Panel Grade" active='active' customize_show="True">
+        <xpath expr="//form[contains(@t-attf-class, 'js_attributes')]" position="inside">
+            <div class='js_cls_offcanvas_shop_attributes sh_custom_attrs'>
+                <h2 class="accordion-header mb-0">
+                    <button type="button" data-bs-toggle="collapse" class="o_wsale_offcanvas_title accordion-button border-top rounded-0 collapsed" data-status="inactive" data-bs-target="#sh_product_custom_garde_text" aria-expanded="False" aria-controls="product_custom_garde">
+                        <b>Grade</b>
+                    </button>
+                </h2>
+                <div class="mb-3 collapse sh_custom_tag_area" id='sh_product_custom_garde_text' style='max-height: 250px;overflow-y: auto;width: 96%;'>
+                    <div class='accordion-body' style='padding-top: 8px;'>
+                        <div style='position: sticky;top: 0;background:#fff;'>
+                            <input type='text' class='form-control sh_search_term' name='custom_search_input' placeholder='Search...' autocomplete="off" style='margin-bottom: 0.6rem;height: 34px;'/>
+                        </div>
+                        <t t-foreach="sh_shop_product_garde_all" t-as="garde">
+                            <label t-attf-class="sh_search_labels #{'active' if garde.id in sh_shop_product_garde_selected else ''}" style='margin-right: 8px;margin-bottom: 10px;' t-att-data-search-term="garde.name.lower()">
+                                <input class="sh_product_garde_input" type="checkbox" name="garde" t-att-data-sh_garde_id="garde.id" t-att-value="'%s' % (garde.id)" t-att-checked="'checked' if garde.id in sh_shop_product_garde_selected else None" />
+                                <span class="sh_product_garde_title" style='display: flex;flex-direction: row;'>
+                                    <span t-field="garde.name" />
+                                    <span t-attf-class="fa js_cls_sh_shop_product_garde_selected_tag #{'d-block' if garde.id in sh_shop_product_garde_selected else 'd-none'}"></span>
+                                </span>
+                            </label>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!--=================
+        GEADE
+    ==================-->
+
+
+
+
+
+
+
+
+
+    <!--=================
+        TRANSMISSION
+    ==================-->
+    <!-- 
+        LEFT SIDE ATTRIBUTE FILTER
+    -->
+    <template id="sh_motorcycle_frontend_transmission_attribute_filters" inherit_id="website_sale.products_attributes" active="False" customize_show="True" name="Left Panel Transmission">
+        <xpath expr="//form[hasclass('js_attributes')]" position="inside">
+            <div class="accordion-item order-2 sh_custom_attrs" t-if="sh_shop_product_transmission_all">
+                <div class='mt-3'>
+                    <h6 class="mb-3">
+                        <b class="o_products_attributes_title">Transmission</b>
+                    </h6>
+                    <div class="mb-3 sh_custom_tag_area" style='max-height: 250px;overflow-y: auto;'>
+                        <div style='position: sticky;top: 0;background:#fff;'>
+                            <input type='text' class='form-control sh_search_term' name='custom_search_input' placeholder='Search...' autocomplete="off" style='margin-bottom: 0.6rem;height: 34px;'/>
+                        </div>
+                        <t t-foreach="sh_shop_product_transmission_all" t-as="transmission">
+                            <label t-attf-class="sh_search_labels #{'active' if transmission.id in sh_shop_product_transmission_selected else ''}" style='margin-right: 8px;margin-bottom: 10px;' t-att-data-search-term="transmission.name.lower()">
+                                <input class="sh_product_transmission_input" type="checkbox" name="transmission" t-att-data-sh_transmission_id="transmission.id" t-att-value="'%s' % (transmission.id)" t-att-checked="'checked' if transmission.id in sh_shop_product_transmission_selected else None" />
+                                <span class="sh_product_transmission_title" style='display: flex;flex-direction: row;'>
+                                    <span t-field="transmission.name" />
+                                    <span t-attf-class="fa js_cls_sh_shop_product_transmission_selected_tag #{'d-block' if transmission.id in sh_shop_product_transmission_selected else 'd-none'}"></span>
+                                </span>
+                            </label>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- 
+        RIGHT SIDE ATTRIBUTE FILTER IN MOBILE VIEW
+    -->
+    <template id="sh_shop_product_transmission_products_attributes_offcanvas" inherit_id="website_sale.o_wsale_offcanvas" name="Right Panel Transmission" active='active' customize_show="True">
+        <xpath expr="//form[contains(@t-attf-class, 'js_attributes')]" position="inside">
+            <div class='js_cls_offcanvas_shop_attributes sh_custom_attrs'>
+                <h2 class="accordion-header mb-0">
+                    <button type="button" data-bs-toggle="collapse" class="o_wsale_offcanvas_title accordion-button border-top rounded-0 collapsed" data-status="inactive" data-bs-target="#sh_product_custom_transmission_text" aria-expanded="False" aria-controls="product_custom_transmission">
+                        <b>Transmission</b>
+                    </button>
+                </h2>
+                <div class="mb-3 collapse sh_custom_tag_area" id='sh_product_custom_transmission_text' style='max-height: 250px;overflow-y: auto;width: 96%;'>
+                    <div class='accordion-body' style='padding-top: 8px;'>
+                        <div style='position: sticky;top: 0;background:#fff;'>
+                            <input type='text' class='form-control sh_search_term' name='custom_search_input' placeholder='Search...' autocomplete="off" style='margin-bottom: 0.6rem;height: 34px;'/>
+                        </div>
+                        <t t-foreach="sh_shop_product_transmission_all" t-as="transmission">
+                            <label t-attf-class="sh_search_labels #{'active' if transmission.id in sh_shop_product_transmission_selected else ''}" style='margin-right: 8px;margin-bottom: 10px;' t-att-data-search-term="transmission.name.lower()">
+                                <input class="sh_product_transmission_input" type="checkbox" name="transmission" t-att-data-sh_transmission_id="transmission.id" t-att-value="'%s' % (transmission.id)" t-att-checked="'checked' if transmission.id in sh_shop_product_transmission_selected else None" />
+                                <span class="sh_product_transmission_title" style='display: flex;flex-direction: row;'>
+                                    <span t-field="transmission.name" />
+                                    <span t-attf-class="fa js_cls_sh_shop_product_transmission_selected_tag #{'d-block' if transmission.id in sh_shop_product_transmission_selected else 'd-none'}"></span>
+                                </span>
+                            </label>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!--=================
+        TRANSMISSION
+    ==================-->
+
+
+
+
+
+    <!--=================
+        ENGINE
+    ==================-->
+
+    <!-- 
+        LEFT SIDE ATTRIBUTE FILTER
+    -->
+    <template id="sh_motorcycle_frontend_engine_attribute_filters" inherit_id="website_sale.products_attributes" active="False" customize_show="True" name="Left Panel Engine">
+        <xpath expr="//form[hasclass('js_attributes')]" position="inside">
+            <div class="accordion-item order-2 sh_custom_attrs" t-if="sh_shop_product_engine_all">
+                <div class='mt-3'>
+                    <h6 class="mb-3">
+                        <b class="o_products_attributes_title">Engine</b>
+                    </h6>
+                    <div class="mb-3 sh_custom_tag_area" style='max-height: 250px;overflow-y: auto;'>
+                        <div style='position: sticky;top: 0;background:#fff;'>
+                            <input type='text' class='form-control sh_search_term' name='custom_search_input' placeholder='Search...' autocomplete="off" style='margin-bottom: 0.6rem;height: 34px;'/>
+                        </div>
+                        <t t-foreach="sh_shop_product_engine_all" t-as="engine">
+                            <label t-attf-class="sh_search_labels #{'active' if engine.id in sh_shop_product_engine_selected else ''}" style='margin-right: 8px;margin-bottom: 10px;' t-att-data-search-term="engine.name.lower()">
+                                <input class="sh_product_engine_input" type="checkbox" name="engine" t-att-data-sh_engine_id="engine.id" t-att-value="'%s' % (engine.id)" t-att-checked="'checked' if engine.id in sh_shop_product_engine_selected else None" />
+                                <span class="sh_product_engine_title" style='display: flex;flex-direction: row;'>
+                                    <span t-field="engine.name" />
+                                    <span t-attf-class="fa js_cls_sh_shop_product_engine_selected_tag #{'d-block' if engine.id in sh_shop_product_engine_selected else 'd-none'}"></span>
+                                </span>
+                            </label>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+
+    <!-- 
+        RIGHT SIDE ATTRIBUTE FILTER IN MOBILE VIEW
+    -->
+    <template id="sh_shop_product_engine_products_attributes_offcanvas" inherit_id="website_sale.o_wsale_offcanvas" name="Right Panel Engine" active='active' customize_show="True">
+        <xpath expr="//form[contains(@t-attf-class, 'js_attributes')]" position="inside">
+            <div class='js_cls_offcanvas_shop_attributes sh_custom_attrs'>
+                <h2 class="accordion-header mb-0">
+                    <button type="button" data-bs-toggle="collapse" class="o_wsale_offcanvas_title accordion-button border-top rounded-0 collapsed" data-status="inactive" data-bs-target="#sh_product_custom_engine_text" aria-expanded="False" aria-controls="product_custom_engine">
+                        <b>Engine</b>
+                    </button>
+                </h2>
+                <div class="mb-3 collapse sh_custom_tag_area" id='sh_product_custom_engine_text' style='max-height: 250px;overflow-y: auto;width: 96%;'>
+                    <div class='accordion-body' style='padding-top: 8px;'>
+                        <div style='position: sticky;top: 0;background:#fff;'>
+                            <input type='text' class='form-control sh_search_term' name='custom_search_input' placeholder='Search...' autocomplete="off" style='margin-bottom: 0.6rem;height: 34px;'/>
+                        </div>
+                        <t t-foreach="sh_shop_product_engine_all" t-as="engine">
+                            <label t-attf-class="sh_search_labels #{'active' if engine.id in sh_shop_product_engine_selected else ''}" style='margin-right: 8px;margin-bottom: 10px;' t-att-data-search-term="engine.name.lower()">
+                                <input class="sh_product_engine_input" type="checkbox" name="engine" t-att-data-sh_engine_id="engine.id" t-att-value="'%s' % (engine.id)" t-att-checked="'checked' if engine.id in sh_shop_product_engine_selected else None" />
+                                <span class="sh_product_engine_title" style='display: flex;flex-direction: row;'>
+                                    <span t-field="engine.name" />
+                                    <span t-attf-class="fa js_cls_sh_shop_product_engine_selected_tag #{'d-block' if engine.id in sh_shop_product_engine_selected else 'd-none'}"></span>
+                                </span>
+                            </label>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+
+    <!--=================
+        ENGINE
+    ==================-->
+
+
+
+
+    <!--=================
+        PRODUCT TYPE
+    ==================-->
+    <!-- 
+        LEFT SIDE ATTRIBUTE FILTER
+    -->
+    <template id="sh_motorcycle_frontend_p_type_attribute_filters" inherit_id="website_sale.products_attributes" active="False" customize_show="True" name="Left Panel Product Type">
+        <xpath expr="//form[hasclass('js_attributes')]" position="inside">
+            <div class="accordion-item order-2 sh_custom_attrs" t-if="sh_shop_product_p_type_all">
+                <div class='mt-3'>
+                    <h6 class="mb-3">
+                        <b class="o_products_attributes_title">Product Type</b>
+                    </h6>
+                    <div class="mb-3 sh_custom_tag_area" style='max-height: 250px;overflow-y: auto;'>
+                        <div style='position: sticky;top: 0;background:#fff;'>
+                            <input type='text' class='form-control sh_search_term' name='custom_search_input' placeholder='Search...' autocomplete="off" style='margin-bottom: 0.6rem;height: 34px;'/>
+                        </div>
+                        <t t-foreach="sh_shop_product_p_type_all" t-as="p_type">
+                            <label t-attf-class="sh_search_labels #{'active' if p_type.id in sh_shop_product_p_type_selected else ''}" style='margin-right: 8px;margin-bottom: 10px;' t-att-data-search-term="p_type.name.lower()">
+                                <input class="sh_product_p_type_input" type="checkbox" name="p_type" t-att-data-sh_p_type_id="p_type.id" t-att-value="'%s' % (p_type.id)" t-att-checked="'checked' if p_type.id in sh_shop_product_p_type_selected else None" />
+                                <span class="sh_product_p_type_title" style='display: flex;flex-direction: row;'>
+                                    <span t-field="p_type.name" />
+                                    <span t-attf-class="fa js_cls_sh_shop_product_p_type_selected_tag #{'d-block' if p_type.id in sh_shop_product_p_type_selected else 'd-none'}"></span>
+                                </span>
+                            </label>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- 
+        RIGHT SIDE ATTRIBUTE FILTER IN MOBILE VIEW
+    -->
+    <template id="sh_shop_product_p_type_products_attributes_offcanvas" inherit_id="website_sale.o_wsale_offcanvas" name="Right Panel Product Type" active='active' customize_show="True">
+        <xpath expr="//form[contains(@t-attf-class, 'js_attributes')]" position="inside">
+            <div class='js_cls_offcanvas_shop_attributes sh_custom_attrs'>
+                <h2 class="accordion-header mb-0">
+                    <button type="button" data-bs-toggle="collapse" class="o_wsale_offcanvas_title accordion-button border-top rounded-0 collapsed" data-status="inactive" data-bs-target="#sh_product_custom_p_type_text" aria-expanded="False" aria-controls="product_custom_p_type">
+                        <b>Product Type</b>
+                    </button>
+                </h2>
+                <div class="mb-3 collapse sh_custom_tag_area" id='sh_product_custom_p_type_text' style='max-height: 250px;overflow-y: auto;width: 96%;'>
+                    <div class='accordion-body' style='padding-top: 8px;'>
+                        <div style='position: sticky;top: 0;background:#fff;'>
+                            <input type='text' class='form-control sh_search_term' name='custom_search_input' placeholder='Search...' autocomplete="off" style='margin-bottom: 0.6rem;height: 34px;'/>
+                        </div>
+                        <t t-foreach="sh_shop_product_p_type_all" t-as="p_type">
+                            <label t-attf-class="sh_search_labels #{'active' if p_type.id in sh_shop_product_p_type_selected else ''}" style='margin-right: 8px;margin-bottom: 10px;' t-att-data-search-term="p_type.name.lower()">
+                                <input class="sh_product_p_type_input" type="checkbox" name="p_type" t-att-data-sh_p_type_id="p_type.id" t-att-value="'%s' % (p_type.id)" t-att-checked="'checked' if p_type.id in sh_shop_product_p_type_selected else None" />
+                                <span class="sh_product_p_type_title" style='display: flex;flex-direction: row;'>
+                                    <span t-field="p_type.name" />
+                                    <span t-attf-class="fa js_cls_sh_shop_product_p_type_selected_tag #{'d-block' if p_type.id in sh_shop_product_p_type_selected else 'd-none'}"></span>
+                                </span>
+                            </label>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!--=================
+        PRODUCT TYPE
+    ==================-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <template id="sh_motorcycle_frontend_brand_attribute_filters" inherit_id="website_sale.products_attributes" active="False" customize_show="True" name="Display Brand Attribute">
+        <xpath expr="//form[hasclass('js_attributes')]" position="inside">
+			
+				<ul class="nav nav-pills flex-column" t-if="brands">
+					<t t-if="brands">
+						<div>
+							<strong>
+								Brand
+							</strong>
+						</div>
+					</t>
+					<div class="sh_scroll_bar">
+						<t t-if="brands" t-foreach="brands" t-as="brand">
+							<li class="nav-item" >
+                                <div class="nav nav-pills flex-column" style='margin-bottom:0;'>
+                                    <div class="nav-item" style='margin-bottom:0 !important;'>
+                                        <label t-attf-class="nav-link#{' active' if brand.id in brand_set else ''}">
+                                            <input class='sh_product_brand_input' type="checkbox" name="brand" t-att-value="'%s' % (brand.id)" t-att-checked="'checked' if brand.id in brand_set else None" />
+                                            <span class='sh_product_brand_title font-weight-normal' t-esc="brand.name" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+						</t>
+					</div>
+				</ul>
+        </xpath>
+    </template> -->
+    
+    <!-- Country Attribute -->
+    <!-- <template id="sh_motorcycle_frontend_country_attribute_filters" inherit_id="website_sale.products_attributes" active="False" customize_show="True" name="Display Country Attribute">
+        <xpath expr="//form[hasclass('js_attributes')]" position="inside">
+			
+				<ul class="nav nav-pills flex-column" t-if="countries">
+					<t t-if="countries">
+						<div>
+							<strong>
+								Made In
+							</strong>
+						</div>
+					</t>
+					<div class="sh_scroll_bar">
+						<t t-if="countries" t-foreach="countries" t-as="country">
+							<li class="nav-item" >
+                                <div class="nav nav-pills flex-column" style='margin-bottom:0;'>
+                                    <div class="nav-item" style='margin-bottom:0 !important;'>
+                                        <label t-attf-class="nav-link#{' active' if country.id in country_set else ''}" >
+                                            <input class='sh_product_country_input' type="checkbox" name="country" t-att-value="'%s' % (country.id)" t-att-checked="'checked' if country.id in country_set else None" />
+                                            <span class='sh_product_country_title font-weight-normal' t-esc="country.name" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+						</t>
+					</div>
+				</ul>
+        </xpath>
+    </template> -->
+    
+    <!-- Garde Attribute -->
+    <!-- <template id="sh_motorcycle_frontend_garde_attribute_filters" inherit_id="website_sale.products_attributes" active="False" customize_show="True" name="Display Grade Attribute">
+        <xpath expr="//form[hasclass('js_attributes')]" position="inside">
+			
+				<ul class="nav nav-pills flex-column" t-if="gardes">
+					<t t-if="gardes">
+						<div>
+							<strong>
+								Garde
+							</strong>
+						</div>
+					</t>
+					<div class="sh_scroll_bar">
+						<t t-if="gardes" t-foreach="gardes" t-as="garde">
+							<li class="nav-item" >
+                                <div class="nav nav-pills flex-column" style='margin-bottom:0;'>
+                                    <div class="nav-item" style='margin-bottom:0 !important;'>
+                                        <label t-attf-class="nav-link#{' active' if garde.id in garde_set else ''}" >
+                                            <input class='sh_product_garde_input' type="checkbox" name="garde" t-att-value="'%s' % (garde.id)" t-att-checked="'checked' if garde.id in garde_set else None" />
+                                            <span class='sh_product_garde_title font-weight-normal' t-esc="garde.name" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+						</t>
+					</div>
+				</ul>
+        </xpath>
+    </template> -->
+    
+    <!-- Engine Attribute -->
+    <!-- <template id="sh_motorcycle_frontend_engine_attribute_filters" inherit_id="website_sale.products_attributes" active="False" customize_show="True" name="Display Engine Attribute">
+        <xpath expr="//form[hasclass('js_attributes')]" position="inside">
+			
+				<ul class="nav nav-pills flex-column" t-if="engines">
+					<t t-if="engines">
+						<div>
+							<strong>
+								Engine
+							</strong>
+						</div>
+					</t>
+					<div class="sh_scroll_bar">
+						<t t-if="engines" t-foreach="engines" t-as="engine">
+							<li class="nav-item" >
+                                <div class="nav nav-pills flex-column" style='margin-bottom:0;'>
+                                    <div class="nav-item" style='margin-bottom:0 !important;'>
+                                        <label t-attf-class="nav-link#{' active' if engine.id in engine_set else ''}" style='cursor:pointer;'>
+                                            <input class='sh_product_engine_input' type="checkbox" name="engine" t-att-value="'%s' % (engine.id)" t-att-checked="'checked' if engine.id in engine_set else None" />
+                                            <span class='sh_product_engine_title font-weight-normal' t-esc="engine.name" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+						</t>
+					</div>
+				</ul>
+        </xpath>
+    </template> -->
+    
+    <!-- Transmission Attribute -->
+    <!-- <template id="sh_motorcycle_frontend_transmission_attribute_filters" inherit_id="website_sale.products_attributes" active="False" customize_show="True" name="Display Transmission Attribute">
+        <xpath expr="//form[hasclass('js_attributes')]" position="inside">
+			
+				<ul class="nav nav-pills flex-column" t-if="transmissions">
+					<t t-if="transmissions">
+						<div>
+							<strong>
+								Transmission
+							</strong>
+						</div>
+					</t>
+					<div class="sh_scroll_bar">
+						<t t-if="transmissions" t-foreach="transmissions" t-as="transmission">
+							<li class="nav-item" >
+                                <div class="nav nav-pills flex-column" style='margin-bottom:0;'>
+                                    <div class="nav-item" style='margin-bottom:0 !important;'>
+                                        <label t-attf-class="nav-link#{' active' if transmission.id in transmission_set else ''}" style='cursor:pointer;'>
+                                            <input class='sh_product_transmission_input' type="checkbox" name="transmission" t-att-value="'%s' % (transmission.id)" t-att-checked="'checked' if transmission.id in transmission_set else None" />
+                                            <span class='sh_product_transmission_title font-weight-normal' t-esc="transmission.name" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+						</t>
+					</div>
+				</ul>
+        </xpath>
+    </template> -->
+    
+    
+    <!-- Product Type Attribute -->
+    <!-- <template id="sh_motorcycle_frontend_p_type_attribute_filters" inherit_id="website_sale.products_attributes" active="False" customize_show="True" name="Display Product Type Attribute">
+        <xpath expr="//form[hasclass('js_attributes')]" position="inside">
+				<ul class="nav nav-pills flex-column" t-if="p_types">
+					<t t-if="p_types">
+						<div>
+							<strong>
+								Product Type
+							</strong>
+						</div>
+					</t>
+					<div class="sh_scroll_bar">
+						<t t-if="p_types" t-foreach="p_types" t-as="p_type">
+							<li class="nav-item" >
+                                <div class="nav nav-pills flex-column" style='margin-bottom:0;'>
+                                    <div class="nav-item" style='margin-bottom:0 !important;'>
+                                        <label t-attf-class="nav-link#{' active' if p_type.id in p_type_set else ''}" style='cursor:pointer;'>
+                                            <input class='sh_product_p_type_input' type="checkbox" name="p_type" t-att-value="'%s' % (p_type.id)" t-att-checked="'checked' if p_type.id in p_type_set else None" />
+                                            <span class='sh_product_p_type_title font-weight-normal' t-esc="p_type.name" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+						</t>
+					</div>
+				</ul>
+        </xpath>
+    </template> -->
+    
+    
+    
+</odoo>

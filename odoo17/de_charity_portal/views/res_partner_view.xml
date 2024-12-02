@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="res_partner_inherit_form" model="ir.ui.view">
+            <field name="name">res.partner.inherit.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button name="action_send_mail"
+                                string="Send Mail"
+                                type="object"
+                                class="oe_highlight"/>
+                    </header>
+                </xpath>
+                <xpath expr="//page[@name='sales_purchases']" position="attributes">
+                    <attribute name="invisible">is_charity_customer == True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="is_charity_customer"/>
+                    <field name="is_content" invisible="1"/>
+                </xpath>
+                <xpath expr="//page[last()]" position="after">
+                    <page name="vendor_verification" string="Client Info" invisible="not is_charity_customer">
+                        <group>
+                            <group>
+                                <field name="dob"/>
+                                <field name="fax_number"/>
+                                <field name="age"/>
+                                <field name="marital_status"/>
+                                <field name="primary_edu"/>
+                                <field name="college_edu"/>
+                                <field name="other_training"/>
+                                <field name="is_counselling"/>
+                                <field name="is_confirmed"/>
+                                <field name="prepare_medicine"/>
+                                <field name="referred_by"/>
+                                <field name="demonational_preference"/>
+                                <field name="religious_background"/>
+                                <field name="second_q_details"/>
+                                <field name="fourth_q_details"/>
+                            </group>
+                            <group>
+                                <field name="occupation"/>
+                                <field name="sex"/>
+                                <field name="height"/>
+                                <field name="physical_health_rate"/>
+                                <field name="high_school_edu"/>
+                                <field name="university_edu"/>
+                                <field name="emotional_upset"/>
+                                <field name="is_baptized"/>
+                                <field name="is_received"/>
+                                <field name="what"/>
+                                <field name="referred_by_of"/>
+                                <field name="first_q_details"/>
+                                <field name="third_q_details"/>
+                                <field name="fifth_q_details"/>
+                            </group>
+                        </group>
+                        <div class="row pt8">
+                            <div class="col-6">
+                                <label for="spouse_name"/>
+                                <field name="spouse_name"/>
+                            </div>
+                            <div class="col-6">
+                                <label for="spouse_address"/>
+                                <field name="spouse_address"/>
+                            </div>
+                        </div>
+                        <div class="row pt8">
+                            <div class="col-4">
+                                <label for="spouse_phone"/>
+                                <field name="spouse_phone"/>
+                            </div>
+                            <div class="col-4">
+                                <label for="spouse_occupation"/>
+                                <field name="spouse_occupation"/>
+                            </div>
+                            <div class="col-4">
+                                <label for="spouse_mobile"/>
+                                <field name="spouse_mobile"/>
+                            </div>
+                        </div>
+                        <div class="row pt8 pb8">
+                            <div class="col-4">
+                                <label for="spouse_dom"/>
+                                <field name="spouse_dom"/>
+                            </div>
+                            <div class="col-4">
+                                <label for="broken_by_divorce"/>
+                                <field name="broken_by_divorce"/>
+                            </div>
+                            <div class="col-4">
+                                <label for="death"/>
+                                <field name="death"/>
+                            </div>
+                        </div>
+
+
+                        <label for="part_illnesses"/>
+                        <field name="part_illnesses"/>
+                        <label for="major_change_life"/>
+                        <field name="major_change_life"/>
+                        <label for="partner_signature"/>
+                        <field name="partner_signature" widget="image"/>
+                    </page>
+
+                    <page name="vendor_personality_verification" string="Personality Info"
+                          invisible="not is_charity_customer">
+
+                        <h6>Captain</h6>
+                        <hr></hr>
+                        <field name="the_captain_ids" string="" readonly="True">
+                            <tree>
+                                <field name="name"/>
+                                <field name="value" sum="value"/>
+                            </tree>
+                        </field>
+
+                        <h6>Social Director</h6>
+                        <hr></hr>
+                        <field name="the_social_director_ids" string="" readonly="True">
+                            <tree>
+                                <field name="name"/>
+                                <field name="value" sum="value"/>
+                            </tree>
+                        </field>
+
+                        <h6>Steward</h6>
+                        <hr></hr>
+
+                        <field name="the_steward_ids" string="" readonly="True">
+                            <tree>
+                                <field name="name"/>
+                                <field name="value" sum="value"/>
+                            </tree>
+                        </field>
+
+                        <h6>Navigator</h6>
+                        <hr></hr>
+                        <field name="the_navigator_ids" string="" nolable="1" readonly="1">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="value" sum="value"/>
+                            </tree>
+                        </field>
+                    </page>
+
+                    <page name="vendor_children_details" string="Children" invisible="not is_charity_customer">
+                        <group string="Children">
+                            <field name="children_details_ids" string="">
+                                <tree editable="bottom">
+                                    <field name="child_name"/>
+                                    <field name="child_age"/>
+                                    <field name="child_living"/>
+                                    <field name="child_edu"/>
+                                    <field name="child_marital"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+        <menuitem id="main_menu_charitys" name="Charity"/>
+
+
+        <record id="action_contacts_charity" model="ir.actions.act_window">
+            <field name="name">Charity Contacts</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,tree,form,activity</field>
+            <field name="search_view_id" ref="base.view_res_partner_filter"/>
+            <field name="context">{'default_is_charity_customer': True}</field>
+            <field name="domain">[('is_charity_customer','=',True)]</field>
+        </record>
+
+        <menuitem id="sub_menu_charity"
+                  action="action_contacts_charity"
+                  name="Charity"
+                  parent="main_menu_charitys"
+        />
+
+
+    </data>
+</odoo>

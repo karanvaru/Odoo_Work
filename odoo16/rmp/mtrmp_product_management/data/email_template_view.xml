@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <record id="critical_stock_product_mail_template" model="mail.template">
+            <field name="name">Critical Stock Email Template</field>
+            <field name="model_id" ref="stock.model_stock_warehouse"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="email_from">{{object.company_id.email}}</field>
+            <field name="email_to">{{ctx.get('manager')}}</field>
+            <field name="subject">Critical Product</field>
+            <field name="body_html" type="html">
+                <div>
+                    Below list of Critical Product Stock
+                    <br/>
+                    <t t-foreach="ctx.get('products')" t-as="line">
+                        <t t-out="line.name or ''"/>
+                        :
+                        <t t-out="line.virtual_available or ''"/>
+                        <br/>
+                    </t>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_pre_alert,wizard.pre.alert,model_wizard_pre_alert,base.group_user,1,1,1,1
+access_freight_bill_entry,freight.bill.entry,model_freight_bill_entry,base.group_user,1,1,1,1
+access_customs_restrictions,customs.restrictions,model_customs_restrictions,base.group_user,1,1,1,1
+access_duty_exceptions,duty.exceptions,model_duty_exceptions,base.group_user,1,1,1,1
+access_custom_clearance_wizard,custom.clearance.wizard,model_custom_clearance_wizard,base.group_user,1,1,1,1
+access_detailed_operations_line,detailed.operations.line,model_detailed_operations_line,base.group_user,1,1,1,1
+access_custom_clear_wizard,custom.clear.wizard,model_custom_clear_wizard,base.group_user,1,1,1,1
+access_product_hs_codes,product.hs.codes,model_product_hs_codes,base.group_user,1,1,1,1
+access_product_cat,product.cat,model_product_cat,base.group_user,1,1,1,1
+access_product_line,product.line,model_product_line,base.group_user,1,1,1,1
+access_product_model,product.model,model_product_model,base.group_user,1,1,1,1
+access_product_family_user,reddot_wms.product.family,model_product_family,base.group_user,1,1,1,1
+access_product_group_user,reddot_wms.product.group,model_product_group,base.group_user,1,1,1,1
+customs_clearance_wizard,customs.clearance.wizard,model_customs_clearance_wizard,base.group_user,1,1,1,1

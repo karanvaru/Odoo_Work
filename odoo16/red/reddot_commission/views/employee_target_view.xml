@@ -1,0 +1,102 @@
+<odoo>
+    <data>
+        <record id="view_employee_target_form" model="ir.ui.view">
+            <field name="name">view.employee.target.form</field>
+            <field name="model">employee.target</field>
+            <field name="arch" type="xml">
+                <form string="Employee Target">
+                    <header>
+                        <button name="action_confirm" class="btn-primary"
+                                attrs="{'invisible': [('state', 'not in', ['draft'])]}" type="object"
+                                string="Approve"/>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                 <label for="start_year" string="Start Period"/>
+                                 <div class="o_row">
+                                      <field name="start_month" required="True" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                     <field name="start_year"  required="True" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                 </div>
+                                <field name="start_date" invisible="True"/>
+                                 <label for="end_year"  string="End Period"/>
+                                 <div class="o_row">
+                                     <field name="end_month" required="True" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                     <field name="end_year"  required="True" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                 </div>
+                                <field name="end_date" invisible="True"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="user_id"/>
+                                <field name="threshold_id"/>
+                                <field name="target_type" widget="radio" invisible="True"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Lines">
+                                <field name="line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree string="Lines" editable="bottom" >
+                                        <field name="user_id"/>
+                                        <field name="currency_id" option="hide"/>
+                                        <field name="company_id" option="show"/>
+                                        <field name="business_unit_id" option="show"/>
+                                        <field name="bu_group_id" option="show"/>
+                                        <field name="country_id" option="show"/>
+                                        <field name="country_group_id" option="show"/>
+                                        <field name="target_revenue"
+                                        	sum="target_revenue"
+                                        	widget='monetary'
+                                        	options="{'currency_field': 'currency_id'}"
+                                        	attrs="{'column_invisible': [('parent.target_type', '!=', 'revenue_gp')]}"/>
+                                        <field name="target_gross_profit"
+                                        	sum="target_gross_profit"
+                                        	widget='monetary'
+                                        	options="{'currency_field': 'currency_id'}"
+                                        	attrs="{'column_invisible': [('parent.target_type', '!=', 'revenue_gp')]}"/>
+                                        <field name="target_breadth_count"
+                                        	sum="target_breadth_count"
+                                        	attrs="{'column_invisible': [('parent.target_type', '!=', 'breadth')]}"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" colspan="4" widget="mail_thread" nolabel="1"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="view_employee_target_tree" model="ir.ui.view">
+            <field name="name">view.employee.target.tree</field>
+            <field name="model">employee.target</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Targets">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_employee_target_revenue_gp" model="ir.actions.act_window">
+            <field name="name">Employee Revenue/GP Targets</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.target</field>
+            <field name="context">{'default_target_type': 'revenue_gp'}</field>
+            <field name="domain">[('target_type', '=', 'revenue_gp')]</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_employee_target_breadth" model="ir.actions.act_window">
+            <field name="name">Employee Breadth Targets</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.target</field>
+            <field name="context">{'default_target_type': 'breadth'}</field>
+            <field name="domain">[('target_type', '=', 'breadth')]</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

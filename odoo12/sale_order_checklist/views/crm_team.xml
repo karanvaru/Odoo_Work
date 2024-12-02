@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="crm_team_view_form_checklist" model="ir.ui.view">
+        <field name="name">crm.team.form.checklist</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sale.crm_team_salesteams_view_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Check List">
+                    <field name="check_line_ids">
+                        <tree editable="bottom">
+                            <field name="state"/>
+                            <field name="name"/>
+                            <field name="group_ids" widget="many2many_tags"/>
+                            <field name="should_be_reset"/>
+                            <field name="color_sel"/>
+                        </tree>
+                    </field>
+                    <label for="no_stages_ids"/>
+                    <field name="no_stages_ids" context="{'default_name': 'Tech'}">
+                        <tree editable="bottom">
+                            <field name="state"/>
+                            <field name="name" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>

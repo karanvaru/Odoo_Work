@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><data>
+
+    <record model="ir.ui.view" id="asterisk_base_sip_peer_trunk_list">
+        <field name="name">asterisk sip peer trunks</field>
+        <field name="model">asterisk_base_sip.peer</field>
+        <field name="inherit_id" ref="asterisk_base_sip_peer_list"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+          <data>
+            <field name="name" position="after">
+              <field name="template"/>
+              <field name="context"/>
+              <field name="route_groups" widget="many2many_tags" string="Routes"/>
+              <field name="host"/>
+              <field name="note"/>
+            </field>            
+          </data>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="asterisk_base_sip_peer_trunk_form">
+        <field name="name">asterisk sip peer trunk form</field>
+        <field name="model">asterisk_base_sip.peer</field>
+        <field name="inherit_id" ref="asterisk_base_sip_peer_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+          <data>
+            <xpath expr="//div[@name='title']" position="after">
+              <div name="title" class="oe_title">
+                <h1 class="o_row row no-gutters d-flex">
+                  <div class="col">
+                    <div class="o_row">
+                      <label for="name"/>
+                      <field name="name" class="oe_online" placeholder="SIP peer name..."/>
+                      <span class="oe_grey">at</span>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="o_row">
+                      <label for="server" class="oe_grey oe_edit_only"/>
+                      <field name="server" options="{'no_create': '1'}"/>
+                    </div>
+                  </div>
+                </h1>
+              </div>              
+              <div class="oe_right">
+                <label for="only_changed"/>
+                <field name="only_changed" widget="boolean_toggle"/>
+              </div>
+              <div class="o_row">
+                <div class="col">
+                  <label for="route_groups" class="oe_edit_only"/>
+                  <field name="route_groups" class="oe_online" widget="many2many_tags"/>
+                </div>
+                <div class="col">
+                  <label for="template" class="oe_edit_only"/>
+                  <field name="template"/>                  
+                </div>
+              </div>
+              <div class="o_row">
+                <group>
+                  <field name="note" class="oe_online"/>
+                </group>
+              </div>
+              <field name="peer_type" invisible="1"/>
+              <notebook>
+                <page string="Basic Settings">
+                  <group>
+                    <group string="Main">
+                        <field name="host" required="1"/>
+                        <field name="secret" required="1"/>
+                        <field name="context" required="0"/>
+                        <field name="callerid" attrs="{'invisible': [('only_changed', '=', True), ('callerid', '=', False)]}"/>
+                        <field name="insecure" attrs="{'invisible': [('only_changed', '=', True), ('insecure', '=', False)]}"/>
+                        <field name="fromdomain" attrs="{'invisible': [('only_changed', '=', True), ('fromdomain', '=', False)]}"/>
+                        <field name="fromuser" attrs="{'invisible': [('only_changed', '=', True), ('fromuser', '=', False)]}"/>
+                        <field name="defaultuser" attrs="{'invisible': [('only_changed', '=', True), ('defaultuser', '=', False)]}"/>
+                        <field name="callbackextension" attrs="{'invisible': [('only_changed', '=', True), ('callbackextension', '=', False)]}"/>
+                        <field name="callcounter" attrs="{'invisible': [('only_changed', '=', True), ('callcounter', '=', False)]}"/>
+                        <field name="outboundproxy" attrs="{'invisible': [('only_changed', '=', True), ('outboundproxy', '=', False)]}"/>
+                        <field name="busylevel" attrs="{'invisible': [('only_changed', '=', True), ('busylevel', '=', False)]}"/>
+                        <field name="trustrpid" attrs="{'invisible': [('only_changed', '=', True), ('trustrpid', '=', False)]}"/>
+                        <field name="remotesecret" attrs="{'invisible': [('only_changed', '=', True), ('remotesecret', '=', False)]}"/>
+                        <field name="parkinglot" attrs="{'invisible': [('only_changed', '=', True), ('parkinglot', '=', False)]}"/>
+                    </group>
+                    <group string="Media">
+                      <field name="dtmfmode" attrs="{'invisible': [('only_changed', '=', True), ('dtmfmode', '=', False)]}"/>
+                      <field name="allow" attrs="{'invisible': [('only_changed', '=', True), ('allow', '=', False)]}"/>
+                      <field name="disallow" attrs="{'invisible': [('only_changed', '=', True), ('disallow', '=', False)]}"/>
+                      <field name="nat" attrs="{'invisible': [('only_changed', '=', True), ('nat', '=', False)]}"/>
+                      <field name="qualify" attrs="{'invisible': [('only_changed', '=', True), ('qualify', '=', False)]}"/>
+                      <field name="qualifyfreq" attrs="{'invisible': [('only_changed', '=', True), ('qualifyfreq', '=', False)]}"/>
+                      <field name="directmedia" attrs="{'invisible': [('only_changed', '=', True), ('directmedia', '=', False)]}"/>
+                      <field name="canreinvite" attrs="{'invisible': [('only_changed', '=', True), ('canreinvite', '=', False)]}"/>
+                      <field name="videosupport" attrs="{'invisible': [('only_changed', '=', True), ('videosupport', '=', False)]}"/>
+                      <field name="maxcallbitrate" attrs="{'invisible': [('only_changed', '=', True), ('maxcallbitrate', '=', False)]}"/>
+                      <field name="rtpkeepalive" attrs="{'invisible': [('only_changed', '=', True), ('rtpkeepalive', '=', False)]}"/>
+                    </group>
+                  </group>
+                  <group name="acl" string="Access Control Lists">
+                    <group string="permit">
+                      <field name="permit" attrs="{'invisible': [('only_changed', '=', True), ('permit', '=', False)]}"/>
+                    </group>
+                    <group string="Deny">
+                        <field name="deny" attrs="{'invisible': [('only_changed', '=', True), ('deny', '=', False)]}"/>
+                    </group>
+                  </group>
+                </page>
+                <page string="Advanced Settings">
+                  <group>
+                    <group>
+                      <field name="setvar" attrs="{'invisible': [('only_changed', '=', True), ('setvar', '=', False)]}"/>
+                      <field name="amaflags" attrs="{'invisible': [('only_changed', '=', True), ('amaflags', '=', False)]}"/>                      
+                      <field name="rtptimeout" attrs="{'invisible': [('only_changed', '=', True), ('rtptimeout', '=', False)]}"/>
+                      <field name="rtpholdtimeout" attrs="{'invisible': [('only_changed', '=', True), ('rtpholdtimeout', '=', False)]}"/>
+                      <field name="language" attrs="{'invisible': [('only_changed', '=', True), ('rtpholdtimeout', '=', False)]}"/>
+                      <field name="transport" attrs="{'invisible': [('only_changed', '=', True), ('transport', '=', False)]}"/>
+                      <field name="progressinband" attrs="{'invisible': [('only_changed', '=', True), ('progressinband', '=', False)]}"/>
+                      <field name="promiscredir" attrs="{'invisible': [('only_changed', '=', True), ('promiscredir', '=', False)]}"/>
+                      <field name="allowoverlap" attrs="{'invisible': [('only_changed', '=', True), ('allowoverlap', '=', False)]}"/>
+                      <field name="allowsubscribe" attrs="{'invisible': [('only_changed', '=', True), ('allowsubscribe', '=', False)]}"/>
+                      <field name="rfc2833compensate" attrs="{'invisible': [('only_changed', '=', True), ('rfc2833compensate', '=', False)]}"/>
+                      <field name="t38pt_usertpsource" attrs="{'invisible': [('only_changed', '=', True), ('t38pt_usertpsource', '=', False)]}"/>
+                      <field name="defaultip" attrs="{'invisible': [('only_changed', '=', True), ('defaultip', '=', False)]}"/>
+                    </group>
+                    <group>
+                      <field name="srvlookup" attrs="{'invisible': [('only_changed', '=', True), ('srvlookup', '=', False)]}"/>
+                      <field name="sendrpid" attrs="{'invisible': [('only_changed', '=', True), ('sendrpid', '=', False)]}"/>
+                      <field name="timert1" attrs="{'invisible': [('only_changed', '=', True), ('timert1', '=', False)]}"/>
+                      <field name="timerb" attrs="{'invisible': [('only_changed', '=', True), ('timerb', '=', False)]}"/>
+                      <field name="usereqphone" attrs="{'invisible': [('only_changed', '=', True), ('usereqphone', '=', False)]}"/>
+                      <field name="textsupport" attrs="{'invisible': [('only_changed', '=', True), ('textsupport', '=', False)]}"/>
+                      <field name="faxdetect" attrs="{'invisible': [('only_changed', '=', True), ('faxdetect', '=', False)]}"/>
+                      <field name="callingpres" attrs="{'invisible': [('only_changed', '=', True), ('callingpres', '=', False)]}"/>
+                      <field name="mohinterpret" attrs="{'invisible': [('only_changed', '=', True), ('mohinterpret', '=', False)]}"/>
+                      <field name="mohsuggest" attrs="{'invisible': [('only_changed', '=', True), ('mohsuggest', '=', False)]}"/>
+                      <field name="autoframing" attrs="{'invisible': [('only_changed', '=', True), ('autoframing', '=', False)]}"/>
+                      <field name="ignoresdpversion" attrs="{'invisible': [('only_changed', '=', True), ('ignoresdpversion', '=', False)]}"/>
+                      <field name="allowtransfer" attrs="{'invisible': [('only_changed', '=', True), ('allowtransfer', '=', False)]}"/>
+                      <field name="supportpath" attrs="{'invisible': [('only_changed', '=', True), ('supportpath', '=', False)]}"/>
+                    </group>
+                  </group>
+                </page>
+              </notebook>
+            </xpath>
+          </data>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="asterisk_base_sip_peer_trunk_action">
+        <field name="name">Trunks</field>
+        <field name="res_model">asterisk_base_sip.peer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+          (0, 0, {'view_mode': 'tree', 'view_id': ref('asterisk_base_sip_peer_trunk_list')}),
+          (0, 0, {'view_mode': 'form', 'view_id': ref('asterisk_base_sip_peer_trunk_form')})]"/>
+        <field name="domain">[('peer_type', '=', 'trunk')]</field>
+        <field name="context">{
+            'default_peer_type': 'trunk',
+            'default_type': 'friend',
+            'default_nat': 'no',
+            }
+        </field>
+    </record>
+
+    <menuitem name="Trunks" parent="asterisk_base_sip_menu" sequence="200"
+              action="asterisk_base_sip_peer_trunk_action" id="asterisk_base_sip_peer_trunk_menu"/>
+
+
+</data></odoo>

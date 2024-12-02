@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+	<t t-inherit="account.sectionAndNoteListRenderer" t-inherit-mode="extension" owl="1">
+        <xpath expr="//table" position="before">
+    		<table t-if="this.curretModelName == 'purchase.order'">
+    			<tr>
+    				<td>
+	    				<label style="margin-top:18px;font-weight: bold; margin-left: 644px; margin-bottom: 16px;">Search :</label>
+	    			</td>
+	    			<td>
+	    				<input class="purchase_line_filter" type="text" id="purchase_line_input" t-on-input="(ev) => this.purchase_line_input(ev)" t-ref="searchInputpurchaseline" placeholder="Search Purchase lines..." style="width: 120%; margin-left: 29px; height: 30px;"/>
+	    			</td>
+    			</tr>
+    		</table>
+        </xpath>
+    </t>
+</templates>

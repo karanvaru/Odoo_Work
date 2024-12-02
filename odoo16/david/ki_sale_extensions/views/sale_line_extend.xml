@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_extend_view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.extend.view_order_form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='company_id']"
+                   position="after">
+                <button name="%(ki_sale_extensions.product_view_specification_wizard_action)d" type="action"
+                        string="View Specs" class="btn-primary"/>
+            </xpath>
+            <xpath expr="//field[@name='product_template_id']" position="before">
+                <field name="item_code"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

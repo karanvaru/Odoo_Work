@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="attendance_rules_config_tree_view" model="ir.ui.view">
+        <field name="name">Attendance Rules</field>
+        <field name="model">attendance.rule.config</field>
+        <field name="arch" type="xml">
+            <tree string="Attendance Rules">
+                <field name="name"/>
+                <field name="start_time" widget="float_time"/>
+                <field name="end_time" widget="float_time"/>
+                <field name="status_color" widget="color_picker"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="employee_send_mail_cron" model="ir.cron">
+        <field name="name">Employee Send Mail Cron</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="code">model._send_mail()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+    </record>
+
+
+    <record id="employee_email_template" model="mail.template">
+        <field name="name">Employee send Email</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="email_from">{{object.company_id.email}}</field>
+        <field name="email_to">{{object.work_email}}</field>
+        <field name="subject">Attendance Summary For {{object.name}} Of {{object.current_month}}-{{object.current_year}}</field>
+        <field name="body_html" type="html">
+            <div style="font-size: 13px; margin: 0px; padding: 0px;">
+                Hello
+                <t t-out="object.name"/>,
+                <br/>
+
+                <br/>
+                Your Attendance Summary as Below For Month Of  <t t-out="object.current_month"/>-<t t-out="object.current_year"/>:
+                <br/>
+                <br/>
+                <table class="table table-bordered table-sm">
+                    <tr>
+                        <th>#</th>
+                        <th>Type</th>
+                        <th>Count</th>
+                    </tr>
+                    <t t-set="lines" t-value="ctx.get('dict')"/>
+                    <t t-set="i" t-value="1"/>
+                    <tr t-foreach="lines" t-as="l">
+                        <td style="text-align:right">
+                            <t t-out="i"/>
+                        </td>
+                        <td>
+                            <t t-out="l"/>
+                        </td>
+                        <td style="text-align:right">
+                            <t t-out="lines[l]"/>
+                        </td>
+                        <t t-set="i" t-value="i+1"/>
+                    </tr>
+                </table><br/>
+                Thank You, <br/>
+                <t t-out="object.company_id.name"/>
+            </div>
+        </field>
+    </record>
+
+
+
+        <record id="cron_auto_generate_leave_attendance" model="ir.cron">
+        <field name="name">Auto Generate Leave From Attendance</field>
+        <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_auto_generate_leave_from_attendance()</field>
+        <field name="interval_number">30</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <record model="ir.ui.view" id="attendance_rules_config_form_view">
+        <field name="name">Attendance Rules</field>
+        <field name="model">attendance.rule.config</field>
+        <field name="arch" type="xml">
+            <form string="Attendance Rules">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id"/>
+                        </group>
+                        <group>
+                            <field name="start_time" widget="float_time"/>
+                            <field name="end_time" widget="float_time"/>
+                            <field name="status_color" widget="color_picker"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <field name="description"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="attendance_rules_config_search_view" model="ir.ui.view">
+        <field name="name">Attendance Rules</field>
+        <field name="model">attendance.rule.config</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="filter_archived" string="Archived" domain="[('active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="attendance_rules_action" model="ir.actions.act_window">
+        <field name="name">Attendance Rules</field>
+        <field name="res_model">attendance.rule.config</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+
+    <menuitem id="attendance_rules_menu"
+              name="Attendance Rules"
+              action="attendance_rules_action"
+              parent="hr_attendance.menu_hr_attendance_settings"/>
+
+    <record id="view_attendance_tree_status" model="ir.ui.view">
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+            <field name="worked_hours" position="after">
+                <field
+                        name="status_id"
+                        optional="show"
+                        widget="badge"/>
+
+
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

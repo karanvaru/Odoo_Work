@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- <template id="rdp_report_gatepass">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <h4>Gate Pass</h4>
+        </t>
+    </t>
+    </template> -->
+
+    <template id="rdp_gatepass_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet"/>
+                    <div class="page">
+
+
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                               style="font-family: 'Roboto', sans-serif; font-size:15px; line-height:20px; max-width:800px;">
+                            <tr>
+                                <td width="65%">
+                                    <h1 style="font-weight:100 !important; color:#555; font-size:45px; line-height:45px;">
+                                        hello
+                                        <span style="font-style:italic; color:#C00;">!</span>
+                                        <br/>
+
+                                        <span>this is your Gate Pass
+                                            <div style="font-size:18px; font-weight:bold; float:right; margin-right:138px; margin-top:-10px;">
+                                                #
+                                                Office Copy -
+                                                <span t-field="o.name"/>
+                                            </div>
+
+                                        </span>
+
+
+                                    </h1>
+                                </td>
+                                <td width="35%" valign="top">
+
+                                    <div class="col-auto mw-100 " name="gatepass_confirmed_date">
+                                        <strong>Date:</strong>
+                                        <t t-if="o.confirmed_date">
+                                            <span class="m-0" t-field="o.confirmed_date"/>
+                                        </t>
+                                    </div>
+
+
+                                    <div class="col-auto mw-100 " name="description">
+                                        <strong>SO/PO Reference:</strong>
+                                        <t t-if="o.source_document">
+                                            <span class="m-0" t-field="o.source_document"/>
+                                        </t>
+                                    </div>
+
+                                    <div class="col-auto mw-100 " name="description">
+                                        <strong>In/Out Reference:</strong>
+                                        <t t-if="o.picking">
+                                            <span class="m-0" t-field="o.picking"/>
+                                        </t>
+                                    </div>
+
+                                    <div class="col-auto mw-100 " name="description">
+                                        <strong>Invoice Reference:</strong>
+                                        <t t-if="o.invoice_number">
+                                            <span class="m-0" t-field="o.invoice_number"/>
+                                        </t>
+                                    </div>
+
+                                    <div class="col-auto mw-100 " name="number_of_shipping_boxes">
+                                        <strong>Number Of Boxes:</strong>
+                                        <t t-if="o.number_of_shipping_boxes">
+                                            <span class="m-0" t-field="o.number_of_shipping_boxes"/>
+                                        </t>
+                                    </div>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                           style="margin:10px 0;">
+                                        <tr>
+                                            <td width="50%">
+                                                <div style="padding:5px;">
+                                                    <div style="background-color:#dfdfdf;  min-height:150px; width:98%; margin:10px auto;  padding:10px; border-radius:5px;">
+                                                        <strong>From Address:</strong>
+                                                        <br/>
+                                                        <!--<address t-field="o.company_id" t-options="{'widget':'base', 'fields':['name', 'address','mobile'],'separator':', ', 'no_marker':True}"/>-->
+                                                        <span t-field="o.company_id.name"/>
+                                                        <br/>
+                                                        <span t-field="o.company_id.street"/>
+                                                        <span t-field="o.company_id.street2"/>,
+                                                        <span t-field="o.company_id.city"/>,
+
+                                                        <span t-field="o.company_id.state_id.name"/>
+                                                        -
+                                                        <span t-field="o.company_id.zip"/>
+                                                        <br/>
+                                                        GST:
+                                                        <span t-field="o.partner_id.vat"/>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div style="padding:5px;" t-if="o.partner_id">
+                                                    <div style="background-color:#dfdfdf;  min-height:150px;  width:98%; margin:10px auto;  padding:10px; border-radius:5px;">
+                                                        <strong>To Address:</strong>
+                                                        <br/>
+                                                        <span t-field="o.partner_id.name"/>
+                                                        <br/>
+                                                        <span t-field="o.partner_id.street"/>
+                                                        <span t-field="o.partner_id.street2"/>,
+                                                        <span t-field="o.partner_id.city"/>,
+                                                        <span t-field="o.partner_id.state_id.name"/>
+                                                        -
+                                                        <span t-field="o.partner_id.zip"/>
+                                                        <br/>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+
+
+                                    <br/>
+                                    <br/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+
+                                    <table class="table table-sm o_main_table" name="invoice_line_table">
+                                        <thead>
+                                            <tr>
+                                                <t t-set="colspan" t-value="6"/>
+                                                <th class="text-left">
+                                                    <span>Product</span>
+                                                </th>
+                                                <th class="text-right">
+                                                    <span>Quantity</span>
+                                                </th>
+                                                <th class="text-right">
+                                                    <span>Unit Of Measurement</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="invoice_tbody">
+                                            <!--                    <t t-set="current_subtotal" t-value="0"/>-->
+
+                                            <t t-foreach="o.product_details_ids" t-as="line">
+
+                                                <tr t-att-class="'o_line_section'">
+                                                    <td name="account_invoice_line_name">
+                                                        <span t-field="line.product.name"/>
+                                                    </td>
+                                                    <td class="text-right" name="account_invoice_line_name">
+                                                        <span t-field="line.quantity"/>
+                                                    </td>
+                                                    <td class="text-right" name="account_invoice_line_name">
+                                                        <span t-field="line.unit_of_measure"/>
+                                                    </td>
+                                                </tr>
+                                                <!--                        </t>-->
+                                            </t>
+
+
+                                        </tbody>
+                                    </table>
+                                    <!--<h3>Transport Details</h3>-->
+
+                                    <br/>
+                                    <br/>
+
+                                </td>
+                            </tr>
+
+                            <!--                            <h3>Transporter Details</h3>-->
+                            <tr>
+                                <td colspan="2">
+                                    <t t-if="o.gate_pass_line_ids">
+                                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                                            <thead>
+                                                <tr>
+                                                    <t t-set="colspan" t-value="6"/>
+                                                    <th class="text-left">
+                                                        <span>Transport Name</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Docket Date</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Docket Number</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Person Name</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Mobile Number</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="invoice_tbody">
+                                                <t t-foreach="o.gate_pass_line_ids" t-as="p">
+                                                    <tr t-att-class="'o_line_section'">
+                                                        <t t-if="p.doc_name">
+                                                            <td>
+                                                                <span t-field="p.doc_name"/>
+                                                            </td>
+                                                        </t>
+                                                        <t t-if="p.partner_vehicle_id">
+                                                            <td>
+                                                                <span t-field="p.partner_vehicle_id.name"/>
+                                                            </td>
+                                                        </t>
+                                                        <td class="text-right">
+                                                            <span t-field="p.doc_date"/>
+                                                            <!--<span t-esc="pass.driver_name"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="p.alternative_number"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="p.p_name"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="p.phone_number"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                        <br/>
+                                        <br/>
+                                    </t>
+                                    <t t-if="o.transport_ids">
+                                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                                            <thead>
+                                                <tr>
+                                                    <t t-set="colspan" t-value="6"/>
+                                                    <th class="text-left">
+                                                        <span>Transporter Name</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Date</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Vehicle Number</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Person Name</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Mobile Number</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="invoice_tbody">
+                                                <t t-foreach="o.transport_ids" t-as="v">
+                                                    <tr t-att-class="'o_line_section'">
+                                                        <t t-if="v.transport_name">
+                                                            <td>
+                                                                <span t-field="v.transport_name"/>
+
+                                                            </td>
+                                                        </t>
+                                                        <t t-if="v.partner_transport_id">
+                                                            <td>
+                                                                <span t-field="v.partner_transport_id.name"/>
+
+                                                            </td>
+                                                        </t>
+                                                        <td class="text-right">
+                                                            <span t-field="v.date"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="v.transport_number"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="v.person_name"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="v.ph_number"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </t>
+                                    <table class="table table-sm table-bordered" style="border-color:#111">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    <strong>Issuer Signature</strong>
+                                                </th>
+                                                <th class="text-center">
+                                                    <strong>Receiver Signature</strong>
+                                                </th>
+                                                <th class="text-center">
+                                                    <strong>Gatekeeper Signature</strong>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="color: #D8F0DA  background: transparent">
+                                            <tr align="center" style="color:black;height: 70px;">
+                                                <td class="text-center">
+                                                    <span/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div style="page-break-before:always">&amp;nbsp;</div>
+
+                        <!--                        <t t-if="o.confirmed_date">-->
+                        <!--                            <div style="font-size:13px; font-weight:bold;">Date:-->
+                        <!--                                <span t-esc="o.confirmed_date"/>-->
+                        <!--                            </div>-->
+                        <!--                        </t>-->
+
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                               style="font-family: 'Roboto', sans-serif; font-size:15px; line-height:20px; max-width:800px;">
+                            <tr>
+                                <td width="65%">
+                                    <h1 style="font-weight:100 !important; color:#555; font-size:45px; line-height:45px;">
+                                        hello
+                                        <span style="font-style:italic; color:#C00;">!</span>
+                                        <br/>
+
+                                        <span>this is your Gate Pass
+                                            <div style="font-size:18px; font-weight:bold; float:right; margin-right:138px; margin-top:-10px;">
+                                                #
+                                                Gatekeeper Copy -
+                                                <span t-field="o.name"/>
+                                            </div>
+
+                                        </span>
+
+                                    </h1>
+                                </td>
+                                <td width="35%" valign="top">
+
+                                    <div class="col-auto mw-100 " name="gatepass_confirmed_date">
+                                        <strong>Date:</strong>
+                                        <t t-if="o.confirmed_date">
+                                            <span class="m-0" t-field="o.confirmed_date"/>
+                                        </t>
+                                    </div>
+
+
+                                    <div class="col-auto mw-100 " name="description">
+                                        <strong>SO/PO Reference:</strong>
+                                        <t t-if="o.source_document">
+                                            <span class="m-0" t-field="o.source_document"/>
+                                        </t>
+                                    </div>
+
+                                    <div class="col-auto mw-100 " name="description">
+                                        <strong>In/Out Reference:</strong>
+                                        <t t-if="o.picking">
+                                            <span class="m-0" t-field="o.picking"/>
+                                        </t>
+                                    </div>
+
+
+                                    <div class="col-auto mw-100 " name="description">
+                                        <strong>Invoice Reference:</strong>
+                                        <t t-if="o.invoice_number">
+                                            <span class="m-0" t-field="o.invoice_number"/>
+                                        </t>
+                                    </div>
+
+                                    <div class="col-auto mw-100 " name="number_of_shipping_boxes">
+                                        <strong>Number Of Boxes:</strong>
+                                        <t t-if="o.number_of_shipping_boxes">
+                                            <span class="m-0" t-field="o.number_of_shipping_boxes"/>
+                                        </t>
+                                    </div>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                           style="margin:10px 0;">
+                                        <tr>
+                                            <td width="50%">
+                                                <div style="padding:5px;">
+                                                    <div style="background-color:#dfdfdf;  min-height:150px; width:98%; margin:10px auto;  padding:10px; border-radius:5px;">
+                                                        <strong>From address:</strong>
+                                                        <br/>
+                                                        <!--<address t-field="o.company_id" t-options="{'widget':'base', 'fields':['name', 'address','mobile'],'separator':', ', 'no_marker':True}"/>-->
+                                                        <span t-field="o.company_id.name"/>
+                                                        <br/>
+                                                        <span t-field="o.company_id.street"/>
+                                                        <span t-field="o.company_id.street2"/>,
+                                                        <span t-field="o.company_id.city"/>,
+
+                                                        <span t-field="o.company_id.state_id.name"/>
+                                                        -
+                                                        <span t-field="o.company_id.zip"/>
+                                                        <br/>
+                                                        GST:
+                                                        <span t-field="o.partner_id.vat"/>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div style="padding:5px;" t-if="o.partner_id">
+                                                    <div style="background-color:#dfdfdf;  min-height:150px;  width:98%; margin:10px auto;  padding:10px; border-radius:5px;">
+                                                        <strong>To Address:</strong>
+                                                        <br/>
+                                                        <span t-field="o.partner_id.name"/>
+                                                        <br/>
+                                                        <span t-field="o.partner_id.street"/>
+                                                        <span t-field="o.partner_id.street2"/>,
+                                                        <span t-field="o.partner_id.city"/>,
+                                                        <span t-field="o.partner_id.state_id.name"/>
+                                                        -
+                                                        <span t-field="o.partner_id.zip"/>
+                                                        <br/>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+
+
+                                    <br/>
+                                    <br/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+
+                                    <table class="table table-sm o_main_table" name="invoice_line_table">
+                                        <thead>
+                                            <tr>
+                                                <t t-set="colspan" t-value="6"/>
+                                                <th class="text-left">
+                                                    <span>Product</span>
+                                                </th>
+                                                <th class="text-right">
+                                                    <span>Quantity</span>
+                                                </th>
+                                                <th class="text-right">
+                                                    <span>Unit Of Measurement</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="invoice_tbody">
+                                            <!--                    <t t-set="current_subtotal" t-value="0"/>-->
+
+                                            <t t-foreach="o.product_details_ids" t-as="line">
+
+                                                <tr t-att-class="'o_line_section'">
+                                                    <td name="account_invoice_line_name">
+                                                        <span t-field="line.product.name"/>
+                                                    </td>
+                                                    <td class="text-right" name="account_invoice_line_name">
+                                                        <span t-field="line.quantity"/>
+                                                    </td>
+                                                    <td class="text-right" name="account_invoice_line_name">
+                                                        <span t-field="line.unit_of_measure"/>
+                                                    </td>
+                                                </tr>
+                                                <!--                        </t>-->
+                                            </t>
+
+
+                                        </tbody>
+                                    </table>
+                                    <!--<h3>Transport Details</h3>-->
+
+                                    <br/>
+                                    <br/>
+
+                                </td>
+                            </tr>
+                            <!--                            <h3>Transporter Details</h3>-->
+                            <tr>
+                                <td colspan="2">
+                                    <t t-if="o.gate_pass_line_ids">
+                                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                                            <thead>
+                                                <tr>
+                                                    <t t-set="colspan" t-value="6"/>
+                                                    <th class="text-left">
+                                                        <span>Transport Name</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Docket Date</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Docket Number</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Person Name</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Mobile Number</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="invoice_tbody">
+                                                <t t-foreach="o.gate_pass_line_ids" t-as="p">
+                                                    <tr t-att-class="'o_line_section'">
+                                                        <t t-if="p.doc_name">
+                                                            <td>
+                                                                <span t-field="p.doc_name"/>
+                                                            </td>
+                                                        </t>
+                                                        <t t-if="p.partner_vehicle_id">
+                                                            <td>
+                                                                <span t-field="p.partner_vehicle_id.name"/>
+                                                            </td>
+                                                        </t>
+                                                        <td class="text-right">
+                                                            <span t-field="p.doc_date"/>
+                                                            <!--<span t-esc="pass.driver_name"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="p.alternative_number"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="p.p_name"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="p.phone_number"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                        <br/>
+                                        <br/>
+                                    </t>
+                                    <t t-if="o.transport_ids">
+                                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                                            <thead>
+                                                <tr>
+                                                    <t t-set="colspan" t-value="6"/>
+                                                    <th class="text-left">
+                                                        <span>Transporter Name</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Date</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Vehicle Number</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Person Name</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Mobile Number</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="invoice_tbody">
+                                                <t t-foreach="o.transport_ids" t-as="v">
+                                                    <tr t-att-class="'o_line_section'">
+                                                        <t t-if="v.transport_name">
+                                                            <td>
+                                                                <span t-field="v.transport_name"/>
+
+                                                            </td>
+                                                        </t>
+                                                        <t t-if="v.partner_transport_id">
+                                                            <td>
+                                                                <span t-field="v.partner_transport_id.name"/>
+
+                                                            </td>
+                                                        </t>
+                                                        <td class="text-right">
+                                                            <span t-field="v.date"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="v.transport_number"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="v.person_name"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="v.ph_number"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </t>
+                                    <table class="table table-sm table-bordered" style="border-color:#111">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    <strong>Issuer Signature</strong>
+                                                </th>
+                                                <th class="text-center">
+                                                    <strong>Receiver Signature</strong>
+                                                </th>
+                                                <th class="text-center">
+                                                    <strong>Gatekeeper Signature</strong>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="color: #D8F0DA  background: transparent">
+                                            <tr align="center" style="color:black;height: 70px;">
+                                                <td class="text-center">
+                                                    <span/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                        <div style="page-break-before:always">&amp;nbsp;</div>
+
+
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                               style="font-family: 'Roboto', sans-serif; font-size:15px; line-height:20px; max-width:800px;">
+                            <tr>
+                                <td width="65%">
+                                    <h1 style="font-weight:100 !important; color:#555; font-size:45px; line-height:45px;">
+                                        hello
+                                        <span style="font-style:italic; color:#C00;">!</span>
+                                        <br/>
+
+                                        <span>this is your Gate Pass
+                                            <div style="font-size:18px; font-weight:bold; float:right; margin-right:138px; margin-top:-10px;">
+                                                #
+                                                Customer Copy -
+                                                <span t-field="o.name"/>
+                                            </div>
+
+                                        </span>
+
+
+                                    </h1>
+                                </td>
+                                <td width="35%" valign="top">
+
+                                    <div class="col-auto mw-100 " name="gatepass_confirmed_date">
+                                        <strong>Date:</strong>
+                                        <t t-if="o.confirmed_date">
+                                            <span class="m-0" t-field="o.confirmed_date"/>
+                                        </t>
+                                    </div>
+
+
+                                    <div class="col-auto mw-100 " name="description">
+                                        <strong>SO/PO Reference:</strong>
+                                        <t t-if="o.source_document">
+                                            <span class="m-0" t-field="o.source_document"/>
+                                        </t>
+                                    </div>
+
+                                    <div class="col-auto mw-100 " name="description">
+                                        <strong>In/Out Reference:</strong>
+                                        <t t-if="o.picking">
+                                            <span class="m-0" t-field="o.picking"/>
+                                        </t>
+                                    </div>
+
+
+                                    <div class="col-auto mw-100 " name="description">
+                                        <strong>Invoice Reference:</strong>
+                                        <t t-if="o.invoice_number">
+                                            <span class="m-0" t-field="o.invoice_number"/>
+                                        </t>
+                                    </div>
+
+                                    <div class="col-auto mw-100 " name="number_of_shipping_boxes">
+                                        <strong>Number Of Boxes:</strong>
+                                        <t t-if="o.number_of_shipping_boxes">
+                                            <span class="m-0" t-field="o.number_of_shipping_boxes"/>
+                                        </t>
+                                    </div>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                           style="margin:10px 0;">
+                                        <tr>
+                                            <td width="50%">
+                                                <div style="padding:5px;">
+                                                    <div style="background-color:#dfdfdf;  min-height:150px; width:98%; margin:10px auto;  padding:10px; border-radius:5px;">
+                                                        <strong>From Address:</strong>
+                                                        <br/>
+                                                        <!--<address t-field="o.company_id" t-options="{'widget':'base', 'fields':['name', 'address','mobile'],'separator':', ', 'no_marker':True}"/>-->
+                                                        <span t-field="o.company_id.name"/>
+                                                        <br/>
+                                                        <span t-field="o.company_id.street"/>
+                                                        <span t-field="o.company_id.street2"/>,
+                                                        <span t-field="o.company_id.city"/>,
+
+                                                        <span t-field="o.company_id.state_id.name"/>
+                                                        -
+                                                        <span t-field="o.company_id.zip"/>
+                                                        <br/>
+                                                        GST:
+                                                        <span t-field="o.partner_id.vat"/>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div style="padding:5px;" t-if="o.partner_id">
+                                                    <div style="background-color:#dfdfdf;  min-height:150px;  width:98%; margin:10px auto;  padding:10px; border-radius:5px;">
+                                                        <strong>To Address:</strong>
+                                                        <br/>
+                                                        <span t-field="o.partner_id.name"/>
+                                                        <br/>
+                                                        <span t-field="o.partner_id.street"/>
+                                                        <span t-field="o.partner_id.street2"/>,
+                                                        <span t-field="o.partner_id.city"/>,
+                                                        <span t-field="o.partner_id.state_id.name"/>
+                                                        -
+                                                        <span t-field="o.partner_id.zip"/>
+                                                        <br/>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                    <br/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+
+                                    <table class="table table-sm o_main_table" name="invoice_line_table">
+                                        <thead>
+                                            <tr>
+                                                <t t-set="colspan" t-value="6"/>
+                                                <th class="text-left">
+                                                    <span>Product</span>
+                                                </th>
+                                                <th class="text-right">
+                                                    <span>Quantity</span>
+                                                </th>
+                                                <th class="text-right">
+                                                    <span>Unit Of Measurement</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="invoice_tbody">
+                                            <!--                    <t t-set="current_subtotal" t-value="0"/>-->
+
+                                            <t t-foreach="o.product_details_ids" t-as="line">
+
+                                                <tr t-att-class="'o_line_section'">
+                                                    <td name="account_invoice_line_name">
+                                                        <span t-field="line.product.name"/>
+                                                    </td>
+                                                    <td class="text-right" name="account_invoice_line_name">
+                                                        <span t-field="line.quantity"/>
+                                                    </td>
+                                                    <td class="text-right" name="account_invoice_line_name">
+                                                        <span t-field="line.unit_of_measure"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <p>
+                                <b>Transporter Details</b>
+                            </p>
+                            <tr>
+                                <td colspan="2">
+                                    <t t-if="o.gate_pass_line_ids">
+                                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                                            <thead>
+                                                <tr>
+                                                    <t t-set="colspan" t-value="6"/>
+                                                    <th class="text-left">
+                                                        <span>Transport Name</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Docket Date</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Docket Number</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Person Name</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Mobile Number</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="invoice_tbody">
+                                                <t t-foreach="o.gate_pass_line_ids" t-as="p">
+                                                    <tr t-att-class="'o_line_section'">
+                                                        <t t-if="p.doc_name">
+                                                            <td>
+                                                                <span t-field="p.doc_name"/>
+                                                            </td>
+                                                        </t>
+                                                        <t t-if="p.partner_vehicle_id">
+                                                            <td>
+                                                                <span t-field="p.partner_vehicle_id.name"/>
+                                                            </td>
+                                                        </t>
+                                                        <td class="text-right">
+                                                            <span t-field="p.doc_date"/>
+                                                            <!--<span t-esc="pass.driver_name"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="p.alternative_number"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="p.p_name"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="p.phone_number"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                        <br/>
+                                        <br/>
+                                    </t>
+                                    <t t-if="o.transport_ids">
+                                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                                            <thead>
+                                                <tr>
+                                                    <t t-set="colspan" t-value="6"/>
+                                                    <th class="text-left">
+                                                        <span>Transporter Name</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Date</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Vehicle Number</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Person Name</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Mobile Number</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="invoice_tbody">
+                                                <t t-foreach="o.transport_ids" t-as="v">
+                                                    <tr t-att-class="'o_line_section'">
+                                                        <t t-if="v.transport_name">
+                                                            <td>
+                                                                <span t-field="v.transport_name"/>
+
+                                                            </td>
+                                                        </t>
+                                                        <t t-if="v.partner_transport_id">
+                                                            <td>
+                                                                <span t-field="v.partner_transport_id.name"/>
+
+                                                            </td>
+                                                        </t>
+                                                        <td class="text-right">
+                                                            <span t-field="v.date"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="v.transport_number"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="v.person_name"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="v.ph_number"/>
+                                                            <!--<span t-esc="pass.phone_number"/>-->
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </t>
+                                    <table class="table table-sm table-bordered" style="border-color:#111">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    <strong>Issuer Signature</strong>
+                                                </th>
+                                                <th class="text-center">
+                                                    <strong>Receiver Signature</strong>
+                                                </th>
+                                                <th class="text-center">
+                                                    <strong>Gatekeeper Signature</strong>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="color: #D8F0DA  background: transparent">
+                                            <tr align="center" style="color:black;height: 70px;">
+                                                <td class="text-center">
+                                                    <span/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

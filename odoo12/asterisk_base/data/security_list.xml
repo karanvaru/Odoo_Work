@@ -1,0 +1,45 @@
+<odoo><data noupdate="1">
+    <record id="net_192_whitelist" model="asterisk_base.access_list">
+        <field name="server" ref="asterisk_base.default_server"/>
+        <field name="address">192.168.0.0</field>
+        <field name="netmask">255.255.255.0</field>
+        <field name="address_type">net</field>
+        <field name="access_type">allow</field>        
+        <field name="comment">256 class C LANs</field>
+    </record>
+    <record id="net_172_whitelist" model="asterisk_base.access_list">
+        <field name="server" ref="asterisk_base.default_server"/>
+        <field name="address">172.16.0.0</field>
+        <field name="netmask">255.255.0.0</field>
+        <field name="address_type">net</field>
+        <field name="access_type">allow</field>        
+        <field name="comment">16 class B LANs</field>
+    </record>
+    <record id="net_10_whitelist" model="asterisk_base.access_list">
+        <field name="server" ref="asterisk_base.default_server"/>
+        <field name="address">10.0.0.0</field>
+        <field name="netmask">255.0.0.0</field>
+        <field name="address_type">net</field>
+        <field name="access_type">allow</field>        
+        <field name="comment">1 class A LAN</field>
+    </record>
+    <record id="net_all_1_blacklist" model="asterisk_base.access_list">
+        <field name="server" ref="asterisk_base.default_server"/>
+        <field name="address">0.0.0.0</field>
+        <field name="netmask">1</field>
+        <field name="address_type">net</field>
+        <field name="access_type">deny</field>
+        <field name="is_enabled" eval="False"/>
+        <field name="comment">Block 0.0.0.1 - 127.255.255.254</field>
+    </record>
+    <record id="net_all_2_blacklist" model="asterisk_base.access_list">
+        <field name="server" ref="asterisk_base.default_server"/>
+        <field name="address">128.0.0.0</field>
+        <field name="netmask">1</field>
+        <field name="address_type">net</field>
+        <field name="access_type">deny</field>
+        <field name="is_enabled" eval="False"/>
+        <field name="comment">Block 128.0.0.1 - 255.255.255.254</field>
+    </record>
+
+</data></odoo>

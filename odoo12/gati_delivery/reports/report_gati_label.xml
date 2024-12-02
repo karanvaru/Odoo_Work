@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_gati_labels">
+        <t t-call="web.basic_layout">
+            <style>
+                h4,h5,h6{
+                color: black;
+                font-family: Arial;
+                }
+            </style>
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="max-height:20px !important">
+                    <t t-set="gati_package_vals" t-value="o.carrier_id._get_package_vals(o)"/>
+                    <t t-set="page_nr" t-value="0"/>
+                    <t t-foreach="gati_package_vals" t-as="gati_package">
+                        <div>
+                            <div class="margin-left:50px;">
+                                <h1>
+                                    <strong>
+                                        GATI KWE
+                                    </strong>
+                                </h1>
+                                <div class="float-right" style="margin-top:-60px;">
+                                    <h6>
+                                        <t t-if="page_nr == 0">
+                                            <t t-set="page_nr" t-value="page_nr + 1"/>
+                                            <p>PKG <span t-esc='page_nr'/> of <span t-esc="len(gati_package_vals)"/></p>
+                                        </t>
+                                        <t t-else="">
+                                            <t t-set="page_nr" t-value="page_nr + 1"/>
+                                            <p>PKG <span t-esc='page_nr'/> of <span t-esc="len(gati_package_vals)"/></p>
+                                        </t>
+                                    </h6>
+                                    <div style="margin-top:-15px">
+                                        <h6>
+                                            <p>ACTWGT: <span t-esc="gati_package.act_weight"/> <span t-esc="o.weight_uom_id.name"/></p>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr width="100%" style="background-color:#000000;border:solid none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;"/>
+                        <div class="row">
+                            <t t-set="from_address" t-value="o.get_gati_from_and_to_address()[0]"/>
+                            <t t-set="to_address" t-value="o.get_gati_from_and_to_address()[1]"/>
+                            <div class="col-8">
+                                <div>
+                                    <strong>
+                                        FROM : <span t-esc="o.gati_from_location_code_id.gati_ou" />
+                                    </strong>
+                                </div>
+                                <div>
+                                    <div >
+                                        <span style="font-size:14px;" t-esc="from_address" t-options='{"widget": "contact", "fields": ["address","name"], "no_marker": true}'/>
+                                    </div>
+                                </div>
+                                <hr width="274px"
+                                    style="background-color:#000000;border:solid none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin-top:5px;"/>
+                                <div>
+                                    <strong>
+                                        TO : <span t-esc="o.gati_location_code_id.gati_ou" />
+                                    </strong>
+                                </div>
+                                <div>
+                                    <div style="font-size:15px;">
+                                        <span style="font-size:14px;" t-esc="to_address" t-options='{"widget": "contact", "fields": ["address","name"], "no_marker": true}'/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="border-left:2px solid black; border-top:1px solid black;text-center;margin-top:-16px;margin-bottom:-5px;"/>
+                            <div class="col-4">
+                                <div style="transform: rotate(90deg); -webkit-transform: rotate(-90deg);" class="text-center">
+                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1' % ('Code128', gati_package.name, 600, 200)"
+                                         style="width:280px;height:5rem;margin-top:20px;margin-left:-160px"/>
+                                </div>
+                            </div>
+                        </div>
+                        <hr width="100%"
+                            style="background-color:#000000;border:solid none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin-top:5px;"/>
+                        <div class="row">
+                            <div class="col-8">
+                                <t t-if="o.gati_docket_id">
+                                    <h6>
+                                        <strong>
+                                            DKT.NO :
+                                        </strong>
+                                    </h6>
+                                    <h6>
+                                        <t t-esc="o.gati_docket_id.name"/>
+                                    </h6>
+                                </t>
+                            </div>
+                            <div style="border-left:2px solid black; border-top:1px solid black;text-center;margin-top:-16px;margin-bottom:-5px;"/>
+                            <div class="col-4">
+                                <h6>
+                                    <strong>
+                                        ADD :
+                                    </strong>
+                                </h6>
+                                <h6>
+                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d_%m_%Y')"/>
+                                </h6>
+                            </div>
+                        </div>
+                        <hr width="100%"
+                            style="background-color:#000000;border:solid none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin-top:5px;"/>
+                        <div class="row ">
+                            <div class="col-12 text-center">
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1' % ('Code128',gati_package.name, 600, 200)"
+                                     style="width:350px;height:5rem"/>
+                            </div>
+                        </div>
+                        <p style="page-break-after:always"></p>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.actions.server" id="base_sip_settings_action">
+        <field name="type">ir.actions.server</field>
+        <field name="name">SIP Settings</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="asterisk_common.model_asterisk_common_settings"/>
+        <field name="code">action = model.open_settings_form(module='base_sip')</field>
+    </record>
+
+    <menuitem id="base_sip_settings_menu" parent='asterisk_base_sip_settings_menu'
+      groups="asterisk_common.group_asterisk_admin"
+      name='Settings' action='base_sip_settings_action' sequence='10'/>    
+
+    <record id='common_base_sip_settings_form' model='ir.ui.view'>
+        <field name='name'>asterisk_base_sip.common.settings.form</field>
+        <field name='model'>asterisk_common.settings</field>
+        <field name="inherit_id" ref="asterisk_common.common_settings_form"/>
+        <field name='arch' type='xml'>
+          <field name="originate_context" position="replace"/>
+        </field>
+    </record>
+
+    <record id='base_sip_settings_form' model='ir.ui.view'>
+        <field name='name'>asterisk_base_sip.settings.form</field>
+        <field name='model'>asterisk_common.settings</field>
+        <field name='type'>form</field>
+        <field name='arch' type='xml'>
+          <form create="false" delete="false">
+              <sheet>
+                <group>
+                  <group>
+                    <field name="default_sip_channel_type"/>
+                  </group>
+                </group>
+              </sheet>
+          </form>
+        </field>
+    </record>
+
+</odoo>

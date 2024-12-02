@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+<!--    <template id="website_applicant_attachment" inherit_id="odoo_recruitment_job_portal.display_applicant">
+        <xpath expr="//div[@class='panel panel-default']" position="after">
+        <div data-role="header" data-theme="b">
+            <p align="left" style="color:#483D8B"><strong>Send Message and Attachments</strong></p>
+        </div>
+       <form  method="post" enctype="multipart/form-data" >
+           <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/><br/> -->
+           <!--textarea rows="4" cols="60" name="cust" class="form-control" placeholder="Add a comment..."/-->
+          <!--  <textarea name = "applicant_comment" value="" line="3" type="text" placeholder="Add a comment..."/>
+           <input type="file" class="oe_inline"   multiple="multiple" name="attachment"/><span><input type="submit" value="Send Now" class="btn btn-info" name="send"/></span>
+        </form>
+       </xpath>
+   </template> -->
+   
+   <template id="successful_applicant_send" name="Success Applicant">
+        <t t-call="website.layout">
+        <div class="row">
+            <div class="col-md-6">
+            <h1>
+                Your Message/Attachments have been sent successfully.<br/><br/>
+                Thank you,<br/><br/>
+                <!-- t-esc="user_id.company_id.name"/-->
+                <t t-esc="user_id.name"/>
+            </h1>
+            <p>
+                <a class="btn btn-primary pull-left mb32" onclick="history.go(-2);" ><span class="hidden-xs">Go Back</span><span class="fa fa-long-arrow-left"/></a>
+            </p>
+            </div>
+            <div class="col-md-6">
+                <img width="400" height="400" src="/odoo_recruitment_job_portal/static/description/success.png" alt="show application" class="img-square" />
+           </div>
+        </div>
+        </t>
+    </template>
+   
+</odoo>
+
+

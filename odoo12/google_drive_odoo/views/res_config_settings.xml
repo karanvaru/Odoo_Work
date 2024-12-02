@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.google.drive</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="cloud_base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <div name="cloud_base" position="attributes">
+                <attribute name="string">Google Drive</attribute>
+                <attribute name="data-key">google_drive</attribute>
+            </div>
+             <button name="action_reset" position="before">
+                <button name="action_login_gdrive"
+                        string="Login and Confirm"
+                        type="object"
+                        style="margin-left:5px"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('cloud_client_state', '=', 'confirmed')]}"
+                />
+            </button>
+            <group name="client_specific" position="inside">
+                <field name="googledrive_client_secret"
+                       attrs="{'readonly': [('cloud_client_state', '=', 'confirmed')]}"
+                       password="True"
+                />
+                <field name="googledrive_client_id"
+                       attrs="{'readonly': [('cloud_client_state', '=', 'confirmed')]}"
+                />
+                <field name="googledrive_redirect_uri"
+                       attrs="{'readonly': [('cloud_client_state', '=', 'confirmed')]}"
+                />
+                <field name="googleteam_drive"
+                       attrs="{'readonly': [('cloud_client_state', 'in', ['confirmed', 'reconnect'])]}"
+                />
+                <field name="googledrive_drive"
+                       attrs="{'invisible': [('googleteam_drive', '=', False)], 'readonly': [('cloud_client_state', 'in', ['confirmed', 'reconnect'])]}"
+                       placeholder="My Drive"
+                />
+            </group>
+        </field>
+    </record>
+
+    <record id="cloud_base.cloud_config_action" model="ir.actions.act_window">
+        <field name="context">{'module' : 'google_drive'}</field>
+        <field name="name">Google Drive Settings</field>
+    </record>
+
+</odoo>

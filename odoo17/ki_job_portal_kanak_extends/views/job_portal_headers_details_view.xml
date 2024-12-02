@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_job_portal_headers_details_tree" model="ir.ui.view">
+            <field name="name">job.portal.headers.details.tree</field>
+            <field name="model">job.portal.headers.details</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="section_type"/>
+                    <field name="header"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_job_portal_headers_details_form" model="ir.ui.view">
+            <field name="name">job.portal.headers.details.form</field>
+            <field name="model">job.portal.headers.details</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="section_type"/>
+                            <field name="header"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_job_portal_headers_details" model="ir.actions.act_window">
+            <field name="name">Job Portal Headers Details</field>
+            <field name="res_model">job.portal.headers.details</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+        </record>
+    </data>
+</odoo>

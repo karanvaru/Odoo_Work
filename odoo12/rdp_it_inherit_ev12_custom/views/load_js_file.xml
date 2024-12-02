@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <template id="assets_backend" name="hide_edit_button_assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/rdp_it_inherit_ev12_custom/static/src/js/hide_edit_button.js"></script>
+            <script type="text/javascript" src="/rdp_it_inherit_ev12_custom/static/src/js/hide_delete_button.js"></script>
+        </xpath>
+    </template>
+</odoo>

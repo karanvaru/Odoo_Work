@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_task_form2_inherit_garage_management" model="ir.ui.view">
+        <field name="name">Job Card Inherit Garage Management</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='description_page']" position="after">
+                <page name="vehicle_details" string="Vehicle Details" attrs="{'invisible': [('is_jobcard', '=', False)]}">
+                    <group string="Vehicle Basic Info">
+                        <group>                            
+                            <field name="brand"/>
+                            <field name="model_name"/>
+                            <field name="type_id"/>
+                            <field name="fuel_type"/>
+                            <field name="vehicle_color"/>
+                        </group>
+                        <group>
+                            <field name="register_no"/>
+                            <field name="vin"/>
+                            <field name="engine"/>
+                            <field name="gear_nos"/>
+                            <field name="year"/>
+                        </group>
+                    </group>
+                    <group string="Extra Info">
+                        <group>
+                            <field name="odometer"/>
+                            <field name="fuel_level"/>
+                            <field name="average_km"/>
+                        </group>
+                        <group>
+                            <field name="repair_category"/>
+                            <field name="pay_type" widget="radio" options="{'horizontal': true}"/>
+                            <field name="is_insurance"/>
+                            <field name="insurance_company" attrs="{'invisible': [('is_insurance', '!=', True)]}"/>
+                        </group>
+                    </group>
+                    <group string="Vehicle Servicing Details">
+                        <field name="detail"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="image1" widget="image"/>
+                            <field name="image3" widget="image"/>
+                        </group>
+                        <group>
+                            <field name="image2" widget="image"/>
+                            <field name="image4" widget="image"/>
+                        </group>
+                        <group>
+                            <field name="image5" widget="image"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='instruction_job_order']" position="inside">
+                <p style="font-size:20px;"><b>Checklist Names</b></p>
+                <field name="quality_check_name_ids" mode="tree">
+                    <tree string="Checklist Names" editable="bottom">
+                        <field name="checklist_id"/>
+                        <!-- <field name="name"/> -->
+                        <field name="checklist_name_id"/>
+                        <field name="checkbox"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+                        
+    <record id="job_card_search_view_display_inherit_garage_maangement" model="ir.ui.view">
+        <field name="name">project.task.search.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr = "//search" position="inside">
+                <field name="register_no"/>
+                <field name="brand"/>
+                <field name="model_name"/>
+                <filter name="Fuel Type" context="{'group_by':'fuel_type'}"/>
+                <filter name="Repair Category" context="{'group_by':'repair_category'}"/>
+                <filter name="Vehicle Types" context="{'group_by':'type_id'}"/>
+                <filter name="Payment Type" context="{'group_by':'pay_type'}"/>
+                <filter name="Is Insurance" context="{'group_by':'is_insurance'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

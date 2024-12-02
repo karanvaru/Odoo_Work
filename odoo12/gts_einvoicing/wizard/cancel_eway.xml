@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_cancel_eway_bill" model="ir.ui.view">
+        <field name="name">eway_bill.cancel.form</field>
+        <field name="model">eway_bill.cancel</field>
+        <field name="arch" type="xml">
+            <form string="Cancel E-Bill">
+                <group>
+                    <group>
+                        <field name="eway_cancel_reason" required="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="cancel_eway_bill_no" string="Cancel Eway Bill" type="object" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record id="action_cancel_eway_bill" model="ir.actions.act_window">
+        <field name="name">Cancel Eway Bill</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">eway_bill.cancel</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

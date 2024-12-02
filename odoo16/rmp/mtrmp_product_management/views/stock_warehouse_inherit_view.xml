@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <!-- Stock Warehouse form View-->
+        <record id="view_stock_warehouse_form_inherit" model="ir.ui.view">
+            <field name="name">Stock Warehouse form</field>
+            <field name="model">stock.warehouse</field>
+            <field name="inherit_id" ref="stock.view_warehouse"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="user_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <!--        form view-->
+    <record id="stages_history_form_view" model="ir.ui.view">
+        <field name="name">stages.history.form</field>
+        <field name="model">stages.history</field>
+        <field name="arch" type="xml">
+            <form string="Stages History">
+                <sheet>
+                <div class="oe_button_box" name="button_box">
+                 </div>
+                      <group>
+                          <group>   
+                                             <field name="ticket_id"/>
+                                             <field name="current_user" />
+                                             <field name="from_team_id"/>
+                                            <!-- <field name="from_stage_id" /> -->
+                                             <field name="to_team_id"/>
+                                            <field name="from_stage_id" />
+                                            <field name="to_stage_id" />
+
+                          </group>
+                           <group>
+                                           <field name="date_in"/>
+                                            <field name="date_out"/>
+                                            <field name="days"/>
+                                            <field name="sla_days" invisible="1"/>
+                                            <field name="tat_time" />
+                                            <field name="tat_status"/>
+                          </group>
+                          
+                      </group>
+
+                 </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view -->
+    <record id="stages_history_tree_view" model="ir.ui.view">
+        <field name="name">stages.history.tree</field>
+        <field name="model">stages.history</field>
+        <field name="arch" type="xml">
+            <tree string="Stages History">
+                                             <field name="ticket_id"/>
+                                            <field name="current_user" />
+                                             <field name="from_team_id"/>
+                                            <!-- <field name="from_stage_id" /> -->
+                                             <field name="to_team_id"/>
+                                            <field name="from_stage_id" />
+                                            <field name="to_stage_id" />
+                                            <field name="date_in"/>
+                                            <field name="date_out"/>
+                                            <field name="days"/>
+                                            <field name="sla_days" invisible="1"/>
+                                            <field name="tat_time" />
+                                            <field name="tat_status"/>
+            </tree>
+        </field>
+    </record>
+<!--        search view-->
+        <record id="fstages_history_search_view" model="ir.ui.view">
+        <field name="name">stages.history.search</field>
+        <field name="model">stages.history</field>
+        <field name="arch" type="xml">
+            <search string="Stages History">
+                <field  name="name"/>
+                   <field name="current_user" />
+                    <field name="from_team_id"/>
+                    <field name="to_team_id"/>
+                     <field name="from_stage_id" />
+                     <field name="to_stage_id" />
+                <filter name="from_team_id" string="From Team" domain="[]"/>
+                <filter name="to_team_id" string="To Team" domain="[]"/>
+                <filter name="current_user" string="User" domain="[]"/>
+
+<!--                    group by-->
+                <group expand="0" string="Group By">
+                    <filter name="current_user" string="User" domain="[]" context="{'group_by':'current_user'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--  action -->
+    <record id="stages_history_action_view" model="ir.actions.act_window">
+        <field name="name">Stages History</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stages.history</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+        <!-- <menuitem id="menu_global_feedback_app" name="Global Feedback"  action="feedback_app_action_view"/> -->
+        <menuitem id="menu_stages_history" name="Stages History"  action="stages_history_action_view" />
+</data>
+</odoo>

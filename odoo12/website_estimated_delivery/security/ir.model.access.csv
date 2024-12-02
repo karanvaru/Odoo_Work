@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_available_pincodes_public_user,available.pincodes,model_available_pincodes,base.group_public,1,1,1,1
+access_available_pincodes_users,available.pincodes,model_available_pincodes,,1,1,1,1
+access_available_pincodes_portal_user,available.pincodes,model_available_pincodes,base.group_portal,1,1,1,1

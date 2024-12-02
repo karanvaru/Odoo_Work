@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_employee_form_inherit_position" model="ir.ui.view">
+        <field name="name">Workshop Position From Inherit Position</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml"> 
+            <xpath expr="//field[@name='resource_calendar_id']" position="after">
+                <field name="workshop_position_type" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_form_inherit_position_custom_public" model="ir.ui.view">
+        <field name="name">Workshop Position From Inherit Position</field>
+        <field name="model">hr.employee.public</field>
+        <field name="inherit_id" ref="hr.hr_employee_public_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='resource_calendar_id']" position="after">
+                <field name="workshop_position_type" />
+            </xpath>
+        </field>
+   </record>
+
+</odoo>

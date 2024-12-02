@@ -1,0 +1,11 @@
+<odoo>
+	<data noupdate="0">
+		<record id="nps_voice_sequence" model="ir.sequence">
+            <field name="name">NPS Voice</field>
+            <field name="code">nps.voice.sequence</field>
+            <field name="prefix">NV</field>
+            <field name="padding">4</field>
+            <!-- <field name="company_id" eval="False"/> -->
+         </record>
+	</data>
+</odoo>

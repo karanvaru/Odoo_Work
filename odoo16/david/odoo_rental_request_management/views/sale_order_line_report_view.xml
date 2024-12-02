@@ -1,0 +1,21 @@
+<odoo>
+    <record id="rental_so_line_reservations_calendar" model="ir.ui.view">
+        <field name="name">Rental Reservations</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <calendar string="Rental Reservations" color="product_id" date_start="custom_start_datetime" date_stop="custom_end_datetime">
+                <field name="product_id"/>
+                <field name="product_uom_qty"/>
+            </calendar>
+        </field>
+    </record>
+    
+    <record id="action_rental_so_line_reservations" model="ir.actions.act_window">
+        <field name="name">Rental Reservations</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="context">{'create':False,'edit':False}</field>
+        <field name="domain">[('order_id.is_custom_rental_quote', '=', True)]</field>
+        <field name="view_mode">calendar</field>
+        <field name="help">Rental Reservations</field>
+    </record>
+</odoo>

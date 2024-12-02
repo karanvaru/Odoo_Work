@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_contract_terminate_entry_wizard,account.contract.terminate.entry.wizard,model_contract_terminate_entry_wizard,,1,1,1,1
+access_product_serial_number_wizard,account.product.serial.number.wizard,model_product_serial_number_wizard,,1,1,1,1
+access_product_serial_number_line_wizard,account.product.serial.number.line.wizard,model_product_serial_number_line_wizard,,1,1,1,1
+access_helpdesk_ticket,account.helpdesk.ticket,helpdesk_mgmt.model_helpdesk_ticket,ki_contract_menu.group_smart_printer_administrator,1,1,0,1
+access_contact_user_create_wizard,account.contact.user.create.wizard,model_contact_user_create_wizard,,1,1,1,1
+access_create_purchase_order_wizard,account.create.purchase.order.wizard,model_create_purchase_order_wizard,,1,1,1,1
+access_contract_contract,account.contract.contract,model_contract_contract,ki_contract_menu.group_smart_printer_customer_user,1,0,0,0
+access_product_in_out_register,account.product.in.out.register,model_product_in_out_register,,1,1,1,1
+access_product_in_out_register_lines,account.product.in.out.register.lines,model_product_in_out_register_lines,,1,1,1,1
+access_purchase_select_product_wizard,account.purchase.select.product.wizard,model_purchase_select_product_wizard,,1,1,1,1
+access_refill_request,account.refill.request,model_refill_request,,1,1,1,1
+access_cartridge_part_line,account.cartridge.part.line,model_cartridge_part_line,,1,1,1,1
+access_refill_request_line,account.refill.request.line,model_refill_request_line,,1,1,1,1
+

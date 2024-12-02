@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sh_invoice_branch_report_inherit" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div t-if="o.branch_id" class="col-auto col-3 mw-100 mb-2">
+                <strong groups="sh_base_branch.sh_multi_branch_group">Branch:</strong>
+                <p class="m-0" t-field="o.branch_id"  groups="sh_base_branch.sh_multi_branch_group"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>

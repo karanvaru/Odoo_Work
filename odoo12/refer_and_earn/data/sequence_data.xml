@@ -1,0 +1,14 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+	<data>
+        <record id="seq_transaction_history" model="ir.sequence">
+                <field name="name">Trnsc No</field>
+                <field name="code">transaction.history</field>
+                <field name="prefix">TXN/%(year)s/</field>
+                <field name="padding">6</field>
+                <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

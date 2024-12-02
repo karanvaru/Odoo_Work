@@ -1,0 +1,105 @@
+<odoo>
+    <template id="external_layout_seti">
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+        <div class="header" style="height:20px;"></div>
+        <div class="article o_report_layout_background">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0"/>
+        </div>
+        <div class="footer o_background_footer">
+            <div class="text-center" style="font-size:14px;"></div>
+        </div>
+    </template>
+    <record id="action_mass_picklist" model="ir.actions.report">
+        <field name="name">Mass Picklist</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mtrmp_sales_shop.report_mass_picklist</field>
+        <field name="report_file">mtrmp_sales_shop.report_mass_picklist</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+    </record>
+    <template id="report_mass_picklist">
+        <t t-call="web.html_container">
+            <t t-call="mtrmp_sales_shop.external_layout_seti">
+                <div class="page">
+                    <t t-foreach="docs[0]" t-as="do">
+                        <t t-set="code_dict" t-value="do.get_report_values(docs)"/>
+                        <t t-foreach="code_dict" t-as="doc">
+                            <t t-set="srno" t-value="0"/>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left;">
+                                            <strong>SR NO.</strong>
+                                        </th>
+                                        <th style="text-align:left;">
+                                            <strong>Products</strong>
+                                        </th>
+                                        <th style="text-align:left;">
+                                            <strong>Qty</strong>
+                                        </th>
+                                        <th style="text-align:left;">
+                                            <strong>Qty Available</strong>
+                                        </th>
+                                        <th style="text-align:left;">
+                                            <strong>Picked</strong>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <t t-foreach="code_dict[doc]" t-as="code">
+                                    <t t-if="code == 'name'">
+                                        <div class="abc" style="margin-left:10px;font-weight:bold">
+                                            <div class="text-left">
+                                                <strong>Location:</strong>
+                                                <span t-esc="code_dict[doc][code]"/>
+                                            </div>
+                                            <div class="text-right">
+                                                <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')"/>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <tbody>
+                                        <t t-if="code!='name'">
+                                            <tr>
+                                                <td>
+                                                    <t t-set="srno" t-value="srno+1"/>
+                                                    <span t-esc="srno"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="code_dict[doc][code]['product_name']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="code_dict[doc][code]['qty_required']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="code_dict[doc][code]['qty_on_hand']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="code_dict[doc][code]['qty_done']"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </t>
+                                <tr>
+                                    <td colspan="2" style="text-align:right;">
+                                        <b>Total</b>
+                                    </td>
+                                    <td>
+                                        <span t-esc="sum(code_dict[doc][code]['qty_required'] for code in code_dict[doc] if code!='name')"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </t>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

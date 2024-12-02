@@ -1,0 +1,6 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+associated_supply_chain,associated.supply.chain,model_associated_supply_chain,,1,1,1,0
+brands_working,brands.working,model_brands_working,,1,1,1,1
+active_category,active.category,model_active_category,,1,1,1,1
+gem_kyc,gem.kyc,model_gem_kyc,,1,1,1,1
+rdp_supply_chain_finance,rdp.supply.chain.finance,model_rdp_supply_chain_finance,,1,1,1,1

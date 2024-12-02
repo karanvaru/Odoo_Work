@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="hr_employee_exit_created_email_template" model="mail.template">
+            <field name="name">Employee Exit mail Created For HR</field>
+            <field name="model_id" ref="hr_exit_process.model_hr_exit"/>
+            <field name="auto_delete">1</field>
+<!--             <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field>-->
+            <field name="email_to">${object.spoc_id.work_email}</field>
+            <field name="subject">Resignation from the post of  ${object.job_id.name}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>Dear ${object.manager_id.name}</p>
+                    <br/><br />
+                    “ ${object.employee_id.name}“ has been requested for the exit from the company. Please review the same and provide your feedback so that we can move forward with the same.
+                    <br/><br />
+                    Please click on the link to view
+                    <br></br>
+                    Thank you!!!
+                    <br></br>
+                    <a href ="${object.base_url}/web?debug=1#id=${object.id}&amp;action=522&amp;model=hr.exit&amp;view_type=form&amp;menu_id=86"> Click Here</a>
+<!--                    <a href ="${object.base_url}/web?debug=1#id=${object.id}&amp;action=2585'&amp;model=hr.exit&amp;view_type=form&amp;menu_id=1296" > Click Here</a>-->
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_quote_sequence_mapping_form" model="ir.ui.view">
+        <field name="name">view.quote.sequence.mapping.form</field>
+        <field name="model">quote.sequence.mapping</field>
+        <field name="arch" type="xml">
+            <form string="Quote Sequence Mapping">
+                <sheet>
+                    <group>
+                        <field name="category_type"/>
+                        <field name="journal_id"/>
+                        <field name="sequence_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_quote_sequence_mapping_tree" model="ir.ui.view">
+        <field name="name">view.quote.sequence.mapping.tree</field>
+        <field name="model">quote.sequence.mapping</field>
+        <field name="arch" type="xml">
+            <tree string="Quote Sequence Mapping">
+                <field name="category_type"/>
+                <field name="journal_id"/>
+                <field name="sequence_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_quote_sequence_mapping" model="ir.actions.act_window">
+        <field name="name">Quote Sequence Mapping</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">quote.sequence.mapping</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_quote_lnvoice_sequence_mapping"
+              name="Quote/Invoice Sequence Mapping"
+              action="action_quote_sequence_mapping"
+              parent="account.account_invoicing_menu"
+    />
+
+</odoo>

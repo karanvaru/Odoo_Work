@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_item_lines,access.sale.order.item.lines,model_sale_order_item_lines,base.group_user,1,1,1,1
+access_saving_roi_lines,access.saving.roi.lines,model_saving_roi_lines,base.group_user,1,1,1,1
+access_sale_payback_lines,access.sale.payback.lines,model_sale_payback_lines,base.group_user,1,1,1,1
+access_sale_payment_schedule,access.sale.payment.schedule,model_sale_payment_schedule,base.group_user,1,1,1,1
+access_sale_document_types,access.sale.document.types,model_sale_document_types,base.group_user,1,1,1,1
+access_total_saving,access.total.saving,model_total_saving,base.group_user,1,1,1,1
+

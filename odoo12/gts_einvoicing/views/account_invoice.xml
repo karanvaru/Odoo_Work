@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="invoice_supplier_inherit_form" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form.inherit</field>
+        <field name="model">account.invoice</field>
+        <field name="priority">2</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+
+        <xpath expr="//button[@name='action_invoice_open']" position="after">
+            <button name="create_einvoicing" type="object" string="Create E-Invoicing" class="oe_highlight" groups="gts_einvoicing.group_ebill_manager" attrs="{'invisible': ['|','|',('irn_no', '!=', False),('state','=','draft'),('state','=','cancel')]}"/>
+            <button name="%(gts_einvoicing.action_cancel_einvoice_bill)d" string="Cancel E-Invoicing" type="action" groups="gts_einvoicing.group_ebill_manager"
+                                class="oe_highlight" attrs="{'invisible': ['|',('irn_no', '=', False),('irn_cancel_date','!=',False)]}"/>
+        </xpath>
+        <xpath expr="//field[@name='reference']" position="after">
+            <field name="gen_einvoice" groups="gts_einvoicing.group_ebill_manager"/>
+            <field name='invoice_origin'/>
+        </xpath>
+        <xpath expr="//page[@name='other_info']" position="after">
+                <page string="E-Invoicing Bill Details" groups="gts_einvoicing.group_ebill_manager" attrs="{'invisible': [('gen_einvoice', '=', False)]}">
+                    <div>
+                        <group>
+                            <p1 style="font-size:22px; color:#247184">E-Invoice Details</p1><br></br>
+                            <group>
+                                <field name='sup_type' attrs="{'required': [('gen_einvoice', '=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                                <field name='doc_type' attrs="{'required': [('gen_einvoice', '=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                            </group>
+                            <group>
+                                <field name="is_service" attrs="{'required': [('gen_einvoice', '=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                                <field name="transaction_type" attrs="{'required': [('gen_einvoice', '=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+<!--                                <field name="cancel_reason"/>-->
+<!--                                attrs="{'invisible': [('irn_no', '=', False)]}"-->
+
+                            </group>
+                        </group>
+                        <group invisible='1'>
+                            <p1 style="font-size:22px; color:#247184">Eway Bill Details</p1><br></br>
+                            <field name="eway_bill_gen" invisible='1'/>
+                            <group>
+                                <field name="veh_no" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                                <field name="veh_type" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                            </group>
+                            <group>
+                                <field name="trans_id" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                                <field name="trans_name" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="distance" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                                <field name="transMode" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                            </group>
+                            <group>
+                                <field name="transporter_docno" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                                <field name="transporter_docdt" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <group invisible='1'>
+                                <p1 style="font-size:22px; color:#247184">Eway Bill Details</p1><br></br>
+                                <field name="eway_bill_status" invisible="1" readonly="1"/>
+                                <field name="eway_bill_no" readonly="1"/>
+                                <field name="eway_valid_date" readonly="1"/>
+                                <field name="eway_date" readonly="1"/>
+                                <field name="eway_cancel_date" readonly="1"/>
+                                <!-- <field name="irn_cancel_date" readonly="1"/> -->
+                            </group>
+                            <group>
+                                <p1 style="font-size:22px; color:#247184">IRN Details</p1><br></br>
+                                <field name="irn_no" readonly="1"/>
+                                <field name="ack_no" readonly="1"/>
+                                <field name="ackdt_no" readonly="1"/>
+                                <field name="qr_image" readonly="1"/>
+                                <field name="irn_cancel_date" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <group>
+                                <button name="create_eway_bill" string="Generate Eway Bill" type="object"
+                                    class="oe_highlight"
+                                    attrs="{'invisible': [('eway_bill_gen', '!=', True), ('eway_bill_status', '=', 'generated')], 'invisible': [('irn_no', '=', False)]}"/>
+
+                                <button name="print_eway_bill" string="Print EWay" type="object" class="oe_highlight"
+                                    attrs="{'invisible': ['|', ('eway_bill_gen', '!=', True), ('eway_bill_no', '=', False)]}"/>
+
+                                <button name="%(gts_einvoicing.action_cancel_eway_bill)d" string="Cancel Eway" type="action"
+                                    class="oe_highlight"
+                                    attrs="{'invisible': [('eway_bill_gen', '!=', True), ('eway_bill_status', '!=', 'generated')], 'invisible': [('eway_bill_no', '=', False)]}"/>
+                            </group>
+                        </group>
+                    </div>
+                </page>
+
+            </xpath>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_account_invoice_inherit_einvoice">
+        <field name="name">account.invoice.inherit</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_invoice_sent']" position="after">
+                <button name="create_einvoicing" type="object" string="Create E-Invoicing" class="oe_highlight" groups="gts_einvoicing.group_ebill_manager" attrs="{'invisible': ['|','|',('irn_no', '!=', False),('state','=','draft'),('state','=','cancel')]}"/>
+                <button name="%(gts_einvoicing.action_cancel_einvoice_bill)d" string="Cancel E-Invoicing" type="action" groups="gts_einvoicing.group_ebill_manager"
+                                    class="oe_highlight" attrs="{'invisible': ['|',('irn_no', '=', False),('irn_cancel_date','!=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="gen_einvoice" groups="gts_einvoicing.group_ebill_manager"/>
+            </xpath>
+            <xpath expr="//page[last()]" position="after">
+                <page string="E-Invoicing Bill Details" groups="gts_einvoicing.group_ebill_manager" attrs="{'invisible': [('gen_einvoice', '=', False)]}">
+                    <div>
+                        <group>
+                            <p1 style="font-size:22px; color:#247184">E-Invoice Details</p1><br></br>
+                            <group>
+                                <field name='sup_type' attrs="{'required': [('gen_einvoice', '=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                                <field name='doc_type' attrs="{'required': [('gen_einvoice', '=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                            </group>
+                            <group>
+                                <field name="is_service" attrs="{'required': [('gen_einvoice', '=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                                <field name="transaction_type" attrs="{'required': [('gen_einvoice', '=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+<!--                                <field name="cancel_reason"/>-->
+<!--                                attrs="{'invisible': [('irn_no', '=', False)]}"-->
+
+                            </group>
+                        </group>
+                        <group invisible='1'>
+                            <p1 style="font-size:22px; color:#247184">Eway Bill Details</p1><br></br>
+                            <field name="eway_bill_gen"/>
+                            <group>
+                                <field name="veh_no" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                                <field name="veh_type" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                            </group>
+                            <group>
+                                <field name="trans_id" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                                <field name="trans_name" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group invisible='1'>
+                            <group>
+                                <field name="distance" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                                <field name="transMode" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                            </group>
+                            <group>
+                                <field name="transporter_docno" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                                <field name="transporter_docdt" attrs="{'required': [('eway_bill_gen', '=', True)], 'invisible': [('eway_bill_gen', '!=', True)], 'readonly': [('eway_bill_status', '!=' , 'not generated')]}"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <group>
+                                <p1 invisible='1' style="font-size:22px; color:#247184">Eway Bill Details</p1><br></br>
+                                <field name="eway_bill_status" invisible="1" readonly="1"/>
+                                <field name="eway_bill_no" readonly="1" invisible='1'/>
+                                <field name="eway_valid_date" readonly="1" invisible='1'/>
+                                <field name="eway_date" readonly="1" invisible='1'/>
+                                <field name="eway_cancel_date" invisible='1' readonly="1"/>
+                                <field name="irn_cancel_date" readonly="1"/>
+                            </group>
+                            <group>
+                                <p1 style="font-size:22px; color:#247184">IRN Details</p1><br></br>
+                                <field name="irn_no" readonly="1"/>
+                                <field name="ack_no" readonly="1"/>
+                                <field name="ackdt_no" readonly="1"/>
+                                <field name="qr_image" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group invisible='1'>
+                            <group>
+                                <button name="create_eway_bill" string="Generate Eway Bill" type="object"
+                                    class="oe_highlight"
+                                    attrs="{'invisible': [('eway_bill_gen', '!=', True), ('eway_bill_status', '=', 'generated')], 'invisible': [('irn_no', '=', False)]}"/>
+
+                                <button name="print_eway_bill" string="Print EWay" type="object" class="oe_highlight"
+                                    attrs="{'invisible': ['|', ('eway_bill_gen', '!=', True), ('eway_bill_no', '=', False)]}"/>
+
+                                <button name="%(gts_einvoicing.action_cancel_eway_bill)d" string="Cancel Eway" type="action"
+                                    class="oe_highlight"
+                                    attrs="{'invisible': [('eway_bill_gen', '!=', True), ('eway_bill_status', '!=', 'generated')], 'invisible': [('eway_bill_no', '=', False)]}"/>
+                            </group>
+                        </group>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

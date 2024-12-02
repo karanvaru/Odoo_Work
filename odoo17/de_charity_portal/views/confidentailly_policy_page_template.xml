@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="website_verification_customer_confidently_details" name="Verification Detail">
+            <t t-call="website.layout">
+                <!--                <t t-if="not partner.partner_share">-->
+                <div id="content_div" style="display:none'; background: #f6f6f6; padding: 50px 0;" class="confidently_details">
+                    <style>
+                        .vendor-form-block {
+                        max-width: 900px;
+                        margin: 0 auto;
+                        background-color: #FFF;
+                        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+                        padding: 40px;
+                        border-radius: 8px;
+                        }
+                        .vendor-form-block h4 {
+                        font-size: 22px;
+                        font-weight: 600;
+                        margin-bottom: 20px;
+                        color: #333;
+                        }
+                        .vendor-form-block p {
+                        font-size: 16px;
+                        font-weight: 500;
+                        margin-bottom: 30px;
+                        color: #555;
+                        }
+                        .vendor-form-block label {
+                        font-weight: 600;
+                        margin-bottom: 10px;
+                        color: #333;
+                        }
+                        .form-select {
+                        border-radius: 4px;
+                        box-shadow: none;
+                        padding: 8px;
+                        margin-bottom: 20px;
+                        }
+                        .vendor-form-block button {
+                        border-radius: 4px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        padding: 12px 30px;
+                        background-color: #007BFF;
+                        color: #FFF;
+                        text-transform: uppercase;
+                        border: none;
+                        cursor: pointer;
+                        }
+                        .vendor-form-block button:hover {
+                        background-color: #0056b3;
+                        }
+                        .row {
+                        display: flex;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+                        }
+                        .col-3 {
+                        flex: 0 0 23%;
+                        max-width: 23%;
+                        padding: 10px;
+                        }
+                        .col-3 label {
+                        font-size: 14px;
+                        margin-bottom: 8px;
+                        }
+                        .col-3 select {
+                        width: 100%;
+                        }
+                        .form-label {
+                        font-size: 14px;
+                        }
+                        @media (max-width: 768px) {
+                        .col-3 {
+                        flex: 0 0 48%;
+                        max-width: 48%;
+                        }
+                        .vendor-form-block {
+                        padding: 30px;
+                        }
+                        .form-label {
+                        font-size: 14px;
+                        }
+                        .btn {
+                        font-size: 14px;
+                        }
+                        }
+                        @media (max-width: 480px) {
+                        .col-3 {
+                        max-width: 100%;
+                        }
+                        }
+                    </style>
+
+                    <div class="container confidential_policy">
+                        <div class="vendor-form-block ">
+                            <!--                            <form action="/customer_confidential_policy_data" method="post" class="form-horizontal"-->
+                            <!--                                  enctype="multipart/form-data">-->
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <input type="hidden" name="partner_id" id="id_partner"
+                                   t-attf-class="form-control"
+                                   t-att-value="partner.id"/>
+
+<!--                            <input type="text" name="pid" id="pid"-->
+<!--                                   t-attf-class="form-control"/>-->
+
+
+                            <div style="font-family: 'Times New Roman', serif; font-size: 12px; line-height: 1.6;">
+                                <div style="text-align: center; font-size: 14px; font-weight: bold;">
+                                    <p><span t-esc="company.name"/>.
+                                    </p>
+                                    <p>CONFIDENTIALITY POLICY</p>
+                                </div>
+
+                                <div>
+                                    <p>
+                                        <span style="font-weight: bold;"><span t-esc="company.name"/>.
+                                        </span>
+                                        operates with a very high degree of integrity and is committed to
+                                        providing <span style="font-style: italic;">counselor</span>/client
+                                        confidentiality to all our clients safe and except where any of the
+                                        following
+                                        situations herein below listed occur:
+                                    </p>
+
+                                    <ol style="margin-left: 20px;">
+                                        <li>
+                                            <p>
+                                                Whereas, in an attempt to deliver the highest quality of service to
+                                                which we are accustomed it is the professional opinion of the team
+                                                of <span
+                                                    style="font-style: italic;">counselors
+                                            </span> that there is a need to review some cases, your case may be
+                                                subject
+                                                to review unless specifically objected to by yourself. Whilst your
+                                                name
+                                                may not be mentioned during the session of the review the nature of
+                                                your
+                                                case will have to be examined in such a group session.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Whereas, you as a client either by your <span
+                                                    style="font-style: italic;">behavior
+                                            </span> and/or by information provided by you to the <span
+                                                    style="font-style: italic;">counselor
+                                            </span> during your consultation have threatened to harm yourself and/or
+                                                someone else,
+                                                <span style="font-weight: bold;"><span t-esc="company.name"/>.
+                                                </span>
+                                                . reserves the
+                                                right to take all precautionary and appropriate actions as deemed
+                                                necessary to obviate this situation in an attempt to avert any such
+                                                harm
+                                                or likelihood of harm.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Whereas, you as a client by your admission have made known to a <span
+                                                    style="font-style: italic;">counselor
+                                            </span> of
+                                                <span style="font-weight: bold;"><span t-esc="company.name"/>.
+                                                </span>
+                                                . that you have
+                                                violated or are planning to violate any of the laws of Barbados,
+                                                <span style="font-weight: bold;"><span t-esc="company.name"/>.
+                                                </span>
+                                                . reserves the right to inform the
+                                                appropriate authorities of any such infractions or actions by you.
+                                            </p>
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <div style="margin-top: 20px;">
+                                    <p style="font-weight: bold;">
+                                        <span style="font-weight: bold;"><span t-esc="company.name"/>.
+                                        </span>
+                                        does not accept any responsibility or liability for any notice of intended
+                                        prosecution and/or prosecution of the client nor does it accept any
+                                        responsibility for any other consequences which might befall the client as a
+                                        result of actions undertaken by the organization in accordance with numbers
+                                        2
+                                        and 3 of the Confidentiality Policy.
+                                    </p>
+                                </div>
+
+                                <div style="margin-top: 20px;">
+                                    <p style="font-weight: bold;">
+                                        I ___________________________________ hereby understand the confidentiality
+                                        policy hereinbefore outlined and affix my signature below to that effect.
+                                    </p>
+                                </div>
+                                <!--                                    <div style="margin-top: 20px;">-->
+                                <!--                                        <p style="font-weight: bold;">-->
+                                <!--                                            Signature: _____________________________-->
+                                <!--                                        </p>-->
+                                <!--                                    </div>-->
+                                <span>Signature :</span>
+                                <div class="signature-widget">
+
+                                    <canvas style="border: 1px solid #ccc; width: 100%; height: 300px;"></canvas>
+                                    <button class="btn btn-primary save-signature mt-2">Save Signature</button>
+                                    <button class="btn btn-danger clear-signature mt-2">Clear Signature</button>
+                                </div>
+
+                                <div style="margin-top: 20px;">
+                                    <p style="font-weight: bold;">
+                                        Witness: ______________________________
+                                    </p>
+                                </div>
+
+                                <div style="margin-top: 10px;">
+                                    <p style="font-weight: bold;">
+                                        Date: _________________________________
+                                    </p>
+                                </div>
+
+
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <button type="submit" class="btn btn-primary confirm-data">Confirm &amp; Proceed
+                                </button>
+                            </div>
+
+                            <!--                            </form>-->
+                        </div>
+                    </div>
+                </div>
+                <!--                </t>-->
+                <!--                <t t-else="">-->
+                <!--                  <t t-if="partner.partner_share">-->
+                <div id='thanks_page_id' class="thanks_page" style="background: #f6f6f6;display:none;">
+                    <style>
+                        .vendor-form-block { max-width:850px; margin:0 auto 60px; background-color:#FFF;
+                        box-shadow:#b1b0b0 0 0px 10px 0px; padding:30px;}
+                        .vendor-form-block input, .vendor-form-block select {border-radius:unset;}
+                        .vendor-form-block h4 {font-size:18px; font-weight:500!important; margin-bottom:15px;}
+                        .vendor-form-block h4 span{font-weight:300!important;}
+                        .vendor-form-block button {border-radius:unset; font-size:14px; font-weight:500;
+                        letter-spacing:1px; color:#FFF; padding:8px 30px; background-color:#333;
+                        text-transform:uppercase;margin-top:30px;}
+                    </style>
+                    <div class="oe_structure"/>
+                    <div class="container" style="text-align: -webkit-center;">
+                        <div class="row">
+                            <div class="row o_membership_details pt64">
+                                <div class="col-lg-12 pt64 pb64 vendor-form-block">
+                                    <p>
+                                        Welcome to
+                                        <b>
+                                            <span t-esc="env.company.name"/>
+                                        </b>
+                                        Client Portal,
+                                        <b>
+                                            <spna t-esc="partner.name"></spna>
+                                        </b>
+                                        🎉
+                                        <br></br>
+                                        Your documents have been sent successfully.
+                                        <b>Thank you!</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <!--            </t>-->
+        </template>
+    </data>
+</odoo>

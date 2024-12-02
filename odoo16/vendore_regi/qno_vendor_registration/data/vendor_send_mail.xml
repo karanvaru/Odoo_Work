@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="customer_registration_send_mail_template" model="mail.template">
+            <field name="name">Registration: Vendor Registration</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="email_from">{{object.company_id.email or ''}}</field>
+            <field name="email_to">{{object.email or ''}}</field>
+            <field name="subject">Registration for {{ object.name }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 2px;background:#f5f5f5;">
+                    <div style="text-align:center;">
+                        <img t-attf-src="/logo.png?company={{ env.company.id }}"
+                             style="padding: 0px; margin: 0px; height: 80px;" t-att-alt="env.company.name"/>
+                    </div>
+
+                    <div style="position: relative; width: 100%; max-width: 1160px; text-align: center;">
+                        <img t-attf-src="data:image/jpg;base64,#{env.company.email_background_image}"
+                             alt="Background Image" style="width: 100%; height: auto; display: block;" />
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: end; align-items: center; color: white; background-color: rgba(0, 0, 0, 0.5);">
+                            <p>
+                                <b>
+                                    <t t-out="env.user.name"/>
+                                </b> has invited you to sign up on
+                                <br/>their vendor portal on
+                                <b>
+                                    <t t-out="env.company.name"/>
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+                    <br/>
+
+
+                    <style>
+                        @media only screen and (max-width: 768px) {
+                            div.container {
+                                flex-direction: column;
+                            }
+                            div.container div {
+                                min-width: 100%;
+                                max-width: 100%;
+                            }
+                        }
+                        @media only screen and (max-width: 480px) {
+                            div.container {
+                                padding: 10px;
+                            }
+                            div.container div {
+                                font-size: 16px;
+                            }
+                            img {
+                                height: 60px;
+                            }
+                        }
+                    </style>
+
+                    <div style="text-align:center;font-size: 19px;padding-top:20px;">
+                        Hi <b><t t-out="object.name"/>,</b><br/>
+                        Send Invoice To <t t-out="env.user.name"/> Via Vendor Portal.
+                    </div>
+
+                    <div style="text-align:center;padding-top:20px;">
+                        <h3>With Vendor Portal You Can</h3>
+                    </div>
+
+
+                    <div class="container"
+                         style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center;">
+                        <div style="flex: 1; min-width: 280px; max-width: 350px; background: #d9f2d9; margin: 10px; padding: 25px; border-radius: 10px; text-align: center;">
+                            <i class="fa fa-hourglass-end"></i>
+                            <span style="padding-left: 20px; font-size: 20px;">On Time Payment And Tracking</span>
+                        </div>
+
+                        <div style="flex: 1; min-width: 280px; max-width: 350px; background: #d9f2d9; margin: 10px; padding: 25px; border-radius: 10px; text-align: center;">
+                            <i class="fa fa-comments"></i>
+                            <span style="padding-left: 20px; font-size: 20px;">Reduce Back And Forth Communication</span>
+                        </div>
+                    </div>
+
+                    <div class="container"
+                         style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center;">
+                        <div style="flex: 1; min-width: 280px; max-width: 350px; background: #d9f2d9; margin: 10px; padding: 25px; border-radius: 10px; text-align: center;">
+                            <i class="fa fa-laptop"></i>
+                            <span style="padding-left: 20px; font-size: 20px;">One Dashboard For All Merchants On
+                                <t t-out="object.company_id.name"/>
+                            </span>
+                        </div>
+                        <div style="flex: 1; min-width: 280px; max-width: 350px; background: #d9f2d9; margin: 10px; padding: 25px; border-radius: 10px; text-align: center;">
+                            <i class="fa fa-book"></i>
+                            <span style="padding-left: 20px; font-size: 20px;">Create Payment Requests</span>
+                        </div>
+                    </div>
+
+                    <div class="container" style="width: 100%; padding: 20px 0;">
+                        <div style="width: 90%; max-width: 700px; margin: 0 auto; padding: 45px; border-radius: 10px; background: #e9e9e9; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 20px;">Accept Invite And Complete The Onboarding To Get Started</span>
+                            <a t-att-href="ctx.get('url')" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">
+                                ACCEPT INVITE
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

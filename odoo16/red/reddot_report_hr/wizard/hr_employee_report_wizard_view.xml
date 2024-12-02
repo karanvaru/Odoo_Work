@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_hr_employee_report_wizard_form">
+            <field name="name">hr.employee.report.wizard.view</field>
+            <field name="model">hr.employee.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Export Report">
+                    <group>
+                        <group>
+                            <field name="month_count"/>
+                            <field name="company_ids" widget="many2many_tags" options="{'no_create_edit': True,'no_create': True}"/>
+                        </group>
+                        <group>
+                        	<field name="field_id" options="{'no_create_edit': True,'no_create': True}"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_print_report" class='btn btn-primary' string="Export" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_hr_employee_report_wizard">
+            <field name="name">Various Date Related Reports</field>
+            <field name="res_model">hr.employee.report.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_hr_employee_report_wizard"
+                  parent="hr.hr_menu_hr_reports"
+                  name="Various Date Related Reports"
+                   sequence="40"
+                  action="actions_hr_employee_report_wizard"
+        />
+
+    </data>
+</odoo>

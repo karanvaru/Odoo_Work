@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+       <record id="inherit_view_stock_view_warehouse" model="ir.ui.view">
+                <field name="name">inherit.inherit_view_stock_view_warehouse</field>
+                <field name="model">stock.location</field>
+                <field name="inherit_id" ref="stock.view_location_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='replenish_location']" position="after">
+                            <field name="location_sellable_status" />
+                            <field name="project_id"/>
+                            <field name="business_type"/>
+                    </xpath>
+                </field>
+        </record>
+  </data>
+</odoo>

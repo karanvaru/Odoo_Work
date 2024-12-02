@@ -1,0 +1,31 @@
+<odoo>
+    <template id="affiliate_inherit_index" inherit_id="affiliate_management.affiliate" name="Affiliate">
+
+      <xpath expr="//div[4]" position="before">
+        <div class="row justify-content-md-center" style="text-align: left;" >
+          <div class="col-lg-3 text-center">
+            <img src="/affiliate_management_multitier/static/description/Commission.png" style="height: 180px;"/>
+          </div>
+          <div class="col-md-4" style="padding:35px">
+            <h3>Benefits of being an Affiliate</h3>
+            <t t-raw="benefit_text"/>
+          </div>
+        </div>
+      </xpath>
+    </template>
+
+    <template id="affiliate_inherit_about" inherit_id="affiliate_management.about" name="About">
+      <xpath expr="//div[2]/div[3]" position="before">
+        <div class="row justify-content-md-center" style="text-align: left;" >
+          <div class="col-lg-3 text-center">
+            <img src="/affiliate_management_multitier/static/description/Commission.png" style="height: 180px;"/>
+          </div>
+          <div class="col-md-4" style="padding:35px">
+            <h3>Benefits of being an Affiliate</h3>
+            <t t-raw="benefit_text"/>
+          </div>
+        </div>
+      </xpath>
+    </template>
+
+  </odoo>

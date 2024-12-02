@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_customer_vendor_group_tree" model="ir.ui.view">
+            <field name="name">customer.vendor.group.tree</field>
+            <field name="model">customer.vendor.group</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_customer_vendor_group_from" model="ir.ui.view">
+            <field name="name">customer.vendor.group.form</field>
+            <field name="model">customer.vendor.group</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="code"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_customer_vendor_group" model="ir.actions.act_window">
+            <field name="name">Customer Vendor Group</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">customer.vendor.group</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new customer vendor group
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="five_why_inherit_form" model="ir.ui.view">
+            <field name="name">five_why.inherit.supplier.form</field>
+            <field name="model">five.why</field>
+            <field name="inherit_id" ref="five_why.five_why_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <!-- <header> -->
+                        <button name="action_set_action_in_progress" type="object" string="Actions In Progress"
+                                class="btn-primary"
+                                attrs="{'invisible': [('state', 'in', ['action_in_progress','close','cancel'])]}"/>
+                        <button name="action_set_close" type="object" string="Close" class="btn-primary"
+                                attrs="{'invisible': [('state', 'in', ['close','cancel','new'])]}"/>
+                        <button name="action_set_cancel" type="object" string="Cancel"
+                                attrs="{'invisible': [('state', 'in', ['new','close'])]}"/>
+                        <button name="action_set_to_draft" type="object" string="Set to New"
+                                attrs="{'invisible': [('state', 'in', ['new','close','cancel'])]}"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                        <!--                        <field name="state" widget="statusbar" options="{'clickable': '1'}"/>-->
+                    <!-- </header> -->
+                </xpath>
+                <group>
+                    <group>
+                        <field name="problem_name" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                        <field name="create_date" string="Analysis Date" widget="date" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                        <field name="analysis_started_time" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                        <field name="analysis_ended_time" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                    </group>
+                    <group>
+                        <field name="cross_functional_team_members_attended_ids" widget="many2many_tags" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                        <field name="chaired_by_id" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                        <field name="completed_percentage" widget="progressbar" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                    </group>
+                    <group>
+                        <field name="problem_description" widget="text" style="width:260%" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="5 Why Analysis">
+                        <group>
+                            <field name="why_is_the_problem_1st_why" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                            <field name="why_is_the_problem_2nd_why" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                            <field name="why_is_the_problem_3rd_why" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                            <field name="why_is_the_problem_4th_why" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                            <field name="why_is_the_problem_5th_why" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                        </group>
+                    </page>
+                    <page string="Root Cause">
+                        <group>
+                            <field name="root_cause_identified" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                        </group>
+                    </page>
+                    <page string="Rectification/Action">
+                        <group>
+                            <group>
+                                <field name="action1" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                            </group>
+                            <group>
+                                <field name="assigned_to_id"
+                                       attrs="{&quot;required&quot;: [[&quot;action1&quot;,&quot;!=&quot;,False]]}"/>
+                            </group>
+                        </group>
+                        <hr style="margin:1px 0"/>
+                        <group>
+                            <group>
+                                <field name="action2" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                            </group>
+                            <group>
+                                <field name="assigned_to_1_id"
+                                       attrs="{&quot;required&quot;: [[&quot;action2&quot;,&quot;!=&quot;,False]]}"/>
+                            </group>
+                        </group>
+                        <hr style="margin:1px 0"/>
+                        <group>
+                            <group>
+                                <field name="action3" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                            </group>
+                            <group>
+                                <field name="assigned_to_2_id"
+                                       attrs="{&quot;required&quot;: [[&quot;action3&quot;,&quot;!=&quot;,False]]}"/>
+                            </group>
+                        </group>
+                        <hr style="margin:1px 0"/>
+                        <group>
+                            <group>
+                                <field name="action4" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                            </group>
+                            <group>
+                                <field name="assigned_to_3_id"
+                                       attrs="{&quot;required&quot;: [[&quot;action4&quot;,&quot;!=&quot;,False]]}"/>
+                            </group>
+                        </group>
+                        <hr style="margin:1px 0"/>
+                        <group>
+                            <group>
+                                <field name="action5" attrs="{'readonly': [('state', 'in', ['close','cancel'])]}"/>
+                            </group>
+                            <group>
+                                <field name="assigned_to_4_id"
+                                       attrs="{&quot;required&quot;: [[&quot;action5&quot;,&quot;!=&quot;,False]]}"/>
+                            </group>
+                        </group>
+                        <hr style="margin:1px 0"/>
+                    </page>
+                </notebook>
+
+            </field>
+        </record>
+
+        <record id="five_why_tree_inherited" model="ir.ui.view">
+            <field name="name">5Why</field>
+            <field name="model">five.why</field>
+            <field name="inherit_id" ref="five_why.five_why_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="problem_name"/>
+                    <field name="open_days"/>
+                    <field name="completed_percentage" widget="progressbar"/>
+                    <field name="state"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--        search view-->
+        <record id="five_why_search_view" model="ir.ui.view">
+            <field name="name">five.why.search</field>
+            <field name="model">five.why</field>
+            <field name="arch" type="xml">
+                <search string="5Why">
+                    <field name="name"/>
+                    <!--                    group by-->
+                    <group expand="0" string="Group By">
+                        <filter name="state" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

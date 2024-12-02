@@ -1,0 +1,24 @@
+<odoo>
+    <record id="asterisk_user_admin_rule" model="ir.rule">
+        <field name="name">asterisk_user_admin_rule</field>
+        <field name="model_id" ref="asterisk_common.model_asterisk_common_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="groups" eval="[(6, 0, [ref('group_asterisk_admin')])]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+    <record id="asterisk_common_user_channel_admin_rule" model="ir.rule">
+        <field name="name">Asterisk user channel admin rule</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>                
+        <field name="model_id" ref="asterisk_common.model_asterisk_common_user_channel"/>
+        <field name="groups" eval="[(6, 0, [ref('group_asterisk_admin')])]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_company_form_inherit_level" model="ir.ui.view">
+            <field name="name">res.company.form.inherit.level</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <data>
+
+                    <xpath expr="//page[last()]" position="after">
+                        <page string="Commission Level Config">
+                            <group>
+                                <group>
+                                    <field name="generate_commission"/>
+                                    <field name="commission_product_id"
+                                           invisible='1'
+                                           domain="[('type', '=', 'service')]"/>
+                                    <!--                                     attrs="{'invisible': [('generate_commission', '=', False)]}"-->
+                                    <field name="commission_based_on" widget="radio"
+                                           invisible='1'/>
+<!--                                     attrs="{'invisible': [('generate_commission', '=', False)]}"-->
+
+                                </group>
+                                <group
+                                        attrs="{'invisible': [('generate_commission', '=', False)]}">
+                                    <label for="level_no"/>
+                                    <div invisible="1">
+                                        <field name="level_no" class="oe_inline"/>
+                                        <button name="actin_compute_levels"
+                                                type="object"
+                                                string="Refresh Level Matrix"
+                                                class="btn btn-link oe_inline"/>
+
+                                    </div>
+                                </group>
+                            </group>
+                            <field name="commission_level_ids" create="1" edit="1" delete="1"
+                                   invisible="1">
+<!--                                attrs="{'invisible': [('generate_commission', '=', False)]}"-->
+                                <tree create="1" editable="1" delete="1">
+                                    <field name="level_no"/>
+                                    <field name="percentage"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </xpath>
+
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>

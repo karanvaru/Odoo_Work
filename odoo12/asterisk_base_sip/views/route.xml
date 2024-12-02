@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="asterisk_base_sip_route_action" model="ir.actions.act_window">
+    <field name="name">Routes</field>
+    <field name="res_model">asterisk_base_sip.route</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem action="asterisk_base_sip_route_action"
+    groups="asterisk_common.group_asterisk_admin" id="asterisk_base_sip_route_menu"
+    name="Routes" parent="asterisk_base_sip_menu" sequence="180"/>
+  
+  <record id="asterisk_base_sip_route_list" model="ir.ui.view">
+    <field name="name">asterisk_base_sip.route.list</field>
+    <field name="model">asterisk_base_sip.route</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree default_order="sequence">
+        <field name="prio"/>
+        <field name="sequence" widget="handle"/>
+        <field name="name"/>
+        <field name="icon"/>        
+        <field name="dst"/>
+        <field name="src"/>
+        <field name="groups" widget="many2many_tags"/>
+        <field name="server"/>
+        <field name="recording_enabled" string="Record"/>
+        <field name="lang"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="asterisk_base_sip_route_form" model="ir.ui.view">
+    <field name="name">asterisk_base_sip.route.form</field>
+    <field name="model">asterisk_base_sip.route</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <div class="oe_title" name="title">
+            <h1 class="o_row row no-gutters d-flex">
+              <div class="col">
+                <label class="oe_edit_only" for="name"/>
+                <div class="o_row">
+                  <field class="oe_inline" name="name" placeholder="Route name..."/>
+                  <span class="oe_grey p-2">at</span>
+                </div>
+              </div>
+              <div class="col">
+                <label class="oe_edit_only" for="server"/>
+                <field name="server" options="{'no_create': '1'}"/>
+              </div>
+            </h1>
+            <h2 class="o_row row no-gutters d-flex">
+              <div class="col">
+                <label class="oe_edit_only" for="groups"/>
+                <div class="o_row">
+                  <field
+                    name="groups" class="oe_inline" widget="many2many_tags"
+                    context="{'default_server': server}"
+                    domain="[('server', '=', server)]"/>
+                </div>
+              </div>
+              <div class="col oe_small">
+                <label class="oe_edit_only" for="lang"/>
+                <div class="o_row">
+                  <field name="lang"/>
+                </div>
+              </div>
+            </h2>
+          </div>
+          <notebook>
+            <page name="rules" string="Rules">
+              <group name="conditions" string="Conditions">
+                <group>
+                  <field name="dst" placeholder="_X."/>
+                  <field name="sequence" string="Prio" required="1"/>
+                </group>
+                <group>
+                  <field name="src"/>
+                </group>
+              </group>
+              <group name="destination" string="Destination">            
+                <group>
+                  <field name="destination_type"/>
+                  <field name="dialplan"
+                    attrs="{'invisible': [('destination_type', '!=', 'dialplan')],
+                            'required': [('destination_type', '=', 'dialplan')]}"/>
+                  <field name="sip_trunk"
+                    options="{'no_create': '1'}"
+                    attrs="{'invisible': [('destination_type', '!=', 'sip_trunk')],
+                            'required': [('destination_type', '=', 'sip_trunk')]}"/>
+                  <field attrs="{'invisible': [('destination_type', '!=', 'sip_trunk')],
+                                 'required': [('destination_type', '=', 'sip_trunk')]}"
+                      name="sip_trunk_dial_timeout"/>
+                  <field attrs="{'invisible': [('destination_type', '!=', 'sip_trunk')],
+                                 'required': [('destination_type', '=', 'sip_trunk')]}"
+                      name="sip_trunk_dial_options"/>
+                </group>
+                <group name="destination_options">
+                  <field attrs="{'invisible': [('destination_type', '!=', 'block')],
+                                 'required': [('destination_type', '=', 'block')]}"
+                    name="block_type"/>
+                  <field attrs="{'invisible': [('destination_type', '!=', 'exten')],
+                                 'required': [('destination_type', '=', 'exten')]}"
+                    options="{'no_create': '1'}"
+                    name="exten"/>
+                  <field name="recording_enabled"/>
+                  <field name="partner_lookup_enabled"
+                    attrs="{'invisible': [('destination_type', '!=', 'exten')]}"/>
+                </group>
+              </group>
+              <group name="fail-over" string="Fail Over Destination"
+                  attrs="{'invisible': [('destination_type', 'not in', ['sip_trunk', 'extension'])]}">
+                <field name="fail_over_route"/>
+              </group>
+            </page>
+            <page name="translation" string="Number Translation"
+              attrs="{'invisible': [('destination_type', '!=', 'sip_trunk')]}">
+              <group string="Source numbers">
+                <field name="src_translations" nolabel="1"
+                  context="{'default_translation_type': 'src'}">
+                  <tree>
+                    <field name="src"/>
+                    <field name="src_channel"/>
+                    <field name="src_user"/>                    
+                    <field name="src_prefix" string="Prefix"/>
+                    <field name="src_skip" string="Skip"/>
+                    <field name="src_skip_length" string="Length"/>
+                    <field name="src_replace" string="Replace"/>
+                  </tree>
+                </field>
+              </group>
+              <group string="Destination numbers">
+                <field name="dst_translations" nolabel="1"
+                  context="{'default_translation_type': 'dst'}">
+                  <tree>
+                    <field name="dst"/>
+                    <field name="dst_prefix"/>
+                    <field name="dst_skip"/>
+                    <field name="dst_skip_length"/>
+                    <field name="dst_replace"/>
+                  </tree>
+                </field>
+              </group>
+            </page>
+            <page name="dialplan" string="Dialplan" class="oe_read_only">
+              <field name="built_dialplan" widget="asterisk_conf"/>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="asterisk_base_sip_route_search" model="ir.ui.view">
+    <field name="name">asterisk_base_sip.route.search</field>
+    <field name="model">asterisk_base_sip.route</field>
+    <field name="type">search</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="groups"/>
+        <field name="name"/>
+        <field name="dst"/>
+        <field name="src"/>        
+        <field name="server"/>
+        <filter domain="[('destination_type','=','block')]"
+          name="block" string="Blocked"/>
+        <filter domain="[('destination_type','=','exten')]"
+          name="exten" string="Extensions"/>
+        <filter domain="[('destination_type','=','custom')]"
+          name="custom" string="Custom"/>
+        <filter context="{'group_by': 'server'}" name="by_server" string="By Server"/>
+        <filter context="{'group_by': 'destination_type'}" name="by_type" string="By Type"/>
+      </search>
+    </field>
+  </record>
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_import_product_removal_wizard" model="ir.ui.view">
+            <field name="name">Inbound Product Removal Wizard</field>
+            <field name="model">import.product.removal.order.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Product" version="7">
+                    <field name="removal_order_id" invisible="True"/>
+                    <group string="Configuration to import products">
+
+                        <group>
+                            <field name="choose_file" filename="file_name" string="Select file to import product"
+                                   widget="binary" required="1"/>
+                            <field name="file_name" string="File Name" invisible="1"/>
+                            <field name="update_existing"/>
+                            <field name="replace_product_qty" attrs="{'invisible' : [('update_existing','!=',True)]}"/>
+                        </group>
+                        <group>
+                            <field name="delimiter" required="1"/>
+                        </group>
+
+                    </group>
+
+                    <group string="Format">
+                        <p>
+                            default_code,unsellable_quantity,sellable_quantity.
+                        </p>
+                    </group>
+
+                    <footer>
+                        <button name="import_removal_line" string="Import Product" type="object" class="oe_highlight"/>
+                        or
+                        <button string="_Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

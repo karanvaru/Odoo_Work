@@ -1,0 +1,62 @@
+<odoo>
+    <record id="new_channel" model="asterisk_common.event">
+        <field name="name">Newchannel</field>
+        <field name="source">AMI</field>
+        <field name="model">asterisk_calls.channel</field>
+        <field name="method">new_channel</field>
+        <field name="condition">not event['Channel'].startswith('Local/')</field>
+    </record>
+
+    <record id="new_state" model="asterisk_common.event">
+        <field name="name">Newstate</field>
+        <field name="source">AMI</field>
+        <field name="model">asterisk_calls.channel</field>
+        <field name="method">update_channel_state</field>
+        <field name="delay">0.5</field>
+        <field name="condition">not (event['Channel'].startswith('Local/') or event['ChannelStateDesc'] not in ['Up'])</field>
+    </record>
+
+    <record id="var_set_mixmon" model="asterisk_common.event">
+        <field name="name">VarSet</field>
+        <field name="source">AMI</field>
+        <field name="model">asterisk_calls.channel</field>
+        <field name="method">update_monitor_filename</field>
+        <field name="delay">1.5</field>
+        <field name="condition">event['Variable'] == 'MIXMONITOR_FILENAME'</field>
+    </record>
+
+    <record id="cdr" model="asterisk_common.event">
+        <field name="name">Cdr</field>
+        <field name="source">AMI</field>
+        <field name="model">asterisk_calls.call</field>
+        <field name="method">create_cdr</field>
+        <field name="delay">2</field>
+    </record>
+
+    <record id="dial_end" model="asterisk_common.event">
+        <field name="name">DialEnd</field>
+        <field name="source">AMI</field>
+        <field name="model">asterisk_calls.channel</field>
+        <field name="method">dial_end</field>
+        <field name="condition">not event['DestChannel'].startswith('Local/')</field>
+    </record>
+
+    <record id="hangup" model="asterisk_common.event">
+        <field name="name">Hangup</field>
+        <field name="source">AMI</field>
+        <field name="model">asterisk_calls.channel</field>
+        <field name="method">hangup_channel</field>
+        <field name="delay">1</field>
+        <field name="condition">not event['Channel'].startswith('Local/')</field>
+    </record>
+
+    <record id="save_call_recording" model="asterisk_common.event">
+        <field name="name">Hangup</field>
+        <field name="source">AMI</field>
+        <field name="model">asterisk_calls.call</field>
+        <field name="method">save_call_recording</field>
+        <field name="delay">6</field>
+        <field name="condition">not event['Channel'].startswith('Local/')</field>
+    </record>    
+
+</odoo>

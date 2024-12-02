@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- hr.employee inherit form view -->
+    <record id="hr_employee_view_form_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.inherit.view.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            <xpath expr="//page[@name='hr_settings']" position="after">
+                <page name="kpi" string="KPI">
+                    <field name="payroll_kpi_ids">
+                        <tree estring="Payroll Lines" editable="bottom">
+                            <field name="month" readonly="1"/>
+                            <field name="kpi_type_id" readonly="1"/>
+                            <field name="kpi" readonly="1"/>
+                            <field name="state" widget="badge"
+                                            decoration-danger="state == 'cancel'"
+                                            decoration-warning="state == 'to_rate'"
+                                            decoration-info="state == 'rated'" readonly="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- payroll.kpi tree view -->
+    <record id="payroll_kpi_view_tree" model="ir.ui.view">
+        <field name="name">payroll.kpi.view.tree</field>
+        <field name="model">payroll.kpi</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="month"/>
+                <field name="kpi"/>
+                <!-- Add your fields here -->
+            </tree>
+        </field>
+    </record>
+
+    <!-- payroll.kpi form view -->
+    <record id="payroll_kpi_view_form" model="ir.ui.view">
+        <field name="name">payroll.kpi.view.form</field>
+        <field name="model">payroll.kpi</field>
+        <field name="arch" type="xml">
+            <form string="Employee Monthly KPI">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="employee_id"/>
+                        <field name="month"/>
+                        <field name="kpi"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- payroll.kpi search view -->
+    <record id="payroll_kpi_view_search" model="ir.ui.view">
+        <field name="name">payroll.kpi.view.search</field>
+        <field name="model">payroll.kpi</field>
+        <field name="arch" type="xml">
+            <search string="Employee Monthly KPI">
+                <field name="employee_id" string="Employee"/>
+                <field name="kpi" string="KPI"/>
+
+                <filter string="Date" name="date_filter" date="month" default_period="last_month"/>
+                <separator/>
+
+                <group expand="0" string="Group By">
+                    <filter string="Employee" name="group_by_employee_id" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_by_kpi" string="Group By Kpi" context="{'group_by': 'kpi'}" />  
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_payroll_kpi" model="ir.actions.act_window">
+            <field name="name">KPI for Employees</field>
+            <field name="res_model">payroll.kpi</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

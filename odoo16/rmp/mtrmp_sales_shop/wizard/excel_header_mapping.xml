@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="excel_header_mapping_wizard_view">
+            <field name="name">excel.header.mapping.wizard.form</field>
+            <field name="model">excel.header.mapping.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="shop_id"/>
+                        <field name="lines_ids">
+                            <tree editable="bottom">
+                                <field name="execl_header_lines_id" invisible="1"/>
+                                <field name="excel_head"/>
+                                <field name="field_id" domain="[('model_id.model', '=', 'sale.shop.product')]"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="upload_product" string="Upload" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_excel_header_mapping_wizard">
+            <field name="name">Upload Product</field>
+            <field name="res_model">excel.header.mapping.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

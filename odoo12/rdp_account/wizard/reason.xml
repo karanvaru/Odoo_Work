@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+<!-- Issue Reason Wizard Form view  -->
+    <record id="issue_reason_wizard_form_view" model="ir.ui.view">
+        <field name="name">Issue Reason Wizard Form View</field>
+        <field name="model">issue.reason.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Issue Reason">
+            <sheet>	
+                <group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                     <group> 
+                        <field name="action"/>
+                        <field name="created_on"/>
+                        <field name="created_by_user"/>
+                    </group>      
+                </group>    	
+            </sheet>		
+                <footer>
+                <button name="create_issue_history" string="Issue" type="object" class="oe_highlight"/>
+                <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+<!-- Rectified Reason Wizard Form view  -->
+    <record id="rectified_reason_wizard_form_view" model="ir.ui.view">
+        <field name="name">Rectified Reason Wizard Form View</field>
+        <field name="model">rectified.reason.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+             <form string="Rectified Reason">
+               <group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                    <group> 
+                        <field name="action"/>
+                        <field name="created_on"/>
+                        <field name="created_by_user"/>
+                    </group>    
+                </group>    
+                 <footer>
+                    <button name="create_rectified_history" string="Rectified" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                 </footer>
+            </form>
+        </field>
+    </record>
+
+<!-- Action Issue Reason Wizard -->
+    <record id="action_open_issue_reason" model="ir.actions.act_window">
+        <field name="name">Issue Reason</field>
+        <field name="res_model">issue.reason.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+<!-- Action Rectified Reason Wizard -->
+    <record id="action_open_rectified_reason" model="ir.actions.act_window">
+        <field name="name">Rectified Reason</field>
+        <field name="res_model">rectified.reason.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
+

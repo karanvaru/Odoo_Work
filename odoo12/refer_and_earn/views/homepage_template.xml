@@ -1,0 +1,130 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+  <template id="homepage" name="homepage">
+      <t t-call="website.layout">
+        <div class="container-fluid">
+      	<div class='row align-items-center refer_banner' style="background-image: url('/refer_and_earn/static/src/img/Hero-Banner.png'); height:300px; background-size:cover; background-repeat:no-repeat;">
+      		<div class="col-md-6 text-center">
+              <div style="font-size:40px;color:white;">
+                <b>Refer And Earn</b>
+                <div style="font-size:17px; font-style:normal; color:white" >
+                	Refer A Friend And Earn Rewards
+                </div>
+                <a href="http:/my/refer_earn/" class="btn btn-success" >START EARNING NOW</a>
+              </div>
+              <div style="font-size: 173%; color: white ;font-weight: bold;">
+                Invite your friend and earn <t t-esc="currency_id.symbol"/><t t-esc="int(refered_points*equivalent_amount)"/> for each referral
+              </div>
+
+        </div>
+      	</div>
+      	<div class="row justify-content-center" style="text-align: center;">
+            <div class="col-md-8">
+                <div style="padding:20px">
+                  <h2><span class="underline"><span class="title_span">Refer A Friend</span></span></h2>
+                  <h4>Earning by Referring!</h4>
+                  <!-- <t t-if="not home_page_content">
+                    Refer us! To your connections (friend and family) and earn Rewards. Through our Refer and Earn program, you just need to share your auto-generated Unique Referral Code (Referral code will be generated automatically once you sign-up with us) with your connections. Once your referred connections join us using your referral code. You’ll be rewarded by us. You can even track your referrals and the reward earned in the real time via our personalized dashboard.<br/>
+                    <b>You spread the word, we will share the wealth.</b>
+                  </t> -->
+                  <t t-raw="home_page_content"/>
+                </div>
+            </div>
+        </div>
+		<div class="row justify-content-center" style=" background-color: #dee0e2;text-align: center;">
+            <div class="col-md-8" style="padding-bottom: 1%;">
+                <div style="padding:20px">
+                   <h2 style="padding :2%"><span class="underline">Benefits</span></h2>
+                  <h4> Represented by Tripple E (EEE) </h4>
+                </div>
+
+                <div class="row justify-content-center" style="position: relative;">
+                  <div class="col-md-3">
+                      <div class="homepage_image">
+                        <img src="/refer_and_earn/static/src/img/Easy-.png" style="padding:4%;"/>
+                        <br/>
+                        <span style="position: relative;top: 10%;">
+                           <b>E</b>asy To Use
+                        </span>
+                      </div>
+                  </div>
+
+                  <div class=" col-md-3">
+                      <div class="homepage_image">
+                          <img src="/refer_and_earn/static/src/img/Earn-Reward.png" style="padding:2%;" />
+                          <br/><br/>
+                        <b>E</b>arn Rewards
+                      </div>
+                  </div>
+
+                  <div class=" col-md-3">
+                      <div class="homepage_image">
+                        <img src="/refer_and_earn/static/src/img/Graph.png" style="padding:2%;" />
+                        <br/><br/>
+                        <b>E</b>asy To Track Your
+                        <br/>
+                        Stats
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="text-align: center;">
+            <div class="col-md-8">
+                <div style="padding:20px">
+                  <h2 style="padding :2%"><span class="underline">How To Earn</span></h2>
+                  <img src="/refer_and_earn/static/src/img/How-To-Earn.png" style="width:100%; height:100%;"/>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="text-align: center;">
+            <div class="col-md-8">
+                <div style="padding:20px">
+                   <h2 style="padding :2%"><img src="/refer_and_earn/static/src/img/Sharing-Is-earing.png"/><span class="underline">How it Works ?</span></h2>
+                  <h4>Sharing is Earning </h4>
+                  Sign-in to your account and share your Unique Referral Code with your connections.You will Earn Reward for every referral (with your Referral Code) sign up.
+                </div>
+            </div>
+          </div>
+          <div class="row justify-content-center" style="">
+            <div class="col-md-6" >
+                  <t t-raw="how_it_works_content"/>
+            </div>
+
+        </div>
+        <t t-if="referral_points != 0">
+          <div class="commission-val" >
+            <div>
+              <h2>
+                <b>
+                  Give <t t-esc="currency_id.symbol"/><t t-esc="int(referral_points*equivalent_amount)"/> and Get <t t-esc="currency_id.symbol"/><t t-esc="int(refered_points*equivalent_amount)"/>
+                </b>
+              </h2>
+            </div>
+
+            <div>
+                Refer a friend to Get them <t t-esc="currency_id.symbol"/><t t-esc="int(referral_points*equivalent_amount)"/> and We'll Give you <t t-esc="currency_id.symbol"/><t t-esc="int(refered_points*equivalent_amount)"/>
+            </div>
+          </div>
+        </t>
+        <div class='refer_banner row' id="footer_banner_1" style="background-image: url('/refer_and_earn/static/src/img/Footer-Banner.png'); height:200px; background-size:cover; background-repeat:no-repeat;">
+      		<!-- <div class="row" style="height:100%;"> -->
+
+            <div class="col align-self-center text-center" style="color:white;">
+      			 <a href="http:/my/refer_earn/" class="btn btn-success">START EARNING NOW</a>
+      			 <div>
+      			 	You spread the word, we will share the wealth.
+      			 </div>
+           </div>
+      		<!-- </div> -->
+      	</div>
+        <div class="faq-coresole">
+        </div>
+      </div>
+    </t>
+
+
+  </template>
+
+</odoo>

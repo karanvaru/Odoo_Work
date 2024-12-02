@@ -1,0 +1,387 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* recurrent_activities
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-17 19:33+0000\n"
+"PO-Revision-Date: 2019-10-17 22:38+0300\n"
+"Last-Translator: <Roman, rw@scrimo.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: de\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__active
+msgid "Active"
+msgstr "Aktiv"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__activity_type_id
+msgid "Activity"
+msgstr "Aufgaben"
+
+#. module: recurrent_activities
+#: model_terms:ir.ui.view,arch_db:recurrent_activities.recurrent_activity_template_view_search
+msgid "Activity Type"
+msgstr "Aufgabentyp"
+
+#. module: recurrent_activities
+#: model:res.groups,name:recurrent_activities.group_recurrent_admin
+msgid "All Recurrent Activities"
+msgstr "Alle wiederkehrenden Aufgaben"
+
+#. module: recurrent_activities
+#: model_terms:ir.ui.view,arch_db:recurrent_activities.recurrent_activity_template_view_search
+msgid "Archived"
+msgstr "Archiviert"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__user_id
+msgid "Assigned to"
+msgstr "Zugewiesen an"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__byday
+msgid "By day"
+msgstr "Tag"
+
+#. module: recurrent_activities
+#: model_terms:ir.actions.act_window,help:recurrent_activities.recurrent_activity_template_action
+msgid "Click to add a recurring activity"
+msgstr "Erzeuge wiederkehrende Aufgabe"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__year_day
+msgid "Date of Month"
+msgstr "Datum des Monats"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__day
+#: selection:recurrent.activity.template,month_by:0
+msgid "Date of month"
+msgstr "Datum des Monats"
+
+#. module: recurrent_activities
+#: model_terms:ir.ui.view,arch_db:recurrent_activities.recurrent_activity_template_view_form
+msgid "Day of Month"
+msgstr "Tag des Monats"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,month_by:0
+msgid "Day of month"
+msgstr "Tag des Monats"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,periodicity:0
+msgid "Day(s)"
+msgstr "Tag(e)"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__number_of_days
+msgid "Deadline in x Days"
+msgstr "zu erledigen bis in X Tagen"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: recurrent_activities
+#: model_terms:ir.ui.view,arch_db:recurrent_activities.recurrent_activity_template_view_search
+msgid "Document"
+msgstr "Dokument"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,byday:0
+msgid "First"
+msgstr "Erster"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,byday:0
+msgid "Fourth"
+msgstr "Vierter"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__fr
+msgid "Fri"
+msgstr "Fr"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,week_list:0
+msgid "Friday"
+msgstr "Freitag"
+
+#. module: recurrent_activities
+#: model_terms:ir.ui.view,arch_db:recurrent_activities.recurrent_activity_template_view_search
+msgid "Group by..."
+msgstr "Gruppierung ..."
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__id
+msgid "ID"
+msgstr ""
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_res_users__is_int_user
+msgid "Internal user"
+msgstr "interner Benutzer"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__interval
+msgid "Interval"
+msgstr "Intervall"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,byday:0
+msgid "Last"
+msgstr "letzte"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__last_sent_date
+msgid "Last Activity Date"
+msgstr "letztes Aufgabendatum"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert durch"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: recurrent_activities
+#. openerp-web
+#: code:addons/recurrent_activities/static/src/xml/systray.xml:9
+#, python-format
+msgid "Manage Recurrent Activities"
+msgstr "Wiederkehrende Aufgaben"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__res_model_id
+#: model_terms:ir.ui.view,arch_db:recurrent_activities.recurrent_activity_template_view_search
+msgid "Model"
+msgstr "Modell"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__mo
+msgid "Mon"
+msgstr "Mo"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,week_list:0
+msgid "Monday"
+msgstr "Montag"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__year_month
+msgid "Month"
+msgstr "Monat"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,periodicity:0
+msgid "Month(s)"
+msgstr "Monat(e)"
+
+#. module: recurrent_activities
+#: model_terms:ir.ui.view,arch_db:recurrent_activities.recurrent_activity_template_view_form
+msgid "Name"
+msgstr "Name"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__next_sent_date
+msgid "Next Activity Date"
+msgstr "nächstes Aufgabendatum"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__note
+msgid "Note"
+msgstr "Notiz"
+
+#. module: recurrent_activities
+#: model:res.groups,name:recurrent_activities.group_recurrent_only_own
+msgid "Only Own Recurrent Activities"
+msgstr "Nur eigene wiederkehrende Aufgaben"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__month_by
+msgid "Option"
+msgstr "Option"
+
+#. module: recurrent_activities
+#: model_terms:ir.ui.view,arch_db:recurrent_activities.recurrent_activity_template_view_form
+msgid "Recurrency"
+msgstr "Wiederkehrend"
+
+#. module: recurrent_activities
+#: model:ir.actions.server,name:recurrent_activities.recurring_activity_template_cron_ir_actions_server
+#: model:ir.cron,cron_name:recurrent_activities.recurring_activity_template_cron
+#: model:ir.cron,name:recurrent_activities.recurring_activity_template_cron
+#: model:ir.module.category,name:recurrent_activities.module_category_recurrent_activities
+msgid "Recurrent Activities"
+msgstr "wiederkehrende Aufgaben"
+
+#. module: recurrent_activities
+#: model:ir.model,name:recurrent_activities.model_recurrent_activity_template
+msgid "Recurrent Activity"
+msgstr "wiederkehrende Aufgabe"
+
+#. module: recurrent_activities
+#: model:ir.actions.act_window,name:recurrent_activities.recurrent_activity_template_action
+msgid "Recurring Activities"
+msgstr "Wiederkehrende Aufgaben"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__name
+msgid "Reference"
+msgstr "Referenz"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__res_reference
+msgid "Related Document"
+msgstr "zugordnetes Dokumen"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__periodicity
+msgid "Repeat Every"
+msgstr "Wiederhole alle"
+
+#. module: recurrent_activities
+#: code:addons/recurrent_activities/models/recurrent_activity_template.py:190
+#: sql_constraint:recurrent.activity.template:0
+#, python-format
+msgid "Repeat interval should be positive!"
+msgstr "Wiederholungsinterval muss positiv sein!"
+
+#. module: recurrent_activities
+#: model_terms:ir.ui.view,arch_db:recurrent_activities.recurrent_activity_template_view_search
+msgid "Responsible"
+msgstr "Verantwortlich"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__sa
+msgid "Sat"
+msgstr "Sa"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,week_list:0
+msgid "Saturday"
+msgstr "Samstag"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,byday:0
+msgid "Second"
+msgstr "Zweiter"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__summary
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__su
+msgid "Sun"
+msgstr "So"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,week_list:0
+msgid "Sunday"
+msgstr "Sonntag"
+
+#. module: recurrent_activities
+#: model_terms:ir.ui.view,arch_db:recurrent_activities.recurrent_activity_template_view_form
+msgid "The"
+msgstr "Der"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,month_by:0
+msgid "The first day"
+msgstr "Der erste Tag"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,month_by:0
+msgid "The last day"
+msgstr "Der letzte Tag"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,byday:0
+msgid "Third"
+msgstr "Dritter"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__th
+msgid "Thu"
+msgstr "Do"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,week_list:0
+msgid "Thursday"
+msgstr "Donnerstag"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__tu
+msgid "Tue"
+msgstr "Di"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,week_list:0
+msgid "Tuesday"
+msgstr "Dienstag"
+
+#. module: recurrent_activities
+#: model:ir.model,name:recurrent_activities.model_res_users
+msgid "Users"
+msgstr "Benutzer"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__we
+msgid "Wed"
+msgstr "Mi"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,week_list:0
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,periodicity:0
+msgid "Week(s)"
+msgstr "Woche(n)"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,field_description:recurrent_activities.field_recurrent_activity_template__week_list
+msgid "Weekday"
+msgstr "Wochentag"
+
+#. module: recurrent_activities
+#: model:ir.model.fields,help:recurrent_activities.field_recurrent_activity_template__number_of_days
+msgid "What is activity deadline in comparison to its creation date"
+msgstr "Unterschied Aufgabenerledigungsdatum und Erstellungsdatum"
+
+#. module: recurrent_activities
+#: selection:recurrent.activity.template,periodicity:0
+msgid "Year(s)"
+msgstr "Jahr(e)"

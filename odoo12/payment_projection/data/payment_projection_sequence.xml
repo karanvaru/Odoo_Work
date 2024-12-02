@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="payment_projection_sequence" model="ir.sequence">
+            <field name="name">Payment Projection</field>
+            <field name="code">payment.projection.sequence</field>
+            <field name="prefix">PP</field>
+            <field name="padding">4</field>
+            <field eval="False" name="company_id"/>
+        </record>
+    </data>
+</odoo>

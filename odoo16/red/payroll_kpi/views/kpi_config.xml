@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- kpi.exceptions tree view -->
+    <record id="kpi_exceptions_view_tree" model="ir.ui.view">
+        <field name="name">kpi.exceptions.view.tree</field>
+        <field name="model">kpi.exceptions</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="excluded_department_ids" widget="many2many_tags"/>
+                <field name="excluded_job_position_ids" widget="many2many_tags"/>
+                
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- kpi.exceptions action client -->
+    <record id="action_kpi_exceptions" model="ir.actions.act_window">
+        <field name="name">KPI Exceptions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kpi.exceptions</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="kpi_exceptions_menu_act" name="KPI Exceptions" 
+        parent="hr_appraisal.menu_hr_appraisal_configuration" 
+        action="action_kpi_exceptions" sequence="50"
+        groups="payroll_kpi.group_kpi_manager"/>
+
+
+    <!-- kpi.category tree view -->
+    <record id="kpi_category_view_tree" model="ir.ui.view">
+        <field name="name">kpi.category.view.tree</field>
+        <field name="model">kpi.category</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- kpi.category search view -->
+    <record id="kpi_category_view_search" model="ir.ui.view">
+        <field name="name">kpi.category.view.search</field>
+        <field name="model">kpi.category</field>
+        <field name="arch" type="xml">
+            <search string="Search Description">
+                <!-- Add your fields here -->
+                <field name="name" string="Name"/>
+                <field name="active"/>
+
+                 <filter string="Archived" name="Inactive" domain="[('active', '=', False)]"/>
+                <separator/>
+            </search>
+        </field>
+    </record>
+
+    <record id="kpi_category_action" model="ir.actions.act_window">
+        <field name="name">KPI Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kpi.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="kpi_category_menu"
+        name="KPI Category"
+        action="kpi_category_action"
+        parent="hr_appraisal.menu_hr_appraisal_configuration"
+        sequence="40"
+        groups="payroll_kpi.group_kpi_manager"/>
+
+    
+
+    <!-- payroll.config form view -->
+    <record id="payroll_config_view_form" model="ir.ui.view">
+        <field name="name">payroll.config.view.form</field>
+        <field name="model">payroll.config</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <field name="active" invisible="1" />
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}" />
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" placeholder="KPI Name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="category_id"/>
+                        <field name="description"/>
+                        <field name="score"/>
+                    </group>
+                    <group name="department" string="Department">
+                        <field name="department_ids" widget="many2many_tags"/>
+                        <field name="job_ids" widget="many2many_tags"/>
+                        <field name="company_id" />
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- payroll.config tree view -->
+    <record id="payroll_config_view_tree" model="ir.ui.view">
+        <field name="name">payroll.config.view.tree</field>
+        <field name="model">payroll.config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="department_ids" widget="many2many_tags"/>
+                <field name="job_ids" widget="many2many_tags"/>
+                <field name="score"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- payroll.config search view -->
+    <record id="payroll_config_view_search" model="ir.ui.view">
+        <field name="name">payroll.config.view.search</field>
+        <field name="model">payroll.config</field>
+        <field name="arch" type="xml">
+            <search string="Search Description">
+                <!-- Add your fields here -->
+                <field name="name" string="Name"/>
+                <field name="job_ids" string="Job Position"/>
+                <field name="department_ids" string="Department"/>
+                <field name="category_id" string="Category"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="group_by_department" string="Group By Department" context="{'group_by': 'department_ids'}" /> 
+                    <filter name="group_by_job" string="Group By Job"  context="{'group_by': 'job_ids'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- payroll.config action window -->
+    <record id="payroll_config_action" model="ir.actions.act_window">
+        <field name="name">KPI Configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">payroll.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem
+        id="payroll_config_menu"
+        name="KPI Configuration"
+        action="payroll_config_action"
+        parent="hr_appraisal.menu_hr_appraisal_configuration"
+        sequence="10"
+        groups="payroll_kpi.group_kpi_manager" />
+</odoo>

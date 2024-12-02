@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Ked Ticket -->
+    <record id="ked_inherit_form_view" model="ir.ui.view">
+        <field name="name">ked.inherited.time.track</field>
+        <field name="model">ked.escalation</field>
+        <field name="inherit_id" ref="rdp_ked_escalation.ked_escalation_view_form"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//div[@name='action_start']" position="after">-->
+<!--                 <div-->
+<!--                      class="alert alert-info" role="alert" style="margin-bottom:0px; background-color:" attrs="{'invisible': [('active_user_count', '=', 0)]}"> <i class="fa fa-user-circle"></i>                  <field name="active_user_count" nolabel="1" readonly="1" style="position: absolute;padding: 2px 8px;background-color: #dabf29;color: #FFF;display: inline-block;margin-left: 66px;border-radius: 50px;margin-top: 35px;"/>-->
+<!--                 </div>-->
+<!--            </xpath>-->
+            <xpath expr="//header/button[@name='action_to_send_warning']" position="before">
+                <field name="active_user_count" attrs="{'invisible': [('active_user_count', '=', 0)]}" nolabel="1" readonly="1" style="position: absolute;padding: 2px 8px;background-color: #dabf29;color: #FFF;display: inline-block;margin-left: 66px;border-radius: 50px;margin-top: 35px;"/>
+                <button string="Start" class="btn btn-primary"
+                        type="object" name="action_start" attrs="{'invisible': [('state', 'in', ['closed','cancel'])]}"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+            <notebook>
+                <page name="time_tracking" string="Time Tracking">
+                    <field name="user_time_tracking_ids"/>
+                </page>
+               </notebook> 
+            </xpath>
+        </field>
+    </record>
+
+    <!-- <record id="ked_kanban_view_leads_tracking" model="ir.ui.view">
+        <field name="name">ked.escalation.kanban.inherited.time.track</field>
+        <field name="model">ked.escalation</field>
+        <field name="inherit_id" ref="rdp_ked_escalation.ked_escalation_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="before">
+                <button name="action_start" type="object" class="btn fa fa-play"
+                        style="color:green;background-color:white" aria-label="Start Timer" title="Start Timer"/>
+            </xpath>
+        </field>
+    </record> -->
+
+    </odoo>
+

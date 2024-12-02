@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="multi_approval_view_form_inherit" model="ir.ui.view">
+        <field name="name">multi_approval_view_form_inherit</field>
+        <field name="model">multi.approval</field>
+        <field name="inherit_id" ref="multi_level_approval.multi_approval_view_form" />
+        <field name="arch" type="xml">
+            <field name="type_id" position="attributes">
+                <attribute name="domain">[('apply_for_model', '=', False)]</attribute>
+            </field>
+            <button name="action_cancel" position="after">
+                <button name="%(multi_level_approval_configuration.cancel_approval_action)d" type="action"
+                            string="Cancel" states="Submitted"/>
+            </button>
+            <button name="action_cancel" position="before">
+                <button name="%(multi_level_approval_configuration.change_approver_action)d" type="action"
+                            string="Change Approver" states="Submitted"/>
+            </button>
+        </field>
+    </record>
+
+</odoo>

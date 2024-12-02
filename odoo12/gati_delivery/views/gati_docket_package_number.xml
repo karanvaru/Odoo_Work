@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_gati_docket_package_number_tree" model="ir.ui.view">
+        <field name="name">gati.docket.package.number.tree</field>
+        <field name="model">gati.docket.package.number</field>
+        <field name="arch" type="xml">
+            <tree string="Gati Docket Package Number" create="false">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="is_used"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_gati_docket_package_number_form" model="ir.ui.view">
+        <field name="name">gati.docket.package.number.form.view</field>
+        <field name="model">gati.docket.package.number</field>
+        <field name="arch" type="xml">
+            <form string="Gati Docket Package Number" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="type"/>
+                        <field name="is_used"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gati_docket_package_number_view" model="ir.actions.act_window">
+        <field name="name">Gati Docket Package Number</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">gati.docket.package.number</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Generate a new Docket/Packet Numbers
+            </p>
+        </field>
+    </record>
+</odoo>

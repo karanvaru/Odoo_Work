@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="ki_spv_crm_lead_inherit" model="ir.ui.view">
+        <field name="name">ki.spv.crm.lead.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lead_properties']" position="before">
+                <group>
+                    <group>
+                        <field name="lead_date"/>
+                        <field name="kw_capacity"/>
+                        <field name="user_comment"/>
+                    </group>
+                    <group>
+                        <field name="lead_status"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

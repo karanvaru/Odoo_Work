@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+asp_partner_user,asp.partner.user,model_asp_partner,base.group_user,1,1,1,1
+service_product_cat_user,service.product_cat.user,model_service_product_cat,base.group_user,1,1,1,1
+service_types_user,service.types.user,model_service_types,base.group_user,1,1,1,1
+service_districts_user,service.districts.user,model_service_districts,base.group_user,1,1,1,1
+service_delivery_by_user,service.delivery_by.user,model_service_delivery_by,base.group_user,1,1,1,1
+service_categories_user,service.categories.user,model_service_categories,base.group_user,1,1,1,1

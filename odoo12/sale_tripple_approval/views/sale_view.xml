@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_order_form_inherit_finance_approval" model="ir.ui.view">
+        <field name="name">sale.order.form.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header" position="inside">
+                <button name="button_approve" type="object" states='to approve'
+                    string="Approve Order" class="oe_highlight" groups="sales_team.group_sale_manager"/>
+                <button name="button_finance_approval" string="Finance Approval" 
+                        type="object" class="oe_highlight" states="finance_approval" groups="account.group_account_invoice"/>
+                <button name="button_director_approval" string="Director Approval"  
+                        type="object" class="oe_highlight" states="director_approval" groups="sale_tripple_approval.group_sales_director"/>
+                <button name="%(action_sale_order_refuse_wiz)d" string="Refuse" 
+                        type="action" states="to approve,finance_approval,director_approval"/>
+                <button name="button_reset_to_draft" string="Set to Draft"  
+                        type="object" class="oe_highlight" states="refuse" />
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="Approve Details" string="Approve Details">
+                    <group name="approv_details" string="Approve Details">
+                        <group>
+                            <field name="approve_dept_manager_id"/>
+                            <field name="approve_finance_manager_id"/>
+                            <field name="approve_director_manager_id"/>
+                        </group>
+                        <group>
+                            <field name="dept_manager_approve_date"/>
+                            <field name="finance_manager_approve_date"/>
+                            <field name="director_manager_approve_date"/>
+                        </group>
+                        <group>
+                            <field name="dept_manager_id"/>
+                            <field name="finance_manager_id"/>
+                            <field name="director_manager_id"/>
+                            <field name="sale_user_id" invisible="True"/>
+                        </group>
+                    </group>
+                    <group name="refuse_po_grp" string="Refuse Details">
+                        <group>
+                            <field name="so_refuse_user_id"/>
+                        </group>
+                        <group>
+                            <field name="so_refuse_date"/>
+                        </group>
+                        <label for="refuse_reason_note" string="Refuse Reason"/>
+                        <field name="refuse_reason_note" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_quotation_tree_inherit_tripple_approval">
+        <field name="name">sale.order.list.select.inherit.tripple.approval</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter name="department_approval" string="Department Approval" domain="[('state', '=', 'to approve')]"/>
+                <filter name="finance_approval" string="Finance Approval" domain="[('state', '=', 'finance_approval')]"/>
+                <filter name="director_approval" string="Director Approval" domain="[('state', '=', 'director_approval')]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sale_manager_approve">
+            <field name="name">Department Approvals</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="context">{'search_default_department_approval':1}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sale_finance_manager_approve">
+            <field name="name">Finance Approvals</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="context">{'search_default_finance_approval':1}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sale_director_manager_approve">
+            <field name="name">Director Approvals</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="context">{'search_default_director_approval':1}</field>
+    </record>
+    
+    <menuitem id="menu_order_approval"
+              parent="sale.sale_menu_root" name="Orders Approval" 
+              sequence="2"/>
+    
+    <menuitem string="Finance Approval" id="menu_sale_order" 
+              action="action_sale_finance_manager_approve"
+              parent="menu_order_approval" 
+              groups="account.group_account_invoice" sequence="2"/>
+    
+    <menuitem id="menu_sale_manager_approve" name="Department Approvals" 
+              action="action_sale_manager_approve" parent="menu_order_approval"
+              groups="sale_tripple_approval.group_sale_department_manager" sequence="1"/>
+    
+    <menuitem id="menu_invoice_order_approval" 
+              parent="account.menu_finance_receivables" name="Orders Approval" 
+              sequence="2"/>
+    
+    <menuitem id="menu_finance_manager_approve" string="Finance Approvals" name="Finance Approvals"
+              action="action_sale_finance_manager_approve" parent="menu_invoice_order_approval"
+              groups="account.group_account_invoice"/>
+
+    <menuitem id="menu_director_manager_approve" name="Director Approvals" 
+              action="action_sale_director_manager_approve" parent="menu_order_approval"
+              groups="sale_tripple_approval.group_sales_director"/>
+
+</odoo>

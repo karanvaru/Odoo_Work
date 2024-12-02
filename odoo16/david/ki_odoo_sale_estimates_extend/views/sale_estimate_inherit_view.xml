@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sale_estimate_inherit_form" model="ir.ui.view">
+        <field name="name">sale.estimate.form.inherit</field>
+        <field name="model">sale.estimate</field>
+        <field name="inherit_id" ref="odoo_sale_estimates.view_sale_estimate_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='quotation_id']" position="after">
+                <field name="category_type" required="1"/>
+            </xpath>
+            <xpath expr="//notebook/page/field[@name='estimate_ids']//tree//field[@name='product_id']"
+                   position="attributes">
+                <attribute name="attrs">{'required': [('display_type', '=', False)]}</attribute>
+                <attribute name="widget">sol_product_many2one</attribute>
+
+            </xpath>
+            <xpath expr="//notebook/page/field[@name='estimate_ids']//tree//field[@name='product_uom']"
+                   position="attributes">
+                <attribute name="attrs">{'required': [('display_type', '=', False)]}</attribute>
+            </xpath>
+
+            <xpath expr="//notebook/page/field[@name='estimate_ids']/tree" position="inside">
+                <control>
+                    <create name="add_line_control" string="Add a line"/>
+                    <create name="add_section_control" string="Add a section"
+                            context="{'default_display_type': 'line_section'}"/>
+                    <create name="add_note_control" string="Add a note"
+                            context="{'default_display_type': 'line_note'}"/>
+                </control>
+            </xpath>
+            <field name="estimate_ids" position="attributes">
+                <attribute name="widget">section_and_note_one2many</attribute>
+            </field>
+
+            <xpath expr="//notebook/page/field[@name='estimate_ids']//tree//field[@name='product_description']"
+                   position="attributes">
+                <field name="product_description" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </xpath>
+
+            <xpath expr="//notebook/page/field[@name='estimate_ids']/tree/field[@name='product_id']"
+                   position="before">
+                <field name="display_type" invisible="1"/>
+                <field name="item_code"/>
+            </xpath>
+            <xpath expr="//notebook/page/field[@name='estimate_ids']/tree/field[@name='product_id']"
+                   position="after">
+                <field name="name" widget="section_and_note_text" optional="show" string="Description"/>
+            </xpath>
+
+            <xpath expr="//notebook/page/field[@name='estimate_ids']/tree/field[@name='price_unit']"
+                   position="after">
+                <field name="tax_id" widget="many2many_tags"/>
+                <field name="price_total" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook/page/field[@name='estimate_ids']/tree/field[@name='price_subtotal']"
+                   position="attributes">
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//notebook/page/group[@name='note_group']" position="replace">
+                <group name="note_group" col="6" class="mt-2 mt-md-0">
+                    <group colspan="4">
+                        <!--                        <field colspan="2" name="note" nolabel="1" placeholder="Terms and conditions..."/>-->
+                    </group>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                        <field name="tax_totals" widget="account-tax-totals-field" nolabel="1" colspan="2"
+                               readonly="1"/>
+                    </group>
+                    <div class="clearfix"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

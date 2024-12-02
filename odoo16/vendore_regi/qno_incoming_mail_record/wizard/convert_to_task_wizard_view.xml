@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_convert_to_task_wizard_form" model="ir.ui.view">
+        <field name="name">convert.to.task.wizard.form.view</field>
+        <field name="model">convert.to.task.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="project_id"/>
+                        <field name="user_ids" widget="many2many_tags"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="convert_to_task" string="Submit"
+                            type="object" default_focus="1" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="convert_to_task_wizard_action">
+        <field name="name">Convert To Task Wizard</field>
+        <field name="res_model">convert.to.task.wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_convert_to_task_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+
+    <record id="action_create_task_server" model="ir.actions.act_window">
+        <field name="name">Convert To Task</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">convert.to.task.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_convert_to_task_wizard_form"/>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="qno_incoming_mail_record.model_incoming_mail_record"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+
+</odoo>

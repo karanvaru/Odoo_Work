@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_insurance_policy_form" model="ir.ui.view">
+        <field name="name">insurance_policy.view.form</field>
+        <field name="model">insurance.policy</field>
+        <field name="arch" type="xml">
+            <form string="Insurance Details Form">
+                <header>
+                    <button name="action_confirm_insurance" string="Activate" type="object"
+                            states="draft" class="oe_highlight"/>
+                    <button name="action_convert_policy" attrs="{'invisible': [('policy_number', '!=', False)]}"
+                            type="object" class="btn-primary" string="Add Policy Details"/>
+                    <button name="action_create_invoice"
+                            attrs="{'invisible': [('invoice_status', 'in', ('invoiced'))]}"
+                            string="Add Commission Rate" type="object" class="oe_highlight" invisible="True"/>
+                    <button name="action_close_insurance" string="Close" type="object"
+                            states="confirmed" class="oe_highlight"/>
+                    <button type="action" name="%(qno_insurance_management.action_add_payment_bank_wizard)d"
+                            string="Add Payment"
+                            attrs="{'invisible': [('bank_id', '!=', False)]}"
+                            class="oe_highlight"
+                    />
+
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Invoiced"
+                            attrs="{'invisible': [('invoice_status', '!=', 'invoiced')]}"/>
+                    <widget name="web_ribbon" title="To Invoice"
+                            attrs="{'invisible': [('invoice_status', '!=', 'to_invoice')]}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                            <field name="invoice_status" invisible="1" widget="statusbar"/>
+                        </h1>
+                    </div>
+
+                    <separator string="Customer Details"/>
+                    <div class="row">
+                        <div class="col-4 col-md-4">
+                            <label for="partner_id" string="Customer"/>
+                            <field name="partner_id"
+                                   widget="res_partner_many2one"
+                                   style="width:100% !important;"
+                                   context="{'show_address': 1, 'default_is_company': True}"
+                                   options='{"always_reload": True, "no_quick_create": True, "no_create":True,"no_edit":True}'
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="policy_type" invisible="1"/>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label for="mobile"/>
+                            <field name="mobile" options="{'no_create':True, 'no_edit':True}"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                            <label for="email"/>
+                            <field name="email" options="{'no_create':True, 'no_edit':True}"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}" style="width:100% !important;"/>
+
+
+                        </div>
+                        <div class="col-4 col-md-4" groups="qno_insurance_management.group_commission_show">
+                            <label for="agent_id"/>
+                            <field name="agent_id"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   domain="[('partner_type', '=', 'agent')]"
+                                   options="{'no_create':True, 'no_edit':True}"
+                                   style="width:100% !important;"/>
+                            <field name="policy_document" options="{'accepted_file_extensions': '.pdf'}"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   invisible="True"/>
+                        </div>
+                    </div>
+
+
+                    <separator string="Dates"/>
+                    <div class="row">
+                        <div class="col-3 col-md-3">
+                            <label for="start_date"/>
+                            <field name="start_date"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label for="end_date"/>
+                            <field name="end_date"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label for="policy_date"/>
+                            <field name="policy_date"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+
+
+                        <div class="col-3 col-md-3">
+                            <label for="order_ref_id"/>
+                            <field name="order_ref_id"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                    </div>
+                    <separator string="Payment Details"/>
+                    <div class="row">
+                        <div class="col-4 col-md-4">
+                            <label for="bank_id"/>
+                            <field name="bank_id" readonly="1"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label for="payment_method"/>
+                            <field name="payment_method"
+                                   readonly="1"
+                                   style="width:100% !important;"/>
+                        </div>
+                    </div>
+
+
+                    <separator string="Policy Details"/>
+                    <div class="row">
+                        <div class="col-4 col-md-4">
+                            <label for="policy_number"/>
+                            <field name="policy_number" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label for="policy_product_id"/>
+                            <field name="policy_product_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label for="insurance_company_id"/>
+                            <field name="insurance_company_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 col-md-4">
+                            <label for="agency_agent_id"/>
+                            <field name="agency_agent_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label for="document_verified"/>
+                            <field name="document_verified" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <label for="health_policy_type"/>
+                            <field name="health_policy_type" widget="radio" options="{'horizontal': true}"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+
+
+                    </div>
+                    <div class="row" attrs="{'invisible': [('policy_type', '!=', 'health')]}">
+                        <field name="policy_holders_ids" attrs="{'readonly': [('state', '!=', 'draft')],}">
+                            <tree editable="top">
+                                <field name="name"/>
+                                <field name="date_of_birth"/>
+                                <field name="age"/>
+                                <field name="relation_id"/>
+                                <field name="gender"/>
+
+                                <!--                                <field name="sum_assured" sum="sum_assured"/>-->
+                            </tree>
+                        </field>
+
+
+                    </div>
+
+                    <separator string="Vehicle Information" attrs="{'invisible': [('policy_type', '!=', 'vehicle')]}"/>
+                    <div class="row" attrs="{'invisible': [('policy_type', '!=', 'vehicle')]}">
+                        <div class="col-3 col-md-3">
+                            <label for="vehicle_number"/>
+                            <field name="vehicle_number" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label for="vehicle_manufacturing_year"/>
+                            <field name="vehicle_manufacturing_year" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label for="vehicle_make"/>
+                            <field name="vehicle_make" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label for="vehicle_model"/>
+                            <field name="vehicle_model" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                    </div>
+
+                    <div class="row" attrs="{'invisible': [('policy_type', '!=', 'vehicle')]}">
+                        <div class="col-3 col-md-3">
+                            <label for="cng_lpg_value"/>
+                            <field name="cng_lpg_value" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label for="engine_chassis_no"/>
+                            <field name="engine_chassis_no" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label for="fuel_type"/>
+                            <field name="fuel_type" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                    </div>
+                    <div class="row" attrs="{'invisible': [('policy_type', '!=', 'vehicle')]}">
+                        <div class="col-3 col-md-3">
+                            <label for="non_electrical_accessories_idv_electrical"/>
+                            <field name="non_electrical_accessories_idv_electrical"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label for="electronic_accessories_idv"/>
+                            <field name="electronic_accessories_idv"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+
+                    </div>
+
+                    <separator string="Amounts"/>
+                    <div class="row">
+                        <div class="col-3 col-md-3" attrs="{'invisible': [('policy_type', '!=', 'vehicle')]}">
+                            <label for="idv_value"/>
+                            <field name="idv_value" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3" invisible="True">
+                            <label for="sum_assured"/>
+                            <field name="sum_assured" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3" attrs="{'invisible': [('policy_type', '!=', 'vehicle')]}">
+                            <label for="third_party"/>
+                            <field name="third_party" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label for="cac_amount"/>
+                            <field name="cac_amount" style="width:100% !important;"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 col-md-3">
+                            <label for="gross_premimum"/>
+                            <field name="gross_premimum" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label for="discount"/>
+                            <field name="discount" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+
+                        <div class="col-3 col-md-3" attrs="{'invisible': [('policy_type', '!=', 'vehicle')]}">
+                            <label for="ncb_amount"/>
+                            <field name="ncb_amount" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+
+
+                        <div class="col-3 col-md-3" invisible="True">
+                            <label for="discount_amount"/>
+                            <field name="discount_amount" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <label for="tax_ids"/>
+                            <field name="tax_ids" widget="many2many_tags"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3" invisible="True">
+                            <label for="tax_amount"/>
+                            <field name="tax_amount" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-3 col-md-3">
+                            <label for="owd_amount"/>
+                            <field name="owd_amount" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+
+                        </div>
+
+                        <div class="col-3 col-md-3">
+                            <label for="net_amount"/>
+                            <field name="net_amount" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+
+
+                        <div class="col-3 col-md-3" attrs="{'invisible': [('policy_type', '!=', 'vehicle')]}">
+                            <label for="od_amount"/>
+                            <field name="od_amount" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3" attrs="{'invisible': [('policy_type', '!=', 'vehicle')]}">
+                            <label for="addon_amount"/>
+                            <field name="addon_amount" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3" groups="qno_insurance_management.group_commission_show">
+                            <label for="commission_rate"/>
+                            <field name="commission_rate" attrs="{'readonly': [('invoice_status', '=', 'invoiced')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                        <div class="col-3 col-md-3" groups="qno_insurance_management.group_commission_show">
+                            <label for="commission_amount"/>
+                            <field name="commission_amount" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_create':True, 'no_edit':True}" style="width:100% !important;"/>
+                        </div>
+                    </div>
+                    <notebook>
+                        <page string="Description">
+                            <field name="notes" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </page>
+                        <!--                        <page string="Policy Holders" attrs="{'invisible': [('policy_type', '!=', 'health')]}">-->
+                        <!--                            <field name="policy_holders_ids" attrs="{'readonly': [('state', '!=', 'draft')],}">-->
+                        <!--                                <tree editable="top">-->
+                        <!--                                    <field name="relation_id"/>-->
+                        <!--                                    <field name="name"/>-->
+                        <!--                                    <field name="gender"/>-->
+                        <!--                                    <field name="date_of_birth"/>-->
+                        <!--                                    <field name="age"/>-->
+                        <!--                                    <field name="sum_assured"/>-->
+                        <!--                                </tree>-->
+                        <!--                            </field>-->
+                        <!--                        </page>-->
+                        <page string="Invoices" groups="qno_insurance_management.group_commission_show">
+                            <field name="invoice_ids" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </page>
+                        <page string="Remark">
+                            <group>
+                                <field name="department_remark"/>
+                                <field name="agent_remark"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                    <field name="partner_id"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_insurance_policy_tree" model="ir.ui.view">
+        <field name="name">insurance_policy.view.tree</field>
+        <field name="model">insurance.policy</field>
+        <field name="arch" type="xml">
+            <tree string="Insurance Details Tree"
+                  decoration-success="state == 'confirmed'"
+                  decoration-danger="state == 'closed'">
+                <field name="name" optional="show"/>
+                <field name="policy_number" optional="show"/>
+                <field name="vehicle_number" optional="show"/>
+                <field name="partner_id" optional="show"/>
+                <field name="policy_product_id" optional="show"/>
+                <field name="agent_id" optional="show"/>
+                <field name="start_date" optional="show"/>
+                <field name="end_date" optional="show"/>
+                <field name="currency_id" optional="show" invisible="1"/>
+                <field name="sum_assured" optional="show"/>
+                <field name="commission_rate" optional="show"/>
+
+                <field name="cac_amount" groups="qno_insurance_management.group_commission_show"/>
+                <field name="net_amount" optional="show"/>
+                <field name="state" optional="show"/>
+                <field name="policy_document" optional="show" invisible="1"/>
+                <field name="invoice_status" optional="show"/>
+                <button name="action_renew_policy" type="object" class="btn-primary" string="Renew"
+                        attrs="{'invisible': [('state', 'in', ['draft', 'confirmed'])]}"/>
+                <button name="action_convert_policy" attrs="{'invisible': [('policy_number', '!=', False)]}"
+                        type="object" class="btn-primary" string="Add Policy Details"/>
+                <button name="action_print_policy" icon="fa-download"
+                        attrs="{'invisible': [('policy_document', '=', False)]}" type="object" class="btn-success"
+                        string="Print Policy"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_insurance_policy_tree_fro_commission" model="ir.ui.view">
+        <field name="name">insurance_policy.view.tree</field>
+        <field name="model">insurance.policy</field>
+        <field name="arch" type="xml">
+            <tree string="Insurance Details Tree" editable="bottom" create="False"
+                  decoration-success="state == 'confirmed'"
+                  decoration-danger="state == 'closed'">
+                <field name="name" optional="show" readonly="1"/>
+                <field name="policy_number" optional="show" readonly="1"/>
+                <field name="partner_id" optional="show" readonly="1"/>
+                <field name="policy_product_id" optional="show" readonly="1"/>
+                <field name="agent_id" optional="show" readonly="1"/>
+                <field name="start_date" optional="show" readonly="1"/>
+                <field name="end_date" optional="show" readonly="1"/>
+                <field name="currency_id" optional="show" invisible="1"/>
+                <field name="sum_assured" optional="show" readonly="1"/>
+                <field name="commission_rate" optional="show"/>
+                <field name="net_amount" optional="show" readonly="1"/>
+                <field name="state" optional="show" readonly="1"/>
+                <field name="policy_document" optional="show" invisible="1"/>
+                <field name="invoice_status" optional="show" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="insurance_policy_view_search" model="ir.ui.view">
+        <field name="name">insurance.policy.details.search</field>
+        <field name="model">insurance.policy</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id"/>
+                <field name="agent_id"/>
+                <field name="insurance_company_id"/>
+                <field name="policy_product_id"/>
+                <field name="state"/>
+                <field name="vehicle_number"/>
+                <field name="mobile"/>
+                <separator/>
+                <filter string="Draft" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="Confirmed" name="confirmed" domain="[('state','=','confirmed')]"/>
+                <filter string="Invoiced" name="invoiced" domain="[('invoice_status','=','invoiced')]"/>
+                <filter string="Closed" name="closed" domain="[('state','=','closed')]"/>
+                <separator/>
+                <filter string="To Commission" name="commission" domain="[('invoice_status','=', 'to_invoice')]"/>
+                <separator/>
+                <filter string="Motor" name="vehicle" domain="[('policy_type','=', 'vehicle')]"/>
+                <filter string="Health" name="health" domain="[('policy_type','=', 'health')]"/>
+                <filter string="Document Verified" name="document_verified" domain="[('document_verified','=', True)]"/>
+                <filter string="Document Not-Verified" name="document_not_verified"
+                        domain="[('document_verified','=', False)]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Customer" name="group_by_partner_id" context="{'group_by':'partner_id'}"/>
+                    <filter string="Agent" name="group_by_agent_id" context="{'group_by':'agent_id'}"/>
+                    <filter string="Policy" name="group_by_policy_product_id"
+                            context="{'group_by':'policy_product_id'}"/>
+                    <filter string="Insurance Company" name="group_by_insurance_company_id"
+                            context="{'group_by':'insurance_company_id'}"/>
+                    <filter string="Policy Type" name="group_by_policy_type"
+                            context="{'group_by':'policy_type'}"/>
+                    <filter string="Status" name="group_by_state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_view_insurance_policy" model="ir.actions.act_window">
+        <field name="name">Policies</field>
+        <field name="res_model">insurance.policy</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                You haven't created any insurance yet.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_view_for_insurance_policy_commission" model="ir.actions.act_window">
+        <field name="name">Policies Commission</field>
+        <field name="res_model">insurance.policy</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_insurance_policy_tree_fro_commission"/>
+        <field name="search_view_id" ref="insurance_policy_view_search"/>
+        <field name="context">{'search_default_commission': 1}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                You haven't created any insurance yet.
+            </p>
+        </field>
+    </record>
+
+
+    <record id="action_commission_invoice" model="ir.actions.act_window">
+        <field name="name">Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[('policy_id', '!=', False)]</field>
+    </record>
+
+</odoo>

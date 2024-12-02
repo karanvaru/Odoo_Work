@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <!--        form view-->
+    <record id="vanilla_three_view_form" model="ir.ui.view">
+        <field name="name">vanilla.three.form</field>
+        <field name="model">vanilla.three</field>
+        <field name="arch" type="xml">
+            <form string="Vanilla Three">
+                <header>
+                      <button name="%(vanilla_three.vanilla_three_application_wizard)d" type="action" string="closed" attrs="{'invisible': [('state', 'in', ['closed','cancel'])]}" class="btn-primary"/>
+                      <button name="action_to_cancel" type="object" string="cancel" attrs="{'invisible': [('state', 'in', ['cancel','closed'])]}" class="btn-primary"/>
+                    <button name="action_set_draft" type="object" string="set to draft" attrs="{'invisible': [('state', 'in', ['draft','closed'])]}"/>
+                     <field name="state" widget="statusbar" readonly="1"/>
+                 </header>
+                <sheet>
+                    <div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                      <group>
+                          <group>
+                               <field name="single_text"/>
+                               <field  name="test_name"/>
+                               <field  name="one_to_many_ids" widget="many2many_tags"/>
+                               <field  name= "many_to_many_ids" widget="many2many_tags"/>
+                              <field  name="many_to_one_id"/>
+                           </group>
+                           <group>
+                               <field  name="test_date"/>
+                               <field  name="tag_ids" widget="many2many_tags" trackvisibility="1"/>
+                               <field name="priority" widget="priority"/>
+                          </group>
+                      </group>
+                    <notebook>
+                        <page string = "Internal notes">
+                            <group>
+                                <field name ="description" />
+                            </group>
+
+                        </page>
+                    </notebook>
+
+                 </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+<!--                        <field name="tags_ids" />-->
+
+                    </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view -->
+    <record id="vanilla_three_tree_view" model="ir.ui.view">
+        <field name="name">vanilla.three.tree</field>
+        <field name="model">vanilla.three</field>
+        <field name="arch" type="xml">
+            <tree string="Vanilla Two">
+                  <field  name="name"/>
+                  <field  name="test_date"/>
+                   <field  name="single_text"/>
+                   <field  name="open_days"/>
+                   <field  name="state"/>
+            </tree>
+        </field>
+    </record>
+<!--        search view-->
+        <record id="vanilla_three_search_view" model="ir.ui.view">
+        <field name="name">vanilla.three.search</field>
+        <field name="model">vanilla.three</field>
+        <field name="arch" type="xml">
+            <search string="Vanilla Three">
+                   <field  name="name"/>
+<!--                   <field  name="test_name"/>-->
+<!--                   <field  name="test_date"/>-->
+<!--                   <field  name="state"/>-->
+<!--                   <field  name="tag_ids" />-->
+<!--                    filters-->
+<!--                <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>-->
+<!--                <filter name="closed" string="Closed" domain="[('state', '=', 'closed')]"/>-->
+<!--                <filter name="cancel" string="Cancel" domain="[('state', '=', 'cancel')]"/>-->
+<!--                <filter name="name" string="Reference"/>-->
+
+
+<!--                    group by-->
+                <group expand="0" string="Group By">
+<!--                    <filter name="" string="Multiple Text" domain="[]" context="{'group_by':'reference_seq'}"/>-->
+                    <filter name="test_name" string="Date" domain="[]" context="{'group_by':'test_name'}"/>
+<!--                    <filter name="reference_" string="Sequence" domain="[]" context="{'group_by':'reference_seq'}"/>-->
+                    <filter name="tag_ids" string="Tags" domain="[]" context="{'group_by':'tag_ids'}"/>
+                    <filter name="state" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+<!--        pivot view-->
+        <record id="vanilla_three_pivot_view" model="ir.ui.view">
+        <field name="name">vanilla.three.pivot</field>
+        <field name="model">vanilla.three</field>
+        <field name="arch" type="xml">
+            <pivot string="Vanilla Three">
+<!--                <field  name="reference_seq"/>-->
+                <field  name="test_name"/>
+            </pivot>
+        </field>
+    </record>
+
+         <!-- Graph view -->
+    <record id="vanilla_three_graph" model="ir.ui.view">
+        <field name="name">vanilla.three.graph</field>
+        <field name="model">vanilla.three</field>
+        <field name="arch" type="xml">
+            <graph string="Vanilla Three" type="pie">
+                    <field  name="name"/>
+            </graph>
+        </field>
+    </record>
+
+      <!-- gantt view -->
+
+     <record id="vanilla_three_gantt" model="ir.ui.view">
+        <field name="name">vanilla.three.gantt</field>
+        <field name="model">vanilla.three</field>
+        <field name="arch" type="xml">
+            <gantt date_start="create_date" date_stop="closed_date" string="Default Grant view"></gantt>
+        </field>
+    </record>
+        <!-- calender view -->
+    <record id="vanilla_three_calendar_view" model="ir.ui.view">
+        <field name="name">vanilla.three.calendar</field>
+        <field name="model">vanilla.three</field>
+        <field name="arch" type="xml">
+            <calendar string="Vanilla Three" date_start="create_date" color="name" mode="month" quick_add="True">
+               <field  name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+
+<!--        kanban view-->
+        <record id="vanilla_three_kanban_inherit" model="ir.ui.view">
+        <field name="name">vanilla.three.tree</field>
+        <field name="model">vanilla.three</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban">
+                <field  name="name"/>
+                <field  name="test_name"/>
+                <templates>
+                    <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill vanilla_three_vanilla_three_kanban">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title"></strong>
+                                <div class="o_kanban_tags_section"/>
+                                <ul>
+                                    <li>Reference: <field name="name"/></li>
+                                    <li>status : <field name="test_name"/></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+
+                </templates>
+            </kanban>
+
+        </field>
+    </record>
+
+
+    <!--  action -->
+    <record id="vanilla_three_action_view" model="ir.actions.act_window">
+        <field name="name">Vanilla Three</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">vanilla.three</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban,pivot,calendar,graph,gantt</field>
+<!--        <field name="context">{}</field>-->
+    </record>
+
+        <menuitem id="menu_vanilla_three" name="Vanilla Three"  action="vanilla_three_action_view" parent="vanilla_one.menu_vanilla_templates"/>
+
+</data>
+</odoo>

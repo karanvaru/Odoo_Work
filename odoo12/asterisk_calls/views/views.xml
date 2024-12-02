@@ -1,0 +1,34 @@
+<odoo>    
+
+    <menuitem id="asterisk_calls_menu"
+        parent="asterisk_common.asterisk_apps_menu"
+        sequence="30" name="Calls"/>
+
+    <menuitem id="asterisk_calls_statistics_menu" 
+        parent="asterisk_common.asterisk_reports_menu"
+        sequence="30" name="Calls"/>
+
+    <menuitem id="asterisk_calls_statistics_this_month_menu" 
+        parent="asterisk_calls_statistics_menu"
+        sequence="10" name="This Month"/>
+
+    <menuitem id="asterisk_calls_statistics_custom" 
+        parent="asterisk_calls_statistics_menu"
+        sequence="20" name="Custom"/>        
+
+    <menuitem id="asterisk_calls_statistics_outgoing_menu" 
+        parent="asterisk_calls_statistics_this_month_menu"
+        sequence="10" name="Outgoing"/>
+
+    <menuitem id="asterisk_calls_statistics_incoming_menu" 
+        parent="asterisk_calls_statistics_this_month_menu"
+        sequence="5" name="Incoming"/>
+
+    <menuitem id='asterisk_calls_about_menu' name='About' 
+        parent='asterisk_calls_menu' sequence='100'/>
+
+    <menuitem id="calls_board_menu"
+        parent="asterisk_common.asterisk_board_menu" name="Calls"
+        groups="asterisk_common.group_asterisk_admin"
+        sequence="50"/>
+</odoo>

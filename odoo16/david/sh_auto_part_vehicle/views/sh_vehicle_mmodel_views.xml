@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- form view -->
+    <record id="sh_motorcycle_mmodel_form" model="ir.ui.view">
+        <field name="name">sh.motorcycle.mmodel.form</field>
+        <field name="model">motorcycle.mmodel</field>
+        <field name="arch" type="xml">
+            <form string="Auto Parts Model">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="make_id"/>
+                            <field name="type_id"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+
+    <record id="sh_motorcycle_mmodel_tree" model="ir.ui.view">
+        <field name="name">sh.motorcycle.mmodel.tree</field>
+        <field name="model">motorcycle.mmodel</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="make_id"/>
+                <field name="type_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- search view -->
+    <record id="sh_motorcycle_mmodel_search" model="ir.ui.view">
+        <field name="name">sh.motorcycle.mmodel.search</field>
+        <field name="model">motorcycle.mmodel</field>
+        <field name="arch" type="xml">
+            <search string="Model">
+                <field name="name" string="Model" filter_domain="['|','|',('name','ilike',self),('make_id','ilike',self),('type_id','ilike',self)]"/>
+                <field name="make_id"/>
+                <field name="type_id"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="group_model" string="Model" domain="[]" context="{'group_by':'name'}"/>
+                    <filter name="group_make_id" string="Make" domain="[]" context="{'group_by':'make_id'}"/>
+                    <filter name="group_type_id" string="Type" domain="[]" context="{'group_by':'type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="sh_motorcycle_mmodel_action" model="ir.actions.act_window">
+        <field name="name">Model</field>
+        <field name="res_model">motorcycle.mmodel</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- make menuitem -->
+    <menuitem id="sh_motorcycle_mmodel_menuitem" action="sh_motorcycle_mmodel_action" parent="sh_motorcycle_menuitem_config" sequence="3" />
+</odoo>

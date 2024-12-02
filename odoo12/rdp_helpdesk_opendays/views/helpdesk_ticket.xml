@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="helpdesk_inherited_tree_opendays" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.tree.inherited.opendays</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="ticket_opendays" string="Ticket OD"/>
+                    <field name ="team_opendays" string="Team OD"/>
+                    <field name="asp_opendays" string="ASP OD"/>
+                    <field name="stage_days" string="stage OD"/>
+                    <field name="assign_days" string="Agent OD"/>
+                </xpath>
+            </field>
+        </record>
+          
+       <record id="helpdesk_inherited_form_opendays" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.inherited.opendays</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                  
+                    <field name ="team_opendays" invisible="1"/>
+                    <field name="asp_opendays" invisible="1" />
+                    <field name="stage_days" invisible="1"/>
+                    <field name="assign_days" invisible="1"/>
+                    <field name ="asp_date" invisible="1"/>
+                    <field name="assign_date" invisible="1" />
+                    <field name="stage_date" invisible="1"/>
+                    <field name="team_date" invisible="1"/>
+                     <field name="close_date" invisible="1"/>
+
+                </xpath>
+                <xpath expr="//div[hasclass('oe_title')]" position="inside">
+                  
+                     
+                       <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px;">Team OD: <span style="font-size:16px"><field name="team_opendays"/></span> </div>
+              
+                       <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px;">Stage OD: <span style="font-size:16px"><field name="stage_days"/></span> </div>
+                  
+                       <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px;">Agent OD: <span style="font-size:16px"><field name="assign_days"/></span> </div>
+                    
+                       <div style=" float: left; padding: 5px 12px 2px; background-color: #dc6965; color: #FFF; font-weight: 500; font-size: 13px; letter-spacing: 1px; margin-bottom:10px;">ASP OD: <span style="font-size:16px"><field name="asp_opendays"/></span> </div>
+
+                </xpath>
+            </field>
+        </record>
+     
+
+        
+    </data>
+</odoo>

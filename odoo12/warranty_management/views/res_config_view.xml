@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+        <record id="view_warranty_config" model="ir.ui.view">
+            <field name="name">res.config.settings.form.inherit.website.warranty</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="website_sale.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <div id="webmaster_settings" position="after">
+                    <h2>Warranty</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="warranty_expire_notification"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="warranty_expire_notification"/>
+                                <div class="text-muted">
+                                    Send notification before warranty expire
+                                </div>
+                                <div class="content-group" attrs="{
+                                        'invisible': [('warranty_expire_notification','=',False)]}">
+                                    <div class="mt16">
+                                        <field name="days_before" attrs="{
+                                        'required': [('warranty_expire_notification','=',True)]}"
+                                            placeholder="Enter Days" style="width: 20% !important;"/>
+                                        <span style="margin-left: 5px !important;">Days</span>
+                                    </div>
+                                        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="renewal_prod"/>
+                                <div class="text-muted">
+                                    Product used for warranty renewal
+                                </div>
+                                <div class="text-muted">
+                                    <field name="renewal_prod"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+    </data>
+  </odoo>

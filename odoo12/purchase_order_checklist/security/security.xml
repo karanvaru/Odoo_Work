@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_purchase_order_checklist_superuser" model="res.groups">
+        <field name="name">Purchase Order Checklists Super User</field>
+        <field name="implied_ids" eval="[(4, ref('purchase.group_purchase_user'))]"/>
+    </record>
+
+    <record model="ir.rule" id="purchase_checklist_company_rule">
+        <field name="name">Purchase Checklists</field>
+        <field name="model_id" ref="model_check_company_list"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+</odoo>

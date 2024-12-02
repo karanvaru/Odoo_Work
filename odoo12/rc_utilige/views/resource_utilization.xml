@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="resource_utilization_tree" model="ir.ui.view">
+            <field name="name">Resource Utilization</field>
+            <field name="model">resource.utilization</field>
+            <field name="arch" type="xml">
+                <tree string="Resource Utilization">
+                 <field name='name'/>
+                </tree>
+            </field>
+        </record>
+        <record id="resource_utilization_view" model="ir.ui.view">
+            <field name="name">resource.utilization.form</field>
+            <field name="model">resource.utilization</field>
+               <field name="arch" type="xml">
+                <form string="Resource Utilization">
+<!--                    <header></header>-->
+                    <sheet>
+
+                        <div>
+                            <h1> <field name='name' readonly="1"/> </h1>
+                        </div>
+
+                        <group>
+                           <field name="production_date"/>
+                        </group>
+
+                         <group>
+                        <group>
+                           <field name="achieved_2f" string="Acieved Qty in Property 1"/>
+                            <field name="capacity_2f" string="Capacity Qty in Property 1"/>
+                            <field name="resource_utilization_2f" widget="progressbar"/>
+                        </group>
+                         <group>
+                           <field name="achieved_c1" string="Achieved Property 1"/>
+                             <field name="capacity_c1" string="Capacity Property 1"/>
+                             <field name="resource_utilization_c1" widget="progressbar"/>
+                        </group>
+                         </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids" widget="mail_activity" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+<!--        <record id="resource_utilization_form" model="ir.actions.act_window">-->
+<!--            <field name="name">Resource Utilization</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">resource.utilization</field>-->
+<!--            <field name="view_type">form</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+<!--        <menuitem id="resource_utilization" name='Resource Utilization' action="resource_utilization_form"/>-->
+    </data>
+</odoo>

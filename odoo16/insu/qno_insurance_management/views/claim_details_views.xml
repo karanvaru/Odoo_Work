@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="claim_details_view_form" model="ir.ui.view">
+        <field name="name">insurance.claim.details.view.form</field>
+        <field name="model">insurance.claim.details</field>
+        <field name="arch" type="xml">
+            <form string="Claim Details Form">
+                <header>
+                    <button name="action_create_bill" string="Create Bill" type="object" class="oe_highlight"
+                            attrs="{'invisible': [('invoice_id', '!=', False)]}" invisible="1"/>
+
+                    <field name="state" widget="statusbar" class="o_field_statusbar"
+                           statusbar_visible="new,in_process,query"/>
+
+                    <button string="Process" type="action"
+                            name="%(qno_insurance_management.action_claim_process_wizard)d" class="btn  btn-primary"
+                            attrs="{'invisible': [('state','!=', 'new')]}"/>
+
+                    <button string="Raise Query" type="action"
+                            name="%(qno_insurance_management.action_raise_query_wizard)d" class="btn  btn-primary"
+                            attrs="{'invisible': [('state','!=', 'in_process')]}"/>
+
+                    <button string="Approve" type="action"
+                            name="%(qno_insurance_management.action_claim_approve_wizard)d" class="btn  btn-primary"
+                            attrs="{'invisible': [('state','not in', ['in_process','query'])]}"/>
+
+                    <button string="Reject" type="action"
+                            name="%(qno_insurance_management.action_claim_reject_wizard)d" class="btn  btn-danger"
+                            attrs="{'invisible': [('state','not in', ['in_process','query'])]}"/>
+
+                    <button name="claim_cancel" string="Cancel"
+                            type="object" class="btn btn-danger"
+                            attrs="{'invisible': [('state','!=', 'new')]}"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+
+                            <label for="partner_id" string="Customer" style="font-weight:bold;"
+                            />
+                            <field name="partner_id" widget="res_partner_many2one" nolabel="1" strin="Customer"
+                                   context="{
+                                            'show_address': 1, 'default_is_company': True, 'show_vat': True}"
+                                   options='{"always_reload": True, "no_quick_create": True}'
+                                   attrs="{'readonly': [('state', '!=', 'new')]}"/>
+                            <field name="insurance_id" domain="[('state', '=', 'confirmed'),('partner_id', '=', partner_id)]"
+                                   options="{'no_create': True}"
+                                    attrs="{'readonly': [('state', '!=', 'new')]}"/>
+
+
+                            <field name="policy_id"
+                                   attrs="{'readonly': [('state', '!=', 'new')]}"/>
+                            <field name="policy_number"
+                                    attrs="{'readonly': [('state', '!=', 'new')]}"/>
+                            <field name="employee_id"
+                                   attrs="{'readonly': [('state', '!=', 'new')]}"/>
+                            <!--                            <field name="invoice_status"/>-->
+
+                        </group>
+                        <group>
+                            <field name="date_claimed" readonly="1"/>
+<!--                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"-->
+                            <field name="claimed_passed_date" readonly="1"/>
+<!--                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>-->
+                            <field name="file_sub_date" readonly="1"/>
+<!--                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>-->
+                            <field name="qry_sub_date" readonly="1"/>
+<!--                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>-->
+                            <field name="currency_id" invisible="1"/>
+                            <field name="amount" readonly="1"/>
+<!--                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>-->
+                            <field name="claimed_amount" readonly="1"/>
+<!--                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>-->
+                            <field name="passed_amount" readonly="1"/>
+<!--                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>-->
+                            <field name="invoice_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Remark">
+                            <field name="note_field"  attrs="{'readonly': [('state', '!=', 'new')]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="claim_details_view_tree" model="ir.ui.view">
+        <field name="name">insurance.claim.details.view.tree</field>
+        <field name="model">insurance.claim.details</field>
+        <field name="arch" type="xml">
+            <tree string="Claim Details Tree">
+                <field name="name"/>
+                <field name="insurance_id"/>
+                <field name="partner_id"/>
+                <field name="policy_id"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="amount" sum="amount" widget="monetary"/>
+                <field name="claimed_amount" sum="claimed_amount" widget="monetary"/>
+                <field name="passed_amount" sum="passed_amount" widget="monetary"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="claim_details_view_search" model="ir.ui.view">
+        <field name="name">insurance.claim.details.search</field>
+        <field name="model">insurance.claim.details</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="insurance_id"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+                <field name="date_claimed"/>
+                <separator/>
+
+                <group expand="1" string="Group By">
+                    <filter string="Insurance" name="group_by_insurance_id" context="{'group_by':'insurance_id'}"/>
+                    <filter string="Customer" name="group_by_partner_id" context="{'group_by':'partner_id'}"/>
+                    <filter string="state" name="group_by_state" context="{'group_by':'state'}"/>
+                    <filter string="Date" name="group_by_date_claimed" context="{'group_by':'date_claimed'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="claim_details_kanban_view_leads" model="ir.ui.view">
+        <field name="name">insurance.claim.details.kanban.lead</field>
+        <field name="model">insurance.claim.details</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column o_opportunity_kanban" on_create="quick_create"
+                    quick_create_view="qno_insurance_management.claim_details_view_form"
+                    archivable="false" sample="1">
+                <field name="state"/>
+                <field name="name"/>
+                <field name="insurance_id"/>
+                <field name="date_claimed"/>
+                <field name="partner_id"/>
+
+                <field name="policy_id"/>
+                <field name="currency_id"/>
+                <field name="amount"/>
+                <field name="activity_user_id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+
+                            <div class="oe_kanban_content flex-grow-1">
+                                <div class="o_kanban_record_title oe_kanban_details">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                    <br></br>
+
+                                </div>
+                                <div class="o_kanban_record_subtitle">
+                                    <strong>Insurance:</strong>
+                                    <field name="insurance_id"/>
+                                    <br></br>
+                                    <strong>Date:</strong>
+                                    <field name="date_claimed"/>
+                                    <br></br>
+                                    <strong>Claimed Amount:</strong>
+                                    <field name="claimed_amount" widget="monetary"
+                                           options="{'currency_field': 'company_currency'}"/>
+                                    <br></br>
+                                    <strong>Passed Amount:</strong>
+                                    <field name="passed_amount" widget="monetary"
+                                           options="{'currency_field': 'company_currency'}"/>
+                                    <br></br>
+                                    <strong>Customer:</strong>
+                                    <field name="partner_id"/>
+                                    <br></br>
+                                    <field name="activity_ids" widget="kanban_activity"/>
+                                    <div class="oe_kanban_bottom_right">
+                                        <field name="activity_user_id" widget="many2one_avatar_user"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="clearfix"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="claim_details_action" model="ir.actions.act_window">
+        <field name="name">Claim Management</field>
+        <field name="res_model">insurance.claim.details</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                You haven't created any claims yet.
+            </p>
+        </field>
+    </record>
+
+</odoo>

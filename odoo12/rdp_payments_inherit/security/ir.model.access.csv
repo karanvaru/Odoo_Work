@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+payment_category_admin,payment.category,model_payment_category,base.group_system,1,1,1,1
+payment_category_internal,payment.category,model_payment_category,base.group_user,1,1,1,0
+asset_location_admin,asset.location,model_asset_location,base.group_system,1,1,1,1
+asset_location_internal,asset.location,model_asset_location,base.group_user,1,1,1,0
+asset_payment_admin,asset.payment,model_asset_payment,base.group_system,1,1,1,1
+asset_payment_internal,asset.payment,model_asset_payment,base.group_user,1,1,1,0
+asset_category_admin,asset.category,model_asset_category,base.group_system,1,1,1,1
+asset_category_internal,asset.category,model_asset_category,base.group_user,1,1,1,0
+asset_tag_admin,payment.tags,model_payment_tags,base.group_system,1,1,1,1
+asset_tag_internal,payment.tags,model_payment_tags,base.group_user,1,1,1,0
+ebitda_group_admin,ebitda.group,model_ebitda_group,base.group_user,1,1,1,1
+
+
+

@@ -1,0 +1,11 @@
+<odoo>
+
+    <template id="assets_backend" name="assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/activities_todo/static/src/js/act_systray.js"/>
+            <script type="text/javascript" src="/activities_todo/static/src/js/todo_readonly_formcontroller.js"/>
+            <script type="text/javascript" src="/activities_todo/static/src/js/todo_readonly_formview.js"/>
+        </xpath>
+    </template>
+
+</odoo>

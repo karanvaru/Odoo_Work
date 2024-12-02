@@ -1,0 +1,815 @@
+<odoo>
+    <data>
+
+        <template id="portal_searchbar_helpdesk" inherit_id="portal.portal_searchbar">
+            <xpath expr="//form[hasclass('o_portal_search_panel')]" position="after">
+		        <ul t-if="pager['page_count'] > 1" t-attf-class="#{ classname or '' } pagination m-0 #{_classes}" t-att-style="style or None">
+		            <li t-attf-class="page-item #{'disabled' if pager['page']['num'] == 1 else ''}">
+		                <a t-att-href=" pager['page_previous']['url'] if pager['page']['num'] != 1 else None" class="btn btn-link"><i class="fa fa-chevron-left" role="img" aria-label="Previous" title="Previous"></i></a>
+		            </li>
+		            <li t-attf-class="page-item #{'disabled' if pager['page']['num'] == pager['page_count'] else ''}">
+		                <a t-att-href="pager['page_next']['url'] if pager['page']['num'] != pager['page_count'] else None" class="btn btn-link"><i class="fa fa-chevron-right" role="img" aria-label="Next" title="Next"></i></a>
+		            </li>
+		        </ul>
+            </xpath>
+        </template>
+
+        <template id="create_ticket_menu" name="Generate Ticket frontend portal" inherit_id="portal.frontend_layout">
+            <xpath expr="//a[@id='o_logout']" position="after">
+                <a t-attf-href="/my/ticket/create?{{keep_query(kw={})}}"
+                   role="menuitem" class="dropdown-item">Create <t t-if="is_asc"> ASC </t> Ticket
+                </a>
+            </xpath>
+        </template>
+
+        <template id="ticket_submited_inherit" name="Ticket Received Inherited"
+                  inherit_id="website_helpdesk_form.ticket_submited">
+            <xpath expr="//t[@t-call='website.layout']" position="replace">
+                <t t-call="website.layout">
+                    <div id="wrap" class="oe_structure oe_empty">
+                        <div class="container">
+                            <div clas="row">
+                                <t t-if="request.session.get('form_builder_model_model', '') == 'helpdesk.ticket'">
+                                    <t t-set="ticket" t-value="request.website._website_form_last_record().sudo()"/>
+                                </t>
+                                <h1 t-if="ticket" class="text-center">Your Support Ticket has been Created !!!</h1>
+                                <br/>
+                                <br/>
+                                <h1 class="text-center">
+                                    <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success"
+                                       title="Success"/>
+                                </h1>
+                                <t t-if="ticket">
+                                    <h1 class="text-center">Reference of your Support Ticket No. is
+                                        <a t-if="request.session.uid" t-attf-href="/helpdesk/ticket/#{ticket.id}">#
+                                            <span t-field="ticket.id"/>
+                                        </a>
+                                        <t t-if="not request.session.get('uid')">#
+                                            <span t-field="ticket.id"/>
+                                        </t>
+                                        .
+                                    </h1>
+                                </t>
+                                <br/>
+                                <br/>
+                                <h1 class="text-center">We deeply apologize for your inconvenience, you’ll receive a
+                                    response within 6 hours (10 am to 6 pm Mon-Sat)
+                                </h1>
+                                <br/>
+                                <h1 class="text-center">You can also reach us at 040-48161111</h1>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </xpath>
+        </template>
+
+        <template id="tickets_followup" name="Helpdesk Tickets" inherit_id="helpdesk.tickets_followup">
+            <xpath expr="//t[@t-set='card_body']/div[1]" position="before">
+                <div class="row mb-4 col">
+                    <t t-foreach="stage_ids or []" t-as="stage">
+                         <t t-if="not stage.is_close">
+                        <a t-attf-href="/ticket/stage/#{ticket.id}/#{stage['id']}"
+                           groups="ki_helpdesk_extend.group_asc_portal_access"
+                           class="btn btn-secondary ml-1 m-1">
+
+                            <t t-esc="stage.name"/>
+
+                        </a>
+                    </t></t>
+                </div>
+                <div class="row mb-4" t-if="ticket.name">
+                    <strong class="col-lg-2">Ticket Subject</strong>
+                    <span class="col-lg-10">
+                        <span t-field="ticket.name"/>
+                    </span>
+                </div>
+            </xpath>
+            <xpath expr="//div[@t-if='ticket.partner_id']" position="after">
+                <div class="row mb-4" t-if="ticket.x_studio_field_w3gK7">
+                    <strong class="col-lg-2">Mobile No.</strong>
+                    <span class="col-lg-10">
+                        <span t-field="ticket.x_studio_field_w3gK7"/>
+                    </span>
+                </div>
+<!--                <div class="row mb-4" t-if="ticket.x_studio_model_name">-->
+<!--                    <strong class="col-lg-2">Model Name</strong>-->
+<!--                    <span class="col-lg-10">-->
+<!--                        <span t-field="ticket.x_studio_model_name"/>-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--                <div class="row mb-4" t-if="ticket.x_studio_serial_no">-->
+<!--                    <strong class="col-lg-2">Serial No.</strong>-->
+<!--                    <span class="col-lg-10">-->
+<!--                        <span t-field="ticket.x_studio_serial_no"/>-->
+<!--                    </span>-->
+<!--                </div>-->
+                <div class="row mb-4" t-if="ticket.ticket_type_id">
+                    <strong class="col-lg-2">Warranty Type</strong>
+                    <span class="col-lg-10">
+                        <span t-field="ticket.ticket_type_id.name"/>
+                    </span>
+                </div>
+                <div>
+                      <h6 class="text-left">Support Location</h6>
+<!--                         <div class="row mb-4" t-if="ticket.x_studio_end_customer_company">-->
+<!--                            <strong class="col-lg-2">End Customer Company</strong>-->
+<!--                            <span class="col-lg-10">-->
+<!--                                <span t-field="ticket.x_studio_end_customer_company.name"/>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                     <div class="row mb-4" t-if="ticket.x_studio_street">-->
+<!--                            <strong class="col-lg-2">Street</strong>-->
+<!--                            <span class="col-lg-10">-->
+<!--                                <span t-field="ticket.x_studio_street"/>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                     <div class="row mb-4" t-if="ticket.x_studio_street_2">-->
+<!--                            <strong class="col-lg-2">Street2</strong>-->
+<!--                            <span class="col-lg-10">-->
+<!--                                <span t-field="ticket.x_studio_street_2"/>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                     <div class="row mb-4" t-if="ticket.x_studio_city">-->
+<!--                            <strong class="col-lg-2">Street2</strong>-->
+<!--                            <span class="col-lg-10">-->
+<!--                                <span t-field="ticket.x_studio_city"/>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                    <div class="row mb-4" t-if="ticket.x_studio_pincode">-->
+<!--                            <strong class="col-lg-2">Pincode</strong>-->
+<!--                            <span class="col-lg-10">-->
+<!--                                <span t-field="ticket.x_studio_pincode"/>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                    <div class="row mb-4" t-if="ticket.x_studio_state">-->
+<!--                            <strong class="col-lg-2">State</strong>-->
+<!--                            <span class="col-lg-10">-->
+<!--                                <span t-field="ticket.x_studio_state"/>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                    <div class="row mb-4" t-if="ticket.x_studio_country">-->
+<!--                            <strong class="col-lg-2">country</strong>-->
+<!--                            <span class="col-lg-10">-->
+<!--                                <span t-field="ticket.x_studio_country.id"/>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                     <div class="row mb-4" t-if="ticket.x_studio_mobile">-->
+<!--                            <strong class="col-lg-2">Mobile</strong>-->
+<!--                            <span class="col-lg-10">-->
+<!--                                <span t-field="ticket.x_studio_mobile"/>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                     <div class="row mb-4" t-if="ticket.x_studio_email">-->
+<!--                            <strong class="col-lg-2">Email</strong>-->
+<!--                            <span class="col-lg-10">-->
+<!--                                <span t-field="ticket.x_studio_email"/>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                     <div class="row mb-4" t-if="ticket.x_studio_contact_person">-->
+<!--                            <strong class="col-lg-2">Contact Person</strong>-->
+<!--                            <span class="col-lg-10">-->
+<!--                                <span t-field="ticket.x_studio_contact_person.name"/>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                     <div class="row mb-4" t-if="ticket.x_studio_mobile_1">-->
+<!--                            <strong class="col-lg-2">Contact Mobile</strong>-->
+<!--                            <span class="col-lg-10">-->
+<!--                                <span t-field="ticket.x_studio_mobile_1"/>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                     <div class="row mb-4" t-if="ticket.x_studio_email_1">-->
+<!--                            <strong class="col-lg-2">Contact Mail</strong>-->
+<!--                            <span class="col-lg-10">-->
+<!--                                <span t-field="ticket.x_studio_email_1"/>-->
+<!--                            </span>-->
+<!--                        </div>-->
+                        <div class="row mb-4" t-if="ticket.asp_engineer_id">
+                            <strong class="col-lg-2">ASP Engineer</strong>
+                            <span class="col-lg-10">
+                                <span t-field="ticket.asp_engineer_id"/>
+                            </span>
+                        </div>
+                </div>
+            </xpath>
+            <xpath expr="//div[hasclass('no-gutters')]/div[1]" position="replace">
+                <div class="col-md">
+                    <a t-att-href="'/my/ticket/edit/'+ str(ticket.id)"
+                       groups="ki_helpdesk_extend.group_asc_portal_access"
+                       class="btn btn-primary">Edit
+                    </a>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="portal_my_home_helpdesk_ticket" name="Portal My Home : Helpdesk Ticket Inherit"
+                  inherit_id="helpdesk.portal_my_home_helpdesk_ticket">
+            <xpath expr="//t[@t-if='ticket_count']" position="inside">
+                <t t-set="title">Assigned Tickets</t>
+            </xpath>
+        </template>
+
+        <template id="portal_helpdesk_ticket" inherit_id="helpdesk.portal_helpdesk_ticket">
+            <xpath expr="//t[@t-set='title']" position="replace">
+                <t t-set="title">Assigned Tickets</t>
+            </xpath>
+             <xpath expr="//t[@t-call='portal.portal_table']" position="before">
+                 <div class="table-responsive border rounded border-top-0 ">
+                    <table class="table rounded mb-0 bg-white ">
+                        <thead>
+						<t t-foreach="stage_counts" t-as="stage">
+                                <a t-att-href="stage['url']">
+	                               <span class="badge badge-pill badge-info"
+	                                   t-att-data-id="stage['id']">
+	                                   <t t-esc="stage['name']"/> : <t t-esc="stage['count']"/></span>
+	                            </a>
+	                    </t>
+	                    </thead>
+                    </table>
+                 </div>
+
+             </xpath>
+            <xpath expr="//t[@t-call='portal.portal_table']" position="replace">
+                <t t-if="tickets" t-call="portal.portal_table">
+                    <thead>
+                        <tr>
+                            <th class="text-right">Created Date</th>
+                            <th>Ticket No.</th>
+<!--                            <th>Warranty Type</th>-->
+                            <th>Model Name</th>
+
+                            <th class="text-center">Current Stage</th>
+                            <th class="text-center">ASP Opendays</th>
+                            <th class="text-center">Agent Opendays</th>
+                            <th class="text-center">Ticket Opendays</th>
+                            <th class="w-100">Ticket Subject</th>
+                           <!-- <th>ASP Opendays</th> -->
+                        </tr>
+                    </thead>
+                    <t t-foreach="tickets" t-as="ticket">
+                        <tr>
+                            <td class="text-right">
+                                <span t-field="ticket.create_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                            </td>
+                            <td class="text-right">
+                                <a t-attf-href="/helpdesk/ticket/#{ticket.id}">
+                                    <small>#</small>
+                                    <span t-field="ticket.id"/>
+                                </a>
+                            </td>
+<!--                            <td>-->
+<!--                                <span t-field="ticket.ticket_type_id"/>-->
+<!--                            </td>-->
+<!--                            <td class="text-right">-->
+<!--                                <span t-field="ticket.x_studio_model_name"/>-->
+<!--                            </td>-->
+
+                            <td class="text-center">
+                                <span class="badge badge-pill badge-info" t-field="ticket.stage_id.name"/>
+                            </td>
+                            
+                            <td class="text-right">
+                               <span t-field="ticket.asp_opendays"/>
+                           </td>
+                           <td class="text-right">
+                               <span t-field="ticket.portal_agent_opendays"/>
+                           </td>
+                           <td class="text-center">
+                                <span t-field="ticket.portal_ticket_opendays"/>
+                            </td>
+                            <!-- <td class="text-center">
+                                <span t-if="not ticket.sla_fail" class="badge badge-pill badge-success">Passed</span>
+                                <span t-else="ticket.sla_fail" class="badge badge-pill badge-danger">Failed</span>
+                            </td> -->
+
+                            <td>
+                                <a t-attf-href="/helpdesk/ticket/#{ticket.id}">
+                                    <span t-field="ticket.name"/>
+                                </a>
+                            </td>
+                           
+
+                        </tr>
+                    </t>
+                </t>
+            </xpath>
+        </template>
+
+        <template id="helpdesk_portal_create_ticket" name="Ticket Create Portal">
+            <t t-call="portal.portal_layout">
+                <t t-set="my_details" t-value="True"/>
+                <t t-set="is_crm_bid" t-value="True"/>
+                <div class="row align-items-center bg-white no-gutters border rounded">
+                    <div class="col">
+                        <t t-call="portal.portal_breadcrumbs"/>
+                    </div>
+                    <div t-if="prev_record or next_record" class="col flex-grow-0">
+                        <t t-call='portal.record_pager'/>
+                    </div>
+                </div>
+                <t t-call="portal.portal_record_layout">
+                    <t t-set="card_body">
+                        <h2 class="card-title text-center">
+
+                            <strong><t t-if="is_asc"> ASC </t>Support Ticket Creation Form</strong>
+                        </h2>
+                        <div class="card-text">
+                            <form t-if="is_asc" action="/my/ticket/contact/search/1" method="post"
+                                  class="container-fluid mt32">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="partner_email">Your Email</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input id="email_input_search_1" type='email'
+                                               class='form-control o_website_form_input'
+                                               name="email" required="1"
+                                               t-att-value="default_values.get('email', '')"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-lg-3 offset-md-4 col-md-8 col-lg-7">
+                                        <button type="submit"
+                                                class="btn btn-sm btn-secondary">
+                                            Search in Contact
+                                        </button>
+                                        <span id="o_website_form_result"/>
+                                        <span t-if="no_record" style="color:red;">No Records</span>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <form action="/website_form/" method="post"
+                                  class="s_website_form container-fluid mt32" enctype="multipart/form-data"
+                                  data-model_name="helpdesk.ticket"
+                                  data-success_page="/your-ticket-has-been-submitted"
+                                  data-editable-form="false">
+                                <input type="hidden" name="team_id" t-att-value="team and team.id or False"/>
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <input type="hidden" name="created_by_user_id" t-att-value="request.env.user.id"/>
+
+                                <div t-attf-class="form-group row form-field o_website_form_required #{'o_hidden' if is_asc else ''}">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="partner_email">Your Email</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input id="email_input_search_2" type='email'
+                                               class='form-control o_website_form_input'
+                                               t-att-name="'partner_email' if is_asc else ''"
+                                               t-att-value="default_values.get('email', '')" required="1" t-att-readonly="not is_asc"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="partner_name">Your Name</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="text" class="form-control o_website_form_input"
+                                               name="partner_name" t-att-value="default_values.get('partner_name', '')"
+                                               required="1" t-att-readonly="not is_asc"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="x_studio_field_w3gK7">Your Mobile
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="integer" class="form-control o_website_form_input"
+                                               name="x_studio_field_w3gK7"
+                                               t-att-value="default_values.get('x_studio_field_w3gK7', '')"
+                                               required="1"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+<!--                                    <div class="col-lg-3 col-md-3 text-right">-->
+<!--                                        <label class="col-form-label" for="x_studio_model_name">Model Name</label>-->
+<!--                                    </div>-->
+                                    <div class="col-lg-7 col-md-7">
+<!--                                        <select name="x_studio_model_name"-->
+<!--                                                t-attf-class="form-control o_website_form_input" required="1">-->
+<!--                                            <option value="">Modal Name ...</option>-->
+<!--                                            <t t-foreach="new_modal_list or []" t-as="modal">-->
+<!--                                                <option t-att-value="modal['id']">-->
+<!--                                                    <t t-esc="modal['name']"/>-->
+<!--                                                </option>-->
+<!--                                            </t>-->
+<!--                                        </select>-->
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+<!--                                    <div class="col-lg-3 col-md-3 text-right">-->
+<!--                                        <label class="col-form-label" for="x_studio_serial_no">Serial No.-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+                                    <div class="col-lg-7 col-md-7">
+<!--                                        <input type="integer" class="form-control o_website_form_input"-->
+<!--                                               name="x_studio_serial_no"-->
+<!--                                               t-att-value="default_values.get('x_studio_serial_no', '')"-->
+<!--                                               required="1"-->
+<!--                                        />-->
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="ticket_type_id">Warranty Type
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <select name="ticket_type_id"
+                                                t-attf-class="form-control o_website_form_input" required="1">
+                                            <option value="">Warranty Type....</option>
+                                            <t t-foreach="ticket_type_ids or []" t-as="type">
+                                                <option t-att-value="type['id']">
+                                                    <t t-esc="type['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="attach_invoice">Attach Invoice</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="file" name="attach_invoice"
+                                               class="form-control o_website_form_input"
+                                               accept="image/*,application/pdf"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="name">Ticket Subject</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="text" class="form-control o_website_form_input" name="name"
+                                               required="1" t-att-value="default_values.get('name', '')"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="description">Problem Description</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <textarea class="form-control o_website_form_input" name="description"
+                                                  t-att-value="default_values.get('description', '')" required="1"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="attach_video">Attach Problem
+                                            Photos/Video
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="file" name="attach_video"
+                                               class="form-control o_website_form_input" multiple="true"
+                                               accept="image/*,video/*"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="Additional Comments">Additional Comments
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="text" class="form-control o_website_form_input"
+                                               name="Additional Comments"/>
+                                    </div>
+                                </div>
+
+                                <div t-if="is_asc" class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="team_id">Helpdesk Team
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <select name="team_id" id="helpdesk_team_select_id"
+                                                t-attf-class="form-control o_website_form_input" required="1">
+                                            <option value="">Select Team....</option>
+                                            <t t-foreach="teams or []" t-as="team">
+                                                <option t-att-value="team['id']"
+                                                        t-att-selected="str(team['id']) == default_values.get('team_id', '')">
+                                                    <t t-esc="team['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+
+<!--                                <div t-if="is_asc" class="form-group row form-field o_website_form_required">-->
+<!--                                    <div class="col-lg-3 col-md-3 text-right">-->
+<!--                                        <label class="col-form-label" for="user_id">Assigned To-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-lg-7 col-md-7">-->
+<!--                                        <select name="user_id" id="helpdesk_team_user_id"-->
+<!--                                                t-attf-class="form-control o_website_form_input" required="1">-->
+<!--                                            <option value="">Assign User....</option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                                <input t-if="not is_asc" type="hidden" name="partner_email" t-att-value="default_values.get('email', '')"/>
+                                <input t-if="not is_asc" type="hidden" name="partner_name" t-att-value="default_values.get('partner_name', '')"/>
+                                <div class="form-group row">
+                                    <div class="offset-lg-3 offset-md-4 col-md-8 col-lg-7">
+                                        <button type="submit"
+                                                class="btn btn-primary btn-lg o_website_form_send">
+                                            Create Ticket
+                                        </button>
+                                        <span id="o_website_form_result"/>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="row" style="justify-content:center;">
+                                <div class="container mt32">
+                                    <h4>Important Notes:</h4>
+                                    <ol>
+                                        <li>Please enter all the details accurately for faster processing of your
+                                            support ticket, especially device serial number/s
+                                        </li>
+                                        <li>You can track the status of this ticket progress/updates from your
+                                            dashboard.
+                                        </li>
+                                        <li>Attach Purchase Invoice for faster processing.</li>
+                                        <li>Helpdesk support number is 040-48161111 (Working from 10 am to 6 pm
+                                            Mon-Sat,
+                                            Except National Holidays)
+                                        </li>
+                                        <li>Sincere request to reply to support emails / calls from RDP promptly to
+                                            help
+                                            us to close tickets within SLA time.
+                                        </li>
+                                        <li>Please refer the additional warranty terms and conditions
+                                            https://rdp.in/warranty
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <template id="helpdesk_portal_edit_ticket" name="Ticket Edit Portal">
+            <t t-call="portal.portal_layout">
+                <t t-set="my_details" t-value="True"/>
+                <t t-set="is_crm_bid" t-value="True"/>
+                <t t-call="portal.portal_record_layout">
+                    <t t-set="card_body">
+                        <h2 class="card-title text-center">
+                            <strong>Update Support Ticket</strong>
+                        </h2>
+                        <div class="card-text">
+                            <form action="/website_form/" method="post"
+                                  class="s_website_form container-fluid mt32" enctype="multipart/form-data"
+                                  data-model_name="helpdesk.ticket"
+                                  t-attf-data-success_page="/my/ticket/#{default_values.get('id',' ')}"
+                                  data-editable-form="false">
+                                <input type="hidden" t-if="default_values.get('id',False)"
+                                       name="helpdesk_portal_id" t-att-value="default_values.get('id', False)"/>
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="partner_email">Your Email</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input id="email_input_search_2" type='email'
+                                               class='form-control o_website_form_input'
+                                               name="partner_email"
+                                               t-att-value="default_values.get('email', '')" required="1"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="x_studio_field_w3gK7">Your Mobile
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="integer" class="form-control o_website_form_input"
+                                               name="x_studio_field_w3gK7"
+                                               t-att-value="default_values.get('x_studio_field_w3gK7', '')"
+                                               required="1"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+<!--                                    <div class="col-lg-3 col-md-3 text-right">-->
+<!--                                        <label class="col-form-label" for="x_studio_model_name">Model Name</label>-->
+<!--                                    </div>-->
+                                    <div class="col-lg-7 col-md-7">
+                                        <select name="x_studio_model_name"
+                                                t-attf-class="form-control o_website_form_input" required="1">
+                                            <option value="">Modal Name ...</option>
+                                            <t t-foreach="new_modal_list or []" t-as="modal">
+                                                <option t-att-value="modal['id']" t-att-selected="str(modal['id']) == str(default_values.get('x_studio_model_name', ''))">
+                                                    <t t-esc="modal['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+<!--                                        <label class="col-form-label" for="x_studio_serial_no">Serial No.-->
+<!--                                        </label>-->
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+<!--                                        <input type="integer" class="form-control o_website_form_input"-->
+<!--                                               name="x_studio_serial_no"-->
+<!--                                               t-att-value="default_values.get('x_studio_serial_no', '')"-->
+<!--                                               required="1"-->
+<!--                                        />-->
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="ticket_type_id">Warranty Type
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <select name="ticket_type_id"
+                                                t-attf-class="form-control o_website_form_input" required="1">
+                                            <option value="">Warranty Type....</option>
+                                            <t t-foreach="ticket_type_ids or []" t-as="type">
+                                                <option t-att-value="type['id']"
+                                                        t-att-selected="int(type['id']) == int(default_values.get('ticket_type_id', ''))">
+                                                    <t t-esc="type['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="attach_invoice">Attach Invoice</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="file" name="attach_invoice"
+                                               class="form-control o_website_form_input"
+                                               accept="image/*,application/pdf"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="name">Ticket Subject</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="text" class="form-control o_website_form_input" name="name"
+                                               required="1" t-att-value="default_values.get('name', '')"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="description">Problem Description</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <textarea rows="5" class="form-control o_website_form_input" name="description"
+                                                  required="1">
+                                            <t t-esc="default_values['description']"/>
+                                        </textarea>
+                                    </div>
+                                </div>
+
+                                  <div class="form-group row form-field">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="attach_video">Attach Problem
+                                            Photos/Video
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="file" name="attach_video"
+                                               class="form-control o_website_form_input" multiple="true"
+                                               accept="image/*,video/*"/>
+                                    </div>
+                                </div>
+
+                                <div t-if="is_asc" class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="team_id">Helpdesk Team
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <select name="team_id" id="helpdesk_team_select_id"
+                                                t-attf-class="form-control o_website_form_input" required="1">
+                                            <option value="">Select Team....</option>
+                                            <t t-foreach="teams or []" t-as="team">
+                                                <option t-att-value="team['id']"
+                                                        t-att-selected="int(team['id']) == int(default_values.get('team_id', ''))">
+                                                    <t t-esc="team['name']"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="x_studio_asp_ticket_no">ASP Ticket No.
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="text" class="form-control o_website_form_input"
+                                               name="x_studio_asp_ticket_no"
+                                               t-att-value="default_values.get('x_studio_asp_ticket_no', '')"
+                                               required="1"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="x_studio_field_engineer_name">Field Engineer Name
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="text" class="form-control o_website_form_input"
+                                               name="x_studio_field_engineer_name"
+                                               t-att-value="default_values.get('x_studio_field_engineer_name', '')"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="x_studio_field_engineer_mobile">Field Engineer Mobile
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                        <input type="text" class="form-control o_website_form_input"
+                                               name="x_studio_field_engineer_mobile"
+                                               t-att-value="default_values.get('x_studio_field_engineer_mobile', '')"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-group row form-field o_website_form_required">
+                                    <div class="col-lg-3 col-md-3 text-right">
+                                        <label class="col-form-label" for="portal_datetime">Date and Time
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
+                                    <div class="o_website_form_datetime input-group date" id="datetimepicker4" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input o_website_form_input" data-target="#datetimepicker4"/>
+                                        <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                          <div class="input-group-text">
+                                            <i class="fa fa-calendar"/>
+                                          </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                 </div> 
+
+
+<!--                                <div t-if="is_asc" class="form-group row form-field o_website_form_required">-->
+<!--                                    <div class="col-lg-3 col-md-3 text-right">-->
+<!--                                        <label class="col-form-label" for="user_id">Assigned To-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-lg-7 col-md-7">-->
+<!--                                        <select name="user_id" id="helpdesk_team_user_id"-->
+<!--                                                t-attf-class="form-control o_website_form_input" required="1">-->
+<!--                                            <option value="">Assign User....</option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+                                <div class="form-group row">
+                                    <div class="offset-lg-3 offset-md-4 col-md-8 col-lg-7">
+                                        <button type="submit"
+                                                class="btn btn-primary btn-lg o_website_form_send">
+                                            Update Ticket
+                                        </button>
+                                        <span id="o_website_form_result"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

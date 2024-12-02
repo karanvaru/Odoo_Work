@@ -1,0 +1,157 @@
+<odoo>
+    <record id="natuser_peer_template" model="asterisk_base_sip.peer_template">
+        <field name="name">SIP NAT User</field>
+        <field name="note">Typical SIP connection from behind NAT</field>
+        <field name="channel_type">sip</field>
+        <field name="peer_type">user</field>
+        <field name="options" eval="[
+            (5, 0, 0),
+            (0, 0, {'param': 'type', 'value': 'friend'}),
+            (0, 0, {'param': 'callcounter', 'value': 'yes'}),
+            (0, 0, {'param': 'host', 'value': 'dynamic'}),
+            (0, 0, {'param': 'qualify', 'value': 'yes'}),
+            (0, 0, {'param': 'language', 'value': 'en', 'param_type': 'individual'}),
+            (0, 0, {'param': 'nat', 'value': 'force_rport,comedia'}),
+        ]"/>
+    </record>
+
+    <record id="strict_natuser_peer_template" model="asterisk_base_sip.peer_template">
+        <field name="name">SIP NAT User Strict</field>
+        <field name="note">SIP connection from NAT only from allowed IP addresses</field>
+        <field name="channel_type">sip</field>
+        <field name="peer_type">user</field>        
+        <field name="options" eval="[
+            (5, 0, 0),
+            (0, 0, {'param': 'type', 'value': 'friend'}),
+            (0, 0, {'param': 'host', 'value': 'dynamic'}),
+            (0, 0, {'param': 'callcounter', 'value': 'yes'}),
+            (0, 0, {'param': 'qualify', 'value': 'yes'}),
+            (0, 0, {'param': 'language', 'value': 'en', 'param_type': 'individual'}),
+            (0, 0, {'param': 'nat', 'value': 'force_rport,comedia'}),
+            (0, 0, {'param': 'deny', 'value': '0.0.0.0/0.0.0.0', 'param_type': 'individual'}),
+            (0, 0, {'param': 'permit', 'value': 'x.x.x.x', 'param_type': 'individual', 'comment': 'Put here user IP address or network'}),
+        ]"/>
+    </record>
+
+    <record id="onsip_peer_template" model="asterisk_base_sip.peer_template">
+        <field name="name">OnSIP</field>
+        <field name="note">https://support.onsip.com/hc/en-us/articles/203675184-Asterisk-Configuration-for-OnSIP-Trunking-</field>
+        <field name="channel_type">sip</field>
+        <field name="peer_type">trunk</field>        
+        <field name="options" eval="[
+            (5, 0, 0),
+            (0, 0, {'param': 'type', 'value': 'peer'}),
+            (0, 0, {'param': 'host', 'value': 'sip.onsip.com', 'comment': 'Outbound proxy'}),
+            (0, 0, {'param': 'defaultuser', 'value': 'example_hiro', 'comment': 'Auth Username', 'param_type': 'individual'}),
+            (0, 0, {'param': 'fromuser', 'value': 'hiro', 'comment': 'Username', 'param_type': 'individual'}),
+            (0, 0, {'param': 'fromdomain', 'value': 'example.onsip.com', 'comment': 'Domain', 'param_type': 'individual'}),
+            (0, 0, {'param': 'dtmfmode', 'value': 'rfc2833'}),
+            (0, 0, {'param': 'insecure', 'value': 'invite'}),
+            (0, 0, {'param': 'srvlookup', 'value': 'yes'}),
+        ]"/>
+    </record>
+
+    <record id="peoplefone_peer_template" model="asterisk_base_sip.peer_template">
+        <field name="name">Peoplefone</field>
+        <field name="channel_type">sip</field>
+        <field name="peer_type">trunk</field>        
+        <field name="note">https://www.peoplefone.de/de/support/konfiguration</field>
+        <field name="options" eval="[
+            (5, 0, 0),
+            (0, 0, {'param': 'disallow', 'value': 'all', 'sequence': '10'}),
+            (0, 0, {'param': 'allow', 'value': 'g722,alaw,ulaw', 'sequence': '20'}),
+            (0, 0, {'param': 'type', 'value': 'friend'}),
+            (0, 0, {'param': 'host', 'value': 'sips.peoplefone.de', 'param_type': 'individual', 'comment': 'Replace to your local Peoplefone service (for example: sips.peoplefone.ch'}),
+            (0, 0, {'param': 'defaultuser', 'value': '907xxxxxxxxx', 'param_type': 'individual'}),
+            (0, 0, {'param': 'insecure', 'value': 'port,invite'}),
+            (0, 0, {'param': 'srvlookup', 'value': 'yes'}),
+            (0, 0, {'param': 'callbackextension', 'value': '907xxxxxxxxx', 'param_type': 'individual', 'comment': 'Replace with your settings'}),
+        ]"/>
+    </record>
+
+    <record id="webrtc_peer_template" model="asterisk_base_sip.peer_template">
+        <field name="name">WebRTC</field>
+        <field name="channel_type">sip</field>
+        <field name="peer_type">user</field>        
+        <field name="note"></field>
+        <field name="options" eval="[
+            (5, 0, 0),
+            (0, 0, {'param': 'disallow', 'value': 'all', 'sequence': '10'}),
+            (0, 0, {'param': 'allow', 'value': 'g722,alaw,ulaw,vp8,h264,h263p,mpeg4', 'sequence': '20'}),
+            (0, 0, {'param': 'type', 'value': 'friend'}),
+            (0, 0, {'param': 'rtcp_mux', 'value': 'yes'}),
+            (0, 0, {'param': 'transport', 'value': 'wss'}),
+            (0, 0, {'param': 'host', 'value': 'dynamic'}),
+            (0, 0, {'param': 'language', 'value': 'en', 'param_type': 'individual'}),
+            (0, 0, {'param': 'encryption', 'value': 'yes'}),
+            (0, 0, {'param': 'avpf', 'value': 'yes'}),
+            (0, 0, {'param': 'force_avp', 'value': 'yes'}),
+            (0, 0, {'param': 'icesupport', 'value': 'yes'}),
+            (0, 0, {'param': 'nat', 'value': 'force_rport,comedia'}),
+            (0, 0, {'param': 'directmedia', 'value': 'no'}),
+            (0, 0, {'param': 'qualify', 'value': 'yes'}),
+            (0, 0, {'param': 'videosupport', 'value': 'yes'}),
+            (0, 0, {'param': 'dtlsverify', 'value': 'no'}),
+            (0, 0, {'param': 'dtlsautogeneratecert', 'value': 'yes'}),
+            (0, 0, {'param': 'dtlssetup', 'value': 'actpass'}),
+            (0, 0, {'param': 'dtlsenable', 'value': 'yes'}),
+        ]"/>
+    </record>
+
+    <record id="zadarma_peer_template" model="asterisk_base_sip.peer_template">
+        <field name="name">Zadarma</field>
+        <field name="note"></field>
+        <field name="channel_type">sip</field>
+        <field name="peer_type">trunk</field>        
+        <field name="options" eval="[
+            (5, 0, 0),
+            (0, 0, {'param': 'host', 'value': 'sip.zadarma.com'}),
+            (0, 0, {'param': 'insecure', 'value': 'port,invite'}),
+            (0, 0, {'param': 'type', 'value': 'friend'}),
+            (0, 0, {'param': 'fromdomain', 'value': 'sip.zadarma.com'}),
+            (0, 0, {'param': 'defaultuser', 'value': '1234567', 'param_type': 'individual', 'comment': 'Your Zadarma account'}),
+            (0, 0, {'param': 'qualify', 'value': '400'}),
+            (0, 0, {'param': 'callbackextension', 'value': '1234567', 'param_type': 'individual', 'comment': 'Your Zadarma account'}),
+            (0, 0, {'param': 'fromuser', 'value': '1234567', 'param_type': 'individual', 'comment': 'Your Zadarma account'}),
+        ]"/>
+    </record>
+
+    <record id="natuser_pjsip_template" model="asterisk_base_sip.peer_template">
+        <field name="name">PJSIP NAT User</field>
+        <field name="channel_type">pjsip</field>
+        <field name="peer_type">user</field>        
+        <field name="options" eval="[
+            (5, 0, 0),
+            (0, 0, {'param': 'type', 'value': 'wizard'}),
+            (0, 0, {'param': 'accepts_registrations', 'value': 'yes'}),
+            (0, 0, {'param': 'sends_registrations', 'value': 'no'}),
+            (0, 0, {'param': 'accepts_auth', 'value': 'yes'}),
+            (0, 0, {'param': 'sends_auth', 'value': 'no'}),
+            (0, 0, {'param': 'endpoint_allow_subscribe', 'value': 'yes'}),
+            (0, 0, {'param': 'aor_support_path', 'value': 'yes'}),
+            (0, 0, {'param': 'aor_qualify_frequency', 'value': '30'}),
+            (0, 0, {'param': 'aor_max_contacts', 'value': '1'}),
+            (0, 0, {'param': 'aor_authenticate_qualify', 'value': 'no'}),
+            (0, 0, {'param': 'aor_minimum_expiration', 'value': '30'}),
+            (0, 0, {'param': 'aor_remove_existing', 'value': 'yes'}),
+            (0, 0, {'param': 'allow', 'value': '!all,ulaw,gsm,g722'}),
+            (0, 0, {'param': 'endpoint_send_diversion', 'value': 'yes'}),
+            (0, 0, {'param': 'endpoint_trust_id_outbound', 'value': 'yes'}),
+            (0, 0, {'param': 'endpoint_trust_id_inbound', 'value': 'yes'}),
+            (0, 0, {'param': 'endpoint_allow_transfer', 'value': 'yes'}),
+            (0, 0, {'param': 'endpoint_send_pai', 'value': 'yes'}),
+            (0, 0, {'param': 'endpoint_rewrite_contact', 'value': 'yes'}),
+            (0, 0, {'param': 'endpoint_send_rpid', 'value': 'yes'}),
+            (0, 0, {'param': 'endpoint_force_rport', 'value': 'yes'}),
+            (0, 0, {'param': 'endpoint_ice_support', 'value': 'yes'}),            
+            (0, 0, {'param': 'endpoint_direct_media_method', 'value': 'invite'}),
+            (0, 0, {'param': 'endpoint_direct_media', 'value': 'no'}),
+            (0, 0, {'param': 'endpoint_disable_direct_media_on_nat', 'value': 'no'}),
+            (0, 0, {'param': 'endpoint_device_state_busy_at', 'value': '1'}),
+            (0, 0, {'param': 'inbound_auth_username', 'value': '', 'param_type': 'individual', 'comment': 'SIP username'}),
+            (0, 0, {'param': 'inbound_auth_password', 'value': '', 'param_type': 'individual', 'comment': 'SIP password'}),
+            (0, 0, {'param': 'endpoint/callerid', 'value': '', 'param_type': 'individual', 'comment': 'User Caller ID'}),
+        ]"/>
+    </record>
+
+</odoo>

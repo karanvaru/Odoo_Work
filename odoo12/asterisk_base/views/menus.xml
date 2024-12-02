@@ -1,0 +1,5 @@
+<odoo>
+    <menuitem name="Base" id="asterisk_base_menu"
+        sequence="20"  parent="asterisk_common.asterisk_apps_menu"/>
+
+</odoo>

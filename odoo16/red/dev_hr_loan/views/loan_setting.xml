@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_loan_setting_form" model="ir.ui.view">
+		<field name="name">view.loan.settings.form</field>
+		<field name="model">loan.settings</field>
+		<field name="arch" type="xml">
+			<form string="Loan Approvers">
+				<sheet>
+                    <group>
+                        <group>
+                            <field name="company_id"/>
+                        </group>
+                        <group>
+                            <field name="country_accountant"/>
+                            <field name="hr_manager"/>
+                            <field name="chief_financial_officer"/>
+                            <field name="super_approver"/>
+                        </group>
+                    </group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+    <record id="view_loan_settings_tree" model="ir.ui.view">
+        <field name="name">view.loan.settings.tree</field>
+        <field name="model">loan.settings</field>
+        <field name="arch" type="xml">
+            <tree string="Loan Settings">
+                <field name="company_id"/>
+                <field name="country_accountant"/>
+                <field name="hr_manager"/>
+                <field name="chief_financial_officer"/>
+                <field name="super_approver"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_loan_settings">
+        <field name="name">Loan Settings</field>
+        <field name="res_model">loan.settings</field>
+        <!--<field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Loan Approvers" id="menu_loan_settings" parent="menu_main_employee_loan"
+              action="action_loan_settings"
+              groups="hr.group_hr_user"/>
+</odoo>

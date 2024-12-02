@@ -1,0 +1,25 @@
+.custom-popup-container {
+    position: relative;
+}
+
+// .custom_class_based_on_level {
+//     display: inline-block;
+//     cursor: pointer;
+// }
+
+.popup {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.custom_class_based_on_level:hover .popup {
+    display: block;
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="return_product_wizard_view">
+            <field name="name">return.product.wizard.form</field>
+            <field name="model">return.product.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="select_product_ids">
+                            <tree editable="bottom" create="false">
+                                <field name="return_product_id" invisible="1"/>
+                                <field name="product_id"/>
+                                <field name="qty_delivered"/>
+                                <field name="qty_returned"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="return_records" string="Submit" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_return_product_wizard">
+            <field name="name">Return Product</field>
+            <field name="res_model">return.product.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

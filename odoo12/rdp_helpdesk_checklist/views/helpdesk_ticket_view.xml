@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="helpdesk_checklist_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+           <xpath expr="//notebook" position="inside">
+    
+                <page string="Check List" attrs="{'invisible': [('check_list_len', '=', 0)]}">
+                    <field name="checklist_progress"
+                           widget="progressbar"
+                    />
+                    <group>
+                        <field name="check_list_line_ids"
+                               widget="many2many_checkboxes"
+                               domain="[('helpdesk_stage_st_id', '=', stage_id)]"
+                               nolabel="1"
+                               class="oe_inline"
+                        />
+                    </group>
+                    <group string="History">
+                        <field name="check_list_history_ids"
+                               readonly="1"
+                               nolabel="1"
+                        >
+                            <tree decoration-success="done_action in ['done']"
+                                  decoration-danger="done_action in ['reset']"
+                            >
+                                <field name="check_list_id"/>
+                                <field name="done_action"/>
+                                <field name="user_id"/>
+                                <field name="complete_date"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Tech" invisible="1">
+                        <field name="check_list_len"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="helpdesk_checklist_kanban_view" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.kanban.inherit</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_kanban"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="checklist_progress"/>
+                <field name="check_list_len"/>
+            </field>
+            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="before">
+                <div title="checklist progress" t-if="record.check_list_len.raw_value">
+                    <field name="checklist_progress"
+                           widget="progressbar"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

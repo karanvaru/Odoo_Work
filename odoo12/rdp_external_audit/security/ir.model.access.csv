@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+external_audit_user,external.audit,model_external_audit,,1,1,1,1
+externalaudit_related_user,qexternalaudit.related,model_externalaudit_related,,1,1,1,1
+externalaudit_transactiontype_user,externalaudit.transactiontype,model_externalaudit_transactiontype,,1,1,1,1

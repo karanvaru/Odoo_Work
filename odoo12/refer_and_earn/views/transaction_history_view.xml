@@ -1,0 +1,83 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="referral_transaction_history_view_form">
+	      <field name="name">Referral Transaction History Form</field>
+	      <field name="model">transaction.history</field>
+	      <field name="type">form</field>
+	      <field name="priority" eval="1"/>
+	      <field name="arch" type="xml">
+	      	<form create="false" delete="false" edit="false">
+          <!-- <form> -->
+          <header>
+                      <button string="Approve" name="action_approve" states="draft,error,reject" type="object" class="oe_highlight"/>
+                      <button string="Reject" name="action_reject" states="draft" type="object" class="oe_highlight"/>
+                      <button string="Cancel" name="action_cancel" states="draft" type="object" class="oe_highlight"/>
+                      <field name="state" widget="statusbar" statusbar_visible = "draft,reject,cancel,error,approve"/>
+            </header>
+	      		<sheet>
+              <h1><field name="name"/></h1>
+              <group>
+                  <field name='user_id' invisible="1"/>
+                  <field name='partner_id' string="Customer"/>
+                  <field name='referral_code' invisible="1"/>
+                  <field name='points'/>
+                  <field name='commission_type' attrs="{'invisible': [('point_type','=','d')]}"/>
+                  <field name='parent_id' attrs="{'invisible': ['|',('commission_type','=','parent'),('point_type','=','d')]}"/>
+                  <field name='child_id' attrs="{'invisible': ['|',('commission_type','=','child'),('point_type','=','d')]}"/>
+                  <field name='reason'/>
+                  <field name='point_type'/>
+                  <field name='debit_sale_order_id' attrs="{'invisible': [('point_type','=','c')]}"/>
+                  <field name='first_sale_order_id' attrs="{'invisible': [('point_type','=','d')]}"/>
+                  <label for="total_amount"/>
+                    <div>
+                        <field name="total_amount" class="oe_inline"/> &#x2063;  <field name='currency_id' nolabel="1"/>
+                    </div>
+              </group>
+	      		</sheet>
+	      	</form>
+	      </field>
+	  </record>
+
+    <record model="ir.ui.view" id="referral_transaction_history_view_tree">
+      <field name="name">Referral Transaction History Tree</field>
+      <field name="model">transaction.history</field>
+      <field name="arch" type="xml">
+			<tree colors="blue:state=='draft';
+										orange:state=='reject';
+										red:state=='cancel';
+										#585823:state=='error';
+										green:state=='approve';"
+				 						create="false" delete="false">
+        <!-- <tree> -->
+          <field name='user_id'/>
+          <field name='point_type'/>
+          <field name='points'/>
+          <field name='total_amount'/>
+          <field name='create_date'/>
+          <field name='state'/>
+        </tree>
+      </field>
+      </record>
+
+			<record id="view_referral_transaction_filter" model="ir.ui.view">
+            <field name="name">transaction.history.select</field>
+            <field name="model">transaction.history</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <search string="Search Transaction">
+                    <filter name="group_pending_transaction" string="Pending For Approval" domain="[('state','=','draft')]" help="Pending Transaction"/>
+                </search>
+            </field>
+        </record>
+
+		<record id="referral_transaction_history_view_action" model="ir.actions.act_window">
+        <field name="name">Referral Transaction History</field>
+        <field name="res_model">transaction.history</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+				<field name="context">{'search_default_group_pending_transaction': 1}</field>
+    </record>
+	</data>
+</odoo>

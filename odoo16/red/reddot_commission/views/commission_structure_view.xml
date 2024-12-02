@@ -1,0 +1,424 @@
+<odoo>
+    <data>
+        <record id="view_commission_structure_form" model="ir.ui.view">
+            <field name="name">view.commission.structure.form</field>
+            <field name="model">commission.structure</field>
+            <field name="arch" type="xml">
+                <form string="Commission Structure">
+                    <header>
+
+                        <button name="action_structure_send" string="Send by Email" type="object"
+                                attrs="{'invisible': [('state', '!=', 'draft')]}"
+                                class="btn-primary" groups="reddot_commission.group_manager_commission"/>
+
+                        <button name="action_approved" string="Approve" type="object"
+                                class="btn-primary"
+                                attrs="{'invisible': [('state', '!=', 'sent')]}"/>
+
+                        <button name="action_rejected" string="Reject" type="object"
+                                class="btn-danger"
+                                groups="reddot_commission.group_manager_commission"
+                                attrs="{'invisible': [('state', '!=', 'sent')]}"/>
+
+                        <button name="action_validate" string="Mark as Closed" type="object"
+                                class="btn-primary"
+                                groups="reddot_commission.group_manager_commission"
+                                attrs="{'invisible': [('state', '!=', 'approved')]}"/>
+
+                        <button name="action_in_payment" string="In Payment" type="object"
+                                class="btn-primary"
+                                groups="reddot_commission.group_manager_commission"
+                                attrs="{'invisible': [('state', '!=', 'validate')]}"/>
+
+                        <button name="action_paid" string="Paid" type="object"
+                                class="btn-primary"
+                                groups="reddot_commission.group_manager_commission"
+                                attrs="{'invisible': [('state', '!=', 'in_payment')]}"/>
+
+                        <button name="action_reset_to_draft" string="Reset to Draft" type="object"
+                                class="btn-primary"
+                                groups="reddot_commission.group_manager_commission"
+                                attrs="{'invisible': [('state', 'not in', ('sent', 'rejected'))]}"/>
+
+                        <button name="action_generate_commission" string="Refresh" type="object"
+                                class="btn-primary"
+                                attrs="{'invisible': [('state', '!=', 'approved')]}"/>
+
+                        <button name="action_add_breath_targets" string="Add Breadth Target" type="object"
+                                class="btn-primary"
+                                attrs="{'invisible': [('state', 'not in', ['approved', 'draft'])]}"/>
+
+                        <button name="action_raise_exception" string="RAISE EXCEPTION" type="object"
+                                class="btn-danger"
+                                attrs="{'invisible': ['|', ('state', '!=', 'approved'), ('exception_state', '!=', 'no_exception')]}"/>
+
+                        <field name="state" widget="statusbar"/>
+
+                    </header>
+                    <header attrs="{'invisible': [('exception_state', '=', 'no_exception')]}">
+                        <button name="action_exception_approve_manager" string="Manager Approve" type="object"
+                                class="btn-primary"
+                                attrs="{'invisible': [('exception_state', 'not in', ('exception',))]}"/>
+                        <button name="action_exception_approve_hod" string="HOD Approve" type="object"
+                                class="btn-primary"
+                                attrs="{'invisible': [('exception_state', 'not in', ('exception_approve_manager',))]}"/>
+                        <button name="action_exception_approve_ceo" string="CEO Approve" type="object"
+                                class="btn-primary"
+                                attrs="{'invisible': [('exception_state', 'not in', ('exception_approve_hod',))]}"/>
+                        <field name="exception_state" widget="statusbar"/>
+                    </header>
+
+                    <sheet>
+
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="user_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <label for="start_year" string="Start Period"/>
+                                <div class="o_row">
+                                    <field name="start_month" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="start_year" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                </div>
+                                <field name="start_date" invisible="True"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="period_type" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       widget="radio" options="{'horizontal': True}"/>
+                                <label for="end_year" string="End Period"/>
+                                <div class="o_row">
+                                    <field name="end_month" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="end_year" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                </div>
+                                <field name="end_date" invisible="True"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                
+                                <label for="apply_commission_revenue" />
+                                <div class="o_row">
+                                    <field name="apply_commission_revenue"
+                                        attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="revenue_gp_percentage" class="oe_inline fw-bold" widget="percentage" width="100px" attrs="{'readonly': [('state', '!=', 'draft')], 
+                                    'required': [('apply_commission_revenue', '=', True)], 'invisible': [('apply_commission_revenue', '!=', True)]}"/>
+                                </div>
+
+                                <label for="apply_commission_breadth" />
+                                <div class="o_row">
+                                
+                                    <field name="apply_commission_breadth"
+                                        attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="breadth_percentage" class="oe_inline fw-bold" widget="percentage" width="100px" attrs="{'readonly': [('state', '!=', 'draft')], 
+                                    'required': [('apply_commission_breadth', '=', True)], 'invisible': [('apply_commission_breadth', '!=', True)]}"/>
+                                </div>  
+
+                                <label for="apply_commission_kpi" />
+                                <div class="o_row">
+                                
+
+                                    <field name="apply_commission_kpi" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="kpi_percentage" class="oe_inline fw-bold" widget="percentage" width="100px" attrs="{'readonly': [('state', '!=', 'draft')], 
+                                    'required': [('apply_commission_kpi', '=', True)], 'invisible': [('apply_commission_kpi', '!=', True)]}"/>
+                                </div>
+
+                                <label for="apply_commission_deduction" />
+                                <div class="o_row">
+
+                                    <field name="apply_commission_deduction" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="deduction_percentage"  class="oe_inline fw-bold" widget="percentage" width="100px" attrs="{'readonly': [('state', '!=', 'draft')], 
+                                    'required': [('apply_commission_deduction', '=', True)], 'invisible': [('apply_commission_deduction', '!=', True)]}"/>
+                                
+                                </div>
+                            </group>
+                            <group>
+                                <field name="commission_type" widget="radio"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="commission_measure_type" widget="radio" options="{'horizontal': True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="commission_priority" widget="radio" options="{'horizontal': True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="number_of_days_close" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="auto_close_date" invisible="True"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="commission_currency_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="total_commission_amount" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       widget='monetary' options="{'currency_field': 'commission_currency_id'}"/>
+                                <field name="total_commission_achived" widget='monetary'
+                                       options="{'currency_field': 'commission_currency_id'}"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Employee Targets">
+                                <separator string="Employee Revenue/GP Target"
+                                           attrs="{'invisible': [('apply_commission_revenue', '=', False)]}"/>
+                                <field name="commission_structure_line_ids"
+                                       attrs="{'readonly': [('state', '!=', 'draft')], 'invisible': [('apply_commission_revenue', '=', False)]}">
+                                    <tree string="Employee Target" editable="bottom"
+                                          decoration-danger="exception_state != 'no_exception'">
+                                        <field name="commission_currency_id" invisible="True"/>
+                                        <field name="line_currency_id" invisible="True"/>
+                                        <field name="company_id"/>
+                                        <field name="bu_group_id"/>
+                                        <field name="business_unit_id"/>
+                                        <field name="country_id"/>
+                                        <field name="country_group_id"/>
+                                        <field name="revenue_commission_measure_type" invisible="1"/>
+                                        <field name="commission_measure_type" attrs="{'readonly': [('revenue_commission_measure_type', '!=', 'both')]}" />
+                                        <field name="target_amount" sum="target_amount" widget='monetary'
+                                               options="{'currency_field': 'line_currency_id'}"/>
+                                        <field name="commission_amount" sum="commission_amount" widget='monetary'
+                                               options="{'currency_field': 'commission_currency_id'}"/>
+                                        <field name="commission_amount_percentage" widget="percentage"/>
+                                        <field name="target_achived" sum="target_achived" widget='monetary'
+                                               options="{'currency_field': 'line_currency_id'}"/>
+                                        <field name="target_percentage_achived" widget="progressbar"/>
+                                        
+                                        <field name="commission_amount_achived" sum="commission_amount_achived"
+                                               widget='monetary'
+                                               options="{'currency_field': 'commission_currency_id'}"/>
+                                        <field name="threshold_id" optional="hide"/>
+                                        <field name="target_line_id" invisible="1"/>
+                                        <field name="is_exception" invisible="True"/>
+                                        <field name="commission_to_be" sum="commission_to_be" widget='monetary' attrs="{'invisible': [('is_exception', '!=', True)]}"/>
+                                       
+                                        <field name="exception_reason" optional="show" attrs="{'invisible': [('is_exception', '!=', True)]}"/>
+                                        <field name="exception_state" optional="hide" attrs="{'invisible': [('is_exception', '!=', True)]}"/>
+                                    </tree>
+                                </field>
+                                <group col="12" class="oe_invoice_lines_tab"
+                                       attrs="{'invisible': [('apply_commission_revenue', '=', False)]}">
+                                    <group colspan="6">
+                                    </group>
+                                    <group colspan="6">
+                                        <group class="oe_subtotal_footer oe_right">
+                                            <field name="revenue_commission_amount" widget='monetary'
+                                                   options="{'currency_field': 'commission_currency_id'}"/>
+                                            <field name="revenue_commission_achieved" widget='monetary'
+                                                   options="{'currency_field': 'commission_currency_id'}"/>
+                                        </group>
+                                    </group>
+                                </group>
+
+
+                                <separator string="Employee Breadth Target"
+                                           attrs="{'invisible': [('apply_commission_breadth', '=', False)]}"/>
+                                <field name="breadth_commission_structure_line_ids"
+                                       attrs="{'readonly': [('state', '!=', 'draft')], 'invisible': [('apply_commission_breadth', '=', False)]}">
+                                    <tree string="Employee Breadth Target" editable="bottom" decoration-danger="exception_state != 'no_exception'">
+                                        <field name="commission_currency_id" invisible="True"/>
+                                        <field name="company_id"/>
+                                        <field name="bu_group_id"/>
+                                        <field name="business_unit_id"/>
+                                        <field name="country_id"/>
+                                        <field name="country_group_id"/>
+                                        <field name="breadth_target_count" sum="breadth_target_count"/>
+                                        <field name="breadth_commission_amount" sum="breadth_commission_amount"
+                                               widget='monetary'
+                                               options="{'currency_field': 'commission_currency_id'}"/>
+                                        <field name="breadth_commission_percentage" widget="percentage"/>
+                                        <field name="breadth_target_achived" sum="breadth_target_percentage_achived"/>
+                                        <field name="breadth_target_percentage_achived" widget="progressbar"/>
+                                        <field name="breadth_commission_amount_achived"
+                                               sum="breadth_commission_amount_achived" widget='monetary'
+                                               options="{'currency_field': 'commission_currency_id'}"/>
+                                        <field name="threshold_id" optional="hide"/>
+                                        <field name="target_line_id" invisible="1"/>
+                                        <field name="is_exception" invisible="True"/>
+                                        <field name="commission_to_be" sum="commission_to_be" widget='monetary' attrs="{'invisible': [('is_exception', '!=', True)]}"/>
+                                        
+                                        <field name="exception_reason" optional="show" attrs="{'invisible': [('is_exception', '!=', True)]}"/>
+                                        <field name="exception_state" optional="hide" attrs="{'invisible': [('is_exception', '!=', True)]}"/>
+                                    </tree>
+                                </field>
+                                <group col="12" class="oe_invoice_lines_tab"
+                                       attrs="{'invisible': [('apply_commission_breadth', '=', False)]}">
+                                    <group colspan="6">
+                                    </group>
+                                    <group colspan="6">
+                                        <group class="oe_subtotal_footer oe_right">
+                                            <field name="breadth_commission_amount" widget='monetary'
+                                                   options="{'currency_field': 'commission_currency_id'}"/>
+                                            <field name="breadth_commission_achieved" widget='monetary'
+                                                   options="{'currency_field': 'commission_currency_id'}"/>
+                                        </group>
+                                    </group>
+                                </group>
+
+                                <separator string="Employee KPI Target"
+                                           attrs="{'invisible': [('apply_commission_kpi', '=', False)]}"/>
+                                <field name="kpi_commission_structure_line_ids"
+                                       attrs="{'invisible': [('apply_commission_kpi', '=', False)], 'readonly': [('state', '!=', 'draft')]}">
+                                    <tree string="Employee KPI Target" editable="bottom"
+                                          decoration-danger="manager_result == 'fail'"
+                                          decoration-success="manager_result == 'pass'">
+                                        <field name="kpi_comm_id" />
+                                        <field name="user_result" widget="radio" options="{'horizontal': True}"
+                                               invisible="True"/>
+                                        <field name="manager_result" widget="radio" options="{'horizontal': True}" />
+                                        <field name="manager_result_to_be" widget="radio"
+                                               options="{'horizontal': True}"/>
+                                        <field name="comment"/>
+                                        <field name="is_exception" invisible="True"/>
+                                        <field name="exception_reason" optional="show"/>
+                                        <field name="exception_state" optional="hide"/>
+                                    </tree>
+                                </field>
+                                <group col="12" class="oe_invoice_lines_tab"
+                                       attrs="{'invisible': [('apply_commission_kpi', '=', False)]}">
+                                    <group colspan="6">
+                                        <group>
+                                            <button name="manager_approve_kpi" string="Rate KPI" type="object" class="btn-primary" attrs="{'invisible': [('state', '!=', 'approved')]}" />
+                                            
+                                        </group>
+                                    </group>
+                                    <group colspan="6">
+                                        <group class="oe_subtotal_footer oe_right">
+                                            <field name="kpi_commission_amount" widget='monetary'
+                                                   options="{'currency_field': 'commission_currency_id'}"/>
+                                            <field name="kpi_commission_achieved" widget='monetary'
+                                                   options="{'currency_field': 'commission_currency_id'}" readonly="1"/>
+                                        </group>
+                                    </group>
+                                </group>
+
+                                 <separator string="Employee Deductions Target"
+                                           attrs="{'invisible': [('apply_commission_deduction', '=', False)]}"/>
+                                <field name="ded_commission_structure_line_ids"
+                                       attrs="{'invisible': [('apply_commission_deduction', '=', False)], 'readonly': [('state', '!=', 'draft')]}">
+                                    <tree string="Employee Deductions" editable="bottom"
+                                          decoration-danger="manager_result == 'fail'"
+                                          decoration-success="manager_result == 'pass'">
+                                        <field name="ded_comm_id" />
+                                        <field name="user_result" widget="radio" options="{'horizontal': True}"
+                                               invisible="True"/>
+                                        <field name="manager_result" widget="radio" options="{'horizontal': True}" />
+                                        <field name="manager_result_to_be" widget="radio"
+                                               options="{'horizontal': True}"/>
+                                        <field name="comment"/>
+                                        <field name="is_exception" invisible="True"/>
+                                        <field name="exception_reason" optional="show"/>
+                                        <field name="exception_state" optional="hide"/>
+                                    </tree>
+                                </field>
+                                <group col="12" class="oe_invoice_lines_tab"
+                                       attrs="{'invisible': [('apply_commission_deduction', '=', False)]}">
+                                    <group colspan="6">
+                                        <group>
+                                            <button name="manager_approve_deduction" string="Rate Deuction" type="object" class="btn-primary" attrs="{'invisible': [('state', '!=', 'approved')]}" />
+                                            
+                                        </group>
+                                    </group>
+                                    <group colspan="6">
+                                        <group class="oe_subtotal_footer oe_right">
+                                            <field name="deduction_commission_amount" widget='monetary'
+                                                   options="{'currency_field': 'commission_currency_id'}"/>
+                                            <field name="deduction_commission_achieved" widget='monetary'
+                                                   options="{'currency_field': 'commission_currency_id'}" readonly="1"/>
+                                        </group>
+                                    </group>
+                                </group>
+
+                            </page>
+                            <page string="Other Info">
+                                <group>
+                                    <group>
+                                        <field name="employee_manager_id"
+                                               attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                        <field name="department_manager_id"
+                                               attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                        <field name="company_ceo_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    </group>
+                                    <group>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="exception_reason"
+                                           attrs="{'invisible': [('exception_reason', '=', False)]}"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" colspan="4" widget="mail_thread" nolabel="1"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="view_commission_structure_tree" model="ir.ui.view">
+            <field name="name">view.commission.structure.tree</field>
+            <field name="model">commission.structure</field>
+            <field name="arch" type="xml">
+                <tree string="Commission Structure"
+                      decoration-info="state == 'draft'"
+                      decoration-muted="state == 'paid'"
+                      decoration-danger="state == 'validate'"
+                      decoration-success="state == 'approved'"
+                >
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="start_year"/>
+                    <field name="start_month"/>
+                    <field name="end_year"/>
+                    <field name="end_month"/>
+                    <field name="commission_type"/>
+                    <field name="commission_measure_type"/>
+                    <field name="period_type"/>
+                    <field name="total_commission_amount" widget='monetary'
+                           options="{'currency_field': 'commission_currency_id'}"/>
+                    <field name="total_commission_achived" widget='monetary'
+                           options="{'currency_field': 'commission_currency_id'}"/>
+                    <field name="state"/>
+                    <field name="exception_state"
+                           widget="badge"
+                           decoration-danger="exception_state == 'exception'"
+                           decoration-warning="exception_state in ('exception_approve_manager', 'exception_approve_hod')"
+                           decoration-success="exception_state in ('exception_approve_ceo',)"
+                           attrs="{'invisible': [('exception_state', 'in', ('no_exception'))]}"
+                           optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_commission_structure_filter" model="ir.ui.view">
+            <field name="name">commission.structure.select</field>
+            <field name="model">commission.structure</field>
+            <field name="arch" type="xml">
+                <search string="Search Commission Structure">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="commission_type"/>
+                    <field name="commission_measure_type"/>
+                    <field name="state"/>
+                    <separator/>
+                    <filter string="To Process" name="state_to_process" domain="[('state', 'in', ('draft', 'sent'))]"/>
+                    <filter string="Running" name="state_running" domain="[('state', 'in', ('approved',))]"/>
+                    <filter string="Closed" name="state_closed" domain="[('state', 'in', ('validate',))]"/>
+                    <filter string="In Payment" name="state_in_payment" domain="[('state', 'in', ('in_payment',))]"/>
+                    <filter string="Paid" name="state_paid" domain="[('state', 'in', ('paid',))]"/>
+                    <separator/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Sales Person" name="group_by_commission_history_id" domain="[]"
+                                context="{'group_by':'user_id'}"/>
+                        <filter string="Start Period" name="group_by_start_date" domain="[]"
+                                context="{'group_by':'start_date:month'}"/>
+                        <filter string="End Period" name="group_by_end_date" domain="[]"
+                                context="{'group_by':'end_date:month'}"/>
+                        <filter string="Status" name="group_by_status" domain="[]" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_commission_structure" model="ir.actions.act_window">
+            <field name="name">Commission Structure</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">commission.structure</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

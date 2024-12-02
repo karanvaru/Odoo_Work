@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="payment_inherit" inherit_id="website_sale.payment">
+        <xpath expr='//div[@id="address_on_payment"]' position='after'>
+            <div class="file_upload_website">
+                <div class="row">
+                    <div class="col-6">
+
+
+                        <button type="button" class="btn btn-primary mt32" data-bs-toggle="modal"
+                                data-bs-target="#attach_popup">
+                            <span class="fa fa-plus"/>Add Attachment
+                        </button>
+
+
+                    </div>
+                    <div class="col-6 text-end">
+                        <button type="button" class="btn btn-primary mt32 hide_show_attach">
+                            Hide/show Attachment
+                        </button>
+                    </div>
+                </div>
+                <div class="modal fade" id="attach_popup" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Select File to Upload</h5>
+                            </div>
+                            <div class="modal-body">
+                                <input type="file" id="sale_attachment"/>
+                            </div>
+                            <div class="modal-footer">
+                                <button t-att-name="website_sale_order.id" type="button" id="upload_sale_attachment"
+                                        class="btn btn-primary sale_attach_class" data-dismiss="modal">Upload Document
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="attachment_table" class="mt16">
+                    <table class="table hide_show_table" style="width:100%;" id="attachment_list">
+                        <thead>
+                            <tr>
+                                <th class="text-left" scope="col">#</th>
+                                <th class="text-center" scope="col">Name</th>
+                                <th class="text-right" scope="col">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="attach_count" t-value="0"/>
+                            <t t-foreach="website_sale_order.website_get_attachments()" t-as="attachment">
+                                <tr>
+                                    <th class="text-left" scope="row">
+                                        <t t-set="attach_count" t-value="attach_count + 1"/>
+                                        <span t-esc="attach_count"/>
+                                    </th>
+                                    <td class="text-center">
+                                        <span t-esc="attachment.name"/>
+                                    </td>
+                                    <td class="text-right delete_attach" t-att-id="attachment.id">
+                                        <button class="btn btn-primary-outline fa fa-trash"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
+

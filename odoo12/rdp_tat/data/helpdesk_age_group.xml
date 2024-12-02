@@ -1,0 +1,5 @@
+<odoo>
+    <data noupdate="1">
+        <function model="helpdesk.ticket" name="set_create_date_for_old_ticket"/>
+    </data>
+</odoo>

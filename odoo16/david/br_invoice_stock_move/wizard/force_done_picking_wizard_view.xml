@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_force_done_picking_wizard_form">
+            <field name="name">force.done.picking.wizard.view</field>
+            <field name="model">force.done.picking.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Export Report">
+                    <group>
+                        <group>
+                            <field name="force_done"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="picking_done" class='btn btn-primary' string="Print" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="actions_force_done_picking_wizard">
+            <field name="name">force.done.picking.wizard</field>
+            <field name="res_model">force.done.picking.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

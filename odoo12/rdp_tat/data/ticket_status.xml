@@ -1,0 +1,12 @@
+<odoo>
+    <record id="actionTicket_status_data" model="ir.actions.server">
+        <field name="name">Change S Status</field>
+        <field name="model_id" ref="model_helpdesk_ticket"/>
+        <field name="binding_model_id" ref="model_helpdesk_ticket"/>
+        <field name="state">code</field>
+        <field name="code">
+            for record in records:
+                record.change_ticket_status()
+        </field>
+    </record>
+</odoo>

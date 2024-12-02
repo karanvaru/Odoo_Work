@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+    
+        <record id="amazon_inbound_update_shipment_wizard_form_view" model="ir.ui.view">
+            <field name="name">Amazon Inbound Shipment</field>
+            <field name="model">amazon.inbound.shipment.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Amazon Inbound Shipment">
+                	<group>
+                		<field name="update_shipment_status"/>
+                	</group>
+                    <footer>
+                        <button name="update_inbound_shipment" string="Update Inbound Shipment" type="object" class="oe_highlight"/>
+						<button string="Cancel" class="oe_highlight" special="cancel" />
+                    </footer>
+				</form>
+			</field>
+		</record>
+		
+		<!-- From View Section -->
+		<record id="import_amazon_inbound_shipment_report_form_view" model="ir.ui.view">
+            <field name="name">Import Amazon Inbound Shipment Report</field>
+            <field name="model">amazon.inbound.shipment.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Amazon Inbound Shipment Report">
+                	<group>
+						<field name="choose_inbound_shipment_file" filename="file_name" />
+						<field name="file_name" invisible="1" />
+                	</group>
+                    <footer>
+                        <button name="import_inbound_shipment_report" string="Update Inbound Shipment" type="object" class="oe_highlight"/>
+						<button string="Cancel" class="oe_highlight" special="cancel" />
+                    </footer>
+				</form>
+			</field>
+		</record>
+		
+
+	</data>
+</odoo>

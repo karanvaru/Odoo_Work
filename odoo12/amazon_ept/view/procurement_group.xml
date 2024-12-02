@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_afc_procurement_group_ept" model="ir.ui.view">
+			<field name="name">procurement.group.ept.form</field>
+			<field name="model">procurement.group</field>
+			<field name="inherit_id" ref="stock.procurement_group_form_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//group" position="inside">
+					<field name='odoo_shipment_id' />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,36 @@
+# -*- coding: utf-8 -*-
+from odoo import fields, models, api
+
+
+class PurchaseOrder(models.Model):
+    _inherit = 'purchase.order'
+
+    inventory_value_type_je = fields.Many2one(
+        'inventory.value.type.je',
+        string="Inventory Value Type",
+        track_visibility="onchange",
+        copy=False
+    )
+
+    @api.model
+    def _prepare_picking(self):
+        vals = super(PurchaseOrder, self)._prepare_picking()
+        vals.update({'inventory_value_type_je': self.inventory_value_type_je.id})
+        return vals
+
+    @api.model
+    def _update_transaction_types(self):
+        if self.picking_ids:
+            self.picking_ids.with_context(from_po=True).update({
+                'inventory_value_type_je': self.inventory_value_type_je.id
+            })
+            self.picking_ids.mapped('move_lines').mapped('account_move_ids').with_context(from_po=True).update({
+                'inventory_value_type_je': self.inventory_value_type_je.id
+            })
+
+    def write(self, vals):
+        super_res = super(PurchaseOrder, self).write(vals)
+        if 'inventory_value_type_je' in vals:
+            for rec in self:
+                rec._update_transaction_types()
+        return super_res

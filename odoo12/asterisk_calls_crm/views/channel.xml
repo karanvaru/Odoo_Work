@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_lead_channel_form" model="ir.ui.view">
+        <field name="name">asterisk_calls.channel.lead.form</field>
+        <field name="model">asterisk_calls.channel</field>
+        <field name="inherit_id" ref="asterisk_calls.asterisk_channel_form"/>
+        <field name="arch" type="xml">
+            <field name="partner" position="after">
+                <field name="lead" string="CRM"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_lead_channel_list" model="ir.ui.view">
+        <field name="name">asterisk_calls.channel.lead.list</field>
+        <field name="model">asterisk_calls.channel</field>
+        <field name="inherit_id" ref="asterisk_calls.asterisk_channel_list"/>
+        <field name="arch" type="xml">
+            <field name="partner" position="after">
+                <field name="lead"/>
+                <button name="open_opportunity" icon="fa-money" type="object"
+                    aria-label="CRM" title="CRM"
+                    attrs="{'invisible': [('lead', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_lead_channel_search" model="ir.ui.view">
+        <field name="name">asterisk_calls.channel.lead.search</field>
+        <field name="model">asterisk_calls.channel</field>
+        <field name="inherit_id" ref="asterisk_calls.asterisk_channel_search"/>
+        <field name="arch" type="xml">
+            <field name="partner" position="after">
+                <field name="lead"/>                
+            </field>
+            <filter name="partners" position="after">
+                <filter name="leads" string="Leads" domain="[('lead', '!=', False)]"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>
+            

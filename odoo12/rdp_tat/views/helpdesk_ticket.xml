@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="time tracking" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/rdp_tat/static/src/js/tracing_time.js"></script>
+        </xpath>
+    </template>
+
+
+    <record id="helpdesk_ticket_tat_inherit_view" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form.inherited</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+
+                <page name="helpdesk_ticket_tat" string="TAT &amp; SLA">
+                    <field name="tat_ids">
+                        <tree>
+                            <field name="current_user"/>
+                            <field name="from_team_id"/>
+                            <!-- <field name="from_stage_id" /> -->
+                            <field name="to_team_id"/>
+                            <field name="from_stage_id"/>
+                            <field name="to_stage_id"/>
+                            <field name="date_in"/>
+                            <field name="date_out"/>
+                            <field name="days" string="TAT Duration"/>
+                            <field name="tat_name" string="TAT Name"/>
+                            <field name="is_active" invisible="1"/>
+
+                            <field name="sla_days" invisible="1"/>
+                            <field name="tat_time" invisible="1"/>
+                            <field name="tat_status" string="TAT Status"/>
+                            <field name="tat_time_value" string="TAT Target"/>
+                            <field name="duration" widget="time_tracking_counter" string="Opendays"/>
+                            <field name="timer_status" invisible="1"/>
+                            <!-- <field name="tat_id" /> -->
+                        </tree>
+                        <form>
+                            <group colspan="2" col="4">
+                                <field name="stage_id"/>
+                                <field name="date_in"/>
+                                <field name="date_out"/>
+                            </group>
+                        </form>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="tat_status"/>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="helpdesk_ked_inherit_id_custom" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.tree.inherited</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stage_id']" position="after">
+                <!-- <field name="tat_status"/>
+                <field name="status"/> -->
+            </xpath>
+        </field>
+    </record>
+
+    <!-- <record id="helpdesk_ticket_search_view_inherit" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.search.inherited</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='team']" position="after">
+                <filter string="Status" name="status" context="{'group_by': 'status'}" invisible="1"/>
+            </xpath>
+        </field>
+    </record> -->
+
+</odoo>

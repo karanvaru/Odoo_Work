@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record model="ir.actions.act_window" id="asterisk_channel_action">
+      <field name="name">Active Calls</field>
+      <field name="res_model">asterisk_calls.channel</field>
+      <field name="view_mode">tree,form</field>
+  </record>
+
+
+  <menuitem id="asterisk_calls_channel_menu" parent='asterisk_calls_menu'
+      name='Active' action='asterisk_channel_action' sequence="5"/>
+
+  <record model="ir.ui.view" id="asterisk_channel_list">
+      <field name="name">asterisk channels</field>
+      <field name="model">asterisk_calls.channel</field>
+      <field name="arch" type="xml">
+          <tree edit="false" create="false" duplicate="false">
+              <field name="state" invisible="1"/>
+              <field name="state_desc" invisible="1"/>            
+              <button name="hangup_button" type="object" string="Hangup"
+                  icon="fa-remove"/>
+              <button name="pickup" type="object" string="Pickup"
+                icon="fa-level-down"/>
+              <button name="listen" type="object" string="Listen"
+                attrs="{'invisible': [('state_desc','!=', 'Up')]}"
+                icon="fa-user-secret"/>
+              <button name="whisper" type="object" string="Whisper"
+                attrs="{'invisible': [('state_desc','!=', 'Up')]}"
+                icon="fa-user-plus"/>
+              <button name="barge" type="object" string="Barge"
+                attrs="{'invisible': [('state_desc','!=', 'Up')]}"
+                icon="fa-users"/>
+              <field name="is_muted" invisible="1"/>
+              <button name="mute" type="object" string="Mute"
+                attrs="{'invisible': ['|',('is_muted','=',True), ('state_desc','!=', 'Up')]}"
+                icon="fa-microphone-slash"/>
+              <button name="unmute" type="object" string="Unmute"
+                attrs="{'invisible': ['|',('is_muted','!=',True), ('state_desc','!=', 'Up')]}"
+                icon="fa-microphone"/>
+              <field name="exten"/>
+              <field name="channel_short"/>
+              <field name="callerid"/>
+              <field name="partner"/>
+              <field name="src_user"/>
+              <field name="dst_user"/>
+              <field name="connected_line" string="Connected"/>
+              <field name="duration"/>
+          </tree>
+      </field>
+  </record>
+
+  <record model="ir.ui.view" id="asterisk_channel_form">
+      <field name="name">asterisk channel form</field>
+      <field name="model">asterisk_calls.channel</field>
+      <field name="arch" type="xml">
+          <form edit="false" create="false" duplicate="false">
+              <header>
+                <button name="pickup" type="object" string="Pickup"
+                icon="fa-level-down"/>                
+                <button name="listen" type="object" string="Listen"
+                  attrs="{'invisible': [('state_desc','!=', 'Up')]}"
+                  icon="fa-user-secret"/>
+                <button name="whisper" type="object" string="Whisper"
+                  attrs="{'invisible': [('state_desc','!=', 'Up')]}"
+                  icon="fa-user-plus"/>
+                <button name="barge" type="object" string="Barge"
+                  attrs="{'invisible': [('state_desc','!=', 'Up')]}"
+                  icon="fa-users"/>
+                <field name="is_muted" invisible="1"/>
+                <button name="mute" type="object" string="Mute"
+                  attrs="{'invisible': ['|',('is_muted','=',True), ('state_desc','!=', 'Up')]}"
+                  icon="fa-microphone-slash"/>
+                <button name="unmute" type="object" string="Unmute"
+                  attrs="{'invisible': ['|',('is_muted','!=',True), ('state_desc','!=', 'Up')]}"
+                  icon="fa-microphone"/>
+                <button name="hangup_button" type="object" string="Hangup"
+                  icon="fa-remove" class="oe_highlight"/>
+              </header>
+              <sheet>
+                <notebook>
+                  <page name="primary" string="Primary">
+                    <group>
+                      <group>
+                        <field name="exten"/>
+                        <field name="callerid"/>
+                        <field name="channel"/>
+                        <field name="state_desc"/>                        
+                      </group>
+                      <group>
+                        <field name="duration"/>
+                        <field name="src_user"/>
+                        <field name="dst_user"/>
+                        <field name="partner"/>                        
+                      </group>
+                    </group>
+                  </page>
+                  <page name="tech" string="Technical">
+                    <group>
+                      <group>
+                        <field name="connected_line"/>
+                        <field name="context"/>
+                        <field name="app"/>
+                        <field name="app_data"/>
+                        <field name="priority"/>                        
+                      </group>
+                      <group>
+                        <field name="state"/>
+                        <field name="accountcode"/>
+                        <field name="timestamp"/>
+                        <field name="uniqueid"/>
+                        <field name="linkedid"/>
+                      </group>
+                    </group>                    
+                  </page>
+                </notebook>
+              </sheet>
+          </form>
+      </field>
+  </record>
+
+  <record model="ir.ui.view" id="asterisk_channel_search">
+    <field name="name">asterisk channel search</field>
+    <field name="model">asterisk_calls.channel</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="channel"/>
+        <field name="exten"/>
+        <field name="callerid"/>
+        <field name="src_user"/>
+        <field name="dst_user"/>
+        <field name="partner"/>
+        <field name="app"/>
+        <field name="uniqueid"/>
+        <filter name="incoming" string="Incoming" domain="[('src_user', '=', False)]"/>
+        <filter name="outgoing" string="Outgoing" domain="[('dst_user', '=', False)]"/>
+        <filter name="partners" string="Partners" domain="[('partner', '!=', False)]"/>
+      </search>
+    </field>
+  </record>
+
+
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_serial_number_wizard_form" model="ir.ui.view">
+            <field name="name">product.serial.number.wizard.form</field>
+            <field name="model">product.serial.number.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="product_template_create_ids" widget="one2many" mode="tree">
+                        <tree editable="bottom">
+                            <field name="attribute_id" readonly="1"/>
+                            <field name="value_id" domain="[('attribute_id', '=', attribute_id)]"
+                                   options="{'no_create_edit': True}"
+                                   context="{'default_attribute_id': attribute_id, 'show_attribute': False}"/>
+                            <field name="barcode"/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button name="action_confirm" string="Continue" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_serial_number_action" model="ir.actions.act_window">
+            <field name="name">Product Details Action</field>
+            <field name="res_model">product.serial.number.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

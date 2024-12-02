@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <templates> 
+        
+        <t t-name="finance_expense_report">
+            <div>
+                <div>
+                    <h3>RDP Finance Report</h3>
+                </div>
+                <div class="report_print">
+                    <button type="button" class="btn btn-primary" id="pdf"
+                            style="position: relative;height:30px;color:white;background-color: #00A0AD;border-color: #00A0AD; padding:3px;">
+                        Print (PDF)
+                    </button>
+                    <button type="button" class="btn btn-primary" id="xlsx"
+                            style="position: relative;height:30px;color:white;background-color: #00A0AD;border-color: #00A0AD; padding:3px;">
+                        Export (XLSX)
+                    </button>
+                </div>
+                <div>
+                   <div class="filter_view_tb"></div>
+                </div>
+                <br></br>
+                <div>
+                   <div class="table_view"></div>
+                </div>
+            </div>            
+        </t>
+
+        <t t-name="finance_expense_table">
+           <div>
+                <div class="table_main_view">
+                    <table cellspacing="0" width="100%">
+                        <thead>
+                            <tr style="border: 1px solid black;" data-toggle="collapse">
+                                <th>                                    
+                                    Expense
+                                </th> 
+                            </tr>                            
+                        </thead>
+                        <tbody>
+                            <t t-foreach="report_lines" t-as="data">
+                                <tr>
+                                    <td style="border: 0px solid black;">
+                                        <i class="fa fa-caret-down" role="img" aria-label="Unfolded"
+                                           title="Unfolded"/>
+                                        <t t-esc="data.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="data.model_name"/>
+                                    </td> 
+                                    <td>
+                                        <t t-esc="data.amount"/>
+                                    </td>                              
+                                </tr>
+                            </t>
+                        </tbody>                       
+                   </table>                   
+                </div>
+            </div>
+        </t>      
+    </templates>

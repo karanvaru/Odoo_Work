@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dx_inherit_form_view" model="ir.ui.view">
+        <field name="name">rdp.dx.time.track</field>
+        <field name="model">rdp.dx</field>
+        <field name="inherit_id" ref="dx_rdp.rdp_dx_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="active_user_count" attrs="{'invisible': [('active_user_count', '=', 0)]}" nolabel="1" readonly="1" style="position: absolute;padding: 2px 8px;background-color: #dabf29;color: #FFF;display: inline-block;margin-left: 66px;border-radius: 50px;margin-top: 35px;"/>
+                <button string="Start" class="btn btn-primary"
+                        type="object" name="action_start"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="time_tracking" string="Time Tracking">
+                    <field name="user_time_tracking_ids"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

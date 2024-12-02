@@ -1,0 +1,23 @@
+<odoo>
+    <record id="call_supervisor_rule" model="ir.rule">
+        <field name="name">call_supervisor_rule</field>
+        <field name="model_id" ref="asterisk_calls.model_asterisk_calls_call"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="groups" eval="[(4, ref('asterisk_common.group_asterisk_supervisor'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+    <record id="channel_supervisor_rule" model="ir.rule">
+        <field name="name">channel_supervisor_rule</field>
+        <field name="model_id" ref="asterisk_calls.model_asterisk_calls_channel"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="groups" eval="[(4, ref('asterisk_common.group_asterisk_supervisor'))]"/>
+        <field name="domain_force">[('is_user_channel','=', True)]</field>
+    </record>
+</odoo>

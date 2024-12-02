@@ -1,0 +1,13 @@
+<odoo>
+  <data>
+    <template id="affiliate_management_signup_inherit" inherit_id="affiliate_management.register" priority="1">
+
+      <xpath expr="//form/div[5]" position="after">
+        <div id="key-inp" class="form-group field-password">
+          <label id="aff_key_label"  for="aff_key" class="control-label"> Enter Affiliate Referral Key</label>
+          <input type="text" name="aff_key" t-att-value="aff_key" id="aff_key" class="form-control" autofocus="autofocus"  maxlength="8"/>
+        </div>
+      </xpath>
+    </template>
+</data>
+</odoo>

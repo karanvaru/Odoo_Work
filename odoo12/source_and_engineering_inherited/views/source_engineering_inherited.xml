@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_source_and_engineering_form_inherit" model="ir.ui.view">
+            <field name="name">Source.An.Engineering.inherited.form.inherit</field>
+            <field name="model">source.eng</field>
+            <field name="inherit_id" ref="source_and_eng.sourcing_engineering_view"/>
+            <field name="arch" type="xml">
+                <header>
+                    <button name="action_to_wip" type="object" string="Work In Progress"
+                                attrs="{'invisible': [('state', 'in', ['Closed', 'Cancel', 'wip'])]}"
+                                class="btn-primary"/>
+                        <button name="action_set_hold" type="object" string="Hold"
+                                attrs="{'invisible': [('state', 'in', ['hold', 'Closed', 'Cancel','new'])]}"
+                                class="btn-primary"/>
+
+                        <button name="action_set_closed" type="object" string="Closed"
+                                attrs="{'invisible': [('state', 'in', ['Closed','new','Cancel', 'hold'])]}"
+                                class="btn-primary"/>
+                        <button name="action_to_cancel" type="object" string="Cancelled"
+                                attrs="{'invisible': [('state', 'in', ['Cancel','Closed', 'new', 'hold'])]}"/>
+                        <field name="state" widget="statusbar"/>
+                </header>
+                <xpath expr="//field[@name='assigned_to']" position="after">
+                    <field name="se_category_id"/>
+                    <field name="goal_date"/>
+                </xpath>
+                <xpath expr="//field[@name='priority']" position="after">
+                     <field name="completed_percentage" widget="progressbar"/>
+                    <field name="companies_id"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_source_and_engg_notebook_page_form_inherit" model="ir.ui.view">
+            <field name="name">Source.An.Engg.Note.Book.inherited.form.inherit</field>
+            <field name="model">source.eng</field>
+            <field name="inherit_id" ref="source_and_eng.sourcing_engineering_view"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//notebook//page[@name='time_tracking']" position="after">-->
+<!--                    <page name="internal_notes" string="Internal Notes">-->
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="internal_notes"/>-->
+<!--                            </group>-->
+<!--                        </group>-->
+<!--                    </page>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//notebook//page[@name='internal_notes']" position="after">-->
+<!--                    <page name="goal_date" string="Goal Date's">-->
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="goal_date_status"/>-->
+<!--                            </group>-->
+<!--                        </group>-->
+<!--                    </page>-->
+<!--                </xpath>-->
+                <xpath expr="//notebook//page[2]" position="inside">
+                        <group>
+                            <group>
+                                <field name="internal_notes"/>
+                            </group>
+                        </group>
+                </xpath>
+                <xpath expr="//notebook//page[2]" position="after">
+                    <page name="goal_date" string="Goal Date's">
+                        <group>
+                            <group>
+                                <field name="goal_date_status"/>
+                            </group>
+                            <group>
+                                <field name="delayed_reason" attrs="{'invisible': [('goal_date_status', '!=', 'delayed')], 'required': [('goal_date_status', '=', 'delayed')]}"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!--        search view-->
+        <record id="view_source_and_engineering_search" model="ir.ui.view">
+            <field name="name">source.and.engineering.search.view</field>
+            <field name="model">source.eng</field>
+            <field name="arch" type="xml">
+                <search string="Source And Engineering">
+                    <field name="name"/>
+
+                    <filter name="Closed" string="Closed" domain="[('state','=','Closed')]"/>
+                    <filter name="hold" string="Hold" domain="[('state','=','hold')]"/>
+                    <filter name="state" string="Open"
+                            domain="[&quot;|&quot;,[&quot;state&quot;,&quot;=&quot;,&quot;new&quot;],[&quot;state&quot;,&quot;=&quot;,&quot;wip&quot;]]"/>
+
+
+
+                    <!--                    group by-->
+                    <group expand="0" string="Group By">
+                          <filter name="create_date" string="Created on" context="{'group_by': 'create_date'}"/>
+                        <filter name="se_catagory" string="PLM Benz" context="{'group_by': 'se_catagory'}"/>
+                          <filter name="se_category_id" string="SE Category" domain="[]"
+                                context="{'group_by':'se_category_id'}"/>
+                        <filter name="state" string="Status"
+                                context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--        <_________________tree view_________________________>-->
+        <record id="view_source_and_engg_notebook_page_tree_inherit" model="ir.ui.view">
+            <field name="name">Source.An.Engg.Note.Book.inherited.tree.inherit</field>
+            <field name="model">source.eng</field>
+            <field name="inherit_id" ref="source_and_eng.certification_management_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="create_date"/>
+                    <field name="se_name"/>
+                    <field name="se_type"/>
+                    <field name="se_catagory" string="PLM Benz"/>
+                    <field name="lead_opp"/>
+                    <field name="saleorder"/>
+                    <field name="priority" widget="priority"/>
+                    <field name="open_days" string="Open Days"/>
+                    <field name="completed_percentage" widget="progressbar"/>
+                    <field name="state"/>
+                    <field name="assigned_to"/>
+                </xpath>
+            </field>
+        </record>
+
+         <record id="source_engineering_action_view" model="ir.actions.act_window">
+            <field name="name">Sourcing and Engineering</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">source.eng</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_source_engineering" name="Sourcing and Engineering"
+                  action="source_engineering_action_view"
+                  parent="studio_customization.rdp_plm_1456fa52-b221-4e71-b2b6-ee3aaf2eb3cc"/>
+    </data>
+</odoo>

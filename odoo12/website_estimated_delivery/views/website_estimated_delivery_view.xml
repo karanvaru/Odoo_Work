@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+	<data>
+		  <record id="product_pack_core_inherited_product_template_form" model="ir.ui.view">
+            <field name="name">produt.template.inheited</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+                <notebook position='inside'>
+                    <page string='Delivery'>
+                        <group name="estimated_delivery" col="2">
+                        	<field name="override_config"/>
+                        	<field name="delivery_to_use" attrs= "{'invisible':[('override_config','=', False)]}"/>
+
+                    	</group>
+                    	<group string="Comma(,) separated zip codes" attrs= "{'invisible':['|',('override_config','=', False),('delivery_to_use','=', 'default')]}">
+                    		<field name="zip_ranges" nolabel="1" >
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="pincodes"/>
+                                    <field name="delivered_within"/>
+                                </tree>
+                            </field>
+                    	</group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="availabe_pincodes_form_view" model="ir.ui.view">
+            <field name="name">available.pincodes.form'</field>
+            <field name="model">available.pincodes</field>
+            <field name="arch" type="xml">
+                <form string="Available Pincodes" class="oe_form_configuration">
+                    <label for="pincodes"/>
+                    <group>
+                        <div>
+                            <field name="pincodes"/>
+                        </div>
+                    </group>
+                    <group col="4">
+                        <field name="name"/>
+                        <label for="delivered_within"/>
+                        <div>
+                            <field name="delivered_within" class="oe_inline"/> days
+                        </div>
+                    </group>
+                </form>
+            </field>
+        </record>
+       
+       </data>
+   </odoo>

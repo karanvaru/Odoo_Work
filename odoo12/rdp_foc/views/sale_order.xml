@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_order_inherit_form" model="ir.ui.view">
+        <field name="name">sale.order.inherit.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                <field name="foc_qty" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//form//label[@for='product_uom_qty']" position="before">
+                <field name="foc_qty" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_production_lot_form_inherit_price" model="ir.ui.view">
+        <field name="name">stock.production.lot.inherit.form</field>
+        <field name="model">stock.production.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="value_price_unit" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

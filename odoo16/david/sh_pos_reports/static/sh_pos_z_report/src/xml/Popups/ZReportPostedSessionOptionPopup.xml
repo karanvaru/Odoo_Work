@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ZReportPostedSessionOptionPopup" owl="1">
+        <div role="dialog" class="modal-dialog sh_z_report_posted_session_modal_dialog">
+            <div class="popup popup-text popup-lg product-configurator-popup sh_z_report_posted_session_modal_dialog_popup">
+                <header class="title">
+                    Posted Session Z-Report
+                </header>
+                <main class="main-body body touch-scrollable scrollable-y main_div_sh_statement">
+                    <t t-if="env and env.pos and env.pos.db and env.pos.db.posted_session_ids">
+                        <span class="sh_selection_lbl">Select Session : </span>
+                        <select class="sh_session_selection">
+                            <t t-foreach="env.pos.db.posted_session_ids" t-as="each_session" t-key="each_session.id">
+                                <option t-att-value="each_session.id"><t t-esc="each_session.name"/></option>
+                            </t>
+                        </select>
+                    </t>
+                    <t t-if="env and env.pos and env.pos.config and env.pos.config.sh_allow_z_report_type and env.pos.config.sh_allow_z_report_type == 'both'">
+                        <div class="sh_print_statement_option">
+                            <div class="sh_pdf_div sh_custom_radio_btn">
+                                <input class="sh_print_input" type="radio" id="pdf_statement" name="print_option" value="pdf" checked="true" />
+                                <label class="sh_print_lbl" for="pdf_statement">Generate PDF</label>
+                            </div>
+                            <div class="sh_receipt_div sh_custom_radio_btn">
+                                <input class="sh_print_input" type="radio" id="receipt_statement" name="print_option" value="receipt" />
+                                <label class="sh_print_lbl" for="receipt_statement">Generate Receipt</label>
+                            </div>
+                        </div>
+                    </t>
+                </main>
+                <footer class="footer">
+                   
+                    <div class="button print highlight" t-on-click="print">
+                        Print
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        Close
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+    
+</templates>

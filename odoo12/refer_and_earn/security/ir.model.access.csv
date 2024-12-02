@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+refer_and_earn_transaction_history_manager,manager_access_transaction_history,model_transaction_history,sales_team.group_sale_manager,1,1,1,1
+refer_and_earn_transaction_history_public,public_access_transaction_history,model_transaction_history,,1,0,0,0
+
+refer_and_earn_transaction_history_admin,access_transaction_history.admin,model_transaction_history,base.group_user,1,1,1,1

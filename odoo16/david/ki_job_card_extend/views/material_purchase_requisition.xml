@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ki_material_purchase_requisition_form_view_inherit_materials" model="ir.ui.view">
+        <field name="name">material.purchase.requisition.form</field>
+        <field name="model">material.purchase.requisition</field>
+        <field name="inherit_id"
+               ref="odoo_job_costing_management.material_purchase_requisition_form_view_inherit_materials"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='project_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='task_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view"
+            id="ki_material_purchase_requisition_form_inherit_view_project_task">
+        <field name="name">material_purchase_requisition_form_inherit_view_project_task list</field>
+        <field name="model">material.purchase.requisition</field>
+        <field name="inherit_id"
+               ref="project_task_material_requisition.material_purchase_requisition_form_inherit_view_project_task"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='custom_task_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

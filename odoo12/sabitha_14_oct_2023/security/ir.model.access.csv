@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+global_feedback_user,global.feedback,model_global_feedback,,1,1,1,0
+feedback_tags_user,feedback.tags,model_feedback_tags,,1,1,1,0
+feedback_scope_user,feedback.scope,model_feedback_scope,,1,1,1,0
+feedback_category_user,feedback.category,model_feedback_category,,1,1,1,0
+feedback_sub_category_user,feedback.sub.category,model_feedback_sub_category,,1,1,1,0
+
+

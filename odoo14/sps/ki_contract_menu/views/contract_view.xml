@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="contract_new_view" model="ir.ui.view">
+        <field name="name">contract.new.view.form</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_customer_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//form//header" position="inside">
+                <field name="state" widget="statusbar"/>
+                <button type="object" name="action_terminate" string="Terminate"
+                        confirm="Are you sure to Terminate contract?"
+                        class="oe_highlight" states="active"/>
+                <button type="object" name="action_renew" string="Renew"
+                        class="oe_highlight" states="expire"/>
+            </xpath>
+
+            <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='product_id']"
+                   position="before">
+                <field name='categ_id'/>
+            </xpath>
+
+            <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='product_id']"
+                   position="after">
+                <field name="default_code"/>
+                <field name='department'/>
+                <field name='partner_shipping_id'/>
+                <field name="state_tree" invisible="1"/>
+                <field name="comment"/>
+                <field name="qr_code" widget='image' class="oe_avatar" invisible="1"/>
+                <button name="%(ki_contract_menu.contract_barcode_report)d" string="Download QR Code"
+                        type="action"
+                        attrs="{'column_invisible': [('parent.state', '!=', 'active')]}"/>
+                <button name="action_terminates" string="Terminate"
+                        class="oe_highlight" type="object"
+                        attrs="{'invisible': [('state_tree', '=', 'terminate')]}"/>
+            </xpath>
+            <!--             <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='state_tree']" position="attributes">-->
+
+            <!--                <attribute name="decoration-muted">state_tree == 'terminate'</attribute>-->
+
+            <!--            </xpath>-->
+
+
+            <!--            <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree" position="attributes">-->
+            <!--                <attribute name="decoration-muted">[('state_tree', '=', 'terminate')]"</attribute>-->
+            <!--            </xpath>-->
+            <!--            <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']]/tree/button[@name='action_uncancel']"-->
+            <!--                   position="attributes">-->
+            <!--                <attribute name="groups">ki_contract_menu.group_smart_printer_contract_view</attribute>-->
+            <!--            </xpath>-->
+
+            <xpath expr="//button[@name='action_preview']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='action_terminate_contract']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='action_cancel_contract_termination']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='action_contract_send']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='recurring_create_invoice']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='action_show_invoices']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='recurring_interval']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='recurring_rule_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='recurring_next_date']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//label[@for='line_recurrence']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//label[@for='recurring_interval']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='pricelist_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='fiscal_position_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='contract_template_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='tag_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='journal_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='line_recurrence']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='recurring_invoicing_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='generation_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//group[@name='recurring_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">[('parent_id', '=', False)]</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_shipping_id"
+                       domain="['|', ('parent_id', '=', partner_id), ('id', '=', partner_id)]"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="contract_new_tree_view" model="ir.ui.view">
+        <field name="name">contract.new.view.tree</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="state"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+            </xpath>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-danger">state == 'expire'</attribute>
+                <attribute name="decoration-success">state == 'active'</attribute>
+                <attribute name="decoration-muted">state == 'terminate'</attribute>
+                <attribute name="limit">50</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="contract_new_search_view" model="ir.ui.view">
+        <field name="name">contract.new.view.search</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="Status" name="state" context="{'group_by':'state'}"/>
+            </xpath>
+            <xpath expr="//search" position="inside">
+                <field name="partner_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_contract" model="ir.actions.act_window">
+        <field name="name">Contract</field>
+        <field name="res_model">contract.contract</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="view_id" ref="ki_contract_menu.contract_new_view"/>
+        <field name="view_ids"
+               eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('contract.contract_contract_tree_view')})]"/>
+    </record>
+
+</odoo>

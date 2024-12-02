@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <data>
+        <record id="dn_type1" model="disciplinary.type">
+            <field name="name">Verbal Warning</field>
+        </record>
+        <record id="dn_type2" model="disciplinary.type">
+            <field name="name">First written Warning</field>
+        </record>
+        <record id="dn_type3" model="disciplinary.type">
+            <field name="name">Second written Warning</field>
+        </record>
+        <record id="dn_type4" model="disciplinary.type">
+            <field name="name">Final written Warning</field>
+        </record>
+        <record id="dn_type5" model="disciplinary.type">
+            <field name="name">Dismissal</field>
+        </record>
+        <record id="dn_type6" model="disciplinary.type">
+            <field name="name">Gross Misconduct </field>
+        </record>
+        <record id="dn_type7" model="disciplinary.type">
+            <field name="name">Others</field>
+        </record>
+
+
+        <record id="sv_type1" model="disciplinary.severity">
+            <field name="name">Minor</field>
+        </record>
+        <record id="sv_type2" model="disciplinary.severity">
+            <field name="name">Moderate</field>
+        </record>
+        <record id="sv_type3" model="disciplinary.severity">
+            <field name="name">Serious</field>
+        </record>
+        <record id="sv_type4" model="disciplinary.severity">
+            <field name="name">Major</field>
+        </record>
+    </data>
+</odoo>

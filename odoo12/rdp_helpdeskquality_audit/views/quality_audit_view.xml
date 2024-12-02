@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="quality_audit_view_form" model="ir.ui.view">
+        <field name="name">quality.audit.form</field>
+        <field name="model">quality.audit</field>
+
+        <field name="arch" type="xml">
+            <form string="Quality Audit">
+         <header>
+                
+                 <button name="action_to_send_mail" type="object" string="Send Mail" attrs="{'invisible': [('state', 'in', ['closed','cancel'])]}" class="btn-primary"/>
+                 <button name="action_ticket_closing_remainder" type="object" string="Closing Remainder" attrs="{'invisible': [('state', 'in', ['closed','cancel'])]}" class="btn-primary"/>
+                <!-- <button name="action_set_open" type="object" string="Set to Open" attrs="{'invisible': [('state', 'in', ['open','closed'])]}"/> -->
+                <button name="action_to_closed" type="object" string="Close"  attrs="{'invisible': [('state', 'in', ['cancel','closed'])]}" class="btn-primary"/>
+                <button name="action_to_cancel" type="object" string="Cancel" attrs="{'invisible': [('state', 'in', ['closed','cancel'])]}"/>
+                <!-- <button name="action_to_submit" type="object" string="Sumbit" class="btn-primary"/> -->
+                <field name="state" widget="statusbar" />
+
+                 </header>
+                <sheet>
+                 <div class="oe_button_box" name="button_box">
+                    <button name="create_emp_ed" class="oe_stat_button" type="object" icon="fa-pencil-square-o" string="Create ED">
+                    </button>
+                 </div>
+                             <div>
+                               
+                                 <h1>
+                                <field name="name" readonly="1"/>
+                                </h1>
+                            </div>
+                    <group>
+                        <group>
+                             
+                            <field name="helpdesk_ticket_id" />
+<!--                            <field  name="category_id"  string="QA Category(Old)" readonly="1"/>-->
+                            <field  name="qa_category_ids" widget="many2many_tags" string="QA Categories"/>
+                            <field name="call_number"/>
+                            <field name="call_date" />
+<!--                             <field name="associate_name" readonly="1"/>-->
+                            <field name="qa_associate_employee_id" string="Associate Name"/>
+
+                        </group>
+                        <group>
+                            <field  name="create_date" string="Date"/>
+                            <field  name="create_uid" string="Assigned By" />
+                            <!-- <field name ="qa_associate_emp" /> -->
+                            
+                        </group>
+                      
+                    </group>
+                    
+                 <notebook>
+                        
+                         <page string="Description">
+                              <group>
+                                <field  name="description" nolabel="1" />
+                            </group>
+                         </page>
+                          <page string="Internal Notes">
+                              <group>
+                                <field name="internal_notes" widget="html" string="Notes"/>
+                            </group>
+                         </page>
+                    </notebook>
+                </sheet>
+                 <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- pivot view -->
+    <record id="quality_audit_pivot" model="ir.ui.view">
+        <field name="name">quality.audit.pivot</field>
+        <field name="model">quality.audit</field>
+        <field name="arch" type="xml">
+            <pivot string="Quality Audit">
+                <field  name="name"/>
+                  
+            </pivot>
+        </field>
+    </record>
+     <!-- calender view -->
+    <record id="quality_audit_calendar" model="ir.ui.view">
+        <field name="name">quality.audit.calendar</field>
+        <field name="model">quality.audit</field>
+        <field name="arch" type="xml">
+            <calendar string="KED" date_start="create_date" color="name" mode="month" quick_add="True">
+               <field  name="name"/>
+                
+            </calendar>
+        </field>
+    </record>
+        <!-- Gragh view -->
+    <record id="quality_qudit_graph" model="ir.ui.view">
+        <field name="name">quality.audit.graph</field>
+        <field name="model">quality.audit</field>
+        <field name="arch" type="xml">
+            <graph string="QA" type="pie">
+                    <field  name="name"/>
+            </graph>
+        </field>
+    </record>
+
+      <!-- gantt view -->
+     
+     <record id="quality_audit_gantt" model="ir.ui.view">
+        <field name="name">quality.audit.gantt</field>
+        <field name="model">quality.audit</field>
+        <field name="arch" type="xml">
+            <gantt date_start="create_date" date_stop="closed_date" string="Default Grant view"></gantt>
+        </field>
+    </record>
+ 
+     <!-- kanban view-->
+    <record id="quality_audit_kanban" model="ir.ui.view">
+        <field name="name">quality.audit.kanban</field>
+        <field name="model">quality.audit</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban">
+                <field  name="name"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill rdp_kquality_audit_quality_audit_kanban">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                <div class="o_kanban_tags_section"/>
+                                <ul>
+                                    <li>Reference: <field name="name"/></li>
+                                    <li>status : <field name="state"/></li>
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                    <searchpanel>
+                        <field name="name" icon="fa-building"/>
+                        <field name="name" select="multi" icon="fa-tags"/>
+                    </searchpanel>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <!-- tree view -->
+    <record id="quality_audit_tree_view" model="ir.ui.view">
+        <field name="name">quality.audit.tree</field>
+        <field name="model">quality.audit</field>
+        <field name="arch" type="xml">
+            <tree string="Quality Audit">
+                           <field  name="create_date" string="Date"/>
+                           <field name="name"/>
+                           <!-- <field name="ked_ref_id"/> -->
+                            <field name="helpdesk_ticket_id"/>
+<!--                            <field name="associate_name" />-->
+                            <field name="qa_associate_employee_id" string="Associate Name"/>
+<!--                            <field name="category_id" string="QA Category(Old)"/>-->
+                            <field  name="qa_category_ids" widget="many2many_tags" string="QA Categories"/>
+                            <field name="open_days" />
+                            <field name="state" />
+
+            </tree>
+        </field>
+    </record>
+   
+
+   <record id="quality_audit_search_view" model="ir.ui.view">
+        <field name="name">quality.audit.search</field>
+        <field name="model">quality.audit</field>
+        <field name="arch" type="xml">
+            <search string="Quality Audit">
+                 <field name="name"/>
+                    <!-- <field name="ked_ref_id"/> -->
+                    <field name="helpdesk_ticket_id"/>
+                    <!-- <field name="assigned_to"/> -->
+                    <!-- <field name="helpdesk_serial_number"/>
+                    <field name="helpdesk_model_name"/> -->
+                <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                <filter name="closed" string="Closed" domain="[('state', '=', 'closed')]"/>
+                <filter name="cancel" string="Cancel" domain="[('state', '=', 'cancel')]"/>
+                <filter name="name" string="Reference"/>
+                
+                
+                <group expand="0" string="Group By">
+                    <filter name="name" string="Reference" domain="[]" context="{'group_by':'name'}"/>
+                    <filter name="create_date" string="Created On" domain="[]" context="{'group_by':'create_date'}"/>
+                    <!-- <filter name="ked_ref_id" string="KED" domain="[]" context="{'group_by':'ked_ref_id'}"/> -->
+                    <!-- <filter name="scm_sub_category_id" string="Subcategory" domain="[]" context="{'group_by':'scm_sub_category_id'}"/> -->
+                    <filter name="helpdesk_ticket_id" string="Helpdesk Ticket" domain="[]" context="{'group_by':'helpdesk_ticket_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--  action -->
+    <record id="quality_audit_action_view" model="ir.actions.act_window">
+        <field name="name">Quality Audit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">quality.audit</field>
+       <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,pivot,gantt,graph,calendar,search</field>
+       <field name="context">{}</field>
+       <field name="search_view_id" ref="quality_audit_search_view"/>
+    </record>
+ <menuitem name="Quality Audit"
+		  id="qaulity_audit_menu"
+      	  action='quality_audit_action_view'
+          parent="rdp_ked_escalation.helpdesk_swift_menu"
+        
+		/>   
+
+</data>
+</odoo>

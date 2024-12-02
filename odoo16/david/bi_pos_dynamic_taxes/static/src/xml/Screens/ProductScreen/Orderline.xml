@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="pos_tax_template" inherit_id="point_of_sale.template" xml:space="preserve">
+	 <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+		<xpath expr="//span[hasclass('price')]" position="after">
+			<t t-if="env.pos.config.modify_taxes_line">
+				<t t-if="props.line.get_all_tax()">
+					<t t-if="props.line.get_all_tax() != 0">
+						<ul class="info-list">
+							<li class="info" style="width: 415px;">
+								<t t-esc="env.pos.format_currency(props.line.get_tax_string())"/><br/>
+								with amount : <b><t t-esc="env.pos.format_currency(props.line.get_all_tax())"/></b>
+							</li>
+						</ul>
+					</t>
+				</t>
+			</t>
+		</xpath>
+	</t>
+</templates>

@@ -1,0 +1,105 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="channel_payment_settlement_tree">
+            <field name="name">channel.payment.settlement.tree</field>
+            <field name="model">channel.payment.settlement</field>
+            <field name="arch" type="xml">
+                <tree string="Channel Payment Settlement Tree">
+                    <field name="shop_id" optional="show"/>
+                    <field name="import_date" optional="show"/>
+                    <field name="user_id" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="channel_payment_settlement_form">
+            <field name="name">channel.payment.settlement.form</field>
+            <field name="model">channel.payment.settlement</field>
+            <field name="arch" type="xml">
+                <form string="Channel Payment Settlement form">
+                    <header>
+                        <button type="object" name="action_preview" string="Preview" class="oe_highlight"/>
+                        <button type="object" name="action_validate" string="Process"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group id="header_left_group">
+                                <field name="shop_id"/>
+                                <field name="user_id" readonly="1"/>
+                                <field name="file_name"/>
+                            </group>
+                            <group id="header_right_group">
+                                <field name="import_date" readonly="1"/>
+                                <button name="download_sample" string="Download Sample Import Format" type="object"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Content">
+                                <field name="line_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="payment_settlement_id" invisible="1"/>
+                                        <field name="order_reference" optional="show"/>
+                                        <field name="order_date" optional="show"/>
+                                        <field name="dispatch_date" optional="show"/>
+                                        <field name="product_name" optional="show"/>
+                                        <field name="sku" optional="show"/>
+                                        <field name="live_orders_status" optional="show"/>
+                                        <field name="product_gst" optional="show"/>
+                                        <field name="listing_price" optional="show"/>
+                                        <field name="quantity" optional="show"/>
+                                        <field name="transaction_id" optional="show"/>
+                                        <field name="payment_date" optional="show"/>
+                                        <field name="final_amount" optional="show"/>
+                                        <field name="price_types" optional="show"/>
+                                        <field name="total_sale_amount" optional="show"/>
+                                        <field name="sale_return_amount" optional="show"/>
+                                        <field name="shipping_revenue" optional="show"/>
+                                        <field name="shipping_return_amount" optional="show"/>
+                                        <field name="return_premium" optional="show"/>
+                                        <field name="return_premium_incl_gst" optional="show"/>
+                                        <field name="commission_percentage" optional="show"/>
+                                        <field name="commission_amount" optional="show"/>
+                                        <field name="return_shipping_charge" optional="show"/>
+                                        <field name="gst_compensation" optional="show"/>
+                                        <field name="shipping_charge" optional="show"/>
+                                        <field name="support_service_charge" optional="show"/>
+                                        <field name="support_service_charge_waivers" optional="show"/>
+                                        <field name="net_support_service_charge" optional="show"/>
+                                        <field name="igst_on_meesho_commision" optional="show"/>
+                                        <field name="igst_on_shipping_charge" optional="show"/>
+                                        <field name="igst_on_return_shipping_charge" optional="show"/>
+                                        <field name="igst_on_net_other_shipping_charge" optional="show"/>
+                                        <field name="tcs" optional="show"/>
+                                        <field name="tcs_cgst_sgst" optional="show"/>
+                                        <field name="tds_rate" optional="show"/>
+                                        <field name="tds_amount" optional="show"/>
+                                        <field name="compensation" optional="show"/>
+                                        <field name="recovery" optional="show"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                    <!-- Attachment preview -->
+                    <div class="o_attachment_preview"/>
+                    <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="actions_channel_payment_settlement" model="ir.actions.act_window">
+            <field name="name">Channel Payment Settlement</field>
+            <field name="res_model">channel.payment.settlement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

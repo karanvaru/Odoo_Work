@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record id="partner_view_form_inherit_zb_partner_approve" model="ir.ui.view">
+            <field name="name">res.partner.form.zb</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//sheet" position="before">
+					<header>
+						<button id="button_verify" name="action_verify" string="Approve" class="btn-primary" invisible = "state == 'approved'" type="object" groups="zb_partner_approve.group_verify_partner"/>
+						<button id="button_set_to_draft" name="action_draft" string="Set to Draft" class="btn-primary" invisible = "state != 'approved'" type="object" groups="zb_partner_approve.group_verify_partner"/>
+						<field name="state" widget="statusbar"/>
+					</header>
+				</xpath>
+           	</field>
+		</record>
+		
+		<record id="partner_view_tree_inherit_zb_partner_approve" model="ir.ui.view">
+            <field name="name">res.partner.tree.zb.partner</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name='category_id']" position="after">
+					<button name="action_verify" string="Approve" class="btn-primary" type="object" groups="zb_partner_approve.group_verify_partner" invisible = "state == 'approved'" />
+					<field name="state" widget="badge" decoration-danger="state=='draft'" decoration-success="state=='approved'" optional="show" />
+				</xpath>
+           </field>
+       	</record>
+		
+		<record id="action_partner_draft_all" model="ir.actions.server">
+			<field name="name">Set to Draft</field>
+			<field name="type">ir.actions.server</field>
+			<field name="model_id" ref="model_res_partner"/>
+			<field name="binding_model_id" ref="model_res_partner" />
+			<field name="state">code</field>
+			<field name="code">records.action_draft()</field>
+			<field name="binding_view_types">list</field>
+			<field name="groups_id" eval="[(4, ref('zb_partner_approve.group_verify_partner'))]"/>
+		</record>
+		
+		<record id="action_partner_verify_all" model="ir.actions.server">
+			<field name="name">Approve</field>
+			<field name="type">ir.actions.server</field>
+			<field name="model_id" ref="model_res_partner"/>
+			<field name="binding_model_id" ref="model_res_partner"/>
+			<field name="state">code</field>
+			<field name="code">records.action_verify()</field>
+			<field name="binding_view_types">list</field>
+			<field name="groups_id" eval="[(4, ref('zb_partner_approve.group_verify_partner'))]"/>
+		</record>
+   	</data>
+</odoo>

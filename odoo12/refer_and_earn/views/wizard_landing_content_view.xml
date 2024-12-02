@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="wizard_landingConten_form">
+        <field name="name">wizard landing content form</field>
+        <field name="model">wizard.landing.content</field>
+        <field name="arch" type="xml">
+            <form >
+                <group string="" >
+                	<field name="landing_content" nolabel="1"/>
+                </group>
+                <footer>
+                    <button name="modify" string="Save" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="wizard_how_it_work_form">
+        <field name="name">wizard how it work form</field>
+        <field name="model">wizard.how.it.work</field>
+        <field name="arch" type="xml">
+            <form >
+                <group string="" >
+                    <field name="how_it_works_content" nolabel="1"/>
+                </group>
+                <footer>
+                    <button name="modify" string="Save" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="wizard_mail_template_refer_earn_form">
+        <field name="name">wizard mail template form</field>
+        <field name="model">wizard.mail.template</field>
+        <field name="arch" type="xml">
+            <form >
+                <group string="" >
+                    <field name="mail_subject" />
+                    <field name="mail_body" />
+                </group>
+                <group string="Supported Acronyms in Mail template">
+                            <div>{{website_name}} - Name of the website.</div>
+                            <div>{{reward_amt}} - Amount Earned by Customer friend</div>
+                            <div>{{signup_link}} - Customer Sign Up Refferal Link</div>
+                            <div>{{referral_code}} - Customer Referral Code</div>
+                            <div>{{user_name}} - Customer Name</div>
+                        </group>
+                <footer>
+                    <button name="modify" string="Save" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

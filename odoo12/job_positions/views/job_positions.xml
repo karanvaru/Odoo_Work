@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="job_position_tree" model="ir.ui.view">
+            <field name="name">Job Positions</field>
+            <field name="model">job.positions</field>
+            <field name="arch" type="xml">
+                <tree string="Job Positions">
+                    <field name="create_date"/>
+                    <field name='name' string="Job opening"/>
+                    <field name="stage"/>
+                    <field name="job_position"/>
+                    <field name="department"/>
+                    <field name="bcg"/>
+                    <field name="open_days"/>
+                    <field name="priority"/>
+                    <field name="recruiter"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="job_positions_form_view" model="ir.ui.view">
+            <field name="name">job.positions.form</field>
+            <field name="model">job.positions</field>
+            <field name="arch" type="xml">
+                <form string="Job Positions">
+                    <header>
+                        <button name="2343" string="Start" type="action" class="btn-primary"/>
+                        <button name="2354" string="Join" type="action" class="btn-primary"/>
+                        <button name="2357" string="Cancel" type="action"/>
+                        <!--<field name="state" widget="statusbar"/>-->
+                        <field widget="statusbar" name="stage" string="Status" attrs="{}" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <div name="button_box" class="oe_button_box">
+                            <button class="oe_stat_button" icon="fa-rupee" type="action" name="2363">
+                                <field widget="statinfo" name="application_count"/>
+                            </button>
+                            <button class="oe_stat_button" icon="fa-rupee" type="action" name="2363">
+                                <field widget="statinfo" name="employee_count"/>
+                            </button>
+                        </div>
+                        <div>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="job_position"/>
+                                <field name="department"/>
+                                <field name="bcg"/>
+                                <field name="work_location"/>
+                                <field name="work_office"/>
+                                <field name="dot_4x_ap"/>
+                                <field name="dot_4x_rdp2x"/>
+                                <field name="department_manager"/>
+                                <field name="department_hod"/>
+                                <field name="application_count" attrs="{}" invisible="1"/>
+                                <field name="employee_count" attrs="{}" invisible="1"/>
+                                <field name="open_days" attrs="{}"/>
+                            </group>
+                            <group>
+                                <field name="recruiter"/>
+                                <field name="hr_manager"/>
+                                <field name="employee_category"/>
+                                <field name="payroll"/>
+                                <field name="priority" widget="priority"/>
+                                <field name="jd_10_10_updated" widget="progressbar"/>
+                                <field name="recruited_by"/>
+                                <field name="join_date"/>
+                                <field name="start_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Internal Notes">
+                                <group>
+                                    <field name="notes"/>
+                                </group>
+                            </page>
+                            <page string="Assign to Vendors">
+                                <group>
+                                    <field name="vendors" widget="many2many_tags"/>
+                                </group>
+                            </page>
+                            <page string="Terms">
+                                <group>
+                                    <group/>
+                                    <group/>
+                                </group>
+                            </page>
+                            <page string="STA">
+                                <group>
+                                </group>
+                            </page>
+                            <page string="Compensation">
+                                <group>
+                                    <group>
+                                        <field name="salary_range"/>
+                                    </group>
+                                    <group/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

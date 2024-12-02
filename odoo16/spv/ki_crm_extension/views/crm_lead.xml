@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="crm_lead_view_form_inherit_won_button" model="ir.ui.view">
+            <field name="name">crm.lead.won.button</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_set_won_rainbowman']" position="replace">
+                    <button name="%(ki_crm_extension.action_crm_lead_won_wizard)d" type="action" string="Mark Won"
+                            class="oe_highlight"
+                            attrs="{'invisible': ['|','|', ('active','=',False), ('probability', '=', 100), ('type', '=', 'lead')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

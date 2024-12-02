@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_normal_form_inherit" model="ir.ui.view">
+        <field name="name">product.product.form.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='uom_po_id']" position="after">
+                <field name="brand_name"/>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem action="stock.stock_product_normal_action"
+              id="menu_inventory_product"
+              parent="mobile_service_shop.mobile_service_shop_configuration"
+              name="Inventory Product"
+              sequence="2"/>
+</odoo>

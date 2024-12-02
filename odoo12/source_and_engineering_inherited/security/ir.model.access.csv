@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+se_category_source_eng_user,se.category.source.eng,model_se_category_source_eng,,1,1,1,1
+
+
+

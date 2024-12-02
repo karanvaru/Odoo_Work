@@ -1,0 +1,4 @@
+
+Version 12.0.0.1 (01/05/20)
+		- Solve issue of wrong count on filters
+		- Show only those filters which have products.

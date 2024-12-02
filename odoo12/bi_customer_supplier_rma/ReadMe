@@ -1,0 +1,53 @@
+
+12.0.0.1 ==>moved the configuration to general settings so that it will work for multi company.
+
+
+26/08/21
+version 12.0.0.2
+customisation completed  for RDP
+points :-
+--> Instead of the selecting the purchase order number / inventory adjustment  they will be having the serial number and assigned .
+--> Make purchase order field not mandatory field 
+--> Add the selection field called in which we can select 2 option 1) purchase order 2) inventory adjustment 
+--> If we select the purchase order then another selection field in which we can select the purchase order number and same for the inventory adjustment too
+--> Once the inventory adjustment or purchase order number is selected then all the product of the PO or inventory adjustment should be listed in the wizard .
+--> In the Wizard it will content 3 columns 1) product name 2) serial or lot number 3) add in rma line or not(Checkbox)
+--> If "Add Rma Line is true(Checked)"then it will be added in the rma line other wise not .
+--> After adding the product in the RMA line we have to select the reason (Replace,repair and refund).
+--> Refund Reason it will work same as it is no change .
+--> Replace Reason : we have to add the another column called the vendor in which we will select the vendor from which vendor it has been replaced .(There will be only one vendor location as per client confirmation).
+--> Repair Reason : When the repair reason is selected in the RMA order line .
+--> Create the Repair form view which will contain the name of the vendor, and Repair product line there will be 3 different Stages Stages (Draft, Work in progress, Repaired) 
+--> When the product is repaired it will move to the wh/stock or to the vendor location .back 
+--> Add the button Replace button in the repair order (If the product is not able to repaired then we need to replace)..
+--> Instead of the selecting the purchase order number / inventory adjustment  they will be having the serial number and assigned .
+
+
+date 10/09/21
+version:- 12.0.0.3
+improvement completed:-
+--> In out screen we are getting serial number different such as we have given EA2 but we are getting EA1.(issue)
+--> Using repair function in inward screen serial number should generate exact one.(issue)
+
+
+date 18/11/2021
+version 12.0.0.4
+customisation point completed
+
+
+date 22/11/2021
+version 12.0.0.5
+datetime and date type issue resolve
+
+
+date 1/12/2021
+version 12.0.0.6
+issue solve:-
+1.) replace flow not working issue solve , add some validation for flow
+2.) when clicking on check availability generate multiple lines we need to restrict it
+
+
+date 7/12/2021
+version 12.0.0.7
+issue solve:-
+	 - refund functionality add same as 'repair' and 'replace'.

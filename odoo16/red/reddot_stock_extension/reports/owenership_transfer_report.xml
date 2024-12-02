@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="picking_ownership_transfer_report_templates">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <t t-set="total_weight" t-value="0"/>
+                            <t t-set="total_value" t-value="0"/>
+
+                            <t t-foreach="o.move_ids_without_package" t-as="line">
+                                <t t-set="total_weight" t-value="total_weight + line.weight"/>
+                                <t t-set="total_value" t-value="total_value + line.price_unit * line.quantity_done"/>
+                            </t>
+                            <t t-call="reddot_stock_extension.stock_report_header"/>
+                            <div class="row pt-4">
+                                <div class="col-6">
+                                    <b>
+                                        <span style="margin-right:50px;">DATE:</span>
+                                        <span t-field="o.scheduled_date" t-options='{"format": "d/MMM/Y"}'/>
+                                        <br/>
+                                        <span style="margin-right:50px;">REF.:</span>
+                                        <span t-field="o.name"/>
+                                    </b>
+                                    <br/>
+                                    <p class="pt-3">
+                                        To:
+                                        <br/>
+                                        The Director of Ports &amp; Customs
+                                        <br/>
+                                        Jebel Ali Free Zone
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row text-center pt-4">
+                                <h2>
+                                    <b>TRANSFER OF OWNERSHIP</b>
+                                </h2>
+                            </div>
+
+                            <div class="row pt-4">
+                                <p>
+                                    Please note that we RED DOT DISTRIBUTION FZE have this day transferred ownership of
+                                    the under-mentioned goods to:
+                                    <br/>
+                                    <b>TOP END FZE, JEBEL ALI FREE ZONE</b>
+                                    <br/>
+                                    <b>Freezone Bill of Entry:</b>
+                                </p>
+                            </div>
+
+                            <div class="row text-center pt-5 pb-5">
+                                <p>AS PER ATTACHED INVOICE</p>
+                            </div>
+
+                            <div class="row pt-5">
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <b>Qty &amp; Description</b>
+                                        </div>
+                                        <div class="col-8">: STC: 42PCS OF DELL AND HP PRODUCTS</div>
+                                    </div>
+                                    <div class="row pt-3">
+                                        <div class="col-4">
+                                            <b>Weight</b>
+                                        </div>
+                                        <div class="col-8">:
+                                            <span t-esc="total_weight"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <b>Volume</b>
+                                        </div>
+                                        <div class="col-8">: 0.000 CBM</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <b>Country of Origin</b>
+                                        </div>
+                                        <div class="col-8"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <b>Value of Goods</b>
+                                        </div>
+                                        <div class="col-8">:
+                                            <span t-esc="total_value"
+                                                  t-options="{'widget': 'monetary', 'display_currency': env.company.currency_id}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row text-center pt-4 pb-5">
+                                <b>Transferor's Signature &amp; Stamp</b>
+                            </div>
+
+                            <hr/>
+
+                            <div class="row text-center pt-2 pb-3">
+                                <b>CERTIFICATE OF ACCEPTANCE</b>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <span style="margin-right:50px;">DATE:</span>
+                                    <b>
+                                        <i>
+                                            <span t-field="o.scheduled_date" t-options='{"format": "dd/MM/YYYY"}'/>
+                                        </i>
+                                    </b>
+                                </div>
+                            </div>
+                            <div class="row pt-4">
+                                <p>
+                                    This is to certify that we
+                                    <b>TOP END FZE, JEBEL ALI FREE ZONE</b>
+                                    as from this date are the owner of the above-mentioned goods and undertake to pay
+                                    all port charges and other charges due herein.
+                                </p>
+                            </div>
+                            <div class="row text-center pt-4 pb-4">
+                                <b>Transferee's Signature &amp; Stamp</b>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <record id="action_ownership_transfer_report" model="ir.actions.report">
+            <field name="name">Ownership Transfer</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">reddot_stock_extension.picking_ownership_transfer_report_templates</field>
+            <field name="report_file">reddot_stock_extension.picking_ownership_transfer_report_templates</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="print_report_name">'Ownership_Transfer'</field>
+            <field name="paperformat_id" ref="reddot_stock_extension.custom_picking_report_paper_format"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

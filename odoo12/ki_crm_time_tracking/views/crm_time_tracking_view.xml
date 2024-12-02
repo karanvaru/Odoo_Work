@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Pipelines -->
+    <record id="crm_inherit_form_view" model="ir.ui.view">
+        <field name="name">crm.inherited.time.track</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="after">
+<!--                 <div -->
+<!--                      class="alert alert-info" role="alert" style="margin-bottom:0px;"-->
+<!--                      attrs="{'invisible': [('active_user_count', '=', 0)]}">-->
+<!--                      <strong>-->
+<!--                     <field name="active_user_count" nolabel="1" readonly="1"/> users are working on this lead!</strong>-->
+<!--                 </div>-->
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <field name="active_user_count" attrs="{'invisible': [('active_user_count', '=', 0)]}" nolabel="1" readonly="1" style="position: absolute;padding: 2px 8px;background-color: #dabf29;color: #FFF;display: inline-block;margin-left: 66px;border-radius: 50px;margin-top: 35px;"/>
+                <button string="Start" class="btn btn-primary"
+                        type="object" name="action_start"/>
+            </xpath>
+            <xpath expr="//page" position="before">
+                <page name="time_tracking" string="Time Tracking">
+                    <field name="user_time_tracking_ids"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_case_kanban_view_leads_tracking" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.lead.inherited.time.track</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="before">
+                <button name="action_start" type="object" class="btn fa fa-play"
+                        style="color:green;background-color:white" aria-label="Start Timer" title="Start Timer"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Leads -->
+    <record id="crm_case_form_view_leads_inherit_tracking" model="ir.ui.view">
+        <field name="name">crm.lead.form.lead.inherited.track</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="after">
+                 <div 
+                      class="alert alert-info" role="alert" style="margin-bottom:0px;"
+                      attrs="{'invisible': [('active_user_count', '=', 0)]}">
+                      <strong>
+                     <field name="active_user_count" nolabel="1" readonly="1"/> users are working on this lead!</strong>
+                 </div>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button string="Start" class="btn btn-primary"
+                        type="object" name="action_start"/>
+            </xpath>
+            <xpath expr="//page" position="before">
+                <page name="time_tracking" string="Time Tracking">
+                    <field name="user_time_tracking_ids"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_kanban_tracking" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.inherited.time.track</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_lead_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="before">
+                <button name="action_start" type="object" class="btn fa fa-play"
+                        style="color:green;background-color:white" aria-label="Start Timer" title="Start Timer"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
+

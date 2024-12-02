@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Refund wiz form view -->
+    <record id="rma_refund_invoice_view" model="ir.ui.view">
+        <field name="name">rma.refund.invoice.form</field>
+        <field name="model">rma.invoice.refund</field>
+        <field name="arch" type="xml">
+            <form string="RMA Refund Invoice">
+                <group>
+                    <group>
+                        <field name="invoice_id" options="{'no_quick_create': True, 'no_create_edit' : True}" context="{'sale_id': sale_id, 'partner_id':partner_id, 'rma_issue_id':rma_issue_id}" domain="[('type', '=', 'out_invoice')]"/>
+                        <field name="rma_issue_id" invisible='1'/>
+                        <field name="sale_id" invisible='1'/>
+                        <field name="partner_id" invisible='1'/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="process_refund" type="object" string='Create Refund Invoice' class="btn-primary" />
+                    <button string="Close" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Refund wiz action -->
+    <record id="action_rma_refund_invoice" model="ir.actions.act_window">
+        <field name="name">RMA Refund Invoice</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">rma.invoice.refund</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="rma_refund_invoice_view"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

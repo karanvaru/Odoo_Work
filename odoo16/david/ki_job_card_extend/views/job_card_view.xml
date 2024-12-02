@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_task_form2_inherit_job_new" model="ir.ui.view">
+        <field name="name">Project Task From Inherit Job Card New</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page[@name='job_cost_task_material']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page[@name='subtasks']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page[@name='job_cost_task_consume_material']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page[@name='pickings']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_deadline']" position="attributes">
+                <attribute name="string">Due Date</attribute>
+            </xpath>
+            <xpath expr="//field[@name='job_number']" position="after">
+                <field name="employee_count" attrs="{'invisible': [('employee_count', '&lt;', 1)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='register_no']" position="after">
+                <field name="initial_registration"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_task_form2_inherit_garage_management_extend" model="ir.ui.view">
+        <field name="name">Project Task From Inherit Job Card</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="garage_management_odoo.view_task_form2_inherit_garage_management"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='vehicle_details']" position="attributes">
+                <attribute name="string">Equipment Details</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='instruction_job_order']//field[@name='quality_check_name_ids']/tree/field[@name='checkbox']" position="after">
+                <field name="comment"/>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='vehicle_details']//group[1]" position="attributes">
+                <attribute name="string">Equipment Info</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='vehicle_details']//field[@name='vehicle_color']" position="attributes">
+                <attribute name="string">Colour</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='vehicle_details']//field[@name='model_name']" position="attributes">
+                <attribute name="string">Model</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='vehicle_details']//field[@name='year']" position="attributes">
+                <attribute name="string">Model Year</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='vehicle_details']//field[@name='brand']" position="attributes">
+                <attribute name="string">Make</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='vehicle_details']//field[@name='vin']" position="attributes">
+                <attribute name="string">VIN</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='vehicle_details']//field[@name='type_id']" position="attributes">
+                <attribute name="string">Type</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='vehicle_details']//field[@name='gear_nos']" position="replace">
+                <field name="transmission"/>
+            </xpath>
+            <xpath expr="//notebook/page[@name='vehicle_details']//field[@name='vehicle_color']" position="after">
+                <field name="serial_number"/>
+                <field name="engine_number"/>
+                <field name="id_number"/>
+                <!--                <span style="color: #FF3339;">Id Number</span>-->
+                <!--                <div class="o_row" style="color: #FF3339;">-->
+                <!--                    <span>-->
+                <!--                        <field name="id_number" nolabel="1"/>-->
+                <!--                    </span>-->
+                <!--                </div>-->
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='vehicle_details']" position="after">
+                <xpath expr="//notebook/page[@name='job_cost_sheet']" position="move"/>
+                <xpath expr="//notebook/page[@name='instruction_job_order']" position="move"/>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='job_cost_sheet']//field[@name='job_cost_sheet_ids']/tree/field['price_unite']"
+                   position="after">
+                <field name="is_invoice"/>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='vehicle_details']//field[@name='odometer']" position="before">
+                <field name="hours" widget="float_time"/>
+                <!--                <span style="color: #FF3339;">Hours</span>-->
+                <!--                <div class="o_row" style="color: #FF3339;">-->
+                <!--                    <span>-->
+                <!--                        <field name="hours" nolabel="1" widget="float_time"/>-->
+                <!--                    </span>-->
+                <!--                </div>-->
+            </xpath>
+            <xpath expr="//field[@name='repair_category']" position="before">
+                <field name="last_service_date"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_task_form2_mpr_inherit">
+        <field name="name">project.task.inherit.form.mpr</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project_task_material_requisition.view_task_form2_mpr"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']//button[@name='show_mpr_task_action']" position="replace">
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+
+

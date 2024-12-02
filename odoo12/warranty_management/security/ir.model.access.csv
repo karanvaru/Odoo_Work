@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_warranty_registration_user,warranty registration user,model_warranty_registration,group_warranty_user,1,0,0,0
+access_warranty_registration_manager,warranty registration manager,model_warranty_registration,group_warranty_manager,1,1,1,1
+
+access_warranty_history_user,warranty history user,model_warranty_history,group_warranty_user,1,0,0,0
+access_warranty_history_manager,warranty history manager,model_warranty_history,group_warranty_manager,1,1,1,1
+

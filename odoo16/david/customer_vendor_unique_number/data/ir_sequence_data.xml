@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="seq_customer_vendor_custom" model="ir.sequence">
+            <field name="name">Customer Vendor Company Wise Sequence Custom</field>
+            <field name="code">customer.vendor.company.custom</field>
+            <field name="prefix">COMPANY/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_company_individual_sequence_custom" model="ir.sequence">
+            <field name="name">Company Individual Sequence Custom</field>
+            <field name="code">customer.vendor.individual.custom</field>
+            <field name="prefix">CONTACT/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

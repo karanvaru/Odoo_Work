@@ -1,0 +1,722 @@
+<templates id="template" xml:space="preserve">
+    <t t-name="InsuranceDashboard">
+        <div class="oh_dashboards">
+            <div class="container-fluid o_pos_dashboard"> </div>
+        </div>
+    </t>
+
+    <t t-name="InsurancePolicyData">
+        <div class="accounts-dashboard-wrap">
+            <div class="oh_dashboards">
+                <div class="container-fluid o_pos_dashboard">
+                </div>
+                <div class="o_dashboards col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                         <div class="content-header">
+                             <div class="container-fluid">
+                                 <div class="row mb-2" style="padding: 15px;">
+                                     <div class="col-sm-12">
+                                         <div class="dash-header">
+                                             <h2 class="section-header">Insurance Dashboard </h2>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
+                <div class="row" style="">
+                        <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                            <div class="">
+                                 <div class="row mb-2" style="padding: 15px;">
+                                     <div class="col-sm-12">
+                                         <div class="header_class">
+                                             <h2>Policy Type
+                                             </h2>
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                <div class="row account-details" style="margin:0px">
+                                    <div class="col-md-4 vehicle_type">
+                                        <div class="tile wide invoice box-5">
+                                            <div class="headers">
+                                                <div class="main-title">Vehicle</div>
+                                                <div id="monthly_invoice">
+                                                    <div class="left">
+                                                        <span class="top_list_class">Count</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.policy_count_count_dict['vehicle_len_counts']"/>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="right vehicle_type" id="vehicle_type"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.policy_count_count_dict['currency']"/>
+                                                            <span t-esc="widget.policy_count_count_dict['vehicle_total_counts']"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 health_type">
+                                        <div class="tile wide invoice box-4">
+                                            <div class="header">
+                                                <div class="main-title">Health</div>
+                                                <div id="monthly_unreconciled">
+                                                    <div class="left">
+                                                        <span class="top_list_class">Count</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.policy_count_count_dict['health_len_counts']"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="right text-center health_type" id="health_type"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.policy_count_count_dict['currency']"/>
+                                                            <span t-esc="widget.policy_count_count_dict['health_total_counts']"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 corporate_type">
+                                        <div class="tile wide invoice box-3">
+                                            <div class="header">
+                                                <div class="main-title">SME</div>
+                                                <div id="monthly_expense">
+                                                    <div class="left">
+                                                        <span class="top_list_class">Count</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.policy_count_count_dict['corporate_len_counts']"/>                                                    </div>
+                                                    </div>
+                                                    <div class="right corporate_type" id="corporate_type"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.policy_count_count_dict['currency']"/>
+                                                            <span t-esc="widget.policy_count_count_dict['corporate_total_counts']"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="row" style="">
+                        <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                            <div class="">
+                                 <div class="row mb-2" style="padding: 15px;">
+                                     <div class="col-sm-12">
+                                         <div class="header_class">
+                                             <h2>Claim Status
+                                             </h2>
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                <div class="row account-details" style="margin:0px">
+                                    <div class="col-md-4 new_claim">
+                                        <div class="tile wide invoice box-6">
+                                            <div class="headers">
+                                                <div class="main-title">New</div>
+                                                <div>
+                                                    <div class="left">
+                                                        <span class="top_list_class">Count</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['new_claim_len_count']"/>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="center new_claim"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Claim Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['currency']"/>
+                                                            <span t-esc="widget.claimed_list['new_claim_amount']"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right new_claim"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Passed Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['currency']"/>
+                                                            <span t-esc="widget.claimed_list['new_pass_amount']"/>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 in_process_claim">
+                                        <div class="tile wide invoice box-7">
+                                            <div class="header">
+                                                <div class="main-title">In Process</div>
+                                                <div id="monthly_unreconciled">
+                                                    <div class="left">
+                                                        <span class="top_list_class">Count</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['in_process_claim_len_count']"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="center text-center in_process_claim"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Claim Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['currency']"/>
+                                                            <span t-esc="widget.claimed_list['in_process_claim_amount']"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="right in_process_claim"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Passed Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['currency']"/>
+                                                            <span t-esc="widget.claimed_list['in_process_pass_amount']"/>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 query_status">
+                                        <div class="tile wide invoice box-8">
+                                            <div class="header">
+                                                <div class="main-title">Query</div>
+                                                <div id="monthly_expense">
+                                                    <div class="left">
+                                                        <span class="top_list_class">Count</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['query_claim_len_count']"/>                                                    </div>
+                                                    </div>
+                                                    <div class="center query_status"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Claim Amount </span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['currency']"/>
+                                                            <span t-esc="widget.claimed_list['query_claim_amount']"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right query_status"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Passed Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['currency']"/>
+                                                            <span t-esc="widget.claimed_list['query_pass_amount']"/>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row account-details pt40" style="margin:0px">
+                                    <div class="col-md-4 approved_claim">
+                                        <div class="tile wide invoice box-9">
+                                            <div class="headers">
+                                                <div class="main-title">Approved</div>
+                                                <div>
+                                                    <div class="left">
+                                                        <span class="top_list_class">Count</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['approved_claim_len_count']"/>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="center approved_claim"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Claim Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['currency']"/>
+                                                            <span t-esc="widget.claimed_list['approved_claim_amount']"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right approved_claim"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Passed Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['currency']"/>
+                                                            <span t-esc="widget.claimed_list['approved_pass_amount']"/>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 reject_claim">
+                                        <div class="tile wide invoice box-10">
+                                            <div class="header">
+                                                <div class="main-title">Reject</div>
+                                                <div id="monthly_unreconciled">
+                                                    <div class="left">
+                                                        <span class="top_list_class">Count</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['rejected_claim_len_count']"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="center text-center reject_claim"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Claim Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['currency']"/>
+                                                            <span t-esc="widget.claimed_list['rejected_claim_amount']"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="right reject_claim"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Passed Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['currency']"/>
+                                                            <span t-esc="widget.claimed_list['rejected_pass_amount']"/>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 cancel_status">
+                                        <div class="tile wide invoice box-11">
+                                            <div class="header">
+                                                <div class="main-title">Cancel</div>
+                                                <div id="monthly_expense">
+                                                    <div class="left">
+                                                        <span class="top_list_class">Count</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['cancelled_claim_len_count']"/>                                                    </div>
+                                                    </div>
+                                                    <div class="center cancel_status"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Claim Amount </span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['currency']"/>
+                                                            <span t-esc="widget.claimed_list['cancelled_claim_amount']"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right cancel_status"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Passed Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.claimed_list['currency']"/>
+                                                            <span t-esc="widget.claimed_list['cancelled_pass_amount']"/>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                <div class="row commission_content">
+                         <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                             <div class="">
+                                 <div class="row mb-2" style="padding: 15px;">
+                                     <div class="col-sm-12">
+                                         <div class="header_class">
+                                             <h2>Invoice Status
+                                             </h2>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="row account-details">
+                                     <div class="col-md-4 invoice_type">
+                                         <div class="tile wide invoice box-2">
+                                             <div class="headers">
+                                                 <div class="main-title">Commission</div>
+                                                 <div>
+                                                     <div class="left">
+                                                         <span class="top_list_class">Count</span>
+                                                         <div class="count">
+                                                             <span t-esc="widget.invoice_status_data_dct['invoice_len_counts']"/>
+                                                        </div>
+                                                     </div>
+                                                     <div class="right invoice_type" id="invoice_type"
+                                                          style="text-align:center">
+                                                         <span class="top_list_class">Amount</span>
+                                                         <div class="count">
+                                                               <span t-esc="widget.invoice_status_data_dct['currency']"/>
+                                                             <span t-esc="widget.invoice_status_data_dct['invoice_total_counts']"/>
+                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                     <div class="col-md-4 to_invoice_type">
+                                        <div class="tile wide invoice box-1">
+                                            <div class="headers">
+                                                <div class="main-title">To Commission</div>
+                                                <div>
+                                                    <div class="left">
+                                                        <span class="top_list_class">Count</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.invoice_status_data_dct['to_invoice_len_counts']"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="right to_invoice_type" id="to_invoice_type"
+                                                         style="text-align:center">
+                                                        <span class="top_list_class">Amount</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.invoice_status_data_dct['currency']"/>
+                                                            <span t-esc="widget.invoice_status_data_dct['to_invoice_total_counts']"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                <div class="row mb-2 pt40" style="padding-left: 10px;padding-right: 10px;">
+                    <div class="col-sm-12">
+                        <div class="header_class">
+                            <h2>Policy Status
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row" style="padding-left: 3%; padding-top: 3%;padding-right: 3%;padding-bottom: 3%;">
+                        <div class="col-md-6">
+                            <div class="card" style="height:400px;">
+                                <div class="card-header"
+                                     style=" padding: 7px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; background-color:#465dac; ">
+                                    <h3 class="custom-h3 card-title">
+                                        <b>Policy Category</b>
+                                    </h3>
+                                </div>
+                                <div class="card-body p-0 policy_category" style="overflow-y: auto; ">
+                                    <ul class="users-list clearfix"/>
+                                    <table>
+                                        <tbody class="storage view_category">
+                                            <t t-foreach="widget.category_list" t-as="category_list">
+                                                <tr class="cursor-pointer">
+                                                    <td class="stage_design_td1"
+                                                        t-att-data-id="category_list['category_id']">
+                                                        <span t-esc="category_list['category']"
+                                                              t-att-data-id="category_list['category_id']"/>
+                                                    </td>
+                                                    <td t-att-data-id="category_list['category_id']"
+                                                        style="text-align:right;"> <span
+                                                            t-esc="category_list['count']"
+                                                            t-att-data-id="category_list['category_id']"/></td>
+                                                    <td t-att-data-id="category_list['category_id']"
+                                                        style="text-align:right;"> <span
+                                                            t-esc="category_list['amount']"
+                                                            t-att-data-id="category_list['category_id']"/>
+                                                        INR</td>
+
+                                                </tr>
+                                            </t>
+                                    </tbody>
+                                </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-md-6">
+                        <div class="card" style="height:400px;">
+                            <div class="card-header"
+                                 style=" padding: 7px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; background-color:#465dac; ">
+                                <h3 class="custom-h3 card-title">
+                                    <b>Policy By Agents</b>
+                                </h3>
+                            </div>
+                            <div class="card-body p-0 policy_category" style="overflow-y: auto; ">
+                                <ul class="users-list clearfix"/>
+                                <table>
+                                    <tbody class="storage view_policy">
+                                        <t t-foreach="widget.agent_list" t-as="agent_list">
+                                            <tr class="cursor-pointer">
+                                                <td t-att-data-id="agent_list['agent_id']">
+                                                    <span t-esc="agent_list['agent']"
+                                                          t-att-data-id="agent_list['agent_id']"/>
+                                                </td>
+                                                <td t-att-data-id="agent_list['agent_id']" style="text-align:right;"> <span
+                                                        t-esc="agent_list['count']"
+                                                        t-att-data-id="agent_list['agent_id']"/></td>
+                                                <td t-att-data-id="agent_list['agent_id']" style="text-align:right;"> <span
+                                                        t-esc="agent_list['amount']"
+                                                        t-att-data-id="agent_list['agent_id']"/>
+                                                    INR
+                                                </td>
+                                            </tr>
+                                        </t>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-left: 3%; padding-right: 3%;padding-bottom: 5%;">
+                    <div class="col-md-6">
+                    <div class="card" style="height:400px;">
+                        <div class="card-header"
+                             style=" padding: 7px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; background-color:#465dac; ">
+                            <h3 class="custom-h3 card-title">
+                                <b>Policy By Company</b>
+                            </h3>
+                        </div>
+                        <div class="card-body p-0 policy_category" style="overflow-y: auto; ">
+                            <ul class="users-list clearfix"/>
+                            <table>
+                                <tbody class="storage view_company">
+                                    <t t-foreach="widget.company_list" t-as="company_list">
+                                        <tr class="cursor-pointer">
+                                            <td t-att-data-id="company_list['insurance_company_id']">
+                                                <span t-esc="company_list['company']"
+                                                      t-att-data-id="company_list['insurance_company_id']"/>
+                                            </td>
+                                            <td t-att-data-id="company_list['insurance_company_id']"
+                                                style="text-align:right;"> <span
+                                                    t-esc="company_list['count']"
+                                                    t-att-data-id="company_list['insurance_company_id']"/></td>
+                                            <td t-att-data-id="company_list['insurance_company_id']"
+                                                style="text-align:right;"> <span
+                                                    t-esc="company_list['amount']"
+                                                    t-att-data-id="company_list['insurance_company_id']"/>
+                                                INR</td>
+
+                                        </tr>
+                                    </t>
+                            </tbody>
+                        </table>
+
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-md-6">
+                    <div class="card" style="height:400px;">
+                        <div class="card-header"
+                             style=" padding: 7px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; background-color:#465dac; ">
+                            <h3 class="custom-h3 card-title">
+                                <b>Policy Expire In 30 Days</b>
+                            </h3>
+                        </div>
+                        <div class="card-body p-0 policy_category" style="overflow-y: auto; " id="top_10_body">
+                            <ul class="users-list clearfix" id="top_10_product_by_qty"/>
+                            <table>
+                                <tbody class="storage view_detail">
+                                    <t t-foreach="widget.insurance_list" t-as="insurance_list">
+                                        <tr class="cursor-pointer">
+                                            <td t-att-data-id="insurance_list['id']">
+                                                <span t-esc="insurance_list['name']"
+                                                      t-att-data-id="insurance_list['id']"/>
+                                            </td>
+                                            <td t-att-data-id="insurance_list['id']"
+                                                style="text-align:right;"> <span
+                                                    t-esc="insurance_list['date']"
+                                                    t-att-data-id="insurance_list['id']"/></td>
+                                            <td t-att-data-id="insurance_list['id']"
+                                                style="text-align:right;"> <span
+                                                    t-esc="insurance_list['net_amount']"
+                                                    t-att-data-id="insurance_list['id']"/>
+                                                INR</td>
+
+                                        </tr>
+                                    </t>
+                            </tbody>
+                        </table>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+
+                <!--                <div class="row">-->
+                <!--                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">-->
+                <!--                        <div class="">-->
+                <!--                             <div class="row mb-2" style="padding: 15px;">-->
+                <!--                                 <div class="col-sm-12">-->
+                <!--                                     <div class="header_class">-->
+                <!--                                         <h2>Policy Category-->
+                <!--                                         </h2>-->
+                <!--                                     </div>-->
+                <!--                                 </div>-->
+                <!--                             </div>-->
+                <!--                            <div class="row insurance_data">-->
+                <!--                                <div class="agent_data">-->
+                <!--                                    <table>-->
+                <!--                                        <tr>-->
+                <!--                                            <th width="30%">Category </th>-->
+                <!--                                            <th width="20%">No Of Policy</th>-->
+                <!--                                            <th width="20%">Net Premium</th>-->
+                <!--                                            <th width="30%"></th>-->
+                <!--                                        </tr>-->
+                <!--                                        <t t-foreach="widget.category_list" t-as="category_list">-->
+                <!--                                            <tr>-->
+                <!--                                                <td> <span t-esc="category_list['category']"/></td>-->
+                <!--                                                <td style="text-align:right;"> <span t-esc="category_list['count']"/></td>-->
+                <!--                                                <td style="text-align:right;"> <span t-esc="category_list['amount']"/>-->
+                <!--                                                    INR</td>-->
+                <!--                                                <td style="text-align:center;">-->
+                <!--                                                    <input type="button" class="btn btn-primary view_category"-->
+                <!--                                                           value="View Category"-->
+                <!--                                                           t-att-data-id="category_id"/></td>-->
+                <!--                                            </tr>-->
+                <!--                                        </t>-->
+                <!--                                    </table>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+                <!--                <div class="row">-->
+                <!--                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">-->
+                <!--                        <div class="">-->
+                <!--                            <div class="row mb-2" style="padding: 15px;">-->
+                <!--                                <div class="col-sm-12">-->
+                <!--                                    <div class="header_class">-->
+                <!--                                        <h2>Policy By Agents</h2>-->
+                <!--                                    </div>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                            <div class="row insurance_data">-->
+                <!--                                <div class="agent_data">-->
+                <!--                                    <table>-->
+                <!--                                        <tr>-->
+                <!--                                            <th width="30%">Agent</th>-->
+                <!--                                            <th width="20%">No Of Policy</th>-->
+                <!--                                            <th width="20%">Net Premium</th>-->
+                <!--                                            <th width="30%"></th>-->
+                <!--                                        </tr>-->
+                <!--                                        <t t-foreach="widget.agent_list" t-as="agent_list">-->
+                <!--                                           <tr>-->
+                <!--                                               <td> <span t-esc="agent_list['agent']"/></td>-->
+                <!--                                               <td style="text-align:right;"> <span t-esc="agent_list['count']"/></td>-->
+                <!--                                               <td style="text-align:right;"> <span t-esc="agent_list['amount']"/>-->
+                <!--                                                   INR</td>-->
+                <!--                                               <td style="text-align:center;"> <input type="button"-->
+                <!--                                                                                      class="btn btn-primary view_policy"-->
+                <!--                                                                                      value="View Policy"-->
+                <!--                                                                                      t-att-data-id="agent_id"/></td>-->
+                <!--                                           </tr>-->
+                <!--                                        </t>-->
+                <!--                                    </table>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+                <!--                <div class="row">-->
+                <!--                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">-->
+                <!--                        <div class="">-->
+                <!--                             <div class="row mb-2" style="padding: 15px;">-->
+                <!--                                 <div class="col-sm-12">-->
+                <!--                                     <div class="header_class">-->
+                <!--                                         <h2>Policy By Company-->
+                <!--                                         </h2>-->
+                <!--                                     </div>-->
+                <!--                                 </div>-->
+                <!--                             </div>-->
+                <!--                            <div class="row insurance_data">-->
+                <!--                                 <div class="agent_data">-->
+                <!--                                     <table>-->
+                <!--                                         <tr>-->
+                <!--                                             <th width="30%">Company</th>-->
+                <!--                                             <th width="20%">No Of Policy</th>-->
+                <!--                                             <th width="20%">Net Premium</th>-->
+                <!--                                             <th width="30%"></th>-->
+                <!--                                         </tr>-->
+                <!--                                         <t t-foreach="widget.company_list" t-as="company_list">-->
+                <!--                                             <tr>-->
+                <!--                                                 <td> <span t-esc="company_list['company']"/></td>-->
+                <!--                                                 <td style="text-align:right;"> <span t-esc="company_list['count']"/></td>-->
+                <!--                                                 <td style="text-align:right;"> <span t-esc="company_list['amount']"/>-->
+                <!--                                                     INR</td>-->
+                <!--                                                 <td style="text-align:center;">-->
+                <!--                                                     <input type="button"-->
+                <!--                                                            class="btn btn-primary view_company"-->
+                <!--                                                            value="View Company"-->
+                <!--                                                            t-att-data-id="insurance_company_id"/></td>-->
+                <!--                                             </tr>-->
+                <!--                                         </t>-->
+                <!--                                     </table>-->
+                <!--                                </div>-->
+                <!--                             </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <!--                <div class="row">-->
+                <!--                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">-->
+                <!--                        <div class="">-->
+                <!--                            <div class="row mb-2" style="padding: 15px;">-->
+                <!--                                <div class="col-sm-12">-->
+                <!--                                    <div class="header_class">-->
+                <!--                                        <h2>Policy Expire In 30 Days</h2>-->
+                <!--                                    </div>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                            <div class="row insurance_data">-->
+                <!--                                <div class="agent_data">-->
+                <!--                                    <table>-->
+                <!--                                        <tr>-->
+                <!--                                            <th width="30%">Customer</th>-->
+                <!--                                            <th width="20%">Expire Date</th>-->
+                <!--                                            <th width="20%">Net Premium</th>-->
+                <!--                                            <th width="30%"></th>-->
+                <!--                                        </tr>-->
+                <!--                                        <t t-foreach="widget.insurance_list" t-as="insurance_list">-->
+                <!--                                            <tr>-->
+                <!--                                                <td> <span t-esc="insurance_list['name']"/></td>-->
+                <!--                                                <td style="text-align:right;"> <span t-esc="insurance_list['date']"/></td>-->
+                <!--                                                <td style="text-align:right;"> <span-->
+                <!--                                                        t-esc="insurance_list['net_amount']"/>-->
+                <!--                                                    INR</td>-->
+                <!--                                                <td style="text-align:center;"> <input type="button"-->
+                <!--                                                                                       class="btn btn-primary view_detail"-->
+                <!--                                                                                       value="View Detail"-->
+                <!--                                                                                       t-att-data-id="insurance_list['id']"/></td>-->
+                <!--                                            </tr>-->
+                <!--                                        </t>-->
+                <!--                                    </table>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+            </div>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <!-- Update user form !-->
+        <record id="view_users_form_employees" model="ir.ui.view">
+            <field name="name">res.users.form.employees</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+					<xpath expr="//notebook" position="inside">
+							<page string="Related Employees">
+									<field name="employee_ids" help="These are employees who share the same user login credentials"/>
+							</page>
+					</xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

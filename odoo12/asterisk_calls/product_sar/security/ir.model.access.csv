@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+product_details_user,product.details,model_product_details,,1,1,1,1
+part_details_user,part.details,model_part_details,,1,1,1,1
+pspr_part_name_user,pspr_part.name,model_pspr_part_name,,1,1,1,1

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wk_addons_website_stock_config" model="ir.ui.view">
+        <field name="name">Addons Setting</field>
+        <field name="model">webkul.website.addons</field>
+        <field name="inherit_id" ref="website_webkul_addons.config_webkul_website_addons_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//td[@name='module_website_stock']" position="replace">
+                <td>
+                    <button type="object" name="get_configuration_view" string="Configuration" class="oe_link"></button>
+                </td>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- Responsible Developer:- Sunny Kumar Yadav -->

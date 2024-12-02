@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="test_approval_view_form" model="ir.ui.view">
+        <field name="name">test_approval_view_form</field>
+        <field name="model">test.approval</field>
+        <field name="arch" type="xml">
+            <form string="Test Approval">
+                <group>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

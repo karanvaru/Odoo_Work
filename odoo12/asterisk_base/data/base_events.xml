@@ -1,0 +1,9 @@
+<odoo>
+    <record id="fully_booted" model="asterisk_common.event">
+        <field name="name">FullyBooted</field>
+        <field name="source">AMI</field>
+        <field name="model">asterisk_base.server</field>
+        <field name="method">on_fully_booted</field>
+        <field name="delay">3</field>
+    </record>
+</odoo>

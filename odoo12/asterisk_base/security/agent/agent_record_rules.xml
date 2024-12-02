@@ -1,0 +1,25 @@
+<odoo>
+
+    <record model="ir.rule" id="asterisk_server">
+        <field name="name">Asterisk Server User rule</field>
+        <field name="model_id" ref="asterisk_base.model_asterisk_base_server"/>
+        <field name="groups" eval="[(6,0,[ref('asterisk_common.group_asterisk_agent')])]"/>
+        <field name="domain_force">[('user','=', user.id)]</field>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record model="ir.rule" id="server_access_list_rule">
+        <field name="name">Server Access List rule</field>
+        <field name="model_id" ref="asterisk_base.model_asterisk_base_access_list"/>
+        <field name="groups" eval="[(6,0,[ref('asterisk_common.group_asterisk_agent')])]"/>
+        <field name="domain_force">[('server','=', user.asterisk_server.id)]</field>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+</odoo>

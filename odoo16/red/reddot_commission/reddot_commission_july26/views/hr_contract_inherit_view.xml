@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_contract_inherit_form" model="ir.ui.view">
+        <field name="name">hr.contract.form.inherit</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page string="Commission Plan" name="commission_plan">
+
+                    <widget name="web_ribbon" title="Approve" bg_color="bg-success"
+                            attrs="{'invisible': [('contract_state', '!=', 'approve')]}"/>
+                    <widget name="web_ribbon" title="Reject" bg_color="bg-danger"
+                            attrs="{'invisible': [('contract_state', '!=', 'reject')]}"/>
+                    <div style="text-align:end;" attrs="{'invisible': [('commission_config_plan_id', '=', False)]}">
+                    	<button name="action_send_mail" type="object" string="Send Mail" class="oe_highlight" attrs="{'invisible': [('contract_state', '!=', False)]}" />
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="commission_config_plan_id"/>
+                            <field name="contract_state" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="commission_term_condition_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="calculation_types" widget="radio" options="{'horizontal': True}"
+                               attrs="{'invisible': [('commission_config_plan_id', '=', False)]}"/>
+                        <field name="commission_type" widget="radio" options="{'horizontal': True}"
+                               attrs="{'invisible': [('commission_config_plan_id', '=', False)]}"/>
+                    </group>
+                    <group attrs="{'invisible': [('calculation_types', '!=', 'self')]}">
+                        <group>
+                            <field name="plan_target_amount"/>
+                        </group>
+                        <group>
+                            <field name="plan_commission_amount"/>
+                        </group>
+                    </group>
+
+                     <group string="commission percentage">
+                         <field name="hr_contract_commission_config_line_ids" nolabel="1" colspan="2">
+                             <tree editable="bottom">
+                                 <field name="company_id" attrs="{'column_invisible': [('parent.calculation_types', '!=', 'company_level')]}"/>
+                                 <field name="business_unit_id" attrs="{'column_invisible': [('parent.calculation_types', '!=', 'bu_level')]}"/>
+                                 <field name="bu_group_id" attrs="{'column_invisible': [('parent.calculation_types', '!=', 'bu_group_level')]}"/>
+                                 <field name="country_group_id" attrs="{'column_invisible': [('parent.calculation_types', '!=', 'region_level')]}"/>
+                                 <field name="division_level_id" domain="['|', ('calculation_types', '=', parent.calculation_types), ('calculation_types', '=', False)]"/>
+                                 <field name="target_amount"/>
+                                 <field name="division_type"/>
+                                 <field name="commission_division_type"/>
+                                 <field name="commission_amount"/>
+                                 <field name="division_level" invisible="True"/>
+                                 <field name="line_ids" widget="many2many_tags"/>
+                                 <field name="target_description" invisible="True"/>
+                                <button name="action_open_wizard"
+                                		attrs="{'invisible': [('division_level', '=', 'all')]}"
+                                        type="object"
+                                        string="Detail"
+                                        class="oe_highlight"
+                                />
+                             </tree>
+                         </field>
+                     </group>
+
+                    <group string="Commission percentage based on target achieved"
+                           attrs="{'invisible': [('commission_target_percentage_employee_ids', '=', [])]}">
+                        <field name="commission_target_percentage_employee_ids" nolabel="1" colspan="2">
+                            <tree editable="bottom">
+                                <field name="from_percentage" string="Upto(%)"/>
+                                <field name="to_percentage" invisible="1"/>
+                                <field name="commission_percentage"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="view_hr_contract_commission_config_line_allocation_tree" model="ir.ui.view">
+        <field name="name">hr.contract.commission.config.line.allocation.view</field>
+        <field name="model">hr.contract.commission.config.line.allocation</field>
+        <field name="arch" type="xml">
+          <tree editable="bottom">
+              <field name="country_id"/>
+              <field name="company_id"/>
+              <field name="business_unit_id"/>
+              <field name="commission_percentage" sum="commission_percentage"/>
+              <field name="target_amount" sum="target_amount"/>
+          </tree>
+        </field>
+    </record>
+
+    
+</odoo>

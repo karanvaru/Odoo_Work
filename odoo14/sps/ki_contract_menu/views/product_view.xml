@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_hide_product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.view.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_tree_view" model="ir.ui.view">
+        <field name="name">product.template.view.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="limit">50</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_hide_field" model="ir.ui.view">
+        <field name="name">product.hide.view.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(product_serial_number_action)d" type="action" string="Create Product Value"
+                        class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" name="get_attachment" string="Purchase"
+                        icon="fa-paperclip" invisible="1">
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='type']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='default_code']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='barcode']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <!--            <xpath expr="//field[@name='categ_id']" position="attributes">-->
+            <!--                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>-->
+            <!--            </xpath>-->
+
+            <xpath expr="//field[@name='l10n_in_hsn_code']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='l10n_in_hsn_description']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//label[@for='list_price']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='list_price']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='taxes_id']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//label[@for='standard_price']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='standard_price']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='variants']" position="before">
+                <page string="Pinter information">
+                    <field name="product_variant_ids" nolabel="1">
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="name" readonly="1"/>
+                            <field name="default_code" string="Printer/Cartridge Number"/>
+                            <field name="barcode" string="Serial Number"/>
+                            <field name="product_status" required="False"/>
+                            <!--                            <field name="product_template_attribute_value_ids" widget="many2many_tags"-->
+                            <!--                                   groups="product.group_product_variant" readonly="1"/>-->
+                            <field name="current_contract_id" invisible="1"/>
+                            <field name="customer_id" required="False"/>
+                            <field name="partner_shipping_pro_id" required="False"/>
+                            <field name="department_pro" required="False"/>
+                            <field name="department_pro" required="False"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+
+            <xpath expr="//page[@name='variants']/field[@name='attribute_line_ids']/tree" position="attributes">
+                <attribute name="create">0</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='variants']" position="after">
+                <page string="General Info">
+                    <group>
+                        <group>
+                            <field name="categ_id" string="Model Type"/>
+                            <field name="active_product"/>
+                            <field name="deactivate_product"/>
+                            <label for="is_cartridge" string="Cartridge" invisible="1"
+                                   attrs="{'invisible': [('is_cartridge', '=', True)]}"/>
+                            <div attrs="{'invisible': [('is_cartridge', '=', True)]}">
+                                <field name="is_cartridge" invisible="1"/>
+                            </div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//page[@name='general_information']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='purchase']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='sales']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='inventory']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!--            <xpath expr="//group[@string='Internal Notes']" position="attributes">-->
+            <!--                <attribute name="groups">!ki_contract_menu.group_smart_printer_product_view</attribute>-->
+            <!--            </xpath>-->
+
+            <xpath expr="//page[last()]" position="after">
+                <page string="Add Parts" name="all_parts_info">
+                    <field name="part_product_line_ids">
+                        <tree editable="bottom">
+                            <control>
+                                <create string="Add Parts"/>
+                            </control>
+                            <field name="product_part_id" domain="[('categ_id.name', '=', 'Parts')]"/>
+                            <field name="product_qty"/>
+                            <field name="date" invisible="1"/>
+                            <field name="name" invisible="1"/>
+
+                            <field name="note"/>
+                            <field name="state" invisible="1"/>
+
+                        </tree>
+
+                    </field>
+
+                </page>
+            </xpath>
+
+
+        </field>
+    </record>
+
+    <record id="product_search_filter_view" model="ir.ui.view">
+        <field name="name">product.search.view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="arch" type="xml">
+            <search>
+                <filter string="Activate" name="active" domain="[('product_status', '=', 'active')]"/>
+                <filter string="Deactivate" name="deactive" domain="[('product_status', '=', 'deactive')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="product_status_field" model="ir.ui.view">
+        <field name="name">product.status.view.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+                <button string="Add Purchase Order"
+                        type="action" name="%(ki_contract_menu.purchase_create_action)d" class="oe_highlight"
+                        attrs="{'invisible': [('purchase_id', '!=', False)]}"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_all_contract" type="object"
+                        class="oe_stat_button" icon="fa-paperclip"
+                        attrs="{'invisible': [('category_name', 'in', ['Parts','Printer Parts'])]}">
+                    <span class="o_stat_text">All Contract</span>
+                </button>
+
+                <button name="action_open_all_tickets" type="object"
+                        class="oe_stat_button" icon="fa-list"
+                        attrs="{'invisible': [('category_name', 'in', ['Parts','Printer Parts'])]}">
+                    <span class="o_stat_text">All Tickets</span>
+                </button>
+                <button name="action_open_all_purchase" type="object"
+                        class="oe_stat_button" icon="fa-shopping-cart"
+                        attrs="{'invisible': ['|',('purchase_id', '=', False),('category_name', 'in', ['Parts','Printer Parts'])]}">
+                    <span class="o_stat_text">Purchase Order</span>
+                </button>
+                <button name="action_in_out_register" type="object"
+                        class="oe_stat_button" icon="fa-exchange"
+                        attrs="{'invisible': [('category_name', 'in', ['Parts','Printer Parts'])]}">
+                    <span class="o_stat_text">In/Out Register</span>
+                </button>
+                <button name="action_refill_request" type="object"
+                        class="oe_stat_button" icon="fa-list"
+                        attrs="{'invisible': [('category_name', 'in', ['Parts','Printer Parts'])]}">
+                    <span class="o_stat_text">Refill Request</span>
+                </button>
+                <button name="action_parts_historys" type="object"
+                        class="oe_stat_button" icon="fa-cogs"
+                        attrs="{'invisible': [('category_name', 'in', ['Parts','Printer Parts'])]}">
+                    <span class="o_stat_text">Parts History</span>
+                </button>
+                    <button name="action_count_parts" type="object"
+                        class="oe_stat_button" icon="fa-hdd-o"
+                        attrs="{'invisible': [('category_name', 'not in', ['Parts','Printer Parts'])]}">
+                    <span class="o_stat_text">Used In Cartridge</span>
+                </button>
+                <button name="action_transactions" type="object"
+                        class="oe_stat_button" icon="fa-exchange"
+                        attrs="{'invisible': [('category_name', 'not in', ['Parts'])]}">
+                    <span class="o_stat_text">Transactions</span>
+                </button>
+
+            </xpath>
+
+            <xpath expr="//form/sheet" position="inside">
+                <button name="%(ki_contract_menu.product_number_report)d" string="Download Product Number"
+                        type="action" class="oe_highlight"
+                        attrs="{'invisible': ['|',('is_cartridge', '=', True),('category_name', 'in', ['Parts','Printer Parts'])]}"
+                />
+            </xpath>
+
+            <xpath expr="//form/sheet" position="inside">
+                <button name="%(ki_contract_menu.cartridge_number_report)d" string="Download Cartridge Number"
+                        type="action" class="oe_highlight" attrs="{'invisible': [('is_cartridge', '=', False)]}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='type']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <!--            <xpath expr="//field[@name='default_code']" position="attributes">-->
+            <!--                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>-->
+            <!--            </xpath>-->
+
+            <!--            <xpath expr="//field[@name='barcode']" position="attributes">-->
+            <!--                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>-->
+            <!--            </xpath>-->
+            <xpath expr="//field[@name='categ_id']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='l10n_in_hsn_code']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='l10n_in_hsn_description']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='lst_price']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//label[@for='lst_price']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='taxes_id']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <!--            <xpath expr="//label[@for='standard_price']" position="attributes">-->
+            <!--                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>-->
+            <!--            </xpath>-->
+
+            <!--            <xpath expr="//field[@name='standard_price']" position="attributes">-->
+            <!--                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>-->
+            <!--            </xpath>-->
+
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='description']" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//notebook//page[@name='general_information']//group[2]" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+
+            <xpath expr="//notebook//page[@name='general_information']//group[1]" position="attributes">
+                <attribute name="groups">ki_contract_menu.group_smart_printer_product_view</attribute>
+            </xpath>
+            <!--            <xpath expr="//notebook//page[@name='sale']" position="attributes">-->
+            <!--                <attribute name="invisible">1</attribute>-->
+            <!--            </xpath>-->
+            <xpath expr="//notebook//page[@name='sales']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//notebook//page[@name='inventory']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!--            <xpath expr="//field[@name='company_id']" position="after">-->
+            <!--                <field name="product_status" groups="ki_contract_menu.group_smart_printer_product_view"/>-->
+            <!--                <field name="deactive_reasion" attrs="{'invisible': [('product_status', '!=', 'deactive')]}"-->
+            <!--                       groups="ki_contract_menu.group_smart_printer_product_view"/>-->
+            <!--                <field name="current_contract" attrs="{'invisible': [('product_status', '=', 'deactive'),-->
+            <!--                       ('deactive_reasion', 'in', ['onOurOffice','dead']) ]}"-->
+            <!--                       groups="ki_contract_menu.group_smart_printer_product_view"/>-->
+
+            <!--            </xpath>-->
+            <xpath expr="//page[@name='general_information']" position="before">
+                <page string="General Info">
+                    <group>
+                        <group>
+                            <field name="default_code" attrs="{'invisible': [ ('category_name', 'in', ['Parts','Printer Parts'])]}"/>
+                            <field name="barcode" attrs="{'invisible': [ ('category_name', 'in', ['Parts','Printer Parts'])]}"/>
+                            <field name="purchase_id" invisible="1"/>
+                            <field name="category_name" invisible="1"/>
+                            <field name="category_type" invisible="1"/>
+                            <field name="categ_id" readonly="1"/>
+<!--                            <field name="supplier_taxes_id"/>-->
+                            <field name="qr_code" widget='image' class="oe_avatar" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="lst_price" string="Price"
+                                   attrs="{'invisible': [ ('category_name', 'in', ['Parts','Printer Parts'])]}"/>
+                            <field name="product_status" attrs="{'invisible': [ ('category_name', 'in', ['Parts','Printer Parts'])]}"/>
+                            <field name="is_active" invisible="1"/>
+                            <label for="is_cartridge" string="Cartridge"
+                                   attrs="{'invisible': ['|', ('category_name', 'in', ['Parts','Printer Parts']), ('is_cartridge', '=', True)]}"/>
+                            <div attrs="{'invisible': ['|', ('category_name', 'in', ['Parts','Printer Parts']), ('is_cartridge', '=', True)]}">
+                                <field name="is_cartridge"/>
+                            </div>
+
+                            <field name="qty_available" string="Available Quantity"
+                                   attrs="{'invisible': [('category_name', 'not in', ['Parts','Printer Parts'])]}"/>
+                            <!--                            <field name="type" string="product type"/>-->
+                        </group>
+                    </group>
+                </page>
+
+                <page string=" Contract Information" name="contract_information"
+                      attrs="{'invisible': [('category_name', 'in', ['Parts', 'Cartridge', 'Printer Parts'])]}">
+                    <group>
+                        <group>
+                            <field name="product_status"/>
+
+                            <field name="deactive_reasion" attrs="{'invisible': [('product_status', '!=', 'deactive')]}"
+                            />
+                            <field name="current_contract_id" attrs="{'invisible': [('product_status', '=', 'deactive'),
+                                        ('deactive_reasion', 'in', ['onOurOffice','dead']) ]}"
+                            />
+                        </group>
+                        <group string="Customer Details">
+                            <field name="customer_id" attrs="{'invisible': [('product_status', '=', 'deactive'),
+                                        ('deactive_reasion', 'in', ['onOurOffice','dead']) ]}"
+                                   widget="res_partner_many2one" context="{
+                                                'show_address': 1,
+                                                'default_type': 'private',
+                                                'form_view_ref': 'base.res_partner_view_form_private'}"
+                                   options='{"always_reload": True, "highlight_first_line": True}'
+                            />
+                            <field name="partner_shipping_pro_id"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//page[last()]" position="after">
+                <page string="Add Parts" name="all_parts_info" attrs="{'invisible': [('category_name', 'in', ['Parts' , 'Printer Parts'])]}">
+
+                    <field name="part_product_line_ids" readonly="1">
+                        <tree editable="bottom">
+                            <control>
+                                <create string="Add Parts"/>
+                            </control>
+                            <field name="product_part_id" domain="[('categ_id.name', '=', 'Parts')]"/>
+                            <field name="product_qty"/>
+                            <!--                            <field name="date"/>-->
+                            <field name="name" invisible="1"/>
+                            <field name="note"/>
+                            <field name="state" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <!--            <xpath expr="//page[@name='all_parts_info']" position="attributes">-->
+            <!--                <attribute name="attrs">{'invisible': [('categ_id.name','!=','Cartridge')]}</attribute>-->
+            <!--            </xpath>-->
+            <xpath expr="//page[@name='general_information']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='purchase']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="product_variant_field" model="ir.ui.view">
+        <field name="name">product.variant.view.tree</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <header>
+                    <button name="%(ki_contract_menu.purchase_create_action)d" type="action" string="Add Purchase Order"
+                            class="btn-primary"/>
+                </header>
+            </xpath>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-success">product_status=='active'</attribute>
+                <attribute name="decoration-danger">product_status=='deactive'</attribute>
+                <attribute name="limit">50</attribute>
+            </xpath>
+            <xpath expr="//field[@name='lst_price']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='standard_price']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='default_code']" position="attributes">
+                <attribute name="string">Printer/Cartridge/Parts Number</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="string">Model Number</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='product_template_attribute_value_ids']" position="after">
+                <field name="customer_id"/>
+                <field name="current_contract_id"/>
+                <field name="product_status"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_variant_field_form" model="ir.ui.view">
+        <field name="name">product.variant.view.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='pricing']" position="after">
+                <group name="contract_detail" string="Contract Detail">
+                    <field name="product_status"/>
+                    <field name="deactive_reasion" attrs="{'invisible': [('product_status', '!=', 'deactive')]}"/>
+                    <field name="current_contract_id" attrs="{'invisible': [('product_status', '=', 'deactive'),
+                       ('deactive_reasion', 'in', ['onOurOffice','dead']) ]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_variant_purchase_form" model="ir.ui.view">
+        <field name="name">product.variant.purchase.view.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="purchase.product_normal_form_view_inherit_purchase"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']//button[@name='action_view_po']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_purchase_form" model="ir.ui.view">
+        <field name="name">product.template.purchase.view.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="purchase.view_product_template_purchase_buttons_from"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']//button[@name='action_view_po']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_stock_view" model="ir.ui.view">
+        <field name="name">product.stock.view.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_product_forecast_report']"
+                   position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='button_box']//button[@name='action_product_forecast_report']"
+                   position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='button_box']//button[@name='action_view_orderpoints']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+            <xpath expr="//div[@name='button_box']//button[@name='action_view_stock_move_lines']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='button_box']//button[@name='action_view_orderpoints']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+        </field>
+    </record>
+
+<!--    <record id="product_sale_view" model="ir.ui.view">-->
+<!--        <field name="name">product.sale.view.form</field>-->
+<!--        <field name="model">product.product</field>-->
+<!--        <field name="inherit_id" ref="sale.product_form_view_sale_order_button"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//div[@name='button_box']//button[@name='action_view_sales']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo>

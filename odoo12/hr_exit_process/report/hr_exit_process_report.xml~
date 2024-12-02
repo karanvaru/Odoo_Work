@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <!-- QWeb Reports -->
+        <report
+            id="hr_exit_process_report"
+            model="hr.exit"
+            menu="True"
+            report_type="qweb-pdf"
+            string="Print Employee Exit Report"
+            name="hr_exit_process.hr_exit_process_id"
+            file="hr_exit_process.hr_exit_process_id"
+           />
+        
+        <template id="hr_exit_process_id">
+               <t t-foreach="docs" t-as="doc">
+                    <t t-call="report.internal_layout">
+                         <div class="page">
+                             <div class="text-center">
+                                 <h3>
+                                     <span t-field="doc.employee_id.name"/> - <span t-field="doc.state"/>
+                                 </h3>
+                             </div>
+                             <h3>General Information</h3>
+                            <table class="table table-responsive">
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Request Date</strong> </td><td> <span t-field="doc.request_date"/></td>
+                                   <td><strong>Department</strong></td><td> <span t-field="doc.department_id.name"/></td>
+                               </tr>
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Department Manager</strong> </td><td> <span t-field="doc.manager_id.name"/></td>
+                                   <td><strong>Job Title</strong></td><td> <span t-field="doc.job_id.name"/></td>
+                               </tr>
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Contract</strong> </td><td> <span t-field="doc.contract_id.name"/></td>
+                                   <td><strong>Last Day of Work</strong></td><td> <span t-field="doc.last_work_date"/></td>
+                               </tr>
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Interview</strong></td><td> <span t-field="doc.survey"/></td>
+                                   <td></td><td></td>
+                               </tr>
+                            </table>
+                            <h3>Dates</h3>
+                            <table class="table table-responsive">
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Confirm Date(Employee)</strong> </td><td> <span t-field="doc.confirm_date"/></td>
+                                   <td><strong>Confirm By</strong></td><td> <span t-field="doc.confirm_by_id.name"/></td>
+                               </tr>
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Approved Date(Department)</strong> </td><td> <span t-field="doc.dept_approved_date"/></td>
+                                   <td><strong>Approved By Department Manager</strong></td><td> <span t-field="doc.dept_manager_by_id.name"/></td>
+                               </tr>
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Approved Date(HR Manager)</strong> </td><td> <span t-field="doc.validate_date"/></td>
+                                   <td><strong>Approved By HR Manager </strong></td><td> <span t-field="doc.hr_manager_by_id.name"/></td>
+                               </tr>
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Approved Date(General Manager)</strong> </td><td> <span t-field="doc.general_validate_date"/></td>
+                                   <td><strong>Approved By General Manager </strong></td><td> <span t-field="doc.gen_man_by_id.name"/></td>
+                               </tr>
+                            </table>
+                            <h3>Checklist</h3>
+                            <table class="table table-responsive">
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Checklist</strong></td>
+                                   <td><strong>Responsible User</strong></td>
+                                   <td><strong>Remarks</strong></td>
+                                   <td><strong>State</strong></td>
+                               </tr>
+                               <t t-foreach="doc.checklist_ids" t-as="check">
+                                   <tr style="border-bottom:2px solid black;">
+                                       <td><span t-field="check.checklist_id.name"/></td>
+                                       <td><span t-field="check.responsible_user_id.name"/></td>
+                                       <td><span t-field="check.notes"/></td>
+                                       <td><span t-field="check.state"/></td>
+                                   </tr>
+                               </t>
+                            </table>
+                            <div>
+                                 <strong>Notes :</strong><br/><span t-field="doc.notes"/>
+                            </div>
+                            <div>
+                                 <strong>Reason for Leaving :</strong><br/><span t-field="doc.reason_for_leaving"/>
+                            </div>
+                        </div>
+                    </t>
+               </t>
+        </template>
+    </data>
+</openerp>

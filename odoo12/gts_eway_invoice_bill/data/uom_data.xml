@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="uom.product_uom_unit" model="uom.uom">
+        <field name="uom_mapping_id" ref="uom_mapping_unt"/>
+    </record>
+    <record id="uom.product_uom_dozen" model="uom.uom">
+        <field name="uom_mapping_id" ref="uom_mapping_doz"/>
+    </record>
+    <record id="uom.product_uom_kgm" model="uom.uom">
+        <field name="uom_mapping_id" ref="uom_mapping_kgs"/>
+    </record>
+    <record id="uom.product_uom_gram" model="uom.uom">
+        <field name="uom_mapping_id" ref="uom_mapping_gms"/>
+    </record>
+    <record id="uom.product_uom_day" model="uom.uom">
+        <field name="uom_mapping_id" ref="uom_mapping_unt"/>
+    </record>
+    <record id="uom.product_uom_hour" model="uom.uom">
+        <field name="uom_mapping_id" ref="uom_mapping_unt"/>
+    </record>
+    <record id="uom.product_uom_ton" model="uom.uom">
+        <field name="uom_mapping_id" ref="uom_mapping_ton"/>
+    </record>
+    <record id="uom.product_uom_meter" model="uom.uom">
+        <field name="uom_mapping_id" ref="uom_mapping_mtr"/>
+    </record>
+    <record id="uom.product_uom_km" model="uom.uom">
+        <field name="uom_mapping_id" ref="uom_mapping_kme"/>
+    </record>
+    <record id="uom.product_uom_cm" model="uom.uom">
+        <field name="uom_mapping_id" ref="uom_mapping_cms"/>
+    </record>
+    <record id="uom.product_uom_litre" model="uom.uom">
+        <field name="uom_mapping_id" ref="uom_mapping_ltr"/>
+    </record>
+    <record id="uom.product_uom_lb" model="uom.uom">
+    </record>
+    <record id="uom.product_uom_oz" model="uom.uom">
+    </record>
+    <record id="uom.product_uom_inch" model="uom.uom">
+    </record>
+    <record id="uom.product_uom_foot" model="uom.uom">
+    </record>
+    <record id="uom.product_uom_mile" model="uom.uom">
+    </record>
+    <record id="uom.product_uom_floz" model="uom.uom">
+    </record>
+    <record id="uom.product_uom_qt" model="uom.uom">
+    </record>
+    <record id="uom.product_uom_gal" model="uom.uom">
+    </record>
+</odoo>

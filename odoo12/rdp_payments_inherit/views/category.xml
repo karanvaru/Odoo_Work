@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_payment_rdp_inherit_form" model="ir.ui.view">
+        <field name="name">account.payment.rdp.inherit.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='communication']" position="after">
+                <field name="payment_category_id"/>
+                <field name="tags" widget="many2many_tags"/>
+                <field name="check" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page name="asset_info" string="Asset Info" attrs="{'invisible': [('check', '=', False)]}">
+                        <group>
+                            <field name="asset_location_id" attrs="{'required': [('check', '=', True)]}"/>
+                            <field name="asset_payment_id" attrs="{'required': [('check', '=', True)]}"/>
+                            <field name="asset_category_id" attrs="{'required': [('check', '=', True)]}"/>
+                        </group>
+                    </page>
+                    <page name="internal_notes" string="Internal Notes">
+                        <group>
+                            <field name="note" nolabel="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <!--    <record id="account_payment_rdp_inherit_pages" model="ir.ui.view">-->
+    <!--        <field name="name">account.payment.rdp.inherit.pages</field>-->
+    <!--        <field name="model">account.payment</field>-->
+    <!--        <field name="inherit_id" ref="studio_customization.odoo_studio_account__e6612efe-c380-48a1-8bc8-abcbd42137a8"/>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            -->
+    <!--            <xpath expr="//page[@name='studio_page_n0FHB']" position="after">-->
+    <!--                <page name="asset_info" string="Asset Info">-->
+    <!--                    <group>-->
+    <!--                        <field name="asset_location_id"/>-->
+    <!--                        <field name="asset_payment_id"/>-->
+    <!--                        <field name="asset_category_id"/>-->
+    <!--                    </group>-->
+    <!--                </page>-->
+    <!--                <page name="internal_notes" string="Internal Notes">-->
+    <!--                    <group>-->
+    <!--                       <field name="note" nolabel="1"/>-->
+    <!--                    </group>-->
+    <!--                </page>-->
+    <!--            </xpath>-->
+
+    <!--        </field>-->
+    <!--    </record>-->
+</odoo>

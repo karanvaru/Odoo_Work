@@ -1,0 +1,64 @@
+/*-----------------
+snippet.css
+------------------*/
+#sh_motorcycle_snippet_section_1 .hh{display: contents;}
+#sh_motorcycle_snippet_section_1 .cls_sh_motorcycle_snippet_login{margin-left: 0%}
+#sh_motorcycle_snippet_section_1 .id_sh_motorcycle_snippet_select_saved_bike_dropdown{margin-left:5px;}
+/*-----------------
+snippet.css
+------------------*/
+
+/*-----------------
+snippet_small
+------------------*/
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_small #id_sh_motorcycle_search_form .form-control{padding: 0.375em 2em 0.375em 1em;}
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_small #id_sh_motorcycle_go_submit_button{margin-right:0px!important;}
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_small .cls_sh_motorcycle_snippet_login{margin-left: 0%;}
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_small .id_sh_motorcycle_snippet_select_saved_bike_dropdown{margin-left:5px;}
+
+/*--media-query--*/
+@media (max-width:767px) and (min-width: 564px){
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_small #id_sh_motorcycle_search_form .form-control { padding: 0.275em 1em 0.275em 1em; width: 6.5em;}
+}
+@media (max-width:565px){
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_small .id_sh_motorcycle_snippet_select_saved_bike_dropdown{margin-left:0px;width:100%}
+}
+/*--media-query--*/
+
+/*-----------------
+snippet_small
+------------------*/
+
+/*-----------------
+snippet_large
+------------------*/
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_large .hh { display: block;text-align: center;}
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_large .cls_sh_motorcycle_snippet_login{margin-top: 1%;}
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_large .id_sh_motorcycle_snippet_select_saved_bike_dropdown{margin-left:10px;}
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_large #id_sh_motorcycle_search_form .form-control{margin-right: 10px;padding:0.275em 3em 0.275em 1em;height: 40px;width:10em}
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_large #id_sh_motorcycle_go_submit_button{margin-right:0px;}
+
+
+/*--media-query--*/
+@media (max-width:991px) and (min-width: 768px){
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_large #id_sh_motorcycle_search_form .form-control{margin-right: 5px;padding: 0.275em 2em 0.275em 1em; width: 8em;}
+}
+@media (max-width:767px) and (min-width: 564px){
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_large #id_sh_motorcycle_search_form .form-control { padding: 0.275em 1em 0.275em 1em; width: 6.5em;}
+}
+@media (max-width:565px){
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_large .id_sh_motorcycle_snippet_select_saved_bike_dropdown {margin-left: 0px;}
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_large .hh{width:100%}
+#sh_motorcycle_snippet_section_1.cls_sh_motorcycle_snippet_large #id_sh_motorcycle_search_form .form-control{width:100%;}
+#sh_motorcycle_snippet_section_1 .id_sh_motorcycle_snippet_select_saved_bike_dropdown{margin-left:0px;}
+}
+/*--media-query--*/
+
+/*-----------------
+snippet_large
+------------------*/
+
+
+
+
+

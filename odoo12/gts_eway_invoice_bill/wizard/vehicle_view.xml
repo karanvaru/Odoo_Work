@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_update_vehicle" model="ir.ui.view">
+        <field name="name">update.vehicle.no.form</field>
+        <field name="model">update.vehicle.no</field>
+        <field name="arch" type="xml">
+            <form string="Update Vehicle Details">
+                <group>
+                    <group>
+                        <field name="vehicle_no" required="1"/>
+                        <field name="transporter_doc_no"/>
+                        <field name="vehicle_type" required="1"/>
+                    </group>
+                    <group>
+                        <field name="reason" required="1"/>
+                        <field name="transportation_doc_date" required="1"/>
+                        <field name="transportation_mode" required="1"/>
+                    </group>
+                </group>
+                <grpup>
+                    <field name="remark" required="1"/>
+                </grpup>
+                <footer>
+                    <button name="update_vehicle" string="Update" type="object" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_update_vehicle" model="ir.actions.act_window">
+        <field name="name">Update Vehicle Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">update.vehicle.no</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="five_why_tree" model="ir.ui.view">
+            <field name="name">5Why</field>
+            <field name="model">five.why</field>
+            <field name="arch" type="xml">
+                <tree string="5Why">
+                 <field name='name'/>
+                </tree>
+            </field>
+        </record>
+        <record id="five_why_view" model="ir.ui.view">
+            <field name="name">five.why.form</field>
+            <field name="model">five.why</field>
+               <field name="arch" type="xml">
+                <form string="5Why">
+<!--                    <header></header>-->
+                    <sheet>
+                        <div>
+                            <field name='name'/>
+                        </div>
+
+                        <group>
+                            <!-- <field name="problem_name" invisible="1"/> -->
+                            <!--                            <field name='description' style="background-color: #efeff8;" attrs="{'readonly':[('state','!=','submit')]}" />-->
+                        </group>
+                        <notebook>
+
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids" widget="mail_activity" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="five_why_form" model="ir.actions.act_window">
+            <field name="name">5Why</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">five.why</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="five_why" name='5Why' action="five_why_form"/>
+    </data>
+</odoo>

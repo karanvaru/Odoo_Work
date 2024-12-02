@@ -1,0 +1,205 @@
+<odoo>
+    <data>
+        <record id="inherit_stock_view_picking_form" model="ir.ui.view">
+            <field name="name">inherit.stock.view_picking_form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="custom_clearance" string="Custom Clearance" type="object" class="oe_highlight"
+                            data-hotkey="w" attrs="{'invisible': [('picking_code', '!=', 'outgoing')]}"/>
+                </xpath>
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                    <button class="oe_stat_button" type="object" name="get_custom_clearance"
+                            icon="fa-id-card-o" attrs="{'invisible': [('picking_code', '!=', 'outgoing')]}">
+                        <field string="Clearance" name="clearance_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="picking_code" invisible="1"/>
+                    <field name="boe_number" groups="stock.group_production_lot"
+                           attrs="{'invisible': ['|',('picking_code', '!=', 'incoming'),('state', 'not in', ('assigned','done'))], 'readonly': [('state', '!=', '')]}"/>
+                    <field name="exit_number" groups="stock.group_production_lot"
+                           attrs="{'invisible': ['|',('picking_code', '!=', 'outgoing'),('state', 'not in', ('assigned','done'))], 'readonly': [('state', '!=', 'assigned')]}"/>
+                    <field name="supplier_reference"/>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="attributes">
+                    <attribute name="attrs">{'readonly': True}</attribute>
+                </xpath>
+                <!--                    <xpath expr="//field[@name='employee_id']" position="attributes">-->
+                <!--                         <attribute name="attrs">{'invisible': True}</attribute>-->
+                <!--                    </xpath>-->
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="dimension_uom" groups="stock.group_production_lot"
+                           attrs="{'invisible': [('state', 'not in', ('confirmed','assigned','done'))], 'readonly': [('state', '=', 'done')]}"/>
+                    <field name="length" groups="stock.group_production_lot"
+                           attrs="{'invisible': [('state', 'not in', ('confirmed','assigned','done'))], 'readonly': [('state', '=', 'done')]}"/>
+                    <field name="width" groups="stock.group_production_lot"
+                           attrs="{'invisible': [('state', 'not in', ('confirmed','assigned','done'))], 'readonly': [('state', '=', 'done')]}"/>
+                    <field name="height" groups="stock.group_production_lot"
+                           attrs="{'invisible': [('state', 'not in', ('confirmed','assigned','done'))], 'readonly': [('state', '=', 'done')]}"/>
+                    <field name="weight_uom" groups="stock.group_production_lot"
+                           attrs="{'invisible': [('state', 'not in', ('confirmed','assigned','done'))], 'readonly': [('state', '=', 'done')]}"/>
+                    <field name="weight" groups="stock.group_production_lot"
+                           attrs="{'invisible': [('state', 'not in', ('confirmed','assigned','done'))], 'readonly': [('state', '=', 'done')]}"/>
+                    <field name="cbm" groups="stock.group_production_lot"
+                           attrs="{'invisible': [('state', 'not in', ('confirmed','assigned','done'))], 'readonly': []}"/>
+                </xpath>
+                <xpath expr="//field[@name='product_uom_qty']" position="after">
+                    <field name="pre_alert_qty"
+                           attrs="{'invisible': [('state', 'not in', ('confirmed','assigned','done'))], 'readonly': []}"/>
+                </xpath>
+                <xpath expr="//field[@name='location_id']" position="after">
+                    <field name="rdd_project_id"/>
+                    <field name="business_type"/>
+                </xpath>
+                <xpath expr="//field[@name='supplier_reference']" position="after">
+                    <field name="stc"/>
+                </xpath>
+                <xpath expr="//field[@name='move_type']" position="after">
+                    <field name="shipping_type"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_stock_view_production_lot_form" model="ir.ui.view">
+            <field name="name">inherit.stock.view_production_lot_form</field>
+            <field name="model">stock.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="replace">
+                    <field name="name" nolabel="1" placeholder="e.g. LOT/0001/20121"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_stock_view_move_line_form" model="ir.ui.view">
+            <field name="name">inherit.stock.view_move_line_form</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name="lot_name" groups="stock.group_production_lot"
+                           attrs="{'invisible': ['|',('lot_id', '!=', False),('lot_name', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_move_line_detailed_operation_tree_inherit" model="ir.ui.view">
+            <field name="name">stock.move.line.operations.tree.inherit</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+            <field name="arch" type="xml">
+                <!-- Add the 'dimensions' field after 'lot_id' -->
+                <field name="lot_id" position="after">
+                    <field name="length" />
+                    <field name="width" />
+                    <field name="height" />
+                    <field name="cbm" />
+                </field>
+            </field>
+        </record>
+
+        <record id="inherit_stock_search_product_lot_filter" model="ir.ui.view">
+            <field name="name">inherit.stock.search_product_lot_filter</field>
+            <field name="model">stock.lot</field>
+            <field name="inherit_id" ref="stock.search_product_lot_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="replace">
+                    <field name="name" filter_domain="['|', ('name', 'ilike', self),('ref', 'ilike', self)]"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="inherit_stock_quant_search_view" model="ir.ui.view">
+            <field name="name">inherit.stock.quant_search_view</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.quant_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="replace">
+                    <field name="lot_id"/>
+                </xpath>
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name="cbm"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="stock_inherit_view_stock_quant_tree_editable" model="ir.ui.view">
+            <field name="name">inherit.stock.view_stock_quant_tree_editable</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_tree_editable"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="replace">
+                    <field name="lot_id"/>
+                </xpath>
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name="cbm" groups="stock.group_tracking_lot"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="stock_view_stock_quant_tree" model="ir.ui.view">
+            <field name="name">inherit.stock.view_stock_quant_tree</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='quantity']" position="before">
+                    <field name="cbm" groups="stock.group_tracking_lot"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_stock_view_move_line_tree" model="ir.ui.view">
+            <field name="name">inherit.stock.view_move_line_tree</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="replace">
+                    <field name="lot_id" nolabel="1" optional="show" groups="stock.group_production_lot"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_stock_move_line_view_search" model="ir.ui.view">
+            <field name="name">inherit.stock_move_line_view_search</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.stock_move_line_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="replace">
+                    <field name="lot_id" string="Bill of Entry # Exit Number" groups="stock.group_production_lot"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="inherit_stock_view_production_lot_tree" model="ir.ui.view">
+            <field name="name">inherit.stock.view_production_lot_tree</field>
+            <field name="model">stock.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Bill of Entry # Exit Numbers" multi_edit="1">
+                        <field name="name" decoration-bf="1"/>
+                        <field name="ref" optional="show"/>
+                        <field name="product_id" readonly="1"/>
+                        <field name="create_date" optional="show"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="last_delivery_partner_id" optional="hide" string="Transfer to"/>
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="stock_inherit_view_stock_quant_form_editable" model="ir.ui.view">
+            <field name="name">inherit.stock.view_stock_quant_form_editable</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_form_editable"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name="cbm"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

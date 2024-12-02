@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_payroll_analysis,access_payroll.analysis,model_payroll_analysis,base.group_user,1,1,1,1
+access_attendance_summary_wizard,access_attendance.summary.wizard,model_attendance_summary_wizard,base.group_user,1,1,1,1
+access_excel_report,access_excel.report,model_excel_report,base.group_user,1,1,1,1
+access_report_automation_config,access_report.automation.config,model_report_automation_config,base.group_user,1,1,1,1

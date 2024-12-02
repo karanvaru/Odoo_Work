@@ -1,0 +1,56 @@
+<odoo>
+    <data>
+    
+         <record model="ir.ui.view" id="view_account_analytic_account_form_inherit_helpdesk">
+            <field name="name">analytic.analytic.account.form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group" position="after">
+                    <notebook>
+                        <page string="Prepaid Hours" id="prepaired_hours">
+                                <group>
+                                        <!-- <field name="prepared_hours_ids" nolabel="1" > -->
+                                        <field name="prepared_hours_ids" nolabel="1" colspan='2'>
+                                            <tree string="Prepaired Hours" editable="bottom">
+                                                <field name="sale_order_id" domain="[('partner_id', '=', parent.partner_id)]"/>
+                                                <field name="date" />
+                                                <field name="purchased_hours" />
+                                                <field name="prepared_hours_id" invisible="1"/>
+                                            </tree>
+                                        </field>
+                                </group>
+                                 <field name="timesheet_custom_ids" invisible="0" readonly="0"/>
+                                 <group class="oe_subtotal_footer oe_right" colspan="2">
+                                    <field name="total_purchase_hours"/>
+                                    <field name="total_consumed_hours"/>
+                                    <field name="remaining_hours"/>
+                                </group>
+                                    
+                            </page>
+
+                    </notebook>
+                   <!--  <group>
+                        <notebook>
+                            <page string="Prepaid Hours" id="prepaired_hours">
+                                <group>
+                                  
+
+                                <field name="timesheet_custom_ids" invisible="0" readonly="0"/>
+                                <group class="oe_subtotal_footer oe_right" colspan="2"> -->
+<!--                                    <field name="timesheet_custom_ids" invisible="0" readonly="0"/>-->
+                                   <!--  <field name="total_purchase_hours"/>
+                                    <field name="total_consumed_hours"/>
+                                    <field name="remaining_hours"/>
+                                </group>
+                                </group>
+                            </page> -->
+                            
+                         <!-- </notebook> -->
+                    <!-- </group> -->
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

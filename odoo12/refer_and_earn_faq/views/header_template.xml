@@ -1,0 +1,11 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+	<template id="assets_frontend_refer_and_earn_faq" inherit_id="website.assets_frontend" name="Website Refer And Earn FAQ">
+		<xpath expr="." position="inside">
+			<!-- <link rel="stylesheet" href="/refer_and_earn_faq/static/src/css/website_refer_and_earn.css"/> -->
+			<script type="text/javascript" src="/refer_and_earn_faq/static/src/js/custom.js"/>
+		</xpath>
+	</template>
+</odoo>

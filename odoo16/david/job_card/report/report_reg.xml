@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <!-- QWeb Reports for Calendar Meeting -->
+        <!-- <report
+            id="job_card_report"
+            model="account.analytic.line"
+            menu="False"
+            report_type="qweb-pdf"
+            string="Print Jobcard Report"
+            name="job_card.job_card_report_template"
+            file="job_card.job_card_report_template"
+         /> -->
+
+         <record id="job_card_report" model="ir.actions.report">
+            <field name="name">Print Jobcard Report</field>
+            <!-- <field name="menu">False</field> -->
+            <field name="model">account.analytic.line</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">job_card.job_card_report_template</field>
+            <field name="report_file">job_card.job_card_report_template</field>
+            <field name="binding_model_id" ref="account.model_account_analytic_line"/>
+            <field name="binding_type">report</field>
+        </record>
+        
+    </data>
+</openerp>

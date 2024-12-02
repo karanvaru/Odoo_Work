@@ -1,0 +1,139 @@
+<odoo>
+    <template id="rdp_home_trusted_banner" name="Custom Trusted Snippet">
+        <section id="trusted_work_section" class="text-center m-auto">
+            <style>.logo-box { min-height: 100px; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; display:
+                flex; justify-content: center; align-items: center; } .img-responsive { max-width: 100%; max-height:
+                100%; } .owl-pagination { text-align: center; margin-top: 20px; } .carousel-indicators { position:
+                relative; display: flex; justify-content: center; margin-top: 20px; } .carousel-indicators li {
+                background-color: #888; border-radius: 50%; width: 12px; height: 12px; margin: 0 5px; cursor: pointer; }
+                .carousel-indicators .active { background-color: #555; }
+            </style>
+            <div class="text-center py-5 my-2">
+                <span style="font-size: 32px; font-weight: 200; font-family: 'proxima_nova_rgregular', Helvetica, Arial, sans-serif;">
+                    Trusted All Around The World
+                </span>
+            </div>
+            <div style="padding: 50px 20px;">
+                <div class="container">
+                    <div id="slider" class="carousel slide" data-ride="carousel">
+                        <div >
+                            <!--                             slide 1 -->
+                            <div class="carousel-item active">
+                                <div class="row row_class">
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/36791/iitm.jpg" class="img-responsive"
+                                                 alt="IIT Bombay"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/36775/air-india.jpg" class="img-responsive"
+                                                 alt="Air India"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/36777/asianpaints.jpg" class="img-responsive"
+                                                 alt="Asian Paints"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/113896/dmart.jpg" class="img-responsive" alt="DMART"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--  New Row  -->
+                                <div class="row row_class mt-3">
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/113894/cure-fit.jpg" class="img-responsive"
+                                                 alt="CureFit"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/113915/kfin-tech.jpg" class="img-responsive"
+                                                 alt="KFintech"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/113913/we-work.jpg" class="img-responsive"
+                                                 alt="WeWork"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/113900/popular-vehicals.jpg" class="img-responsive"
+                                                 alt="Popular Vehicles"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  Slide 2  -->
+                            <div class="carousel-item">
+                                <div class="row row_class">
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/113894/cure-fit.jpg" class="img-responsive"
+                                                 alt="CureFit"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/113915/kfin-tech.jpg" class="img-responsive"
+                                                 alt="KFintech"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/113913/we-work.jpg" class="img-responsive"
+                                                 alt="WeWork"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/113900/popular-vehicals.jpg" class="img-responsive"
+                                                 alt="Popular Vehicles"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row row_class">
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/36791/iitm.jpg" class="img-responsive"
+                                                 alt="IIT Bombay"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/36775/air-india.jpg" class="img-responsive"
+                                                 alt="Air India"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/36777/asianpaints.jpg" class="img-responsive"
+                                                 alt="Asian Paints"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 logos_scroll">
+                                        <div class="logo-box">
+                                            <img src="/web/image/113896/dmart.jpg" class="img-responsive" alt="DMART"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ol class="carousel-indicators pt16">
+                            <li data-target="#slider" data-slide-to="0" class="active"/>
+                            <li data-target="#slider" data-slide-to="1"/>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

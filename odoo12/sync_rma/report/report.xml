@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        string="RMA Issue"
+        id="action_report_rma_issue_order"
+        model="rma.issue"
+        name="sync_rma.report_rmarepairorder2"
+        file="sync_rma.report_rmarepairorder"
+        report_type="qweb-pdf"
+    />
+
+     <!-- Report Pivot View -->
+    <record id="view_report_rma_pivot" model="ir.ui.view">
+        <field name="name">rma.report.pivot</field>
+        <field name="model">rma.report</field>
+        <field name="arch" type="xml">
+            <pivot string="RMA Analysis" disable_linking="True">
+                <field name="issue_date" type="row"/>
+                <field name="user_id" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Report Graph View -->
+    <record id="view_report_rma_graph" model="ir.ui.view">
+        <field name="name">rma.report.graph</field>
+        <field name="model">rma.report</field>
+        <field name="arch" type="xml">
+            <graph string="RMA Analysis">
+                <field name="issue_date"/>
+                <field name="user_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Report Pivot action -->
+    <record id="action_rma_report_pivot" model="ir.actions.act_window">
+        <field name="name">RMA Analysis</field>
+        <field name="res_model">rma.report</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="view_id" ref="view_report_rma_pivot"></field>
+    </record>
+
+    <!-- Report Search View -->
+    <record id="view_report_rma_filter" model="ir.ui.view">
+        <field name="name">rma.report.select</field>
+        <field name="model">rma.report</field>
+        <field name="arch" type="xml">
+            <search string="Search">
+                <filter string="My RMA" name="my_rma" domain="[('user_id','=',uid)]"/>
+                <filter string="Current Month" name="issue_date" domain="[('issue_date','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')), ('issue_date','&gt;=',time.strftime('%%Y-%%m-01'))]"/>
+                <filter string="Current Year" name="issue_date" domain="[('issue_date','&lt;',(context_today()+relativedelta(years=1)).strftime('%%Y-01-01')), ('issue_date','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                <separator/>
+                <filter string="Cancelled" name="Cancelled" domain="[('state','=','cancel')]"/>
+                <filter string="Done" name="Done" domain="[('state','=','done')]"/>
+                <separator/>
+                <group  expand="0" string="Extended Filters...">
+                    <field name="partner_id" filter_domain="[('partner_id','child_of',self)]"/>
+                    <field name="location_id"/>
+                    <field name="location_dest_id"/>
+                    <field name="associated_so"/>
+                    <field name="order_id"/>
+                </group>
+                <group  expand="1" string="Group By">
+                    <filter string="Partner" name="partner" context="{'group_by':'partner_id'}" />
+                    <filter string="Priority" name="Priority" context="{'group_by':'priority'}"/>
+                    <filter string="State" name="State" context="{'group_by':'state'}" />
+                    <filter string="Issue Reference" name="Issue Reference" context="{'group_by':'order_id'}" />
+                    <filter string="Product" name="Product" context="{'group_by':'product_id'}"/>
+                    <filter string="Delivered Qty" name="Delivered Qty" context="{'group_by':'qty_delivered'}"/>
+                    <filter string="Return Qty" name="Return Qty" context="{'group_by':'to_return'}"/>
+                    <filter string="Return Type" name="Return Type" context="{'group_by':'return_type_id'}"/>
+                    <filter string="Repair" name="Repair" context="{'group_by':'repair_id'}" />
+                    <filter string="Replace Sale" name="Replace Sale" context="{'group_by':'sale_id'}" />
+                    <filter string="Credit Memo" name="Credit Memo" context="{'group_by':'invoice_id'}" />
+                    <filter string="Subject" name="Subject" context="{'group_by':'subject'}" />
+                    <separator/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- RMA Menu -->
+    <menuitem name="RMA" action="action_rma_report_pivot" id="menu_rma_report" parent="sale.menu_sale_report" groups="sync_rma.group_rma_manager"/>
+
+</odoo>

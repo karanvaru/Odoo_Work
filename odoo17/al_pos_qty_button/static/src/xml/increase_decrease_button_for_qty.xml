@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="al_pos_qty_button.Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
+        <xpath expr="//li[@class='price-per-unit']" position="replace">
+            <div class="d-flex align-items-center">
+                <em t-esc="line.qty" class="qty fst-normal fw-bolder me-1"/>
+                <t t-if="line.unit" t-esc="line.unit"/>
+                <t t-if="line.price !== 0">
+                    x <s t-esc="line.oldUnitPrice" t-if="line.oldUnitPrice"/>
+                    <t t-esc="line.unitPrice"/>
+                    <span t-if="line.unit"> / <t t-esc="line.unit"/></span>
+                </t>
+                <span class="ms-auto d-flex">
+                    <li class="orderline-controls d-flex mt-2">
+                        <span t-on-click="() => this.onClickIncreaseQty()" class="ps-2">
+                            <i class="fa fa-plus-circle" style="font-size: 17px;"></i>
+                        </span>
+                        <span t-on-click="() => this.onClickDecreaseQty()" class="ps-2">
+                            <i class="fa fa-minus-circle" style="font-size: 17px;"></i>
+                        </span>
+                    </li>
+                </span>
+            </div>
+        </xpath>
+    </t>
+</templates>
+

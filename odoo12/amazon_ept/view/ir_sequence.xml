@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<openerp>
+   <data noupdate="1">
+
+       <record id="seq_mfn_sales_report" model="ir.sequence">
+           <field name="name">MFN Sales Report</field>
+           <field name="code">mfn.sales.report.ept</field>
+           <field name="prefix">SR</field>
+           <field name="padding">4</field>
+           <field name="company_id" eval="False"/>
+       </record>
+       
+        <record id="seq_inv_adjustment_report_job" model="ir.sequence">
+            <field name="name">import_inv_adjustment</field>
+            <field name="code">import_inv_adjustment_sequence</field>
+            <field name="padding">5</field>
+            <field name="prefix">INV-ADJUST</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+        <record id="seq_removal_order_report_job" model="ir.sequence">
+            <field name="name">import_removal_order</field>
+            <field name="code">import_removal_order_sequence</field>
+            <field name="padding">5</field>
+            <field name="prefix">RM-O</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+   </data>
+</openerp>

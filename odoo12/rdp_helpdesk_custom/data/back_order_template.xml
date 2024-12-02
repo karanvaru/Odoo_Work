@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="back_order_stage_mail_template" model="mail.template">
+            <field name="name">Back order stage Remainder</field>
+            <field name="model_id" ref="model_helpdesk_ticket"/>
+<!--            <field name="email_from">${object.user_id.email_formatted}</field>-->
+            <field name="email_to">${object.partner_email}</field>
+            <field name="subject">Requested Component Is Out Of Stock And Back In Order</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px">
+                        Dear ${object.partner_id.name}
+                        <br> </br>
+                        <br> </br>
+                        Ticket No : ${object.id}
+                        <br> </br>
+<!--                        Serial No : ${object.x_studio_serial_no}-->
+                        <br> </br>
+                        <br> </br>
+                        I hope this email finds you well. We truly value your business and wanted to provide you with an
+                        update regarding the component you requested.
+                        <br> </br>
+                        <br> </br>
+                        We are writing to let you know that the component you have requested is currently out of stock
+                        and on backorder. We apologize for the inconvenience caused and our team has been diligently
+                        working to replenish the item back in stock as soon as possible.
+                        <br> </br>
+                        <br> </br>
+                        Thank you for your understanding and patience. We look forward to serving you and fulfilling
+                        your order once the component is available again.
+                        <br> </br>
+                        <br> </br>
+                        Best regards,
+                        <br> </br>
+                        RDP Helpdesk Team.
+                        <br> </br>
+                        1800 419 3399
+                        <br> </br>
+<!--                        <br> </br>-->
+<!--                        Customer Service Department timings-->
+<!--                        <br> </br>-->
+<!--                        (Monday-Saturday,10 AM-6 PM)-->
+                    </p>
+                </div>
+            </field>
+            <!--            <field name="report_template" ref="report_employee_card"/>-->
+            <!--            <field name="report_name">Employee Card_${(object.name)}</field>-->
+        </record>
+    </data>
+</odoo>

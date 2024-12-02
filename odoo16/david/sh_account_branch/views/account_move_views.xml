@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Move View -->
+    <record id="sh_multi_branch_account_move_form_view_inherit" model="ir.ui.view">
+        <field name="name">account.move.inherit.form.view.branch</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[@id='other_tab']//group//group[@name='accounting_info_group']//field[@name='company_id']" position="after">
+                <field name="branch_id" groups="sh_base_branch.sh_multi_branch_group" options="{'no_create': True}" readonly="1" />
+            </xpath>
+            <xpath expr="//notebook//page[@id='other_tab_entry']//group//group[2]//field[@name='company_id']" position="after">
+                <field name="branch_id" groups="sh_base_branch.sh_multi_branch_group" options="{'no_create': True}" readonly="1" />
+            </xpath>
+            <xpath expr="//notebook//page[@id='aml_tab']//field//tree//field[@name='company_id']" position="after">
+                <field name="branch_id" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_account_move_search_view_inherit" model="ir.ui.view">
+        <field name="name">account.move.search.branch</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//search//group//filter[@name='salesperson']" position="after">
+                <filter string="Branch" name="branch_id" domain="[]" context="{'group_by': 'branch_id'}" groups="sh_base_branch.sh_multi_branch_group" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_account_move_entry_search_view_inherit" model="ir.ui.view">
+        <field name="name">account.move.search.branch</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_move_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//search//group//filter[@name='by_company']" position="after">
+                <filter string="Branch" name="branch_id" domain="[]" context="{'group_by': 'branch_id'}" groups="sh_base_branch.sh_multi_branch_group" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_account_move_tree_view_inherit" model="ir.ui.view">
+        <field name="name">account.move.inherit.tree.view.branch</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" optional="hide" groups="sh_base_branch.sh_multi_branch_group" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_journal_entries_tree_view_inherit" model="ir.ui.view">
+        <field name="name">account.move.inherit.tree.view.branch</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_tree" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" optional="show" groups="sh_base_branch.sh_multi_branch_group" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Move Line View -->
+    <record id="sh_multi_branch_account_move_line_form_view_inherit" model="ir.ui.view">
+        <field name="name">account.move.line.inherit.form.view.branch</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" options="{'no_create': True}" invisible="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_account_move_line_search_view_inherit" model="ir.ui.view">
+        <field name="name">account.move.line.search.branch</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_account_move_line_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//search//group//filter[@name='group_by_move']" position="after">
+                <filter string="Branch" name="branch_id" domain="[]" context="{'group_by': 'branch_id'}" groups="sh_base_branch.sh_multi_branch_group" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_multi_branch_account_move_line_tree_view_inherit" model="ir.ui.view">
+        <field name="name">account.move.line.inherit.tree.view.branch</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_tree" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="branch_id" optional="show" groups="sh_base_branch.sh_multi_branch_group" />
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

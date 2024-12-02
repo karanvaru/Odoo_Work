@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2018-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="0">
+        <!-- Website preorder test partner -->
+        <record model="res.partner" id="wk_website_preorder_test_partner">
+            <field name="name">Test User</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="email">test-user@test.com</field>
+        </record>
+
+        <record model="res.users" id="wk_website_preorder_test_user" context="{'no_reset_password': True}">
+        	<field name="login">test-user@test.com</field>
+            <field name="password">webkul</field>
+            <field name="groups_id" eval="[(6,0,[ref('base.group_portal')])]"/>
+            <field name="partner_id" ref="website_preorder.wk_website_preorder_test_partner"/>
+        </record>
+
+        <!-- Website Pre-order demo sale order -->
+        <record id="preorder_sale_order_1" model="sale.order">
+            <field name="partner_id" ref="website_preorder.wk_website_preorder_test_partner"/>
+            <field name="partner_invoice_id" ref="website_preorder.wk_website_preorder_test_partner"/>
+            <field name="partner_shipping_id" ref="website_preorder.wk_website_preorder_test_partner"/>
+            <field name="user_id" ref="website_preorder.wk_website_preorder_test_user"/>
+            <field name="preorder_payment_state">complete</field>
+            <field name="is_preorder" eval="True"/>
+            <field name="date_order" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+        </record>
+        <record id="website_preorder.preorder_sale_order_1" model="sale.order">
+            <field name="state">sent</field>
+        </record>
+        <record id="preorder_sale_order_line_1" model="sale.order.line">
+            <field name="order_id" ref="website_preorder.preorder_sale_order_1"/>
+            <field name="product_id" ref="website_preorder.pre_order_product_product_1"/>
+            <field name="is_preorder" eval="True"/>
+            <field name="price_unit">1127.0</field>
+            <field name="preorder_amount">1127.0</field>
+            <field name="pre_order_qty">1</field>
+        </record>
+
+        <record id="preorder_sale_order_2" model="sale.order">
+            <field name="partner_id" ref="website_preorder.wk_website_preorder_test_partner"/>
+            <field name="partner_invoice_id" ref="website_preorder.wk_website_preorder_test_partner"/>
+            <field name="partner_shipping_id" ref="website_preorder.wk_website_preorder_test_partner"/>
+            <field name="user_id" ref="website_preorder.wk_website_preorder_test_user"/>
+            <field name="preorder_payment_state">partial</field>
+            <field name="is_preorder" eval="True"/>
+            <field name="date_order" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+        </record>
+        <record id="website_preorder.preorder_sale_order_2" model="sale.order">
+            <field name="state">sent</field>
+        </record>
+        <record id="preorder_sale_order_line_2" model="sale.order.line">
+            <field name="order_id" ref="website_preorder.preorder_sale_order_2"/>
+            <field name="product_id" ref="website_preorder.pre_order_product_product_2"/>
+            <field name="is_preorder" eval="True"/>
+            <field name="price_unit">1755.00</field>
+            <field name="preorder_amount">1755.00</field>
+            <field name="pre_order_qty">1</field>
+        </record>
+    </data>
+</odoo>

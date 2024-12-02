@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+refer_and_earn_faq_admin,access_refer_earn_faq.admin,model_refer_and_earn_faq,sales_team.group_sale_manager,1,1,1,1

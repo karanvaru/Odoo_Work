@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+<!--    <template id="assets_backend" name="cost_estim assets" inherit_id="web.assets_backend">-->
+<!--            <xpath expr="." position="inside">-->
+<!--            <link rel="stylesheet" src="/cost_estimation/static/src/css/tree_col_width.scss"/>-->
+<!--        </xpath>-->
+<!--    </template>-->
+</odoo>

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_product_template">
+    
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <!-- <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/> -->
+                    <t t-set="address">
+                        <div t-field="o.uid"
+                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                        <p t-if="o.uid.vat"><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="o.uid.vat"/></p>
+                    </t>
+
+                    <div class="page">
+                        <div class="banner-section-bg-container d-flex flex-column justify-content-end">
+                            <strong>
+                                <h1 style="font-weight:100 !important; color:#555; font-size:45px; line-height:45px;">
+                                    Product Details
+                                    <span style="font-style:italic; color:#C00;">!</span>
+                                    <br/>
+                                </h1>
+                            </strong>
+                        </div>
+                        <br/>
+                        <br/>
+                        <!--                        <div class="o_field_image o_field_widget oe_avatar" aria-atomic="true"-->
+                        <!--                             style="display: flex; align-items: center; justify-content: space-between;">-->
+                        <!--                            <div style="text-align: left; padding-left: 80px;">-->
+                        <!--                                <t t-foreach="o.product_variant_ids" t-as="product">-->
+                        <!--                                    <t t-call="product.report_simple_barcode">-->
+                        <!--                                        <t t-set="product" t-value="product"/>-->
+                        <!--                                    </t>-->
+                        <!--                                </t>-->
+                        <!--                            </div>-->
+
+                        <div class="o_field_image o_field_widget oe_avatar" aria-atomic="true"
+                             style="display: flex; align-items: center; justify-content: space-between;">
+                            <div style="text-align: left; padding-left: 80px;">
+                                <t t-set="main_product"
+                                   t-value="o.product_variant_ids and o.product_variant_ids[0] or False"/>
+                                <t t-if="main_product">
+                                    <t t-call="product.report_simple_barcode">
+                                        <t t-set="product" t-value="main_product"/>
+                                    </t>
+                                </t>
+                            </div>
+                            <div style="text-align: right; padding-right: 150px;">
+                                <img t-if="not o.image_medium" t-att-src="'/web/static/src/img/placeholder.png'"
+                                     height="140" border="1" width="100%"/>
+                                <img t-if="o.image_medium"
+                                     t-att-src="'data:image/png;base64,%s' % to_text(o.image_medium)" height="140"
+                                     border="1" width="120"/>
+                                <h6 style="text-align: right; padding-right: 20px;">
+                                    <span t-field="o.name"/>
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                   style="font-family: 'Roboto', sans-serif; font-size:15px; line-height:20px; max-width:800px;">
+                                <br/>
+                                <br/>
+                                <tr>
+                                    <td colspan="2">
+
+                                        <table class="table table-sm o_main_table" name="products">
+                                            <thead>
+                                                <tr>
+                                                    <t t-set="colspan" t-value="6"/>
+                                                    <th class="text-left">
+                                                        <span>Product</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Created Date</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Created By</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Product Category</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Product Type</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="products">
+                                                <t>
+                                                    <tr t-att-class="'o_line_section'">
+                                                        <td>
+                                                            <span t-field="o.name"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="o.create_date"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="o.create_uid"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="o.categ_id"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="o.type"/>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+
+                                        <br/>
+                                        <br/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                   style="font-family: 'Roboto', sans-serif; font-size:15px; line-height:20px; max-width:800px;">
+                                <br/>
+                                <h6 style="font-weight:50 !important; color:#555; font-size:20px; line-height:20px;">
+                                    <span>Quantity and Price Details
+                                    </span>
+                                </h6>
+                                <br/>
+                                <tr>
+                                    <td colspan="2">
+                                        <table class="table table-sm o_main_table" name="products">
+                                            <thead>
+                                                <tr>
+                                                    <t t-set="colspan" t-value="6"/>
+                                                    <th class="text-left">
+                                                        <span>Quantity On Hand</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Forecasted Quantity</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Cost</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Sales Price</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Customer Taxes</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="products">
+                                                <t>
+                                                    <tr t-att-class="'o_line_section'">
+                                                        <td>
+                                                            <span t-field="o.qty_available"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="o.virtual_available"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="o.standard_price"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="o.list_price"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="o.taxes_id"/>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                        <br/>
+                                        <br/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                   style="font-family: 'Roboto', sans-serif; font-size:15px; line-height:20px; max-width:800px;">
+                                <br/>
+                                <h6 style="font-weight:50 !important; color:#555; font-size:20px; line-height:20px;">
+                                    <span>Counterpart Locations and Logistics
+                                    </span>
+                                </h6>
+                                <br/>
+                                <tr>
+                                    <td colspan="2">
+                                        <table class="table table-sm o_main_table" name="products">
+                                            <thead>
+                                                <tr>
+                                                    <t t-set="colspan" t-value="6"/>
+                                                    <th class="text-left">
+                                                        <span>Production Location</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Inventory Location</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Weight</span>
+                                                    </th>
+                                                    <th class="text-right">
+                                                        <span>Volume</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="products">
+                                                <t>
+                                                    <tr t-att-class="'o_line_section'">
+                                                        <td>
+                                                            <span t-field="o.property_stock_production"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="o.property_stock_inventory"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="o.weight"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span t-field="o.volume"/>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                        <br/>
+                                        <br/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <hr class="separator-line"
+                                style="border-top: 3px solid #ccc; border_width: 100%; border_radius: 80%; margin: 40px 0;"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

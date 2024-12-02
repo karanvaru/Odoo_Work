@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="asterisk_base_sip_translation_action" model="ir.actions.act_window">
+    <field name="name">Translations</field>
+    <field name="res_model">asterisk_base_sip.translation</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem action="asterisk_base_sip_translation_action"
+    groups="asterisk_common.group_asterisk_admin" id="asterisk_base_sip_translation_menu"
+    name="Translations" parent="asterisk_base_sip_menu" sequence="200"/>
+  
+  <record id="asterisk_base_sip_translation_list" model="ir.ui.view">
+    <field name="name">asterisk_base_sip.translation.list</field>
+    <field name="model">asterisk_base_sip.translation</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree>        
+        <field name="name"/>
+        <field name="routes" widget="many2many_tags"/>
+        <field name="src_user"/>
+        <field name="translation_type"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="asterisk_base_sip_translation_form" model="ir.ui.view">
+    <field name="name">asterisk_base_sip.translation.form</field>
+    <field name="model">asterisk_base_sip.translation</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <field name="translation_type" widget="statusbar" clickable="1"/>
+        </header>
+        <sheet>
+          <div class="oe_title" name="title">
+            <h1>
+              <field name="name"/>
+            </h1>
+          </div>
+            <group name="dst" string="Destination"
+                attrs="{'invisible': [('translation_type', '!=', 'dst')]}">
+              <field name="dst" placeholder="_X."
+                attrs="{'required': [('translation_type', '=', 'dst')]}"/>
+              <field name="dst_replace"/>
+              <field name="dst_prefix"/>
+              <field name="dst_skip"/>
+              <field name="dst_skip_length"
+                attrs="{'invisible': [('dst_skip', '=', False)]}"/>
+            </group>                          
+            <group name="src" string="Source"
+                attrs="{'invisible': [('translation_type', '!=', 'src')]}">
+              <field name="src"/>
+              <field name="src_channel"/>
+              <field name="src_user"/>              
+              <field name="src_replace"/>
+              <field name="src_prefix"/>
+              <field name="src_skip"/>
+              <field name="src_skip_length"
+                attrs="{'invisible': [('src_skip', '=', False)]}"/>
+            </group>
+            <group string="Used in Routes" name="routes">
+              <field name="routes"/>
+            </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="asterisk_base_sip_translation_search" model="ir.ui.view">
+    <field name="name">asterisk_base_sip_translation_search</field>
+    <field name="model">asterisk_base_sip.translation</field>
+    <field name="type">search</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="dst"/>
+        <field name="dst_prefix"/>
+        <field name="dst_replace"/>
+        <field name="src"/>
+        <field name="src_prefix"/>
+        <field name="src_replace"/>
+        <filter name="by_type" string="Type" context="{'group_by': 'translation_type'}"/>
+      </search>
+    </field>
+  </record>
+
+</odoo>

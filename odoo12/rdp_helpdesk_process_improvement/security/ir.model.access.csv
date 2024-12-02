@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+helpdesk_process_improvement,helpdesk.process.improvement,model_helpdesk_process_improvement,,1,1,1,1
+access_helpdesk_process_improvement_category,helpdesk.process.improvement.category,model_helpdesk_process_improvement_category,,1,1,1,1
+access_helpdesk_process_improvement_sub_category,helpdesk.process.improvement.sub.category,model_helpdesk_process_improvement_sub_category,,1,1,1,1
+user_hpi_cancel,hpi.cancel,model_hpi_cancel,,1,1,1,1
+user_hpi_future,hpi.future,model_hpi_future,,1,1,1,1
+access_hdpi_category,hdpi.category,model_hdpi_category,,1,1,1,1
+access_hdpi_tags,hdpi.tags,model_hdpi_tags,,1,1,1,1

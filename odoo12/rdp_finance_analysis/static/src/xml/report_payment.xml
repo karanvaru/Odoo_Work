@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <templates id="report_finance_payment_report"> 
+        
+        <t t-name="finance_payment_report">
+            <div class="o_payment_container_report_page">
+                <div>
+                    <h3>Finance Analysis Report</h3>
+                </div>
+                <div class="report_print">
+                    <button type="button" class="btn btn-primary" id="pdf"
+                            style="position: relative;height:30px;color:white;background-color: #00A0AD;border-color: #00A0AD; padding:3px;">
+                        Print (PDF)
+                    </button>
+                    <!-- <button type="button" class="btn btn-primary" id="xlsx"
+                            style="position: relative;height:30px;color:white;background-color: #00A0AD;border-color: #00A0AD; padding:3px;">
+                        Export (XLSX)
+                    </button>  -->
+                    <div style="display:inline-block; margin-left:70%; height:20px;">
+                    <form class="form-inline" t-name="report_payment_search" >
+                        <div t-attf-class="form-group #{is_variant_applied ? 'col-lg-4' : 'col-lg-8'}">
+                            <label>Report Type</label>
+                            <select style="border: 0px solid black;">
+                                <option t-att-data-type="'payments'">Payments</option>
+                                <option t-att-data-type="'invoices'">Invoices</option>
+                                <option t-att-data-type="'expense'">Expenses</option>
+                            </select>
+                        </div>
+                    </form>
+                    </div>                                             
+                </div> 
+
+                <div>
+                   <div class="filter_view_tb"></div>
+                </div>
+                <br></br>
+                <div>
+                   <div class="table_view"></div>
+                </div>
+            </div>            
+        </t>
+
+        <t t-name="finance_payment_table">
+           <div class="col-lg-12">
+                <div class="table_main_view">
+                    <div class="mt16">
+                    <t t-set="total_1" t-value="0" />
+                    <t t-set="total_2" t-value="0" />
+                    <t t-set="total_3" t-value="0" />
+                    <t t-set="mass_total" t-value="0" />
+                    <table class="o_payment_expandable" cellspacing="0" style="width:100%" >
+                        <thead>
+                            <t t-foreach="report_lines" t-as="line">
+                                <t t-if="line.state=='posted'">
+                                    <t t-set="mass_total" t-value="mass_total+line.amount"/>
+                                </t>
+                            </t>
+                            <tr style="border-bottom: 2px solid black;">
+                                <th><h3>Payments</h3></th>
+                                <th colspan="5" style="text-align:right;">
+                                    <h3>₹&#160;<t t-esc="mass_total" t-options='{"widget": "monetary", "display_currency": currency}'/></h3>
+                                </th>                
+                            </tr>
+                            
+                        </thead>
+                        <tbody>
+                            <t t-foreach="report_lines" t-as="line">
+                                
+                                <!-- Customer Receipts / Return -->
+                                <t t-if="line.payment_type=='inbound'">
+                                    <t t-if="line.state=='posted'">
+                                        <t t-set="total_2" t-value="total_2+line.amount"/>
+                                    </t>
+                                </t>
+
+                                <!-- Vendor Payments / Refund -->
+                                <t t-if="line.payment_type=='outbound'">
+                                    <t t-if="line.state=='posted'">
+                                        <t t-set="total_3" t-value="total_3+line.amount"/>
+                                    </t>
+                                </t>
+
+                                <!-- Internal Transfer -->
+                                <t t-if="line.payment_type=='transfer'">
+                                    <t t-if="line.state=='posted'">
+                                        <t t-set="total_1" t-value="total_1+line.amount"/>
+                                    </t>
+                                </t>
+                            </t>
+
+                           
+                            <tr style="border-bottom: 0.50px solid gray;">
+                                <th>
+                                    <!-- <span class="o_payment_unfoldable fa fa-fw fa-caret-right" t-att-data-function="'get_operations'" role="img" aria-label="Unfold" title="Unfold"/> -->
+                                    <b>Vendor Payments / Refund</b>
+                                </th>
+                                <td colspan="5" style="text-align:right;">₹&#160;<t t-esc="total_3"/></td>
+                                <tr class="text-right">
+                                    <th>Office Location</th>
+                                    <th>Transaction Category</th>
+                                    <th>Transaction Sub Category</th>
+                                    <th>Transaction Category Type</th>
+                                    <th>Amount</th>
+                                    <t t-foreach="report_lines" t-as="line">
+                                        <t t-if="line.payment_type=='outbound'">
+                                            <t t-if="line.state=='posted'">
+                                                <tr class="text-right"> 
+                                                    <td><t t-esc='line.payment_type'/></td>
+                                                    <td><t t-esc='line.name'/></td>
+                                                    <td><t t-esc='line.journal_id'/></td>
+                                                    <td><t t-esc='line.partner_id'/></td>
+                                                    <td><t t-esc="line.amount"/></td>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </tr> 
+                            </tr>
+                            <tr style="border-bottom: 0.50px solid gray;">
+                                <th>
+                                    <!-- <a type="button" class="dropdown-toggle expand_column" 
+                                    data-toggle="dropdown"/> -->
+                                    <b>Customer Receipts / Return</b>
+                                </th> 
+                                <td colspan="5" style="text-align:right;">₹&#160;<t t-esc="total_2"/></td>
+                                <tr class="text-right " >
+                                    <!-- <th>Office Location</th>
+                                    <th>Transaction Category</th>
+                                    <th>Transaction Sub Category</th>
+                                    <th>Transaction Category Type</th>
+                                    <th>Amount</th> -->
+                                    <t t-foreach="report_lines" t-as="line">
+                                        <t t-if="line.payment_type=='inbound'">
+                                            <t t-if="line.state=='posted'">
+                                                <tr class="text-right">
+                                                    <td><t t-esc='line.payment_type'/></td>
+                                                    <td><t t-esc='line.name'/></td>
+                                                    <td><t t-esc='line.journal_id'/></td>
+                                                    <td><t t-esc='line.partner_id'/></td>
+                                                    <td><t t-esc="line.amount"/></td>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </tr>                       
+                            </tr>
+                            <tr style="border-bottom: 0.50px solid gray;">
+                                <th>
+                                    <!-- <a type="button" class="dropdown-toggle expand_column" 
+                                    data-toggle="dropdown"/> -->
+                                    <b>Internal Transfer</b>
+                                </th>
+                                <td colspan="5" style="text-align:right;">₹&#160;<t t-esc="total_1"/></td>
+                                <tr class="text-right">
+                                    <!-- <th>Office Location</th>
+                                    <th>Transaction Category</th>
+                                    <th>Transaction Sub Category</th>
+                                    <th>Transaction Category Type</th>
+                                    <th>Amount</th> -->
+                                    <t t-foreach="report_lines" t-as="line">
+                                        <t t-if="line.payment_type=='transfer'">
+                                            <t t-if="line.state=='posted'">
+                                                <tr class="text-right">
+                                                    <td><t t-esc="line.payment_type"/></td>
+                                                    <td><t t-esc='line.name'/></td>
+                                                    <td><t t-esc='line.journal_id'/></td>
+                                                    <td><t t-esc='line.partner_id'/></td>
+                                                    <td><t t-esc="line.amount"/></td>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </tr> 
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br></br>
+                    <br></br>
+                   </div>                   
+                </div>
+            </div>
+        </t>
+    </templates>
+
+     <!-- <template id="report_payment_transaction_info">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-call="web.basic_layout">
+            <t t-call-assets="assets_common" t-js="False"/>
+            <t t-foreach="docs" t-as="data">
+                <div class="page">
+                    <t t-call="report_finance_payment_report"/>
+                </div>
+                <p style="page-break-before:always;"> </p>
+            </t>
+        </t>
+    </template> -->
+    <!-- <template id="report_payment_transaction_info">
+        <t t-call="web.html_container">
+            <t t-call="report_finance_payment_report"/>
+        </t>
+    </template> -->

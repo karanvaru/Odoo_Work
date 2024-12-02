@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="employee_appraisal_sequence" model="ir.sequence">
+            <field name="name">Employee AppraisalSequence</field>
+            <field name="code">employee.appraisal.sequence</field>
+            <field name="prefix">SA</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

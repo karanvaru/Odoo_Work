@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="asterisk_base.extension">
+; Extension for <t t-esc="rec.name"/>
+<t t-if="rec.record_calls">exten => <t t-esc="rec.number"/>,1,MixMonitor(${UNIQUEID}.wav)</t>
+<t t-else="">exten => <t t-esc="rec.number"/>,1,Verbose(EXTENSION <t t-esc="rec.name"/>)</t>
+</template>
+
+<template id="asterisk_base.dialplan_extension">
+<t t-if="rec.is_custom">
+    exten => <t t-esc="rec.exten"/>,n,Goto(<t t-esc="rec.custom_context"/>,${EXTEN},1)
+</t>
+<t t-else="">
+    exten => <t t-esc="rec.exten"/>,n,Goto(dialplan-<t t-esc="rec.id"/>,${EXTEN},1)    
+</t>
+</template>
+</odoo>

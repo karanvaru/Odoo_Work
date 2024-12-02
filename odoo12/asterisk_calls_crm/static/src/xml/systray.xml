@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-extend="asterisk_calls.systray_items">
+        <t t-jquery="#asterisk_calls_systray_partner_th" t-operation="append"> 
+            <th>CRM</th>
+        </t>
+        <t t-jquery="#asterisk_calls_systray_partner_td" t-operation="append"> 
+            <td t-att-lead="channel.lead[0]">
+                <t t-if="channel.lead">
+                    <t t-esc="channel.lead[1]"/>                    
+                </t>
+            </td>
+        </t>        
+    </t>
+</templates>

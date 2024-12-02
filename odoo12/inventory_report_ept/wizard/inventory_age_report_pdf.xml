@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<report id="action_download_pdf_report_ept"
+		string="Inventory Age Report" model="inventory.age.report.ept"
+		report_type="qweb-pdf" file="inventory_report_ept.inventoryage_doc"
+		name="inventory_report_ept.inventoryage_doc"
+		print_report_name="'Inventory Age Report - %s' % (time.strftime('%Y-%m-%d %H:%M:%S'))"
+		paperformat="inventory_report_ept.paperformat_inventory_age_ept" />
+
+
+	<template id="inventoryage_doc">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="web.internal_layout">
+					<div class="page">
+						<div style="page-break-after: always;">
+							<h3 class="text-center mb32">Inventory Age Report</h3>
+							<div class="text-center mb32">
+								<h4>
+									Date:
+									<span t-esc="datetime.date.today()" />
+								</h4>
+							</div>
+
+							<t t-set="datas" t-value="o.get_single_inventory_dict()" />
+
+							<t t-if="datas">
+								<tr t-foreach="datas" t-as="inv_data">
+									<table width="100%" height="30pt">
+										<!-- <t t-if="o.report_wise=='Warehouse'"> -->
+										<!-- <th class="text-center"><t t-esc="o.env['stock.warehouse'].browse(int(inv_data)).name"/></th> -->
+										<!-- </t> -->
+										<!-- <t t-if="o.report_wise=='Location'"> -->
+										<!-- <th class="text-center"><t t-esc="o.env['stock.location'].browse(int(inv_data)).display_name"/></th> -->
+										<!-- </t> -->
+										<th class="text-center">
+											<t t-esc="o.env['res.company'].browse(int(inv_data)).name" />
+										</th>
+									</table>
+									<table class="table table-bordered text-center"
+										style="table-layout:auto" height="30pt">
+										<thead>
+											<tr style="background-color:#DDDCDC">
+												<th>
+													<h6>
+														<b>Odoo SKU</b>
+													</h6>
+												</th>
+												<th>
+													<h6>
+														<b>Product Name</b>
+													</h6>
+												</th>
+												<th>
+													<h6>
+														<b>Total Quantity</b>
+													</h6>
+												</th>
+												<th>
+													<h6>
+														<b>Qty(% of overall inventory)</b>
+													</h6>
+												</th>
+												<th>
+													<h6>
+														<b>Qty(oldest)</b>
+													</h6>
+												</th>
+												<th>
+													<h6>
+														<b>Days old(oldest)</b>
+													</h6>
+												</th>
+												<th>
+													<h6>
+														<b>Value</b>
+													</h6>
+												</th>
+												<th>
+													<h6>
+														<b>Value(% of overall inventory)</b>
+													</h6>
+												</th>
+												<!-- <th> -->
+												<!-- <h6> -->
+												<!-- <b>Average cost</b> -->
+												<!-- </h6> -->
+												<!-- </th> -->
+												<!-- <th> -->
+												<!-- <h6> -->
+												<!-- <b>Average sale price</b> -->
+												<!-- </h6> -->
+												<!-- </th> -->
+												<!-- <th> -->
+												<!-- <h6> -->
+												<!-- <b>Current sale price</b> -->
+												<!-- </h6> -->
+												<!-- </th> -->
+											</tr>
+										</thead>
+										<tbody>
+											<tr t-foreach="datas[inv_data]" t-as="line">
+												<td>
+													<t t-esc="line['default_code']" />
+												</td>
+												<td>
+													<t t-esc="line['name']" />
+												</td>
+												<td>
+													<t t-esc="line['product_qty']" />
+												</td>
+												<td>
+													<t t-esc="line['overall_qty']" />
+												</td>
+												<td>
+													<t t-esc="line['product_oldest_qty']" />
+												</td>
+												<td>
+													<t t-esc="line['product_oldest_qty_day']" />
+												</td>
+												<td>
+													<t t-esc="line['product_inventory_value']" />
+												</td>
+												<td>
+													<t t-esc="line['overall_inv']" />
+												</td>
+												<!-- <td> -->
+												<!-- <t t-esc="line['product_average_cost']" /> -->
+												<!-- </td> -->
+												<!-- <td> -->
+												<!-- <t t-esc="line['product_average_sale_price']" /> -->
+												<!-- </td> -->
+												<!-- <td> -->
+												<!-- <t t-esc="line['product_current_sale_price']" /> -->
+												<!-- </td> -->
+											</tr>
+										</tbody>
+									</table>
+								</tr>
+							</t>
+						</div>
+						<div>
+							<h3 class="text-center mb32">All inventory</h3>
+
+							<table class="table table-bordered text-center"
+								style="table-layout:auto" height="30pt">
+								<thead>
+									<tr style="background-color:#DDDCDC">
+										<th>
+											<h6>
+												<b>Odoo SKU</b>
+											</h6>
+										</th>
+										<th>
+											<h6>
+												<b>Product Name</b>
+											</h6>
+										</th>
+										<th>
+											<h6>
+												<b>Total Quantity</b>
+											</h6>
+										</th>
+										<th>
+											<h6>
+												<b>Qty(% of overall inventory)</b>
+											</h6>
+										</th>
+										<th>
+											<h6>
+												<b>Qty(oldest)</b>
+											</h6>
+										</th>
+										<th>
+											<h6>
+												<b>Days old(oldest)</b>
+											</h6>
+										</th>
+										<th>
+											<h6>
+												<b>Value</b>
+											</h6>
+										</th>
+										<th>
+											<h6>
+												<b>Value(% of overall inventory)</b>
+											</h6>
+										</th>
+										<!-- <th> -->
+										<!-- <h6> -->
+										<!-- <b>Average cost</b> -->
+										<!-- </h6> -->
+										<!-- </th> -->
+										<!-- <th> -->
+										<!-- <h6> -->
+										<!-- <b>Average sale price</b> -->
+										<!-- </h6> -->
+										<!-- </th> -->
+										<!-- <th> -->
+										<!-- <h6> -->
+										<!-- <b>Current sale price</b> -->
+										<!-- </h6> -->
+										<!-- </th> -->
+									</tr>
+								</thead>
+								<tbody>
+									<t t-set="datas" t-value="o.get_all_inventory_dict()" />
+									<t t-if="datas">
+										<t t-foreach="datas" t-as="line">
+											<tr>
+												<td>
+													<t t-esc="line_value['default_code']" />
+												</td>
+												<td>
+													<t t-esc="line_value['name']" />
+												</td>
+												<td>
+													<t t-esc="line_value['product_qty']" />
+												</td>
+												<td>
+													<t t-esc="line_value['overall_qty']" />
+												</td>
+												<td>
+													<t t-esc="line_value['product_oldest_qty']" />
+												</td>
+												<td>
+													<t t-esc="line_value['product_oldest_qty_day']" />
+												</td>
+												<td>
+													<t t-esc="line_value['product_inventory_value']" />
+												</td>
+												<td>
+													<t t-esc="line_value['overall_inv']" />
+												</td>
+												<!-- <td> -->
+												<!-- <t t-esc="line_value['product_average_cost']" /> -->
+												<!-- </td> -->
+												<!-- <td> -->
+												<!-- <t t-esc="line_value['product_average_sale_price']" /> -->
+												<!-- </td> -->
+												<!-- <td> -->
+												<!-- <t t-esc="line_value['product_current_sale_price']" /> -->
+												<!-- </td> -->
+											</tr>
+										</t>
+									</t>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</t>
+			</t>
+		</t>
+	</template>
+</odoo>

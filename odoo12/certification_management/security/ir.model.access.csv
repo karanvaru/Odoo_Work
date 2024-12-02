@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+certification_management_user,certification_management_model,base.group_user,,1,1,1,0
+certification_name_user,certification_name_model,base.group_user,,1,1,1,0
+certification_type_user,certification.type,model_certification_type,,1,1,1,1

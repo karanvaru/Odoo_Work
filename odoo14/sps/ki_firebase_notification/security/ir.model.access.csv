@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ki_firebase_notification,access.ki.firebase.notification,model_ki_firebase_notification,base.group_user,1,1,1,1
+access_res_mobile_user,access.res.mobile.user,model_res_mobile_user,base.group_user,1,1,1,1

@@ -1,0 +1,20 @@
+{
+    'name': 'Ki Curtain Sale Extension',
+    'version': '1.0',
+    'category': 'Ki Curtain Sale Extension',
+    'author': 'kiran-infosoft',
+    'website': "www.kiraninfosoft.in",
+    'summary': 'Ki Curtain Sale Extension',
+    'description': """Ki Curtain Sale Extension""",
+    'depends': ['sale'],
+    'data': [
+        'views/sale_line_view.xml',
+        'wizard/sale_line_wizard.xml',
+        'security/ir.model.access.csv',
+    ],
+    'demo': [],
+    'application': True,
+    'auto_install': False,
+    'license': 'LGPL-3',
+    'assets': {},
+}

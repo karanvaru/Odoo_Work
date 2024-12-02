@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="action_distributor" model="ir.actions.act_window">
+        <field name="name">Distributor</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('custom_partner_type','=','distributor')]</field>
+        <field name="context">{'default_custom_partner_type':'distributor'}</field>
+    </record>
+
+    <record id="action_is_panel_distributor" model="ir.actions.act_window">
+        <field name="name">Panel Distributor</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('is_panel_distributor','=',True)]</field>
+        <field name="context">{'default_is_panel_distributor':True}</field>
+    </record>
+
+    <menuitem id="menu_distributor"
+              name="Distributor"
+              action="action_distributor"
+              parent="crm.crm_menu_root"/>
+
+    <menuitem id="menu_panel_distributor"
+              name="Panel Distributor"
+              action="action_is_panel_distributor"
+              parent="crm.crm_menu_root"/>
+
+</odoo>

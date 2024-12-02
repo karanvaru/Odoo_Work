@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit repair.order form view -->
+    <record id="sync_rma_view_repair_order_form" model="ir.ui.view">
+        <field name="name">repair.order.form</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button type="object" class="oe_stat_button" id="rma_issue" icon="fa-bug" name="get_rma_issue" attrs="{'invisible': [('rma_issue_count', '=', 0)]}" groups="sync_rma.group_rma_user">
+                    <field name="rma_issue_count" widget="statinfo" string="RMA" />
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>

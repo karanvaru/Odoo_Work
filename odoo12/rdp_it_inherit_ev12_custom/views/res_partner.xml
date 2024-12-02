@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="res_partner_form_inherit_partner_type" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit.partner.type</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='website']" position="after">
+                    <field name="partner_industry_ids"/>
+                    <field name="partner_service_ids" widget="many2many_tags"
+                    domain="[('partner_industry_ids', 'in', partner_industry_ids)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

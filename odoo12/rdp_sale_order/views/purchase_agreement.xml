@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_tender_view_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.tender.form.inherit</field>
+            <field name="model">purchase.agreement</field>
+            <field name="inherit_id" ref="sh_po_tender_management.sh_purchase_agreement_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sh_source']" position="after">
+                    <field name="sale_order_p_tender_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

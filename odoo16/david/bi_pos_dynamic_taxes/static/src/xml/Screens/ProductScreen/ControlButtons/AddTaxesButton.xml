@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="AddTaxesButton" owl="1">
+        <t>
+            <div class="control-button" style="background: #d9534f;color: white;">
+                Add Vat
+            </div>
+        </t>
+   </t>
+</templates>

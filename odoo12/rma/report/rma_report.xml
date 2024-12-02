@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <report
+            id="report_wk_rma"
+            string="RMA"
+            model="rma.rma"
+            report_type="qweb-pdf"
+            file="rma.report_rma"
+            name="rma.report_rma"
+        />
+    </data>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_lead_call_list" model="ir.ui.view">
+        <field name="name">asterisk_calls.call.lead.list</field>
+        <field name="model">asterisk_calls.call</field>
+        <field name="inherit_id" ref="asterisk_calls.asterisk_call_list"/>
+        <field name="arch" type="xml">
+            <field name="partner" position="after">
+                <field name="lead" string="CRM"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_lead_call_form" model="ir.ui.view">
+        <field name="name">asterisk_calls.call.lead.form</field>
+        <field name="model">asterisk_calls.call</field>
+        <field name="inherit_id" ref="asterisk_calls.asterisk_call_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button type="object" name="create_opportunity"
+                    string="Create opportunity" icon="fa-money"
+                    attrs="{'invisible': [('lead', '!=', False)]}"
+                    title="Create opportunity" aria-label="Create opportunity"/>
+            </xpath>
+            <field name="dst_user" position="after">
+                <field name="lead" attrs="{'invisible': [('lead', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_lead_call_search" model="ir.ui.view">
+        <field name="name">asterisk_calls.call.lead.search</field>
+        <field name="model">asterisk_calls.call</field>
+        <field name="inherit_id" ref="asterisk_calls.asterisk_call_search"/>
+        <field name="arch" type="xml">
+            <field name="partner" position="after">
+                <field name="lead"/>
+            </field>
+            <filter name="partners" position="after">
+                <filter name="leads" string="Leads" domain="[('lead', '!=', False)]"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

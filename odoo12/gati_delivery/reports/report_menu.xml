@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="paperformat_label_report" model="report.paperformat">
+        <field name="name">Paperformat for gati Labels Report</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">152</field>
+        <field name="page_width">102</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">2</field>
+        <field name="margin_bottom">2</field>
+        <field name="margin_left">2</field>
+        <field name="margin_right">2</field>
+        <field name="header_spacing">2</field>
+        <field name="header_line" eval="False"/>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+            id="action_report_gati_labels"
+            model="stock.picking"
+            string="Gati Labels"
+            report_type="qweb-pdf"
+            name="gati_delivery.report_gati_labels"
+            file="gati_delivery.report_gati_label.xml"
+            paperformat="gati_delivery.paperformat_label_report"
+            menu="False"
+    />
+
+</odoo>

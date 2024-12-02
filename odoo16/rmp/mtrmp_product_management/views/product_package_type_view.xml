@@ -1,0 +1,147 @@
+<odoo>
+    <!-- Product Product -->
+    <record id="view_product_product_form_inherit" model="ir.ui.view">
+        <field name="name">Product Product form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="before">
+                <field name="min_qty"/>
+                <field name="is_quantity"/>
+                <field name="country_id"/>
+            </xpath>
+            <xpath expr="//page[@name='purchase']/group" position="inside">
+                <group string="Last Purchase">
+                    <field name="last_purchase_line_id"/>
+                    <field name="last_partner_id"/>
+                    <field name="last_purchase_date"/>
+                    <field name="last_purchase_qty"/>
+                    <field name="last_purchase_order_id"/>
+                    <field name="last_purchase_amount"/>
+                    <field name="last_purchse_prodcuct_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Product search View  -->
+    <record id="view_product_product_search_inherit" model="ir.ui.view">
+        <field name="name">product.product.search.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="default_code"/>
+            </xpath>
+        </field>
+    </record>
+    <!-- Product Product Tree View -->
+    <record id="view_product_product_tree_inherit" model="ir.ui.view">
+        <field name="name">product.product.search.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="min_qty" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_variant_easy_edit_inherit" model="ir.ui.view">
+        <field name="name">Product Easy Edit form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='barcode']" position="after">
+                <field name="min_qty"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Product Template Form View-->
+    <record id="view_product_template_form_inherit" model="ir.ui.view">
+        <field name="name">Product Product form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="product_group_id"/>
+                <field name="min_qty"/>
+                <field name="default_package_type_id"/>
+                <field name="default_package_type_packaging_length"/>
+                <field name="default_package_type_packaging_height"/>
+                <field name="default_shipping_mode"/>
+                <field name="country_id"/>
+            </xpath>
+            <xpath expr="//page[@name='purchase']/group" position="inside">
+                <group string="Last Purchase">
+                    <field name="last_purchase_line_id"/>
+                    <field name="last_partner_id"/>
+                    <field name="last_purchase_date"/>
+                    <field name="last_purchase_qty"/>
+                    <field name="last_purchase_order_id"/>
+                    <field name="last_purchase_amount"/>
+                    <field name="last_purchse_prodcuct_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Product Template Tree View -->
+    <record id="product_template_tree_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.tree.view.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="product_group_id"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+    <!-- Product Template search View-->
+    <record id="product_template_search_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.search.view.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="product_group_id"/>
+                    <field name="default_code"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+    <!-- Product Template kanban View-->
+    <record id="view_product_template_kanban_brand" model="ir.ui.view">
+        <field name="name">product kanban view: add brand</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="arch" type="xml">
+            <div name="product_lst_price" position="before">
+                <div>
+                    Group:
+                    <field name="product_group_id"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+
+    <!-- res user inherit from View-->
+    <record id="view_user_preference_form_extended" model="ir.ui.view">
+        <field name="name">res.user.preference.form.extended</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

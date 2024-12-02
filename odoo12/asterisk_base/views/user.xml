@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="asterisk_base_user_list" model="ir.ui.view">
+        <field name="name">asterisk_base.user.list</field>
+        <field name="model">asterisk_common.user</field>
+        <field name="inherit_id" ref="asterisk_common.asterisk_user_list"/>
+        <field name="arch" type="xml">
+          <field name="agent" position="replace">
+            <field name="server"/>
+          </field>
+        </field>
+    </record>
+
+   <record id="asterisk_base_user_form" model="ir.ui.view">
+        <field name="name">asterisk_base.user.form</field>
+        <field name="model">asterisk_common.user</field>
+        <field name="inherit_id" ref="asterisk_common.asterisk_user_form"/>
+        <field name="arch" type="xml">
+          <div name="agent" position="replace">
+            <div name="server" class="o_row d-flex">
+              <label class="oe_edit_only" for="server"/>
+              <field name="server" required="1" 
+                placeholder="Asterisk server..." options="{'no_create': '1'}"/>
+            </div>
+          </div>
+        </field>
+    </record>
+
+    <record id="asterisk_base_user_settings_form" model="ir.ui.view">
+      <field name="name">asterisk_common.base.user.settings.form</field>
+      <field name="model">asterisk_common.user</field>
+      <field name="inherit_id" ref="asterisk_common.user_settings_form"/>
+      <field name="arch" type="xml">
+         <div name="agent" position="replace">
+          <div name="server" class="o_row d-flex">
+            <label for="server"/>
+            <field name="server" readonly="1"/>
+          </div>
+          </div>
+      </field>
+    </record>
+
+</odoo>

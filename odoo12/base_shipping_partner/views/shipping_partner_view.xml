@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="backend_shipping_dashboard" model="ir.actions.client">
+            <field name="name">Shipping Dashboard</field>
+            <field name="tag">backend_shipping_dashboard</field>
+        </record>
+
+        <record id="ir_actions_server_base_shipping_partner" model="ir.actions.server">
+            <field name="name">Shipping: Dashboard</field>
+            <field name="model_id" ref="base_shipping_partner.model_shipping_partner"/>
+            <field name="state">code</field>
+            <field name="code">action = model.action_dashboard_redirect()</field>
+        </record>
+
+        <record id="view_shipping_partner_form" model="ir.ui.view">
+            <field name="name">shipping.partner.form.view</field>
+            <field name="model">shipping.partner</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header></header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button"
+                                    icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                       options="{'terminology': 'active'}"/>
+                            </button>
+                            <button type="object" name="action_delivery_method" class="oe_stat_button" icon="fa-truck">
+                                <span class="o_stat_text">Delivery<br/> Methods</span>
+                            </button>
+                        </div>
+                        <field name="image" widget='image' class="oe_avatar"
+                               options='{"preview_image":"image_medium"}'/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="e.g. USPS, UPS, Royal Mail..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="provider_company"/>
+                            </group>
+                        </group>
+                        <notebook name="Notebook">
+                            <page name="api_credential" string="API Credential">
+                                <group name="shipping_credential"></group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_shipping_partner_tree" model="ir.ui.view">
+            <field name="name">shipping.partner.tree</field>
+            <field name="model">shipping.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Shipping Partner">
+                    <field name="name"/>
+                    <field name="provider_company"/>
+                </tree>
+            </field>
+        </record>
+
+         <record id="stock_picking_type_kanban" model="ir.ui.view">
+            <field name="name">shipping.partner.kanban</field>
+            <field name="model">shipping.partner</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_emphasize_colors o_stock_kanban">
+                    <field name="color"/>
+                    <field name="id"/>
+                    <field name="count_waiting_picking"/>
+                    <field name="count_ready_picking"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{kanban_color(record.color.raw_value)}" name="base_shipping_partner">
+                                <div>
+                                    <div t-attf-class="o_kanban_card_header">
+                                        <div class="o_kanban_card_header_title">
+                                            <div class="o_primary">
+                                                <span>
+                                                    <field name="name"/>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_manage_button_section">
+                                            <a class="o_kanban_manage_toggle_button" href="#"><i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/></a>
+                                        </div>
+                                    </div>
+                                    <div class="container o_kanban_card_content">
+                                        <div class="row">
+                                            <div class="col-6 o_kanban_primary_left">
+                                            </div>
+                                            <div class="col-6 o_kanban_primary_right">
+                                                <div class="row">
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <a name="open_pickings" context="{'picking_type':'waiting'}" type="object">
+                                                            Waiting
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <field name="count_waiting_picking"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <a class="oe_kanban_stock_picking_type_list" context="{'picking_type':'ready'}" name="open_pickings" type="object">
+                                                            Late
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <field name="count_ready_picking"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
+                                        <div class="row">
+                                            <div class="col-6 o_kanban_card_manage_section o_kanban_manage_view">
+                                            </div>
+                                            <div class="col-6 o_kanban_card_manage_section o_kanban_manage_new">
+                                            </div>
+                                        </div>
+
+                                        <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
+                                            <div class="col-8" role="menuitem" aria-haspopup="true">
+                                                <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>
+                                            </div>
+                                            <div role="menuitem" class="col-4 text-center">
+                                                <a type="edit">Settings</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="action_shipping_partner" model="ir.actions.act_window">
+            <field name="name">Delivery Partner</field>
+            <field name="res_model">shipping.partner</field>
+            <field name='view_type'>form</field>
+            <field name='view_mode'>kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a new Shipping Partner.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Delivery Partner" id="menuid_shipping_provider_company"
+                  parent="delivery.menu_delivery" action="action_shipping_partner"
+                  sequence="10"/>
+
+        <menuitem name="Delivery Partner" id="menuid_shipping_provider_company_inventory"
+                  parent="sale.menu_sales_config" action="action_shipping_partner"
+                  sequence="10"/>
+    </data>
+</odoo>

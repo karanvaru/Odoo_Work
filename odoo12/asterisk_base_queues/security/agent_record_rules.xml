@@ -1,0 +1,12 @@
+<odoo>
+    <record id="asterisk_base_queues_queue_agent_rule" model="ir.rule">
+        <field name="name">asterisk_base_queues_queue_member_agent_rule</field>
+        <field name="model_id" ref="model_asterisk_base_queues_queue"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="groups" eval="[(6, 0, [ref('asterisk_common.group_asterisk_agent')])]"/>
+        <field name="domain_force">[('server.agent.user.id','=',user.id)]</field>
+    </record>
+</odoo>

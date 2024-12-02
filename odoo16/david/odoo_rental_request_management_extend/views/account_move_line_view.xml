@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_move_inherit_rental_request" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.rental</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_date']" position="after">
+                <field name="is_custom_rental_invoice" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook/page/field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+                <field name="custom_start_datetime"/>
+                <field name="custom_end_datetime"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+
+

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_inventory_value_type_je,access_inventory_value_type_je,model_inventory_value_type_je,,1,1,1,1

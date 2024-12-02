@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+	<data>	
+		<template id="assets_frontend" name="website_ribbon_assets_frontend" inherit_id="website.assets_frontend">
+			<xpath expr="." position="inside">
+		        <link rel="stylesheet" href="/website_estimated_delivery/static/src/css/estimated_deliver.css"/>	
+		         <script type="text/javascript" src="/website_estimated_delivery/static/src/js/estimated_deliver.js"></script>	   
+		    </xpath>
+		</template>
+
+		<template id="website_estimated_delivery_website_sale" inherit_id="website_sale.product" name="estimated_delivery">
+   			 <xpath expr="//div/div[@id='product_details']/p[@class='text-muted']" position="after">
+			 		<t t-if="product._show_estimated_delivery() == True">
+			 			<t t-set="used_delivery" t-value="product.estimated_delivery_to_use(product)"/>
+   			 		<div id="estimated_delivery_used">
+   			 			<t t-if="used_delivery == 'default'">
+   			 				<span t-if="product.sale_delay != False" name="default_estimated_dselivery" class="default_delivery">
+   			 					<t t-set="def_message" t-value="product._get_default_message_to_show(product)"/>
+   			 					<div class="default_message"><t t-esc="def_message"/></div>
+   			 				</span>
+   			 			</t>
+
+   			 			<t t-if="used_delivery == 'advanced'">
+   			 				<div name="advanced_estimated_delivery" class="advanced_estimated_delivery">
+		 						<div class="pincode_ckeck_div">
+			 						<span class="fa fa-map-marker"></span><span> <b>Check Availability</b></span>
+			 						<input type="text" class="pincode_ckeck" name="pincode_ckeck" maxlength="12" placeholder="Enter Pincode"/>
+		 						</div>
+                				<div class="check_availability_button">
+                					<span class="check_pincode_span">CHECK</span>
+               					</div>
+   			 				</div>
+
+   			 				<div class="availability_message"></div>
+   			 				<div class="change_pincode"><a>Change</a></div>
+   			 			</t>
+
+   			 		</div>
+   			 	</t>
+   			  </xpath>
+ 		 </template>
+
+ 		<template id="inherited_cart_lines_cart_for_estimated_delivery" inherit_id="website_sale.cart_lines" customize_show="True" name="Cart Lines">
+ 		 	<xpath expr="//table[@id='cart_products']/thead/tr" position="inside">
+ 		 		<th width="130" t-if="website_sale_order.show_estimated_delivery_in_cart_lines() == True">Delivery Details</th>
+ 		 	</xpath>
+ 		 	<xpath expr="//table[@id='cart_products']/tbody/t/tr" position="inside">
+ 		 		<td class="text-center" t-if="website_sale_order.show_estimated_delivery_in_cart_lines() == True">
+ 		 			<t t-set="estimated_value" t-value="line.show_estiamted_delivery_values_in_cart_lines(line.product_id.product_tmpl_id.id, website_sale_order.id)"/>
+ 		 			<t t-if="estimated_value['final_message'] == 'EnterPincode'">
+                		<span class="check_availability_cart"><a t-attf-href="/shop/product/#{ slug(line.product_id.product_tmpl_id) }">Check Availability in your location</a></span>
+                	</t>
+ 		 			<t t-if="estimated_value['status'] == 'available'">
+                      <span class="product_available" t-attf-id="cart_line-#{ (line.id) }"><t t-esc="estimated_value['final_message']"/></span>
+                    </t>
+                    <t t-if="estimated_value['status'] == 'unavailable'">
+                      <span class="product_unavailable" t-attf-id="cart_line-#{ (line.id) }"><t t-esc="estimated_value['final_message']"/></span>
+                    </t>
+                	
+                </td>
+ 		 	</xpath>
+ 		 </template>
+
+		<template id="continue_shopping" inherit_id="website_sale.cart" customize_show="True" name="Continue Shopping Button">
+		  <xpath expr="//a[@href='/shop/checkout?express=1']" position="after">
+		  		<t t-set="show_advncd" t-value="website_sale_order.show_advanced_delivery_cart()"/>
+		  			<t t-if="show_advncd == 'advanced'" >
+			   		<div name="advanced_estimated_delivery_cart" class="advanced_estimated_delivery_cart">
+			   			<t t-set="order_lines_list" t-value="website_sale_order._get_order_lines_list(website_sale_order.website_order_line)"/>
+						<div class="cart_pincode">
+							<input type="text" class="cart_pincode_input" name="pincode_ckeck" maxlength="12" placeholder="Enter your Pincode" t-att-order_id="website_sale_order.id" t-att-lines="order_lines_list"/>
+							<span class="fa fa-map-marker set_value_outer" >Shipping To:<span class="set_value"></span></span>
+						</div>
+							
+						<div class="cart_check_pincode_button btn btn-primary">
+							<span class="">CHECK</span>
+						</div>
+						<div class="change_pincode_cart "><a href="#">Change</a></div>
+					</div>
+				</t>
+		  </xpath>
+		</template>
+
+  </data>
+</odoo> 

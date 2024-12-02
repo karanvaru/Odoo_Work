@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="marketing_app_create_email_template" model="mail.template">
+            <field name="name">Marketing Ticket Created</field>
+            <field name="model_id" ref="rdp_marketing_app.model_marketing_app"/>
+            <field name="auto_delete">1</field>
+<!--             <field name="email_from">${object.user_id.partner_id.email_formatted |safe}</field>-->
+            <field name="email_to">${object.assigned_to.email}</field>
+            <field name="subject">${object.name} Marketing Ticket Created</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>Your RDP Marketing Ticket</p>
+                    <h3>${object.name}</h3><hr/>
+                    ${object.create_uid.name} assigned you an activity To Do (New Marketing Task Assigned) please check.
+                         <br /><br />
+                         Thank you!!!
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

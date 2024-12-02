@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+
+import base64
+from odoo import http, _
+from odoo.http import request
+from odoo import models,registry, SUPERUSER_ID
+from odoo.addons.website_portal.controllers.main import website_account
+
+class website_account(website_account):
+
+    @http.route()
+    def account(self, **kw):
+        """ Add ticket documents to main account page """
+        print 'recccccccccccccccccccccccccccccccccccccccc'
+        response = super(website_account, self).account(**kw)
+        partner = request.env.user.partner_id
+        print 'partneeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
+        applicant = request.env['hr.applicant']
+        applicant_count = applicant.sudo().search_count([
+        ('user_id', 'child_of', [user_id.id])
+          ])
+        print 'alpicountttttttttttttttttttttttttttttttttttttt',applicant_count
+        response.qcontext.update({
+        'applicant_count': applicant_count,
+        })
+        return response

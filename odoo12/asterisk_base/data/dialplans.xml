@@ -1,0 +1,41 @@
+<odoo>
+    <record id="blind_transfer" model="asterisk_base.dialplan">
+        <field name="name">Blind Tranfer Ringback</field>
+        <field name="dialplan_type">service</field>
+        <field name="server" ref="default_server"/>
+        <field name="is_custom" eval="True"/>
+        <field name="dialplan">;
+[globals](+)
+TRANSFER_CONTEXT=blind-transfer-ringback
+
+[blind-transfer-ringback]
+exten => _X.,1,NoOp("Blindtransfer: " ${BLINDTRANSFER})
+ same => n,Set(orig_channel=${CUT(BLINDTRANSFER,-,-1)})
+ same => n,NoOp(Channel name: ${orig_channel})
+ same => n,Dial(Local/${EXTEN}@odoo-extensions,45,tTg)
+ same => n,GotoIf($["${DIALSTATUS}" = "ANSWER"]?hangup:callback)
+ same => n(callback),Dial(${orig_channel},45,tT)
+ same => n(hangup),Hangup()</field>
+    </record>
+
+    <record id="partner_name_lookup" model="asterisk_base.dialplan">
+        <field name="name">Partner Name Lookup</field>
+        <field name="dialplan_type">service</field>
+        <field name="server" ref="default_server"/>
+        <field name="is_custom" eval="True"/>
+        <field name="is_protected" eval="True"/>
+        <field name="dialplan">;
+[partner-name-lookup]
+{% set website_url = object.env['ir.config_parameter'].sudo().get_param('web.base.url') %}
+{% set db = object.env.cr.dbname %}
+{% set country = object.server.user.partner_id.country_id.code or '' %}
+exten => _X.,1,Set(CURLOPT(conntimeout)=3)
+exten => _X.,n,Set(CURLOPT(dnstimeout)=3)
+exten => _X.,n,Set(CURLOPT(httptimeout)=3)
+exten => _X.,n,Set(CURLOPT(ssl_verifypeer)=0)
+exten => _X.,n,Set(CALLERID(name)=${CURL({{ website_url }}/asterisk_common/get_caller_name?country={{country}}&amp;db={{db}}&amp;number=${CALLERID(number)})})
+exten => _X.,n,Return
+        </field>
+    </record>
+
+</odoo>

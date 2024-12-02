@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="product_template_action_all" model="ir.actions.act_window">
+        <field name="name">Printer Models</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('categ_id.type', '=', 'printer')]</field>
+        <field name="context">{'menu_printer': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new product
+            </p>
+        </field>
+    </record>
+
+    <record id="product_normal_action" model="ir.actions.act_window">
+        <field name="name">All Printers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form,kanban,search</field>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+        <field name="domain">[('categ_id.type', '=', 'printer')]</field>
+        <field name="context">{'menu_printer': True'}</field>
+        <field name="view_id" eval="False"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new product variant
+            </p>
+            <p>
+                You must define a product for everything you sell or purchase,
+                whether it's a storable product, a consumable or a service.
+            </p>
+        </field>
+    </record>
+
+    <record id="printer_parts_normal_action" model="ir.actions.act_window">
+        <field name="name">Printer Parts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form,kanban,search</field>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+        <field name="domain">[('category_name', '=', 'Printer Parts')]</field>
+        <field name="context">{'menu_printer_parts': True, 'default_type': 'product'}</field>
+        <field name="view_id" eval="False"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new product Parts list
+            </p>
+            <p>
+                You must define a product for everything you sell or purchase,
+                whether it's a storable product, a consumable or a service.
+            </p>
+        </field>
+    </record>
+
+    <record id="cartridge_normal_action" model="ir.actions.act_window">
+        <field name="name">All Cartridge</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form,kanban,search</field>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+        <field name="domain">[('categ_id.type', '=', 'cartridge')]</field>
+        <field name="context">{'menu_cartridge': True, 'default_is_cartridge': True}</field>
+        <field name="view_id" eval="False"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Cartridge list
+            </p>
+            <p>
+                You must define a product for everything you sell or purchase,
+                whether it's a storable product, a consumable or a service.
+            </p>
+        </field>
+    </record>
+
+    <record id="cartridge_model_action_all" model="ir.actions.act_window">
+        <field name="name">Cartridge Models</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('categ_id.type', '=', 'cartridge')]</field>
+        <field name="context">{'menu_cartridge': True, 'default_is_cartridge': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Cartridge Models
+            </p>
+        </field>
+    </record>
+
+    <record id="parts_normal_action" model="ir.actions.act_window">
+        <field name="name">Cartridge Parts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form,kanban,search</field>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+        <field name="domain">[('category_name', '=', 'Parts')]</field>
+        <field name="context">{'menu_parts': True, 'default_type': 'product'}</field>
+        <field name="view_id" eval="False"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Cartridge Parts list
+            </p>
+            <p>
+                You must define a product for everything you sell or purchase,
+                whether it's a storable product, a consumable or a service.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_customer_users" model="ir.actions.act_window">
+        <field name="name">Customer Users</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="search_view_id" ref="base.view_users_search"/>
+        <field name="context">{'search_default_no_share': 1}</field>
+        <field name="domain">[('employee_id', '=', False)]</field>
+        <field name="help">Create and manage users that will connect to the system. Users can be deactivated should
+            there be a period of time during which they will/should not connect to the system. You can assign them
+            groups in order to give them specific access to the applications they need to use in the system.
+        </field>
+    </record>
+    <record id="action_customer_users_view1" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="act_window_id" ref="action_customer_users"/>
+    </record>
+
+    <record id="action_customer_users_view2" model="ir.actions.act_window.view">
+        <field eval="20" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="base.view_users_form"/>
+        <field name="act_window_id" ref="action_customer_users"/>
+    </record>
+
+    <record id="action_employee_users" model="ir.actions.act_window">
+        <field name="name">Employee Users</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="search_view_id" ref="base.view_users_search"/>
+        <field name="context">{'from_employee': True}</field>
+        <field name="domain">[('employee_id', '!=', False)]</field>
+        <field name="help">Create and manage users that will connect to the system. Users can be deactivated should
+            there be a period of time during which they will/should not connect to the system. You can assign them
+            groups in order to give them specific access to the applications they need to use in the system.
+        </field>
+    </record>
+    <record id="action_employee_users_view1" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="act_window_id" ref="action_employee_users"/>
+    </record>
+    <record id="action_employee_users_view2" model="ir.actions.act_window.view">
+        <field eval="20" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="base.view_users_form"/>
+        <field name="act_window_id" ref="action_employee_users"/>
+    </record>
+
+    <record id="product_register_action" model="ir.actions.act_window">
+        <field name="name">In/Out Register</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.in.out.register</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="product_register_line_action" model="ir.actions.act_window">
+        <field name="name">In/Out Register</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.in.out.register.lines</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="refill_request_actions" model="ir.actions.act_window">
+        <field name="name">Refill Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">refill.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--    <record id="product_parts_history_line_action" model="ir.actions.act_window">-->
+    <!--        <field name="name">Part History</field>-->
+    <!--        <field name="type">ir.actions.act_window</field>-->
+    <!--        <field name="res_model">cartridge.part.line</field>-->
+    <!--        <field name="view_mode">tree,search</field>-->
+    <!--        <field name="search_view_id" ref="ki_contract_menu.product_parts_line_search"/>-->
+    <!--        <field name="context">{'search_default_groupby_date': 1}</field>-->
+    <!--    </record>-->
+
+    <!--    <record id="product_parts_history_line_action_tree" model="ir.actions.act_window.view">-->
+    <!--        <field eval="10" name="sequence"/>-->
+    <!--        <field name="view_mode">tree</field>-->
+    <!--        <field name="view_id" ref="ki_contract_menu.product_parts_line_tree"/>-->
+    <!--        <field name="act_window_id" ref="ki_contract_menu.product_parts_history_line_action"/>-->
+    <!--    </record>-->
+
+    <record id="action_product_parts_history_lines" model="ir.actions.act_window">
+        <field name="name">Part History</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">refill.request.line</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="ki_contract_menu.product_parts_line_search1"/>
+        <field name="context">{'search_default_groupby_product_part_id':1,'search_default_groupby_parts_cartridge_id': 1 ,'search_default_groupby_date': 1}</field>
+    </record>
+
+    <record id="action_product_parts_history_lines_on_catridge" model="ir.actions.act_window">
+        <field name="name">Part History</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">refill.request.line</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="ki_contract_menu.product_parts_line_search2"/>
+        <field name="context">{'search_default_groupby_date': 1,'search_default_groupby_product_part_id':1}
+
+        </field>
+    </record>
+
+    <!--    <record id="product_parts_history_line_action_tree" model="ir.actions.act_window.view">-->
+    <!--        <field eval="10" name="sequence"/>-->
+    <!--        <field name="view_mode">tree</field>-->
+    <!--        <field name="view_id" ref="ki_contract_menu.product_parts_line_tree"/>-->
+    <!--        <field name="act_window_id" ref="ki_contract_menu.action_product_parts_history_line"/>-->
+    <!--    </record>-->
+
+    <menuitem id="helpdesk_ticket_main_menu"
+              name="Helpdesk"
+              sequence="1"
+              web_icon="helpdesk_mgmt,static/description/icon.png"/>
+
+    <menuitem id="master_data_main"
+              name="Master Data"
+              web_icon="ki_contract_menu,static/description/master.png"
+              sequence="17"/>
+
+    <menuitem id="master_product"
+              name="All Printers"
+              action="ki_contract_menu.product_normal_action"
+              parent="master_data_main"
+              sequence="1"/>
+
+
+
+    <menuitem id="master_product_template"
+              name="Printer Models"
+              action="ki_contract_menu.product_template_action_all"
+              parent="master_data_main"
+              sequence="2"/>
+
+    <menuitem id="master_product_part"
+              name="Printer Parts"
+              action="ki_contract_menu.printer_parts_normal_action"
+              parent="master_data_main"
+              sequence="2"/>
+
+    <menuitem id="master_cartridge_list"
+              name="All Cartridges"
+              action="ki_contract_menu.cartridge_normal_action"
+              parent="master_data_main"
+              sequence="3"/>
+
+    <menuitem id="master_cartridge_model_list"
+              name="Cartridge Models"
+              action="ki_contract_menu.cartridge_model_action_all"
+              parent="master_data_main"
+              sequence="3"/>
+
+    <menuitem id="master_parts"
+              name="Cartridge Parts"
+              action="ki_contract_menu.parts_normal_action"
+              parent="master_data_main"
+              sequence="3"/>
+
+    <menuitem id="master_transfer"
+              name="Transaction"
+              parent="master_data_main"
+              sequence="3"/>
+
+     <menuitem id="reporting_main"
+              name="Reporting"
+              parent="master_data_main"
+              sequence="3"/>
+
+    <menuitem id="part_transaction_history"
+              name="Part Transaction"
+              action="ki_contract_menu.action_product_parts_history_lines"
+              parent="reporting_main"
+              sequence="3"/>
+
+    <menuitem id="master_product_register"
+              name="In/Out Register"
+              action="ki_contract_menu.product_register_action"
+              parent="master_transfer"/>
+
+    <menuitem id="master_refill_request"
+              name="Refill Request"
+              action="ki_contract_menu.refill_request_actions"
+              parent="master_transfer"/>
+
+    <menuitem id="master_customer"
+              name="Customer"
+              action="account.res_partner_action_customer"
+              parent="master_data_main"
+              sequence="4"/>
+
+    <menuitem id="contract_document"
+              name="Contract"
+              action="action_contract"
+              parent="master_data_main"
+              sequence="5"/>
+
+    <!--    <menuitem id="contract_document1"-->
+    <!--              name="PARTS"-->
+    <!--              action="action_product_parts_history_lines"-->
+    <!--              parent="master_data_main"-->
+    <!--              sequence="5"/>-->
+
+    <menuitem id="master_vendor"
+              name="Vendors"
+              action="account.res_partner_action_supplier"
+              parent="master_data_main"
+              sequence="6"/>
+
+    <menuitem id="sps_setting_menu"
+              name="SPS Setting"
+              groups="ki_contract_menu.group_smart_printer_administrator"
+              sequence="600"/>
+
+    <menuitem id="sps_setting_user_company_menu"
+              name="User and Company"
+              parent="sps_setting_menu"/>
+
+    <menuitem id="sps_setting_customer_user_menu"
+              name="Customer User"
+              action="ki_contract_menu.action_customer_users"
+              parent="sps_setting_menu"/>
+
+    <menuitem id="sps_setting_employee_user_menu"
+              name="Employee User"
+              action="ki_contract_menu.action_employee_users"
+              parent="sps_setting_menu"/>
+
+    <!--    <menuitem id="sps_setting_user"-->
+    <!--              name="User"-->
+    <!--              action="base.action_res_users"-->
+    <!--              parent="sps_setting_user_company_menu"-->
+    <!--              sequence="1"/>-->
+
+    <!--    <menuitem id="sps_setting_company"-->
+    <!--              name="Company"-->
+    <!--              action="base.action_res_company_form"-->
+    <!--              parent="sps_setting_user_company_menu"-->
+    <!--              sequence="2"/>-->
+
+    <!--    <menuitem name="Contacts"-->
+    <!--              id="menu_contacts"-->
+    <!--              sequence="4"-->
+    <!--              web_icon="contacts,static/description/icon.png"-->
+    <!--              groups="ki_contract_menu.group_smart_printer_menu_view"/>-->
+
+    <!--    <record model="ir.ui.menu" id="contacts.menu_contacts">-->
+    <!--        <field name="groups_id" eval="[(6,0,[ref('ki_contract_menu.group_smart_printer_menu_view')])]"/>-->
+    <!--    </record>-->
+
+    <record model="ir.ui.menu" id="website.menu_website_configuration">
+        <field name="groups_id" eval="[(6,0,[ref('ki_contract_menu.group_smart_printer_menu_view')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="account.menu_finance">
+        <field name="groups_id" eval="[(6,0,[ref('ki_contract_menu.group_smart_printer_menu_view')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="mail.menu_root_discuss">
+        <field name="groups_id" eval="[(6,0,[ref('ki_contract_menu.group_smart_printer_menu_view')])]"/>
+    </record>
+
+    <!--    <menuitem id="contract_main"-->
+    <!--              name="Contract"-->
+    <!--              action="action_contract"-->
+    <!--              web_icon="ki_contract_menu,static/description/contract.png"-->
+    <!--              sequence="2"/>-->
+
+
+    <!--    <menuitem id="printer_management_config"-->
+    <!--              name="Configuration"-->
+    <!--              parent="master_data_main"-->
+    <!--              sequence="6"/>-->
+
+</odoo>

@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+rdp_playbook_admin_id,rdp_playbooks_admin,model_rdp_playbooks,base.group_system,1,1,1,1
+rdp_playbook_id,rdp_playbooks_internal,model_rdp_playbooks,base.group_user,1,1,1,1
+play_books_admin_id,play_books_admin,model_play_books,base.group_system,1,1,1,1
+play_books_id,play_books_internal,model_play_books,base.group_user,1,1,1,1
+rdp_workflow_admin_id,rdp_workflows_admin,model_rdp_workflows,base.group_system,1,1,1,1
+rdp_workflow_id,rdp_workflows_internal,model_rdp_workflows,base.group_user,1,1,1,1
+work_flows_admin_id,work_flows_admin,model_work_flows,base.group_system,1,1,1,1
+work_flows_id,work_flows_internal,model_work_flows,base.group_user,1,1,1,1
+
+

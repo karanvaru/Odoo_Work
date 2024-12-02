@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="advanced_web_domain_widget._ModelRecordSelectorBits" owl="1">
+        <div class="o_ds_value_cell">
+            <div class="o_domain_leaf_value_input">
+                <t t-foreach="tags" t-as="tag" t-key="tag_index">
+                    <span class="badge rounded-pill" style="font-size: 1rem; padding: 3px 10px;">
+                        <t t-esc="tag.display_name" />
+                        <i class="o_domain_leaf_value_remove_tag_button fa fa-times"
+                            role="img"
+                            aria-label="Remove tag"
+                            title="Remove tag"
+                            t-att-data-id="tag.id"
+                            t-on-click="removeTag"
+                        />
+                    </span>
+                </t>
+            </div>
+            <div class="o_domain_leaf_value_tags o_edit_mode" >
+                <div class="o_record_selector_value" tabindex="0" t-on-click="onSelection"/>
+                <div class="o_record_selector_controls" tabindex="0">
+                    <i role="alert" class="fa fa-exclamation-triangle o_field_selector_warning d-none" title="Invalid field chain" aria-label="Invalid field chain"/>
+                </div>
+                <div class="o_record_selector_popover d-none" tabindex="0">
+                    <div class="o_record_selector_popover_header text-center">
+                        <div class="o_field_selector_title" > <t t-esc="props.fieldName"/></div>
+                        <i class="fa fa-times o_record_selector_popover_option o_record_selector_close" title="Close" role="img" aria-label="Close" t-on-click="closeRecs"/>
+                        <div class="o_field_selector_search mt-2">
+                            <input type="text" placeholder='Search...' class="o_input" t-on-input="onSearch"/>
+                        </div>
+                    </div>
+                    <div class="o_record_selector_popover_body">
+                        <ul class="o_record_selector_page">
+                            <t t-foreach="chain[0].records" t-as="resRec" t-key="resRec_index">
+                                <li class="o_record_selector_item" t-att-data-id="resRec.id" t-on-click="onSelectRecord">
+                                    <t t-esc="resRec.display_name" />
+                                    <t t-if="resRec.company_name"> - (<t t-esc="resRec.company_name"/>)</t>
+                                </li>
+                            </t>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </t>
+
+</templates>

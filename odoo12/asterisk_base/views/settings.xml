@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.actions.server" id="base_settings_action">
+        <field name="type">ir.actions.server</field>
+        <field name="name">Base Settings</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="asterisk_common.model_asterisk_common_settings"/>
+        <field name="code">action = model.open_settings_form(module='base')</field>
+    </record>
+
+    <menuitem id="base_settings_menu" parent='asterisk_common.asterisk_settings_menu'
+      groups="asterisk_common.group_asterisk_admin"
+      name='Base' action='base_settings_action' sequence='20'/>    
+
+    <record id='base_settings_form' model='ir.ui.view'>
+        <field name='name'>asterisk_base.settings.form</field>
+        <field name='model'>asterisk_common.settings</field>
+        <field name='type'>form</field>
+        <field name='arch' type='xml'>
+          <form create="false" delete="false">
+              <sheet>
+                <group>
+                  <group>
+                    <field name="default_exten_length"/>
+                    <field name="default_exten_start"/>
+                  </group>
+                  <group>
+                    <button string="Re-build conf files" name="build_all_conf"
+                      type="object" class="btn btn-info"/>
+                  </group>                  
+                </group>
+              </sheet>
+          </form>
+        </field>
+    </record>
+
+</odoo>

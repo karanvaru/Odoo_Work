@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="helpdesk_so_inherited_view_form" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.custom.inherited</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ticket_type_id']" position="after">
+                    <field name="helpdesk_partner_id"/>
+                    <!--                    <field name="serial_no" attrs="{}"/>-->
+                    <field name="bill_date" attrs="{}" widget="date"/>
+                    <field name="scope"/>
+                    <field name="so_reference"/>
+                </xpath>
+                <xpath expr="//field[@name='priority']" position="after">
+                    <field name="sales_channel"/>
+                    <field name="attached_os"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

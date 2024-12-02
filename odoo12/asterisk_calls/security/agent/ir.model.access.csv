@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_asterisk_calls_call_service,access_asterisk_calls_call_service,model_asterisk_calls_call,asterisk_common.group_asterisk_agent,1,1,1,0
+access_asterisk_calls_channel_service,access_asterisk_calls_channel_service,model_asterisk_calls_channel,asterisk_common.group_asterisk_agent,1,1,1,1
+

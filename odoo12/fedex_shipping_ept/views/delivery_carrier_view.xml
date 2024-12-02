@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_delivery_carrier_fedex_form_view_ept" model="ir.ui.view">
+		<field name="name">delivery.carrier.fedex.form.view.ept</field>
+		<field name="model">delivery.carrier</field>
+		<field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//page[@name='destination']" position='before'>
+				<page string="Configuration" name="fedex_configuration"
+					attrs="{'invisible': [('delivery_type', '!=', 'fedex_ept')]}">
+					<group>
+						<group>
+							<field name="fedex_service_type"
+								attrs="{'required': [('delivery_type', '=', 'fedex_ept')]}" />
+							<field name="fedex_droppoff_type"
+								attrs="{'required': [('delivery_type', '=', 'fedex_ept')]}" />
+							<!-- <field name="fedex_default_packaging_id" -->
+							<!-- attrs="{'required': [('delivery_type', '=', 'fedex_ept')]}" domain="[('package_carrier_type', 
+								'=', 'fedex_ept')]" /> -->
+							<field name="fedex_weight_uom"
+								attrs="{'required': [('delivery_type', '=', 'fedex_ept')]}" />
+							<field name="fedex_onerate"
+								attrs="{'invisible': [('fedex_service_type','not in',['FIRST_OVERNIGHT','PRIORITY_OVERNIGHT','STANDARD_OVERNIGHT','FEDEX_2_DAY','FEDEX_2_DAY_AM','FEDEX_EXPRESS_SAVER'])]}"/>
+						</group>
+						<group>
+							<field name="fedex_default_product_packaging_id"
+								attrs="{'required': [('delivery_type', '=', 'fedex_ept')]}" domain="[('package_carrier_type', '=', 'fedex_ept')]" />
+							<field name="fedex_shipping_label_stock_type"
+								attrs="{'required': [('delivery_type', '=', 'fedex_ept')]}" />
+							<field name="fedex_shipping_label_file_type"
+								attrs="{'required': [('delivery_type', '=', 'fedex_ept')]}" />
+							<field name="is_commercial_invoce"
+								attrs="{'required': [('delivery_type', '=', 'fedex_ept')]}" />
+							<div class="text-muted" attrs="{'required': [('delivery_type', '=', 'fedex_ept')]}" >
+                            You Must set single package for the generate commerical invoice
+                        </div>
+						</group>
+					</group>
+				</page>
+			</xpath>
+		</field>
+	</record>
+</odoo>

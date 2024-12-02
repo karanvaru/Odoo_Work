@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="sh_motorcycle_garde_tree" model="ir.ui.view">
+        <field name="name">motorcycle.garde.tree</field>
+        <field name="model">motorcycle.garde</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- action -->
+    <record id="sh_motorcycle_garde_action" model="ir.actions.act_window">
+        <field name="name">Grade</field>
+        <field name="res_model">motorcycle.garde</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- make menuitem -->
+    <menuitem id="sh_motorcycle_garde_menuitem" action="sh_motorcycle_garde_action" parent="sh_motorcycle_menuitem_config" sequence="5" />
+</odoo>

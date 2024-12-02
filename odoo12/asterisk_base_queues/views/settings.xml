@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record model="ir.ui.view" id="asterisk_base_queues_list">
+    <field name="name">Asterisk Queues Settings</field>
+    <field name="model">asterisk_base_queues.settings</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="server"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="asterisk_base_queues_settings_form">
+    <field name="name">General Settings</field>
+    <field name="model">asterisk_base_queues.settings</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group name="queue_settings">
+            <group string="Call Recording">
+              <field name="monitor_type"/>
+              <field name="monitor_format"/>
+            </group>
+            <group string="Member Settings">
+              <field name="persistentmembers"/>
+              <field name="shared_lastcall"/>
+              <field name="negative_penalty_invalid"/>
+              <field name="keepstats"/>
+              <field name="autopause"/>
+            </group>
+            <group string="Queue Settings">
+              <field name="autofill"/>
+              <field name="updatecdr"/>
+              <field name="setinterfacevar"/>
+              <field name="setqueuevar"/>
+              <field name="setqueueentryvar"/>
+              <field name="maxlen"/>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+
+  <record model="ir.actions.server" id="asterisk_base_queues_settings_action">
+      <field name="type">ir.actions.server</field>
+      <field name="name">Queues Settings</field>
+      <field name="state">code</field>
+      <field name="model_id" ref="model_asterisk_base_queues_settings"/>
+      <field name="code">action = model.open_settings()</field>
+  </record>
+
+  <menuitem name="Queues" id="asterisk_base_queues_settings_menu"
+            parent="asterisk_common.asterisk_settings_menu"
+            groups="asterisk_common.group_asterisk_admin" sequence='200'
+            action="asterisk_base_queues_settings_action"/>
+</odoo>

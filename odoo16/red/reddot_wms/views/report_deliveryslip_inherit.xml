@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <template id="report_delivery_document_inherit"  inherit_id="stock.report_delivery_document">
+            <xpath expr="//div[@name='div_sched_date']" position="after">
+                <div t-if="o.carrier_tracking_ref" class="col-auto" style="max-width:30%;">
+                    <strong>Customs Date:</strong>
+                     <p t-field="o.customs_date"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//div[hasclass('page')]/table/thead/tr" position="inside">
+                 <th>
+                    <strong>Length</strong>
+                </th>
+                <th>
+                    <strong>Width</strong>
+                </th>
+                <th>
+                    <strong>Height</strong>
+                </th>
+            </xpath>
+            <xpath expr="//div[hasclass('page')]/table/tbody/tr" position="inside">
+                <td style="text-align:left;">
+                   <span>
+                       <span t-field="move.length"/><br/>
+                   </span>
+               </td>
+                <td style="text-align:left;">
+                   <span>
+                       <span t-field="move.width"/><br/>
+                   </span>
+               </td>
+                <td style="text-align:left;">
+                   <span>
+                       <span t-field="move.height"/><br/>
+                   </span>
+               </td>
+            </xpath>
+        </template>
+    </data>
+</odoo>

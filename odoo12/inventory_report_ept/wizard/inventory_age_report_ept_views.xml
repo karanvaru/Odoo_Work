@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="inventory_age_report_ept_view" model="ir.ui.view">
+			<field name="name">Inventory Age Report</field>
+			<field name="model">inventory.age.report.ept</field>
+			<field name="arch" type="xml">
+				<form string="Inventory Age Report">
+					<group>
+						<field name="company_ids" widget="many2many_tags"
+							options="{'no_create':True}" />
+						<field name="include_all_products" />
+					</group>
+					<div
+						attrs="{'invisible': [('include_all_products', '=', True)],'required': [('include_all_products', '=', False)]}">
+						<label for="product_ids" />
+						<field name="product_ids" nolabel="1"
+							options="{'no_create': True}"
+							attrs="{'invisible': [('include_all_products', '=', True)],'required': [('include_all_products', '=', False)]}"
+							domain="[('type', '=', 'product')]" />
+					</div>
+
+					<footer>
+						<button string="Download Report" type="object"
+							name="print_inventory_age_report" class="oe_highlight" />
+						<button string="Download PDF Report" type="object"
+							name="download_pdf_report" class="oe_highlight" />
+						<button string="_Cancel" class="btn-default"
+							special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="inventory_age_report_ept_action"
+			model="ir.actions.act_window">
+			<field name="name">Inventory Age</field>
+			<field name="res_model">inventory.age.report.ept</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem id="inventory_age_report_ept_menu"
+			parent="stock.menu_warehouse_report"
+			action="inventory_age_report_ept_action" sequence="118" />
+
+	</data>
+</odoo>

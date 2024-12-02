@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="rdp_exit14_tree" model="ir.ui.view">
+            <field name="name">RDP Exit 14</field>
+            <field name="model">rdp.exit14</field>
+            <field name="arch" type="xml">
+                <tree string="RDP Exit 14">
+                    <field name='name'/>
+                    <field name="vendor_product_category" string="Product/Service Name"/>
+                    <field name="vendor"/>
+                    <field name="priority" widget="priority"/>
+                    <field name="activity_user_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="rdp_exit14_view" model="ir.ui.view">
+            <field name="name">rdp.exit14.form</field>
+            <field name="model">rdp.exit14</field>
+            <field name="arch" type="xml">
+                <form string="RDP EXit 14">
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name='name' readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="vendor" widget="many2one" required="1"/>
+                                <field name="address"/>
+                                <field name="city"/>
+                                <field name="state_id"/>
+                                <field name="country_id"/>
+                                <field name="website" widget="url"/>
+                                <field name="mc_nda_signed"/>
+                            </group>
+                            <group>
+                                <field name="vendor_product_category" required="1"/>
+                                <field name="product_type_id"/>
+                                <field name="category_id"/>
+                                <field name="sub_category_id"/>
+                                <field name="category_type"  required="1" invisible="1"/>
+                                <field name="department_id"/>
+                                <field name="priority" widget="priority"/>
+                                <field name="tags_ids" widget="many2many_tags"/>
+                                <field name="vendor_relation"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Internal Notes">
+                                <group>
+                                    <field name="notes" string="Notes"/>
+                                </group>
+                            </page>
+                            <page string="Prices" name="prices">
+                                <group name="prices">
+                                    <field name="quick_reference_prices"/>
+                                </group>
+                            </page>
+                            <page string="Gantt" name="gantt">
+                                <group name="gantt">
+                                    <group name="gantt_left">
+                                        <field name="start_date" widget="date"/>
+                                    </group>
+                                    <group name="gantt_right">
+                                        <field name="end_date" widget="date"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="fm_admin_search_view" model="ir.ui.view">
+            <field name="name">rdp.exit14.search</field>
+            <field name="model">rdp.exit14</field>
+            <field name="arch" type="xml">
+                <search string="FA Admin">
+                    <field name="name"/>
+                    <field name="vendor"/>
+                    <field name="vendor_product_category"/>
+                    <field name="category_type"/>
+                    <field name="tags_ids"/>
+                    <field name="department_id"/>
+
+
+<!--                    <filter name="draft" string="New" domain="[('x_studio_field_MuJqw','=','new')]"/>-->
+<!--                    <filter name="wip" string="Wip" domain="[('x_studio_field_MuJqw', '=', 'wip')]"/>-->
+<!--                    <filter name="hold" string="Hold" domain="[('x_studio_field_MuJqw', '=', 'hold')]"/>-->
+<!--                    <filter name="close" string="Close" domain="[('x_studio_field_MuJqw', '=', 'close')]"/>-->
+<!--                    <filter name="cancel" string="Cancel" domain="[('x_studio_field_MuJqw', '=', 'cancel')]"/>-->
+
+
+                    <group expand="0" string="Group By">
+                        <filter name="name" string="Reference" domain="[]" context="{'group_by':'name'}"/>
+                        <filter name="create_date" string="Created On" domain="[]"
+                                context="{'group_by':'create_date'}"/>
+                        <filter name="department_id" string="Department" domain="[]"
+                                context="{'group_by':'department_id'}"/>
+                        <filter name="vendor" string="Vendor" domain="[]" context="{'group_by':'vendor'}"/>
+                        <filter name="vendor_product_category" string="Product/Service Name" domain="[]"
+                                context="{'group_by':'vendor_product_category'}"/>
+                        <filter name="category_type" string="Product Category" domain="[]"
+                                context="{'group_by':'category_type'}"/>
+                        <filter name="priority" string="Vendor Quality" domain="[]"
+                                context="{'group_by':'x_studio_priority'}"/>
+                        <filter name="vendor_relation" string="Vendor Relation" domain="[]"
+                                context="{'group_by':'x_studio_vendor_relation'}"/>
+                        <filter name="create_uid" string="Created by" context="{'group_by': 'create_uid'}"/>
+                        <filter name="category_id" string="Category" context="{'group_by': 'category_id'}"/>
+                        <filter name="sub_category_id" string="Sub Category" context="{'group_by': 'sub_category_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="rdp_exit14_action_view" model="ir.actions.act_window">
+            <field name="name">FM Admin &amp; Sourcing</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rdp.exit14</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_rdp_exit14" name="FM Admin &amp; Sourcing"
+                  action="rdp_exit14_action_view" parent="rdp_property1_thousand.fm_admin_main_menu"/>
+    </data>
+</odoo>

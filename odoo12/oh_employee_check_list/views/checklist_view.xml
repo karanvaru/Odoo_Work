@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_entry_checklist" model="ir.actions.act_window">
+        <field name="name">Entry Checklist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.checklist</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('document_type', '=', 'entry')]</field>
+        <field name="context">{"default_document_type":'entry'}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a New Entry Checklist
+            </p>
+        </field>
+    </record>
+
+    <record id="action_exit_checklist" model="ir.actions.act_window">
+        <field name="name">Exit Checklist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.checklist</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('document_type', '=', 'exit')]</field>
+        <field name="context">{"default_document_type":'exit'}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a New Exit Checklist
+            </p>
+        </field>
+    </record>
+
+    <record id="action_ojt_checklist" model="ir.actions.act_window">
+        <field name="name">OJT Process Checklist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.checklist</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('document_type', '=', 'ojt')]</field>
+        <field name="context">{"default_document_type":'ojt'}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a New OJT Process Checklist
+            </p>
+        </field>
+    </record>
+
+    <record id="action_probation_checklist" model="ir.actions.act_window">
+        <field name="name">Probation Checklist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.checklist</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('document_type', '=', 'probaton')]</field>
+        <field name="context">{"default_document_type":'probation'}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a New Probation Checklist
+            </p>
+        </field>
+    </record>
+
+    <record id="action_employment_checklist" model="ir.actions.act_window">
+        <field name="name">Employment Process Checklist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.checklist</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('document_type', '=', 'employment')]</field>
+        <field name="context">{"default_document_type":'employment'}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a New Employment Process Checklist
+            </p>
+        </field>
+    </record>
+
+    <record id="action_pre_exit_checklist" model="ir.actions.act_window">
+        <field name="name">Pre-Exit Process Checklist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.checklist</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('document_type', '=', 'pre_exit')]</field>
+        <field name="context">{"default_document_type":'pre_exit'}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a New Pre-Exit Process Checklist
+            </p>
+        </field>
+    </record>
+
+    <record id="action_post_exit_checklist" model="ir.actions.act_window">
+        <field name="name">Post-Exit Process Checklist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.checklist</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('document_type', '=', 'post_exit')]</field>
+        <field name="context">{"default_document_type":'post_exit'}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a New Post-Exit Process Checklist
+            </p>
+        </field>
+    </record>
+
+    <record id="action_induction_checklist" model="ir.actions.act_window">
+        <field name="name">Induction Process Checklist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.checklist</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('document_type', '=', 'induction')]</field>
+        <field name="context">{"default_document_type":'induction'}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a New Induction Process Checklist
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="employee_entry_checklist_menu" name="Entry Checklist" parent="hr.menu_human_resources_configuration" sequence="3"
+              action="action_entry_checklist"/>
+    <menuitem id="employee_exit_checklist_menu" name="Exit Checklist" parent="hr.menu_human_resources_configuration" sequence="4"
+              action="action_exit_checklist"/>
+    <menuitem id="employee_induction_checklist_menu" name="Induction Process Checklist" parent="hr.menu_human_resources_configuration" sequence="6"
+              action="action_induction_checklist"/>
+    <menuitem id="employee_ojt_checklist_menu" name="OJT Process Checklist" parent="hr.menu_human_resources_configuration" sequence="7"
+              action="action_ojt_checklist"/>
+    <menuitem id="employee_probation_checklist_menu" name="Probation Process Checklist" parent="hr.menu_human_resources_configuration" sequence="8"
+              action="action_probation_checklist"/>
+    <menuitem id="employee_employment_checklist_menu" name="Employment Process Checklist" parent="hr.menu_human_resources_configuration" sequence="9"
+              action="action_employment_checklist"/>
+    <menuitem id="employee_pre_exit_checklist_menu" name="Pre-Exit Process Checklist" parent="hr.menu_human_resources_configuration" sequence="10"
+              action="action_pre_exit_checklist"/>
+    <menuitem id="employee_post_exit_checklist_menu" name="Post-Exit Process Checklist" parent="hr.menu_human_resources_configuration" sequence="11"
+              action="action_post_exit_checklist"/>
+</odoo>

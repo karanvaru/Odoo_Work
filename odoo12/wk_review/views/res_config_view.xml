@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <record id="form_view_wk_website_review_config_settings" model="ir.ui.view">
+            <field name="name">Website Product review Settings</field>
+            <field name="model">website.review.config</field>
+            <field name="arch" type="xml">
+                <form string="Onepage Checkout Configuration" class="oe_form_configuration">
+                    <group string="Product Review">
+                        <group>
+                            <field name="review_no" help="Set limit of reviews want to display on website on every click."/>
+                            <field name="auto_publish" help="If it is checked then review will published automatically."/>
+                        </group>
+                        <group name="review_help" class="oe_grey" col="1">
+                            <div class="oe_inline">
+                                Set limit of reviews want to display on product page on every click.
+                            </div>
+                            <br/>
+                            <p class="oe_inline">
+                                If it is checked then review will published automatically.
+                            </p>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="message_when_unpublish" help="If auto publish is not set then this message will disply when user will post review." attrs="{'invisible':[('auto_publish','=',True)], 'required':[('auto_publish','=',False)]}"/>
+                    </group>
+                    <footer>
+                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" type="button" special="cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wk_website_product_review_configuration" model="ir.actions.act_window">
+            <field name="name">Product Review Configuration</field>
+            <field name="res_model">website.review.config</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id = "product_review_configuration_installer_todo" model = "ir.actions.todo">
+            <field name = "action_id" ref = "wk_review.action_wk_website_product_review_configuration"/>
+            <field name = "sequence">15</field>
+            <!-- <field name = "type">automatic</field> -->
+        </record>
+    </data>
+</odoo>

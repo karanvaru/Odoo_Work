@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rdp_it_custom,RDP IT Custom,model_rdp_it_custom,,1,1,1,1
+access_record.category,record.category,model_record_category,base.group_system,1,1,1,1
+access_record.type,record.type,model_record_type,base.group_system,1,1,1,1
+access_partner_type,partner.type,model_partner_type,base.group_system,1,1,1,1
+access_partner_service,partner.service,model_partner_service,base.group_system,1,1,1,1
+access_purchase_channel_admin,purchase.channel.admin,model_purchase_channel,base.group_system,1,1,1,1
+access_purchase_channel_user,purchase.channel.user,model_purchase_channel,base.group_user,1,1,0,0
+
+

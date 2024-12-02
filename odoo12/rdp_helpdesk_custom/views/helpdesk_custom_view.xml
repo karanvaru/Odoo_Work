@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Helpdesk  Custom -->
+    <record id="helpdesk_custom_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form.custom</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" postition="inside" sequence="20">
+                <page string="Product Details">
+                    <group>
+                        <group>
+                            <field name="product_serial_no"/>
+                            <field name="serial_product"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="open_pspr_tickets" class="oe_stat_button" icon="fa-exchange" type="object"
+                        attrs="{'invisible': [('pspr_count','==',0)]}">
+                    <field name="pspr_count" widget="statinfo" string="PSPR"/>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="attached_os" attrs="{}" required="1"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="helpdesk_ticket_page_inherit_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form.inherit</field>
+        <field name="model">helpdesk.ticket</field>
+        <!--        <field name="inherit_id" ref="helpdesk_sla_tat.helpdesk_ticket_sla_inherit_view"/>-->
+        <field name="inherit_id" ref="rdp_tat.helpdesk_ticket_tat_inherit_view"/>
+        <field name="arch" type="xml">
+            <!--            <xpath expr="//page[@name='helpdesk_ticket_sla']" position="after">-->
+            <xpath expr="//page[@name='helpdesk_ticket_tat']" position="after">
+                <page string="Temp ASP" name="temp_asp">
+                    <group name="temp_asp">
+                        <group name="temp_asp_left">
+                            <field name="temp_asp_id" placeholder="Contact"/>
+                        </group>
+                        <group name="temp_asp_right">
+                            <field name="kam_id"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="ZED 3" name="zed_three">
+                    <group name="zed_three">
+                        <group name="zed_three_left">
+                            <field name="problem_type"/>
+                            <field name="problem_category"/>
+                        </group>
+                        <group name="zed_three_right">
+                            <!--                            <field name="x_studio_field_fX0nD"/>-->
+                            <!--                            <field name="x_studio_field_6ZNb1"/>-->
+                            <field name="brand_id" string="Brand"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="ASP Details" name="asp_details">
+                    <group name="asp_details">
+                        <group name="asp_details_left">
+                            <field name="asp_ticket_no" string="ASP Ticket No"/>
+                            <!--                            <field name="x_studio_field_SFAyM"/>-->
+                            <field name="onsite_assign_date" string="Onsite Assign Date"/>
+                        </group>
+                        <group name="asp_details_right">
+                            <field name="field_engineer_name" string="Field Engineer Name "/>
+                            <field name="field_engineer_mobile" string="Field Engineer Mobile"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Gen 3.0 SLA" name="gen_three_sla">
+                    <group name="gen_three_sla">
+                        <group name="gen_three_sla_left">
+                            <field name="sla_achieved"/>
+                        </group>
+                        <group name="gen_three_sla_right">
+                            <field name="asp_sla_achieved"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Support Location" name="support_location">
+                    <group name="is_different_location">
+                        <field name="is_different_location" string="Is Different Location" attrs="{}"
+                               invisible="1"/>
+                    </group>
+                    <group name="support_location">
+                        <group name="support_location_left">
+                            <!--                            <field name="x_studio_end_customer_company" string="End Customer Company"-->
+                            <!--                                   attrs="{&quot;invisible&quot;: []}"/>-->
+                            <!--                            <field name="x_studio_street" string="Street"/>-->
+                            <!--                            <field name="x_studio_street_2" string="Street 2"/>-->
+                            <!--                            <field name="x_studio_city" string="City"/>-->
+                            <!--                            <field name="x_studio_pincode" string="Pincode"/>-->
+                            <!--                            <field name="x_studio_state" string="State"/>-->
+                            <!--                            <field name="x_studio_country" string="Country"/>-->
+                            <!--                            <field name="x_studio_mobile" string="Mobile"/>-->
+                            <!--                            <field name="x_studio_email" string="Email"/>-->
+                        </group>
+                        <group name="support_location_right">
+                            <!--                            <field name="x_studio_contact_person" string="Contact Person"/>-->
+                            <!--                            <field name="x_studio_mobile_1" string="Mobile"/>-->
+                            <field name="mobile_one" string="Mobile"/>
+                            <!--                            <field name="x_studio_email_1" string="Email"/>-->
+                            <field name="email_one" string="Email"/>
+                            <field name="city_category_id"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!--    search view-->
+
+    <record id="helpdesk_custom_search" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.search.custom</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/filter[@name='stage']" position="after">
+                <filter name="sla_achieved" string="RDP SLA Achieved " context="{'group_by': 'sla_achieved'}"/>
+                <filter name="asp_sla_achieved" string="ASP SLA Achieved " context="{'group_by': 'asp_sla_achieved'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

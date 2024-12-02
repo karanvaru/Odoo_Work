@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="menu_top_parent_commissions"
+                  name="Commissions"
+                  sequence="10"
+                  web_icon="reddot_commission,static/description/icon.png"/>
+
+        <menuitem id="menu_sub_parent_commissions"
+                  parent="menu_top_parent_commissions"
+                  name="Commissions"
+                  sequence="10"/>
+
+
+        <menuitem id="menu_action_commission_configuration"
+                  parent="menu_top_parent_commissions"
+                  name="Configuration"
+                  groups="reddot_commission.group_manager_commission"
+                  sequence="40"/>
+
+
+         <menuitem id="menu_threshold_configuration"
+                  action="action_threshold_configuration"
+                  parent="menu_action_commission_configuration"
+                  groups="reddot_commission.group_manager_commission"
+                  name="Thresold"
+                  sequence="3"/>
+
+        <menuitem id="menu_employee_target_revenue_gp"
+                  action="action_employee_target_revenue_gp"
+                  parent="menu_sub_parent_commissions"
+                  name="Employee Revenue Targets"
+                  groups="reddot_commission.group_manager_commission"
+                  sequence="4"/>
+
+        <menuitem id="menu_employee_target_breadth"
+                  action="action_employee_target_breadth"
+                  parent="menu_sub_parent_commissions"
+                  name="Employee Breadth Targets"
+                  groups="reddot_commission.group_manager_commission"
+                  sequence="5"/>
+
+        <menuitem id="menu_commission_structure"
+                  action="action_commission_structure"
+                  parent="menu_sub_parent_commissions"
+                  name="Commission Structure"
+                  groups="base.group_user"
+                  sequence="6"/>
+
+<!--         <menuitem id="menu_action_commission_term_condition"
+                  action="action_commission_term_condition"
+                  parent="menu_action_commission_configuration"
+                  name="Term And Condition"
+                  sequence="5"/>
+ -->    </data>
+</odoo>

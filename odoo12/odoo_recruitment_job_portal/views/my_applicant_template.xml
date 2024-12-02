@@ -1,0 +1,441 @@
+<odoo>
+
+   <!-- <template id="my_applicant" name="my pplicant: project menu entry" inherit_id="portal.portal_layout" priority="28">
+       <xpath expr="//ul[contains(@class,'o_portal_submenu')]" position="inside">
+            <li   t-att-class="page_name == 'pplicant' and 'active' or ''">
+                 <a href="/my/applicants">Applications</a>
+            </li>
+        </xpath>
+    </template> -->
+
+     <template id="my_applicant" name="my applicants: project menu entry" inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'applicant'" t-attf-class="breadcrumb-item #{'active ' if not applicant else ''}">
+                <a t-if="applicant" t-attf-href="/my/applicants?{{ keep_query() }}">Applications</a>
+                <t t-else="">Applications</t>
+            </li>
+        </xpath>
+    </template>
+
+
+   <template id="portal_my_applicant" name="Portal My applicant: project entries" inherit_id="portal.portal_my_home" priority="28">
+     
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+<!--           <t t-if="applicant_count" t-call="portal.portal_docs_entry">-->
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Your Applications</t>
+                <t t-set="url" t-value="'/my/applicants'"/>
+                <t t-set="count" t-value="applicant_count"/>
+            </t>
+        </xpath>
+    </template>
+
+    
+    <!-- <template id="portal_my_applicant" name="Portal My applicant: project entries" inherit_id="portal.portal_my_home" priority="28">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+
+           <h3  class="page-header">
+                <a href="/my/applicants">Your Applications
+                    <small class="ml8">
+                      <t t-if="applicant_count">
+                        <span class='badge'><t t-esc="applicant_count"/></span>
+                    </t>
+                    <t t-if="not applicant_count">
+                        There are currently no application for your account.
+                    </t>
+                    </small>
+                </a>
+            </h3>
+            <li t-if="applicant_count" class="list-group-item">
+                <span class="badge" t-esc="applicant_count"/>
+                <a href="/my/applicants">Applications</a>
+            </li>
+        </xpath>
+    </template> -->
+    
+    <template id="display_applicants" name="Display Applicants">
+        <t t-call="portal.portal_layout">
+        <a href="/createapplication"><button type="submit" class="btn btn-success" formaction="/odoo_recruitment_job_portal/createapplication">Apply Now</button></a>
+        <h3 class="page-header">Your Applications</h3>
+            <table class="table table-hover o_my_status_table">
+                <t t-if="applicants" t-call="portal.portal_table">
+                <thead class="card-header">
+                  <tr class="active">
+                    <th>Application No</th>
+                    <th>Application</th>
+                    <th>Create Date</th>
+                    <th>Job Position</th>
+                    <th>Stage</th>
+                  </tr>
+                </thead>
+                <t t-foreach="applicants" t-as="applicant">
+                    <tr>
+                        <td>
+                            <a t-attf-href="/my/applicant/#{applicant.id}?{{ keep_query() }}"><span t-field="applicant.number"/></a>
+                        </td>
+                        <td>
+                            <span t-field="applicant.name"/>
+                        </td>
+                        <td>
+                            <span t-field="applicant.create_date" t-field-options='{"format": "d/M/y"}'/>
+                        </td>
+                        <td>
+                            <span t-field="applicant.job_id.name"/>
+                        </td>
+                        <td>
+                            <span t-field="applicant.stage_id"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+            </table>
+             </t>
+    </template>
+    
+    <template id="display_applicant" name="display applicant">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <t t-set="applicant" t-value="applicant.sudo()"/>
+                <div class="container">
+                    <div class="oe_structure">
+                        <div class="o_portal container mt-3">
+                            <div class="row align-items-center bg-light no-gutters border rounded col-xs-12 col-md-6" >
+                            <div class="col">
+                                <ol class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1">
+                                    <li class="breadcrumb-item"><a href="/my/home" aria-label="Home" title="Home"><i class="fa fa-home"/></a></li>
+                                    <li class="breadcrumb-item"><a t-attf-href="/my/applicants?#{keep_query()}">My Application</a></li>
+                                    <li class="breadcrumb-item"><span t-field="applicant.partner_name"/></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                    <div class="table-bordered col-12">
+                    <div class="container">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-md-12 table-bordered card-header">
+                                            <strong style="font-size:20px; ">Application for - <span t-field="applicant.number"/> / <span t-field="applicant.name"/> / <span t-field="applicant.partner_name"/></strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="panel-body">
+                                <div class='row'>
+                                    <div class="col-6">
+                                        <div class="mb8">
+                                            <table class="table table-hover o_my_status_table table-bordered card-header">
+                                                <thead>
+                                                  <tr class="active">
+                                                    <th style="font-family:Times New Roman;font-size:20px;">Contact Details</th>
+                                                  </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                         <div class="mb8">
+                                            <strong>Email :</strong> <span t-field="applicant.email_from"/>
+                                        </div>
+                                        <div class="mb8">
+                                            <strong>Phone:</strong> <span t-field="applicant.partner_phone"/>
+                                        </div>
+                                        <div class="mb8">
+                                            <strong>Mobile:</strong> <span t-field="applicant.partner_mobile"/>
+                                        </div>
+                                        <div class="mb8">
+                                            <strong>Medium:</strong> <span t-field="applicant.medium_id.name"/>
+                                        <div class="mb8">
+                                            <strong>Referred By:</strong> <span t-field="applicant.reference"/>
+                                        <div class="mb8">
+                                            <strong></strong> <span/>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb8">
+                                            <table class="table table-hover o_my_status_table table-bordered card-header">
+                                                <thead>
+                                                  <tr class="active">
+                                                    <th style="font-family:Times New Roman;font-size:20px;">Other Info</th>
+                                                  </tr>
+                                                </thead>
+                                            </table>
+                                            <strong>Degree:</strong> <span t-field="applicant.type_id.name"/>
+                                        </div>
+                                        <div class="mb8">
+                                            <strong>Create Date:</strong> <span t-field="applicant.create_date" t-field-options='{"format": "d/M/y"}'/>
+                                        </div>
+                                        <div class="mb8">
+                                            <strong>Stage:</strong> <span t-field="applicant.stage_id"/>
+                                        </div>
+
+                                        <div class="mb8">
+                                            <strong>Source:</strong> <span t-field="applicant.source_id.name"/>
+                                        </div>
+                                        <div class="mb8">
+                                            <strong>Responsible :</strong> <span t-field="applicant.user_id.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb8">
+                                        </div>
+                                        <div class="mb8">
+                                            <strong></strong> <span/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb8">
+                                        </div>
+                                        <div class="mb8">
+                                            <strong></strong> <span/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb8">
+                                        </div>
+                                        <div class="mb8">
+                                            <strong></strong> <span/>
+                                        </div>
+                                    </div>
+                                        <!-- <div class="col-md-12.5"> -->
+                                        <!-- <div class="mb8"> -->
+                                            <table class="table table-hover o_my_status_table table-bordered card-header">
+                                                <thead>
+                                                  <tr class="active">
+                                                    <th style="font-family:Times New Roman;font-size:20px;">Jobs</th>
+                                                  </tr>
+                                                </thead>
+                                            </table>
+                                        <!-- </div> -->
+                                        <!-- </div> -->
+                                        <div class="col-md-6">
+                                        <div class="mb8">
+                                            <strong> Applied Job:</strong> <span t-field="applicant.job_id.name"/>
+                                        </div>
+                                        <div class="mb8">
+                                            <strong> Department:</strong> <span t-field="applicant.department_id.name"/>
+                                        </div>
+                                         <div class="mb8">
+                                            <strong> Company:</strong> <span t-field="applicant.company_id.name"/>
+                                        </div>
+                                        <div class="mb8">
+                                            <strong> Availability:</strong> <span t-field="applicant.availability" t-field-options='{"format": "d/M/y"}'/>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-12.5">
+                                        <div class="mb8"> -->
+                                            <table class="table table-hover o_my_status_table table-bordered card-header">
+                                                <thead>
+                                                  <tr class="active">
+                                                    <th style="font-family:Times New Roman;font-size:20px;">Education Details</th>
+                                                    <!-- <th></th>
+                                                    <th></th> -->
+                                                  </tr>
+                                                </thead>
+                                            </table>
+                                        <!-- </div>
+                                        </div> -->
+                                        <div>
+                                        <div>
+                                                <table class="table table-hover o_my_status_table table-bordered">
+                                                    <thead>
+                                                      <tr>
+                                                        <th>Degree</th>
+                                                        <th>Institute</th>
+                                                        <th>Passing Year</th>
+                                                        <th>Grade/Class</th>
+                                                        <th>Major Subjects</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <t t-foreach="applicant.applicant_education_ids" t-as="education">
+                                                        <tr>
+                                                            <td>
+                                                                <span t-field="education.degree_id.name"/>
+                                                            </td>
+                                                            <td>
+                                                                <span t-field="education.institute_id.name"/>
+                                                            </td>
+                                                            <td>
+                                                                <span t-field="education.passing_year"/>
+                                                            </td>
+                                                            <td>
+                                                                <span t-field="education.grade"/>
+                                                            </td>
+                                                             <td>
+                                                               <span t-field="education.major_subject"/>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </table>
+                                            </div>
+                                    </div>
+                                    <!-- <div class="col-md-12.5"> -->
+                                        <!-- <div> -->
+                                            <table class="table table-hover o_my_status_table table-bordered card-header">
+                                                <thead>
+                                                  <tr class="active">
+                                                    <th style="font-family:Times New Roman;font-size:20px;">Employment Details</th>
+                                                  </tr>
+                                                </thead>
+                                            </table>
+                                        <!-- </div> -->
+                                        <!-- </div> -->
+                                        <div>
+                                            <div>
+                                                <table class="table table-hover o_my_status_table table-bordered">
+                                                    <thead>
+                                                      <tr>
+                                                        <th>Organization</th>
+                                                        <th>Start Date</th>
+                                                        <th>End Date </th>
+                                                        <th>Responsibilities</th>
+                                                        <th>Supervisor </th>
+                                                      </tr>
+                                                    </thead>
+                                                    <t t-foreach="applicant.applicant_employeement_ids" t-as="employ">
+                                                        <tr>
+                                                            <td>
+                                                                <span t-field="employ.organization_id.name"/>
+                                                            </td>
+                                                            <td>
+                                                                <span t-field="employ.start_date"/>
+                                                            </td>
+                                                            <td>
+                                                                <span t-field="employ.end_date"/>
+                                                            </td>
+                                                            <td>
+                                                                <span t-field="employ.role"/>
+                                                            </td>
+                                                             <td>
+                                                                <span t-field="employ.supervisor"/>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </table>
+                                            </div>
+                                    </div>
+                                    <!-- <div class="col-md-12.5"> -->
+                                        <!-- <div class="mb8"> -->
+                                            <table class="table table-hover o_my_status_table table-bordered card-header">
+                                                <thead>
+                                                  <tr class="active">
+                                                    <th style="font-family:Times New Roman;font-size:20px;">Family Details</th>
+                                                   <!--  <th></th>
+                                                    <th></th> -->
+                                                  </tr>
+                                                </thead>
+                                            </table>
+                                        <!-- </div>
+                                        </div> -->
+                                        <div class="col-md-6">
+                                        <div class="mb8">
+                                            <table class="table table-hover o_my_status_table table-bordered">
+                                                <thead>
+                                                  <tr>
+                                                    <th>Relation</th>
+                                                    <th>Name</th>
+                                                    <th>Age</th>
+                                                  </tr>
+                                                </thead>
+                                                <t t-foreach="applicant.applicant_family_ids" t-as="family">
+                                                    <tr>
+                                                        <td>
+                                                            <span t-field="family.relation_id.name"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="family.name"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="family.age"/>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-12.5"> -->
+                                        <!-- <div class="mb8"> -->
+                                            <table class="table table-hover o_my_status_table table-bordered card-header">
+                                                <thead>
+                                                  <tr class="active">
+                                                    <th style="font-family:Times New Roman;font-size:20px;">Medical Checklists</th>
+                                                  </tr>
+                                                </thead>
+                                            </table>
+                                        <!-- </div> -->
+                                        <!-- </div> -->
+                                        <div class="col-md-6">
+                                        <div class="mb8">
+                                            <table class="table table-hover o_my_status_table table-bordered">
+                                                <thead>
+                                                  <tr>
+                                                    <th>Medical Test</th>
+                                                    <th>Result</th>
+                                                  </tr>
+                                                </thead>
+                                                <t t-foreach="applicant.applicant_medical_ids" t-as="medical">
+                                                    <tr>
+                                                        <td>
+                                                            <span t-field="medical.checkup_type_id.name"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="medical.checkup_result"/>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-12.5"> -->
+                                        <!-- <div class="mb8"> -->
+                                            <table class="table table-hover o_my_status_table table-bordered card-header">
+                                                <thead>
+                                                  <tr class="active">
+                                                    <th style="font-family:Times New Roman;font-size:20px;">Application Summary</th>
+                                                  </tr>
+                                                </thead>
+                                            </table>
+                                        <!-- </div> -->
+                                        <!-- </div> -->
+                                </div>
+                                <div class="container" t-if="applicant.description">
+                                    <p t-field="applicant.description"/>
+                                </div>
+                            </div>
+                        </div>
+                     <!--   <div class="row mt32">
+                            <div class="col-md-12">
+                                <h4><strong>Message and communication history</strong></h4>
+                            </div>
+                            <div class="col-md-10 col-md-offset-1 mt16">
+                                <t t-call="odoo_recruitment_job_portal.message_thread_job">
+                                <t t-call="website_mail.message_thread">
+                                    <t t-set="object" t-value="applicant"/>
+                                    <t t-set="chatter_mode" t-value="'json'"/>
+                                </t>
+                            </div>
+                        </div> -->
+                        <div class="row mt32">
+                            <div class="col-md-12">
+                                <h4><strong>Message and communication history</strong></h4>
+                            </div>
+                            <div class="col-md-10 col-md-offset-1 mt16">
+                                <t t-call="portal.message_thread">
+                                    <t t-set="object" t-value="applicant"/>
+                                    <t t-set="token" t-value="applicant.access_token"/>
+                                    <t t-set="pid" t-value="pid"/>
+                                    <t t-set="hash" t-value="hash"/>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    
+    
+</odoo>

@@ -1,0 +1,24 @@
+<openerp>
+    <data noupdate="1">
+	<record id="ke_relief1" model="ke.relief.type">
+	   <field name="name">Insurance Relief</field>
+           <field name="rule_id" ref="hr_ke.ke_rule96"/>
+	</record>
+
+	<record id="ke_relief2" model="ke.relief.type">
+	   <field name="name">FOR FUTURE USE</field>
+           <field name="rule_id" ref="hr_ke.ke_rule97"/>
+	</record>
+
+	<record id="ke_relief3" model="ke.relief.type">
+	   <field name="name">FOR FUTURE USE</field>
+           <field name="rule_id" ref="hr_ke.ke_rule98"/>
+	</record>
+
+	<record id="ke_relief4" model="ke.relief.type">
+	   <field name="name">FOR FUTURE USE</field>
+           <field name="rule_id" ref="hr_ke.ke_rule99"/>
+	</record>
+
+    </data>
+</openerp>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Helpdesk  Custom -->
+    <record id="helpdesk_stage_custom_form" model="ir.ui.view">
+        <field name="name">helpdesk.stage.form.custom</field>
+        <field name="model">helpdesk.stage</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_stage_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='fold']" position="after">
+                <field name="rdp_mail_notify_type"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

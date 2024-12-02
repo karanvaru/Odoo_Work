@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_report_balance_view_inherit_summary" model="ir.ui.view">
+        <field name="name">Trial Balance Summary</field>
+        <field name="model">account.balance.report</field>
+        <field name="inherit_id" ref="accounting_pdf_reports.account_report_balance_view"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='target_move']" position="after">
+                    <field name="group_summary"/>
+                    <newline/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+
+</odoo>
