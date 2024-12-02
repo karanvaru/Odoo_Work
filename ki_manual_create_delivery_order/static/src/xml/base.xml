@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="new_import_menu_template" t-inherit="base_import.ImportMenu" t-inherit-mode="primary" owl="1">
+	    <xpath expr="//li[hasclass('o_import_menu')]" position="attributes">
+            <attribute name="class" separator=" " add="o_hidden" />
+	    </xpath>
+    </t>
+    
+    <t t-name="new_action_menu_template" t-inherit="web.ActionMenus" t-inherit-mode="primary" owl="1">
+	    <xpath expr="//DropdownMenu[@items='actionItems']" position="before">
+	    	<t t-set="actionItems_new" t-value="_remove_import(actionItems)"/>
+	    </xpath>
+	    <xpath expr="//DropdownMenu[@items='actionItems']" position="attributes">
+	    	<attribute name="items">actionItems_new</attribute>
+	    </xpath>
+    </t>
+</templates>
