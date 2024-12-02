@@ -1,0 +1,146 @@
+.cue_contact_form {
+	border-radius: 20px;
+	background-color: #232328;
+  min-height: 352px;
+  color: #fafafc;
+	margin-top: 20px;
+	padding-top: 100px !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 80px !important;
+	.s_website_form {
+		.s_website_form_rows {
+			textarea {
+				min-height: 172px;
+			}
+		}
+	}
+	.s_website_form_send {
+		background-color: #ffc84b;
+		color: #464650;
+		// font-size: var(--general-f);
+		&:hover {
+			background-color: #afafc8;
+			border-color: #232328;
+		}
+	}
+	select{
+        width: 89%;
+        height: 42px;
+        border-radius: 10px;
+        padding: 0px 10px 0px 10px;
+	}
+	.contact_detail{
+	    font-family: Poppins;
+	    font-size: var(--general-f);
+	    line-height: 1.501;
+	    font-weight: 400;
+	    font-style: normal;
+	    text-decoration: none;
+	    text-transform: none;
+	    letter-spacing: normal;
+	    color: #fafafc;
+	    text-shadow: none;
+	    a {
+	    	color: #fafafc;
+	    	&:hover, &:active, &:focus {
+	    		color: #fafafc;
+	    	}
+	    }
+	    .fa {
+	    	font-size: var(--sub-header-f);
+	    }
+	}
+	.contact_detail_h1{
+		font-family: Poppins;
+	    font-size: var(--header-f);
+	    line-height: 1.668;
+	    font-weight: 600;
+	    font-style: normal;
+	    text-decoration: none;
+	    text-transform: none;
+	    letter-spacing: normal;
+	    color: #e1e1f0;
+	    text-shadow: none;
+	}
+
+     @media only screen and (max-width: 991px) {
+			.s_website_form_send {
+				// font-size: 12px;
+				&:hover {
+					background-color: #afafc8;
+					border-color: #232328;
+				}
+			}
+
+          .contact_detail_h1 {
+              // font-size: 20px !important;
+              text-align: center;
+              width: 100%;
+              display: block;
+          }
+          .contact_detail {
+          	display: table;
+          	margin: auto;
+          	min-width: 80%;
+          	& > * {
+          		display: flex;
+          		align-items: center;
+					margin-bottom: 8px;
+          		.fa {
+          			margin-right: 15px;
+          		}
+          		.fa-map-marker {
+          			margin-bottom: auto;
+          		}
+          	}
+          }
+          .fa-2x {
+             font-size: 1em;
+          }
+          // .contact_detail{
+          //    font-size: 13px !important;
+          // }
+          // .form-control{
+          //    font-size: 10px !important;
+
+          // }
+     }
+     .form-control {
+     	border-radius: 10px;
+     	line-height: 1.644;
+	    font-weight: 400;
+	    font-size: 14px;
+	    height: 42px;
+	    color: #464650;
+		  padding: 4px 20px 4px 20px;
+		  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	        color: rgb(175,175,200);
+	        font-size: 16px !important;
+	     }
+	     &::-ms-input-placeholder { /* Internet Explorer 10-11 */
+	        color: rgb(175,175,200);
+	        font-size: 16px !important;
+	     }
+	     &::-ms-input-placeholder { /* Microsoft Edge */
+	          color: rgb(175,175,200);
+	          font-size: 16px !important;
+	      }
+     }
+     
+
+     
+}
+
+body #wrapwrap > main .s_website_form input::placeholder, body #wrapwrap > main .s_website_form select::placeholder, body #wrapwrap > main .s_website_form textarea::placeholder {
+    font-size: 14px !important;
+}
+
+body #wrapwrap > main .s_website_form input::-ms-input-placeholder, body #wrapwrap > main .s_website_form select::-ms-input-placeholder, body #wrapwrap > main .s_website_form textarea::-ms-input-placeholder {
+    font-size: 14px !important;
+}
+
+body #wrapwrap > main .s_website_form option:disabled, body #wrapwrap > main .s_website_form option.o_wysiwyg_loader {
+    font-size: 14px !important;
+}

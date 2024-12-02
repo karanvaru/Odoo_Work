@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="cue_parner_parallax_cover" name="Cover Partner Parallax">
+    <section class="s_cover cue_r_parallax_cover cue_parner_parallax_cover parallax s_parallax_is_fixed bg-black-50 pt96 pb96 o_colored_level" data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" style="background-image: none;">
+       <span class="s_parallax_bg oe_img_bg" style="background-image: url('/cue_website/static/src/images/cue_parner_parallax_cover.jpg'); background-position: 50% 0;"></span>
+       <div class="o_we_bg_filter cue_cover_partner_parallax_back_shaddow"></div>
+       <div class="s_allow_columns container px-100">
+          <h1 class="mw-460 ml-auto snippet_title_font">Join Hands With Us</h1>
+          <p class="lead mw-460 ml-auto snippet_content_font" >Partner with us to offer your customers the latest in smart home automation.</p>
+          <p class="lead mw-460 ml-auto snippet_content_font" >Our product lineup provides scalable solutions to meet various project requirements, enabling you to deliver exceptional value and functionality.</p>
+          <p class="lead mw-460 ml-auto snippet_content_font" >Join us in revolutionising the smart home industry and create truly integrated, intelligent spaces.</p>
+          <p class="mw-460 ml-auto text-end">
+              <a class="btn mb-2 btn_partner_with_us btn_font_yellow" href="/contactus" contenteditable="true">Partner with us</a>
+          </p>
+       </div>
+    </section>
+</template>
+
+<record id="cue_website.cue_parner_parallax_cover_000_scss" model="ir.asset">
+    <field name="name">Cue 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_parner_parallax_cover/000.scss</field>
+</record>
+
+</odoo>

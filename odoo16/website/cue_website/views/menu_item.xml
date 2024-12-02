@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <menuitem id="Menu_sale_product_categories"
+              parent="sale.prod_config_main"
+              action="product.product_category_action_form"
+              sequence="4"
+    />
+
+    <menuitem id="menu_product_tags_config_stock"
+              name="Product Tags"
+              parent="sale.menu_sale_config"
+              sequence="42"/>
+
+    <menuitem id="Menu_sub_product_tags"
+              action="product.product_tag_action"
+              parent="menu_product_tags_config_stock"
+              sequence="4"
+    />
+    <menuitem id="Menu_sub_product_tag_category"
+              action="action_product_tag_category"
+              parent="menu_product_tags_config_stock"
+              sequence="4"
+    />
+
+    <menuitem id="menu_product_tag_mapping"
+              action="action_product_tag_mapping"
+              parent="menu_product_tags_config_stock"
+              sequence="5"
+    />
+    <menuitem id="menu_recruitment_academic"
+              parent="hr.menu_hr_root"
+              name="Jobs"
+    />
+    <menuitem id="sub_menu_job_requests"
+              action="job_requests_action"
+              parent="menu_recruitment_academic"
+              name="Job Requests"
+              sequence="1"
+    />
+    <menuitem id="sub_menu_academics"
+              action="recruitment_academic_action"
+              parent="menu_recruitment_academic"
+              name="Academics"
+              sequence="2"
+    />
+
+
+</odoo>

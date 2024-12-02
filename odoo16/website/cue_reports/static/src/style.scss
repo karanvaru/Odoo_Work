@@ -1,0 +1,20 @@
+@font-face {
+
+font-family: 'Arial Narrow';
+
+font-style: normal;
+
+src:url('/test_module/static/src/fonts/arial-narrow.woff') format('woff'),
+
+url('/test_module/static/src/fonts/arial-narrow_d.ttf') format('truetype');
+
+}
+.row {
+
+font-family: 'Arial Narrow';
+
+font-style: normal;
+
+background-color: white;
+
+}

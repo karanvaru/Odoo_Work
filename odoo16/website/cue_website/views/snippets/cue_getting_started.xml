@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="cue_getting_started" name="Get Started">
+        <section class="s_text_image cue_getting_started pt32 pb32 o_colored_level" data-name="Image - Text" data-snippet="s_image_text" style="background-image: none;">
+            <div class="container px-100">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 pt16 pb16 o_colored_level">
+                        <img class="img img-fluid mx-auto" src="/cue_website/static/src/images/cue_desk_screens_1040.png"/>
+                    </div>
+                    <div class="col-lg-6 pt16 pb16 o_colored_level">
+                        <h1 class="mb-4">
+                            <font style="font-weight: 600; color: rgb(225, 225, 240);">
+                                <span style="font-size: 36px;">
+                                    Getting Started
+                                </span>
+                            </font>
+                        </h1>
+                        <p class="o_default_snippet_text mb-4">
+                            <font style="font-weight: 400; color: rgb(250, 250, 252);">
+                                <span style="font-size: 16px;line-height: 1.626;">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt lorem enim, eget fringilla turpis congue vitae. Phasellus aliquam nisi ut lorem vestibulum eleifend. Nulla ut arcu non nisi congue venenatis vitae ut ante. Nam
+                                </span>
+                            </font>
+                        </p>
+                        <p style="text-align: right;">
+							<a href="/blog/guide/getting-started" class="btn btn-fill-primary resource_gs_read">Read</a>
+                            <!-- a class="__black rounded mb-2 btn-lg btn btn-fill-primary rounded-circle" href="/blog/guide/getting-started">
+                                <span style="font-size: 14px;">Read</span>
+                            </a-->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <record id="cue_website.cue_getting_started_000_scss" model="ir.asset">
+        <field name="name">Cue Getting Started 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_getting_started/000.scss</field>
+    </record>
+</odoo>

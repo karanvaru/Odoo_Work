@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+     	
+     	<record id="paperformat_gst" model="report.paperformat">
+            <field name="name">GST Invoice</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">15</field>
+            <field name="dpi">90</field>
+        </record>
+        
+        <report
+            id="tax_invoice_report"
+            model="account.move"
+            string="Tax Invoice GST"
+            report_type="qweb-pdf"
+            name="odoo_gst_taxes.tax_invoice_report_view"
+            file="odoo_gst_taxes.tax_invoice_report_view"
+            menu="True"
+            paperformat="odoo_gst_taxes.paperformat_gst"
+            />
+        
+    </data>
+</openerp>

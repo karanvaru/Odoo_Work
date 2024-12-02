@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_cash_flow_view_stock" model="ir.ui.view">
+        <field name="name">account.account.form.stock</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='deprecated']" position="after">
+                    <field name="is_stock_account"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+
+
+</odoo>
+

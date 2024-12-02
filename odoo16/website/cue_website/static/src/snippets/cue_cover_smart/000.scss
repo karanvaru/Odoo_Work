@@ -1,0 +1,40 @@
+.cue_cover_smart {
+	border-radius: 20px;
+	background-color: #232328;
+	min-height: 600px;
+	border: 2px solid #ffc84b;
+	color: white;
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.s_allow_columns.container {
+		max-width: 760px;
+		margin-top: 47px;
+	}
+	h1 {
+	    font-size: var(--main-header-f);
+	    line-height: 1.313;
+	    font-weight: 600;
+	}
+	.cover_content_fonts {
+		max-width: 480px;
+		font-size: var(--sub-header-f);
+	    line-height: 1.668;
+	    font-weight: 400;
+	    margin: auto;
+	    margin-top: 91px;
+	}
+
+	@media only screen and (max-width: 767px) {
+		min-height: 250px;
+      	padding-bottom: 40px;
+		.cover_content_fonts {
+	    	max-width: 480px;
+	    	line-height: 1.668;
+	    	font-weight: 400;
+	    	margin: auto;
+	    	margin-top: 30px;
+	    }
+	}
+}

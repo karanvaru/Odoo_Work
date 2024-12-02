@@ -1,0 +1,135 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<templates>
+
+<t t-name="marque_box">
+    <div width="100%" direction="left" class="__box box-1">
+        <div class="inner_box">
+            <t t-foreach="widget.brand_ids[0]" t-as="brand_id">
+                <div class="ful_box" t-attf-style="background-image:url('/web/image/product.brand/{{brand_id}}/logo');background-size: cover;">
+                </div>
+            </t>
+        </div>
+        <div class="inner_box">
+            <t t-foreach="widget.brand_ids[0]" t-as="brand_id">
+                <div class="ful_box" t-attf-style="background-image:url('/web/image/product.brand/{{brand_id}}/logo');background-size: cover;">
+                </div>
+            </t>
+        </div>
+       
+    </div>
+    <div width="100%" direction="right" class="__box box-2">
+       
+        <div class="inner_box_right">
+            <t t-foreach="widget.brand_ids[1]" t-as="brand_id">
+                <div class="ful_box_right" t-attf-style="background-image:url('/web/image/product.brand/{{brand_id}}/logo');background-size: cover;">
+                </div>
+            </t>
+        </div>
+        <div class="inner_box_right">
+            <t t-foreach="widget.brand_ids[1]" t-as="brand_id">
+                <div class="ful_box_right" t-attf-style="background-image:url('/web/image/product.brand/{{brand_id}}/logo');background-size: cover;">
+                </div>
+            </t>
+        </div>
+        
+    </div>
+    <div width="100%" direction="left" class="__box box-1">
+      
+        <div class="inner_box">
+            <t t-foreach="widget.brand_ids[2]" t-as="brand_id">
+                <div class="ful_box" t-attf-style="background-image:url('/web/image/product.brand/{{brand_id}}/logo');background-size: cover;">
+                </div>
+            </t>
+        </div>
+        <div class="inner_box">
+            <t t-foreach="widget.brand_ids[2]" t-as="brand_id">
+                <div class="ful_box" t-attf-style="background-image:url('/web/image/product.brand/{{brand_id}}/logo');background-size: cover;">
+                </div>
+            </t>
+        </div>
+    </div>
+</t>
+</templates> -->
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+
+<t t-name="marque_box">
+   <div class="marquee-wrapper">
+	<div class="container">
+		<div class="marquee-block" t-attf-style="--block-width:185px;width:calc(var(--block-width) * ({{widget.brand_ids[0].length}}))">
+			<div class="marquee-inner to-left">
+				<span>
+                    <t t-foreach="widget.brand_ids[0]" t-as="brand_id">
+                        <div class="marquee-item">
+							<a t-att-href="widget.brands[brand_id]" target="_blank">
+								<img class="img_class" t-attf-src="/web/image/product.brand/{{brand_id}}/logo" style="background-color:white;"/>
+							</a>
+                        </div>
+                    </t>
+				</span>
+				<span>
+                    <t t-foreach="widget.brand_ids[0]" t-as="brand_id">
+                        <div class="marquee-item">
+							<a t-att-href="widget.brands[brand_id]" target="_blank">
+                            	<img class="img_class" t-attf-src="/web/image/product.brand/{{brand_id}}/logo" />
+							</a>
+                        </div>
+                    </t>
+				</span>
+			</div>
+		</div>
+
+        <div class="marquee-block" t-attf-style="--block-width:185px;width:calc(var(--block-width) * ({{widget.brand_ids[1].length}}))">
+			<div class="marquee-inner to-right">
+				<span>
+                    <t t-foreach="widget.brand_ids[1]" t-as="brand_id">
+                        <div class="marquee-item">
+							<a t-att-href="widget.brands[brand_id]" target="_blank">
+                            	<img class="img_class" t-attf-src="/web/image/product.brand/{{brand_id}}/logo" style="background-color:white;"/>
+							</a>
+                        </div>
+                    </t>
+				</span>
+				<span>
+                    <t t-foreach="widget.brand_ids[1]" t-as="brand_id">
+                        <div class="marquee-item">
+							<a t-att-href="widget.brands[brand_id]" target="_blank">
+                            	<img class="img_class" t-attf-src="/web/image/product.brand/{{brand_id}}/logo" />
+							</a>
+                        </div>
+                    </t>
+				</span>
+			</div>
+		</div>
+
+        <div class="marquee-block" t-attf-style="--block-width:185px;width:calc(var(--block-width) * ({{widget.brand_ids[2].length}}))">
+			<div class="marquee-inner to-left">
+				<span>
+                    <t t-foreach="widget.brand_ids[2]" t-as="brand_id">
+                        <div class="marquee-item">
+							<a t-att-href="widget.brands[brand_id]" target="_blank">
+                            	<img class="img_class" t-attf-src="/web/image/product.brand/{{brand_id}}/logo" style="background-color:white;"/>
+							</a>
+                        </div>
+                    </t>
+				</span>
+				<span>
+                    <t t-foreach="widget.brand_ids[2]" t-as="brand_id">
+                        <div class="marquee-item">
+							<a t-att-href="widget.brands[brand_id]" target="_blank">
+                            	<img class="img_class" t-attf-src="/web/image/product.brand/{{brand_id}}/logo" />
+							</a>
+                        </div>
+                    </t>
+				</span>
+			</div>
+		</div>
+
+	
+	</div>
+    </div>
+</t>
+</templates>

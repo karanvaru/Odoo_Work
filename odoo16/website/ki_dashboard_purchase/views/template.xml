@@ -1,0 +1,259 @@
+<odoo>
+    <template id="template_dashboard_customer">
+    
+            <div class="row" style="margin:0px">
+                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                    <div class="">
+                        <div class="row account-details" style="margin:0px">
+                            <div class="col-md-4">
+                                <!--Net Profit or Loss-->
+                                <div class="tile wide invoice box-1">
+                                    <div class="headers">
+                                        <div class="main-title">Total Purchase Orders</div>
+                                        <div id="monthly_invoice">
+                                            <div class="left">
+                                                <div class="count">
+                                                    <span t-esc="total_orders"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Total Income-->
+                            <div class="col-md-4">
+                                <div class="tile wide invoice box-2">
+                                    <div class="header">
+                                        <div class="main-title">Total Pending Orders</div>
+                                        <div id="monthly_income">
+                                            <div class="left">
+                                                <div class="count">
+                                                    <span t-esc="total_pending_orders"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Total Expense-->
+                            <div class="col-md-4">
+                                <div class="tile wide invoice box-3">
+                                    <div class="header">
+                                        <div class="main-title">Total New Orders</div>
+                                        <div id="monthly_expense">
+                                            <div class="left">
+                                                <div class="count">
+                                                    <span t-esc="total_new_orders"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="row" style="margin:0px">
+                
+                    <div class="col-md-4">
+                        <div class="card" style="height:366px;">
+                            <div class="card-header" style=" padding: 17px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; ">
+                                <h3 class="custom-h3 card-title">
+                                    <b>TOP 10 PRODUCT BY QUANTITY</b>
+                                </h3>
+                                <div class="card-tools">
+                                </div>
+                            </div>
+
+                            <div class="card-body p-0" style=" height: 287px; overflow-y: auto; " id="top_10_body">
+                            	<table class="table table-bordered">
+	                                <t t-foreach="top_products_by_quantity" t-as="product">
+	                                	<tr>
+	                                		<td><span t-esc="product.name"/></td>
+	                                		<td class="text-right"><span  class="text-right" t-esc="top_products_by_quantity[product]"/></td>
+	                                	</tr>
+	                                </t>
+                            	</table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="height:366px;">
+                            <div class="card-header" style=" padding: 17px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; ">
+                                <h3 class="custom-h3 card-title">
+                                    <b>TOP 10 PRODUCT BY AMOUNT</b>
+                                </h3>
+                                <div class="card-tools">
+                                </div>
+                            </div>
+
+                            <div class="card-body p-0" style=" height: 287px; overflow-y: auto; " id="top_10_body">
+                            	<table class="table table-bordered">
+	                                <t t-foreach="top_products_by_amount" t-as="product">
+	                                	<tr>
+	                                		<td><span t-esc="product.name"/></td>
+	                                		<td class="text-right"><span class="text-right" t-esc="top_products_by_amount[product]"/></td>
+	                                	</tr>
+	                                </t>
+                            	</table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="height:366px;">
+                            <div class="card-header" style=" padding: 17px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; ">
+                                <h3 class="custom-h3 card-title">
+                                    <b>TOP 10 VENDORS</b>
+                                </h3>
+                                <div class="card-tools">
+                                </div>
+                            </div>
+
+                            <div class="card-body p-0" style=" height: 287px; overflow-y: auto; " id="top_10_body">
+                            	<table class="table table-bordered">
+	                                <t t-foreach="top_partners" t-as="partner">
+	                                	<tr>
+	                                		<td><span t-esc="partner.name"/></td>
+	                                		<td class="text-right"><span  class="text-right" t-esc="top_partners[partner]"/></td>
+	                                	</tr>
+	                                </t>
+                            	</table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="row" style="margin:0px">
+                    <div class="col-md-6" id="col-graph">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <b>
+                                        <h3 class="custom-h3">Purchase By Product</h3>
+                                    </b>
+                                </div>
+                                <div class="card-tools">
+                                    <select id="income_expense_values" class="btn btn-primary">
+                                        <option id="income_this_year" value="income_this_year">This Year</option>
+                                        <option id="income_this_month" value="income_this_month" selected="">
+                                            This Month</option>
+                                        <div role="separator" class="dropdown-divider"/>
+                                        <option id="income_last_month" value="income_last_month">Last Month</option>
+                                        <option id="income_last_year" value="income_last_year">Last Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-body mt-3" id="in_ex_body_hide">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p id="myelement1"> </p>
+                                        <div class="chart">
+                                            <canvas id="canvas" width="300" height="200"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" id="col-graph">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <b>
+                                        <h3 class="custom-h3">Purchase By Vendor</h3>
+                                    </b>
+                                </div>
+                                <div class="card-tools">
+                                    <select id="income_expense_values" class="btn btn-primary">
+                                        <option id="income_this_year" value="income_this_year">This Year</option>
+                                        <option id="income_this_month" value="income_this_month" selected="">
+                                            This Month</option>
+                                        <div role="separator" class="dropdown-divider"/>
+                                        <option id="income_last_month" value="income_last_month">Last Month</option>
+                                        <option id="income_last_year" value="income_last_year">Last Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-body mt-3" id="in_ex_body_hide">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p id="myelement1"> </p>
+                                        <div class="chart">
+                                            <canvas id="canvas" width="300" height="200"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+             </div>
+
+            </div>
+
+    </template>
+</odoo>
+
+
+        <!--<?xml version="1.0" encoding="utf-8"?>-->
+        <!--<odoo>-->
+
+        <!--<template id="cue_best_platform" name="CUE Best Platform">-->
+        <!--    <section class="s_text_image cue_best_platform pt32 pb32 o_colored_level" data-snippet="s_text_image" data-name="Text - Image" style="background-image: none;">-->
+        <!--      <div class="container">-->
+        <!--        <div class="row align-items-center">-->
+        <!--          	<div class="col-lg-8 pt16 pb16 o_colored_level">-->
+        <!--          		<div class="text_block">-->
+        <!--          			<h2 class="o_default_snippet_text mt40">-->
+        <!--          			    <font style="font-weight: bold;" class="text-white">The Best Platform</font>-->
+        <!--          			</h2>-->
+        <!--          			<div class="mt60">-->
+        <!--          				<span>Apple Home is the easiest-to-use smart home app that you will find today. A few taps to finding what you need is amazing. Built on the Homebridge foundation, Cue Bridge supports Apple Home functionality from Day 1.</span>-->
+        <!--          			</div>-->
+        <!--          		</div>-->
+        <!--          		<div class="col-12">-->
+        <!--          			<div class="row">-->
+        <!--		          		<div class="col-11 m-auto">-->
+        <!--		          			<div class="row">-->
+        <!--		          				<div class="col-4">-->
+        <!--		          					<div class="cue_device">-->
+        <!--			          					<span>Air Conditioners</span>-->
+        <!--			          					<img src="cue_website/static/src/images/air_conditioner.png"/>-->
+        <!--		          					</div>-->
+        <!--		          				</div>-->
+        <!--		          				<div class="col-4">-->
+        <!--		          					<div class="cue_device">-->
+        <!--			          					<span>Cameras</span>-->
+        <!--			          					<img src="cue_website/static/src/images/camera.png"/>-->
+        <!--			          				</div>-->
+        <!--		          				</div>-->
+        <!--		          				<div class="col-4">-->
+        <!--		          					<div class="cue_device">-->
+        <!--			          					<span>Curtains</span>-->
+        <!--			          					<img src="cue_website/static/src/images/curtains.png"/>-->
+        <!--			          				</div>-->
+        <!--		          				</div>-->
+        <!--		          			</div>-->
+        <!--		          		</div>-->
+        <!--		          	</div>-->
+        <!--	          	</div>-->
+        <!--          	</div>-->
+        <!--          	<div class="col-lg-4 pt16 pb16 o_colored_level">-->
+        <!--          		<img class="w-100" src="/cue_website/static/src/images/cue_apple_home-on_iphone_14_pro.png"/>-->
+        <!--          	</div>-->
+        <!--        </div>-->
+        <!--      </div>-->
+        <!--    </section>-->
+        <!--</template>-->
+
+        <!--<record id="cue_website.cue_best_platform_000_scss" model="ir.asset">-->
+        <!--    <field name="name">Cue 000 SCSS</field>-->
+        <!--    <field name="bundle">web.assets_frontend</field>-->
+        <!--    <field name="path">cue_website/static/src/snippets/cue_best_platform/000.scss</field>-->
+        <!--</record>-->
+
+        <!--</odoo>-->

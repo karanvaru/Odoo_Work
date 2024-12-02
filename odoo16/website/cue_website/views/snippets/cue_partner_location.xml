@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="cue_partner_location" name="Cover Right Parallax">
+        <section class="s_text_image cue_partner_location pt32 pb32 o_colored_level" data-snippet="s_text_image"
+                 data-name="Text - Image" style="background-image: none;">
+            <div class="container px-100">
+                <div class="row">
+                    <div class="col-lg-6 pt16 pb16 o_colored_level">
+                        <h2 class="o_default_snippet_text __heading" style="color:#e1e1f0;">Partner Locator</h2>
+                        <p class="o_default_snippet_text">We have experts in the field partnered with us to bring you
+                            the ultimate Smart Home experience with CUE.
+                        </p>
+                        <p class="o_default_snippet_text">Find our partners near your location.</p>
+                        <div class="Dropdown-section">
+                            <div class="v2 ps96 s133 c6 z206">
+                                <p class="p2 f13">State</p>
+                            </div>
+                            <div class="v2 ps66 s150 c6 z207">
+                                <select name="state_select" class="input1" id="dropdown_state"></select>
+                            </div>
+                        </div>
+                        <div class="Dropdown-section" id="dropdown_city">
+                            <div class="v2 ps96 s133 c6 z51">
+                                <p class="p2 f13">City</p>
+                            </div>
+                            <div class="v2 ps66 s150 c6 z208" id="get_city">
+                                <select name="city_select" class="input2" id="input_id"></select>
+                            </div>
+                        </div>
+                        <div align="right">
+                        	<a id="search_button" class="btn btn-secondary mb-2 btn_partner_locate btn_font_yellow" href="#">Locate</a>
+						</div>
+                    </div>
+                    <div class="col-lg-6 pt16 pb16 o_colored_level" id="main_div_a">
+                        <div class="main_div" id="main_div_search"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <record id="cue_website.cue_partner_location_000_scss" model="ir.asset">
+        <field name="name">Cue 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_partner_location/000.scss</field>
+    </record>
+    <template id="template_location_options">
+        <div class="row">
+            <select name="state_select" class="input1" id="dropdown_state">
+                <option value="0" disabled="" selected="" data-calc="0">Select your state</option>
+                <t t-foreach="states" t-as="state">
+                    <option t-att-value="state.id" t-att-data-id="state.id">
+                        <t t-esc="state.name"/>
+                    </option>
+                </t>
+            </select>
+        </div>
+    </template>
+    <template id="template_location_options_city">
+        <div class="row">
+            <select name="city_select" class="input2" id="input_id">
+                <option value="0" disabled="" selected="" data-calc="0">Select your city</option>
+                <t t-foreach="cities" t-as="c">
+                    <option t-att-value="c.id">
+                        <t t-esc="c.name"/>
+                    </option>
+                </t>
+            </select>
+        </div>
+    </template>
+    <template id="template_partner_location_options">
+        <t t-foreach="partner" t-as="pl">
+			<div class="__address" style="background:#464650;padding: 15px;">
+				<strong t-esc="pl.name" class="partner_location_title" />
+                <div class="address_details">
+				    <span class="fa fa-phone fa-2x span_class" />
+				    <span><a t-attf-href="tel:#{pl.mobile}"><t t-esc="pl.mobile"/></a></span>
+                </div>
+                <div class="address_details" t-if="pl.email">
+    				<span class="fa fa-envelope fa-2x span_class" />
+    				<span><a t-attf-href="mailto:#{pl.email}"><t t-esc="pl.email"/></a></span>
+                </div>
+                <div class="address_details">
+    				<span class="fa fa fa-map-marker fa-2x span_class" />
+    				<span><t t-esc="pl.street"/>, <t t-esc="pl.street2"/>, <t t-if="pl.city and not pl.city_id" t-esc="pl.city"/><t t-if="pl.city_id" t-esc="pl.city_id.name"/></span>
+                </div>
+			</div>
+        </t>
+    </template>
+</odoo>
+
+
+        <!--<odoo>-->
+
+        <!--    <template id="cue_partner_location" name="Cover Right Parallax">-->
+        <!--        <section class="s_text_image cue_partner_location pt32 pb32 o_colored_level" data-snippet="s_text_image"-->
+        <!--                 data-name="Text - Image" style="background-image: none;">-->
+        <!--            <div class="container px-100">-->
+        <!--                <div class="row align-items-center">-->
+        <!--                    <div class="col-lg-6 pt16 pb16 o_colored_level">-->
+        <!--                        <h2 class="o_default_snippet_text">Partner Locator</h2>-->
+        <!--                        <p class="o_default_snippet_text">We have experts in the field partnered with us to bring you-->
+        <!--                            the ultimate Smart Home experience with CUE.-->
+        <!--                        </p>-->
+        <!--                        <p class="o_default_snippet_text">Find our partners near your location.</p>-->
+        <!--                        <div class="Dropdown-section">-->
+        <!--                            <div class="v2 ps96 s133 c6 z206">-->
+        <!--                                <p class="p2 f13">State</p>-->
+        <!--                            </div>-->
+        <!--                            <div class="v2 ps66 s150 c6 z207">-->
+        <!--                                <select name="state_select" class="input1" id="dropdown_state">-->
+        <!--                                </select>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <div class="Dropdown-section" id="dropdown_city">-->
+        <!--                            <div class="v2 ps96 s133 c6 z51">-->
+        <!--                                <p class="p2 f13">City</p>-->
+        <!--                            </div>-->
+        <!--                            <div class="v2 ps66 s150 c6 z208" id="get_city">-->
+        <!--                                <select name="city_select" class="input2" id="input_id">-->
+        <!--                                </select>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <a id="search_button" class="btn btn-primary  mb-2 o_default_snippet_text"-->
+        <!--                           onclick="myFunction()" href="#">Apply-->
+        <!--                        </a>-->
+        <!--                    </div>-->
+        <!--                    <div class="col-lg-6 pt16 pb16 o_colored_level" id="main_div_a">-->
+        <!--                        <div class="main_div" id="main_div_search">-->
+        <!--                            <div style="background:#464650;  padding: 36px;">-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </section>-->
+        <!--    </template>-->
+
+        <!--    <record id="cue_website.cue_partner_location_000_scss" model="ir.asset">-->
+        <!--        <field name="name">Cue 000 SCSS</field>-->
+        <!--        <field name="bundle">web.assets_frontend</field>-->
+        <!--        <field name="path">cue_website/static/src/snippets/cue_partner_location/000.scss</field>-->
+        <!--    </record>-->
+
+        <!--</odoo>-->

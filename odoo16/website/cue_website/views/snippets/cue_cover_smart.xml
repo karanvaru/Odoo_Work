@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="cue_cover_smart" name="Cover Functional Smart Home">
+    <section class="s_cover cue_cover_smart parallax s_parallax_is_fixed" data-scroll-background-ratio="1">
+        <span class="s_parallax_bg oe_img_bg"/>
+        <div class="boder_wraper">
+            <div class="o_we_bg_filter"/>
+            <div class="s_allow_columns container">
+              <h1 class="cover_fonts mb0">
+                <font style="color: rgb(255, 200, 75);">FUNCTIONAL SMART HOME</font>
+              </h1>
+              <h1 class="cover_fonts">
+                <font style="color: rgb(225, 225, 240);">IS OUR VISION AT CUE</font>
+              </h1>
+              <p class="cover_content_fonts">Value addition to existing systems and robust products is what we strive for</p>
+            </div>
+        </div>
+    </section>
+</template>
+
+<record id="cue_website.cue_cover_smart_000_scss" model="ir.asset">
+    <field name="name">Cue 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_cover_smart/000.scss</field>
+</record>
+
+</odoo>

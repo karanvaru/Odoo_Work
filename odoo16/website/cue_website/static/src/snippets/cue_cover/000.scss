@@ -1,0 +1,44 @@
+.cue_cover {
+    border-radius: 20px;
+    background-color: #232328;
+    min-height: 600px;
+    border: 2px solid #ffc84b;
+    color: white;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .s_allow_columns.container {
+        max-width: 780px;
+    }
+    @media only screen and (max-width: 767px) {
+        min-height: 250px;
+        padding: 25px;
+    }
+}
+.cover_fonts {
+    font-family: Poppins;
+    font-size: var(--main-header-f);
+    font-weight: 600;
+    font-style: normal;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: normal;
+    text-shadow: none;
+    text-align: center;
+    color: #e1e1f0;
+    margin-bottom: 0;
+    line-height: 1.313;
+}
+.cover_content_fonts {
+    font-family: Poppins;
+    font-size: var(--sub-header-f);
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: normal;
+    color: #e1e1f0;
+    text-shadow: none;
+    text-align: center;
+}

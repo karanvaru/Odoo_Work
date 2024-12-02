@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+        <t t-extend="website.s_website_form_end_message">
+              <t t-jquery="div.container" t-operation="replace">
+                  <div class="text-center">
+                     <b><h2 class="text-center">Thank You!</h2></b>
+                      <p class="text-center"> We will soon get you on board</p>
+                  </div>
+              </t>
+        </t>
+</templates>

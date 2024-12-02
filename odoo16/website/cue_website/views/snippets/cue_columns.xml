@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="cue_columns" name="Get Columns">
+        <section class="s_three_columns cue_columns mt32 o_colored_level">
+            <div class="col-12 resources_blog">
+                <div class="row d-flex align-items-stretch">
+                    <t t-foreach="blog" t-as="b">
+                        <div class="col-lg-4 s_col_no_bgcolor pt16 pb16 click_on_blog" style=""
+                             t-att-data-id="b.id">
+                            <div class="card text-bg-white h-100 rounded border"
+                                 style="border-radius: 20px !important; border-width: 0px !important; background-color: rgb(35, 35, 40);">
+                                <!-- img alt="" aria-describedby="tooltip244834" class="card-img-top"
+                                     data-bs-original-title=""
+                                     data-mimetype="image/jpeg" data-original-id="256"
+                                     data-original-src="/web/image/website.library_image_11" loading="lazy"
+                                     src="/cue_website/static/src/images/concept-4.5-720.jpg" title=""/-->
+
+								<t t-if="b.blog_img">
+	                                <img alt=""
+	                                	aria-describedby="tooltip244834"
+	                                	class="card-img-top"
+	                                     data-bs-original-title=""
+	                                     loading="lazy"
+	                                     style="height:70%;"
+	                                     t-attf-src="data:image/png;base64,{{b.blog_img}}" title=""/>
+								</t>
+								<t t-if="not b.blog_img">
+	                                <img alt="" aria-describedby="tooltip244834" class="card-img-top"
+	                                     data-bs-original-title=""
+	                                     data-mimetype="image/jpeg" data-original-id="256"
+                            	         style="height:70%;"
+	                                     data-original-src="/web/image/website.library_image_11" loading="lazy"
+	                                     src="/cue_website/static/src/images/concept-4.5-720.jpg" title=""/>
+								</t>
+
+                                <div class="card-body" style="background-color:transparent;">
+                                    <h3 class="card-title">
+                                        <font class="text-white">
+                                            <span t-esc="b.name"/>
+                                        </font>
+                                    </h3>
+                                    <p style="text-align: right;">
+                                    	<!-- a class="btn btn-primary __yellow mb-2 o_default_snippet_text blog_explore" t-att-data-id="b.id" id="blog_explore" href="#">Explore</a-->
+                                         <a class="btn btn-primary __yellow mb-2 o_default_snippet_text blog_explore" t-att-href="b.website_url">
+                                             <span style="font-size: 14px;">Read</span>
+                                         </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+            <div class="blog_detail_pages mt32">
+            </div>
+        </section>
+    </template>
+
+
+    <template id="cue_columns_detail">
+    	<section class="s_text_image cue_blog_box" style="background-color: rgb(105, 105, 120);">
+            <div class="boder_wraper">
+                <div class="container px-40-30">
+	                <t t-foreach="blog_detail" t-as="b">
+
+                    <div class="row align-items-start">
+                        <div class="col-lg-4 __left_box">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="__title">
+                                        <span t-esc="b.name"/>
+                                    </div>
+                                    <p><span t-esc="b.subtitle"/></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 __right_box">
+                            <div class="row">
+                            <t t-set="counter" t-value="1"/>
+                            <t t-foreach="blog_detail[b]" t-as="c">
+
+                                <div class="col-12 __box_wraper">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <div class="__box">
+                                                <div class="__heading">
+                                                    <span class="number">
+                                                        <span t-esc="counter"/>
+                                                    </span>
+                                                    <span class="title" t-esc="c.name"></span>
+                                                </div>
+                                                <div class="__details">
+                                                    <span t-esc="c.subtitle"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <span class="mb-0 w-100 d-inline-block">
+                                                <a class="__black w-100 rounded btn-lg btn btn-fill-primary rounded-circle" t-att-href="c.website_url">
+                                                    <span style="font-size: 14px;">Read</span>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <t t-set="counter" t-value="counter + 1"/></t>
+                            </div>
+                        </div>
+                    </div>
+                    </t>
+                </div>
+            </div>
+        </section>
+    </template>
+
+
+    <record id="cue_website.cue_columns_000_scss" model="ir.asset">
+        <field name="name">Cue template 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_columns/000.scss</field>
+    </record>
+</odoo>

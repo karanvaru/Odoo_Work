@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Header templates -->
+    <template id="header_cue" inherit_id="website.layout" name="Template Header Cue" active="False">
+        <xpath expr="//header//nav" position="replace">
+            <t t-call="website.navbar">
+                <t t-set="_navbar_classes" t-valuef="shadow-sm"/>
+                <div id="top_menu_container" class="container justify-content-start justify-content-lg-between">
+                    <!-- Brand -->
+                    <t t-call="website.placeholder_header_brand">
+                        <t t-set="_link_class" t-valuef="me-4"/>
+                    </t>
+                    <!-- Navbar Collapse -->
+                    <div id="top_menu_collapse" class="collapse navbar-collapse order-last order-lg-0">
+                        <t t-call="website.navbar_nav">
+                            <t t-set="_nav_class" t-valuef="flex-grow-1"/>
+                            <!-- Menu -->
+                            <t t-foreach="website.menu_id.child_id" t-as="submenu">
+                                <t t-call="website.submenu">
+                                    <t t-set="item_class" t-valuef="nav-item"/>
+                                    <t t-set="link_class" t-valuef="nav-link"/>
+                                </t>
+                            </t>
+                            <!-- Sign In -->
+                            <t t-call="portal.placeholder_user_sign_in">
+                                <t t-set="_item_class" t-valuef="nav-item ms-lg-auto"/>
+                                <t t-set="_link_class" t-valuef="nav-link fw-bold"/>
+                            </t>
+                            <!-- User Dropdown -->
+                            <t t-call="portal.user_dropdown">
+                                <t t-set="_user_name" t-value="true"/>
+                                <t t-set="_item_class" t-valuef="nav-item dropdown ms-lg-auto"/>
+                                <t t-set="_link_class" t-valuef="nav-link fw-bold"/>
+                            </t>
+                        </t>
+
+                        <!-- Language Selector -->
+                        <t t-call="website.placeholder_header_language_selector">
+                            <t t-set="_div_classes" t-valuef="my-auto ms-lg-2"/>
+                        </t>
+                    </div>
+                    <!-- Call To Action -->
+                    <t t-call="website.placeholder_header_call_to_action">
+                        <t t-set="_div_classes" t-valuef="ms-lg-4"/>
+                    </t>
+                    <!-- Navbar Toggler -->
+                    <t t-call="website.navbar_toggler">
+                        <t t-set="_toggler_class" t-valuef="ms-auto"/>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="header_cue_align_center" inherit_id="cue_website.header_cue" active="False">
+        <xpath expr="//t[@t-set='_nav_class']" position="replace">
+            <t t-set="_nav_class" t-valuef="mx-auto"/>
+        </xpath>
+    </template>
+
+    <template id="header_cue_align_right" inherit_id="cue_website.header_cue" active="False">
+        <xpath expr="//t[@t-set='_nav_class']" position="replace">
+            <t t-set="_nav_class" t-valuef="ms-auto"/>
+        </xpath>
+    </template>
+
+
+    <!-- Footer templates -->
+    <template id="footer_cue" inherit_id="website.layout" name="Cue Footer" active="True">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure __cue_footer oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="s_text_block" data-snippet="s_text_block" data-name="Text">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 pt24 pb24">
+                                <ul class="list-unstyled">
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Resources</a></li>
+                                    <li><a href="#">Partner with us</a></li>
+                                    <li><a href="#">Support</a></li>
+                                    <li><a href="#">FAQs</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 pt24 pb24">
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Legal</a></li>
+                                    <li><a href="#">Disclaimer</a></li>
+                                    <li><a href="#">Privacy Policy </a></li>
+                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="#">Warranty</a></li>
+                                </ul>
+                            </div>
+                            <div id="connect" class="col-lg-6 pt24 pb24">
+                                <div class="s_social_media text-end o_not_editable" data-snippet="s_social_media" data-name="Social Media" contenteditable="false">
+                                    <!-- <h5 class="s_social_media_title d-none" contenteditable="true">Follow us</h5> -->
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="#" class="s_social_media_facebook" target="_blank">
+                                                <i class="fa fa-facebook rounded-circle shadow-sm"/>
+                                                <span>Facebook</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="s_social_media_insta" target="_blank">
+                                                <i class="fa fa-instagram  rounded-circle shadow-sm"/>
+                                                <span>Instagram</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="s_social_media_linkedin" target="_blank">
+                                                <i class="fa fa-linkedin rounded-circle shadow-sm"/>
+                                                <span>LinkedIn</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="s_social_media_twitter" target="_blank">
+                                                <i class="fa fa-twitter rounded-circle shadow-sm"/>
+                                                <span>Twitter</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="text-800">
+                                                <i class="fa fa-youtube-play rounded-circle shadow-sm"/>
+                                                <span>YouTube</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <span class="__rights" style="color:#8c8ca0;">© 2023 Cue Home Innovations Pvt. Ltd. All rights reserved.</span>
+                                    </div>
+                                    <div class="col-4">
+                                        <span class="__rights">
+                                            version 1.2.5
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

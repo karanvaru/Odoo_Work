@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="cue_bridge_parallax_long_cover" name="Cover long Parallax">
+    <section class="s_cover cue_bridge_parallax_long_cover parallax s_parallax_is_fixed o_colored_level" data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" style="background-image: none;">
+
+      <div class="box-1 position-relative pt96 pb96 w-100 parallax">
+         <span class="s_parallax_bg oe_img_bg" style="background-color: #232328;"></span>
+         <div class="o_we_bg_filter bg-black-50"></div>
+         <div class="s_allow_columns container px-100 ">
+            <h1 class="mw-460" style="text-align: left;">
+               Cue Bridge
+               <font style="font-weight: 400;">is a range of controllers build on foundational technologies like Homebridge and CHIP (Connect Home Over IP); that helps users and professionals to connect different Smart Home devices with the Apple Home App.</font>
+            </h1>
+         </div>
+         <div class="s_allow_columns container px-100">
+            <h1 class="mw-460 h1_custom" style="text-align: left;">
+               Cue Bridge
+               <font style="font-weight: 400;">connects to all the Smart Home devices in your local network and works as a bridge to make them all appear and work seamlessly in the Apple Home app. Cue Bridge works locally without a need of internet.<sup> 1</sup></font>
+            </h1>
+         </div>
+      </div>
+      <div class="box-2 position-relative pt96 pb96 w-100 parallax">
+         <span class="s_parallax_bg oe_img_bg" style="background-image: url('/cue_website/static/src/images/form-4.5.132-3200.jpg'); background-position: 50% 0;"></span>
+         <div class="o_we_bg_filter"></div>
+          <div class="s_allow_columns container px-100">
+             <h1 class="mw-460 o_animate o_animate_on_scroll o_anim_fade_in o_anim_from_bottom" style="text-align: left;animation-delay: -1.4365s; --wanim-intensity: 4; visibility: visible;" data-scroll-zone-start="25" data-scroll-zone-end="100">
+                <font style="font-size: 36px; font-weight: 600;color: rgb(225, 225, 240);"><span>CUE</span></font>
+                <font style="font-size: 36px; font-weight: 600;color: rgb(255, 200, 75);"><span>BRIDGE</span></font>
+             </h1>
+             <p class="lead mw-460 o_animate o_animate_on_scroll o_anim_fade_in o_anim_from_bottom" style="text-align: left;animation-delay: -1.4365s; --wanim-intensity: 4; visibility: visible;" data-scroll-zone-start="25" data-scroll-zone-end="100" ><b>Cue Bridge</b> is the best companion for seamless control to elevate your automation game effortlessly. With it’s compact size and robust performance,<br/><b>Cue Bridge</b> is perfect for small-to-medium Homes and Offices.</p>
+             <p class="lead o_animate o_animate_on_scroll o_anim_fade_in o_anim_from_bottom" style="text-align: left;animation-delay: -1.4365s; --wanim-intensity: 4; visibility: visible;" data-scroll-zone-start="25" data-scroll-zone-end="100">
+                 <a class="btn btn-primary __yellow mb-2 o_default_snippet_text" href="/products#TECH-SPECS">
+                     Tech Specs
+                 </a>
+             </p>
+          </div>
+      </div>
+    </section>
+</template>
+
+<record id="cue_website.cue_bridge_parallax_long_cover_000_scss" model="ir.asset">
+    <field name="name">Cue 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_bridge_parallax_long_cover/000.scss</field>
+</record>
+
+</odoo>

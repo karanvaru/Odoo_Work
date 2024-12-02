@@ -1,0 +1,41 @@
+.cue_home_banner {
+    border-radius: 20px;
+    background-color: #232328;
+    border: 2px solid #ffc84b;
+    color: white;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 796px;
+    h1 {
+        margin-top: 100px;
+    }
+    img {
+        max-height: 584px;
+        object-fit: contain;
+    }
+    @media only screen and (max-width: 991px) {
+        h1 {
+            font {
+                span {
+                    font-size: var(--main-header-f) !important;
+                }
+            }
+        }
+        h2 {
+            font {
+                span {
+                    font-size: var(--sub-header-f) !important;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 767px) {
+        min-height: 330px;
+        padding: 0px 20px 0px 20px;
+        h1 {
+            margin-top: 30px;
+        }
+    }
+}

@@ -1,0 +1,262 @@
+.cue_partner_wizard_box {
+	.s_popup[data-vcss="001"] {
+		.modal-content {
+			border: 2px solid #ffc84b;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		.s_popup_close{
+            background-color: #232328 !important;
+            color: #FFF !important;
+            width: 3.5rem !important;
+            padding-top: 7px;
+        }
+        .modal-dialog{
+            max-width: 1185px  !important;
+             margin-top:25px  !important;
+        }
+	}
+	.thanks_div{
+        text-align: center !important;
+        background: #232328;
+        color: white;
+        border-radius: 22px;
+        padding: 50px 10px 50px 10px;
+    }
+    .modal_div_padding{
+        padding-bottom: 35px;
+        background: #232328;
+	}
+    .s_popup_close{
+        font-size: 2.25rem !important;
+    }
+
+	.cue_partner_modal_form {
+        border-radius: 20px;
+        background-color: #232328;
+        min-height: 600px;
+        color: #fafafc;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p{
+            font-size: 20px;
+            padding-top: 14px;
+            text-align: center;
+            font-size: 19px;
+        }
+        input,select,textarea{
+            border-radius: 14px;
+             width: 100%;
+            padding: 7px;
+            border: 1px solid #ccc;
+        }
+        .btn_class{
+              margin-left: 16%;
+              text-align: right;
+        }
+        label{
+              padding: 13px 0px 9px 0px;
+        }
+        .row{
+            padding-bottom: 12px;
+        }
+
+        .contact_header{
+            text-align: center;
+            font-size: 36px;
+            padding: 0px 75px 60px 75px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .container{
+                margin-left: 0px !important;
+            }
+
+            .contact_header{
+                text-align: center;
+                font-size: 25px;
+               padding: 0px 0px 30px 0px;
+            }
+
+            input,textarea, select{
+                border-radius: 14px;
+                width: 130%;
+                padding: 7px;
+                border: 1px solid #ccc;
+            }
+            .btn_class{
+                margin-left: 26%;
+                text-align: right;
+            }
+            .modal-dialog{
+                max-width: 1185px  !important;
+                margin-top:0px  !important;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .px-100{
+            padding: 0px 83px 0px 21px !important;
+        }
+        .container{
+            h1{
+                span{
+                    font-size: 19px !important;
+                }
+            }
+        }
+    }
+}
+
+
+// .cue_partner_wizard_box {
+//     padding-left: 26px;
+//     padding-right: 85px;
+// 	.s_popup[data-vcss="001"] {
+// 		.modal-content {
+// 			border: 2px solid #ffc84b;
+// 			border-radius: 20px;
+// 			overflow: hidden;
+// 		}
+// 		.s_popup_close{
+//             background-color: #232328 !important;
+//             color: #FFF !important;
+//             width: 3.5rem !important;
+//             padding-top: 9px;
+//         }
+//         .modal-dialog{
+//             max-width: 1185px  !important;
+//         }
+// 	}
+// 	p{
+// 	    text-align: center;
+//         font-size: 21px;
+//         padding-bottom: 30px;
+//     }
+// 	.thanks_partner_div{
+//         text-align: center !important;
+//         background: #232328;
+//         color: white;
+//         border-radius: 22px;
+//         padding: 50px 100px 50px 100px;
+//         p{
+//             padding-top: 14px;
+//             text-align: center;
+//             font-size: 19px;
+//         }
+//     }
+//     .modal_div_padding{
+//         padding-bottom: 35px;
+//         background: #232328;
+// 	}
+//     .s_popup_close{
+//         font-size: 2.25rem !important;
+//     }
+// 	.cue_partner_modal_form {
+//         border-radius: 20px;
+//         background-color: #232328;
+//         min-height: 600px;
+//         color: #fafafc;
+//         margin-top: 20px;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+// 		.s_website_form_label{
+// 			font-family: "Poppins";
+// 		    font-weight: 400;
+// 		    font-style: normal;
+// 		    text-decoration: none;
+// 		    text-transform: none;
+// 		    letter-spacing: normal;
+// 		    color: #e1e1f0;
+// 		    background-color: initial;
+// 		    text-shadow: none;
+// 		}
+//
+//         input,select,textarea{
+//             border-radius: 14px;
+//             width: 100%;
+//             border: 1px solid #ccc;
+//         }
+//         .btn_class{
+//             margin-left: 54px;
+//             text-align: right;
+//             padding-top: 6px;
+//             button{
+//                 padding: 10px 14px 10px 14px;
+//                 font-size: 16px;
+//             }
+//         }
+//         .row{
+//             padding-bottom: 12px;
+//         }
+//         .contact_header{
+//             text-align: center;
+//             font-size: 36px;
+//             padding: 10px 75px 10px 75px;
+//         }
+//
+//         @media only screen and (max-width: 767px) {
+//             min-height: 200px;
+// 			    .s_website_form_label{
+//                     font-size:13px;
+//                     font-weight: 400;
+// 			    }
+//
+//                .pb32{
+//                     padding-bottom: 0px  !important;
+//                 }
+//                 .row{
+//                     padding-bottom: 0px;
+//                }
+//                p{
+//                     text-align: center;
+//                     font-size: 18px;
+//                     padding-bottom: 30px;
+//                }
+//                .container{
+//                     margin-left: 0px !important;
+//                }
+//                .thanks_partner_div{
+//                     padding: 60px 40px 14px 40px;
+//                     b{
+//                         font-size: 39px;
+//                     }
+//                     p{
+//                         text-align: center;
+//                         font-size: 19px;
+//                         padding-bottom: 30px;
+//                     }
+//                }
+//                .btn_class{
+//                     margin-left: 0px;
+//                }
+//                .contact_header{
+//                     text-align: center;
+//                     font-size: 25px;
+//                     padding: 0px 0px 10px 0px;
+//                }
+//                input,textarea, select{
+//                     border-radius: 14px;
+//                     width: 100%;
+//                     border: 1px solid #ccc;
+//             }
+//         }
+//     }
+//
+//     @media only screen and (max-width: 767px) {
+//         .container{
+//             h1{
+//                 span{
+//                     font-size: 19px !important;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
+

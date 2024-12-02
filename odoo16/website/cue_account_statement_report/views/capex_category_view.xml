@@ -1,0 +1,31 @@
+<odoo>
+    <record model="ir.ui.view" id="view_capex_category_tree">
+        <field name="name">capex.category.tree.view</field>
+        <field name="model">capex.category</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+            	<field name="sequence"/>
+                <field name="name"/>
+                <field name="report_head_type"/>
+                <field name="department_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_capex_category" model="ir.actions.act_window">
+        <field name="name">Fund Statement Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">capex.category</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a capex category
+            </p>
+
+        </field>
+    </record>
+
+    <menuitem id="menu_capex_category" action="action_capex_category"
+              name="Fund Statement Category" parent="account.menu_finance_configuration"/>
+
+</odoo>

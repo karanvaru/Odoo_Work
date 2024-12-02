@@ -1,0 +1,175 @@
+.accounts-dashboard-wrap #total_customer_invoice_paid_q1 .logo,
+.accounts-dashboard-wrap #total_customer_invoice_q1 .logo,
+.accounts-dashboard-wrap #total_supplier_invoice_paid_q1 .logo,
+.accounts-dashboard-wrap #total_supplier_invoice_q1 .logo,
+
+.accounts-dashboard-wrap #total_customer_invoice_paid_q2 .logo,
+.accounts-dashboard-wrap #total_customer_invoice_q2 .logo,
+.accounts-dashboard-wrap #total_supplier_invoice_paid_q2 .logo,
+.accounts-dashboard-wrap #total_supplier_invoice_q2 .logo,
+
+.accounts-dashboard-wrap #total_customer_invoice_paid_q3 .logo,
+.accounts-dashboard-wrap #total_customer_invoice_q3 .logo,
+.accounts-dashboard-wrap #total_supplier_invoice_paid_q3 .logo,
+.accounts-dashboard-wrap #total_supplier_invoice_q3 .logo,
+
+.accounts-dashboard-wrap #total_customer_invoice_paid_q4 .logo,
+.accounts-dashboard-wrap #total_customer_invoice_q4 .logo,
+.accounts-dashboard-wrap #total_supplier_invoice_paid_q4 .logo,
+.accounts-dashboard-wrap #total_supplier_invoice_q4 .logo {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: left;
+    flex-direction: column-reverse;
+    color: #455e7b !important;
+}
+
+
+.accounts-dashboard-wrap #total_customer_invoice_paid_q1 .logo span:nth-child(2),
+.accounts-dashboard-wrap #total_customer_invoice_q1 .logo span:nth-child(2),
+.accounts-dashboard-wrap #total_supplier_invoice_paid_q1 .logo span:nth-child(2),
+.accounts-dashboard-wrap #total_supplier_invoice_q1 .logo span:nth-child(2),
+
+.accounts-dashboard-wrap #total_customer_invoice_paid_q2 .logo span:nth-child(2),
+.accounts-dashboard-wrap #total_customer_invoice_q2 .logo span:nth-child(2),
+.accounts-dashboard-wrap #total_supplier_invoice_paid_q2 .logo span:nth-child(2),
+.accounts-dashboard-wrap #total_supplier_invoice_q2 .logo span:nth-child(2),
+
+.accounts-dashboard-wrap #total_customer_invoice_paid_q3 .logo span:nth-child(2),
+.accounts-dashboard-wrap #total_customer_invoice_q3 .logo span:nth-child(2),
+.accounts-dashboard-wrap #total_supplier_invoice_paid_q3 .logo span:nth-child(2),
+.accounts-dashboard-wrap #total_supplier_invoice_q3 .logo span:nth-child(2),
+
+.accounts-dashboard-wrap #total_customer_invoice_paid_q4 .logo span:nth-child(2),
+.accounts-dashboard-wrap #total_customer_invoice_q4 .logo span:nth-child(2),
+.accounts-dashboard-wrap #total_supplier_invoice_paid_q4 .logo span:nth-child(2),
+.accounts-dashboard-wrap #total_supplier_invoice_q4 .logo span:nth-child(2) {
+    font-weight: 600;
+}
+
+.accounts-dashboard-wrap #salary_details_ul {
+    padding: 0;
+}
+
+.accounts-dashboard-wrap #salary_details_ul li {
+
+    list-style: none;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 13px;
+    color: #455e7b !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+    padding-left: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 2rem;
+
+}
+
+.accounts-dashboard-wrap #salary_details_ul li a {
+    color:
+        #455e7b !important;
+}
+
+
+
+.accounts-dashboard-wrap #cue_bridge_ul {
+    padding: 0;
+}
+
+.accounts-dashboard-wrap #cue_bridge_ul li {
+
+    list-style: none;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 13px;
+    color: #455e7b !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+    padding-left: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 2rem;
+
+}
+
+.accounts-dashboard-wrap #cue_bridge_ul li a {
+    color:
+        #455e7b !important;
+}
+
+
+
+
+.accounts-dashboard-wrap #cue_bridge_max_ul {
+    padding: 0;
+}
+
+.accounts-dashboard-wrap #cue_bridge_max_ul li {
+
+    list-style: none;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 13px;
+    color: #455e7b !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+    padding-left: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 2rem;
+
+}
+
+.accounts-dashboard-wrap #cue_bridge_max_ul li a {
+    color:
+        #455e7b !important;
+}
+
+
+
+
+
+.accounts-dashboard-wrap #cue_bridge_plus_ul {
+    padding: 0;
+}
+
+.accounts-dashboard-wrap #cue_bridge_plus_ul li {
+
+    list-style: none;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 13px;
+    color: #455e7b !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+    padding-left: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 2rem;
+
+}
+
+.accounts-dashboard-wrap #cue_bridge_plus_ul li a {
+    color:
+        #455e7b !important;
+}
+
+
+
+.aged_receivable ul li {
+    list-style: none;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 13px;
+    color: #455e7b !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 2rem;
+    }
+.headers .row{
+    margin-left:10px;
+    margin-right:10px;
+        text-align: center;
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="data_tag_category_1" model="product.tag.category">
+            <field name="name">How Big Your Home/Office?</field>
+        	<field name="sequence">1</field>
+        </record>
+
+        <record id="data_tag_category_1_1" model="product.tag">
+            <field name="name">> 2000 sqft</field>
+            <field name="product_tag_categ_id" ref="data_tag_category_1"/>
+        </record>
+
+        <record id="data_tag_category_1_2" model="product.tag">
+            <field name="name">2000 to 5000 sqft</field>
+            <field name="product_tag_categ_id" ref="data_tag_category_1"/>
+        </record>
+
+        <record id="data_tag_category_1_3" model="product.tag">
+            <field name="name">5000 to 10000 sqft</field>
+            <field name="product_tag_categ_id" ref="data_tag_category_1"/>
+        </record>
+
+        <record id="data_tag_category_1_4" model="product.tag">
+            <field name="name">Over 10000 sqft</field>
+            <field name="product_tag_categ_id" ref="data_tag_category_1"/>
+        </record>
+
+
+
+        <record id="data_tag_category_2" model="product.tag.category">
+            <field name="name">IP Devices?</field>
+        	<field name="sequence">2</field>
+        </record>
+
+
+        <record id="data_tag_category_2_1" model="product.tag">
+            <field name="name">Upto 16</field>
+            <field name="product_tag_categ_id" ref="data_tag_category_2"/>
+        </record>
+
+        <record id="data_tag_category_2_2" model="product.tag">
+            <field name="name">Upto 64</field>
+            <field name="product_tag_categ_id" ref="data_tag_category_2"/>
+        </record>
+
+        <record id="data_tag_category_2_3" model="product.tag">
+            <field name="name">More then 64</field>
+            <field name="product_tag_categ_id" ref="data_tag_category_2"/>
+        </record>
+
+
+
+        <record id="data_tag_category_3" model="product.tag.category">
+            <field name="name">HKSV</field>
+        	<field name="sequence">3</field>
+        </record>
+
+        <record id="data_tag_category_3_1" model="product.tag">
+            <field name="name">None</field>
+            <field name="product_tag_categ_id" ref="data_tag_category_3"/>
+        </record>
+
+        <record id="data_tag_category_3_2" model="product.tag">
+            <field name="name">Upto 2</field>
+            <field name="product_tag_categ_id" ref="data_tag_category_3"/>
+        </record>
+
+        <record id="data_tag_category_3_3" model="product.tag">
+            <field name="name">Upto 8</field>
+            <field name="product_tag_categ_id" ref="data_tag_category_3"/>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="cue_r_parallax_cover" name="Cover Right Parallax">
+    <section class="s_cover cue_r_parallax_cover parallax s_parallax_is_fixed bg-black-50 pt96 pb96 o_colored_level" data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover" style="background-image: none;">
+       <span class="s_parallax_bg oe_img_bg" style="background-image: url('/cue_website/static/src/images/cue_r_parallax_cover.jpg'); background-position: 50% 0;"></span>
+       <div class="o_we_bg_filter cue_r_parallax_cover_shaddow"></div>
+       <div class="s_allow_columns container px-100">
+          <h1 class="mw-460 ml-auto snippet_title_font" >Quick &amp; Easy</h1>
+          <p class="lead mw-460 ml-auto snippet_content_font" ><strong>Cue Bridge</strong> is designed in a way that our partners can flawlessly upgrade your Smart Home not in days but hours.</p>
+          <p class="lead mw-460 ml-auto snippet_content_font" >Various Automation System Integrators, Audio-Video Designers, Lighting Stores, and Security System Providers around the world can simply add value to your existing or newly planned system.</p>
+       </div>
+    </section>
+</template>
+
+<record id="cue_website.cue_r_parallax_cover_000_scss" model="ir.asset">
+    <field name="name">Cue 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_r_parallax_cover/000.scss</field>
+</record>
+
+</odoo>

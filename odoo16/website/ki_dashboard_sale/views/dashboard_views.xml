@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="action_sale_invoice_report_all" model="ir.actions.client">
+            <field name="name">Sale Report</field>
+            <field name="tag">sale_dashboard_tag</field>
+        </record>
+
+        <menuitem name="Dashboard" id="menu_sale_accounting_dashboard" parent="sale.sale_menu_root"
+                  sequence="0"
+                  action="action_sale_invoice_report_all"/>
+
+    </data>
+</odoo>

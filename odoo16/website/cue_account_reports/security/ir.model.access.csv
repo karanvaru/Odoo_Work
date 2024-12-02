@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_summary_filter_wizard,access_sale.summary.filter.wizard,cue_account_reports.model_sale_summary_filter_wizard,base.group_user,1,1,1,1
+access_sale_summary_excel,access_sale.summary.excel,cue_account_reports.model_sale_summary_excel,base.group_user,1,1,1,1

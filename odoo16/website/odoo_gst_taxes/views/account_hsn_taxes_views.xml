@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="hsn_number_form_view">
+            <field name="name">hsn_number_form_view</field>
+            <field name="model">account.hsn.taxes</field>
+            <field name="arch" type="xml">
+                <form string="HSN Numbers Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="company_id"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="sale_igst_tax_id" domain="[('type_tax_use','in',['sale']), ('company_id', '=', company_id), ('tax_group_id.name', '=', 'IGST')]"/>
+                                <field name="sale_gst_tax_id" domain="[('type_tax_use','in',['sale']), ('company_id', '=', company_id), ('tax_group_id.name', 'in', ['SGST', 'CGST', 'GST'])]"/>
+                            </group>
+                            <group>
+                                <field name="purchase_igst_tax_id"  domain="[('type_tax_use','in',['purchase']), ('company_id', '=', company_id), ('tax_group_id.name', '=', 'IGST')]"/>
+                                <field name="purchase_gst_tax_id" domain="[('type_tax_use','in',['purchase']), ('company_id', '=', company_id), ('tax_group_id.name', 'in', ['SGST', 'CGST', 'GST'])]"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Products" name="products">
+                                <field name="product_ids" nolabel="1" readonly="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hsn_number_tree_view">
+            <field name="name">hsn_number_tree_view</field>
+            <field name="model">account.hsn.taxes</field>
+            <field name="arch" type="xml">
+                <tree string="HSN Numbers Tree">
+                    <field name="name"/>
+                    <field name="sale_igst_tax_id"/>
+                    <field name="sale_gst_tax_id"/>
+                    <field name="purchase_igst_tax_id"/>
+                    <field name="purchase_gst_tax_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_hsn_number_views">
+            <field name="name">HSN Numbers</field>
+            <field name="res_model">account.hsn.taxes</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="hsn_number_menu" name="HSN Numbers"
+                  parent="account.account_management_menu" action="action_hsn_number_views"
+        />
+
+    </data>
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="cue_cover" name="Cover">
+    <section class="s_cover cue_cover parallax s_parallax_is_fixed" data-scroll-background-ratio="1">
+        <span class="s_parallax_bg oe_img_bg"/>
+        <div class="boder_wraper">
+            <div class="o_we_bg_filter"/>
+            <div class="s_allow_columns container">
+              <h1 class="cover_fonts">
+                <font style="color: rgb(255, 200, 75);">COLLABORATION </font> IS THE KEY TO MAKING NEXT-GEN SMART HOMES FOR EVERYONE
+
+              </h1>
+<!--              <span class="cover_content_fonts">Sub Content</span>-->
+            </div>
+        </div>
+    </section>
+</template>
+
+<record id="cue_website.cue_cover_000_scss" model="ir.asset">
+    <field name="name">Cue 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_cover/000.scss</field>
+</record>
+
+</odoo>

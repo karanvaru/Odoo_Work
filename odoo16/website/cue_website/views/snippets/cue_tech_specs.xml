@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="cue_tech_specs" name="CUE TECH SPECS">
+        <section class="s_text_image cue_tech_specs pt32 pb32 o_colored_level" data-name="Text - Image" data-snippet="s_text_image" id="TECH-SPECS" style="background-image: none;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-10 __box m-auto">
+                        <div class="__heading_main">
+                            <h2>
+                                <span style="font-size:36px;  font-weight: 600;">
+                                    TECH SPECS
+                                </span>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-10 __box m-auto __header">
+                        <div class="row __row_box">
+                            <div class="col-3 col-md-3">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    Cue Bridge
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    Cue Bridge Plus
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    Cue Bridge Max
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-11 __box m-auto">
+                        <div class="row __row_box">
+                            <div class="col-3 col-md-3">
+                                <div class="d-flex __core_box">
+                                    <div class="image_box">
+                                        <img src="/cue_website/static/src/images/cpu-140-1.png"/>
+                                    </div>
+                                    <div class="__details">
+                                        Cue
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        4 Core (Upto 1.5 GHz)
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        4 Core Cortex A-53
+                                    </div>
+                                    <div>
+                                    	<br/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        6 Core (Upto 1.8 GHz)
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        4 Core Cortex A-53
+                                    </div>
+                                    <div>
+                                        2 Core Cortex A-72
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        8 Core (Upto 2.4 GHz)
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        4 Core Cortex A-76
+                                    </div>
+                                    <div>
+                                        4 Core Cortex A-55
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-11 __box m-auto">
+                        <div class="row __row_box">
+                            <div class="col-3 col-md-3">
+                                <div class="d-flex __core_box">
+                                    <div class="image_box">
+                                        <img src="/cue_website/static/src/images/gpu-140-1.png"/>
+                                    </div>
+                                    <div class="__details">
+                                        GPU
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        ARM Mali-G31 MP2
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        ARM Mali-T860
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        ARM Mali-G610
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-11 __box m-auto">
+                        <div class="row __row_box">
+                            <div class="col-3 col-md-3">
+                                <div class="d-flex __core_box">
+                                    <div class="image_box">
+                                        <img src="/cue_website/static/src/images/ram-140-1.png"/>
+                                    </div>
+                                    <div class="__details">
+                                        RAM
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        1 GB DDR3
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        4 GB DDR4
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        8 GB DDR4X
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-11 __box m-auto">
+                        <div class="row __row_box">
+                            <div class="col-3 col-md-3">
+                                <div class="d-flex __core_box">
+                                    <div class="image_box">
+                                        <img src="/cue_website/static/src/images/storage-140-1.png"/>
+                                    </div>
+                                    <div class="__details">
+                                        Storage
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        16 GB
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        16 GB eMMC
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        256 GB M.2 NVMe
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-11 __box m-auto">
+                        <div class="row __row_box">
+                            <div class="col-3 col-md-3">
+                                <div class="d-flex __core_box">
+                                    <div class="image_box">
+                                        <img src="/cue_website/static/src/images/ethernet-140-1.png"/>
+                                    </div>
+                                    <div class="__details">
+                                        Ethernet
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        1G LAN
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        1G LAN
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        PCIe 2.5G LAN
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-11 __box m-auto">
+                        <div class="row __row_box">
+                            <div class="col-3 col-md-3">
+                                <div class="d-flex __core_box">
+                                    <div class="image_box">
+                                        <img src="/cue_website/static/src/images/cctv-streams-140-1.png"/>
+                                    </div>
+                                    <div class="__details">
+                                        CCTV
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        Upto 4 Streams
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        Upto 8 Streams
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        Upto 32 Streams
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-11 __box m-auto">
+                        <div class="row __row_box">
+                            <div class="col-3 col-md-3">
+                                <div class="d-flex __core_box">
+                                    <div class="image_box">
+                                        <img src="/cue_website/static/src/images/video-analysis-140-1.png"/>
+                                    </div>
+                                    <div class="__details">
+                                        Video Analysis
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        <i class="fa fa-close">
+                                        </i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        Upto 4
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        Upto 8
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-11 __box m-auto">
+                        <div class="row __row_box">
+                            <div class="col-3 col-md-3">
+                                <div class="d-flex __core_box">
+                                    <div class="image_box">
+                                        <img src="/cue_website/static/src/images/ipv4-devices-140-1.png"/>
+                                    </div>
+                                    <div class="__details">
+                                        IPv4 Devices
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        Upto 16
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        Upto 64
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <div class="__details">
+                                    <div>
+                                        Unlimited
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <record id="cue_website.cue_tech_specs_000_scss" model="ir.asset">
+        <field name="name">Cue 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_tech_specs/000.scss</field>
+    </record>
+</odoo>

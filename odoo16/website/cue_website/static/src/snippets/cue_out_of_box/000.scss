@@ -1,0 +1,172 @@
+@keyframes marqueeLeft {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -100%;
+    }
+}
+@keyframes marqueeRight {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 0;
+    }
+}
+.cue_out_of_box {
+    min-height: 600px;
+    border-radius: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #232328;
+    .image_box {
+        padding-left: 0;
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            background-image: linear-gradient(90deg, rgb(35, 35, 40) 0%, rgba(35, 35, 40, 0) 100%);
+            border-radius: 20px 0 0 0;
+            z-index: 1;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 40px;
+            background-image: linear-gradient(270deg, rgb(35, 35, 40) 0%, rgba(35, 35, 40, 0) 100%);
+            border-radius: 0 20px 0 0;
+            z-index: 1;
+        }
+        .__marque_box {
+            overflow: hidden;
+        }
+    }
+    .border-box {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        border-radius: 20px;
+        border: 2px solid #8c8ca0;
+        border-radius: 20px;
+        line-height: 1.234;
+        font-size: var(--sub-header-f);
+        color: #e1e1f0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    } // new css
+    .marquee-inner span {
+        float: left;
+        width: 50%;
+    }
+    .marquee-wrapper .marquee-block {
+        height: 150px;
+        overflow: hidden;
+        box-sizing: border-box;
+        position: relative;
+        @media screen and (max-width: 767px) {
+            --block-width: 145px !important;
+            height: 135px;
+        }
+        @media screen and (max-width: 500px) {
+            --block-width: 132px !important;
+            height: 125px;
+            margin-bottom: -15px;
+        }
+    }
+    .marquee-inner {
+        display: block;
+        width: 200%;
+        position: absolute;
+    }
+    .marquee-inner.to-left {
+        animation: marqueeLeft 35s linear infinite;
+    }
+    .marquee-inner.to-left:hover {
+        animation-play-state: paused;
+    }
+    .marquee-inner.to-right {
+        animation: marqueeRight 35s linear infinite;
+    }
+    .marquee-inner.to-right:hover {
+        animation-play-state: paused;
+    }
+    .marquee-item {
+        display: inline-block;
+        margin: 0 10px;
+        transition: all .2s ease-out;
+        background: white;
+        padding: 10px 10px 10px 10px;
+        border-radius: 20px;
+        min-height: 120px;
+        width: 160px;
+        height: 120px;
+        @media only screen and (max-width: 767px) {
+            width: 120px;
+            height: 100px;
+            min-height: 100px;
+        }
+        @media screen and (max-width: 500px) {
+            width: 107px;
+            height: 90px;
+            min-height: 90px;
+            border-radius: 10px;
+        }
+    }
+    .img_class {
+        max-width: 140px;
+        max-height: 100px;
+        @media only screen and (max-width: 767px) {
+            width: 100px;
+            height: 80px;
+            min-height: 80px;
+        }
+        @media screen and (max-width: 500px) {
+            max-width: 90px;
+            max-height: 80px;
+            width: 90px;
+            height: 80px;
+            min-height: 80px;
+        }
+    }
+    @media only screen and (max-width: 991px) {
+    	h2 {
+    	    font {
+    	        span {
+    	            font-size: var(--header-f) !important;
+    	        }
+    	    }
+    	}
+    	.col-5 {
+    	    span {
+    	        font-size: var(--sub-header-f) !important;
+    	    }
+    	}
+    }
+    @media only screen and (max-width: 767px) {
+        .border-box {
+            border-radius: 10px;
+            padding-left: 60px !important;
+            padding-right: 60px !important;
+        }
+        .m-auto {
+            margin-right: 5px !important;
+        }
+        h2 {
+            margin-bottom: 40px !important;
+        }
+        .col-5 {
+            width: 49.667%;
+        }
+    }
+}

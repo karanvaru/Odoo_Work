@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_line_tree_dashboard" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.dashboard</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <tree string="Sales Order Lines" create="false">
+                <field name="order_id"/>
+                <field name="order_partner_id"/>
+                <field name="name"/>
+                <field name="salesman_id"/>
+                <field name="product_uom_qty" string="Qty" sum="Total Qty"/>
+                <field name="product_uom" string="Unit of Measure" groups="uom.group_uom"/>
+                <field name="price_subtotal" sum="Total" widget="monetary"/>
+                <field name="currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_move_line_tree_dashboard" model="ir.ui.view">
+        <field name="name">account.move.line.tree.dashboard</field>
+        <field name="model">account.move.line</field>
+        <field name="arch" type="xml">
+            <tree string="Invoice Lines" create="false">
+                <field name="move_id" string="Invoice"/>
+                <field name="date"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="quantity" string="Qty" sum="Total Qty"/>
+                <field name="product_uom_id" string="Unit of Measure" groups="uom.group_uom"/>
+                <field name="price_subtotal" sum="Untaxed Amount" widget="monetary"/>
+                <field name="price_total" sum="Total Amount" widget="monetary"/>
+                <field name="currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+
+</odoo>

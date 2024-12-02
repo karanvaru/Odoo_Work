@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+        id="sale_order_report"
+        model="sale.order"
+        string="Invoice"
+        report_type="qweb-pdf"
+        name="odoo_gst_taxes.sale_order_report_view"
+        file="odoo_gst_taxes.sale_order_report_view"
+        menu="True"
+        paperformat="odoo_gst_taxes.paperformat_gst"
+        />
+    </data>
+</openerp>

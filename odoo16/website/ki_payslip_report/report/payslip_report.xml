@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_payslip" model="ir.actions.report">
+        <field name="name">Pay Slip</field>
+        <field name="model">hr.payslip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="print_report_name">'Pay Slip %s' % (object.employee_id.name)</field>
+        <field name="report_name">ki_payslip_report.ki_report_payslip</field>
+        <field name="report_file">ki_payslip_report.ki_report_payslip</field>
+        <field name="paperformat_id" ref="ki_payslip_report.paperformat_payslip_report_custom"/>
+        <field name="binding_model_id" ref="hr_payroll_community.model_hr_payslip"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="ki_report_payslip">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.basic_layout">
+                <t t-call="web.html_container">
+                    <div class="page">
+                        <div class="row mb8">
+                            <div class="col-6">
+                                <h2 style="color: gray; font-weight:bold;">
+                                    <span t-field="o.company_id"/>
+                                </h2>
+                            </div>
+                            <div class="col-6" align="right">
+                            	<img t-if="o.company_id.logo" style="max-height: 65px;"
+                             		t-att-src="image_data_uri(o.company_id.logo)" class="float-right" alt="Logo"/>
+                            </div>
+                        </div>
+                        <table class="table table-bordered mt-4" style="border: 1px solid gray;">
+                            <thead style="display: table-row-group">
+                                <tr style="background-color:#e6e6e6;">
+                                    <th name="th_payslip" colspan="4" class="text-canter">
+                                       <span t-field="o.name"/></th>
+                                </tr>
+                            </thead>
+                            <tbody class="payslip_tbody">
+                                <tr>
+                                    <td name="td_employee_no" class="text-start"
+                                        style="background-color:#e6e6e6; font-weight:bold;">
+                                        Employee No.
+                                    </td>
+                                    <td colspan="3" name="td_employee_no_015" class="text-start">
+                                        <span t-esc="o.employee_id.identification_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td name="td_name" class="text-start"
+                                        style="background-color:#e6e6e6; font-weight:bold;">Name
+                                    </td>
+                                    <td colspan="3" name="td_employee_name" class="text-start"
+                                        style="background-color:#e6e6e6">
+                                        <span t-esc="o.employee_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td name="td_department" class="text-start"
+                                        style="background-color:#e6e6e6; font-weight:bold;">
+                                        Department
+                                    </td>
+                                    <td colspan="3" name="td_department_value" class="text-start">
+                                        <span t-esc="o.employee_id.department_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td name="td_designation" class="text-start"
+                                        style="background-color:#e6e6e6; font-weight:bold;">
+                                        Designation
+                                    </td>
+                                    <td colspan="3" name="td_designation_value" class="text-start"
+                                        style="background-color:#e6e6e6">
+                                        <span t-esc="o.employee_id.job_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td name="td_reporting_manager" class="text-start"
+                                        style="background-color:#e6e6e6; font-weight:bold;">
+                                        Reporting Manager
+                                    </td>
+                                    <td colspan="3" name="td_reporting_manager_value" class="text-start">
+                                        <span t-esc="o.employee_id.parent_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td name="td_doj" class="text-start"
+                                        style="background-color:#e6e6e6; font-weight:bold;">DOJ
+                                    </td>
+                                    <td colspan="3" name="td_doj_value" class="text-start"
+                                        style="background-color:#e6e6e6">
+                                        <span t-esc="o.contract_id.date_start"
+                                              t-options='{"widget": "date","format": "dd MMMM yyyy"}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td name="td_days_paid" class="text-start"
+                                        style="background-color:#e6e6e6; font-weight:bold;">Days
+                                        Paid
+                                    </td>
+                                    <td colspan="3" name="td_days_paid_value" class="text-start">
+                                        <span t-esc="o._compute_salary_days()"/>
+                                    </td>
+                                </tr>
+                                <t t-set="leave_res" t-value="o.employee_id._get_emp_leaves()"/>
+                                <t t-set="leave_data" t-value="leave_res[1]"/>
+                                <t t-set="leave_names" t-value="leave_res[0]"/>
+                                <tr style="background-color:#a9a9a9" t-if="leave_data">
+                                    <td class="text-center">Leaves</td>
+                                    <td class="text-center">Allocated</td>
+                                    <td class="text-center">Leave Taken</td>
+                                    <td class="text-center">Balance</td>
+                                </tr>
+                                <tr>
+                                	<t t-foreach="leave_data" t-as="leave" >
+                                		<td class="text-center"><span t-esc="leave_names[leave]"/></td>
+                                		<td class="text-center"><span t-esc="leave_data[leave]['max_leaves']"/></td>
+                                		<td class="text-center"><span t-esc="leave_data[leave]['leaves_taken']"/></td>
+                                		<td class="text-center"><span t-esc="leave_data[leave]['remaining_leaves']"/></td>
+                                	</t>
+                                </tr>
+                                <tr>
+                                    <td name="td_13" class="text-start" style="background-color:#e6e6e6"></td>
+                                    <td colspan="2" name="td_earnings" class="text-start" style="font-weight:bold;">
+                                        Earnings
+                                    </td>
+                                    <td name="td_per_month" class="text-start">Per Month</td>
+                                </tr>
+                                <tr t-foreach="o._get_report_payslip_lines()[0]" t-as="line">
+                                    <td name="td_14" class="text-start" style="background-color:#e6e6e6"></td>
+                                    <td colspan="2" name="td_basic" class="text-start"
+                                        style="background-color:#e6e6e6">
+                                        <span t-esc="line['earning']"/>
+                                    </td>
+                                    <td name="td_basic_value" class="text-end" style="background-color:#e6e6e6">
+                                        <span t-esc="line['earning_amount']"
+                                              t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td name="td_22" class="text-start" style="background-color:#e6e6e6"></td>
+                                    <td colspan="2" name="td_deductions" class="text-start" style="font-weight:bold;">
+                                        Deductions
+                                    </td>
+                                    <td name="td_deductions_value" class="text-end"></td>
+                                </tr>
+                                <tr t-foreach="o._get_report_payslip_lines()[1]" t-as="line">
+                                    <td name="td_14" class="text-start" style="background-color:#e6e6e6"></td>
+                                    <td colspan="2" name="td_basic" class="text-start"
+                                        style="background-color:#e6e6e6">
+                                        <span t-esc="line['deduction']"/>
+                                    </td>
+                                    <td name="td_basic_value" class="text-end" style="background-color:#e6e6e6">
+                                        <span t-esc="line['deduction_amount']"
+                                              t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td name="td_30" class="text-start" style="background-color:#e6e6e6"></td>
+                                    <td colspan="2" name="td_gross_deductions_b" class="text-end"
+                                        style="background-color:#e6e6e6">Gross Deductions ( B )
+                                    </td>
+                                    <td name="td_gross_deductions_b_value" class="text-end"
+                                        style="background-color:#e6e6e6">
+                                        <span t-esc="o._get_report_payslip_lines()[2]"
+                                              t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td name="td_31" class="text-start" style="background-color:#e6e6e6"></td>
+                                    <td colspan="2" name="td_net_salary_payable_a_b" class="text-end">Net Salary Payable
+                                        ( A - B )
+                                    </td>
+                                    <td name="td_net_salary_payable_a_b_value" class="text-end">
+                                        <span t-esc="o._get_report_payslip_lines()[3]"
+                                              t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <div class="row">
+                            <div class="col-6">
+                                <span t-field="o.company_id"/>
+                            </div>
+                            <div class="col-6" align="right">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

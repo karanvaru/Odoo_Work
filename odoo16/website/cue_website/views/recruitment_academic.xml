@@ -1,0 +1,33 @@
+<odoo>
+    <record id="recruitment_academic_action" model="ir.actions.act_window">
+        <field name="name">Recruitment Academic</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">recruitment.academic</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a customized view</p>
+            <p>Customized views are used when users reorganize the content of their dashboard views (via web client)</p>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_recruitment_academic_form">
+        <field name="name">recruitment.academic.form.view</field>
+        <field name="model">recruitment.academic</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_recruitment_academic_tree">
+        <field name="name">recruitment.academic.tree.view</field>
+        <field name="model">recruitment.academic</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

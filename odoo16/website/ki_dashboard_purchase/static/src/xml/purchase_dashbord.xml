@@ -1,0 +1,301 @@
+<templates id="template" xml:space="preserve">
+    <t t-name="PurchaseDashboard">
+        <div class="oh_dashboards">
+            <div class="container-fluid o_pos_dashboard"> </div>
+        </div>
+    </t>
+
+    <t t-name="ProductPurchaseBarGraph">
+         <div class="accounts-dashboard-wrap">
+            <div class="oh_dashboards">
+                <div class="container-fluid o_pos_dashboard">
+                </div>
+                <div class="o_dashboards col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                    <div class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2" style="padding: 15px;">
+                                <div class="col-sm-12">
+                                    <div class="dash-header">
+                                        <h2 class="section-header">Purchase Dashboard </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin:0px">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <div class="">
+                                         <div class="row">
+                 <div style="text-align:right;  padding-right: 3%;">
+                     <span style="font-weight: bold; color: black;   padding-right: 3%;">
+                        From Date :
+                        <input type="date" name="customer_from_date" id="customer_from_date" required="required"/>
+                     </span>
+                     <span style="font-weight: bold; color: black;   padding-right: 3%;">
+                        To Date :
+                        <input type="date" name="customer_to_date" id="customer_to_date" required="required"/>
+                     </span>
+                     <button type="button" class="btn-primary apply_btn_class"
+                             id="top_10_between_date_purchase">Apply</button>
+                </div>
+             </div>
+
+
+                            <div class="row account-details" style="margin:0px" id="state_content">
+                                <t t-foreach="widget.state_count_dict" t-as="file_count">
+                                <div class="col-md-3 inbox_draft_purchase"  t-att-data-id="file_count">
+                                    <!--Net Profit or Loss-->
+                                    <div class="tile wide invoice box-1">
+                                        <div class="headers">
+                                            <div class="main-title">
+                                                <span t-esc="file_count"/>
+                                            </div>
+                                            <div id="monthly_invoice">
+                                                <div class="left">
+                                                    <span class="top_list_class">Count</span>
+                                                    <div class="count" id="inbox_len_counts">
+<!--                                                        <span t-esc="widget.state_count_dict['file_count']"/>-->
+                                                        <span t-esc="widget.state_count_dict[file_count][1]"/>
+                                                        Items
+                                                    </div>
+                                                </div>
+                                                <div class="right inbox_draft_purchase" id="inbox_draft_purchase_id"
+                                                     style="text-align:center"  t-att-data-id="file_count">
+                                                    <span class="top_list_class">Amount</span>
+                                                    <div class="count">
+                                                        <span t-esc="widget.state_count_dict[file_count][0]"/>
+<!--                                                        <span t-esc="widget.state_count_dict['currency']"/>-->
+<!--                                                        <span t-esc="widget.state_count_dict['inbox_count']"/>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </t>
+                                <!--Total Income-->
+                                <!--                                <div class="col-md-3 inbox_sent">-->
+                                <!--                                    <div class="tile wide invoice box-4">-->
+                                <!--                                        <div class="header">-->
+                                <!--                                            <div class="main-title">Sent</div>-->
+                                <!--                                            <div id="monthly_unreconciled">-->
+                                <!--                                                <div class="left">-->
+                                <!--                                                    <span class="top_list_class">Count</span>-->
+                                <!--                                                    <div class="count">-->
+                                <!--                                                        <span t-esc="widget.state_count_dict['sent_len_counts']"/>-->
+                                <!--                                                        Items-->
+                                <!--                                                    </div>-->
+                                <!--                                                </div>-->
+
+                                <!--                                                <div class="right text-center inbox_sent" id="inbox_sent"-->
+                                <!--                                                     style="text-align:center">-->
+                                <!--                                                    <span class="top_list_class">Amount</span>-->
+                                <!--                                                    <div class="count">-->
+                                <!--                                                         <span t-esc="widget.state_count_dict['currency']"/>-->
+                                <!--                                                        <span t-esc="widget.state_count_dict['sent_count']"/>-->
+                                <!--                                                    </div>-->
+                                <!--                                                </div>-->
+                                <!--                                            </div>-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+
+                                <!--Total Expense-->
+                                <!--                                <div class="col-md-3 inbox_sale">-->
+                                <!--                                    <div class="tile wide invoice box-3">-->
+                                <!--                                        <div class="header">-->
+                                <!--                                            <div class="main-title">Purchase</div>-->
+                                <!--                                            <div id="monthly_expense">-->
+                                <!--                                                <div class="left">-->
+                                <!--                                                    <span class="top_list_class">Count</span>-->
+                                <!--                                                    <div class="count">-->
+                                <!--                                                        <span t-esc="widget.state_count_dict['sale_len_counts']"/>-->
+                                <!--                                                        Items-->
+                                <!--                                                    </div>-->
+                                <!--                                                </div>-->
+                                <!--                                                <div class="right inbox_sale" id="inbox_sale" style="text-align:center">-->
+                                <!--                                                    <span class="top_list_class">Amount</span>-->
+                                <!--                                                    <div class="count">-->
+                                <!--                                                         <span t-esc="widget.state_count_dict['currency']"/>-->
+                                <!--                                                        <span t-esc="widget.state_count_dict['sale_count']"/>-->
+                                <!--                                                    </div>-->
+                                <!--                                                </div>-->
+                                <!--                                            </div>-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+
+                                <!--Unreconciled items-->
+                                <!--                                <div class="col-md-3 inbox_done">-->
+                                <!--                                    <div class="tile wide invoice box-2">-->
+                                <!--                                        <div class="header">-->
+                                <!--                                            <div class="main-title">Done</div>-->
+                                <!--                                            <div id="monthly_income">-->
+                                <!--                                                <div class="left">-->
+                                <!--                                                   <span class="top_list_class">Count</span>-->
+                                <!--                                                    <div class="count">-->
+                                <!--                                                         <span t-esc="widget.state_count_dict['done_len_counts']"/>-->
+                                <!--                                                        Items-->
+                                <!--                                                    </div>-->
+                                <!--                                                </div>-->
+                                <!--                                                <div class="right inbox_done" id="inbox_done" style="text-align:center">-->
+                                <!--                                                    <span class="top_list_class">Amount</span>-->
+                                <!--                                                    <div class="count">-->
+                                <!--                                                        <span t-esc="widget.state_count_dict['currency']"/>-->
+                                <!--                                                        <span t-esc="widget.state_count_dict['done_count']"/>-->
+                                <!--                                                    </div>-->
+                                <!--                                                </div>-->
+                                <!--                                            </div>-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <div class="">
+                            <div class="row account-details" style="margin:0px">
+
+                 <div class="col-md-4">
+                <div class="card" style="height:410px;">
+                         <div class="card-header"
+                              style=" padding: 7px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; background-color:#465dac; ">
+                            <h3 class="custom-h3 card-title">
+                                <b>Purchase Products By Units</b>
+                            </h3>
+                        </div>
+                    <div class="card-body p-0" style=" overflow-y: auto; ">
+                        <ul class="users-list clearfix" style="padding-top:10px;" id="purchase_top_10_product_by_qty"/>
+                        <t t-foreach="widget.top_10_product_qty" t-as="purchase_top_10_product_by_qty">
+                            <li class="top_list_class">
+                            <div class="row top_10_row" id="purchase_top_10_product_by_qty">
+                                <div class="col-9 top_10_purchase_product_by_qty_vals">
+                                    <span t-esc="purchase_top_10_product_by_qty"/>
+                                </div>
+                                <div class="col-3 top_10_purchase_product_by_qty_vals" style="text-align:right;">
+                                    <span t-esc="widget.top_10_product_qty[purchase_top_10_product_by_qty]"/>
+                                    Units
+                                </div>
+                            </div>
+                            </li>
+                        </t>
+                    </div>
+                </div>
+            </div>
+                                <div class="col-md-4">
+                <div class="card" style="height:410px;">
+                    <div class="card-header"
+                         style=" padding: 7px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; background-color:#465dac; ">
+                        <h3 class="custom-h3 card-title">
+                            <b>Purchase Products By Amount</b>
+                        </h3>
+                    </div>
+                    <div class="card-body p-0" style="overflow-y: auto; " id="top_10_body">
+                        <ul class="users-list clearfix" id="purchase_top_10_product" style="padding-top:10px;"/>
+                        <t t-foreach="widget.top_10_entities" t-as="top_10_entities">
+                             <li class="top_list_class">
+                                 <div class="row top_10_row" id="purchase_top_10_product">
+                                    <div class="col-9 top_10_purchase_product_val">
+                                        <span t-esc="top_10_entities"/>
+                                    </div>
+                                     <div class="col-3 top_10_purchase_product_val" style="text-align:right;">
+                                        <span t-esc="widget.state_count_dict['currency']"/>
+                                         <span t-esc="widget.top_10_entities[top_10_entities]"/>
+                                    </div>
+                                </div>
+                             </li>
+                        </t>
+                    </div>
+                </div>
+            </div>
+                                <div class="col-md-4">
+                <div class="card" style="height:410px;">
+                    <div class="card-header"
+                         style=" padding: 7px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; background-color:#465dac; ">
+                        <h3 class="custom-h3 card-title">
+                            <b>VENDORS</b>
+                        </h3>
+                    </div>
+                    <div class="card-body p-0" style=" overflow-y: auto; " id="top_10_body">
+                        <ul class="users-list clearfix" id="top_10_vendor_this_month" style="padding-top:10px;"/>
+                        <t t-foreach="widget.top_10" t-as="top_10">
+                            <li class="top_list_class">
+                                <div class="row top_10_row" id="purchase_on_willstart">
+                                    <div class="col-9 top_10_purchase_customer_name">
+                                        <span t-esc="top_10"/>
+                                    </div>
+                                    <div class="col-3 top_10_purchase_customer_name" style="text-align:right;">
+                                        <span t-esc="widget.state_count_dict['currency']"/>
+                                        <span t-esc="widget.top_10[top_10]"/>
+                                    </div>
+                                </div>
+                            </li>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+                            <div class="row">
+            <div class="product_purchase_date_graph col-sm-5 col-md-6 my-4">
+                <div class="chart-container" style="background-color:white;">
+                    <div class="row" style="height: 20px; max-height: 20px;padding-left: 20px;">
+                        <h2 class="col-4">Product's Details</h2>
+                        <div class="form-group col-8" style="text-align:right; padding-right: 61px;">
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="card-body" id="ex_body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="operation_product_purchase card-body p-0"
+                                             style=" height: 287px; overflow-y: auto; "
+                                             id="operation_purchase">
+                                                <ul class="users-list clearfix" id="operation_product_purchase_id"/>
+                                         </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+
+                                <div class="graph_by_customer_purchase col-sm-5 col-md-6 my-4">
+                <div class="chart-container" style="background-color:white;">
+                    <div class="row" style="height: 20px; max-height: 20px; padding-left: 20px;">
+                        <h2 class="col-4">Customer's Details</h2>
+                        <div class="form-group col-8" style="text-align:right; padding-right: 61px;">
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="card-body" id="ex_body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="operation_customer_on_graph_purchase card-body p-0"
+                                             style=" height: 287px; overflow-y: auto; "
+                                             id="operation_customer_purchase">
+                                                <ul class="users-list clearfix"
+                                                    id="operation_customer_on_graph_purchase_id"/>
+                                         </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+            </div>
+        </div>
+                    </div>
+
+
+    </div>
+    </t>
+</templates>

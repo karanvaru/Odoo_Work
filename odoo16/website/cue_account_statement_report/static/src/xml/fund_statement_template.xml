@@ -1,0 +1,207 @@
+<templates>
+    <t t-name="FundStatementTemp">
+        <div class="">
+            <div class="">
+                <h1 style="padding:10px">
+                    Fund Statement
+                </h1>
+            </div>
+            <div>
+                <div class="filter_view_tb"/>
+            </div>
+            <br/>
+            <div>
+                <div class="table_view_tb" style="right:20px;"/>
+            </div>
+        </div>
+    </t>
+    <t t-name="FSTable">
+        <div>
+            <div class="table_main_view">
+                <table cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th colspan="6">Period</th>
+                            <t t-foreach="month_data" t-as="month">
+                                <th style="text-align:right;">
+                                    <t t-if="month != 'amount'">
+                                        <span t-esc="month"/>
+                                    </t>
+                                </th>
+                            </t>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="body_data_count" t-value="0"/>
+                        <t t-foreach="account_data" t-as="header">
+                            <tr role='button' style="border: 1.5px solid black;" class="fl-line"
+                                t-att-data-header-id="header">
+                                <td colspan="6" style="border: 0px solid black;">
+                                    <i class="fa fa-caret-down" role="img" aria-label="Unfolded"
+                                       title="Unfolded"/>
+                                    <strong style="text-align:center;">
+                                        <t t-esc="header"/>
+                                    </strong>
+                                </td>
+                                <t t-foreach="month_data" t-as="month">
+                                    <t t-if="header != 'Working Capital'">
+                                        <td style="text-align:right;">
+                                            <strong t-esc="symbol"/>
+                                            <strong t-esc="month_data[month][body_data_count]"/>
+                                        </td>
+                                    </t>
+                                </t>
+                            </tr>
+                            <tr t-attf-class="collapse a{{ header }}">
+                                <td>
+                                    <ul>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <t t-set="body_data_count" t-value="body_data_count + 1"/>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+    <t t-name="SubSectionFS">
+        <t t-foreach="account_data['data']" t-as="body_data">
+            <t t-if="header_name == 'Working Capital'">
+                <tr role='button' style="border: 1.5px solid black;" class="flh-line"
+                    t-att-data-inner-id="body_data['id']">
+
+                    <td colspan="6" style="padding-left:10px;">
+                        <i class="fa fa-caret-down" role="img" aria-label="Unfolded"
+                           title="Unfolded"/>
+                        <span t-esc="body_data['name']"/>
+                    </td>
+
+                    <td style="text-align:right;">
+                        <span t-esc="symbol"/>
+                        <span t-esc="body_data['amount']"/>
+                    </td>
+                    <t t-foreach="body_data['month']" t-as="m">
+                        <td style="text-align:right;">
+                            <span t-esc="symbol"/>
+                            <span t-esc="body_data['month'][m]"/>
+                        </td>
+                    </t>
+                </tr>
+                <tr t-attf-class="collapse a{{ body_data }}">
+                    <td>
+                        <ul>
+                        </ul>
+                    </td>
+                </tr>
+            </t>
+
+            <t t-if="header_name != 'Working Capital'">
+                <tr style="border: 1.5px solid black;">
+                    <td colspan="6" style="padding-left:10px;">
+                        <span t-esc="body_data['name']"/>
+                    </td>
+                    <td style="text-align:right;">
+                        <span t-esc="symbol"/>
+                        <span t-esc="body_data['amount']"/>
+                    </td>
+                    <t t-foreach="body_data['month']" t-as="m">
+                        <td style="text-align:right;">
+                            <span t-esc="symbol"/>
+                            <span t-esc="body_data['month'][m]['amount']"/>
+                        </td>
+                    </t>
+                </tr>
+                <t t-if="'qty' in body_data">
+                    <tr>
+                        <td colspan="6"></td>
+                        <td style="text-align:right;">
+                            <span t-esc="body_data['qty']"/>
+                        </td>
+                        <t t-foreach="body_data['month']" t-as="m">
+                            <td style="text-align:right;">
+                                <span t-esc="body_data['month'][m]['qty']"/>
+                            </td>
+                        </t>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </t>
+
+
+    <t t-name="SubInnerSectionFS">
+        <t t-foreach="inner_details['inner_data']" t-as="inn_dt">
+            <t t-foreach="inn_dt" t-as="dt">
+                <tr>
+                    <td colspan="6" style="padding-left:33px;">
+                        <span t-esc="inn_dt[dt]['name']"/>
+                    </td>
+                    <td style="text-align:right;">
+                        <span t-esc="inner_details['symbol']"/>
+                        <span t-esc="inn_dt[dt]['amount']"/>
+                    </td>
+                    <t t-foreach="inn_dt[dt]['month']" t-as="m">
+                        <td style="text-align:right;">
+                            <span t-esc="inner_details['symbol']"/>
+                            <span t-esc="inn_dt[dt]['month'][m]['amount']"/>
+                        </td>
+                    </t>
+                </tr>
+            </t>
+        </t>
+    </t>
+
+    <t t-name="FSFilterView">
+        <div class="row" style="margin-right: 10px; margin-left: 10px;">
+            <div class="sub_container_left" style="width:70%;">
+                <div class="report_print">
+                    <button type="button" class="btn btn-primary" id="fund_xlsx"
+                            style="position: relative;height:30px;color:white;background-color: #00A0AD;border-color: #00A0AD; padding:3px;">
+                        Export (XLSX)
+                    </button>
+                </div>
+            </div>
+            <br/>
+            <div class="sub_container_right row" style="width:30%;height:3%;top:0px;position: relative;">
+                <div class="time_range" style="">
+                    <a type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
+                        <span class="fa fa-calendar" title="Dates" role="img" aria-label="Dates"/>
+                        Date Range
+                    </a>
+                    <div class="dropdown-menu" role="menu">
+                        <div class="form-group">
+                            <label class="" for="date_from">Start Date :</label>
+                            <div class="input-group date" id="date_from" data-target-input="nearest">
+                                <input type="text" name="date_from" class="form-control datetimepicker-input"
+                                       data-target="#date_from" t-att-name="prefix"/>
+                                <div class="input-group-append" data-target="#date_from"
+                                     data-bs-toggle="datetimepicker">
+                                    <span class="input-group-text">
+                                        <span class="fa fa-calendar" role="img" aria-label="Calendar"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <label class="" for="date_to">End Date :</label>
+                            <div class="input-group date" id="date_to" data-target-input="nearest">
+                                <input type="text" name="date_to" class="form-control datetimepicker-input"
+                                       data-target="#date_to" t-att-name="prefix"/>
+                                <div class="input-group-append" data-target="#date_to" data-bs-toggle="datetimepicker">
+                                    <span class="input-group-text">
+                                        <span class="fa fa-calendar" role="img" aria-label="Calendar"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="">
+                    <button type="button" id="fs_apply_filter" class="btn btn-primary"
+                            style="top:0px;height:30px;color:white;background-color: #00A0AD;border-color: #00A0AD;">
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

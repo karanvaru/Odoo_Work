@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--    <record id="user_popup_thanks" model="website.page">-->
+    <!--        <field name="name">Thanks (Contact us)</field>-->
+    <!--        <field name="type">qweb</field>-->
+    <!--        <field name="url">/user-thanks</field>-->
+    <!--        <field name="website_indexed" eval="False"/>-->
+    <!--        <field name="is_published">True</field>-->
+    <!--        <field name="key">user_popup_thanks</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <t name="Thanks (Contact us)" t-name="user_popup_thanks">-->
+    <!--                <t t-call="website.layout">-->
+    <!--                    <div id="wrap" class="oe_structure oe_empty">-->
+    <!--                        <section class="s_text_block pt40 pb40 o_colored_level " data-snippet="s_text_block">-->
+    <!--                            <div class="container s_allow_columns">-->
+    <!--                                <div class="row">-->
+    <!--                                    <div class="col-lg-12 col-xl-12 me-lg-auto">-->
+    <!--                                        <span class="d-block fa fa-4x fa-thumbs-up mx-auto rounded-circle bg-primary"/>-->
+    <!--                                        <br/>-->
+    <!--                                        <h1 class="text-center">Thank You!</h1>-->
+    <!--                                        <p class="text-center">We'll be in touch soon to bring a powerful upgrade to-->
+    <!--                                            your home.-->
+    <!--                                        </p>-->
+    <!--                                    </div>-->
+    <!--                                </div>-->
+    <!--                            </div>-->
+    <!--                        </section>-->
+    <!--                    </div>-->
+    <!--                    <input t-if='website.plausible_shared_key' type='hidden' class='js_plausible_push'-->
+    <!--                           data-event-name='Lead Generation' data-event-params='{"CTA": "Contact Us"}'/>-->
+    <!--                </t>-->
+    <!--            </t>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+
+    <!--    <template id="cue_user_wizard" name="Cue User Wizard">-->
+    <!--        <section class="cue_wizard_box pt144 pb144" data-vcss="0001" data-snippet="cue_wizard_box"-->
+    <!--                 data-name="Wizard Box" style="background-image: none;">-->
+    <!--            <div class="o_snippet_invisible s_popup __not_bind" data-vcss="001">-->
+    <!--                <div class="modal fade s_popup_middle" id="calltoaction"-->
+    <!--                     style="background-color: var(&#45;&#45;black-50) !important;" role="dialog" data-bs-backdrop="static"-->
+    <!--                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="calltoaction" aria-hidden="true">-->
+    <!--                    <div class="modal-dialog d-flex">-->
+    <!--                        <div class="modal-content modal_div_padding  oe_structure">-->
+    <!--                            <div class="s_popup_close js_close_popup o_we_no_overlay o_not_editable"-->
+    <!--                                 data-bs-dismiss="modal" aria-label="Close">&#215;-->
+    <!--                            </div>-->
+    <!--                            <section id="user_forms"-->
+    <!--                                     class="col-12 s_website_form s_text_image cue_contact_modal_form pt32 pb32 o_colored_level"-->
+    <!--                                     data-vcss="001" data-snippet="s_website_form" style="background-image: none;">-->
+    <!--                                <div class="container contact_details">-->
+    <!--                                    <form id="cue_user_popup_form" action="/website/form/" method="post"-->
+    <!--                                          enctype="multipart/form-data" class="o_mark_required row"-->
+    <!--                                          data-mark="*" data-model_name="crm.lead"-->
+    <!--                                          data-success-mode="message"-->
+    <!--                                          hide-change-model="true">-->
+    <!--                                        <div class="contact_header">Upgrade your Home with Cue Home today</div>-->
+    <!--                                        <div class="px-100">-->
+    <!--                                            <div class="s_website_form_rows row s_col_no_bgcolor">-->
+    <!--                                                <div class="col-12 s_website_form_field s_website_form_required s_website_form_model_required"-->
+    <!--                                                     data-type="char" data-name="Field">-->
+    <!--                                                    <div class="row s_col_no_resize s_col_no_bgcolor">-->
+    <!--                                                        <div class="col-12 col-lg-4">-->
+    <!--                                                            <label class="col-form-label col-sm-auto s_website_form_label"-->
+    <!--                                                                   for="contact5">-->
+    <!--                                                                <span class="s_website_form_label_content">Subject-->
+    <!--                                                                </span>-->
+    <!--                                                                <span class="s_website_form_mark">*</span>-->
+    <!--                                                            </label>-->
+    <!--                                                        </div>-->
+
+    <!--                                                        <div class="col-12 col-lg-8">-->
+    <!--                                                            <input id="contact5" type="text" placeholder="Subject"-->
+    <!--                                                                   class="form-control s_website_form_input"-->
+    <!--                                                                   name="subject" required=""/>-->
+    <!--                                                        </div>-->
+    <!--                                                    </div>-->
+    <!--                                                </div>-->
+<!--                                                    <div class="col-12 s_website_form_field s_website_form_custom s_website_form_required"-->
+<!--                                                         data-type="char" data-name="Field">-->
+<!--                                                        <div class="row s_col_no_resize s_col_no_bgcolor">-->
+<!--                                                            <div class="col-12 col-lg-4">-->
+<!--                                                                <label class="col-form-label col-sm-auto s_website_form_label"-->
+<!--                                                                       for="contact1">-->
+<!--                                                                    <span class="s_website_form_label_content">Name</span>-->
+<!--                                                                    <span class="s_website_form_mark">*</span>-->
+<!--                                                                </label>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="col-12 col-lg-8">-->
+<!--                                                                <input id="contact1" type="text" placeholder="Name"-->
+<!--                                                                       class="form-control s_website_form_input" name="name"-->
+<!--                                                                       required="" data-fill-with="name"/>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+    <!--                                                <div class="col-12 s_website_form_field s_website_form_custom"-->
+    <!--                                                     data-type="char" data-name="Field">-->
+    <!--                                                    <div class="row s_col_no_resize s_col_no_bgcolor">-->
+    <!--                                                        <div class="col-12 col-lg-4">-->
+    <!--                                                            <label class="col-form-label col-sm-auto s_website_form_label"-->
+    <!--                                                                   for="contact2">-->
+    <!--                                                                <span class="s_website_form_label_content">Phone-->
+    <!--                                                                    Number-->
+    <!--                                                                </span>-->
+    <!--                                                            </label>-->
+    <!--                                                        </div>-->
+    <!--                                                        <div class="col-12 col-lg-8">-->
+    <!--                                                            <input id="contact2" type="tel" placeholder="Phone Number"-->
+    <!--                                                                   class="form-control s_website_form_input"-->
+    <!--                                                                   name="phone" data-fill-with="phone"/>-->
+    <!--                                                        </div>-->
+    <!--                                                    </div>-->
+    <!--                                                </div>-->
+    <!--                                                <div class="col-12 s_website_form_field s_website_form_model_required"-->
+    <!--                                                     data-type="many2one" data-name="Field">-->
+    <!--                                                    <div class="row s_col_no_resize s_col_no_bgcolor">-->
+    <!--                                                        <div class="col-12 col-lg-4">-->
+    <!--                                                            <label class="col-form-label  col-sm-auto s_website_form_label"-->
+    <!--                                                                   for="lead_city_id" style="width:33.33%;">-->
+    <!--                                                                <span class="s_website_form_label_content">City</span>-->
+    <!--                                                                <span class="s_website_form_mark">*</span>-->
+    <!--                                                            </label>-->
+    <!--                                                        </div>-->
+    <!--                                                        <div class="col-12 col-lg-8">-->
+    <!--                                                            <select class="form-select s_website_form_input"-->
+    <!--                                                                    name="lead_city_id" id="lead_city_id">-->
+    <!--                                                                <t t-foreach="request.env['res.city'].search([])"-->
+    <!--                                                                   t-as="record">-->
+    <!--                                                                    <option t-att-value="record.id"-->
+    <!--                                                                            t-att-data-id="record.id">-->
+    <!--                                                                        <t t-esc="record.name"/>-->
+    <!--                                                                    </option>-->
+    <!--                                                                </t>-->
+    <!--                                                            </select>-->
+    <!--                                                        </div>-->
+    <!--                                                    </div>-->
+    <!--                                                </div>-->
+    <!--                                                <div class="col-12 s_website_form_field" data-type="selection"-->
+    <!--                                                     data-name="Field">-->
+    <!--                                                    <div class="row s_col_no_resize s_col_no_bgcolor">-->
+    <!--                                                        <div class="col-12 col-lg-4">-->
+    <!--                                                            <label class="col-form-label col-sm-auto s_website_form_label"-->
+    <!--                                                                   style="width:33.33%;" for="home_status" >-->
+    <!--                                                                <span class="s_website_form_label_content">Home Status-->
+    <!--                                                                </span>-->
+    <!--                                                                <span class="s_website_form_mark">*</span>-->
+    <!--                                                            </label>-->
+    <!--                                                        </div>-->
+    <!--                                                        <div class="col-12 col-lg-8">-->
+    <!--                                                            <select class="form-select s_website_form_input"-->
+    <!--                                                                    name="home_status" id="home_status">-->
+    <!--                                                                <option value="upgrade_existing_system">Upgrade Existing-->
+    <!--                                                                    System-->
+    <!--                                                                </option>-->
+    <!--                                                                <option value="explore_new_system">Explore New System-->
+    <!--                                                                </option>-->
+    <!--                                                            </select>-->
+    <!--                                                        </div>-->
+    <!--                                                    </div>-->
+    <!--                                                </div>-->
+
+    <!--                                                <div class="col-12 s_website_form_field_hidden" data-type="selection"-->
+    <!--                                                     data-name="Field" data-visibility-condition="" data-visibility-between="">-->
+    <!--                                                    <div class="row s_col_no_resize s_col_no_bgcolor">-->
+    <!--                                                        <div class="col-12 col-lg-4">-->
+    <!--                                                            <label class="col-form-label col-sm-auto s_website_form_label"-->
+    <!--                                                                   style="width:33.33%;" for="web_lead_type" >-->
+    <!--                                                                <span class="s_website_form_label_content">Lead Type-->
+    <!--                                                                </span>-->
+    <!--                                                                <span class="s_website_form_mark">*</span>-->
+    <!--                                                            </label>-->
+    <!--                                                        </div>-->
+    <!--                                                        <div class="col-12 col-lg-8">-->
+    <!--                                                            <select class="form-select s_website_form_input"-->
+    <!--                                                                    name="web_lead_type" id="web_lead_type">-->
+    <!--                                                                <option value="user" selected="selected">User</option>-->
+    <!--                                                                <option value="partner">Partner</option>-->
+    <!--                                                            </select>-->
+    <!--                                                        </div>-->
+    <!--                                                    </div>-->
+    <!--                                                </div>-->
+
+
+    <!--                                                <div class="col-12  s_website_form_submit" data-name="Submit Button">-->
+    <!--                                                    <div class="row">-->
+    <!--                                                        <div class="col-12">-->
+    <!--                                                            <a href="#" role="button"-->
+    <!--                                                               class="btn btn-primary btn-lg s_website_form_send float-end"-->
+    <!--                                                               >Submit-->
+    <!--                                                            </a>-->
+    <!--                                                            <span id="s_website_form_result"></span>-->
+    <!--                                                        </div>-->
+    <!--                                                    </div>-->
+    <!--                                                </div>-->
+    <!--                                            </div>-->
+    <!--                                        </div>-->
+    <!--                                    </form>-->
+    <!--                                </div>-->
+    <!--                            </section>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="container px-100 s_allow_columns">-->
+    <!--                <div class="row">-->
+    <!--                    <div class="col-8">-->
+    <!--                        <h1>-->
+    <!--                            <font style="color: rgb(225, 225, 240);">-->
+    <!--                                <span class="cue_container" style="font-size: 36px;font-weight:400;">Click To Action-->
+    <!--                                </span>-->
+    <!--                            </font>-->
+    <!--                        </h1>-->
+    <!--                    </div>-->
+    <!--                    <div class="button_box col-4 text-end">-->
+    <!--                        <a class="btn btn-lg btn-primary rounded-circle" type="button"-->
+    <!--                           data-bs-toggle="modal" data-bs-target="#calltoaction">-->
+    <!--                            <span>Click To Open</span>-->
+    <!--                        </a>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </section>-->
+    <!--    </template>-->
+
+    <template id="cue_user_wizard" name="Cue User Wizard">
+        <section class="cue_wizard_box pt144 pb144" data-vcss="0001" data-snippet="cue_wizard_box"
+                 data-name="Wizard Box" style="background-image: none;">
+            <div class="o_snippet_invisible s_popup __not_bind" data-vcss="001">
+                <div class="modal fade s_popup_middle" id="calltoaction"
+                     style="background-color: var(--black-50) !important;" role="dialog" data-bs-backdrop="static"
+                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="calltoaction" aria-hidden="true">
+                    <div class="modal-dialog d-flex" style="margin-top:25px;">
+                        <div class="modal-content modal_div_padding oe_structure">
+                            <div class="s_popup_close js_close_popup o_we_no_overlay o_not_editable"
+                                 data-bs-dismiss="modal" aria-label="Close">×
+                            </div>
+                            <section class="s_text_image cue_contact_modal_form pt32 pb32 o_colored_level"
+                                     data-name="Text - Image" data-snippet="s_text_image"
+                                     style="background-image: none;">
+                                <div class="container contact_details">
+                                    <div class="contact_header">Upgrade your Home with Cue Home today</div>
+                                    <div class="px-100">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-4">
+                                                <label for="fname">
+                                                    Name
+                                                    <span>*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 col-lg-8">
+                                                <input type="text" id="fname" name="firstname"
+                                                       class="o_input"
+                                                       placeholder="Enter Your Name" required="required"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-lg-4">
+                                                <label for="fname">
+                                                    Phone Number
+                                                    <span>*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 col-lg-8">
+                                                <input type="text" id="phone" name="phone"
+                                                         class="o_input"
+                                                       placeholder="Enter Your Phone Number" required="required"/>
+                                            </div>
+                                        </div>
+                                        <div class="row user_state">
+                                            <div class="col-12 col-lg-4">
+                                                <label for="user_state">
+                                                    State
+                                                    <span>*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 col-lg-8">
+                                                <select name="user_state" id="user_state"   class="o_input">
+                                                    <option value="0" disabled="" selected="" data-calc="0">Select your
+                                                        State
+                                                    </option>
+                                                    <t t-foreach="request.env['res.country.state'].search([('country_id.code','=','IN')])"
+                                                       t-as="record">
+                                                        <option t-att-value="record.id" t-att-data-id="record.id">
+                                                            <t t-esc="record.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--                                         <div class="row"> -->
+                                        <!--                                             <div class="col col-lg-4"> -->
+                                        <!--                                                 <label for="user_city"> -->
+                                        <!--                                                     Your City -->
+                                        <!--                                                     <span>*</span> -->
+                                        <!--                                                 </label> -->
+                                        <!--                                             </div> -->
+                                        <!--                                             <div class="col col-lg-8"> -->
+                                        <!--                                                 <input type="text" id="user_city" name="user_city" -->
+                                        <!--                                                        placeholder="Enter Your City" required="required"/> -->
+                                        <!--                                             </div> -->
+                                        <!--                                         </div> -->
+                                        <div class="row">
+                                            <div class="col-12 col-lg-4">
+                                                <label for="user_city">
+                                                    City
+                                                    <span>*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 col-lg-8">
+                                                <select name="user_city"   class="o_input" id="user_city">
+                                                    <!--                                                     <option value="0" disabled="" selected="" data-calc="0">Select your -->
+                                                    <!--                                                         City -->
+                                                    <!--                                                     </option> -->
+                                                    <!--                                                     <t t-foreach="request.env['res.city'].search([])" -->
+                                                    <!--                                                        t-as="record"> -->
+                                                    <!--                                                         <option t-att-value="record.id" -->
+                                                    <!--                                                                 t-att-data-id="record.id"> -->
+                                                    <!--                                                             <t t-esc="record.name"/> -->
+                                                    <!--                                                         </option> -->
+                                                    <!--                                                     </t> -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-lg-4">
+                                                <label for="user_status">
+                                                    Home Status
+                                                    <span>*</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 col-lg-8">
+                                                <select name="user_status" id="user_status"   class="o_input">
+                                                    <option value="0" disabled="" selected="" data-calc="0">Select Home
+                                                        Status...
+                                                    </option>
+                                                    <option value="upgrade_existing_system">Upgrade Existing System
+                                                    </option>
+                                                    <option value="explore_new_system">Explore New System</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-10 btn_class pt10">
+                                                <button type="submit"
+                                                        class="submit_wizard_data btn btn-primary rounded-circle s_website_form_send btn_font_yellow">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="container thanks_div">
+                                        <h1 class="text-center">Thank You!</h1>
+                                        <p>We'll be in touch soon to bring a powerful upgrade to your home.</p>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-100 s_allow_columns">
+                <div class="row">
+                    <div class="col-8">
+                        <h1>
+                            <font style="color: rgb(225, 225, 240);">
+                                <span class="cue_container" style="font-size: 36px;font-weight:400;">Click To Action
+                                </span>
+                            </font>
+                        </h1>
+                    </div>
+                    <div class="button_box col-4 text-end">
+                        <button type="button" class="btn btn-lg btn-primary rounded-circle" data-bs-toggle="modal"
+                                data-bs-target="#calltoaction">Click To Open
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <template id="template_user_city_wizards">
+        <div class="row">
+            <select name="user_city" id="user_city">
+                <option value="0" disabled="" selected="" data-calc="0">Select your city</option>
+                <t t-foreach="user_cities" t-as="c">
+                    <option t-att-value="c.id">
+                        <t t-esc="c.name"/>
+                    </option>
+                </t>
+            </select>
+        </div>
+    </template>
+
+
+    <record id="cue_website.cue_wizard_000_scss" model="ir.asset">
+        <field name="name">Cue Wizard SCSS 000</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_wizard/000.scss</field>
+    </record>
+
+    <record id="cue_website.cue_cue_wizard_000_js" model="ir.asset">
+        <field name="name">Cue Wizard 000 js</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_wizard/000.js</field>
+    </record>
+
+
+</odoo>

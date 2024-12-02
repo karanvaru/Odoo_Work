@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Payslip Line -->
+    <record id="view_hr_payslip_line_tree_dashboard" model="ir.ui.view">
+        <field name="name">hr.payslip.line.tree.dashboard</field>
+        <field name="model">hr.payslip.line</field>
+        <field name="arch" type="xml">
+            <tree string="Salary Structure" editable="bottom" decoration-info="total == 0">
+                <field name="category_id" invisible="1"/>
+                <field name="employee_id"/>
+                <field name="date_to"/>
+                <field name="payslip_name"/>
+                <field name="total" sum="total"/>
+                <field name="amount_select" invisible="1"/>
+                <field name="register_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+
+</odoo>

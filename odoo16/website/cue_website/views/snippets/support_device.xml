@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="supported_devices" name="Supported Devices">
+        <section class="s_text_image supported_devices pt32 pb32 o_colored_level" data-snippet="s_text_image"
+                 data-name="Text - Image" style="background-image: none;">
+            <div class="container">
+                <div class="text-center py-5">
+                </div>
+                <div class="row justify-content-center" id="support_device_row"/>
+                <div class="row align-items-center" >
+                    <div class="col-12" >
+                        <div class="row cubes">
+<!--                                                                        <div class="col-2" >-->
+<!--                                                                            <div class="box"/>-->
+<!--                                                                        </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <record id="cue_website.supported_devices_000_scss" model="ir.asset">
+        <field name="name">Support Device 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/support_device/000.scss</field>
+    </record>
+
+</odoo>

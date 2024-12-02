@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_product_brand_inherit" model="ir.ui.view">
+        <field name="name">product.brand.form.inherit</field>
+        <field name="model">product.brand</field>
+        <field name="inherit_id" ref="product_brand.view_product_brand_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="show_website" string="Show in Supported Device"/>
+                <field name="out_of_box_visible"/>
+                <field name="slider_type"/>
+                <field name="redirect_url"/>
+                <field name="product_category_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_payslip_form_inherits" model="ir.ui.view">
+        <field name="name">hr.payslip.inherit.form</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll_community.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='credit_note']" position="after">
+                <field name="working_day" invisible="True"/>
+                <field name="month_days" invisible="True"/>
+                <field name="per_day_salary" invisible="True"/>
+                <field name="payslip_amount" invisible="False"/>
+            </xpath>
+            
+            <xpath expr="//button[@name='action_payslip_cancel']" position="after">
+                <button string="Mark as Paid" name="%(ki_hr_payroll_extension.action_payslip_done_won)d" type="action" states="done" class="oe_highlight"/>
+            </xpath>
+            
+            
+        </field>
+    </record>
+    
+    <record id="view_hr_payslip_tree_inherits" model="ir.ui.view">
+        <field name="name">hr.payslip.inherit.tree</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll_community.view_hr_payslip_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="before">
+                <field name="payslip_amount" sum="payslip_amount"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+
+

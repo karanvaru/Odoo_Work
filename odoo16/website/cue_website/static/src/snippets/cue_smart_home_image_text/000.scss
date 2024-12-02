@@ -1,0 +1,57 @@
+.cue_smart_home_image_text {
+    min-height: 660px;
+    border-radius: 20px;
+    background-color: #232328;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .__black {
+        margin-top: 125px;
+        // font-weight: 500;
+    }
+    .__lineheight {
+        line-height: 1.473;
+    }
+    .mt-30{
+        margin-top: 30%;
+    }
+    @media only screen and (max-width: 991px) {
+        .mt-30 {
+            margin-top: 10px;
+        }
+        .__black {
+            margin-top: 10px;
+        }
+        h2 {
+            font {
+                span {
+                    font-size: var(--header-f) !important;
+
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 767px) {
+      padding-bottom: 0px !important;
+      padding-top: 25px !important;
+      min-height: 540px;
+        h2 {
+            padding-left: 25px;
+            padding-right: 29px;
+        }
+
+        p {
+            //margin-right: 25px;
+            margin-top: 20px;
+            a{
+                span{
+                    font-size: 11px !important;
+                 }
+            }
+        }
+        .__lineheight {
+            line-height: 1.1;
+        }
+    }
+}

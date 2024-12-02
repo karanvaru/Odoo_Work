@@ -1,0 +1,95 @@
+.cue_parallax_cover {
+    margin-top: 20px;
+    border-radius: 20px;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    .snippet_title_font {
+        font-family: Poppins;
+        font-size: var(--header-f);
+        line-height: 1.640;
+        font-weight: 600;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        color: #e1e1f0;
+        text-shadow: none;
+    }
+    .snippet_content_font {
+        font-family: Poppins;
+        font-size: var(--general-f);
+        font-weight: 400;
+         line-height: 1.668;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        color: #fafafc;
+        text-shadow: none;
+    }
+    .s_allow_columns.container.px-100 {
+        max-width: 550px;
+        margin-left: 0;
+        margin-right: auto;
+        padding-right: 0 !important;
+    }
+    @media only screen and (max-width: 991px) {
+        .s_allow_columns.container.px-100 {
+            padding-left: 100px !important;
+        }
+        h1 {
+            font-size: var(--header-f) !important;
+        }
+        .px-100 {
+            padding: 0 20px !important;
+        }
+        // .snippet_content_font {
+        //     font-size: 13px !important;
+        // }
+    }
+    @media only screen and (max-width: 767px) {
+        .s_allow_columns {
+            &.px-100 {
+                h1.mw-460 {
+                    margin-left: 0 !important;
+                    //text-align: center !important;
+                }
+                .lead.mw-460 {
+                    display: block;
+                    margin: auto;
+                    max-width: 100%;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+        .s_allow_columns.container.px-100 {
+            margin-left: auto;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+        }
+        margin-top: 30px !important;
+        padding-bottom: 0px !important;
+        .container {
+            margin-top: 150px !important;
+        }
+        h1 {
+            margin-left: 54px !important;
+        }
+        .btn_partner_locate {
+            min-width: 117px;
+            min-height: 45px;
+            box-sizing: border-box;
+            width: 118px;
+            height: 23px;
+        }
+        // .btn_font_yellow {
+        //     padding-top: 10px;
+        //     font-size: 15px;
+        // }
+    }
+}
+.cue_parallax_back_shaddow {
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+}

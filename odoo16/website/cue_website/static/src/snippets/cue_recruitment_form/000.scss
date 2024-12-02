@@ -1,0 +1,320 @@
+.cue_recruitment_forms {
+	border-radius: 20px;
+	background-color: #232328;
+	min-height: 600px;
+	color: white;
+	margin-top: 20px;
+    padding-top: 100px !important;
+	display: flex;
+	justify-content: center;
+    align-items: start;
+    min-height: 1000px;
+    #academy_form {
+        width: 761px;
+        margin: auto;
+        @media screen and (max-width: 991px) {
+            width: 100%;
+            .col-lg-3 {
+                width: 100%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 991px) {
+    	padding-top: 40px !important;
+	}
+
+    @media screen and (max-width: 767px) {
+    	.hide_inmobile{
+            display:none;
+            }
+
+	}
+
+    input::placeholder, select::placeholder {
+        font-size: 14px !important;
+        font-weight: 400;
+    }
+    textarea::placeholder {
+        font-size: 14px !important;
+		padding-left:5px;
+		padding-top:5px;
+        font-weight: 400;
+    }
+
+    input::-ms-input-placeholder, select::-ms-input-placeholder, textarea::-ms-input-placeholder {
+        font-size: 12px !important;
+    }
+    option:disabled {
+        font-size: 12px !important;
+    }
+
+	.submit_btn{
+        background-color: #8c8ca0;
+        color: #232328;
+        border-radius: 40px;
+        border-color: #8c8ca0;
+        padding: 0px 10px 0px 16px;
+    }
+    .row{
+        margin-bottom: 18px;
+        margin-left: 0;
+        margin-right: 0;
+        .col-lg-3 {
+            width: 200px;
+            padding: 0;
+        }
+        .col-lg-9 {
+            padding: 0;
+            flex: 1;
+        }
+    }
+    input[type=text],[type=date], select {
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        resize: vertical;
+        font-size: 14px !important;
+        color: #605f5f;
+        padding: 4px 20px 4px 20px;
+        line-height: 1.644;
+        font-weight: 400;
+        height: 42px;
+        &:placeholder {
+
+        }
+    }
+    .__attechment_rec {
+        cursor: pointer;
+        display: block;
+        max-width: 100%;
+        border-radius: 40px;
+        position: relative;
+        input {
+            height: auto !important;
+        }
+        input[type="file"] {
+            // z-index: 1;
+            position: relative;
+            outline: none;
+            box-shadow: none;
+            max-width: 100%;
+            font-size: 18px;
+            line-height: 1.612;
+            font-weight: 400;
+            &::file-selector-button {
+                // width: 188px;
+                // max-width: 100%;
+                border-radius: 100px;
+                background-color: #8c8ca0;
+                color: #232328;
+                border: 0;
+                box-shadow: none;
+                font-size: 14px;
+                padding: 4px;
+                min-height: 40px;
+                min-width: 120px;
+                &:hover {
+                    background-color: #e1e1f0;
+                    border-color: #232328;
+                    color: #464650;
+                }
+                &:active {
+                    background-color: #464650;
+                    color: #fafafc;
+                }
+            }
+        }
+	}
+    .header_class{
+        padding-bottom: 90px;
+        font-weight: 600;
+        text-align: center;
+        font-size: 36px;
+        color: #e1e1f0;
+    }
+    form label {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.612;
+      padding: 0;
+	    @media screen and (max-width: 991px) {
+      	font-size: 15px;
+		}
+
+    }
+
+.btn.rounded-circle, .btn.fa.rounded-empty-circle {
+  color: #332f2f;
+}
+
+    label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+    }
+
+    #submit_recruitment_form{
+        text-align: end;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+//     .container {
+//          padding: 0px 31px 0px 31px;
+//     }
+
+#file_upload_validation{
+    margin-top:10px;
+    font-size:20px;
+}
+    .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 6px;
+        label{
+            font-size: 16px;
+        }
+    }
+    .col-75 {
+        float: left;
+        width: 40%;
+        margin-top: 6px;
+    }
+
+/* Clear floats after the columns */
+    .row::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    select{
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        resize: vertical;
+        font-size: 14px !important;
+        color: #605f5f;
+        padding: 4px 20px 4px 20px;
+        line-height: 1.644;
+        font-weight: 400;
+        height: 42px;
+        flex: 1;
+    }
+    textarea{
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        resize: vertical;
+        font-size: 14px !important;
+        color: #605f5f;
+        padding: 4px 20px 4px 20px;
+        line-height: 1.644;
+        font-weight: 400;
+        min-height: 172px;
+        flex: 1;
+    }
+    .upload_button{
+        margin-top: 18px;
+    }
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
+        padding-left: 5%;
+        padding-right: 5%;
+        textarea{
+            width: 99%;
+            border-radius: 10px;
+        }
+        select{
+            color: #605f5f;
+            width: 91%;
+            height: 39px;
+            border-radius: 10px;
+            margin-top: 6px;
+            padding: 1px 10px 0px 3px;
+        }
+        input[type=text],[type=date] {
+            width: 100%;
+            padding: 7px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            resize: vertical;
+        }
+        .header_class{
+            font-size:18px;
+            text-align: left;
+            padding-bottom: 35px;
+            //padding-top: 30px;
+            font-weight: bold;
+            margin-left: 0px;
+        }
+        .col-25 {
+            label{
+                font-size: 15px;
+                margin-top: 10px;
+            }
+        }
+        #submit_recruitment_form{
+            text-align: end;
+
+        }
+        .submit_btn{
+            label{
+                  font-size: 11px;
+            }
+        }
+        #file_upload_validation{
+        font-size: 10px;
+        }
+    }
+}
+.thanks_section{
+    background-color: #232328;
+    color: white;
+    width: 900px;
+    height: 400px;
+    margin-left: 100px;
+    border-radius: 30px;
+    h1{
+        padding: 90px 10px 0px 10px;
+    }
+    .back_button{
+        width: 25%;
+        height: 45px;
+        border-radius: 30px;
+        padding-top:9px
+    }
+    p{
+        text-align: center;
+        padding: 0px 10px 60px 10px;
+        font-size: 19px;
+    }
+    @media screen and (max-width: 600px) {
+        width: auto;
+        height: auto;
+        margin-left: 0px;
+        border-radius: 30px;
+        h1{
+            padding: 0px 0px 0px 0px;
+        }
+        p{
+            text-align: center;
+            font-size: 19px;
+        }
+        .back_button{
+            width: 60%;
+            height: 45px;
+        }
+    }
+}

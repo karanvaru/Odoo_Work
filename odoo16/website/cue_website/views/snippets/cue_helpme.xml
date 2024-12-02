@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="cue_helpme" name="Help Me">
+    <section class="s_text_image cue_helpme pt32 pb32 o_colored_level" data-snippet="s_text_image" data-name="Text - Image" style="background-image: none;">
+      <div class="container px-100">
+        <div class="row align-items-center">
+          	<div class="col-lg-6 pt16 pb16 o_colored_level">
+          		<h2 class="o_default_snippet_text mt40">
+          		    <font style="font-weight: bold; color: rgb(255, 200, 75);">HELP ME </font>
+          		    <font class="text-white">CHOOSE</font>
+          		</h2>
+          		<div class="mt60">
+          			<span>Tell us a little about your space to determine the most suitable Cue Bridge for you.</span>
+          		</div>
+          		<a class="btn btn-primary mt60 __black mb-2 o_default_snippet_text __qustion_start_btn" href="#">Start</a>
+          	</div>
+          	<div class="col-lg-6 pt16 pb16 o_colored_level">
+                <div class="__qustion_box"/>
+          	</div>
+        </div>
+      </div>
+    </section>
+</template>
+
+<record id="cue_website.cue_helpme_000_scss" model="ir.asset">
+    <field name="name">Cue 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_helpme/000.scss</field>
+</record>
+
+<record id="cue_website.cue_helpme_000_js" model="ir.asset">
+    <field name="name">Cue 000 js</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_helpme/000.js</field>
+</record>
+
+</odoo>

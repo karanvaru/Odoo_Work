@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_blog_post_form_inherit" model="ir.ui.view">
+        <field name="name">blog.post.form.inherit</field>
+        <field name="model">blog.post</field>
+        <field name="inherit_id" ref="website_blog.view_blog_post_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='author_id']" position="after">
+                <!-- <field name="url_category"/> -->
+                <field name="url_name"/>
+                <field name="custom_website_url" invisible="1"/>
+                <field name="website_url" readonly="1" force_save="1"/>
+                <field name="blog_img" widget="image"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_blog_blog_form_inherit" model="ir.ui.view">
+        <field name="name">blog.blog.form.inherit</field>
+        <field name="model">blog.blog</field>
+        <field name="inherit_id" ref="website_blog.view_blog_blog_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='subtitle']" position="after">
+                <field name="url_category"/>
+                <!-- <field name="url_name"/> -->
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <record id="blog_post_view_form_add_inherit_url" model="ir.ui.view">
+        <field name="name">blog.post.form.inherit</field>
+        <field name="model">blog.post</field>
+        <field name="inherit_id" ref="website_blog.blog_post_view_form_add"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="url_name"/>
+                <!-- <field name="url_name"/> -->
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

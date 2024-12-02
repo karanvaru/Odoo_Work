@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="cue_blog_content" name="Cue Block Content">
+        <section class="s_table_of_content cue_blog_content pt24 pb24 o_cc o_cc1" style="background-color: rgba(0, 0, 0, 0);">
+            <div class="container">
+                <div class="row s_nb_column_fixed">
+                    <div class="col-lg-3 s_table_of_content_navbar_wrap s_table_of_content_navbar_sticky s_table_of_content_vertical_navbar d-print-none d-none d-lg-block o_not_editable o_colored_level o_cc o_cc1" data-name="Navbar" style="background-color: rgba(0, 0, 0, 0);">
+                        <div class="s_table_of_content_navbar list-group o_no_link_popover" style="top: 100px; max-height: calc(100vh - 120px);">
+                            <a class="table_of_content_link list-group-item list-group-item-action py-2 border-0 rounded-0 active" href="#table_of_content_heading_1698347655208_2850">
+                                Getting Started with Cue
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 s_table_of_content_main oe_structure oe_empty o_colored_level" data-editor-message="DRAG BUILDING BLOCKS HERE" data-editor-message-default="true" data-name="Content" style="">
+                        <section class="pb16 o_colored_level mb16" style="background-image: none;">
+                            <h1 data-anchor="true" id="table_of_content_heading_1698347655208_2850">
+                                <span style="font-size: 36px;">
+                                    Getting Started with Cue
+                                </span>
+                            </h1>
+                            <p class="br_class" data-anchor="true" id="table_of_content_heading_1698347191988_115">
+                                <br/>
+                            </p>
+                            <p data-anchor="true" id="table_of_content_heading_1698347083253_85">
+                                orem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt lorem enim, eget fringilla turpis congue vitae. Phasellus aliquam nisi ut lorem vestibulum eleifend. Nulla ut arcu non nisi congue venenatis vitae ut ante. Nam iaculis sem nec ultrices dapibus. Phasellus eu ultrices turpis.
+                            </p>
+                            <p data-anchor="true" id="table_of_content_heading_1698347083253_85">
+                                <img class="img img-fluid o_we_custom_image" src="/cue_website/static/src/images/cue-desk-screens-1200.png"/>
+                            </p>
+                            <p data-anchor="true" id="table_of_content_heading_1698347083253_85" style="margin-bottom: 0px;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt lorem enim, eget fringilla turpis congue vitae. Phasellus aliquam nisi ut lorem vestibulum eleifend. Nulla ut arcu non nisi congue venenatis vitae ut ante. Nam iaculis sem nec ultrices dapibus. Phasellus eu ultrices turpis. Vivamus non mollis lacus, non ullamcorper nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus sit amet scelerisque ipsum.
+                            </p>
+                            <p data-anchor="true" id="table_of_content_heading_1698347083253_85" style="margin-bottom: 0px;">
+                                <br/>
+                            </p>
+                            <p data-anchor="true" id="table_of_content_heading_1698347083253_85">
+                                Sed adipiscing eget nibh at convallis. Curabitur eu gravida mauris, sit amet dictum metus. Sed a elementum arcu. Proin consectetur eros vitae odio sagittis, vitae dignissim justo sollicitudin. Phasellus non varius lacus,
+                            </p>
+                            <p class="br_class" data-anchor="true" id="table_of_content_heading_1698347083253_85">
+                                <br/>
+                            </p>
+                            <p class="br_class" data-anchor="true" id="table_of_content_heading_1698347083253_85">
+                                <br/>
+                            </p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <record id="cue_website.cue_blog_content_000_scss" model="ir.asset">
+        <field name="name">Table of content 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_blog_content/000.scss</field>
+    </record>
+</odoo>

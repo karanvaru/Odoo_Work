@@ -1,0 +1,133 @@
+<odoo>
+    <template id="cue_best_platform" name="CUE Best Platform">
+        <section class="s_text_image cue_best_platform pt32 pb32 o_colored_level" data-snippet="s_text_image"
+                 data-name="Text - Image" style="background-image: none;">
+            <div class="container">
+                <div class="row align-items-stretch">
+                    <div class="col-lg-8 pt16 pb16 o_colored_level">
+                        <div class="text_block">
+                            <h2 class="o_default_snippet_text mt40">
+                                <font style="font-weight: 600;color:rgb(225, 225, 240);">Home App on iPhone</font>
+                            </h2>
+                            <div class="mt60">
+                                <span>Apple Home is the easiest-to-use smart home app that you will find today. A few
+                                    taps to finding what you need is amazing. Built on the Homebridge foundation, <b
+                                            style="font-size: 16px;line-height: 1.626;font-weight: 600;">Cue Bridge
+                                    </b> supports Apple Home functionality from Day 1.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 __cue_box">
+                            <div class="row" id="platform_js"/>
+                        </div>
+
+                        <div class="col-12 platform_description">
+                            Tap on the above devices to have a glimpse of how you would interact with Smart Devices on Apple Home app.
+                        </div>
+                    </div>
+                    <div class="col-lg-4 pt16 pb16 o_colored_level" id="platform_category_image">
+                        <div class="size_block"/>
+                        <img class="w-100" src="/cue_website/static/src/images/cue_apple_home-on_iphone_14_pro.png"/>
+                    </div>
+                </div>
+               <!--  <div class="row align-items-center">
+                        <div class="col-12 platform_description">
+                            Tap on the above devices to have a glimpse of how you would interact with Smart Devices on
+                            Apple
+                            Home app.
+                        </div>
+                </div> -->
+
+            </div>
+        </section>
+    </template>
+    <record id="cue_website.cue_best_platform_000_scss" model="ir.asset">
+        <field name="name">Cue 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_best_platform/000.scss</field>
+    </record>
+    <template id="template_platform_options">
+        <t t-foreach="platform" t-as="p">
+            <div class="col-4">
+                <div class="cue_device platform_image" t-att-data-id="p.id">
+                    <span t-esc="p.name"/>
+                    <img class="mb-0" t-attf-src="data:image/png;base64,{{p.image}}"/>
+                </div>
+            </div>
+        </t>
+        <!-- Add for css layout -->
+        <div class="col-4 __gost"/>
+        <div class="col-4 __gost"/>
+    </template>
+    <template id="template_platform_category">
+        <div class="row">
+            <t t-foreach="categ" t-as="p">
+                <t t-if="p.category_image">
+                    <img class="mb-0" style="margin-right:20px;"
+                         t-attf-src="data:image/png;base64,{{p.category_image}}"/>
+                </t>
+            </t>
+        </div>
+    </template>
+</odoo>
+
+
+        <!--<?xml version="1.0" encoding="utf-8"?>-->
+        <!--<odoo>-->
+
+        <!--<template id="cue_best_platform" name="CUE Best Platform">-->
+        <!--    <section class="s_text_image cue_best_platform pt32 pb32 o_colored_level" data-snippet="s_text_image" data-name="Text - Image" style="background-image: none;">-->
+        <!--      <div class="container">-->
+        <!--        <div class="row align-items-center">-->
+        <!--          	<div class="col-lg-8 pt16 pb16 o_colored_level">-->
+        <!--          		<div class="text_block">-->
+        <!--          			<h2 class="o_default_snippet_text mt40">-->
+        <!--          			    <font style="font-weight: bold;" class="text-white">The Best Platform</font>-->
+        <!--          			</h2>-->
+        <!--          			<div class="mt60">-->
+        <!--          				<span>Apple Home is the easiest-to-use smart home app that you will find today. A few taps to finding what you need is amazing. Built on the Homebridge foundation, Cue Bridge supports Apple Home functionality from Day 1.</span>-->
+        <!--          			</div>-->
+        <!--          		</div>-->
+        <!--          		<div class="col-12">-->
+        <!--          			<div class="row">-->
+        <!--		          		<div class="col-11 m-auto">-->
+        <!--		          			<div class="row">-->
+        <!--		          				<div class="col-4">-->
+        <!--		          					<div class="cue_device">-->
+        <!--			          					<span>Air Conditioners</span>-->
+        <!--			          					<img src="cue_website/static/src/images/air_conditioner.png"/>-->
+        <!--		          					</div>-->
+        <!--		          				</div>-->
+        <!--		          				<div class="col-4">-->
+        <!--		          					<div class="cue_device">-->
+        <!--			          					<span>Cameras</span>-->
+        <!--			          					<img src="cue_website/static/src/images/camera.png"/>-->
+        <!--			          				</div>-->
+        <!--		          				</div>-->
+        <!--		          				<div class="col-4">-->
+        <!--		          					<div class="cue_device">-->
+        <!--			          					<span>Curtains</span>-->
+        <!--			          					<img src="cue_website/static/src/images/curtains.png"/>-->
+        <!--			          				</div>-->
+        <!--		          				</div>-->
+        <!--		          			</div>-->
+        <!--		          		</div>-->
+        <!--		          	</div>-->
+        <!--	          	</div>-->
+        <!--          	</div>-->
+        <!--          	<div class="col-lg-4 pt16 pb16 o_colored_level">-->
+        <!--          		<img class="w-100" src="/cue_website/static/src/images/cue_apple_home-on_iphone_14_pro.png"/>-->
+        <!--          	</div>-->
+        <!--        </div>-->
+        <!--      </div>-->
+        <!--    </section>-->
+        <!--</template>-->
+
+        <!--<record id="cue_website.cue_best_platform_000_scss" model="ir.asset">-->
+        <!--    <field name="name">Cue 000 SCSS</field>-->
+        <!--    <field name="bundle">web.assets_frontend</field>-->
+        <!--    <field name="path">cue_website/static/src/snippets/cue_best_platform/000.scss</field>-->
+        <!--</record>-->
+
+        <!--</odoo>-->

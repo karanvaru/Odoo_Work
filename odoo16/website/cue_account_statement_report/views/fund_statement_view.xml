@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <record id="action_fund_statement" model="ir.actions.client">
+            <field name="name">Fund Statement</field>
+            <field name="tag">f_s</field>
+        </record>
+
+
+        <menuitem id="menu_fund_statement" action="action_fund_statement"
+                  name="Fund Statement" parent="dynamic_accounts_report.dynamic_report_accounting"/>
+    </data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="cue_text_block" name="Cue Text Block">
+        <section class="s_title cue_text_block pt144 pb40 o_colored_level" data-vcss="001" data-snippet="s_title"
+                 data-name="Title" style="background-image: none;">
+            <div class="container s_allow_columns px-100">
+                <h1>
+                    <font style="color: rgb(225, 225, 240);font-weight: 400;">
+	                	<p class="cue_container" >
+							However, over 95% smart home brands in India do not directly support Apple Home today.
+	                	</p>
+                    </font>
+                </h1>
+            </div>
+        </section>
+    </template>
+
+<!--    <record id="cue_website.cue_text_block_000_scss" model="ir.asset">-->
+<!--        <field name="name">Cue 000 SCSS</field>-->
+<!--        <field name="bundle">web.assets_frontend</field>-->
+<!--        <field name="path">cue_website/static/src/snippets/cue_text_block/000.scss</field>-->
+<!--    </record>-->
+
+    <record id="cue_website.cue_text_block_0001_scss" model="ir.asset">
+        <field name="name">Cue 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_text_block/0001.scss</field>
+    </record>
+
+</odoo>

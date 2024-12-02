@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Snippets menu -->
+    <template id="snippets" inherit_id="website.snippets">
+        <xpath expr="//div[@id='snippet_content']" position="after">
+            <div class="o_panel" id="snippet_cue">
+                <div class="o_panel_header">
+                    CUE Home Snippet
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="cue_website.cue_home_banner"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Home Banner
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_smart_home_image_text"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Smart Home
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_text_block"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Cue Text Block
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_bridge"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Cue Bridge
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_out_of_box"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Cue OUT OF BOX
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_quotes"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Cue Quotes
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_text_with_button"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Cue Text Block - Button
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_user_wizard"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_user_wizard.svg">
+                        <keywords>
+                            Cue User Wizard
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_partner_wizard"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_partner_wizard.svg">
+                        <keywords>
+                            Cue Partner Wizard
+                        </keywords>
+                    </t>
+
+                </div>
+            </div>
+            <div class="o_panel" id="snippet_cue_product">
+                <div class="o_panel_header">
+                    CUE Product Snippet
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="cue_website.cue_product_cover"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_product_cover.svg">
+                        <keywords>
+                            Product Cover
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_bridge_parallax_long_cover"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_bridge_parallax_long_cover.svg">
+                        <keywords>
+                            Product Long Parallax
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_bridge_plus"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_bridge_plus.svg">
+                        <keywords>
+                            Cue Bridege Plus
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_bridge_max"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_bridge_max.svg">
+                        <keywords>
+                            Cue Bridege Max
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_r_parallax_cover"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_r_parallax_cover.svg">
+                        <keywords>
+                            Parallax Right Cover
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_tech_specs"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Tech Spaces
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_helpme"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Help Me
+                        </keywords>
+                    </t>
+                </div>
+            </div>
+            <div class="o_panel" id="snippet_cue_works">
+                <div class="o_panel_header">
+                    CUE Works with Snippet
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="cue_website.cue_cover_smart"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Cover Functional Smart Home
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_best_platform"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Cue Best Platform
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_supported_devices"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Cue Supported Devices
+                        </keywords>
+                    </t>
+                </div>
+            </div>
+            <div class="o_panel" id="snippet_cue_partners">
+                <div class="o_panel_header">
+                    CUE partners Snippet
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="cue_website.cue_cover"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_cover.svg">
+                        <keywords>
+                            Cover
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_parallax_cover"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_parallax_cover.svg">
+                        <keywords>
+                            Cover Parallax
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_r_parallax_cover"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_r_parallax_cover.svg">
+                        <keywords>
+                            Parallax Right Cover
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_partner_location"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_partner_location.svg">
+                        <keywords>
+                            Partner Location Cover
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_parner_parallax_cover"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_parner_parallax_cover.svg">
+                        <keywords>
+                            Cover Partner Parallax
+                        </keywords>
+                    </t>
+                </div>
+            </div>
+            <div class="o_panel" id="snippet_cue_resources">
+                <div class="o_panel_header">
+                    CUE Resources Snippet
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="cue_website.cue_resource_library"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_getting_started.svg">
+                        <keywords>
+                            CUE Resource Library
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_getting_started"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_getting_started.svg">
+                        <keywords>
+                            CUE GETTING STARTED
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_columns"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_columns.svg">
+                        <keywords>
+                            CUE Columns
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_blog_box"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_blog_box.svg">
+                        <keywords>
+                            CUE Blog
+                        </keywords>
+                    </t>
+                </div>
+            </div>
+            <div class="o_panel" id="snippet_cue_connect">
+                <div class="o_panel_header">
+                    CUE Connect Snippet
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="cue_website.cue_bridge_contact"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_bridge_contact.svg">
+                        <keywords>
+                            CUE Bridge Contact
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_contact_form"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_contact_form.svg">
+                        <keywords>
+                            CUE Website Form
+                        </keywords>
+                    </t>
+                    <t t-snippet="cue_website.cue_recruitment_form"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_recruitment_form.svg">
+                        <keywords>
+                            Cue Recruitment Form
+                        </keywords>
+                    </t>
+                </div>
+            </div>
+            <div class="o_panel" id="snippet_cue_support">
+                <div class="o_panel_header">
+                    CUE Support Snippet
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="cue_website.cue_blank_box"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_blank_box.svg">
+                        <keywords>
+                            CUE Blank Box
+                        </keywords>
+                    </t>
+                </div>
+            </div>
+            <div class="o_panel" id="snippet_cue_faq">
+                <div class="o_panel_header">
+                    CUE FAQ
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="cue_website.cue_accordion"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_accordion.svg">
+                        <keywords>
+                            CUE FAQ
+                        </keywords>
+                    </t>
+                </div>
+            </div>
+
+            <div class="o_panel" id="snippet_cue_blog">
+                <div class="o_panel_header">
+                    CUE Blog Snippet
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="cue_website.cue_blog_content"
+                       t-thumbnail="/website/static/src/img/snippets_thumbs/cue_blog_content.svg">
+                        <keywords>
+                            CUE Blog Box
+                        </keywords>
+                    </t>
+                </div>
+            </div>
+
+        </xpath>
+    </template>
+    <template id="snippet_options" inherit_id="website.snippet_options">
+        <xpath expr="//we-select[@data-variable='footer-template']" position="inside">
+            <we-button title="Cue Footer"
+                       data-customize-website-views="cue_website.footer_cue"
+                       data-customize-website-variable="Cue-Footer"
+                       data-img="/cue_website/static/src/img/footer_cue.svg"/>
+        </xpath>
+        <xpath expr="//we-select[@data-variable='header-template']" position="inside">
+            <we-button title="Cue Header"
+                       data-name="Cue-Header"
+                       data-customize-website-views="cue_website.header_cue"
+                       data-customize-website-variable="'Cue-Header'"
+                       data-img="/website/static/src/img/snippets_options/header_cue.svg"/>
+        </xpath>
+
+        <xpath expr="//we-select[@data-name='header_alignment_opt']/we-button[1]" position="attributes">
+            <attribute name="data-customize-website-views" add="cue_website.header_cue_align_center" separator=","/>
+        </xpath>
+        <xpath expr="//we-select[@data-name='header_alignment_opt']/we-button[last()]" position="attributes">
+            <attribute name="data-customize-website-views" add="cue_website.header_cue_align_right" separator=","/>
+        </xpath>
+    </template>
+</odoo>

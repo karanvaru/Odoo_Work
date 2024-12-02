@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="res_country_state_tree_inherit">
+            <field name="name">res.country.state.tree</field>
+            <field name="model">res.country.state</field>
+            <field name="inherit_id" ref="base.view_country_state_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="editable"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="res_country_state_from_inherit">
+            <field name="name">res.country.state.from</field>
+            <field name="model">res.country.state</field>
+            <field name="inherit_id" ref="base.view_country_state_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='country_id']" position="after">
+                    <field name="professional_tax"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+

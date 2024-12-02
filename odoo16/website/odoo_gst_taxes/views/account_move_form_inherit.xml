@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="account_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='tax_ids']" position="after">
+                    <field name="partner_id" force_save="1"/>
+                    <field name="hsn_config_id" force_save="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

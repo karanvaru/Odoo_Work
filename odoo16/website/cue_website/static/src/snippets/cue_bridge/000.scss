@@ -1,0 +1,82 @@
+.cue_bridge {
+	margin-top: 90px;
+	min-height: 700px;
+	background-color: #232328;
+	border-radius: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.bg-light-gradent {
+		background-image: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+	}
+	.__details {
+		margin-bottom: 80px;
+	}
+	// .__black {
+    //     font-weight: 500;
+    // }
+    .boder_wraper {
+    	.col-6 {
+    		& > .h2 {
+    			transform: unset !important;
+    		}
+    		& > .__details {
+    			transform: unset !important;
+    			margin-left: 0 !important;
+    		}
+    	}
+    }
+	@media only screen and (max-width: 991px) {
+	    min-height: 605px;
+	    margin-top: 30px;
+		.boder_wraper {
+			.row {
+				& > .col-6 {
+				  margin-top: 10px;
+					&:last-child {
+						display: none;
+					}
+					&:first-child {
+					    width: 100%;
+					    h2 {
+				    	    margin-bottom: 235px !important;
+				    	    padding: 16px;
+				    	    margin-left: 0 !important;
+				    	    text-align: center;
+				    	    font {
+                                span {
+                                    font-size: var(--header-f) !important;
+                                }
+                            }
+					    }
+                        .__details{
+                              padding: 16px;
+                              margin-bottom: 40px;
+                              margin-left: 0 !important;
+                              font {
+                                  span {
+                                        font-size: var(--sub-header-f) !important;
+                                  }
+                              }
+                        }
+                        .__button{
+                            text-align: right !important;
+                            // a{
+                            //     span{
+                            //         font-size: var(--sub-header-f) !important;
+                            //      }
+                            // }
+                        }
+                        .rounded-circle{
+                            padding: 0.4rem 1rem;
+                        }
+					}
+				}
+			}
+		}
+		.__black {
+			margin-bottom: 40px !important;
+		}
+	}
+}
+

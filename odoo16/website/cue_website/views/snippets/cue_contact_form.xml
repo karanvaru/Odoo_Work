@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="cue_contact_form" name="CUE OUT OF BOX">
+        <section class="s_text_image cue_contact_form pt32 pb32 o_colored_level" data-name="Text - Image" data-snippet="s_text_image" style="background-image: none;">
+            <div class="container px-100">
+                <div class="row">
+                    <div class="col-lg-6 o_colored_level image_box">
+                         <span class="contact_detail_h1">Contact Details</span>
+                         <p class="o_default_snippet_text">
+                             <br/>
+                         </p>
+                        <div class="address contact_detail">
+                            <div>
+                                 <span class="fa fa-phone fa-2x"></span>
+                                 <br/>
+                                 <span><a href="tel:+919979953455">+91 - 997 995 3455</a></span>
+                                 <br/>
+                                 <br/>
+                            </div>
+                            <div>
+	                            <span class="fa fa-envelope fa-2x">
+	                            </span>
+	                            <br/>
+	                            <span><a href="mailto:harnish@chipbucket.com">harnish@chipbucket.com</a></span>
+	                            <br/>
+	                            <br/>
+                            </div>
+                            <div>
+                                <span class="fa fa fa-map-marker fa-2x">
+                                </span>
+                                <br/>
+                                <span>
+                                    Cue Innovations Pvt. Ltd.
+                                    <br/>
+                                    1025, Gala Empire, Drive-in Road,
+                                    <br/>
+                                    Ahmedabad 380 015, Gujarat, IN.
+                                    <br/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 o_colored_level">
+                        <section class="s_website_form" data-snippet="s_website_form" data-vcss="001">
+                            <div class="container">
+                                <form action="/website/form/" class="o_mark_required" data-mark="*" data-pre-fill="true" enctype="multipart/form-data" method="post">
+                                    <div class="s_website_form_rows row s_col_no_bgcolor">
+                                        <div class="mb-0 py-2 col-12 s_website_form_submit text-end" data-name="Submit Button">
+                                            <div class="s_website_form_label" style="width: 200px;">
+                                            </div>
+                                            <a class="btn btn-primary rounded-circle s_website_form_send btn_font_yellow" href="#" role="button">
+                                                Send
+                                            </a>
+                                            <span id="s_website_form_result">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <record id="cue_website.cue_contact_form_000_scss" model="ir.asset">
+        <field name="name">Cue 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_contact_form/000.scss</field>
+    </record>
+</odoo>

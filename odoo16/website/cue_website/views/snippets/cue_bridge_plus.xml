@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="cue_bridge_plus" name="CUE BRIDGE PLUS">
+    <section class="s_cover cue_bridge_plus parallax s_parallax_is_fixed" data-scroll-background-ratio="1">
+        <!-- <span class="s_parallax_bg oe_img_bg" style="background-image: url('/cue_website/static/src/images/form-4.5.132-3200.jpg'); background-position: 50% 0;"></span> -->
+        <div class="o_we_bg_filter bg-light-gradent"></div>
+        <div class="boder_wraper">
+            <div class="s_allow_columns container px-100">
+                <div class="row">
+                    <div class="col-12 o_colored_level">
+                        <h2 class="o_animate o_animate_on_scroll o_anim_fade_in o_anim_from_bottom" style="animation-delay: -1.4365s; --wanim-intensity: 4; visibility: visible;margin-bottom: 62px;transform: scale(1.1, 1.1);" data-scroll-zone-start="25" data-scroll-zone-end="100">
+                            <font style="font-weight: 600; color: rgb(225, 225, 240);">
+                                <span style="font-size: 36px;">CUE</span>
+                            </font>
+                            <font style="font-weight: 600; color: rgb(255, 200, 75);">
+                                <span style="font-size: 36px;" class="o_default_snippet_text">BRIDGE PLUS</span>
+                          </font>
+                        </h2>
+                        <div class="__details o_animate o_animate_on_scroll o_anim_fade_in o_anim_from_bottom" style="animation-delay: -1.4365s; --wanim-intensity: 4; visibility: visible;transform: scale(1.1, 1.1);" data-scroll-zone-start="25" data-scroll-zone-end="100">
+                            <font style="color: rgb(225, 225, 240);">
+                                <span style="font-size: 24px;font-weight: 400;line-height: 1.668;"><b>Cue Bridge Plus </b>stands to offer a strong and reliable performance for professional grade, medium-to-large scale. It packs capabilities to analyse videos and provide you with HKSV2 support for your normal CCTV cameras.</span>
+                            </font>
+                        </div>
+                        <div class="__button o_animate o_animate_on_scroll o_anim_fade_in o_anim_from_bottom" style="animation-delay: -1.4365s; --wanim-intensity: 4; visibility: visible;" data-scroll-zone-start="25" data-scroll-zone-end="100">
+                            <a class="__black rounded mb-2 btn btn-fill-primary rounded-circle" href="/products#TECH-SPECS">
+                                <span style="font-size: 14px;">Tech Specs</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
+
+<record id="cue_website.cue_bridge_plus_000_scss" model="ir.asset">
+    <field name="name">Cue Bridge 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_bridge_plus/000.scss</field>
+</record>
+
+</odoo>

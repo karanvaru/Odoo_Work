@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--    <template id="appointment_submit" name="Appointment Submit">-->
+<!--        <t t-call="portal.portal_layout">-->
+<!--&lt;!&ndash;            <form class="create_tckt_form" action="/new/appointment" method="post"&ndash;&gt;-->
+<!--&lt;!&ndash;                  enctype="multipart/form-data">&ndash;&gt;-->
+<!--                <div>-->
+<!--                    <div class="form-group row form-field">-->
+<!--&lt;!&ndash;                        <input name="csrf_token" t-att-value="request.csrf_token()"&ndash;&gt;-->
+<!--&lt;!&ndash;                               type="hidden"/>&ndash;&gt;-->
+
+<!--                        <h2 style="margin-top: revert;">-->
+<!--                            <center>Thank For Booking Slot</center>-->
+<!--                        </h2>-->
+<!--                    </div>-->
+
+<!--&lt;!&ndash;                    <div class="form-group row">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <center>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <button type="submit"&ndash;&gt;-->
+<!--&lt;!&ndash;                                        style="margin-top: 21px;"&ndash;&gt;-->
+<!--&lt;!&ndash;                                        class="btn btn-primary"&ndash;&gt;-->
+<!--&lt;!&ndash;                                        id="save_document">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <t>Back To Appointment</t>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </center>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                </div>-->
+<!--&lt;!&ndash;            </form>&ndash;&gt;-->
+<!--        </t>-->
+<!--    </template>-->
+
+
+</odoo>

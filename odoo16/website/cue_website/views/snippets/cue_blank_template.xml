@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="cue_blank_box" name="Blank Box">
+        <section class="s_text_image cue_blank_box pt32 pb32 o_colored_level" data-name="Text - Image" data-snippet="s_text_image" style="background-image: none;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 pt16 pb16 o_colored_level image_box">
+                    </div>
+                    <div class="col-lg-6 pt16 pb16 o_colored_level">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <record id="cue_website.cue_blank_box_000_scss" model="ir.asset">
+        <field name="name">Cue Blank Box 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_blank_box/000.scss</field>
+    </record>
+</odoo>

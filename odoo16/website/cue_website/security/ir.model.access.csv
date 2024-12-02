@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.product_tag_category,access_product.tag.category,cue_website.model_product_tag_category,base.group_user,1,1,1,1
+access.product.tag.mapping,access_product.tag.mapping,cue_website.model_product_tag_mapping,base.group_user,1,1,1,1
+access.job_requests,access_job.requests,cue_website.model_job_requests,base.group_user,1,1,1,1
+access.recruitment_academic,access_recruitment.academic,cue_website.model_recruitment_academic,base.group_user,1,1,1,1

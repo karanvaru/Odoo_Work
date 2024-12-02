@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template id="template" xml:space="preserve">
+    <t t-name="PurchaseDashboard">
+        <div class="purchase-dashboard-wrap">
+            <div class="o_dashboards col-xs-12 col-sm-12 col-lg-12 col-md-12" style="background-color: #e1e1e1;overflow: scroll; !important; ">
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-12">
+                                <div class="dash-header">
+                                    <h1 class="custom-h1 dashboard-h1">Purchase Dashboard </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin:0px">
+                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                    <div class="">
+                        <div class="row account-details" style="margin:0px">
+                            <div class="col-md-3">
+                                <!--Net Profit or Loss-->
+                                <div class="tile wide invoice box-1">
+                                    <div class="headers">
+                                        <div class="main-title">Total Orders</div>
+                                        <div id="monthly_invoice">
+                                            <div class="left">
+                                                <div class="count">
+                                                	Count
+                                                    <span id="net_profit_current_year"/>
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="count">
+                                                	Amount
+                                                    <span id="net_profit_current_months"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Total Income-->
+                            <div class="col-md-3">
+                                <div class="tile wide invoice box-2">
+                                    <div class="header">
+                                        <div class="main-title">Total Pending Orders</div>
+                                        <div id="monthly_income">
+                                            <div class="left">
+                                                <div class="count">
+                                                	Count
+                                                    <span id="total_incomes_this_year"/>
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="count">
+                                                	Amount
+                                                    <span id="total_incomes_"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Total Expense-->
+                            <div class="col-md-3">
+                                <div class="tile wide invoice box-3">
+                                    <div class="header">
+                                        <div class="main-title">Total Completed Orders</div>
+                                        <div id="monthly_expense">
+                                            <div class="left">
+                                                <div class="count">
+                                                	Count
+                                                    <span id="total_expense_this_year"/>
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="count">
+                                                	Amount
+                                                    <span id="total_expenses_"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Unreconciled items-->
+                            <div class="col-md-3">
+                                <div class="tile wide invoice box-4">
+                                    <div class="header">
+                                        <div class="main-title">Cancelled Orders</div>
+                                        <div id="monthly_unreconciled">
+                                            <div class="left">
+                                                <div class="count">
+                                                	Count
+                                                    <span id="unreconciled_counts_this_year"/>
+                                                </div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="count">
+                                                	Amount
+                                                    <span id="unreconciled_items_"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 			<div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="row" style="margin:0px">
+                
+                    <div class="col-md-4">
+                        <div class="card" style="height:366px;">
+                            <div class="card-header" style=" padding: 17px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; ">
+                                <h3 class="custom-h3 card-title">
+                                    <b>TOP 10 PRODUCT BY QUANTITY</b>
+                                </h3>
+                                <div class="card-tools">
+                                </div>
+                            </div>
+
+                            <div class="card-body p-0" style=" height: 287px; overflow-y: auto; " id="top_10_body">
+                            	<table class="table table-bordered">
+	                                <!-- t t-foreach="top_products_by_quantity" t-as="product">
+	                                	<tr>
+	                                		<td><span t-esc="product.name"/></td>
+	                                		<td class="text-right"><span  class="text-right" t-esc="top_products_by_quantity[product]"/></td>
+	                                	</tr>
+	                                </t-->
+                            	</table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="height:366px;">
+                            <div class="card-header" style=" padding: 17px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; ">
+                                <h3 class="custom-h3 card-title">
+                                    <b>TOP 10 PRODUCT BY AMOUNT</b>
+                                </h3>
+                                <div class="card-tools">
+                                </div>
+                            </div>
+
+                            <div class="card-body p-0" style=" height: 287px; overflow-y: auto; " id="top_10_body">
+                            	<table class="table table-bordered">
+	                                <!-- t t-foreach="top_products_by_amount" t-as="product">
+	                                	<tr>
+	                                		<td><span t-esc="product.name"/></td>
+	                                		<td class="text-right"><span class="text-right" t-esc="top_products_by_amount[product]"/></td>
+	                                	</tr>
+	                                </t-->
+                            	</table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="height:366px;">
+                            <div class="card-header" style=" padding: 17px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; ">
+                                <h3 class="custom-h3 card-title">
+                                    <b>TOP 10 VENDORS</b>
+                                </h3>
+                                <div class="card-tools">
+                                </div>
+                            </div>
+
+                            <div class="card-body p-0" style=" height: 287px; overflow-y: auto; " id="top_10_body">
+                            	<table class="table table-bordered">
+	                                <!-- t t-foreach="top_partners" t-as="partner">
+	                                	<tr>
+	                                		<td><span t-esc="partner.name"/></td>
+	                                		<td class="text-right"><span  class="text-right" t-esc="top_partners[partner]"/></td>
+	                                	</tr>
+	                                </t-->
+                            	</table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="row" style="margin:0px">
+                    <div class="col-md-6" id="col-graph">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <b>
+                                        <h3 class="custom-h3">Purchase By Product</h3>
+                                    </b>
+                                </div>
+                                <div class="card-tools">
+                                    <select id="income_expense_values" class="btn btn-primary">
+                                        <option id="income_this_year" value="income_this_year">This Year</option>
+                                        <option id="income_this_month" value="income_this_month" selected="">
+                                            This Month</option>
+                                        <div role="separator" class="dropdown-divider"/>
+                                        <option id="income_last_month" value="income_last_month">Last Month</option>
+                                        <option id="income_last_year" value="income_last_year">Last Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-body mt-3" id="in_ex_body_hide">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p id="myelement1"> </p>
+                                        <div class="chart">
+                                            <canvas id="canvas" width="300" height="200"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" id="col-graph">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <b>
+                                        <h3 class="custom-h3">Purchase By Vendor</h3>
+                                    </b>
+                                </div>
+                                <div class="card-tools">
+                                    <select id="income_expense_values" class="btn btn-primary">
+                                        <option id="income_this_year" value="income_this_year">This Year</option>
+                                        <option id="income_this_month" value="income_this_month" selected="">
+                                            This Month</option>
+                                        <div role="separator" class="dropdown-divider"/>
+                                        <option id="income_last_month" value="income_last_month">Last Month</option>
+                                        <option id="income_last_year" value="income_last_year">Last Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-body mt-3" id="in_ex_body_hide">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p id="myelement1"> </p>
+                                        <div class="chart">
+                                            <canvas id="canvas" width="300" height="200"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+             </div>
+
+            <div id="chart-container"/>
+        </div>
+    </t>
+</template>

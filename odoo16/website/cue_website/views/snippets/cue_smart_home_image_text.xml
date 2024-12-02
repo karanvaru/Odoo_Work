@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="cue_smart_home_image_text" name="Smart Home">
+    <section class="s_text_image cue_smart_home_image_text pt32 pb32 o_colored_level" data-snippet="s_text_image" data-name="Text - Image" style="background-image: none;">
+      <div class="container px-100">
+        <div class="row align-items-center">
+          <div class="col-lg-6 pt16 pb16 o_colored_level o_animate o_animate_on_scroll o_anim_fade_in o_anim_from_bottom p-0" style="animation-delay: -0.654269s; --wanim-intensity: 35; visibility: visible;" data-scroll-zone-start="0" data-scroll-zone-end="100">
+            <img src="/cue_website/static/src/images/cue_apple_home-on_iphone_14_pro.png" class="img w-100" />
+          </div>
+          <div class="col-lg-6 pt16 pb16 o_colored_level">
+            <h2 class="o_default_snippet_text __lineheight mt-30">
+                <font style="font-weight: 400;color: rgb(225, 225, 240);">
+                  <span style="font-size: 36px;">Apple Home is by far the most advanced &amp; user-centric Smart Home App. Period.</span>
+                </font>
+            </h2>
+            <p class="text-end">
+              <a class="__black rounded mb-2 btn btn-fill-primary rounded-circle" href="https://www.apple.com/in/home-app/"><span>Learn More</span></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+</template>
+
+<record id="cue_website.cue_smart_home_image_text_000_scss" model="ir.asset">
+    <field name="name">Cue 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_smart_home_image_text/000.scss</field>
+</record>
+
+</odoo>

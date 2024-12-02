@@ -1,0 +1,43 @@
+<odoo>
+
+    <template id="portal_my_signup_flow" name="Portal Profile Sign Up" inherit_id="auth_signup.signup">
+        <xpath expr="//form" position="before">
+            <form class="signup_send_mail">
+                <div class="mb-3">
+                    <label for="email">Your Email</label>
+                    <input class="form-control form-control-sm" type="text" id="email"
+                           placeholder="Enter Email"
+                           name="email"/>
+                </div>
+                <div class="mb-3 field-login">
+                    <a type="button"
+                       class="btn btn-primary rounded-circle send_mail_btn">Send Mail
+                    </a>
+                </div>
+
+                <div class="thanks_div">
+                    Thank You ,You Will Get Url In Your E-mail
+                </div>
+                <div class="email_validation">
+                    Please Add Valid E-mail Address
+                </div>
+            </form>
+        </xpath>
+    </template>
+
+    <template id="portal_my_signup" name="Portal Login" inherit_id="auth_signup.fields">
+        <xpath expr="//input[@name='login']" position="attributes">
+            <attribute name="t-att-readonly">1</attribute>
+        </xpath>
+    </template>
+
+    <template id="opt_blog_post_comment_inherit" name="website BLog" inherit_id="website_blog.opt_blog_post_comment">
+        <xpath expr="//div[hasclass('container')]//div//div//div//a" position="replace">
+            <a t-attf-href="/web/login?redirect=/blog/{{blog_post.blog_id.url_category}}/{{blog_post.url_name}}"
+               class="btn btn-sm btn-primary">
+                <b>Sign in</b>
+            </a>
+            to leave a comment
+        </xpath>
+    </template>
+</odoo>

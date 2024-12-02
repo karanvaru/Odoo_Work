@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_product_tag_inherit" model="ir.ui.view">
+        <field name="name">product.tag.form.inherit</field>
+        <field name="model">product.tag</field>
+        <field name="inherit_id" ref="product.product_tag_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='color']" position="after">
+                <field name="product_tag_categ_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_tag_tree_view_inherit" model="ir.ui.view">
+        <field name="name">product.tag.tree.inherit</field>
+        <field name="model">product.tag</field>
+        <field name="inherit_id" ref="product.product_tag_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="product_tag_categ_id"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

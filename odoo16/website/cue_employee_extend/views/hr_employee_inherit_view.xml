@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_form_inherit_hr_employee" model="ir.ui.view">
+        <field name="name">hr.employee.inherit.form.view</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page[@name='hr_settings']//group[@name='identification_group']" position="inside">
+                <field name="is_default_manager"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

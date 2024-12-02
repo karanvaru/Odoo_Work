@@ -1,0 +1,39 @@
+.cue_resource_library {
+    padding-top: 130px !important;
+    padding-bottom: 140px !important;
+    h1 {
+        height: 70px;
+        margin-bottom: 0px !important;
+        span{
+            font-size: var(--main-header-f) !important;
+        }
+    }
+    .s_allow_columns {
+        & > p {
+            margin-bottom: 2px;
+        }
+    }
+    p {
+        span{
+            font-size: var(--sub-header-f) !important;
+        }
+    }
+    @media only screen and (max-width: 767px) {
+			 padding-top: 50px !important;
+           padding-bottom: 50px !important;
+           h1 {
+               min-height: 30px;
+               }
+
+        p {
+            margin-left: 44px;
+            margin-right: 41px;
+        }
+    }
+	@media screen and (max-width: 575px) {
+        p {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+	}
+}

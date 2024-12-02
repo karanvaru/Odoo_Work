@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="cue_resource_library" name="CUE Resource Library">
+    <section class="s_cover cue_resource_library parallax s_parallax_is_fixed pt144 pb64" data-scroll-background-ratio="1">
+        <span class="s_parallax_bg oe_img_bg"/>
+        <div class="o_we_bg_filter"/>
+        <div class="s_allow_columns container px-100">
+          <h1 style="text-align: center;" class="mb-4">
+            <font style="font-weight: 600; color: rgb(255, 200, 75);">
+              <span style="font-size: 48px;">RESOURCE</span>
+            </font>
+            <font style="font-weight: 600; color: rgb(225, 225, 240);">
+              <span style="font-size: 48px;">LIBRARY</span>
+            </font>
+          </h1>
+            <p class="text-center">
+                <font style="font-weight: 400; color: rgb(225, 225, 240);">
+                    <span style="font-size:24px;">Browse resources to begin your Smart Home journey with CUE</span>
+                </font>
+            </p>
+        </div>
+    </section>
+</template>
+
+<record id="cue_website.cue_resource_library_000_scss" model="ir.asset">
+    <field name="name">Cue 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_resource_library/000.scss</field>
+</record>
+
+</odoo>

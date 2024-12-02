@@ -1,0 +1,153 @@
+.oe_login_form{
+    max-width: 500px;
+    position: relative;
+    margin: 50px auto;
+    .form-control{
+        border-radius: 10px;
+        padding: 7px 10px 10px 9px;
+        font-size: 1rem;
+        background: white;
+    }
+    .mb-3{
+        label{
+            color: #fafafc !important;
+            font-weight: 400;
+        }
+    }
+    .justify-content-between{
+        a{
+            color: #fafafc !important;
+            background: #464650;
+            border: #464650;
+             font-size: 0.875em;
+        }
+    }
+    .btn-sm{
+        color: #fafafc !important;
+        width:32%;
+        font-size: 0.875em;
+        @media only screen and (max-width: 767px) {
+            margin-left: 0%;
+        }
+        @media only screen and (min-width: 767px) {
+            margin-left: 0%;
+        }
+    }
+    button{
+        width:25%;
+        @media only screen and (max-width: 767px) {
+            margin-left: 65%;
+        }
+        @media only screen and (min-width: 767px) {
+            margin-left: 75%;
+        }
+    }
+}
+
+.oe_signup_form{
+    display:none;
+    max-width: 500px;
+    position: relative;
+    margin: 50px auto;
+    .mb-3{
+        padding-top: 0rem !important;
+        label{
+            color: #fafafc !important;
+            font-weight: 400;
+        }
+    }
+    .form-control{
+        border-radius: 10px;
+        padding: 7px 10px 10px 9px;
+        font-size: 1rem;
+        background: white;
+    }
+    .oe_login_buttons{
+        a{
+            color: #fafafc !important;
+            background: #464650;
+            border: #464650;
+            font-size: 0.875em;
+        }
+    }
+    progress{
+        display:none;
+    }
+    button{
+        width:25%;
+        @media only screen and (max-width: 767px) {
+            margin-left: 65%;
+        }
+        @media only screen and (min-width: 767px) {
+            margin-left: 75%;
+        }
+    }
+}
+
+.oe_reset_password_form{
+    max-width: 500px;
+    position: relative;
+    margin: 50px auto;
+    .form-control{
+        border-radius: 10px;
+        padding: 7px 10px 10px 9px;
+        background: white;
+    }
+    .mb-3{
+        label{
+            color: #fafafc !important;
+            font-weight: 400;
+        }
+    }
+    .justify-content-between{
+        a{
+            color: #fafafc !important;
+            background: #464650;
+            border: #464650;
+            font-size: 0.875em;
+        }
+    }
+    button{
+        width:30%;
+        float: right;
+        @media only screen and (max-width: 767px) {
+            margin-left: 65%;
+        }
+        @media only screen and (min-width: 767px) {
+            margin-left: 70%;
+        }
+    }
+}
+
+.signup_send_mail{
+    max-width: 500px;
+    position: relative;
+    margin: 50px auto;
+    display:none;
+    label{
+        color:white;
+        font-weight:400;
+    }
+    input{
+        border-radius: 10px;
+        padding: 7px 10px 10px 9px;
+        font-size: 1rem;
+        background: white;
+        margin-top: 10px;
+    }
+    .field-login{
+        text-align: right;
+    }
+    .thanks_div{
+        font-size: 1rem;
+        color: white;
+        text-align: center;
+        display:none;
+    }
+    .email_validation{
+         display:none;
+         font-size: 1rem;
+         color: white;
+         text-align: center;
+    }
+}

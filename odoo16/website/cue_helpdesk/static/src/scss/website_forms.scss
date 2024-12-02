@@ -1,0 +1,87 @@
+.cue_helpdesk_form{
+    .row{
+          margin-bottom: 14px;
+    }
+    label{
+        font-weight: 400;
+    }
+    form{
+        margin-top: 50px;
+    }
+    select{
+        font-size: 12px !important;
+        color: #8c8ca0;
+    }
+    .hide_inmobile{
+        margin-right: 25px;
+    }
+    @media screen and (max-width: 600px) {
+        .hide_inmobile{
+            display:none;
+        }
+    }
+    .submit_btn{
+        width: 100%;
+        height: 42px;
+        border-radius: 25px;
+        background-color: #8c8ca0;
+        color: #232328;
+        padding: 0px 18px 0px 18px;
+        border-color: #8c8ca0;
+    }
+    .pdf_attach{
+        width:26%;
+        }
+    .submit_btn_class{
+        width: 17%;
+        height: 40px;
+        border-radius: 25px;
+        background-color: #ffc84b;
+        color: #232328;
+        padding: 0px 10px 0px 10px;
+        border-color: #ffc84b;
+        label{
+            font-size: 15px;
+        }
+    }
+    @media screen and (max-width: 600px) {
+        .row{
+            margin-bottom: 0px;
+            padding-right :0px;
+        }
+        form{
+            margin-top: 0px;
+        }
+        input,select{
+            height: 35px;
+        }
+        textarea{
+            height: 100px;
+        }
+        .submit_btn{
+            width: 100%;
+            height: 40px;
+            border-radius: 25px;
+            background-color: #8c8ca0;
+            color: #232328;
+            padding: 0px 10px 0px 10px;
+            border-color: #8c8ca0;
+            label{
+                font-size: 12px;
+            }
+        }
+        .submit_btn_class{
+            width: 40%;
+            height: 38px;
+            border-radius: 25px;
+            background-color: #ffc84b;
+            color: #232328;
+            padding: 0px 10px 0px 10px;
+            border-color: #ffc84b;
+            label{
+                font-size: 13px;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="sale_order_report_view">
+			<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="doc">
+				<t t-set="o" t-value="doc.invoice_id"/>
+				<t t-call="web.internal_layout">
+					<!-- <style>
+						td {
+						  padding:2px !important;
+						  margin:2px !important;
+						}
+					</style> -->
+					<div class="page">
+						<div class="mb16 text-center mt16">
+							<h3>
+								<strong>INVOICE</strong>
+							</h3>
+						</div>
+						<div class="row">
+							<table class="table table-sm table-bordered">
+							<!-- <table class="table table-bordered table-condensed" style="margin:0;"> -->
+								<tbody>
+									<tr>
+										<td class="col-xs-6" rowspan="3" colspan="2">
+											<div class="row">
+												<div class="col-xs-3">
+													<img t-if="o.company_id.logo"
+                                                        t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"
+														style="max-height: 100px;max-width: 100px;" />
+												</div>
+												<div class="col-xs-9" name="company_address">
+													<strong t-field="o.company_id" />
+													<br />
+													<t t-if="o.company_id.street">
+														<span t-field="o.company_id.street" />
+														,
+													</t>
+													<t t-if="o.company_id.street2">
+														<span t-field="o.company_id.street2" />
+													</t>
+													<br />
+													<span t-field="o.company_id.city" />
+													<span t-field="o.company_id.zip" />
+													<span t-field="o.company_id.state_id" />
+													<br />
+													<t t-if="o.company_id.phone">
+														Ph :
+														<span t-field="o.company_id.phone" />
+														<br />
+													</t>
+													<t t-if="o.company_id.partner_id.mobile">
+														Mobile :
+														<span t-field="o.company_id.partner_id.mobile" />
+														<br />
+													</t>
+													<t t-if="o.company_id.vat">
+														GSTIN :
+														<span t-field="o.company_id.vat" />
+														<br />
+													</t>
+													<t t-if="o.company_id.email">
+														Email :
+														<span t-field="o.company_id.email" />
+														<br />
+													</t>
+												</div>
+											</div>
+										</td>
+										<td class="col-xs-3">
+											<p>Order No.</p>
+											<t t-if="doc.invoice_id">
+												<strong t-field="doc.invoice_id.name" />
+											</t>
+											<t t-if="not doc.invoice_id">
+												<strong t-field="doc.name" />
+											</t>
+										</td>
+										<td class="col-xs-3">
+											<p>Order Date:</p>
+											<strong t-field="doc.date_order" />
+										</td>
+									</tr>
+									<tr style="height:30px;">
+										<td class="col-xs-3">
+											<p>
+												Dispatch Date:
+												<strong t-field="doc.dispatch_date" />
+											</p>
+										</td>
+										<td class="col-xs-3">
+											<p>
+												Dispatch Carrier:
+												<strong t-field="doc.dispatch_carrier" />
+											</p>
+										</td>
+									</tr>
+									<tr style="height:30px;">
+										<td class="col-xs-3">
+											<p>
+												POD No:
+												<strong t-field="doc.pod_no" />
+											</p>
+										</td>
+										<td class="col-xs-3">
+											<p>
+												Buyer Reference:
+												<strong t-field="doc.client_order_ref" />
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td class="col-xs-3" rowspan="2">
+											<div class="col-xs-6">
+												<t t-if="o.type != 'in_invoice'">
+													<span>Buyer</span>
+												</t>
+												<t t-if="o.type == 'in_invoice'">
+													<span>Seller</span>
+												</t>
+												<br />
+												<strong t-field="o.partner_id" />
+												<br />
+												<t t-if="o.partner_id.street">
+													<span t-field="o.partner_id.street" />
+													,
+												</t>
+												<t t-if="o.partner_id.street2">
+													<span t-field="o.partner_id.street2" />
+												</t>
+												<br />
+												<span t-field="o.partner_id.city" />
+												<span t-field="o.partner_id.zip" />
+												<span t-field="o.partner_id.state_id" />
+												<br />
+												<t t-if="o.partner_id.phone">
+													Ph :
+													<span t-field="o.partner_id.phone" />
+													<br />
+												</t>
+												<t t-if="o.partner_id.mobile">
+													Mobile :
+													<span t-field="o.partner_id.mobile" />
+													<br />
+												</t>
+												<t t-if="o.partner_id.vat">
+													GSTIN :
+													<span t-field="o.partner_id.vat" />
+													<br />
+												</t>
+												<t t-if="o.partner_id.email">
+													Email :
+													<span t-field="o.partner_id.email" />
+													<br />
+												</t>
+											</div>
+										</td>
+										<td class="col-xs-3" rowspan="2">
+											<div class="col-xs-6">
+												<p>Ship</p>
+												<br />
+												<strong t-field="o.partner_shipping_id" />
+												<br />
+												<t t-if="o.partner_shipping_id.street">
+													<span t-field="o.partner_shipping_id.street" />
+													,
+												</t>
+												<t t-if="o.partner_shipping_id.street2">
+													<span t-field="o.partner_shipping_id.street2" />
+												</t>
+												<br />
+												<span t-field="o.partner_shipping_id.city" />
+												<span t-field="o.partner_shipping_id.zip" />
+												<span t-field="o.partner_shipping_id.state_id" />
+												<br />
+											</div>
+										</td>
+										<!-- <td class="col-xs-3" rowspan="2">
+											
+										</td> -->
+										<!-- <td class="col-xs-3">
+											<t t-if="o.type != 'in_invoice'">
+												<p>Buyer Order No</p>
+											</t>
+											<t t-if="o.type == 'in_invoice'">
+												<p>Vendor Order No</p>
+											</t>
+											<strong t-field="o.invoice_origin" />
+										</td>
+										<td class="col-xs-3"></td> -->
+									</tr>
+									<tr>
+										<td colspan="2">
+											<p t-if="not doc.payment_term_id">Payment Term</p>
+											<span t-field="doc.payment_term_id.note" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div class="row">
+							<table class="table table-sm table-bordered">
+							<!-- <table class="table table-bordered table-condensed" style="margin:0;"> -->
+								<tr>
+									<td rowspan="2">S No.</td>
+									<td rowspan="2" class="text-left">Product Description</td>
+									<td rowspan="2" class="text-left">HSN Code</td>
+									<td rowspan="2" class="text-left">UOM</td>
+									<td rowspan="2" class="text-right">Qty</td>
+									<td rowspan="2" class="text-right">Rate</td>
+									<t t-if="o.type == 'out_invoice'">
+										<td rowspan="2" class="text-right">Amount</td>
+										<td rowspan="2" class="text-right">Disc(%)</td>
+									</t>
+									<td rowspan="2" class="text-right">Taxable Amount</td>
+									<t t-set="tax_types" t-value="get_type(o)" />
+									<t t-foreach="tax_types" t-as="t">
+										<td class="text-center" colspan="2">
+											<span t-esc="t.upper()" />
+										</td>
+									</t>
+									<td rowspan="2" class="text-right">Total</td>
+								</tr>
+								<tr>
+									<t t-foreach="tax_types" t-as="t">
+										<td class="text-right">Rate</td>
+										<td class="text-right">Amount</td>
+									</t>
+								</tr>
+								<tbody class="invoice_tbody">
+									<t t-set="i" t-value="1" />
+									<tr t-foreach="o.invoice_line_ids" t-as="l">
+										<td>
+											<span t-esc="i" />
+										</td>
+										<t t-set="i" t-value="i+1" />
+										<td>
+											<span t-field="l.name" />
+										</td>
+										<td>
+											<span t-field="l.product_id.l10n_in_hsn_code" />
+										</td>
+										<td class="text-right">
+											<span t-field="l.product_uom_id"/>
+										</td>
+										<td class="text-right">
+											<span t-field="l.quantity" />
+										</td>
+										<td class="text-right">
+											<span t-field="l.price_unit"
+												t-field-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+										</td>
+										<t t-if="o.type == 'out_invoice'">
+											<td class="text-right">
+												<t t-set="amt" t-value="'{:.2f}'.format(amount(l))" />
+												<span t-esc="amt"/>
+											</td>
+											<td class="text-right">
+												<span t-field="l.discount" />
+												(%)
+											</td>
+										</t>
+										<td class="text-right">
+											<span t-field="l.price_subtotal"
+												t-esc-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+										</td>
+										<t t-set="line_taxes" t-value="get_line_tax(l)" />
+										<t t-foreach="tax_types" t-as="t">
+											<td class="text-center">
+												<t t-if="t in line_taxes">
+													<span t-esc="'{:.2f}'.format(line_taxes[t]['rate'])" />
+												</t>
+												<t t-if="t not in line_taxes">	
+													-
+												</t>
+											</td>
+											<td class="text-center">
+												<t t-if="t in line_taxes">
+													<span t-esc="'{:.2f}'.format(line_taxes[t]['amount'])"
+														t-esc-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+												</t>
+												<t t-if="t not in line_taxes">	
+													-
+												</t>
+											</td>
+										</t>
+										<td class="text-right">
+											<t t-set="line" t-value="'{:.2f}'.format(get_line_total(l))" />
+											<span t-esc="line"
+												t-esc-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div class="row">
+							<table class="table table-sm table-bordered">
+							<!-- <table class="table table-bordered table-condensed" style="margin:0;"> -->
+								<tbody>
+									<tr>
+										<td class="text-center col-xs-8" rowspan="7">
+											Amount In words
+											<br />
+											<strong t-esc="get_amount_in_word(o)" />
+											<br />
+										</td>
+										<td class="text-center col-xs-4">Total Amount before Tax</td>
+										<td class="text-right col-xs-1">
+											<span t-field="o.amount_untaxed" />
+										</td>
+									</tr>
+									<t t-set="tax_totals" t-value="get_tax_total(o)" />
+									<t t-foreach="tax_types" t-as="tx">
+										<tr>
+											<td class="text-center">
+												<span t-esc="tx.upper()" />
+											</td>
+											<td class="text-right">
+												<span t-esc="tax_totals[tx]"
+													t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+											</td>
+										</tr>
+									</t>
+									<tr>
+										<td class="text-center">Total Tax Amount</td>
+										<td class="text-right">
+											<span t-field="o.amount_tax"
+												t-field-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+										</td>
+									</tr>
+									<tr>
+										<td class="text-center">Total Amount after Tax</td>
+										<td class="text-right">
+											<span t-field="o.amount_total"
+												t-field-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="row">
+							<table class="table table-sm table-bordered">
+							<!-- <table class="table table-bordered table-condensed" style="margin:0;"> -->
+								<tbody>
+									<tr>
+										<td class="col-xs-6">
+											<strong>Terms and Conditions</strong>
+										</td>
+									</tr>
+									<tr style="height:30px;">
+										<td>
+											<span t-field="o.narration"/>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="row">
+							<table class="table table-sm table-bordered">
+							<!-- <table class="table table-bordered table-condensed" style="margin:0;"> -->
+								<tbody>
+									<tr style="height:60px;">
+										<td class="col-xs-6">Customer's Seal and Signature</td>
+										<td class="col-xs-6 text-right">
+											For
+											<span t-esc="o.company_id.name" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="text-center">This is computer generated Invoice</div>
+					</div>
+				</t>
+			</t>
+			</t>
+		</template>
+	</data>
+</openerp>

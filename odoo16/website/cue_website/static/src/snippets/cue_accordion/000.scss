@@ -1,0 +1,126 @@
+.cue_accordion {
+	& > .container {
+		padding: 0;
+	}
+	.accordion {
+		.card {
+			background-color: #232328 !important;
+			color: #e1e1f0;
+			margin-bottom: 20px;
+		    border-radius: 20px;
+		    padding: 60px 200px;
+			.card-header {
+				border-bottom: 0;
+			   // min-height: 80px;
+			    position: initial;
+			    color: #e1e1f0;
+			    font-size: var(--sub-header-f);
+			    font-weight: 400;
+		        padding: 0;
+				&:before {
+					content: '\f106';
+					width: 40px;
+				    height: 40px;
+				    color: #e1e1f0;
+				    margin-left: 0;
+				    right: 1.5em;
+				    background-color: #464650;
+				    border-radius: 50%;
+				    display: flex;
+			        justify-content: center;
+			        align-items: center;
+			        font-size: 20px;
+			        right: 20px;
+		            top: 20px;
+				}
+				&.collapsed:before {
+					content: '\f107';
+				}
+			}
+			.card-body{
+				padding: 0;
+				padding-top: 30px;
+			    font-size: var(--general-f);
+				background-color: #232328 !important;
+				color: #e1e1f0;
+				.card-text {
+					font-size: 16px;
+					line-height: 1.626;
+					font-weight: 400;
+					b, strong {
+						font-size: 16px;
+						font-weight: 600;
+					}
+				}
+				a{
+				    color: #FFC84B !important;
+					font{
+					    color: #FFC84B !important;
+					}
+				}
+			}
+		}
+		@media screen and (max-width: 991px) {
+			.card {
+				padding: 60px 100px;
+			}
+		}
+		@media screen and (max-width: 768px) {
+			.card {
+				padding: 31px 28px;
+				.card-header {
+					min-height: 40px;
+					padding: 0 24px;
+					padding-right: 45px;
+					// font-size: 20px;
+					&:before {
+						width: 30px;
+						height: 30px;
+					}
+				}
+				.card-body {
+					padding-left: 24px;
+					padding-right: 24px;
+				}
+			}
+		}
+		@media  screen and (max-width: 575px) {
+			.card {
+				padding: 28px 10px;
+				.card-header {
+				    font-family: "Poppins";
+				    // font-size: 14px;
+				    line-height: 1.584;
+				    font-weight: 600;
+				    font-style: normal;
+				    text-decoration: none;
+				    text-transform: none;
+				    letter-spacing: normal;
+				    color: #e1e1f0;
+				    background-color: initial;
+				    text-shadow: none;
+				}
+				.card-body {
+					font-family: "Poppins";
+				    // font-size: var(--general-f);
+				    line-height: 1.668;
+				    font-weight: 400;
+				    font-style: normal;
+				    text-decoration: none;
+				    text-transform: none;
+				    letter-spacing: normal;
+				    color: #fafafc;
+				    background-color: initial;
+				    text-shadow: none;
+				}
+				.collapse{
+					margin-top:0px;
+					
+				}
+			}
+
+		}
+
+	}
+
+}

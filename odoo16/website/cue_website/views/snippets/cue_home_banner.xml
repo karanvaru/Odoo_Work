@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="cue_home_banner" name="CUE Home Banner">
+    <section class="s_cover cue_home_banner parallax s_parallax_is_fixed" data-scroll-background-ratio="1">
+        <span class="s_parallax_bg oe_img_bg"/>
+        <div class="boder_wraper">
+            <div class="o_we_bg_filter"/>
+            <div class="s_allow_columns container">
+              <h1 style="text-align: center;">
+               <font style="font-weight: 600;color: rgb(225, 225, 240);">
+                  <span style="font-size: 48px;">WELCOME HOME,</span>
+                </font>
+                <font style="font-weight: 600; color: rgb(255, 200, 75);">
+                  <span style="font-size: 48px;">CUE</span>
+                </font>
+              </h1>
+              <h2 style="text-align: center;">
+                  <font style="font-weight: 400;color: rgb(225, 225, 240);">
+                    <span style="font-size: 24px;"> Connect everything to Apple Home</span>
+                  </font>
+              </h2>
+              <div class="image_box text-center">
+                 <img class="w-100" src="/cue_website/static/src/images/solution-2320.png"/>
+               </div>
+            </div>
+        </div>
+    </section>
+</template>
+
+<record id="cue_website.cue_home_banner_000_scss" model="ir.asset">
+    <field name="name">Cue Home Banner 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_home_banner/000.scss</field>
+</record>
+
+</odoo>

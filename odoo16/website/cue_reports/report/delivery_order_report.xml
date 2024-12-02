@@ -1,0 +1,235 @@
+<odoo>
+    <data>
+        <record id="action_cue_report_delivery" model="ir.actions.report">
+            <field name="name">Picking Operations</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cue_reports.pdf_report_templates_delivery</field>
+            <field name="report_file">cue_reports.pdf_report_templates_delivery</field>
+            <field name="print_report_name">'Picking Operations - %s - %s' % (object.partner_id.name or '',
+                object.name)
+            </field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="paperformat_id" ref="cue_reports.paperformat_pdf_statement"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+        <template id="pdf_report_templates_delivery">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <link t-attf-href="{{url}}/cue_reports/static/src/css/style.css" rel="stylesheet"/>
+                            <div class="container px-100">
+                                <div class="row" style="padding-bottom:35px;">
+                                    <div class="col-7">
+                                        <img t-if="o.company_id.logo" style="max-width:25%;vertical-align:middle;"
+                                             t-att-src="image_data_uri(o.company_id.logo)"
+                                             class="float-start"
+                                             alt="Logo"/>
+                                    </div>
+                                    <div class="col-5" style="text-align:right;">
+                                        <h2>
+                                            <t t-if="o.picking_type_code == 'incoming'">
+                                                <span>Incoming Shipment</span>
+                                                <t t-set="delivered_by_partner" t-value="o.partner_id"/>
+                                                <t t-set="delivered_to_partner" t-value="o.company_id.partner_id"/>
+
+                                            </t>
+                                            <t t-else="o.picking_type_code == 'outgoing'">
+                                                <span>Delivery Order</span>
+                                                <t t-set="delivered_by_partner" t-value="o.company_id.partner_id"/>
+                                                <t t-set="delivered_to_partner" t-value="o.partner_id"/>
+                                            </t>
+
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-end">
+                                    <div class="col-4" name="right_box">
+                                        <div t-field="o.name"
+                                             t-options="{'widget': 'barcode', 'width': 600, 'height': 100, 'img_style': 'width:300px;height:50px;'}"/>
+                                    </div>
+                                </div>
+                                <div class="row mt16" style="padding-top:32px;">
+                                    <div class="col-4">
+                                        <h6>
+                                            <span>Delivered By</span>
+                                        </h6>
+                                        <h5 style="padding-top:5px">
+                                            <strong t-field="delivered_by_partner.name"/>
+                                        </h5>
+                                        <div style="padding-right:100px;">
+                                            <span t-field="delivered_by_partner.street"/>
+                                            <span t-field="delivered_by_partner.street2"/>
+                                            <span t-field="delivered_by_partner.city"/>
+                                            <br/>
+                                            <span t-field="delivered_by_partner.state_id.name"/>
+                                            <span t-field="delivered_by_partner.country_id.name"/>
+
+                                            <span t-field="delivered_by_partner.zip"/>
+                                            <br></br>
+                                            <span style="color: #73766f;">
+                                                GSTIN :
+                                            </span>
+                                            <span t-field="delivered_by_partner.vat"/>
+                                            <br></br>
+                                            <span>
+                                                Phone:
+                                                <span t-field="delivered_by_partner.phone"/>
+                                            </span>
+                                            <br></br>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6>
+                                            <span>Delivered To</span>
+                                        </h6>
+                                        <h5 style="padding-top:5px">
+                                            <b>
+                                                <span t-field="delivered_to_partner.name"/>
+                                            </b>
+                                        </h5>
+                                        <div style="padding-right:100px;">
+                                            <span t-field="delivered_to_partner.street"/>
+                                            <span t-field="delivered_to_partner.street2"/>
+                                            <span t-field="delivered_to_partner.city"/>
+                                            <br/>
+                                            <span t-field="delivered_to_partner.state_id.name"/>
+                                            <span t-field="delivered_to_partner.country_id.name"/>
+
+                                            <span t-field="delivered_to_partner.zip"/>
+                                            <br></br>
+                                            <span style="color: #73766f;">
+                                                GSTIN :
+                                            </span>
+                                            <span t-field="delivered_to_partner.vat"/>
+                                            <br></br>
+                                            <span>
+                                                Phone:
+                                                <span t-field="delivered_to_partner.phone"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6>
+                                            <span>Document Details</span>
+                                        </h6>
+                                        <div style="padding-top:6px">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <span style="color: #73766f;">Doc No #</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="o.name"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <span style="color: #73766f;">Order No #</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="o.origin"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <span style="color: #73766f;">Doc Date</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <t t-if="o.scheduled_date">
+                                                        <span t-esc="o.scheduled_date.strftime('%d/%m/%Y')"/>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <span style="color: #73766f;">Status</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-field="o.state"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <span style="color: #73766f;">Carrier</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-field="o.carrier_id.name"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <span style="color: #73766f;">Tracking No.</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-field="o.carrier_tracking_ref"/>
+                                                </div>
+                                            </div>
+
+
+                                            <!--                                            <span style="color: #73766f;">Doc No #</span>-->
+                                            <!--                                            <span style="padding-left:51px" t-esc="o.name"/>-->
+                                            <!--                                            <br></br>-->
+                                            <!--                                            <span style="color: #73766f;">Order No #</span>-->
+                                            <!--                                            <span style="padding-left:39px" t-esc="o.origin"/>-->
+                                            <!--                                            <br></br>-->
+                                            <!--                                            <span style="color: #73766f;">Doc Date</span>-->
+                                            <!--                                            <t t-if="o.scheduled_date">-->
+                                            <!--                                                                                            <span style="padding-left:50px"-->
+                                            <!--                                                                                                  t-esc="o.scheduled_date.strftime('%d/%m/%Y')"/>-->
+                                            <!--                                            </t>-->
+                                            <!--                                            <br></br>-->
+                                            <!--                                            <span style="color: #73766f;">Status</span>-->
+                                            <!--                                            <span style="padding-left:70px" t-field="o.state"/>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top:50px;">
+                                    <table class="table table-condensed">
+                                        <tr style="background:#e6e6e5">
+                                            <th>Product</th>
+                                            <th style="text-align:right;">Quantity</th>
+                                            <th>From</th>
+                                            <th>Lot/Serial Number</th>
+                                        </tr>
+                                        <t t-foreach="o.move_line_ids" t-as="lines">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="lines.product_id.name"/>
+                                                </td>
+                                                <td style="text-align:right;">
+                                                    <span t-if="o.state != 'done'" t-field="lines.reserved_uom_qty"/>
+                                                    <span t-if="o.state == 'done'" t-field="lines.qty_done"/>
+                                                    <span t-esc="lines.product_uom_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="lines.location_id.display_name"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div t-field="lines.lot_id.name"
+                                                         t-options="{'widget': 'barcode', 'width': 500, 'height': 50, 'img_style': 'width:200px;height:25px;'}"/>
+                                                    <span style="font-size:12px;" t-esc="lines.lot_id.name"/>
+                                                </td>
+
+                                            </tr>
+                                        </t>
+                                    </table>
+                                </div>
+                                <div class="row" style="padding-top:50px;">
+                                    <div class="col-6">
+                                        <span style="color: #73766f;">Terms and Conditions</span>
+                                        <div style="padding-top:15px;">
+                                            <span t-esc="o.note"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

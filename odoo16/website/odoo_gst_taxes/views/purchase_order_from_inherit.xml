@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="puchase_order_form_inherit" model="ir.ui.view">
+            <field name="name">puchase.order.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']//tree//field[@name='taxes_id']" position="after">
+                    <field name="hsn_config_id" force_save="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

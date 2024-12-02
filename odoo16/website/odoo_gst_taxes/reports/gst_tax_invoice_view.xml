@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="tax_invoice_report_view">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <div class="row">
+                                <table class="table table-sm table-condensed table-bordered">
+                                    <tbody>
+                                        <tr style="padding: 0 !important; margin: 0 !important;">
+                                            <td class="text-center" colspan="3" width="50%">
+                                                <h5>
+                                                    <strong>
+                                                        <t t-if="o.branch_id.street">
+                                                            <span t-field="o.branch_id.street"/>
+                                                        </t>
+                                                        <t t-if="o.branch_id.street2">
+                                                            <span t-field="o.branch_id.street2"/>
+                                                        </t>
+                                                        <span t-field="o.branch_id.city"/>
+                                                        <span t-field="o.branch_id.state_id.name"/>
+                                                        <span t-field="o.branch_id.zip"/>
+                                                        <br/>
+                                                        <span t-field="o.branch_id.vat"/>
+                                                    </strong>
+                                                </h5>
+                                            </td>
+                                        </tr>
+                                        <tr style="padding: 0 !important; margin: 0 !important;">
+                                            <td class="text-center" colspan="3" width="50%">
+                                                <h3 t-if="o.move_type != 'out_refund'">TAX INVOICE</h3>
+                                                <h3 t-if="o.move_type == 'out_refund'">CREDIT NOTE</h3>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <span>Reverse Charge: No</span><br/>
+                                                    <span>Invoice No:</span> <span t-field="o.name"/><br/>
+                                                    <span>Invoice Date: </span> <span t-field="o.invoice_date"/><br/>
+                                                    <strong>State: </strong> <span t-field="o.branch_id.state_id.name"/> 
+                                                </p>
+                                                <p class="text-right">
+                                                   <span>State Code: <span t-field="o.branch_id.state_id.l10n_in_tin"/></span>
+                                                </p>
+                                            </td>
+                                            <td colspan="2">
+                                                <strong>Date of Supply: </strong> <span t-field="o.date_of_supply"/><br/>
+                                                <strong>Place of Supply : </strong> <span t-field="o.place_of_supply_id"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="50%">
+                                                <strong>Details Of Receiver/Billed to: </strong> <span t-field="o.receiver_supplier_id"/>
+                                            </td>
+                                            <td rowspan="2" width="41%" class="align-middle">
+                                                <strong>ACK Date: </strong> <span t-field="o.ack_date"/><br/>
+                                                <strong>ACK No: </strong> <span t-field="o.ack_no"/><br/>
+                                                <strong>IRN: </strong> <span t-field="o.irn_num"/><br/>
+                                                <strong>Eway Bill No: </strong> <br/>
+                                            </td>
+                                            <td rowspan="2" width="9%" class="align-middle">
+                                                <img t-if="o.qr_code_img" t-att-src="image_data_uri(o.qr_code_img)" class="text-center" style="max-height:3cm; max-width:3cm;" alt="Logo"/>
+                                           </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                
+                                                <strong>Name: </strong> <span t-field="o.partner_id"/><br/>
+                                                <strong>Address: </strong> <span t-field="o.partner_id.street"/> <span t-field="o.partner_id.street2"/> <span t-field="o.partner_id.city"/> <span t-field="o.partner_id.zip"/><br/>
+                                                <strong>GSTIN: </strong> <span t-field="o.partner_id.vat"/><br/>
+                                                <strong>State: </strong><strong t-field="o.partner_id.state_id.name"/>
+                                                </p>
+                                                <p class="text-right">
+                                                   <span>State Code: <span t-field="o.partner_id.state_id.l10n_in_tin"/></span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            
+                                <table class="table table-sm table-bordered table-condensed">
+                                    <tbody>
+                                        <tr style="height:60px;padding: 0 !important; margin: 0 !important;">
+                                            <td class="col-xs-4" colspan="2" style="padding: 0 !important; margin: 0 !important;">
+                                                <p>Name :
+                                                    <t t-if="o.partner_id">
+                                                        <span t-field="o.partner_id.name"/>
+                                                    </t>
+                                                    <br/>
+                                                    Address :
+                                                    <t t-if="o.partner_id.street">
+                                                        <span t-field="o.partner_id.street"/>
+                                                    </t>
+                                                    <t t-if="o.partner_id.street2">
+                                                        <span t-field="o.partner_id.street2"/>
+                                                    </t>
+                                                    <span t-field="o.partner_id.city"/>
+                                                    <span t-field="o.partner_id.zip"/>
+                                                    <span t-field="o.partner_id.state_id.name"/>
+                                                    <br/>
+                                                    GST No
+                                                    <span t-field="o.partner_id.vat"/>
+                                                    <br/>
+                                                    State :
+                                                    <span t-field="o.partner_id.state_id.name"/>
+                                                    <br/>
+                                                </p>
+                                                <p style="text-align:right">
+                                                    State Code:
+                                                    <span t-field="o.partner_id.state_id.l10n_in_tin"/>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <table class="table table-sm table-bordered table-condensed">
+                                    <!-- <table class="table table-bordered table-condensed" style="margin:0;"> -->
+                                    <tr style="padding: 0 !important; margin: 0 !important;">
+                                        <td rowspan="2">S No.</td>
+                                        <td rowspan="2" class="text-center">Name of Product / Service</td>
+                                        <td rowspan="2" class="text-center">HSN ACS</td>
+                                        <td rowspan="2" class="text-right">Taxable Amount</td>
+                                        <t t-set="tax_types" t-value="get_type(o)"/>
+                                        <t t-foreach="tax_types" t-as="t">
+                                            <td class="text-center" colspan="2">
+                                                <span t-esc="t.upper()"/>
+                                            </td>
+                                        </t>
+                                        <td rowspan="2" class="text-right">Total</td>
+                                    </tr>
+                                    <tr>
+                                        <t t-foreach="tax_types" t-as="t">
+                                            <td class="text-right">Rate</td>
+                                            <td class="text-right">Amount</td>
+                                        </t>
+                                    </tr>
+                                    <tbody class="invoice_tbody">
+                                        <t t-set="i" t-value="1"/>
+                                        <tr t-foreach="o.invoice_line_ids" t-as="l" style="padding: 0 !important; margin: 0 !important;">
+                                            <td style="padding: 0 !important; margin: 0 !important;">
+                                                <span t-esc="i"/>
+                                            </td>
+                                            <t t-set="i" t-value="i+1"/>
+                                            <td style="padding: 0 !important; margin: 0 !important;">
+                                                <span t-field="l.name"/>
+                                            </td>
+                                            <td style="padding: 0 !important; margin: 0 !important;">
+                                                <span t-field="l.hsn_config_id"/>
+                                            </td>
+                                            <td class="text-right" style="padding: 0 !important; margin: 0 !important;">
+                                                <span t-field="l.price_unit" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                            <t t-set="line_taxes" t-value="get_line_tax(l)"/>
+                                            <t t-foreach="tax_types" t-as="t">
+                                                <td class="text-right" style="padding: 0 !important; margin: 0 !important;">
+                                                    <t t-if="t in line_taxes">
+                                                        <span t-esc="'{:.2f}'.format(round(line_taxes[t]['rate']))"/>
+                                                    </t>
+                                                    <t t-if="t not in line_taxes">
+                                                        -
+                                                    </t>
+                                                </td>
+                                                <td class="text-right">
+                                                    <t t-if="t in line_taxes">
+                                                        ₹ <span t-esc="'{:,}'.format(round(line_taxes[t]['amount']))"/>
+                                                    </t>
+                                                    <t t-if="t not in line_taxes">
+                                                        -
+                                                    </t>
+                                                </td>
+                                            </t>
+                                            <td class="text-right" style="padding: 0 !important; margin: 0 !important;">
+                                                <t t-set="line" t-value="'{:,}'.format(round(get_line_total(l)))"/>
+                                                ₹ <span t-esc="line"/>
+                                            </td>
+                                        </tr>
+                                        <tr style="padding: 0 !important; margin: 0 !important;">
+                                            <td colspan="3" class="text-right" style="padding: 0 !important; margin: 0 !important;">
+                                                Total
+                                            </td>
+                                            <td class="text-right" style="padding: 0 !important; margin: 0 !important;">
+                                                <span t-field="o.amount_untaxed"/>
+                                            </td>
+                                            <t t-set="tax_totals" t-value="get_tax_total(o)"/>
+                                            <t t-foreach="tax_types" t-as="tx">
+                                                <td colspan="2" class="text-right" style="padding: 0 !important; margin: 0 !important;">
+                                                    <span t-esc="tax_totals[tx]" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                                </td>
+                                            </t>
+
+                                            <td colspan="2" class="text-right" style="padding: 0 !important; margin: 0 !important;">
+
+                                                    <span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <table class="table table-sm table-bordered table-condensed">
+                                    <!-- <table class="table table-bordered table-condensed" style="margin:0;"> -->
+                                    <tbody>
+                                        <tr style="padding: 0 !important; margin: 0 !important;">
+                                            <td rowspan="7" width="50%" style="padding: 0 !important; margin: 0 !important;">
+                                                Total Invoice Amount in Words: 
+                                                <br/>
+                                                <strong t-esc="get_amount_in_word(o)"/>
+                                                <br/>
+                                            </td>
+                                            <td class="text-center" width="35%" style="padding: 0 !important; margin: 0 !important;">Other Charges :</td>
+                                            <td class="text-right" width="15%" style="padding: 0 !important; margin: 0 !important;">
+                                                -
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center" style="padding: 0 !important; margin: 0 !important;">Total Amount before Tax</td>
+                                            <td class="text-right" style="padding: 0 !important; margin: 0 !important;">
+                                                <span t-field="o.amount_untaxed"/>
+                                            </td>
+                                        </tr>
+                                        <t t-set="tax_totals" t-value="get_tax_total(o)"/>
+                                        <t t-foreach="tax_types" t-as="tx">
+                                            <tr>
+                                                <td class="text-center" style="padding: 0 !important; margin: 0 !important;">
+                                                    <span t-esc="tx.upper()"/>
+                                                </td>
+                                                <td class="text-right" style="padding: 0 !important; margin: 0 !important;">
+                                                    <span t-esc="tax_totals[tx]" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr>
+                                            <td class="text-center" style="padding: 0 !important; margin: 0 !important;">Total Tax Amount</td>
+                                            <td class="text-right" style="padding: 0 !important; margin: 0 !important;">
+                                                <span t-field="o.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="row">
+                                <table class="table table-sm table-bordered table-condensed">
+                                    <tbody>
+                                        <tr style="padding: 0 !important; margin: 0 !important;">
+                                            <t t-set="bank" t-value="o.company_id.partner_id.bank_ids and o.company_id.partner_id.bank_ids[0].bank_id or False"/>
+                                            <t t-set="acc_num" t-value="o.company_id.partner_id.bank_ids and o.company_id.partner_id.bank_ids[0].acc_number or False"/>
+                                            <t t-if="o.division_id">
+                                                <t t-set="bank" t-value="o.division_id.bank_id and o.division_id.bank_id or False"/>
+                                                <t t-set="acc_num" t-value="o.division_id.bank_account_no and o.division_id.bank_account_no or False"/>
+                                            </t>
+                                            <td class="text-left" rowspan="3" style="padding: 0 !important; margin: 0 !important;width:50%;">
+                                                <h5 class="text-center">
+                                                    : Bank Details :
+                                                </h5>
+                                                Beneficiary Name :
+                                                <span t-field="o.company_id.name"/>
+                                                <br/>
+                                                Account No.:
+                                                <span t-if="acc_num" t-esc="acc_num"/>
+                                                <br/>
+                                                Bank Name :
+                                                <span t-if="bank" t-field="bank.name"/>
+                                                <br/>
+                                                Bank Address :
+                                                <span t-if="bank" t-field="bank.street"/>
+                                                <span t-if="bank" t-field="bank.street2"/>
+                                                <span t-if="bank" t-field="bank.city"/>
+                                                <span t-if="bank" t-field="bank.zip"/>
+                                                <span t-if="bank" t-field="bank.state"/>
+                                                <br/>
+                                                IFS Code :
+                                                <span t-if="bank" t-field="bank.bic"/>
+                                            </td>
+                                            <tr style="padding: 0 !important; margin: 0 !important;">
+                                                <td class="text-center col-xs-4" style="padding: 0 !important; margin: 0 !important;">Total Amount after Tax</td>
+                                                <td class="text-right col-xs-4" style="padding: 0 !important; margin: 0 !important;">
+                                                    <span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                                </td>
+
+                                            </tr>
+                                            <tr style="padding: 0 !important; margin: 0 !important;">
+                                                <td class="text-center col-xs-4" style="padding: 0 !important; margin: 0 !important;">GST Payable on Reverse Charge :</td>
+                                                <td class="text-center col-xs-4" style="padding: 0 !important; margin: 0 !important;">
+                                                    Nil
+                                                </td>
+                                            </tr>
+                                        </tr>
+                                        <tr style="padding: 0 !important; margin: 0 !important;" height="150px;">
+                                            <td class="col-xs-4" style="padding: 0 !important; margin: 0 !important;">
+                                                <span t-field="o.narration"/>
+                                                <span t-if="not o.narration">Term and Condition</span>
+                                            </td>
+                                            <td class="col-xs-8" rowspan="3" colspan="2" style="padding: 0 !important; margin: 0 !important;">
+                                                <p>
+                                                    Certified that the particulars given above are true and correct.
+                                                    <br/>
+                                                    <strong t-field="o.company_id.name"/>
+                                                    <br/>
+                                                    <br/>
+                                                    <br/>
+                                                </p>
+                                                <p>
+                                                    <b>Authorised Signatory</b>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr style="padding: 0 !important; margin: 0 !important;">
+                                            <td colspan="3" class="text-right">[ E &amp;OE]</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

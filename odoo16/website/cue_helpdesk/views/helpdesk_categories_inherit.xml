@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_helpdesk_categories_inherit_tree" model="ir.ui.view">
+        <field name="name">helpdesk.categories.tree.view</field>
+        <field name="model">helpdesk.categories</field>
+        <field name="inherit_id" ref="odoo_website_helpdesk.view_helpdesk_categories_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="helpdesk_types_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

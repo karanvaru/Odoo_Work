@@ -1,0 +1,12 @@
+@font-face{
+    font-family:'Poppins';
+    src:url('/cue_reports/static/fonts/Poppins-Regular.woff') format('woff'),
+    url('/cue_reports/static/fonts/Poppins-Regular.woff2') format('woff2');
+}
+.container{
+    font-family: 'Poppins';
+    font-size:14px;
+}
+.td_class{
+    border-top: hidden !important;
+}

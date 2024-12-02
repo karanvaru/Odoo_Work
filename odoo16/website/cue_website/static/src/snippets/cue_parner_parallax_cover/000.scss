@@ -1,0 +1,48 @@
+.cue_parner_parallax_cover {
+    padding: 0px !important;
+	.__yellow {
+		border-radius: 20px !important;
+		color: #464650;
+		background-color: #ffc84b;
+	}
+    .snippet_content_font {
+        font-size: var(--general-f) !important;
+        line-height: 1.626;
+        margin-bottom: 26px;
+    }
+    .px-100 {
+        padding: 0 90px;
+    }
+    .btn_partner_with_us {
+        margin-top: 25px;
+        &:hover {
+            background-color: #afafc8;
+            border-color: #232328;
+        }
+        &:active {
+            background-color: #8c8ca0;
+        }
+    }
+    @media only screen and (max-width: 767px) {
+        margin-top: 30px !important;
+        padding-bottom: 20px !important;
+        .container{
+            margin-top: 150px !important;
+        }
+        .text-end{
+            margin-top: 40px !important;
+        }
+        h1 {
+            margin-left: 17px !important;
+        }
+        // .snippet_content_font {
+        //     font-size: 13px !important;
+        // }
+        // .btn_font_yellow{
+        //     padding-top: 10px  !important;
+        // }
+    }
+}
+.cue_cover_partner_parallax_back_shaddow {
+    background-image: linear-gradient(270deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
+}

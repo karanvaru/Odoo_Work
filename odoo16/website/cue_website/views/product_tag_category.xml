@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_product_tag_category" model="ir.actions.act_window">
+        <field name="name">Product Tag Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.tag.category</field>
+        <field name="context">{}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_product_tag_category_tree" model="ir.ui.view">
+        <field name="name">Product Tag Category tree</field>
+        <field name="model">product.tag.category</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="sequence" />
+
+            </tree>
+        </field>
+    </record>
+    <record id="view_product_tag_category_form" model="ir.ui.view">
+        <field name="name">Product Tag Category Form</field>
+        <field name="model">product.tag.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="sequence" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record id="action_product_tag_mapping_tree_view" model="ir.ui.view">
+        <field name="name">product.tag.mapping.tree</field>
+        <field name="model">product.tag.mapping</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom" string="Product Tags Mapping">
+                <field name="product_id"/>
+                <field name="tag_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_product_tag_mapping" model="ir.actions.act_window">
+        <field name="name">Product Tags Mapping</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.tag.mapping</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Define a new tag
+            </p>
+        </field>
+    </record>
+
+
+    <template id="prepare_question">
+        <div class="prepare_question_box">
+            <form class="qustions_forms">
+                <t t-set="counter" t-value="0"/>
+                <t t-foreach="tag_ids" t-as="tag_id">
+                    <div t-attf-class="tab_box {{'d-none' if counter != 0 else ''}}">
+                        <div class="__title">
+                            <h3><t t-esc="tag_id.name"/></h3>
+                        </div>
+                        <div class="__qustion_box">
+                            <t t-foreach="tag_id.product_tag_categ_ids" t-as="categ_id">
+                                <label class="__radio d-block" t-att-for="categ_id.name">
+                                    <div class="label_box">
+                                        <input type="radio" id="age1" t-att-name="tag_id.id" t-att-value="categ_id.id"/>
+                                        <span class="checkmark"></span>
+                                    </div>
+                                    <span class="custom_radio"><t t-esc="categ_id.name"/></span>
+                                </label>
+                            </t>
+                        </div>
+                        <div class="submit_btn">
+                            <t t-set="counter" t-value="counter + 1"/>
+                            <a t-attf-class="btn btn-primary mt8 __black {{'__qustion_next_btn' if counter != len(tag_ids) else '__qustion_submit_btn'}} rounded mb-2 o_default_snippet_text" href="#">
+                                <t t-if="counter != len(tag_ids)">Next</t>
+                                <t t-else="">Submit</t>
+                            </a>
+                        </div>
+                    </div>
+                </t>
+                <!-- <div class="submit_btn d-none">
+                    <a class="btn btn-primary mt60 __black __qustion_start_btn rounded mb-2 o_default_snippet_text" href="#">Start</a>
+                </div> -->
+            </form>
+        </div>
+    </template>
+
+    <template id="prepare_result">
+        <div class="prepare_prepare_result_box">
+            <!-- t t-foreach="formDataObject" t-as="formData">
+                <div class="result_box">
+                    <div class="__title">
+                        <h3><t t-esc="formData['tag_id'].name"></t></h3>
+                    </div>
+                    <div class="__result">
+                        <div>result: <t t-esc="formData['category_id'].name"></t></div>
+                    </div>
+                </div>
+            </t-->
+            <t t-foreach="products" t-as="product">
+				<div class="result_box">
+					<div class="__result">
+						<div>
+							<t t-esc="product.name" />
+						</div>
+					</div>
+				</div>
+			</t>
+        </div>
+    </template>
+
+
+</odoo>

@@ -1,0 +1,56 @@
+.cue_columns {
+	.card-body {
+		background-color: transparent !important;
+		padding: 30px;
+		.card-title {
+			& > * {
+				color: #e1e1f0;
+			    font-size: var(--sub-header-f);
+			    font-weight: 600;
+			}
+		}
+		.card-text {
+			& > * {
+				color: #fafafc;
+			    font-size: var(--general-f);
+			    font-weight: 400;
+			    line-height: 1.626;
+			}
+		}
+		@media only screen and (max-width: 991px) {
+			padding: 16px 15px;
+			.__yellow {
+				margin-top: 10px;
+			}
+		}
+		// .btn-primary {
+		// 	font-size: 14px;
+		// 	line-height: 1.644;
+		// 	font-weight: 500;
+		// 	padding: 0;
+		// 	padding-top: 4px;
+		// }
+		// .__yellow {
+		// 	border-radius: 15px;
+		// 	min-width: 100px;
+		// }
+	}
+}
+.detail_div {
+    background: #696978;
+    padding: 50px;
+    border-radius: 20px;
+  }
+
+.block_div{
+    background: #8c8ca0;
+    border-radius: 10px;
+    padding: 23px;
+
+  }
+  .title_class{
+  font-size: 25px;
+  font-weight: bold;
+  }
+  .description_class{
+  font-size: 16px;}

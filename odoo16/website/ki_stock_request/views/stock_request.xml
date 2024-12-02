@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_request_tree" model="ir.ui.view">
+        <field name="name">partner.stock.request.tree</field>
+        <field name="model">partner.stock.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="partner_id"/>
+                <field name="customer_id" optional="show"/>
+                <field name="company_id" optional="show"/>
+                <field name="user_id" optional="show"/>
+                <field name="tax_totals" optional="show"/>
+                <field name="state" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_request_form" model="ir.ui.view">
+        <field name="name">partner.stock.request.form</field>
+        <field name="model">partner.stock.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Create Sale Order" name="action_sale_new" type="object" class="oe_highlight"
+                            data-hotkey="q"
+                            title="Create Sale Order"
+                            attrs="{'invisible': ['|',('state', '!=', 'approved'),('sale_counts', '&gt;', 0)]}"/>
+                    <button name="action_submitted" string="Submit"
+                            type="object" class="oe_highlight"
+                            attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                    <button name="action_approved" string="Approve"
+                            type="object" class="oe_highlight"
+                            attrs="{'invisible': [('state', 'not in', ['submitted'])]}"/>
+                    <button name="action_rejected" string="Reject"
+                            type="object" class="btn btn-danger"
+                            attrs="{'invisible': [('state', 'not in', ['submitted'])]}"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                     <button class="oe_stat_button" type="object" string="sale order"
+                                name="action_view_sale_order" icon="fa-pencil-square-o"
+                                attrs="{'invisible': [('sale_counts', '=', 0)]}">
+                            <field name="sale_counts" widget="statinfo" string="Sale Orders"/>
+                        </button>
+                    </div>
+                    <h1><field name="name"/></h1>
+                    <group>
+                        <group>
+                            <field name="partner_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="customer_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="company_id"/>
+                            <field name="user_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                            <page string="items" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <field name="line_ids" widget="section_and_note_one2many"
+                                       attrs="{'readonly': [('state', '=', 'submitted')]}">
+                                    <tree editable="bottom">
+                                        <field name="product_id" widget="sol_product_many2one"/>
+                                        <field name="name" widget="section_and_note_text" optional="show"/>
+                                        <field name="quantity"/>
+                                        <field name="product_uom_id" groups="uom.group_uom"/>
+                                        <field name="price_unit"/>
+                                        <field name="tax_ids" widget="many2many_tags"/>
+                                        <field name="subtotal_without_tax"/>
+                                    </tree>
+                                </field>
+                                <group name="note_group" col="6" class="mt-2 mt-md-0">
+                                    <group colspan="4">
+                                        <field colspan="2" name="description" nolabel="1"
+                                               placeholder="Terms and conditions..."/>
+                                    </group>
+
+                                   <group class="oe_subtotal_footer oe_right">
+                                    <field name="tax_totals" widget="account-tax-totals-field" nolabel="1" colspan="2" readonly="1"/>
+                                </group>
+                                    <div class="clearfix"/>
+                                </group>
+                            </page>
+                         <page string="Other info">
+                             <form>
+                             <field name="description"/>
+                             </form>
+                         </page>
+                        </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_stock_request" model="ir.actions.act_window">
+        <field name="name">Stock Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">partner.stock.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}
+        </field>
+
+    </record>
+
+    <menuitem id="menu_stock_request"
+              name="Stock Request"
+              parent="sale.sale_order_menu"
+              action="action_stock_request"
+              groups="group_stock_request_user,group_stock_request_manager"
+              sequence="25"/>
+
+</odoo>

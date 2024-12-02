@@ -1,0 +1,50 @@
+.cue_product_cover {
+	border-radius: 20px;
+	background-color: #232328;
+	min-height: 600px;
+	border: 2px solid #ffc84b;
+	color: white;
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.w-760 {
+		width: 760px;
+		margin-top: 37px !important;
+	}
+	.w-500 {
+		width: 500px;
+	}
+	h1 {
+		font-size: var(--main-header-f);
+		line-height: 1.313;
+		font-weight: 600;
+	}
+	h2, h4 {
+		font-size: var(--sub-header-f);
+		line-height: 1.668;
+		font-weight: 400;
+	}
+	.cover_content_fonts {
+		font-size: var(--sub-header-f) !important;
+	    line-height: 1.668;
+	    font-weight: 400;
+	    margin: auto;
+	    margin-top: 10px;
+		max-width: 570px;
+	}
+
+	@media only screen and (max-width: 991px) {
+		min-height: 300px;
+		padding : 25px !important;
+
+	    .cover_content_fonts {
+			font-size: var(--sub-header-f) !important;
+		    line-height: 1.668;
+		    font-weight: 400;
+		    margin: auto;
+		    margin-top: 10px;
+		}
+	 }
+
+}

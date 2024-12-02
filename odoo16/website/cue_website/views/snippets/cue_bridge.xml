@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="cue_bridge" name="CUE BRIDGE">
+    <section class="s_cover cue_bridge parallax s_parallax_is_fixed" data-scroll-background-ratio="1">
+        <span class="s_parallax_bg oe_img_bg" style="background-image: url('/cue_website/static/src/images/form-4.5.132-3200.jpg'); background-position: 50% 0;"></span>
+        <div class="o_we_bg_filter bg-light-gradent"></div>
+        <div class="boder_wraper">
+            <div class="s_allow_columns container px-100">
+                <div class="row">
+                    <div class="col-6 o_colored_level o_animate o_animate_on_scroll o_anim_fade_in o_anim_from_bottom" style="animation-delay: -1.4365s; --wanim-intensity: 4; visibility: visible;" data-scroll-zone-start="25" data-scroll-zone-end="100">
+                        <h2 style="margin-bottom: 45px;transform: scale(1.1, 1.1);margin-left:25px;    padding-top: 35px;">
+                            <font style="font-weight: 600; color: rgb(225, 225, 240);">
+                                <span style="font-size: 36px;">MEET</span>
+                            </font>
+                            <font style="font-weight: 600; color: rgb(255, 200, 75);">
+                                <span style="font-size: 36px;" class="o_default_snippet_text">CUE BRIDGE</span>
+                          </font>
+                        </h2>
+                        <div class="__details" style="transform: scale(1.1, 1.1);margin-left:25px;">
+                            <font style="color: rgb(225, 225, 240);">
+                                <span style="font-size: 24px;font-weight: 400;    line-height: 1.668;">After years of dedicated development and rigorous testing, we're thrilled to unveil CUE BRIDGE - a device that unlocks a world of possibilities for your smart home. CUE BRIDGE supports professionally integrated households as well as DIY setups.</span>
+                            </font>
+                        </div>
+                        <div class="__button">
+                            <a class="__black rounded mb-2 btn btn-fill-primary rounded-circle" href="/products">
+                                <span>Learn More</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
+
+<record id="cue_website.cue_bridge_000_scss" model="ir.asset">
+    <field name="name">Cue Breidge 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_bridge/000.scss</field>
+</record>
+
+</odoo>

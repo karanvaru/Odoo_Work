@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+        id="purchase_order_report"
+        model="purchase.order"
+        string="Purchase Order GST"
+        report_type="qweb-pdf"
+        name="odoo_gst_taxes.purchase_order_report_view"
+        file="odoo_gst_taxes.purchase_order_report_view"
+        menu="True"
+        paperformat="odoo_gst_taxes.paperformat_gst"
+        />
+    </data>
+</openerp>

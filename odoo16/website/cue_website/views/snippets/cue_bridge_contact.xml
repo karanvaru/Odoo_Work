@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="cue_bridge_contact" name="CUE BRIDGE CONTACT">
+    <section class="s_cover cue_bridge_contact parallax s_parallax_is_fixed" data-scroll-background-ratio="1">
+        <span class="s_parallax_bg oe_img_bg"/>
+        <div class="boder_wraper">
+            <div class="o_we_bg_filter"/>
+            <div class="s_allow_columns container py-100">
+              <h1 class="custom_text">
+                  <b>Cue Bridge,</b>
+                  <span>an innovative product originating from India, effectively resolves a significant challenge faced by users of Home Automation and Apple devices - compatibility.</span>
+              </h1>
+              <br/>
+              <h1 class="custom_text">
+                  <span>Our solution seamlessly integrates Home Automation products into Apple HomeKit, ensuring flawless connectivity.</span>
+              </h1>
+              <br/>
+              <h1 class="custom_text">
+                  <span>Our solution seamlessly integrates Home Automation products into Apple HomeKit, ensuring flawless connectivity.</span>
+              </h1>
+              <br/>
+              <h1 class="custom_text">
+                  <span>This is just the beginning of our journey, as we are fully aware of the extensive value we can provide to our users &amp; partners.</span>
+              </h1>
+            </div>
+        </div>
+    </section>
+</template>
+
+<record id="cue_website.cue_bridge_contact_000_scss" model="ir.asset">
+    <field name="name">Cue Breidge 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">cue_website/static/src/snippets/cue_bridge_contact/000.scss</field>
+</record>
+
+</odoo>

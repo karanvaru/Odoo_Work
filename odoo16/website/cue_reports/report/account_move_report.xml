@@ -1,0 +1,534 @@
+<odoo>
+    <data>
+        <record id="actions_cue_report_invoice" model="ir.actions.report">
+            <field name="name">Print PDF</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cue_reports.pdf_report_templates_invoice</field>
+            <field name="report_file">cue_reports.pdf_report_templates_invoice</field>
+            <field name="print_report_name">(object._get_report_base_filename())</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="cue_reports.paperformat_pdf_statement"/>
+        </record>
+
+<!--        <template id="pdf_report_templates_invoice">-->
+<!--            <t t-call="web.html_container">-->
+<!--                <t t-foreach="docs" t-as="o">-->
+<!--                    <t t-call="web.basic_layout">-->
+<!--                        <div class="page">-->
+<!--                            <link t-attf-href="{{url}}/cue_reports/static/src/css/style.css" rel="stylesheet"/>-->
+<!--                            <div class="container px-100">-->
+<!--                                <div class="row" style="margin-bottom:10px;">-->
+<!--                                    <div class="col-5">-->
+<!--                                        <img t-if="o.company_id.logo" style="max-width:25%;vertical-align:middle;"-->
+<!--                                             t-att-src="image_data_uri(o.company_id.logo)" class="float-start"-->
+<!--                                             alt="Logo"/>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-7" style="text-align:left;">-->
+<!--                                        <h2>-->
+<!--                                            <t t-if="o.move_type == 'out_invoice'">-->
+<!--                                                <span>Tax Invoice</span>-->
+<!--                                            </t>-->
+<!--                                            <t t-if="o.move_type == 'in_invoice'">-->
+<!--                                                <span>Vendor Bill</span>-->
+<!--                                            </t>-->
+<!--                                        </h2>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="row" style="margin-bottom:40px;">-->
+<!--                                    <div class="col-8">-->
+<!--                                    </div>-->
+<!--                                    <div class="col-4" style="text-align:left;">-->
+<!--                                        <span style="color: #73766f;">Invoice No #</span>-->
+<!--                                        <span style="padding-left:50px" t-esc="o.name"/>-->
+<!--                                        <br></br>-->
+<!--                                        <span style="color: #73766f;">Invoice Date</span>-->
+<!--                                        <t t-if="o.invoice_date">-->
+<!--                                            <span style="padding-left:50px"-->
+<!--                                                  t-esc="o.invoice_date.strftime('%d/%m/%Y')"/>-->
+<!--                                        </t>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-4">-->
+<!--                                        <h6>-->
+<!--                                            <b>-->
+<!--                                                <strong>Billed By</strong>-->
+<!--                                            </b>-->
+<!--                                        </h6>-->
+<!--                                        <t t-set="billed_by_partner" t-value="o.company_id.partner_id"/>-->
+<!--                                        <h5 style="padding-top:6px">-->
+<!--                                            <strong style="font-size:18px;" t-field="billed_by_partner.name"/>-->
+<!--                                        </h5>-->
+<!--                                        <div style="padding-right:100px;">-->
+<!--                                            <span t-field="billed_by_partner.street"/>-->
+<!--                                            <span t-field="billed_by_partner.street2"/>-->
+<!--                                            <span t-field="billed_by_partner.city"/>-->
+<!--                                            <br/>-->
+<!--                                            <span t-field="billed_by_partner.state_id.name"/>-->
+<!--                                            <span t-field="billed_by_partner.country_id.name"/>-->
+<!--                                            <span t-field="billed_by_partner.zip"/>-->
+<!--                                            <br></br>-->
+<!--                                            <span style="color: #73766f;">-->
+<!--                                                GSTIN :-->
+<!--                                            </span>-->
+<!--                                            <span t-field="billed_by_partner.vat"/>-->
+<!--                                            <br></br>-->
+<!--                                            <span>-->
+<!--                                                Phone:-->
+<!--                                                <span t-field="billed_by_partner.phone"/>-->
+<!--                                            </span>-->
+<!--                                            <br></br>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-4">-->
+<!--                                        <h6>-->
+<!--                                            <b>-->
+<!--                                                <strong>Billed To</strong>-->
+<!--                                            </b>-->
+<!--                                        </h6>-->
+<!--                                        <t t-set="billed_to_partner" t-value="o.partner_id"/>-->
+<!--                                        <h5 style="padding-top:5px">-->
+<!--                                            <strong style="font-size:18px;" t-field="billed_to_partner.name"/>-->
+<!--                                        </h5>-->
+<!--                                        <div style="padding-right:100px;">-->
+<!--                                            <span t-field="billed_to_partner.street"/>-->
+<!--                                            <span t-field="billed_to_partner.street2"/>-->
+<!--                                            <span t-field="billed_to_partner.city"/>-->
+<!--                                            <br/>-->
+<!--                                            <span t-field="billed_to_partner.state_id.name"/>-->
+<!--                                            <span t-field="billed_to_partner.country_id.name"/>-->
+<!--                                            <span t-field="billed_to_partner.zip"/>-->
+<!--                                            <br></br>-->
+<!--                                            <span style="color: #73766f;">-->
+<!--                                                GSTIN :-->
+<!--                                            </span>-->
+<!--                                            <span t-field="billed_to_partner.vat"/>-->
+<!--                                            <br></br>-->
+<!--                                            <span>-->
+<!--                                                Phone:-->
+<!--                                                <span t-field="billed_to_partner.phone"/>-->
+<!--                                            </span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-4">-->
+<!--                                        <h6>-->
+<!--                                            <b>-->
+<!--                                                <strong>Ship To</strong>-->
+<!--                                            </b>-->
+<!--                                        </h6>-->
+<!--                                        <t t-set="ship_to" t-value="o.partner_shipping_id"/>-->
+<!--                                        <h5 style="padding-top:5px">-->
+<!--                                            <strong style="font-size:18px;" t-field="ship_to.name"/>-->
+<!--                                        </h5>-->
+<!--                                        <div style="padding-right:100px;">-->
+<!--                                            <span t-field="ship_to.street"/>-->
+<!--                                            <span t-field="ship_to.street2"/>-->
+<!--                                            <span t-field="ship_to.city"/>-->
+<!--                                            <br/>-->
+<!--                                            <span t-field="ship_to.state_id.name"/>-->
+<!--                                            <span t-field="ship_to.country_id.name"/>-->
+<!--                                            <span t-field="ship_to.zip"/>-->
+<!--                                            <br></br>-->
+<!--                                            <span style="color: #73766f;">-->
+<!--                                                GSTIN :-->
+<!--                                            </span>-->
+<!--                                            <span t-field="ship_to.vat"/>-->
+<!--                                            <br></br>-->
+<!--                                            <span>-->
+<!--                                                Phone:-->
+<!--                                                <span t-field="ship_to.phone"/>-->
+<!--                                            </span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="row" style="padding-top:50px;">-->
+<!--                                    <table class="table table-bordered">-->
+<!--                                        <tr style="background:  #e6e6e5">-->
+<!--                                            <th>Sr No.</th>-->
+<!--                                            <th>Description Of Goods</th>-->
+<!--                                            <th>HSN/SAC</th>-->
+<!--                                            <t t-set="tax_types" t-value="get_type(o)"/>-->
+<!--                                            &lt;!&ndash;                                            <t t-foreach="tax_types" t-as="t">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                <td class="text-center" colspan="1">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                    <h7><span t-esc="t.upper()"/>(%)&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                    </h7>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                </td>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                            </t>&ndash;&gt;-->
+<!--                                            <th style="text-align:center;">Qty</th>-->
+<!--                                            <th style="text-align:center;">Rate</th>-->
+<!--                                            <th style="text-align:center;">Per</th>-->
+<!--                                            <th style="text-align:center;">Amount</th>-->
+<!--                                            <th style="text-align:center;">Total Tax</th>-->
+<!--                                            <th style="text-align:center;">Total</th>-->
+
+<!--                                        </tr>-->
+<!--                                        <t t-set="counter" t-value="1"/>-->
+<!--                                        <t t-set="final_total" t-value="0"/>-->
+<!--                                        <t t-set="qty" t-value="0"/>-->
+<!--                                        <t t-set="tax_counter" t-value="0"/>-->
+<!--                                        <t t-set="amount" t-value="0"/>-->
+<!--                                        <t t-set="total" t-value="0"/>-->
+<!--                                        <t t-foreach="o.invoice_line_ids" t-as="l">-->
+<!--                                            <t t-set="current_subtotal" t-value="0"/>-->
+<!--                                            <t t-set="current_subtotal"-->
+<!--                                               t-value="current_subtotal + l.price_subtotal"-->
+<!--                                               groups="account.group_show_line_subtotals_tax_excluded"/>-->
+<!--                                            <t t-set="current_subtotal" t-value="current_subtotal + l.price_total"-->
+<!--                                               groups="account.group_show_line_subtotals_tax_included"/>-->
+
+<!--                                            <tr>-->
+<!--                                                <t t-if="counter % 10 == 0">-->
+<!--                                                    <p style="page-break-after:always;"/>-->
+<!--                                                </t>-->
+<!--                                                <td>-->
+<!--                                                    <span t-esc="counter"/>-->
+<!--                                                </td>-->
+<!--                                                <t t-set="counter" t-value="counter + 1"/>-->
+<!--                                                <td>-->
+<!--                                                    <span t-esc="l.name"/>-->
+<!--                                                    <br></br>-->
+<!--                                                    <div>-->
+<!--                                                        <t t-foreach="l.lot_ids" t-as="lot">-->
+<!--                                                            <span t-esc="lot.name"/>-->
+<!--                                                            <br></br>-->
+<!--                                                        </t>-->
+<!--                                                    </div>-->
+<!--                                                </td>-->
+<!--                                                <t t-if="not l.product_id.l10n_in_hsn_code">-->
+<!--                                                    <td>-->
+<!--                                                        <span></span>-->
+<!--                                                        <br></br>-->
+<!--                                                    </td>-->
+<!--                                                </t>-->
+<!--                                                <t t-if="l.product_id.l10n_in_hsn_code">-->
+<!--                                                    <td>-->
+<!--                                                        <span t-esc="l.product_id.l10n_in_hsn_code"/>-->
+<!--                                                        <br></br>-->
+<!--                                                    </td>-->
+<!--                                                </t>-->
+<!--                                                <t t-set="line_taxes" t-value="get_line_tax(l)"/>-->
+<!--                                                &lt;!&ndash;                                                <t t-foreach="tax_types" t-as="t">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                    <td class="text-center"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        style="padding: 0 !important; margin: 0 !important;">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        <t t-if="t in line_taxes">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                            <span t-esc="'{:.2f}'.format(line_taxes[t]['rate'])"/>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        </t>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        <t t-if="t not in line_taxes">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                            <span></span>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        </t>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                    </td>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                </t>&ndash;&gt;-->
+
+<!--                                                <t t-set="qty" t-value="qty + l.quantity"/>-->
+<!--                                                <td style="text-align:right;">-->
+<!--                                                    <span t-esc="'%.0f'% l.quantity"/>-->
+<!--                                                    <span>Qty</span>-->
+<!--                                                    &lt;!&ndash;                                                    <span t-esc="l.product_uom_id.name"/>&ndash;&gt;-->
+<!--                                                </td>-->
+<!--                                                <td style="text-align:right;">-->
+<!--                                                    <span t-field="l.price_unit"/>-->
+<!--                                                </td>-->
+<!--                                                <td style="text-align:right;">-->
+<!--                                                    <span>Qty</span>-->
+<!--                                                </td>-->
+
+<!--                                                <td style="text-align:right;">-->
+<!--                                                    <span t-field="l.price_subtotal"/>-->
+<!--                                                </td>-->
+<!--                                                <td style="text-align:right;">-->
+<!--                                                    <t t-set="tax_amt" t-value="l.price_total - l.price_subtotal"/>-->
+<!--                                                    <span t-esc="tax_amt"-->
+<!--                                                          t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>aaa-->
+<!--                                                    <t t-set="line_taxes" t-value="get_line_tax(l)"/>-->
+<!--                                                    <t t-set="tax_rate" t-value="0"/>-->
+<!--                                                    <t t-foreach="tax_types" t-as="t">-->
+<!--                                                        <t t-if="t in line_taxes">-->
+<!--                                                            <t t-set="tax_rate"-->
+<!--                                                               t-value="tax_rate + line_taxes[t]['rate']"/>-->
+<!--                                                            &lt;!&ndash;                                                            <t t-esc="line_taxes[t]['rate']"/>%&ndash;&gt;-->
+<!--                                                        </t>-->
+<!--                                                    </t>-->
+<!--                                                    <br></br>-->
+<!--                                                    <b>-->
+<!--                                                        <strong>(<span t-esc="'%.0f'% tax_rate"/>%)-->
+<!--                                                        </strong>-->
+<!--                                                    </b>-->
+<!--                                                    <t t-if="t not in line_taxes">-->
+<!--                                                        <span></span>-->
+<!--                                                    </t>-->
+
+
+<!--                                                    <t t-set="tax_counter"-->
+<!--                                                       t-value="l.price_subtotal + l.price_total - l.price_subtotal"/>-->
+<!--                                                    <t t-set="tax_sum" t-value="l.price_total - l.price_subtotal"/>-->
+<!--                                                    <t t-set="total" t-value="total + tax_sum"/>-->
+<!--                                                </td>-->
+<!--                                                <td style="text-align:right;">-->
+<!--                                                    <b>-->
+<!--                                                        <strong t-esc="tax_counter"-->
+<!--                                                                t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>-->
+<!--                                                    </b>-->
+<!--                                                    <t t-set="final_total" t-value="final_total + tax_counter"/>-->
+<!--                                                </td>-->
+<!--                                                <t t-set="amount" t-value="amount + l.price_subtotal"/>-->
+<!--                                            </tr>-->
+<!--                                        </t>-->
+<!--                                        <t t-set="extra_tr" t-value="6 - len(o.invoice_line_ids)"/>-->
+<!--                                        <t t-foreach="range(extra_tr)" t-as="ex_tr">-->
+<!--                                            <tr style="border-top: hidden;height: 45px !important;">-->
+<!--                                                <td class="td_class"/>-->
+<!--                                                <td class="td_class"/>-->
+<!--                                                <td class="td_class"/>-->
+<!--                                                <td class="td_class"/>-->
+<!--                                                <td class="td_class"/>-->
+<!--                                                <td class="td_class"/>-->
+<!--                                                <td class="td_class"/>-->
+<!--                                                <td class="td_class"/>-->
+<!--                                                <td class="td_class"/>-->
+<!--                                                <t t-foreach="tax_types" t-as="t">-->
+<!--                                                    <t t-if="t == 'IGST'">-->
+<!--                                                        <tr style="border-top: hidden;height: 20px !important;">-->
+<!--                                                            <t t-set="extra_tr" t-value="9"/>-->
+<!--                                                            <t t-foreach="range(extra_tr)" t-as="ex_tr">-->
+<!--                                                                <td class="td_class"/>-->
+<!--                                                            </t>-->
+<!--                                                        </tr>-->
+
+<!--                                                    </t>-->
+<!--                                                </t>-->
+<!--                                            </tr>-->
+<!--                                        </t>-->
+<!--                                        <tr>-->
+<!--                                            <td/>-->
+<!--                                            <td style="text-align:center;">-->
+<!--                                                <strong>Total</strong>-->
+<!--                                            </td>-->
+<!--                                            <td/>-->
+
+<!--                                            &lt;!&ndash;                                            <t t-foreach="tax_types" t-as="t">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                <t t-if="t[1]">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                    <td></td>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                </t>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                            </t>&ndash;&gt;-->
+<!--                                            <td style="text-align:right;">-->
+<!--                                                <span t-esc="'%.0f'% qty"/>-->
+<!--                                                Qty-->
+<!--                                            </td>-->
+<!--                                            <td></td>-->
+
+<!--                                            <td>-->
+<!--                                                <span>Qty</span>-->
+<!--                                            </td>-->
+<!--                                            <td style="text-align:right;">-->
+<!--                                                <span t-esc="amount"-->
+<!--                                                      t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>-->
+<!--                                            </td>-->
+<!--                                            <td style="text-align:right;">-->
+<!--                                                <span t-esc="total"-->
+<!--                                                      t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>-->
+<!--                                            </td>-->
+<!--                                            <td style="text-align:right;">-->
+<!--                                                <b>-->
+<!--                                                    <strong t-esc="final_total"-->
+<!--                                                            t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>-->
+<!--                                                </b>-->
+<!--                                            </td>-->
+
+<!--                                        </tr>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+
+
+<!--                                <div class="row" style="padding-top:20px;padding-bottom:25px;">-->
+<!--                                    <div class="col-6">-->
+<!--                                        <u>-->
+<!--                                            <b>-->
+<!--                                                <span style="color: #73766f;">Terms and Conditions</span>-->
+<!--                                            </b>-->
+<!--                                        </u>-->
+<!--                                        <div style="padding-top:15px;">-->
+<!--                                            <span t-esc="o.narration"/>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-6" style="padding-left:50px;padding-right:10px;">-->
+<!--                                        <div class="row justify-content-end">-->
+<!--                                            <table class="table table-condensed" style="border: 0.5px solid #f0f5f5;">-->
+<!--                                                <b>-->
+<!--                                                    <t t-set="tax_totals" t-value="o.tax_totals"/>-->
+<!--                                                    <t t-call="account.document_tax_totals"/>-->
+<!--                                                </b>-->
+<!--                                            </table>-->
+<!--                                        </div>-->
+
+<!--                                        <div style="padding-top:20px;margin-left:10px">-->
+<!--                                            <span>Total (in words) :</span>-->
+<!--                                            <p>-->
+<!--                                                <span t-esc="o.amount_to_text(round(final_total, 2))"/>-->
+<!--                                            </p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="row">-->
+<!--                                    <div class="col-6" style="padding-top:45px;">-->
+<!--                                        <b>-->
+<!--                                            <u>-->
+<!--                                                <strong style="margin-left:9px;">Bank Details</strong>-->
+<!--                                            </u>-->
+<!--                                        </b>-->
+<!--                                        <table class="table table-borderless m-0">-->
+<!--                                            <tr>-->
+<!--                                                <td style="color: #73766f;">Account Holder Name</td>-->
+<!--                                                <td t-esc="billed_by_partner.bank_ids.acc_holder_name"-->
+<!--                                                    style="text-align:right"/>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td style="color: #73766f;">Account Number</td>-->
+<!--                                                <td t-esc="billed_by_partner.bank_ids.acc_number"-->
+<!--                                                    style="text-align:right"/>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td style="color: #73766f;">IFSC</td>-->
+<!--                                                <td t-esc="billed_by_partner.bank_ids.bank_id.bic"-->
+<!--                                                    style="text-align:right"/>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td style="color: #73766f;">Bank</td>-->
+<!--                                                <td t-esc="billed_by_partner.bank_ids.bank_name"-->
+<!--                                                    style="text-align:right"/>-->
+<!--                                            </tr>-->
+<!--                                            <br></br>-->
+
+<!--                                        </table>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <br></br>-->
+
+
+<!--                                <div id="informations" class="mt32 mb16" style="page-break-after:always;">-->
+<!--                                    <div class="row" style="padding-top:10px;">-->
+<!--                                        <b>-->
+<!--                                            <u>-->
+<!--                                                <strong>Declaration</strong>-->
+<!--                                            </u>-->
+<!--                                        </b>-->
+<!--                                    </div>-->
+<!--                                    <div class="row">-->
+<!--                                        <span t-esc="o.declaration"/>-->
+<!--                                    </div>-->
+<!--                                    <div class="row">-->
+<!--                                        <div style="text-align:right;padding-top:10px;">-->
+<!--                                            <h6>-->
+<!--                                                <b>-->
+<!--                                                    <strong>For-->
+<!--                                                        <span t-field="o.company_id"/>-->
+<!--                                                    </strong>-->
+<!--                                                </b>-->
+<!--                                            </h6>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+
+<!--                                    <div class="row" style="padding-top:55px;">-->
+<!--                                        <div class="col-3 text-left" name="amount_paid">-->
+<!--                                            <b>Customer Seal Signature</b>-->
+<!--                                            <br></br>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-6"></div>-->
+
+<!--                                        <div class="col-3" style="text-align:right" name="total_amount">-->
+<!--                                            <span>Authorised Signatory</span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="row" style="border-top: 2px solid black;">-->
+<!--                                    </div>-->
+
+<!--                                    <div class="col-12" style="text-align:center;padding-top:20px;">-->
+<!--                                        SUBJECT TO AHMEDABAD JURISDICTION-->
+<!--                                    </div>-->
+<!--                                    <div class="col-12"-->
+<!--                                         style="text-align:center;padding-top:20px;">-->
+<!--                                        This is a Computer Generated Invoice-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </t>-->
+<!--                </t>-->
+<!--            </t>-->
+<!--        </template>-->
+
+        <template id="pdf_report_templates_invoice">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <t t-call="cue_reports.pdf_report_templates">
+                                <t t-if="o.move_type == 'out_invoice'">
+                                    <t t-set="pdf_header" t-value="'Tax Invoice'"/>
+                                    <t t-set="number_label" t-value="'Invoice No.'"/>
+                                    <t t-set="date_label" t-value="'Invoice Date'"/>
+	                                <t t-set="billed_by_acc_phone" t-value="'9316551538'"/>
+	                                <t t-set="billed_by_acc_email" t-value="'accounts@chipbucket.com'"/>
+	                                <t t-set="billed_by_partner" t-value="o.company_id.partner_id"/>
+                                <!--                            ##################### Billed To #####################-->
+
+	                                <t t-set="billed_to_partner" t-value="o.partner_id"/>
+	                                <t t-set="ship_to" t-value="o.partner_shipping_id"/>
+
+                                </t>
+                                <t t-if="o.move_type == 'in_invoice'">
+                                    <t t-set="pdf_header" t-value="'Vendor Bill'"/>
+                                    <t t-set="number_label" t-value="'Bill No.'"/>
+                                    <t t-set="date_label" t-value="'Bill Date'"/>
+	                                <t t-set="billed_to_acc_phone" t-value="'9316551538'"/>
+	                                <t t-set="billed_to_acc_email" t-value="'accounts@chipbucket.com'"/>
+	                                <t t-set="billed_by_partner" t-value="o.partner_id"/>
+                                <!--                            ##################### Billed To #####################-->
+
+	                                <t t-set="billed_to_partner" t-value="o.company_id"/>
+	                                <t t-set="ship_to" t-value="o.company_id"/>
+
+                                </t>
+
+                                <t t-set="company" t-value="o.company_id"/>
+
+
+
+
+                                <!--                            ##################### details #####################-->
+
+                                <t t-set="numbers" t-value="o.name"/>
+
+                                <t t-if="o.invoice_date">
+                                    <t t-set="date" t-value="o.invoice_date.strftime('%d/%m/%Y')"/>
+                                </t>
+
+
+                                <!--                            ##################### Tables #####################-->
+
+                                <t t-set="line" t-value="o.invoice_line_ids"/>
+                                <t t-set="flag" t-value="'invoice'"/>
+
+                                <!--                            ##################### Terms and Conditions #####################-->
+
+                                <t t-set="terms_condition" t-value="o.narration"/>
+                                <t t-set="tax_types" t-value="get_type(o)"/>
+                                <t t-set="declaration" t-value="o.declaration"/>
+                                <!--                                <t t-set="numbers" t-value="number"/>-->
+<!--                                <t t-if="date">-->
+<!--                                    <t t-set="date" t-value="date.strftime('%d/%m/%Y')"/>-->
+<!--                                </t>-->
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

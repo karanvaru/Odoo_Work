@@ -1,0 +1,22 @@
+.cue_blank_box {
+	border-radius: 20px;
+	background-color: #232328;
+	min-height: 600px;
+	color: #fafafc;
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	@media screen and (max-width: 768px) {
+		.pt64{
+			padding-top:8px !important;
+		}
+		.row > *{
+			padding-left:30px !important;
+			font-size: 12px !important;
+		}
+		.pb64{
+			padding-bottom:8px !important;
+		}
+	}
+}

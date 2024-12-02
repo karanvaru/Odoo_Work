@@ -1,0 +1,131 @@
+<odoo>
+    <data>
+        <record id="action_cue_reports_purchase" model="ir.actions.report">
+            <field name="name">Purchase Order</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cue_reports.pdf_report_templates_purchase</field>
+            <field name="report_file">cue_reports.pdf_report_templates_purchase</field>
+            <field name="print_report_name">'Purchase Order'</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="cue_reports.paperformat_pdf_statement"/>
+        </record>
+        <record id="action_cue_reports_rfq" model="ir.actions.report">
+            <field name="name">Request For Quotation</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cue_reports.pdf_report_templates_rfq</field>
+            <field name="report_file">cue_reports.pdf_report_templates_rfq</field>
+            <field name="print_report_name">'Request For Quotation'</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="cue_reports.paperformat_pdf_statement"/>
+        </record>
+
+
+        <template id="pdf_report_templates_purchase">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <t t-call="cue_reports.pdf_report_templates">
+                                <t t-set="pdf_header" t-value="'Purchase Order'"/>
+                                <t t-set="number_label" t-value="'Order No.'"/>
+                                <t t-set="date_label" t-value="'Order Date'"/>
+
+                                <!--                            ##################### Billed By #####################-->
+
+                                <t t-set="company" t-value="o.company_id"/>
+                                <t t-set="billed_by_partner" t-value="o.partner_id"/>
+                                <t t-set="billed_to_acc_phone" t-value="'9316551538'"/>
+                                <t t-set="billed_to_acc_email" t-value="'accounts@chipbucket.com'"/>
+
+                                <!--                            ##################### Billed To #####################-->
+
+                                <t t-set="billed_to_partner" t-value="o.company_id"/>
+                                <t t-set="ship_to" t-value="o.company_id"/>
+
+
+                                <!--                            ##################### details #####################-->
+
+                                <t t-set="number" t-value="o.name"/>
+                                <t t-set="date" t-value="o.date_planned"/>
+
+                                <!--                            ##################### Tables #####################-->
+
+                                <t t-set="line" t-value="o.order_line"/>
+                                <t t-set="flag" t-value="'purchase'"/>
+
+                                <!--                            ##################### Terms and Conditions #####################-->
+
+                                <t t-set="terms_condition" t-value="o.notes"/>
+                                <t t-set="tax_types" t-value="get_type(o)"/>
+                                <t t-set="declaration" t-value="o.declaration"/>
+                                <t t-set="numbers" t-value="number"/>
+                                <t t-if="date">
+                                    <t t-set="date" t-value="date.strftime('%d/%m/%Y')"/>
+                                </t>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <template id="pdf_report_templates_rfq">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <t t-call="cue_reports.pdf_report_templates">
+                                <t t-set="pdf_header" t-value="'Request for Quotation'"/>
+                                <t t-set="number_label" t-value="'RFQ No.'"/>
+                                <t t-set="date_label" t-value="'RFQ Date'"/>
+
+                                <!--                            ##################### Billed By #####################-->
+
+                                <t t-set="company" t-value="o.company_id"/>
+                                <t t-set="billed_by_partner" t-value="o.partner_id"/>
+
+                                <!--                            ##################### Billed To #####################-->
+
+                                <t t-set="billed_to_partner" t-value="o.company_id"/>
+                                <t t-set="ship_to" t-value="o.company_id"/>
+
+                                <!--                            ##################### details #####################-->
+
+                                <t t-set="number" t-value="o.name"/>
+                                <t t-set="date" t-value="o.date_planned"/>
+
+                                <!--                            ##################### Tables #####################-->
+
+                                <t t-set="line" t-value="o.order_line"/>
+                                <t t-set="flag" t-value="'purchase'"/>
+
+                                <!--                            ##################### Bank Details #####################-->
+
+                                <t t-set="ac_holder_name" t-value="o.partner_id.bank_ids.acc_holder_name"/>
+                                <t t-set="ac_number" t-value="o.partner_id.bank_ids.acc_number"/>
+                                <t t-set="ifsc_code" t-value="o.partner_id.bank_ids.bank_id.bic"/>
+                                <t t-set="bank_name" t-value="o.partner_id.bank_ids.bank_name"/>
+
+                                <!--                            ##################### Terms and Conditions #####################-->
+
+                                <t t-set="terms_condition" t-value="o.notes"/>
+                                <t t-set="tax_types" t-value="get_type(o)"/>
+                                <t t-set="declaration" t-value="o.declaration"/>
+                                <t t-set="numbers" t-value="number"/>
+                                <t t-if="date">
+                                    <t t-set="date" t-value="date.strftime('%d/%m/%Y')"/>
+                                </t>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

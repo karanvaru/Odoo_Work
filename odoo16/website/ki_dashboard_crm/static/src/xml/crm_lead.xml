@@ -1,0 +1,227 @@
+<templates id="template" xml:space="preserve">
+    <t t-name="CrmDashBoard">
+        <div class="oh_dashboards">
+            <div class="container-fluid o_pos_dashboard"> </div>
+        </div>
+    </t>
+
+    <t t-name="CrmLeadBarGraph">
+        <div class="accounts-dashboard-wrap">
+            <div class="oh_dashboards">
+                <div class="container-fluid o_pos_dashboard">
+                </div>
+                <div class="o_dashboards col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                    <div class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2" style="padding: 15px;">
+                                <div class="col-sm-12">
+                                    <div class="dash-header">
+                                        <h2 class="section-header">CRM Dashboard </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin:0px">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <div class="">
+                                                        <div class="row">
+                                <div style="text-align:right;  padding-right: 3%;">
+                                    <span style="font-weight: bold; color: black;  padding-right: 3%;">
+                                        From Date :
+                                    <input type="date" name="crm_from_date" id="customer_from_date"
+                                           required="required"/>
+                                    </span>
+                                    <span style="font-weight: bold; color: black;   padding-right: 3%;">
+                                        To Date :
+                                    <input type="date" name="crm_to_date" id="customer_to_date" required="required"/>
+                                    </span>
+                                    <button type="button" class="btn-primary apply_btn_class"
+                                            id="top_10_crm_record">Apply</button>
+                                </div>
+                            </div>
+
+
+                            <div class="row account-details" style="margin:0px" id="state_display">
+                                <t t-foreach="widget.stage_dict" t-as="crm_stage">
+                                    <div class="col-md crm_new_stage" t-att-data-id="crm_stage">
+                                        <div class="tile wide invoice box-1">
+                                            <div class="headers">
+                                                <div class="main-title">
+                                                    <span t-esc="crm_stage"/>
+<!--                                                    <span id="crm_stages"/>-->
+                                                </div>
+                                                <div id="monthly_invoice">
+                                                    <div class="left">
+                                                        <span>Count</span>
+                                                        <div class="count">
+                                                            <span t-esc="widget.stage_dict[crm_stage][1]"/>
+<!--                                                             <span id="stage_dict_count"/>-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="right crm_new_stage" id="crm_new_stage_id"
+                                                         t-att-data-id="crm_stage"
+                                                         style="text-align:center">
+                                                        <span>Amount</span>
+                                                        <div class="count">
+                                                             <span t-esc="widget.stage_dict[crm_stage][0]"/>
+<!--                                                             <span id="stage_dict_amount"/>-->
+                                                            <!--                                                        <span t-esc="widget.state_count_dict['currency']"/>-->
+                                                            <!--                                                        <span t-esc="widget.state_count_dict['inbox_count']"/>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                    <div class="">
+                        <div class="row account-details" style="margin:0px">
+                            <div class="col-md-4">
+                                <div class="card" style="height:410px;">
+                                    <div class="card-header"
+                                         style=" padding: 7px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; background-color:#465dac; ">
+                                        <h3 class="custom-h3 card-title">
+                                            <b>Sale Team By Count</b>
+                                        </h3>
+                                    </div>
+                                    <div class="card-body p-0" style="overflow-y: auto; " id="top_10_body">
+                                        <ul class="users-list clearfix" id="top_10_crm_team" style="padding-top:10px;"/>
+                                        <t t-foreach="widget.top_10_sales_team" t-as="top_10_sales_team">
+                                             <li class="top_list_class">
+                                                 <div class="row top_10_row" id="top_10_crm_teams">
+                                                    <div class="col-9 top_10_crm_sales_team_vals">
+                                                        <span t-esc="top_10_sales_team"/>
+                                                    </div>
+                                                     <div class="col-3 top_10_crm_sales_team_vals"
+                                                          style="text-align:right;">
+                                                        <span t-esc="widget.top_10_sales_team['currency']"/>
+                                                         <span t-esc="widget.top_10_sales_team[top_10_sales_team]"/>
+                                                    </div>
+                                                </div>
+                                             </li>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card" style="height:410px;">
+                                    <div class="card-header"
+                                         style=" padding: 7px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; background-color:#465dac; ">
+                                        <h3 class="custom-h3 card-title">
+                                            <b>Sale Team By Amount</b>
+                                        </h3>
+                                    </div>
+                                    <div class="card-body p-0" style="overflow-y: auto; " id="top_10_body">
+                                        <ul class="users-list clearfix" id="crm_top_10_sale_team_by_amount"
+                                            style="padding-top:10px;"/>
+                                        <t t-foreach="widget.top_10_team_by_amount" t-as="top_10_crm_amount">
+                                            <li class="top_list_class">
+                                                <div class="row top_10_row" id="purchase_top_10_product">
+                                                    <div class="col-9 top_10_purchase_product_val">
+                                                        <span t-esc="top_10_crm_amount"/>
+                                                    </div>
+                                                    <div class="col-3 top_10_purchase_product_val"
+                                                         style="text-align:right;">
+                                                           <span t-esc="widget.currency"/>
+                                                        <span t-esc="widget.top_10_team_by_amount[top_10_crm_amount]"/>
+
+                                                    </div>
+                                                </div>
+                                             </li>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card" style="height:410px;">
+                                    <div class="card-header"
+                                         style=" padding: 7px 1.5rem !important; display: flex !IMPORTANT; justify-content: space-between; align-items: center; background-color:#465dac; ">
+                                        <h3 class="custom-h3 card-title">
+                                            <b>CUSTOMERS</b>
+                                        </h3>
+                                    </div>
+                                    <div class="card-body p-0" style=" overflow-y: auto; ">
+                                        <ul class="users-list clearfix" style="padding-top:10px;"
+                                            id="top_10_crm_filter_customer"/>
+                                        <t t-foreach="widget.top_10_crm_customer" t-as="top_10_crm_customer">
+                                            <li class="top_list_class">
+                                            <div class="row top_10_row" id="purchase_top_10_product_by_qty">
+                                                <div class="col-9 top_10_crm_customer_vals">
+                                                    <span t-esc="top_10_crm_customer"/>
+                                                </div>
+                                                <div class="col-3 top_10_crm_customer_vals"
+                                                     style="text-align:right;">
+                                                       <span t-esc="widget.currency"/>
+                                                    <span t-esc="widget.top_10_crm_customer[top_10_crm_customer]"/>
+                                                </div>
+                                            </div>
+                                            </li>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="sales_team_graph col-sm-5 col-md-6 my-4">
+                                <div class="chart-container" style="background-color:white;">
+                                    <div class="row" style="height: 20px; max-height: 20px;padding-left: 20px;">
+                                        <h2 class="col-4">Sales Team's Details</h2>
+                                        <div class="form-group col-8" style="text-align:right; padding-right: 61px;">
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="card-body" id="ex_body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="operation_crm_team_graph card-body p-0"
+                                             style=" height: 287px; overflow-y: auto; "
+                                             id="operation_crm_team">
+                                                <ul class="users-list clearfix" id="operation_crm_team_graph_id"/>
+                                         </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+
+                            <div class="graph_by_crm_customer col-sm-5 col-md-6 my-4">
+                            <div class="chart-container" style="background-color:white;">
+                                <div class="row"
+                                     style="height: 20px; max-height: 20px; padding-left: 20px;">
+                                    <h2 class="col-4">Customer's Details</h2>
+                                    <div class="form-group col-8"
+                                         style="text-align:right; padding-right: 61px;">
+
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="card-body" id="ex_body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="operation_customer_on_graph_crm card-body p-0"
+                                             style=" height: 287px; overflow-y: auto; "
+                                             id="operation_customer_on_graph">
+                                                <ul class="users-list clearfix"
+                                                    id="operation_customer_on_graph_crm_id"/>
+                                         </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </t>
+</templates>

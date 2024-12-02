@@ -1,0 +1,127 @@
+<odoo>
+    <data>
+        <record id="action_cue_report_sales" model="ir.actions.report">
+            <field name="name">Quotation / Order</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cue_reports.pdf_report_templates_sale</field>
+            <field name="report_file">cue_reports.pdf_report_templates_sale</field>
+            <field name="print_report_name">'Sale Order'</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="paperformat_id" ref="cue_reports.paperformat_pdf_statement"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_cue_report_proforma" model="ir.actions.report">
+            <field name="name">PRO-FORMA invoice</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cue_reports.pdf_report_templates_proforma</field>
+            <field name="report_file">cue_reports.pdf_report_templates_proforma</field>
+            <field name="print_report_name">'Proforma Invoice'</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="paperformat_id" ref="cue_reports.paperformat_pdf_statement"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+        <template id="pdf_report_templates_sale">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <t t-call="cue_reports.pdf_report_templates">
+                                <t t-set="pdf_header" t-value="'Sales Order'"/>
+                                <t t-set="number_label" t-value="'Order No.'"/>
+                                <t t-set="date_label" t-value="'Order Date'"/>
+
+                                <!--                            ##################### Billed By #####################-->
+
+                                <t t-set="company" t-value="o.company_id"/>
+                                <t t-set="billed_by_partner" t-value="o.company_id.partner_id"/>
+                                <t t-set="billed_by_acc_phone" t-value="'9316551538'"/>
+                                <t t-set="billed_by_acc_email" t-value="'accounts@chipbucket.com'"/>
+
+                                <!--                            ##################### Billed To #####################-->
+
+                                <t t-set="billed_to_partner" t-value="o.partner_id"/>
+                                <t t-set="ship_to" t-value="o.partner_shipping_id"/>
+
+                                <!--                            ##################### details #####################-->
+
+                                <t t-set="number" t-value="o.name"/>
+                                <t t-set="date" t-value="o.date_order"/>
+
+                                <!--                            ##################### Tables #####################-->
+
+                                <t t-set="line" t-value="o.order_line"/>
+                                <t t-set="flag" t-value="'sale'"/>
+
+                                <!--                            ##################### Terms and Conditions #####################-->
+
+                                <t t-set="terms_condition" t-value="o.note"/>
+                                <t t-set="tax_types" t-value="get_type(o)"/>
+                                <t t-set="declaration" t-value="o.declaration"/>
+                                <t t-set="numbers" t-value="number"/>
+                                <t t-if="date">
+                                    <t t-set="date" t-value="date.strftime('%d/%m/%Y')"/>
+                                </t>
+
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <template id="pdf_report_templates_proforma">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <t t-call="cue_reports.pdf_report_templates">
+                                <t t-set="pdf_header" t-value="'Proforma Invoice'"/>
+                                <t t-set="number_label" t-value="'Invoice No.'"/>
+                                <t t-set="date_label" t-value="'Invoice Date'"/>
+                                <t t-set="billed_by_acc_phone" t-value="'9316551538'"/>
+                                <t t-set="billed_by_acc_email" t-value="'accounts@chipbucket.com'"/>
+
+                                <!--                            ##################### Billed By #####################-->
+
+                                <t t-set="company" t-value="o.company_id"/>
+                                <t t-set="billed_by_partner" t-value="o.company_id.partner_id"/>
+
+                                <!--                            ##################### Billed To #####################-->
+
+                                <t t-set="billed_to_partner" t-value="o.partner_id"/>
+                                  <t t-set="ship_to" t-value="o.partner_shipping_id"/>
+
+                                <!--                            ##################### details #####################-->
+
+                                <t t-set="number" t-value="o.name"/>
+                                <t t-set="date" t-value="o.date_order"/>
+
+                                <!--                            ##################### Tables #####################-->
+
+                                <t t-set="line" t-value="o.order_line"/>
+                                <t t-set="flag" t-value="'sale'"/>
+
+                                <!--                            ##################### Terms and Conditions #####################-->
+
+                                <t t-set="terms_condition" t-value="o.note"/>
+                                <t t-set="tax_types" t-value="get_type(o)"/>
+                                <t t-set="declaration" t-value="o.declaration"/>
+                                <t t-set="numbers" t-value="number"/>
+                                <t t-if="date">
+                                    <t t-set="date" t-value="date.strftime('%d/%m/%Y')"/>
+                                </t>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

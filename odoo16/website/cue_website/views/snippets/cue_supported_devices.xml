@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<odoo>-->
+
+<!--    <template id="cue_supported_devices" name="Cue Supported Devices">-->
+<!--        <section class="s_text_image cue_supported_devices pt32 pb32 o_colored_level" data-snippet="s_text_image"-->
+<!--                 data-name="Text - Image" style="background-image: none;">-->
+<!--            <div class="container">-->
+<!--                <div class="row align-items-center">-->
+<!--                    <div class="col-12">-->
+<!--                        <div class="col-12 text-center">-->
+<!--                            <h1 class="mb-5">Supported Devices</h1>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row" id="icon_box" >-->
+<!--                </div>-->
+<!--                <div class="row align-items-center" id="support_device_id">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--    </template>-->
+
+
+<!--	<template id="template_cue_supported_devices_icon">-->
+<!--		<div class="row image_box">-->
+<!--			<div class="col active" valign="middle">-->
+<!--				<img class="categ_icon_class icon_class mb-0"  src="cue_website/static/src/images/home-50-1.png" data-id="0"/>-->
+<!--			</div>-->
+<!--			<t t-foreach="product_category" t-as="p">-->
+<!--				<div t-attf-class="col"  valign="middle">-->
+<!--					<img class="categ_icon_class icon_class mb-0" t-att-data-id="p.id" t-attf-src="data:image/png;base64,{{p.image}}" />-->
+<!--				</div>-->
+<!--			</t>-->
+<!--		</div>-->
+<!--		<div class="row" style="margin-top:100px;">-->
+<!--			<t t-foreach="product_brand" t-as="b">-->
+<!--				<div class="col-2 brands"   t-att-data-id="b.id">-->
+<!--					<div class="d-flex align-items-center">-->
+<!--						<div class="cubes">-->
+<!--							<div class="box">-->
+<!--								<img class="img_class"-->
+<!--									t-attf-src="data:image/png;base64,{{b.logo}}" />-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</t>-->
+<!--		</div>-->
+<!--	</template>-->
+
+<!--    <record id="cue_website.cue_supported_devices_000_scss" model="ir.asset">-->
+<!--        <field name="name">Cue 000 SCSS</field>-->
+<!--        <field name="bundle">web.assets_frontend</field>-->
+<!--        <field name="path">cue_website/static/src/snippets/cue_supported_devices/000.scss</field>-->
+<!--    </record>-->
+
+<!--</odoo>-->
+
+
+<odoo>
+    <template id="cue_supported_devices" name="Cue Supported Devices">
+        <section class="s_text_image cue_supported_devices pt32 pb32 o_colored_level" data-snippet="s_text_image" data-name="Text - Image" style="background-image: none;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="col-12 __support_box">
+                            <h1 class="mb-5">Supported Devices</h1>
+                            <div class="__details">
+                                <p style="color: #fafafc;"><b>Cue Bridge</b> currently supports 20K+ devices across 500+ brands right out-of-the-box on Day 1, and we keep on adding support for new brands and devices.</p>
+                            </div>
+                            <div class="__details">
+                                <p style="color: #afafc8;">Please select a device category below to know which brands are currently supported.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="devices_content">
+                        <div class="col-12">
+                            <b>Cue Bridge </b> currently supports 20K+ devices across 500+ brands right out-of-the-box on Day 1,
+                            and we keep on adding support for new brands and devices.
+                        </div>
+                        <div class="col-12">
+                            Please select a device category below to know which brands are currently supported.
+                        </div>
+                    </div> -->
+
+                </div>
+                <div class="row" id="icon_box"></div>
+                <div class="row align-items-center" id="support_device_id"></div>
+            </div>
+        </section>
+    </template>
+    <template id="template_cue_supported_devices_icon">
+        <div class="row image_box">
+            <t t-if="not is_mobile">
+                <div class="col active" valign="middle">
+                    <img class="categ_icon_class icon_class mb-0" src="cue_website/static/src/images/home-50-1.png"
+                         data-id="0"/>
+                </div>
+                <t t-foreach="product_category" t-as="p">
+                    <div t-attf-class="col" valign="middle">
+                        <img class="categ_icon_class icon_class mb-0" t-att-data-id="p.id"
+                             t-attf-src="data:image/png;base64,{{p.image}}">
+                         </img>
+                    </div>
+                </t>
+            </t>
+            <t t-else="">
+                <select class="__category_selection">
+                    <option value="0" selected="">Select a Device Category</option>
+                    <option value="0">All Devices</option>
+                    <t t-foreach="product_category" t-as="p">
+                        <option t-att-value="p.id">
+                            <t t-esc="p.name"/>
+                        </option>
+                    </t>
+                </select>
+            </t>
+        </div>
+        <div class="row" style="margin-top:100px;">
+            <t t-foreach="product_brand" t-as="b">
+                <div class="col-2 brands" t-att-data-id="b.id">
+                    <div class="d-flex align-items-center">
+                        <div class="cubes">
+                            <div class="box">
+                             <a t-att-href="b.redirect_url" target="_blank">
+                                <img class="img_class" t-attf-src="data:image/png;base64,{{b.logo}}">
+                                </img>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </template>
+    <record id="cue_website.cue_supported_devices_000_scss" model="ir.asset">
+        <field name="name">Cue 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_supported_devices/000.scss</field>
+    </record>
+</odoo>

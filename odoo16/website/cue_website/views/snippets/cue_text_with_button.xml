@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="cue_text_with_button" name="Cue Text Block - Button">
+        <section class="s_title pt144 cue_text_with_button o_colored_level" data-vcss="0001"
+                 data-snippet="s_title" data-name="Title" style="background-image: none;">
+            <div class="container px-100 s_allow_columns">
+                <h1>
+                    <font style="color: rgb(225, 225, 240);">
+                        <p class="cue_container" style="font-size: 36px;font-weight:400;">Re-imagine security, comfort and convenience in your HomeKit smart home.</p>
+                    </font>
+                </h1>
+                <div class="button_box cue_container mt-4 text-end">
+                    <a class="__black rounded mb-2 pt16 pb16 btn-lg btn btn-fill-primary rounded-circle"
+                       href="/products">
+                        <span>Get Started</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- <record id="cue_website.cue_text_with_button_000_scss" model="ir.asset">
+        <field name="name">Cue 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_text_with_button/000.scss</field>
+    </record> -->
+
+
+    <record id="cue_website.cue_text_with_button_0001_scsss" model="ir.asset">
+        <field name="name">Cue 000 SCSS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">cue_website/static/src/snippets/cue_text_with_button/0001.scss</field>
+    </record>
+
+</odoo>

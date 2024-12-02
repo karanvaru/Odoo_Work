@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.fund_statement,access_fund.statement,cue_account_statement_report.model_fund_statement,base.group_user,1,1,1,1
+access.capex_category,access_capex.category,cue_account_statement_report.model_capex_category,base.group_user,1,1,1,1
+
+
