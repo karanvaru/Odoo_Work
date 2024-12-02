@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="action_purchase_invoice_report_all" model="ir.actions.client">
+            <field name="name">Purchase Report</field>
+            <field name="tag">purchase_dashboard_tag</field>
+        </record>
+
+        <menuitem name="Dashboard" id="menu_purchase_dashboard" parent="purchase.menu_purchase_root"
+                  sequence="0"
+                  action="action_purchase_invoice_report_all"/>
+
+    </data>
+</odoo>

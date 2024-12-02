@@ -1,0 +1,30 @@
+{
+    'name': 'Ki Dashboard',
+    'version': '16.0.2.0.9',
+    'category': 'Accounting',
+    'summary': """ Sales And Purchase Dashbord""",
+    'description': """ Sales And Purchase Dashbord """,
+    'author': 'Kiran Infosoft',
+    'website': "http://www.kiraninfosoft.com",
+    'company': 'Kiran Infosoft',
+    'depends': ['ki_dashboard_crm', 'ki_dashboard_purchase','ki_dashboard_sale'],
+    'data': [
+        # 'views/dashboard_views.xml',
+    ],
+    'assets': {
+        'web.assets_backend': [
+            # 'ki_dashboard/static/src/scss/style.scss',
+            # 'ki_dashboard/static/src/css/dashboard.css',
+            # 'ki_dashboard/static/src/js/lib/Chart.bundle.js',
+            # 'ki_dashboard/static/src/xml/hr_dashboard.xml',
+            # 'ki_dashboard/static/src/xml/purchase_dashbord.xml',
+            # 'ki_dashboard/static/src/js/sale_oeder_dashbord.js',
+            # 'ki_dashboard/static/src/js/purchase_order_dashbord.js',
+        ],
+    },
+    'license': 'LGPL-3',
+    'images': ['static/description/banner.gif'],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+}
